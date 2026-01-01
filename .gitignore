@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production
+dist/
+build/
+
+# Misc
+.DS_Store
+.env
+.env.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor
+.vscode/
+.idea/
+
+# Data
+*.json
+!package.json
+!core/package.json
+!web/package.json
+
+# Local Environment
+.local/
