@@ -1,7 +1,8 @@
 const FingerState = require('./models/FingerState')
 const { normalizeNotes, aggregatePeaks } = require('./utils/normalization')
 const { KEY_MAP } = require('./constants')
-const { snapNotes } = require('./utils/ModUtils') // Import Snapping Utility
+const { snapNotes } = require('./utils/ModUtils')
+const { calculateOfficial } = require('./official')
 
 const StreamSkill = require('./skills/StreamSkill')
 const JackSpeedSkill = require('./skills/JackSpeedSkill')
@@ -137,4 +138,4 @@ function calculateStrain(rawNotes, overallDifficulty, returnPeaks = false) {
     return calc.calculate(rawNotes, overallDifficulty, returnPeaks)
 }
 
-module.exports = { calculateStrain }
+module.exports = { calculateStrain, calculateOfficial }
