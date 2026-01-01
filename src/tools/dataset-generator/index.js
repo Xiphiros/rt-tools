@@ -2,7 +2,7 @@ import { glob } from 'glob';
 import path from 'path';
 import fs from 'fs/promises';
 import chalk from 'chalk';
-import { calculateStrain } from '@rt-tools/sr-calculator';
+import { calculateStrain, calculateOfficial } from '@rt-tools/sr-calculator';
 import { parseRtmFile } from './rtm-parser.js';
 
 // Configuration
@@ -31,8 +31,6 @@ async function main() {
 
         const { meta, difficulties } = result;
         
-        // Extract Mapset ID for linking
-        // Priority: meta.mapsetId -> filename parsing -> null
         let mapsetId = meta.mapsetId;
         if (!mapsetId) {
             const basename = path.basename(file);
@@ -48,8 +46,14 @@ async function main() {
             const baseOD = diff.data.overallDifficulty || 5;
             const notes = diff.data.notes;
 
-            // Run the algorithm
+            // 1. Run New Rework Algorithm
             const strain = calculateStrain(notes, baseOD);
+
+            // 2. Run Official Algorithm
+            const officialSR = calculateOfficial({
+                notes: notes,
+                overallDifficulty: baseOD
+            });
 
             exportData.push({
                 id: `${mapsetId || Date.now()}_${diff.diffId}`,
@@ -59,6 +63,7 @@ async function main() {
                 diffName: diff.name,
                 bpm: meta.bpm || 0,
                 stars: strain.total,
+                starsOfficial: officialSR || 0, // Fallback for safety
                 stats: strain.details,
                 link: mapLink
             });
@@ -70,7 +75,6 @@ async function main() {
 
     console.log('\n');
     
-    // Ensure directory exists
     await fs.mkdir(path.dirname(OUTPUT_FILE), { recursive: true });
     
     await fs.writeFile(OUTPUT_FILE, JSON.stringify(exportData, null, 2));
