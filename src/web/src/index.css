@@ -2,77 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {    
-    /* Backgrounds */
-    --color-bg: #0f172a; /* Slate 950 - Deepest background */
-    --color-card-bg: #1e293b; /* Slate 800 - Cards/Panels */
-    --color-card-bg-hover: #334155; /* Slate 700 - Hover states */
-    --color-input-bg: #020617; /* Slate 950 - Inputs */
-    --color-modal-overlay: rgba(15, 23, 42, 0.85);
-
-    /* Text */
-    --color-text-header: #f1f5f9; /* Slate 100 */
-    --color-text-primary: #e2e8f0; /* Slate 200 */
-    --color-text-secondary: #94a3b8; /* Slate 400 */
-    --color-text-muted: #64748b; /* Slate 500 */
-    --color-text-inverted: #0f172a;
-
-    /* Borders */
-    --color-border: #334155; /* Slate 700 */
-    --color-border-input: #475569; /* Slate 600 */
-    --color-border-active: #06b6d4; /* Cyan 500 */
-
-    /* Brand Accents (Multi-color Scheme) */
-    --color-accent-primary: #06b6d4; /* Cyan 500 - Primary Actions */
-    --color-accent-secondary: #d946ef; /* Fuchsia 500 - Secondary Actions */
-    --color-score: #fbbf24; /* Amber 400 - Score/Rank */
+:root {
+    /* 
+       Diamond Theme (RhythmTyper Aesthetic)
+       Background: Deep Navy/Slate
+       Accents: Cyan (T), Purple (Y), Green (C), Pink (P)
+    */
     
-    /* Strain Dimension Colors (The 7 Pillars) */
-    --color-strain-stream: #0ea5e9; /* Sky 500 */
-    --color-strain-jack: #f43f5e; /* Rose 500 */
-    --color-strain-chord: #8b5cf6; /* Violet 500 */
-    --color-strain-prec: #eab308; /* Yellow 500 */
-    --color-strain-ergo: #10b981; /* Emerald 500 */
-    --color-strain-disp: #f97316; /* Orange 500 */
-    --color-strain-stam: #14b8a6; /* Teal 500 */
-
-    /* Button Variants */
-    --color-button-primary-bg: var(--color-accent-primary);
-    --color-button-primary-hover: #0891b2; /* Cyan 600 */
+    /* Base Layers */
+    --color-bg: #0b0d14;       /* Almost black blue */
+    --color-card-bg: #151926;  /* Deep slate */
+    --color-card-hover: #1e2436;
+    --color-header-bg: #151926;
     
-    --color-button-secondary-bg: var(--color-card-bg-hover);
-    --color-button-secondary-hover: #475569;
+    /* Borders & Inputs */
+    --color-border: #2a3045;
+    --color-input-bg: #0f111a;
+    --color-input-border: #2f3651;
 
-    --color-button-danger-bg: #ef4444; /* Red 500 */
-    --color-button-danger-hover: #dc2626; /* Red 600 */
+    /* Typography */
+    --color-text-header: #f8fafc;
+    --color-text-primary: #cbd5e1;
+    --color-text-secondary: #94a3b8;
+    --color-text-muted: #64748b;
+    --color-text-inverted: #0b0d14;
 
-    /* Shadows */
-    --color-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+    /* Accents */
+    --color-primary: #22d3ee;      /* Cyan-400 (Diamond Blue) */
+    --color-primary-hover: #06b6d4; /* Cyan-500 */
+    
+    --color-secondary: #c084fc;    /* Purple-400 */
+    --color-success: #34d399;      /* Emerald-400 (Progress Bar Green) */
+    --color-danger: #f43f5e;       /* Rose-500 */
+    --color-warning: #fbbf24;      /* Amber-400 */
+
+    /* Strain Colors (The 7 Pillars) */
+    --strain-stream: #38bdf8; /* Sky */
+    --strain-jack: #f43f5e;   /* Rose */
+    --strain-chord: #a78bfa;  /* Violet */
+    --strain-prec: #facc15;   /* Yellow */
+    --strain-ergo: #4ade80;   /* Green */
+    --strain-disp: #fb923c;   /* Orange */
+    --strain-stam: #2dd4bf;   /* Teal */
 }
 
 body {
     background-color: var(--color-bg);
     color: var(--color-text-primary);
     font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4 {
-    color: var(--color-text-header);
-    font-weight: 700;
-}
+/* Utilities */
+.text-header { color: var(--color-text-header); }
+.text-muted { color: var(--color-text-muted); }
+.bg-card { background-color: var(--color-card-bg); }
+.border-base { border-color: var(--color-border); }
 
-/* Scrollbar Customization */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { 
+    background: var(--color-border); 
+    border-radius: 5px; 
+    border: 2px solid var(--color-bg);
 }
-::-webkit-scrollbar-track {
-    background: var(--color-bg);
-}
-::-webkit-scrollbar-thumb {
-    background: var(--color-border);
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: var(--color-text-muted);
-}
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
