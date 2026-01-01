@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MapData } from '../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faFilter, faSpinner, faSort, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faFilter, faSpinner, faSort, faExclamationTriangle, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 export const Dashboard = () => {
     const [data, setData] = useState<MapData[]>([]);
@@ -104,7 +104,22 @@ export const Dashboard = () => {
                                 filteredData.map((map) => (
                                     <tr key={map.id} className="hover:bg-card-hover/50 transition-colors group">
                                         <td className="px-6 py-4">
-                                            <div className="font-semibold text-text-header group-hover:text-primary transition-colors">{map.title}</div>
+                                            <div className="flex items-center gap-2">
+                                                <div className="font-semibold text-text-header group-hover:text-primary transition-colors">
+                                                    {map.title}
+                                                </div>
+                                                {map.link && (
+                                                    <a 
+                                                        href={map.link} 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer" 
+                                                        className="text-muted hover:text-primary transition-colors opacity-50 group-hover:opacity-100"
+                                                        title="View on RhythmTyper"
+                                                    >
+                                                        <FontAwesomeIcon icon={faExternalLinkAlt} className="text-xs" />
+                                                    </a>
+                                                )}
+                                            </div>
                                             <div className="text-xs text-muted mt-0.5">{map.artist} <span className="mx-1 opacity-50">•</span> {map.mapper}</div>
                                         </td>
                                         <td className="px-6 py-4">
