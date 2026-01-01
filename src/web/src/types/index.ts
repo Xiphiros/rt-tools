@@ -32,7 +32,8 @@ export interface MapData {
     mapper: string;
     diffName: string;
     bpm: number;
-    stars: number; // The calculated stars
+    stars: number; // The calculated rework stars
+    starsOfficial: number; // The current official stars
     stats: StrainResult['details'];
     link?: string | null;
 }
