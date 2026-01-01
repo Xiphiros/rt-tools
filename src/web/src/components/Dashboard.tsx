@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { MapData } from '../types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
 
-// Mock data for initial render test
+// Mock data (temporary until API integration)
 const MOCK_DATA: MapData[] = [
     {
         id: '1', title: 'Make a Move', artist: 'Reol', mapper: 'Xiph', diffName: 'Expert', bpm: 180, stars: 12.45,
@@ -11,11 +12,14 @@ const MOCK_DATA: MapData[] = [
     {
         id: '2', title: 'Overmomochi', artist: 'Kizuna AI', mapper: 'Auto', diffName: 'Hyper', bpm: 150, stars: 8.90,
         stats: { stream: 4.2, jack: 8.5, chord: 2.2, prec: 3.1, ergo: 4.5, disp: 7.0, stam: 5.2 }
+    },
+    {
+        id: '3', title: 'Brain Power', artist: 'NOMA', mapper: 'Unknown', diffName: 'Meme', bpm: 170, stars: 15.20,
+        stats: { stream: 14.2, jack: 1.5, chord: 5.2, prec: 4.1, ergo: 9.5, disp: 8.0, stam: 12.2 }
     }
 ];
 
 export const Dashboard = () => {
-    const { t } = useTranslation('dashboard');
     const [search, setSearch] = useState('');
 
     const filteredData = MOCK_DATA.filter(m => 
@@ -24,51 +28,70 @@ export const Dashboard = () => {
     );
 
     return (
-        <div className="bg-card rounded-xl border border-border shadow-sm overflow-hidden">
-            <div className="p-4 border-b border-border flex flex-col md:flex-row gap-4 justify-between items-center">
-                <h2 className="text-lg font-semibold text-text-header">Ranked Maps</h2>
-                <input 
-                    type="text" 
-                    placeholder={t('searchPlaceholder')} 
-                    className="bg-input-bg border border-border-input rounded-md px-3 py-2 text-sm w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-accent-primary"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                />
+        <div className="space-y-6">
+            {/* Filters Bar */}
+            <div className="flex gap-4">
+                <div className="relative flex-1">
+                    <FontAwesomeIcon icon={faSearch} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
+                    <input 
+                        type="text" 
+                        placeholder="Search maps, artists, or mappers..." 
+                        className="w-full bg-card border border-border rounded-lg pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors placeholder:text-muted/50"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                </div>
+                <button className="px-4 py-2 bg-card border border-border rounded-lg text-muted hover:text-primary hover:border-primary transition-all flex items-center gap-2">
+                    <FontAwesomeIcon icon={faFilter} />
+                    <span>Filters</span>
+                </button>
             </div>
-            
-            <div className="overflow-x-auto">
-                <table className="w-full text-sm text-left">
-                    <thead className="text-xs text-muted uppercase bg-card-hover">
-                        <tr>
-                            <th className="px-6 py-3">Map</th>
-                            <th className="px-6 py-3">Diff</th>
-                            <th className="px-6 py-3">BPM</th>
-                            <th className="px-6 py-3 text-right">Stars</th>
-                            <th className="px-6 py-3 text-center">Breakdown</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredData.map((map) => (
-                            <tr key={map.id} className="border-b border-border hover:bg-card-hover transition-colors">
-                                <td className="px-6 py-4 font-medium text-text-primary">
-                                    <div>{map.title}</div>
-                                    <div className="text-xs text-muted">{map.artist} // {map.mapper}</div>
-                                </td>
-                                <td className="px-6 py-4 text-secondary">{map.diffName}</td>
-                                <td className="px-6 py-4 text-secondary">{map.bpm}</td>
-                                <td className="px-6 py-4 text-right font-bold text-score">{map.stars.toFixed(2)}</td>
-                                <td className="px-6 py-4">
-                                    <div className="flex gap-1 justify-center h-2 items-end">
-                                        <div title={`Stream: ${map.stats.stream}`} className="w-2 bg-[var(--color-strain-stream)] rounded-t-sm" style={{ height: `${Math.min(100, map.stats.stream * 8)}%` }}></div>
-                                        <div title={`Jack: ${map.stats.jack}`} className="w-2 bg-[var(--color-strain-jack)] rounded-t-sm" style={{ height: `${Math.min(100, map.stats.jack * 8)}%` }}></div>
-                                        <div title={`Tech: ${map.stats.ergo}`} className="w-2 bg-[var(--color-strain-ergo)] rounded-t-sm" style={{ height: `${Math.min(100, map.stats.ergo * 8)}%` }}></div>
-                                        <div title={`Stamina: ${map.stats.stam}`} className="w-2 bg-[var(--color-strain-stam)] rounded-t-sm" style={{ height: `${Math.min(100, map.stats.stam * 8)}%` }}></div>
-                                    </div>
-                                </td>
+
+            {/* Table Card */}
+            <div className="bg-card rounded-xl border border-border shadow-xl shadow-black/20 overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full text-sm text-left">
+                        <thead>
+                            <tr className="bg-input/50 border-b border-border text-xs uppercase tracking-wider text-muted font-semibold">
+                                <th className="px-6 py-4">Map Details</th>
+                                <th className="px-6 py-4">Difficulty</th>
+                                <th className="px-6 py-4">BPM</th>
+                                <th className="px-6 py-4 text-right">Rating</th>
+                                <th className="px-6 py-4 w-64 text-center">Strain Profile</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="divide-y divide-border/50">
+                            {filteredData.map((map) => (
+                                <tr key={map.id} className="hover:bg-card-hover/50 transition-colors group">
+                                    <td className="px-6 py-4">
+                                        <div className="font-semibold text-text-header group-hover:text-primary transition-colors">{map.title}</div>
+                                        <div className="text-xs text-muted mt-0.5">{map.artist} <span className="mx-1 opacity-50">•</span> {map.mapper}</div>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-input border border-border text-secondary">
+                                            {map.diffName}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 font-mono text-muted">{map.bpm}</td>
+                                    <td className="px-6 py-4 text-right">
+                                        <span className="text-lg font-bold text-[var(--color-warning)]">{map.stars.toFixed(2)}</span>
+                                        <span className="text-xs text-muted ml-1">★</span>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {/* Mini Strain Bar Chart */}
+                                        <div className="flex gap-1 justify-center h-8 items-end bg-input/30 rounded-lg p-1.5 border border-border/30">
+                                            <div title={`Stream: ${map.stats.stream}`} className="w-2 bg-[var(--strain-stream)] rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.stream * 6)}%` }} />
+                                            <div title={`Jack: ${map.stats.jack}`} className="w-2 bg-[var(--strain-jack)] rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.jack * 6)}%` }} />
+                                            <div title={`Chord: ${map.stats.chord}`} className="w-2 bg-[var(--strain-chord)] rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.chord * 6)}%` }} />
+                                            <div title={`Tech: ${map.stats.ergo}`} className="w-2 bg-[var(--strain-ergo)] rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.ergo * 6)}%` }} />
+                                            <div title={`Stamina: ${map.stats.stam}`} className="w-2 bg-[var(--strain-stam)] rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.stam * 6)}%` }} />
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );
