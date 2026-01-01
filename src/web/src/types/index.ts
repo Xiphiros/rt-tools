@@ -32,10 +32,22 @@ export interface MapData {
     mapper: string;
     diffName: string;
     bpm: number;
-    stars: number; // The calculated rework stars
-    starsOfficial: number; // The current official stars
+    stars: number;
+    starsOfficial: number;
     stats: StrainResult['details'];
     link?: string | null;
+}
+
+export interface ReworkPlay {
+    songName: string;
+    diffName: string;
+    mapper: string;
+    oldPP: number;
+    newPP: number;
+    acc: number;
+    speed: number; // Playback rate (e.g. 1.0, 1.5)
+    mods: string[];
+    score: number;
 }
 
 export interface PlayerProfile {
@@ -49,4 +61,5 @@ export interface PlayerProfile {
     playCount: number;
     accuracy: number;
     delta: number;
+    plays: ReworkPlay[]; // Top 50 plays with rework details
 }
