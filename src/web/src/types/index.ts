@@ -34,4 +34,5 @@ export interface MapData {
     bpm: number;
     stars: number; // The calculated stars
     stats: StrainResult['details'];
+    link?: string | null;
 }
