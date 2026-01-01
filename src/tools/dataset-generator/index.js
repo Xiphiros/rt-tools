@@ -13,7 +13,6 @@ async function main() {
     console.log(chalk.cyan('🔍 Scanning for .rtm files...'));
     
     // Find all map files
-    // Note: In a real run, ensure the relative path to 'songs' is correct
     const files = await glob(`${SONGS_DIR}/*.rtm`.replace(/\\/g, '/'));
 
     if (files.length === 0) {
@@ -31,6 +30,17 @@ async function main() {
         if (!result) continue;
 
         const { meta, difficulties } = result;
+        
+        // Extract Mapset ID for linking
+        // Priority: meta.mapsetId -> filename parsing -> null
+        let mapsetId = meta.mapsetId;
+        if (!mapsetId) {
+            const basename = path.basename(file);
+            const match = basename.match(/^([a-z0-9]+)-/i);
+            if (match) mapsetId = match[1];
+        }
+
+        const mapLink = mapsetId ? `https://rhythmtyper.net/beatmap/${mapsetId}` : null;
 
         for (const diff of difficulties) {
             if (!diff.data || !diff.data.notes) continue;
@@ -42,14 +52,15 @@ async function main() {
             const strain = calculateStrain(notes, baseOD);
 
             exportData.push({
-                id: `${meta.mapsetId || Date.now()}_${diff.diffId}`,
+                id: `${mapsetId || Date.now()}_${diff.diffId}`,
                 title: meta.songName || meta.title || 'Unknown',
                 artist: meta.artistName || meta.artist || 'Unknown',
                 mapper: meta.mapper || 'Unknown',
                 diffName: diff.name,
                 bpm: meta.bpm || 0,
                 stars: strain.total,
-                stats: strain.details
+                stats: strain.details,
+                link: mapLink
             });
         }
         
