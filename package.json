@@ -5,8 +5,8 @@
   "private": true,
   "author": "Xiphiros",
   "workspaces": [
-    "core",
-    "web"
+    "src/web",
+    "src/tools/*"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
