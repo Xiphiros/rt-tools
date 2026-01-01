@@ -1,23 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { MapData } from '../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faFilter, faSpinner, faSort } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faFilter, faSpinner, faSort, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 export const Dashboard = () => {
     const [data, setData] = useState<MapData[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [search, setSearch] = useState('');
     
-    // Fetch data on mount
     useEffect(() => {
-        fetch('./beatmaps.json')
-            .then(res => res.json())
+        // Add timestamp to prevent caching issues during dev
+        fetch(`./beatmaps.json?t=${Date.now()}`)
+            .then(res => {
+                if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+                return res.json();
+            })
             .then(data => {
-                setData(data);
+                console.log("Loaded data:", data); // Debug log
+                if (Array.isArray(data)) {
+                    setData(data);
+                } else {
+                    throw new Error("Data is not an array");
+                }
                 setLoading(false);
             })
             .catch(err => {
-                console.error("Failed to load map data", err);
+                console.error("Failed to load map data:", err);
+                setError(err.message);
                 setLoading(false);
             });
     }, []);
@@ -28,16 +38,24 @@ export const Dashboard = () => {
         m.artist.toLowerCase().includes(search.toLowerCase())
     );
 
-    // Color scale helper
-    const getBarColor = (val: number, type: string) => {
-        // Dynamic intensity could be added here
-        return `var(--strain-${type})`;
-    };
+    const getBarColor = (val: number, type: string) => `var(--strain-${type})`;
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center h-64 text-muted">
-                <FontAwesomeIcon icon={faSpinner} spin className="mr-2" /> Loading Database...
+            <div className="flex flex-col justify-center items-center h-64 text-muted animate-pulse">
+                <FontAwesomeIcon icon={faSpinner} spin className="text-3xl mb-4 text-primary" /> 
+                <span className="font-medium">Loading Database...</span>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flex flex-col justify-center items-center h-64 text-danger">
+                <FontAwesomeIcon icon={faExclamationTriangle} className="text-4xl mb-4" />
+                <h3 className="text-lg font-bold">Failed to load data</h3>
+                <p className="text-sm text-muted mt-2">Error: {error}</p>
+                <p className="text-xs text-muted mt-4">Did you run `npm run generate`?</p>
             </div>
         );
     }
@@ -68,44 +86,52 @@ export const Dashboard = () => {
                     <table className="w-full text-sm text-left">
                         <thead>
                             <tr className="bg-input/50 border-b border-border text-xs uppercase tracking-wider text-muted font-semibold">
-                                <th className="px-6 py-4 cursor-pointer hover:text-primary">Map Details <FontAwesomeIcon icon={faSort} className="ml-1 opacity-30" /></th>
+                                <th className="px-6 py-4 cursor-pointer hover:text-primary transition-colors">Map Details <FontAwesomeIcon icon={faSort} className="ml-1 opacity-30" /></th>
                                 <th className="px-6 py-4">Difficulty</th>
                                 <th className="px-6 py-4">BPM</th>
-                                <th className="px-6 py-4 text-right cursor-pointer hover:text-primary">Rating <FontAwesomeIcon icon={faSort} className="ml-1 opacity-30" /></th>
+                                <th className="px-6 py-4 text-right cursor-pointer hover:text-primary transition-colors">Rating <FontAwesomeIcon icon={faSort} className="ml-1 opacity-30" /></th>
                                 <th className="px-6 py-4 w-64 text-center">Strain Profile</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-border/50">
-                            {filteredData.map((map) => (
-                                <tr key={map.id} className="hover:bg-card-hover/50 transition-colors group">
-                                    <td className="px-6 py-4">
-                                        <div className="font-semibold text-text-header group-hover:text-primary transition-colors">{map.title}</div>
-                                        <div className="text-xs text-muted mt-0.5">{map.artist} <span className="mx-1 opacity-50">•</span> {map.mapper}</div>
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-input border border-border text-secondary">
-                                            {map.diffName}
-                                        </span>
-                                    </td>
-                                    <td className="px-6 py-4 font-mono text-muted">{map.bpm}</td>
-                                    <td className="px-6 py-4 text-right">
-                                        <span className="text-lg font-bold text-[var(--color-warning)]">{map.stars.toFixed(2)}</span>
-                                        <span className="text-xs text-muted ml-1">★</span>
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        {/* Mini Strain Bar Chart */}
-                                        <div className="flex gap-1 justify-center h-8 items-end bg-input/30 rounded-lg p-1.5 border border-border/30">
-                                            <div title={`Stream: ${map.stats.stream.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.stream * 4)}%`, backgroundColor: getBarColor(map.stats.stream, 'stream') }} />
-                                            <div title={`Jack: ${map.stats.jack.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.jack * 4)}%`, backgroundColor: getBarColor(map.stats.jack, 'jack') }} />
-                                            <div title={`Chord: ${map.stats.chord.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.chord * 4)}%`, backgroundColor: getBarColor(map.stats.chord, 'chord') }} />
-                                            <div title={`Prec: ${map.stats.prec.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.prec * 4)}%`, backgroundColor: getBarColor(map.stats.prec, 'prec') }} />
-                                            <div title={`Ergo: ${map.stats.ergo.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.ergo * 4)}%`, backgroundColor: getBarColor(map.stats.ergo, 'ergo') }} />
-                                            <div title={`Disp: ${map.stats.disp.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.disp * 4)}%`, backgroundColor: getBarColor(map.stats.disp, 'disp') }} />
-                                            <div title={`Stam: ${map.stats.stam.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.stam * 4)}%`, backgroundColor: getBarColor(map.stats.stam, 'stam') }} />
-                                        </div>
+                            {filteredData.length === 0 ? (
+                                <tr>
+                                    <td colSpan={5} className="px-6 py-12 text-center text-muted">
+                                        No maps found matching "{search}"
                                     </td>
                                 </tr>
-                            ))}
+                            ) : (
+                                filteredData.map((map) => (
+                                    <tr key={map.id} className="hover:bg-card-hover/50 transition-colors group">
+                                        <td className="px-6 py-4">
+                                            <div className="font-semibold text-text-header group-hover:text-primary transition-colors">{map.title}</div>
+                                            <div className="text-xs text-muted mt-0.5">{map.artist} <span className="mx-1 opacity-50">•</span> {map.mapper}</div>
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-input border border-border text-secondary">
+                                                {map.diffName}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4 font-mono text-muted">{map.bpm}</td>
+                                        <td className="px-6 py-4 text-right">
+                                            <span className="text-lg font-bold text-[var(--color-warning)]">{map.stars.toFixed(2)}</span>
+                                            <span className="text-xs text-muted ml-1">★</span>
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {/* Mini Strain Bar Chart */}
+                                            <div className="flex gap-1 justify-center h-8 items-end bg-input/30 rounded-lg p-1.5 border border-border/30">
+                                                <div title={`Stream: ${map.stats.stream.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.stream * 4)}%`, backgroundColor: getBarColor(map.stats.stream, 'stream') }} />
+                                                <div title={`Jack: ${map.stats.jack.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.jack * 4)}%`, backgroundColor: getBarColor(map.stats.jack, 'jack') }} />
+                                                <div title={`Chord: ${map.stats.chord.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.chord * 4)}%`, backgroundColor: getBarColor(map.stats.chord, 'chord') }} />
+                                                <div title={`Prec: ${map.stats.prec.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.prec * 4)}%`, backgroundColor: getBarColor(map.stats.prec, 'prec') }} />
+                                                <div title={`Ergo: ${map.stats.ergo.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.ergo * 4)}%`, backgroundColor: getBarColor(map.stats.ergo, 'ergo') }} />
+                                                <div title={`Disp: ${map.stats.disp.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.disp * 4)}%`, backgroundColor: getBarColor(map.stats.disp, 'disp') }} />
+                                                <div title={`Stam: ${map.stats.stam.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.stam * 4)}%`, backgroundColor: getBarColor(map.stats.stam, 'stam') }} />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
                         </tbody>
                     </table>
                 </div>
