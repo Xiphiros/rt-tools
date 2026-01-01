@@ -37,3 +37,16 @@ export interface MapData {
     stats: StrainResult['details'];
     link?: string | null;
 }
+
+export interface PlayerProfile {
+    rank: number;
+    userId: string;
+    username: string;
+    country: string;
+    avatar: string | null;
+    officialPP: number;
+    reworkPP: number;
+    playCount: number;
+    accuracy: number;
+    delta: number;
+}
