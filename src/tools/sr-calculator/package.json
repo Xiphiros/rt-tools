@@ -1,0 +1,8 @@
+{
+  "name": "@rt-tools/sr-calculator",
+  "version": "1.0.0",
+  "description": "Core strain calculation logic for RhythmTyper",
+  "main": "index.js",
+  "author": "Xiphiros",
+  "license": "ISC"
+}
