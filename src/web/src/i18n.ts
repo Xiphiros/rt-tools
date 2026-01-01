@@ -7,8 +7,9 @@ const resources = {
   en: {
     common: {
       title: "RT Tools",
-      dashboard: "Dashboard",
+      dashboard: "Maps",
       calculator: "Calculator",
+      leaderboard: "Leaderboard",
       settings: "Settings",
       loading: "Loading..."
     },
@@ -20,6 +21,16 @@ const resources = {
     dashboard: {
       searchPlaceholder: "Search maps...",
       filters: "Filters"
+    },
+    leaderboard: {
+      searchPlaceholder: "Search player...",
+      rank: "#",
+      player: "Player",
+      oldPP: "Official PP",
+      newPP: "Rework PP",
+      delta: "Change",
+      acc: "Accuracy",
+      pc: "Playcount"
     }
   }
 };
