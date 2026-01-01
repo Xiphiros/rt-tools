@@ -19,11 +19,14 @@ yarn-error.log*
 .vscode/
 .idea/
 
-# Data
+# Data (Ignore large data dumps, but keep config)
 *.json
 !package.json
-!core/package.json
-!web/package.json
+!**/package.json
+!tsconfig*.json
+!**/tsconfig*.json
+!src/web/tsconfig.json
+!src/web/tsconfig.node.json
 
 # Local Environment
 .local/
