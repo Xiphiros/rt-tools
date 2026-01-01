@@ -1,31 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapData } from '../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
-
-// Mock data (temporary until API integration)
-const MOCK_DATA: MapData[] = [
-    {
-        id: '1', title: 'Make a Move', artist: 'Reol', mapper: 'Xiph', diffName: 'Expert', bpm: 180, stars: 12.45,
-        stats: { stream: 10.2, jack: 4.5, chord: 3.2, prec: 8.1, ergo: 5.5, disp: 6.0, stam: 9.2 }
-    },
-    {
-        id: '2', title: 'Overmomochi', artist: 'Kizuna AI', mapper: 'Auto', diffName: 'Hyper', bpm: 150, stars: 8.90,
-        stats: { stream: 4.2, jack: 8.5, chord: 2.2, prec: 3.1, ergo: 4.5, disp: 7.0, stam: 5.2 }
-    },
-    {
-        id: '3', title: 'Brain Power', artist: 'NOMA', mapper: 'Unknown', diffName: 'Meme', bpm: 170, stars: 15.20,
-        stats: { stream: 14.2, jack: 1.5, chord: 5.2, prec: 4.1, ergo: 9.5, disp: 8.0, stam: 12.2 }
-    }
-];
+import { faSearch, faFilter, faSpinner, faSort } from '@fortawesome/free-solid-svg-icons';
 
 export const Dashboard = () => {
+    const [data, setData] = useState<MapData[]>([]);
+    const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState('');
+    
+    // Fetch data on mount
+    useEffect(() => {
+        fetch('./beatmaps.json')
+            .then(res => res.json())
+            .then(data => {
+                setData(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error("Failed to load map data", err);
+                setLoading(false);
+            });
+    }, []);
 
-    const filteredData = MOCK_DATA.filter(m => 
+    const filteredData = data.filter(m => 
         m.title.toLowerCase().includes(search.toLowerCase()) || 
-        m.mapper.toLowerCase().includes(search.toLowerCase())
+        m.mapper.toLowerCase().includes(search.toLowerCase()) ||
+        m.artist.toLowerCase().includes(search.toLowerCase())
     );
+
+    // Color scale helper
+    const getBarColor = (val: number, type: string) => {
+        // Dynamic intensity could be added here
+        return `var(--strain-${type})`;
+    };
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-64 text-muted">
+                <FontAwesomeIcon icon={faSpinner} spin className="mr-2" /> Loading Database...
+            </div>
+        );
+    }
 
     return (
         <div className="space-y-6">
@@ -36,7 +51,7 @@ export const Dashboard = () => {
                     <input 
                         type="text" 
                         placeholder="Search maps, artists, or mappers..." 
-                        className="w-full bg-card border border-border rounded-lg pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors placeholder:text-muted/50"
+                        className="w-full bg-card border border-border rounded-lg pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors placeholder:text-muted/50 text-text-primary"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
@@ -53,10 +68,10 @@ export const Dashboard = () => {
                     <table className="w-full text-sm text-left">
                         <thead>
                             <tr className="bg-input/50 border-b border-border text-xs uppercase tracking-wider text-muted font-semibold">
-                                <th className="px-6 py-4">Map Details</th>
+                                <th className="px-6 py-4 cursor-pointer hover:text-primary">Map Details <FontAwesomeIcon icon={faSort} className="ml-1 opacity-30" /></th>
                                 <th className="px-6 py-4">Difficulty</th>
                                 <th className="px-6 py-4">BPM</th>
-                                <th className="px-6 py-4 text-right">Rating</th>
+                                <th className="px-6 py-4 text-right cursor-pointer hover:text-primary">Rating <FontAwesomeIcon icon={faSort} className="ml-1 opacity-30" /></th>
                                 <th className="px-6 py-4 w-64 text-center">Strain Profile</th>
                             </tr>
                         </thead>
@@ -80,11 +95,13 @@ export const Dashboard = () => {
                                     <td className="px-6 py-4">
                                         {/* Mini Strain Bar Chart */}
                                         <div className="flex gap-1 justify-center h-8 items-end bg-input/30 rounded-lg p-1.5 border border-border/30">
-                                            <div title={`Stream: ${map.stats.stream}`} className="w-2 bg-[var(--strain-stream)] rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.stream * 6)}%` }} />
-                                            <div title={`Jack: ${map.stats.jack}`} className="w-2 bg-[var(--strain-jack)] rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.jack * 6)}%` }} />
-                                            <div title={`Chord: ${map.stats.chord}`} className="w-2 bg-[var(--strain-chord)] rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.chord * 6)}%` }} />
-                                            <div title={`Tech: ${map.stats.ergo}`} className="w-2 bg-[var(--strain-ergo)] rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.ergo * 6)}%` }} />
-                                            <div title={`Stamina: ${map.stats.stam}`} className="w-2 bg-[var(--strain-stam)] rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.stam * 6)}%` }} />
+                                            <div title={`Stream: ${map.stats.stream.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.stream * 4)}%`, backgroundColor: getBarColor(map.stats.stream, 'stream') }} />
+                                            <div title={`Jack: ${map.stats.jack.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.jack * 4)}%`, backgroundColor: getBarColor(map.stats.jack, 'jack') }} />
+                                            <div title={`Chord: ${map.stats.chord.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.chord * 4)}%`, backgroundColor: getBarColor(map.stats.chord, 'chord') }} />
+                                            <div title={`Prec: ${map.stats.prec.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.prec * 4)}%`, backgroundColor: getBarColor(map.stats.prec, 'prec') }} />
+                                            <div title={`Ergo: ${map.stats.ergo.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.ergo * 4)}%`, backgroundColor: getBarColor(map.stats.ergo, 'ergo') }} />
+                                            <div title={`Disp: ${map.stats.disp.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.disp * 4)}%`, backgroundColor: getBarColor(map.stats.disp, 'disp') }} />
+                                            <div title={`Stam: ${map.stats.stam.toFixed(2)}`} className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" style={{ height: `${Math.min(100, map.stats.stam * 4)}%`, backgroundColor: getBarColor(map.stats.stam, 'stam') }} />
                                         </div>
                                     </td>
                                 </tr>
