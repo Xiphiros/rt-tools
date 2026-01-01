@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {    
+    /* Backgrounds */
+    --color-bg: #0f172a; /* Slate 950 - Deepest background */
+    --color-card-bg: #1e293b; /* Slate 800 - Cards/Panels */
+    --color-card-bg-hover: #334155; /* Slate 700 - Hover states */
+    --color-input-bg: #020617; /* Slate 950 - Inputs */
+    --color-modal-overlay: rgba(15, 23, 42, 0.85);
+
+    /* Text */
+    --color-text-header: #f1f5f9; /* Slate 100 */
+    --color-text-primary: #e2e8f0; /* Slate 200 */
+    --color-text-secondary: #94a3b8; /* Slate 400 */
+    --color-text-muted: #64748b; /* Slate 500 */
+    --color-text-inverted: #0f172a;
+
+    /* Borders */
+    --color-border: #334155; /* Slate 700 */
+    --color-border-input: #475569; /* Slate 600 */
+    --color-border-active: #06b6d4; /* Cyan 500 */
+
+    /* Brand Accents (Multi-color Scheme) */
+    --color-accent-primary: #06b6d4; /* Cyan 500 - Primary Actions */
+    --color-accent-secondary: #d946ef; /* Fuchsia 500 - Secondary Actions */
+    --color-score: #fbbf24; /* Amber 400 - Score/Rank */
+    
+    /* Strain Dimension Colors (The 7 Pillars) */
+    --color-strain-stream: #0ea5e9; /* Sky 500 */
+    --color-strain-jack: #f43f5e; /* Rose 500 */
+    --color-strain-chord: #8b5cf6; /* Violet 500 */
+    --color-strain-prec: #eab308; /* Yellow 500 */
+    --color-strain-ergo: #10b981; /* Emerald 500 */
+    --color-strain-disp: #f97316; /* Orange 500 */
+    --color-strain-stam: #14b8a6; /* Teal 500 */
+
+    /* Button Variants */
+    --color-button-primary-bg: var(--color-accent-primary);
+    --color-button-primary-hover: #0891b2; /* Cyan 600 */
+    
+    --color-button-secondary-bg: var(--color-card-bg-hover);
+    --color-button-secondary-hover: #475569;
+
+    --color-button-danger-bg: #ef4444; /* Red 500 */
+    --color-button-danger-hover: #dc2626; /* Red 600 */
+
+    /* Shadows */
+    --color-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4 {
+    color: var(--color-text-header);
+    font-weight: 700;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+}
