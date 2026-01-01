@@ -7,7 +7,7 @@
     "generate": "node index.js"
   },
   "dependencies": {
-    "@rt-tools/sr-calculator": "workspace:*",
+    "@rt-tools/sr-calculator": "file:../sr-calculator",
     "chalk": "^5.3.0",
     "glob": "^10.3.10",
     "jszip": "^3.10.1"
