@@ -1,0 +1,20 @@
+{
+  "name": "rt-tools",
+  "version": "1.0.0",
+  "description": "RhythmTyper Calculator & Visualization Suite",
+  "private": true,
+  "author": "Xiphiros",
+  "workspaces": [
+    "core",
+    "web"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rhythm-game",
+    "difficulty-calculator",
+    "strain-manifold"
+  ],
+  "license": "ISC"
+}
