@@ -9,7 +9,9 @@
     "src/tools/*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "npm run generate --workspace=@rt-tools/dataset-generator",
+    "dev": "npm run dev --workspace=@rt-tools/web"
   },
   "keywords": [
     "rhythm-game",
