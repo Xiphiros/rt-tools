@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Dashboard } from './components/Dashboard';
 import { Calculator } from './components/Calculator';
+import { Leaderboard } from './components/Leaderboard';
 
 const Header = ({ activeTab, onTabChange }: { activeTab: string, onTabChange: (t: string) => void }) => {
+    const { t } = useTranslation('common');
+    const tabs = ['dashboard', 'leaderboard', 'calculator'];
+
     return (
         <header className="border-b border-border bg-[var(--color-header-bg)] sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
             <div className="container mx-auto px-4 h-16 flex justify-between items-center">
@@ -12,23 +17,23 @@ const Header = ({ activeTab, onTabChange }: { activeTab: string, onTabChange: (t
                         <span className="font-bold text-white text-xs tracking-wider">RT</span>
                     </div>
                     <h1 className="text-xl font-bold tracking-tight text-header">
-                        RT Tools
+                        {t('title')}
                     </h1>
                 </div>
 
                 {/* Navigation */}
                 <nav className="flex gap-1 bg-input p-1 rounded-lg border border-border">
-                    {['Dashboard', 'Calculator'].map((tab) => (
+                    {tabs.map((tab) => (
                         <button
                             key={tab}
                             onClick={() => onTabChange(tab)}
-                            className={`px-5 py-1.5 rounded-md text-sm font-medium transition-all duration-200 ${
+                            className={`px-5 py-1.5 rounded-md text-sm font-medium transition-all duration-200 capitalize ${
                                 activeTab === tab 
                                 ? 'bg-card text-primary shadow-sm ring-1 ring-border' 
                                 : 'text-muted hover:text-secondary hover:bg-white/5'
                             }`}
                         >
-                            {tab}
+                            {t(tab)}
                         </button>
                     ))}
                 </nav>
@@ -38,13 +43,22 @@ const Header = ({ activeTab, onTabChange }: { activeTab: string, onTabChange: (t
 };
 
 function App() {
-  const [activeTab, setActiveTab] = useState('Dashboard');
+  const [activeTab, setActiveTab] = useState('dashboard');
+
+  const renderContent = () => {
+      switch(activeTab) {
+          case 'leaderboard': return <Leaderboard />;
+          case 'calculator': return <Calculator />;
+          case 'dashboard':
+          default: return <Dashboard />;
+      }
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-text-primary selection:bg-cyan-500/20 selection:text-cyan-200">
       <Header activeTab={activeTab} onTabChange={setActiveTab} />
       <main className="flex-1 container mx-auto p-6 max-w-7xl animate-in fade-in duration-300">
-        {activeTab === 'Dashboard' ? <Dashboard /> : <Calculator />}
+        {renderContent()}
       </main>
     </div>
   )
