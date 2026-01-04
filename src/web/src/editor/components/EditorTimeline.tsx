@@ -7,6 +7,7 @@ import { MiniPlayfield } from './MiniPlayfield';
 import { Waveform } from './Waveform';
 import { EditorNote } from '../types';
 import { getSnapColor, getSnapDivisor } from '../utils/snapColors';
+import { snapTime, getActiveTimingPoint } from '../utils/timing';
 
 export const EditorTimeline = () => {
     const { mapData, settings, setSettings, playback, dispatch, audio, activeTool } = useEditor();
@@ -22,7 +23,6 @@ export const EditorTimeline = () => {
     // --- AGGREGATION ---
     const tickGroups = useMemo(() => {
         const groups = new Map<number, EditorNote[]>();
-        const msPerBeat = 60000 / mapData.bpm;
 
         mapData.notes.forEach(note => {
             const key = Math.round(note.time);
@@ -31,12 +31,18 @@ export const EditorTimeline = () => {
         });
 
         return Array.from(groups.entries()).map(([time, notes]) => {
-            const beatIndex = (time - mapData.offset) / msPerBeat;
+            // Use active timing point for coloring logic
+            const tp = getActiveTimingPoint(time, mapData.timingPoints);
+            const bpm = tp ? tp.bpm : mapData.bpm;
+            const offset = tp ? tp.time : mapData.offset;
+            const msPerBeat = 60000 / bpm;
+
+            const beatIndex = (time - offset) / msPerBeat;
             const snap = getSnapDivisor(beatIndex);
             const color = snap > 0 ? getSnapColor(snap) : '#FFFFFF'; 
             return { time, notes, color, isUnsnapped: snap === 0 };
         });
-    }, [mapData.notes, mapData.bpm, mapData.offset]);
+    }, [mapData.notes, mapData.timingPoints, mapData.bpm, mapData.offset]);
 
     // --- ZOOM ---
     useEffect(() => {
@@ -67,11 +73,11 @@ export const EditorTimeline = () => {
         }
         
         if (!e.shiftKey && !e.ctrlKey) {
-            const msPerBeat = 60000 / mapData.bpm;
-            const snapInterval = msPerBeat / settings.snapDivisor;
+            // NEW: Use centralized snap utility
             const seekTime = settings.snappingEnabled 
-                ? Math.round(rawTime / snapInterval) * snapInterval
+                ? snapTime(rawTime, mapData.timingPoints, settings.snapDivisor)
                 : rawTime;
+            
             audio.seek(seekTime);
         }
     };
@@ -83,9 +89,8 @@ export const EditorTimeline = () => {
         const x = e.clientX - rect.left + scrollLeft;
         const rawTime = (x / settings.zoom) * 1000;
 
-        const msPerBeat = 60000 / mapData.bpm;
-        const snapInterval = msPerBeat / settings.snapDivisor;
-        const snapped = Math.round(rawTime / snapInterval) * snapInterval;
+        // NEW: Use centralized snap utility
+        const snapped = snapTime(rawTime, mapData.timingPoints, settings.snapDivisor);
         setHoverTime(snapped);
 
         if (isDragging && dragStart) {
@@ -159,19 +164,23 @@ export const EditorTimeline = () => {
             >
                 <div className="relative" style={{ width: (playback.duration / 1000) * settings.zoom, minWidth: '100%', height: '100%' }}>
                     <div className="sticky top-0 z-30">
+                        {/* Ruler also needs updating to accept timing points, keeping simple for now */}
                         <TimelineRuler duration={playback.duration} bpm={mapData.bpm} zoom={settings.zoom} snapDivisor={settings.snapDivisor} />
                     </div>
 
                     <div className="absolute top-8 bottom-0 left-0 right-0 z-0">
-                        {/* Waveform Layer (Below Grid) */}
-                        {/* Fix: Access buffer via manager getter */}
                         <Waveform 
                             buffer={audio.manager.getBuffer()} 
                             zoom={settings.zoom} 
                             duration={playback.duration} 
                             height={200}
                         />
-                        <TimelineGrid duration={playback.duration} bpm={mapData.bpm} offset={mapData.offset} settings={settings} />
+                        {/* UPDATE GRID PROPS */}
+                        <TimelineGrid 
+                            duration={playback.duration} 
+                            timingPoints={mapData.timingPoints} 
+                            settings={settings} 
+                        />
                     </div>
 
                     {isDragging && dragStart && dragCurrent && (
