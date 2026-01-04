@@ -3,8 +3,9 @@ import { EditorNote } from '../types';
 import { NOTE_SIZE, ROW_COLORS, ROW_TOP, ROW_HOME, ROW_BOTTOM } from '../../gameplay/constants';
 
 interface MiniPlayfieldProps {
-    notes: EditorNote[]; // Active notes at this timestamp
+    notes: EditorNote[]; 
     scale?: number;
+    className?: string; // Allow external resizing
 }
 
 const CENTER_X = 50; 
@@ -22,17 +23,22 @@ const KEY_ORDER: Record<number, string[]> = {
     [ROW_BOTTOM]: ['z','x','c','v','b','n','m',',','.','/']
 };
 
-export const MiniPlayfield = ({ notes, scale = 0.4 }: MiniPlayfieldProps) => {
-    // Helper to calculate position for ANY key
+export const MiniPlayfield = ({ notes, scale = 0.25, className = "w-96 h-48" }: MiniPlayfieldProps) => {
+    
     const getKeyPosition = (row: number, char: string) => {
         const rowKeys = KEY_ORDER[row];
         const keyIndex = rowKeys.indexOf(char);
         const rowWidth = rowKeys.length;
-        const xOffsetPct = ((keyIndex - (rowWidth / 2)) + 0.5) * 12;
+        
+        // Math: (KeyIndex - HalfWidth + 0.5) centers the row around 0.
+        // Multiplier: 9% ensures 10 keys (9 gaps) fit within ~90% width (10 * 9 = 90).
+        // Previous 12% was pushing keys off-screen (10 * 12 = 120%).
+        const xOffsetPct = ((keyIndex - (rowWidth / 2)) + 0.5) * 9;
 
+        // Stagger Logic (Percentage shift)
         let rowStagger = 0;
-        if (row === ROW_HOME) rowStagger = 3;
-        if (row === ROW_BOTTOM) rowStagger = 6;
+        if (row === ROW_HOME) rowStagger = 2; 
+        if (row === ROW_BOTTOM) rowStagger = 4; 
 
         return {
             x: CENTER_X + xOffsetPct + rowStagger,
@@ -42,18 +48,14 @@ export const MiniPlayfield = ({ notes, scale = 0.4 }: MiniPlayfieldProps) => {
 
     // Render Full Grid (Ghost Notes)
     const renderGrid = () => {
-        // Explicitly type the array to satisfy TypeScript
         const ghosts: React.ReactNode[] = [];
         
         [ROW_TOP, ROW_HOME, ROW_BOTTOM].forEach(row => {
             KEY_ORDER[row].forEach(char => {
-                // Check if this key is active
                 const isActive = notes.some(n => n.key.toLowerCase() === char && n.column === row);
                 const pos = getKeyPosition(row, char);
                 const size = NOTE_SIZE * scale;
                 
-                // If active, we render it later on top. 
-                // If inactive, render ghost.
                 if (!isActive) {
                     ghosts.push(
                         <div 
@@ -78,7 +80,7 @@ export const MiniPlayfield = ({ notes, scale = 0.4 }: MiniPlayfieldProps) => {
     };
 
     return (
-        <div className="w-64 h-40 bg-black/90 rounded-lg border border-white/20 shadow-2xl relative overflow-hidden flex-shrink-0 z-[100]">
+        <div className={`bg-black/95 rounded-lg border border-white/10 shadow-2xl relative overflow-hidden flex-shrink-0 z-[100] ${className}`}>
             <div className="absolute top-0 left-0 right-0 h-6 bg-white/5 flex items-center justify-center border-b border-white/10">
                 <span className="text-[10px] font-bold text-muted uppercase tracking-widest">
                     Preview
@@ -108,7 +110,7 @@ export const MiniPlayfield = ({ notes, scale = 0.4 }: MiniPlayfieldProps) => {
                                     width: size,
                                     height: size,
                                     borderColor: color,
-                                    boxShadow: `0 0 8px ${color}`
+                                    boxShadow: `0 0 ${size * 0.4}px ${color}`
                                 }}
                             >
                                 <span className="text-white font-bold" style={{ fontSize: size * 0.6 }}>
