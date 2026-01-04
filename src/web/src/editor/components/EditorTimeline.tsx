@@ -17,6 +17,7 @@ type DragMode = 'select' | 'move' | 'resize';
 export const EditorTimeline = () => {
     const { mapData, settings, setSettings, playback, dispatch, audio, activeTool } = useEditor();
     const containerRef = useRef<HTMLDivElement>(null);
+    const rulerRef = useRef<HTMLDivElement>(null);
     
     // UI State
     const [waveformMode, setWaveformMode] = useState<WaveformMode>('full');
@@ -29,33 +30,26 @@ export const EditorTimeline = () => {
     const [dragStart, setDragStart] = useState<{ x: number, time: number } | null>(null);
     const [dragCurrent, setDragCurrent] = useState<{ x: number, time: number } | null>(null);
     const [initialSelection, setInitialSelection] = useState<EditorNote[]>([]);
-    
-    // Using this to track resize target, even if TS flagged it as unused before, it is needed for logic
-    const [, setResizeTargetId] = useState<string | null>(null);
+    const [resizeTargetId, setResizeTargetId] = useState<string | null>(null);
 
-    // Audio Debounce
     const debouncedSeek = useMemo(
         () => debounce((time: number) => audio.seek(time), 50),
         [audio]
     );
 
-    // --- AGGREGATION ---
     const tickGroups = useMemo(() => {
         const groups = new Map<string, EditorNote[]>();
-
         mapData.notes.forEach(note => {
             const key = note.time.toFixed(3); 
             if (!groups.has(key)) groups.set(key, []);
             groups.get(key)!.push(note);
         });
-
         return Array.from(groups.entries()).map(([timeStr, notes]) => {
             const time = parseFloat(timeStr);
             const tp = getActiveTimingPoint(time, mapData.timingPoints);
             const bpm = tp ? tp.bpm : mapData.bpm;
             const offset = tp ? tp.time : mapData.offset;
             const msPerBeat = 60000 / bpm;
-
             const beatIndex = (time - offset) / msPerBeat;
             const snap = getSnapDivisor(beatIndex);
             const color = snap > 0 ? getSnapColor(snap) : '#FFFFFF'; 
@@ -63,13 +57,12 @@ export const EditorTimeline = () => {
         });
     }, [mapData.notes, mapData.timingPoints, mapData.bpm, mapData.offset]);
 
-    // --- ZOOM & SEEK ---
+    // Wheel Zoom/Scroll
     useEffect(() => {
         const container = containerRef.current;
         if (!container) return;
         const handleWheel = (e: WheelEvent) => {
             e.preventDefault();
-            
             if (e.ctrlKey) {
                 const delta = e.deltaY > 0 ? -25 : 25;
                 setSettings(s => ({ ...s, zoom: Math.max(50, Math.min(500, s.zoom + delta)) }));
@@ -79,10 +72,8 @@ export const EditorTimeline = () => {
                 const bpm = tp ? tp.bpm : 120;
                 const msPerBeat = 60000 / bpm;
                 const step = msPerBeat / settings.snapDivisor;
-
                 const rawTarget = playback.currentTime + (step * direction);
                 const cleanTarget = snapTime(rawTarget, mapData.timingPoints, settings.snapDivisor);
-                
                 debouncedSeek(cleanTarget);
             }
         };
@@ -90,25 +81,38 @@ export const EditorTimeline = () => {
         return () => container.removeEventListener('wheel', handleWheel);
     }, [setSettings, playback.currentTime, mapData.timingPoints, settings.snapDivisor, debouncedSeek]);
 
-    // --- MOUSE HANDLERS ---
-    const handleMouseDown = (e: React.MouseEvent) => {
+    // --- RULER INTERACTION (Always Seek) ---
+    const handleRulerMouseDown = (e: React.MouseEvent) => {
+        e.stopPropagation();
         if (!containerRef.current) return;
+        
+        const rect = containerRef.current.getBoundingClientRect();
+        const clickX = e.clientX - rect.left + containerRef.current.scrollLeft;
+        const rawTime = (clickX / settings.zoom) * 1000;
+        
+        const seekTime = settings.snappingEnabled 
+            ? snapTime(rawTime, mapData.timingPoints, settings.snapDivisor)
+            : rawTime;
+        
+        audio.seek(seekTime);
+    };
+
+    // --- GRID INTERACTION (Select/Move) ---
+    const handleGridMouseDown = (e: React.MouseEvent) => {
+        if (!containerRef.current) return;
+        
+        // Allow clicking notes to bubble up (they have stopPropagation), 
+        // but empty space clicks start box selection.
+        
         const rect = containerRef.current.getBoundingClientRect();
         const clickX = e.clientX - rect.left + containerRef.current.scrollLeft;
         const rawTime = (clickX / settings.zoom) * 1000;
 
         if (e.button === 0) {
-            if (activeTool === 'select') {
-                setDragMode('select');
-                setIsDragging(true);
-                setDragStart({ x: clickX, time: rawTime });
-                setDragCurrent({ x: clickX, time: rawTime });
-            } else {
-                const seekTime = settings.snappingEnabled 
-                    ? snapTime(rawTime, mapData.timingPoints, settings.snapDivisor)
-                    : rawTime;
-                audio.seek(seekTime);
-            }
+            setDragMode('select');
+            setIsDragging(true);
+            setDragStart({ x: clickX, time: rawTime });
+            setDragCurrent({ x: clickX, time: rawTime });
         }
     };
 
@@ -143,11 +147,9 @@ export const EditorTimeline = () => {
     const handleResizeMouseDown = (e: React.MouseEvent, note: EditorNote) => {
         e.stopPropagation();
         if (e.button !== 0) return;
-
         setDragMode('resize');
         setResizeTargetId(note.id);
         setInitialSelection([note]); 
-        
         setDragStart({ x: e.clientX, time: note.time + (note.duration || 0) });
         setDragCurrent({ x: e.clientX, time: note.time + (note.duration || 0) });
         setIsDragging(true);
@@ -177,31 +179,20 @@ export const EditorTimeline = () => {
                     newTime = snapTime(newTime, mapData.timingPoints, settings.snapDivisor);
                 }
                 newTime = Math.max(0, newTime); 
-
-                dispatch({
-                    type: 'UPDATE_NOTE',
-                    payload: { id: note.id, changes: { time: newTime } }
-                });
+                dispatch({ type: 'UPDATE_NOTE', payload: { id: note.id, changes: { time: newTime } } });
             });
         } else if (dragMode === 'resize') {
             const pixelDelta = e.clientX - dragStart.x;
             const timeDelta = (pixelDelta / settings.zoom) * 1000;
-            
             const note = initialSelection[0];
             if (note) {
                 const originalEndTime = note.time + (note.duration || 0);
                 let newEndTime = originalEndTime + timeDelta;
-                
                 if (settings.snappingEnabled) {
                     newEndTime = snapTime(newEndTime, mapData.timingPoints, settings.snapDivisor);
                 }
-                
                 let newDuration = Math.max(0, newEndTime - note.time);
-                
-                dispatch({
-                    type: 'UPDATE_NOTE',
-                    payload: { id: note.id, changes: { duration: newDuration, type: newDuration > 0 ? 'hold' : 'tap' } }
-                });
+                dispatch({ type: 'UPDATE_NOTE', payload: { id: note.id, changes: { duration: newDuration, type: newDuration > 0 ? 'hold' : 'tap' } } });
             }
         }
     };
@@ -216,17 +207,13 @@ export const EditorTimeline = () => {
         if (dragMode === 'select' && dragStart && dragCurrent) {
             const t1 = Math.min(dragStart.time, dragCurrent.time);
             const t2 = Math.max(dragStart.time, dragCurrent.time);
-            
             if (t2 - t1 < 10) { 
                 dispatch({ type: 'DESELECT_ALL' });
             } else {
-                const selectedIds = mapData.notes
-                    .filter(n => n.time >= t1 && n.time <= t2)
-                    .map(n => n.id);
+                const selectedIds = mapData.notes.filter(n => n.time >= t1 && n.time <= t2).map(n => n.id);
                 dispatch({ type: 'SELECT_NOTES', payload: { ids: selectedIds, append: false } });
             }
         }
-        
         setDragMode('select');
     };
 
@@ -240,22 +227,13 @@ export const EditorTimeline = () => {
 
     const handleTickEnter = (e: React.MouseEvent, time: number, notes: EditorNote[]) => {
         const rect = (e.target as HTMLElement).getBoundingClientRect();
-        setHoveredChord({
-            time,
-            notes,
-            x: rect.left + (rect.width / 2),
-            y: rect.top - 10
-        });
+        setHoveredChord({ time, notes, x: rect.left + (rect.width / 2), y: rect.top - 10 });
     };
 
     const tooltip = hoveredChord ? (
         <div 
             className="fixed z-[9999] pointer-events-none transition-all duration-150"
-            style={{ 
-                left: hoveredChord.x, 
-                top: hoveredChord.y,
-                transform: 'translate(-50%, -100%)' 
-            }}
+            style={{ left: hoveredChord.x, top: hoveredChord.y, transform: 'translate(-50%, -100%)' }}
         >
             <div className="animate-in fade-in zoom-in-95 duration-100 mb-2 drop-shadow-2xl">
                 <MiniPlayfield notes={hoveredChord.notes} scale={0.35} />
@@ -276,48 +254,22 @@ export const EditorTimeline = () => {
         return snap > 0 ? getSnapColor(snap) : defaultColor;
     }, [playback.currentTime, playback.isPlaying, mapData.timingPoints]);
 
-    const isDraggingSelection = isDragging && dragMode === 'select';
-
     return (
-        <div 
-            className="flex-1 flex flex-col bg-background relative select-none h-full"
-            onMouseUp={handleMouseUp}
-        >
+        <div className="flex-1 flex flex-col bg-background relative select-none h-full" onMouseUp={handleMouseUp}>
             {createPortal(tooltip, document.body)}
 
-            {/* TRACK HEADER CONTROLS */}
             <div className="absolute top-0 left-0 z-50 p-2 flex flex-col gap-2">
                 <button 
                     onClick={() => setSettings(s => ({ ...s, showWaveform: !s.showWaveform }))}
                     className={`w-8 h-8 bg-card border border-border rounded flex items-center justify-center text-xs transition-colors shadow-md ${settings.showWaveform ? 'text-white' : 'text-muted'}`}
-                    title={settings.showWaveform ? "Collapse Waveform" : "Expand Waveform"}
                 >
                     <FontAwesomeIcon icon={faWaveSquare} />
                 </button>
-
                 {settings.showWaveform && (
                     <div className="flex flex-col gap-1 bg-card border border-border rounded p-1 shadow-md animate-in fade-in slide-in-from-top-2">
-                        <button 
-                            onClick={() => setWaveformMode('full')}
-                            className={`w-6 h-6 rounded flex items-center justify-center text-[10px] transition-colors ${waveformMode === 'full' ? 'bg-primary text-black' : 'text-muted hover:text-white'}`}
-                            title="Full Range"
-                        >
-                            ALL
-                        </button>
-                        <button 
-                            onClick={() => setWaveformMode('bass')}
-                            className={`w-6 h-6 rounded flex items-center justify-center text-xs transition-colors ${waveformMode === 'bass' ? 'bg-danger text-white' : 'text-muted hover:text-white'}`}
-                            title="Bass / Kick Focus (< 140Hz)"
-                        >
-                            <FontAwesomeIcon icon={faDrum} />
-                        </button>
-                        <button 
-                            onClick={() => setWaveformMode('treble')}
-                            className={`w-6 h-6 rounded flex items-center justify-center text-xs transition-colors ${waveformMode === 'treble' ? 'bg-secondary text-white' : 'text-muted hover:text-white'}`}
-                            title="Treble / Vocal Focus (> 2kHz)"
-                        >
-                            <FontAwesomeIcon icon={faMusic} />
-                        </button>
+                        <button onClick={() => setWaveformMode('full')} className={`w-6 h-6 rounded flex items-center justify-center text-[10px] transition-colors ${waveformMode === 'full' ? 'bg-primary text-black' : 'text-muted hover:text-white'}`}>ALL</button>
+                        <button onClick={() => setWaveformMode('bass')} className={`w-6 h-6 rounded flex items-center justify-center text-xs transition-colors ${waveformMode === 'bass' ? 'bg-danger text-white' : 'text-muted hover:text-white'}`}><FontAwesomeIcon icon={faDrum} /></button>
+                        <button onClick={() => setWaveformMode('treble')} className={`w-6 h-6 rounded flex items-center justify-center text-xs transition-colors ${waveformMode === 'treble' ? 'bg-secondary text-white' : 'text-muted hover:text-white'}`}><FontAwesomeIcon icon={faMusic} /></button>
                     </div>
                 )}
             </div>
@@ -326,73 +278,37 @@ export const EditorTimeline = () => {
                 ref={containerRef}
                 className="flex-1 overflow-x-auto overflow-y-hidden relative custom-scrollbar h-full group"
                 onMouseMove={handleMouseMove}
-                onMouseDown={handleMouseDown}
-                onMouseUp={handleMouseUp}
+                onMouseDown={handleGridMouseDown} // Grid handles Box Select
                 onMouseLeave={() => setHoveredChord(null)}
             >
-                <div 
-                    className="relative flex flex-col min-h-full" 
-                    style={{ width: (playback.duration / 1000) * settings.zoom, minWidth: '100%' }}
-                >
+                <div className="relative flex flex-col min-h-full" style={{ width: (playback.duration / 1000) * settings.zoom, minWidth: '100%' }}>
                     <div className="absolute inset-0 z-0">
-                        <TimelineGrid 
-                            duration={playback.duration} 
-                            timingPoints={mapData.timingPoints} 
-                            settings={settings} 
-                        />
+                        <TimelineGrid duration={playback.duration} timingPoints={mapData.timingPoints} settings={settings} />
                     </div>
 
-                    {isDraggingSelection && dragStart && dragCurrent && (
-                        <div 
-                            className="absolute top-0 bottom-0 bg-blue-500/20 border-x border-blue-400 z-20 pointer-events-none"
-                            style={{
-                                left: Math.min(dragStart.x, dragCurrent.x),
-                                width: Math.abs(dragCurrent.x - dragStart.x)
-                            }}
-                        />
+                    {isDragging && dragMode === 'select' && dragStart && dragCurrent && (
+                        <div className="absolute top-0 bottom-0 bg-blue-500/20 border-x border-blue-400 z-20 pointer-events-none" style={{ left: Math.min(dragStart.x, dragCurrent.x), width: Math.abs(dragCurrent.x - dragStart.x) }} />
                     )}
 
                     {!playback.isPlaying && (
                         <div className="absolute top-0 bottom-0 w-[1px] bg-white/30 pointer-events-none z-30" style={{ left: (hoverTime / 1000) * settings.zoom }} />
                     )}
-                    <div 
-                        className="absolute top-0 bottom-0 z-50 pointer-events-none will-change-transform"
-                        style={{ 
-                            left: (playback.currentTime / 1000) * settings.zoom,
-                            transform: 'translateX(-50%)'
-                        }}
-                    >
-                        <div 
-                            className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px]" 
-                            style={{ borderTopColor: playheadColor }}
-                        />
-                        <div 
-                            className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] shadow-[0_0_10px_rgba(0,0,0,0.5)]"
-                            style={{ backgroundColor: playheadColor }}
-                        />
+                    <div className="absolute top-0 bottom-0 z-50 pointer-events-none will-change-transform" style={{ left: (playback.currentTime / 1000) * settings.zoom, transform: 'translateX(-50%)' }}>
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px]" style={{ borderTopColor: playheadColor }} />
+                        <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] shadow-[0_0_10px_rgba(0,0,0,0.5)]" style={{ backgroundColor: playheadColor }} />
                     </div>
 
-                    <div className="sticky top-0 z-40">
-                        <TimelineRuler 
-                            duration={playback.duration} 
-                            timingPoints={mapData.timingPoints} 
-                            zoom={settings.zoom} 
-                            snapDivisor={settings.snapDivisor} 
-                        />
+                    {/* RULER - Click to SEEK */}
+                    <div 
+                        className="sticky top-0 z-40 cursor-pointer" 
+                        onMouseDown={handleRulerMouseDown} // Override grid select behavior
+                    >
+                        <TimelineRuler duration={playback.duration} timingPoints={mapData.timingPoints} zoom={settings.zoom} snapDivisor={settings.snapDivisor} />
                     </div>
 
-                    <div 
-                        className="relative w-full transition-all duration-300 ease-in-out overflow-hidden border-b border-white/5 bg-black/20"
-                        style={{ height: settings.showWaveform ? '80px' : '0px' }}
-                    >
+                    <div className="relative w-full transition-all duration-300 ease-in-out overflow-hidden border-b border-white/5 bg-black/20" style={{ height: settings.showWaveform ? '80px' : '0px' }}>
                         <div className="absolute inset-0 z-10 opacity-80">
-                            <Waveform 
-                                buffer={audio.manager.getBuffer()} 
-                                zoom={settings.zoom} 
-                                duration={playback.duration} 
-                                height={80}
-                                mode={waveformMode}
-                            />
+                            <Waveform buffer={audio.manager.getBuffer()} zoom={settings.zoom} duration={playback.duration} height={80} mode={waveformMode} />
                         </div>
                     </div>
 
@@ -400,7 +316,6 @@ export const EditorTimeline = () => {
                         {tickGroups.map(group => {
                             const isSelected = group.notes.some(n => n.selected);
                             const tickColor = group.color;
-                            
                             const rawCalc = settings.zoom / 30;
                             let width = Math.max(4, Math.round(rawCalc));
                             if (width % 2 !== 0) width++;
@@ -412,9 +327,7 @@ export const EditorTimeline = () => {
                                     : (group.isUnsnapped ? '#fff' : tickColor),
                                 opacity: group.isUnsnapped ? 0.8 : 1,
                                 border: isSelected ? '1px solid white' : 'none',
-                                boxShadow: isSelected 
-                                    ? `0 0 8px ${tickColor}, 0 0 2px white` 
-                                    : (group.isUnsnapped ? 'none' : `0 0 4px ${tickColor}80`),
+                                boxShadow: isSelected ? `0 0 8px ${tickColor}, 0 0 2px white` : 'none',
                                 zIndex: isSelected ? 50 : 40,
                                 cursor: 'grab'
                             };
@@ -434,7 +347,6 @@ export const EditorTimeline = () => {
                                         onMouseEnter={(e) => handleTickEnter(e, group.time, group.notes)}
                                         onMouseDown={(e) => handleNoteMouseDown(e, group.notes[0])}
                                     />
-                                    
                                     {group.notes.map((n) => n.type === 'hold' && (
                                         <React.Fragment key={`${n.id}_hold`}>
                                             <div 
