@@ -2,7 +2,7 @@ import React, { createContext, useContext, useReducer, ReactNode, useEffect, use
 import { editorReducer, initialHistory, EditorAction, initialMapData } from './editorReducer';
 import { useEditorAudio } from '../hooks/useEditorAudio';
 import { EditorMapData, EditorSettings, PlaybackState, EditorTool } from '../types';
-import { loadProjectJSON, saveProjectJSON, readFileFromOPFS } from '../utils/opfs';
+import { loadProjectJSON, saveProjectJSON, readFileFromProject, createProject } from '../utils/opfs';
 
 interface EditorContextState {
     mapData: EditorMapData;
@@ -16,7 +16,10 @@ interface EditorContextState {
     activeTool: EditorTool;
     setActiveTool: (tool: EditorTool) => void;
     
-    audioBlobUrl: string | null;
+    activeProjectId: string | null;
+    loadProject: (id: string) => Promise<void>;
+    createNewProject: () => Promise<void>;
+    
     bgBlobUrl: string | null;
     reloadAssets: () => void;
     
@@ -30,56 +33,69 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     const [history, dispatch] = useReducer(editorReducer, initialHistory);
     const audioHook = useEditorAudio();
     
+    const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
     const [bgBlobUrl, setBgBlobUrl] = useState<string | null>(null);
     const [assetsVersion, setAssetsVersion] = useState(0);
     const [activeTool, setActiveTool] = useState<EditorTool>('select');
 
-    // Settings
     const [settings, setSettings] = React.useState<EditorSettings>({
         snapDivisor: 4,
         playbackSpeed: 1.0,
         zoom: 150, 
         metronome: false,
         snappingEnabled: true,
-        showWaveform: true // Default to Open
+        showWaveform: true
     });
 
-    // Auto-Load Project Data
+    // Auto-Save to Active Project
     useEffect(() => {
-        const load = async () => {
-            const data = await loadProjectJSON();
-            if (data) {
-                dispatch({ type: 'LOAD_MAP', payload: data });
-                setAssetsVersion(v => v + 1); 
-            }
-        };
-        load();
-    }, []);
-
-    // Auto-Save Project Data
-    useEffect(() => {
+        if (!activeProjectId) return;
+        
         const timer = setTimeout(() => {
-            if (history.present !== initialMapData) {
-                saveProjectJSON(history.present);
-            }
+            saveProjectJSON(activeProjectId, history.present);
         }, 2000);
         return () => clearTimeout(timer);
-    }, [history.present]);
+    }, [history.present, activeProjectId]);
 
-    // Asset Loading Logic
+    // Load Project Logic
+    const loadProject = async (id: string) => {
+        const data = await loadProjectJSON(id);
+        if (data) {
+            setActiveProjectId(id);
+            dispatch({ type: 'LOAD_MAP', payload: data });
+            
+            // Reset Audio/Visuals
+            audioHook.pause();
+            audioHook.seek(0);
+            
+            // Trigger Asset Reload
+            setAssetsVersion(v => v + 1);
+        }
+    };
+
+    const createNewProject = async () => {
+        const newId = crypto.randomUUID();
+        const emptyData = { ...initialMapData }; // Clone default
+        await createProject(newId, emptyData);
+        await loadProject(newId);
+    };
+
+    // Asset Loading Logic (Scoped to Active Project)
     useEffect(() => {
+        if (!activeProjectId) return;
+
         const loadAssets = async () => {
             const meta = history.present.metadata;
             
             if (meta.audioFile) {
-                const file = await readFileFromOPFS(meta.audioFile);
+                const file = await readFileFromProject(activeProjectId, meta.audioFile);
                 if (file) {
                     await audioHook.load(file);
                 }
             }
 
             if (meta.backgroundFile) {
-                const file = await readFileFromOPFS(meta.backgroundFile);
+                const file = await readFileFromProject(activeProjectId, meta.backgroundFile);
                 if (file) {
                     const url = URL.createObjectURL(file);
                     setBgBlobUrl(prev => { if (prev) URL.revokeObjectURL(prev); return url; });
@@ -87,9 +103,16 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
             }
         };
         loadAssets();
-    }, [assetsVersion, history.present.metadata.audioFile, history.present.metadata.backgroundFile]);
+    }, [assetsVersion, activeProjectId, history.present.metadata.audioFile, history.present.metadata.backgroundFile]);
 
-    // Sync Playback Rate
+    // Initialize Default Project if none exists
+    useEffect(() => {
+        // Simple check: If no ID is set, create a default temp one
+        if (!activeProjectId) {
+            createNewProject();
+        }
+    }, []);
+
     useEffect(() => {
         audioHook.setRate(settings.playbackSpeed);
     }, [settings.playbackSpeed, audioHook]);
@@ -113,6 +136,10 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         
         activeTool,
         setActiveTool,
+        
+        activeProjectId,
+        loadProject,
+        createNewProject,
         
         audioBlobUrl: null, 
         bgBlobUrl,
