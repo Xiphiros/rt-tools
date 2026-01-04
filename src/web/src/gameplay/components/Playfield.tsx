@@ -7,6 +7,7 @@ interface PlayfieldProps {
     currentTime: number; 
     playbackRate: number;
     showApproachCircles?: boolean;
+    scale?: number;
 }
 
 const CENTER_X = 50; 
@@ -24,7 +25,7 @@ const KEY_ORDER: Record<number, string[]> = {
     [ROW_BOTTOM]: ['z','x','c','v','b','n','m',',','.','/']
 };
 
-export const Playfield = ({ mapData, currentTime, showApproachCircles = true }: PlayfieldProps) => {
+export const Playfield = ({ mapData, currentTime, showApproachCircles = true, scale = 1.0 }: PlayfieldProps) => {
     const PREEMPT = 1200; 
     const FADE_OUT = 200;
 
@@ -50,13 +51,14 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true }: 
         };
     };
 
-    // Render Static Grid (Ghost Notes)
+    // Scaled Size
+    const actualSize = NOTE_SIZE * scale;
+
     const renderGhosts = () => {
         const elements: React.ReactNode[] = [];
         [ROW_TOP, ROW_HOME, ROW_BOTTOM].forEach(row => {
             KEY_ORDER[row].forEach(char => {
                 const pos = getPosition(row, char);
-                
                 elements.push(
                     <div 
                         key={`ghost-${char}`}
@@ -65,9 +67,9 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true }: 
                     >
                         <div 
                             className="rounded-full border-2 border-white/5 bg-white/5 flex items-center justify-center"
-                            style={{ width: NOTE_SIZE, height: NOTE_SIZE }}
+                            style={{ width: actualSize, height: actualSize }}
                         >
-                            <span className="text-xl font-bold text-white/10 font-mono">
+                            <span className="font-bold text-white/10 font-mono" style={{ fontSize: actualSize * 0.4 }}>
                                 {char.toUpperCase()}
                             </span>
                         </div>
@@ -84,10 +86,8 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true }: 
                 style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} 
             />
 
-            {/* Layer 1: Ghosts */}
             {renderGhosts()}
 
-            {/* Layer 2: Active Notes */}
             {visibleNotes.map(note => {
                 const pos = getPosition(note.column, note.key);
                 const relativeTime = note.time - currentTime;
@@ -119,14 +119,14 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true }: 
                         <div 
                             className="rounded-full flex items-center justify-center shadow-lg"
                             style={{
-                                width: NOTE_SIZE,
-                                height: NOTE_SIZE,
+                                width: actualSize,
+                                height: actualSize,
                                 backgroundColor: '#18181b',
                                 border: `4px solid ${color}`,
                                 boxShadow: `0 0 10px ${color}40`
                             }}
                         >
-                            <span className="text-xl font-bold text-white font-mono drop-shadow-md">
+                            <span className="font-bold text-white font-mono drop-shadow-md" style={{ fontSize: actualSize * 0.4 }}>
                                 {note.key.toUpperCase()}
                             </span>
                         </div>
@@ -135,8 +135,8 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true }: 
                             <div 
                                 className="absolute rounded-full border-2"
                                 style={{
-                                    width: NOTE_SIZE,
-                                    height: NOTE_SIZE,
+                                    width: actualSize,
+                                    height: actualSize,
                                     borderColor: color,
                                     opacity: 0.6,
                                     transform: `scale(${approachScale})`
