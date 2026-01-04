@@ -59,13 +59,11 @@ export const TimelineGrid = ({ duration, timingPoints, settings }: TimelineGridP
             return `${size}px 100%`;
         }).join(', ');
 
-        // ALIGNMENT FIX:
-        // The gradient phase must align with 'offset', but the div starts at 'sectionStart'.
-        // Relative Phase = Offset - SectionStart
         const relativeOffset = offset - sectionStart;
         const offsetPx = (relativeOffset / 1000) * settings.zoom;
         
-        const backgroundPosition = validSnaps.map(_ => `${offsetPx}px 0`).join(', ');
+        // SHIFT FIX: Subtract 0.5px to center the 1px line on the exact coordinate
+        const backgroundPosition = validSnaps.map(_ => `calc(${offsetPx}px - 0.5px) 0`).join(', ');
 
         return { backgroundImage, backgroundSize, backgroundPosition };
     };
