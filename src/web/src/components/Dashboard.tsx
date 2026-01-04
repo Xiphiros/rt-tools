@@ -19,7 +19,9 @@ export const Dashboard = () => {
             })
             .then(data => {
                 if (Array.isArray(data)) {
-                    setData(data);
+                    // Filter duplicates based on ID just in case
+                    const unique = Array.from(new Map(data.map(item => [item.id, item])).values());
+                    setData(unique as MapData[]);
                 } else {
                     throw new Error("Data is not an array");
                 }
@@ -50,7 +52,8 @@ export const Dashboard = () => {
         return sortDesc ? valB - valA : valA - valB;
     });
 
-    const getBarColor = (_val: number, type: string) => `var(--strain-${type})`;
+    // Removed unused 'val' parameter
+    const getBarColor = (type: string) => `var(--strain-${type})`;
 
     const renderDelta = (official: number, rework: number) => {
         const diff = rework - official;
@@ -126,8 +129,8 @@ export const Dashboard = () => {
                                     </td>
                                 </tr>
                             ) : (
-                                filteredData.map((map) => (
-                                    <tr key={map.id} className="hover:bg-card-hover/50 transition-colors group">
+                                filteredData.map((map, index) => (
+                                    <tr key={`${map.id}_${index}`} className="hover:bg-card-hover/50 transition-colors group">
                                         <td className="px-6 py-4">
                                             <div className="flex items-center gap-2">
                                                 <div className="font-semibold text-text-header group-hover:text-primary transition-colors truncate max-w-[250px]">
@@ -171,7 +174,7 @@ export const Dashboard = () => {
                                                         className="w-2 rounded-sm opacity-80 hover:opacity-100 transition-opacity" 
                                                         style={{ 
                                                             height: `${Math.min(100, val * 4)}%`, 
-                                                            backgroundColor: getBarColor(val, key) 
+                                                            backgroundColor: getBarColor(key) 
                                                         }} 
                                                     />
                                                 ))}
