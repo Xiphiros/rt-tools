@@ -2,25 +2,34 @@ import { glob } from 'glob';
 import path from 'path';
 import fs from 'fs/promises';
 import chalk from 'chalk';
+import { fileURLToPath } from 'url';
 import { calculateStrain, calculateOfficial } from '@rt-tools/sr-calculator';
 import { parseRtmFile } from './rtm-parser.js';
 
 // Configuration
-const SONGS_DIR = path.resolve('../../../songs');
-const OUTPUT_FILE = path.resolve('../../web/public/beatmaps.json');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Script is in: src/tools/dataset-generator
+// Root is:      ../../../
+const SONGS_DIR = path.resolve(__dirname, '../../../songs');
+const OUTPUT_FILE = path.resolve(__dirname, '../../web/public/beatmaps.json');
 
 async function main() {
-    console.log(chalk.cyan('🔍 Scanning for .rtm files...'));
+    console.log(chalk.cyan(`🔍 Scanning for .rtm files in: ${SONGS_DIR}`));
     
     // Find all map files
-    const files = await glob(`${SONGS_DIR}/*.rtm`.replace(/\\/g, '/'));
+    // Use posix style paths for glob even on Windows
+    const searchPattern = `${SONGS_DIR}/**/*.rtm`.replace(/\\/g, '/');
+    const files = await glob(searchPattern);
 
     if (files.length === 0) {
         console.warn(chalk.yellow(`No beatmaps found in ${SONGS_DIR}.`));
         console.warn(chalk.yellow(`Please ensure the path is correct or place .rtm files there.`));
+        // Don't exit here, allows generating empty DB if that's intended, though unlikely
+    } else {
+        console.log(chalk.blue(`Found ${files.length} beatmaps. Calculating strain...`));
     }
-
-    console.log(chalk.blue(`Found ${files.length} beatmaps. Calculating strain...`));
 
     const exportData = [];
     let processed = 0;
