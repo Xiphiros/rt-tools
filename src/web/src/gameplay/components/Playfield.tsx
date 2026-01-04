@@ -19,7 +19,6 @@ const ROW_Y_OFFSETS: Record<number, number> = {
     [ROW_BOTTOM]: 15   
 };
 
-// Default layout for ghosts
 const KEY_ORDER: Record<number, string[]> = {
     [ROW_TOP]: ['q','w','e','r','t','y','u','i','o','p'],
     [ROW_HOME]: ['a','s','d','f','g','h','j','k','l',';'],
@@ -41,7 +40,6 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true, sc
         const lowerChar = char.toLowerCase();
         let targetRow = row;
         
-        // Double check row if note.column might be wrong (importer logic)
         if (KEY_TO_ROW[lowerChar] !== undefined) {
             targetRow = KEY_TO_ROW[lowerChar];
         }
@@ -105,10 +103,14 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true, sc
                 const pos = getPosition(note.column, note.key);
                 const relativeTime = note.time - currentTime;
                 
+                // Determine Active State
+                const endTime = note.type === 'hold' ? note.time + (note.duration || 0) : note.time;
+                const isHolding = note.type === 'hold' && currentTime >= note.time && currentTime <= endTime;
+                
                 let opacity = 1;
                 if (relativeTime > PREEMPT - 200) {
                     opacity = (PREEMPT - relativeTime) / 200;
-                } else if (relativeTime < 0 && note.type !== 'hold') {
+                } else if (relativeTime < 0 && !isHolding) {
                     opacity = 1 - (Math.abs(relativeTime) / FADE_OUT);
                 }
 
@@ -119,11 +121,6 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true, sc
                 const row = KEY_TO_ROW[note.key.toLowerCase()] ?? note.column;
                 const color = colors[row] || '#fff';
 
-                // Fix: Ensure zIndex is always positive and large enough so later notes are on top of earlier notes?
-                // Actually, earlier notes should be on top visually if they overlap? 
-                // Or later notes (closest to hit) on top? Usually later notes (closest to camera/judgment line).
-                // But in this flat view, we just want them above the ghosts.
-                // Using a large base ensures positive values.
                 const zIndex = 100000000 - Math.floor(note.time);
 
                 return (
@@ -137,17 +134,39 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true, sc
                             zIndex: zIndex
                         }}
                     >
+                        {/* ACTIVE HOLD GLOW */}
+                        {isHolding && (
+                            <div 
+                                className="absolute rounded-full animate-pulse"
+                                style={{
+                                    width: actualSize * 1.4,
+                                    height: actualSize * 1.4,
+                                    backgroundColor: color,
+                                    opacity: 0.3,
+                                    filter: 'blur(8px)'
+                                }}
+                            />
+                        )}
+
                         <div 
-                            className="rounded-full flex items-center justify-center shadow-lg"
+                            className="rounded-full flex items-center justify-center shadow-lg transition-colors duration-100"
                             style={{
                                 width: actualSize,
                                 height: actualSize,
-                                backgroundColor: '#18181b',
-                                border: `4px solid ${color}`,
-                                boxShadow: `0 0 10px ${color}40`
+                                backgroundColor: isHolding ? '#fff' : '#18181b', // Flash white if holding
+                                border: `4px solid ${isHolding ? '#fff' : color}`,
+                                boxShadow: isHolding 
+                                    ? `0 0 20px ${color}, inset 0 0 10px ${color}`
+                                    : `0 0 10px ${color}40`
                             }}
                         >
-                            <span className="font-bold text-white font-mono drop-shadow-md" style={{ fontSize: actualSize * 0.4 }}>
+                            <span 
+                                className="font-bold font-mono drop-shadow-md" 
+                                style={{ 
+                                    fontSize: actualSize * 0.4,
+                                    color: isHolding ? '#000' : '#fff'
+                                }}
+                            >
                                 {note.key.toUpperCase()}
                             </span>
                         </div>
@@ -161,6 +180,19 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true, sc
                                     borderColor: color,
                                     opacity: 0.6,
                                     transform: `scale(${approachScale})`
+                                }}
+                            />
+                        )}
+                        
+                        {/* HOLD RING (While Active) */}
+                        {isHolding && (
+                            <div 
+                                className="absolute rounded-full border-4"
+                                style={{
+                                    width: actualSize,
+                                    height: actualSize,
+                                    borderColor: color,
+                                    opacity: 0.8
                                 }}
                             />
                         )}
