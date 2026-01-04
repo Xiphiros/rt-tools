@@ -38,11 +38,9 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true, sc
     });
 
     const getPosition = (row: number, char: string) => {
-        // Fallback: If key isn't in KEY_ORDER, assume it belongs to the row derived from KEY_TO_ROW
-        // If it's totally unknown, put it in center (fallback)
         const lowerChar = char.toLowerCase();
-        
         let targetRow = row;
+        
         // Double check row if note.column might be wrong (importer logic)
         if (KEY_TO_ROW[lowerChar] !== undefined) {
             targetRow = KEY_TO_ROW[lowerChar];
@@ -51,7 +49,6 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true, sc
         const rowKeys = KEY_ORDER[targetRow] || [];
         const keyIndex = rowKeys.indexOf(lowerChar);
         
-        // If key found in standard layout
         if (keyIndex !== -1) {
             const rowWidth = rowKeys.length;
             const xOffsetPct = ((keyIndex - (rowWidth / 2)) + 0.5) * 8; 
@@ -64,8 +61,6 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true, sc
                 y: CENTER_Y + (ROW_Y_OFFSETS[targetRow] || 0)
             };
         } else {
-            // Unknown key? Render in center or skip?
-            // Let's render it slightly offset to show "Error" state or just center
             return { x: CENTER_X, y: CENTER_Y };
         }
     };
@@ -121,9 +116,15 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true, sc
                 const approachScale = 3 - (2 * progress);
 
                 const colors = ROW_COLORS as Record<number, string>;
-                // Recalculate row just in case
                 const row = KEY_TO_ROW[note.key.toLowerCase()] ?? note.column;
                 const color = colors[row] || '#fff';
+
+                // Fix: Ensure zIndex is always positive and large enough so later notes are on top of earlier notes?
+                // Actually, earlier notes should be on top visually if they overlap? 
+                // Or later notes (closest to hit) on top? Usually later notes (closest to camera/judgment line).
+                // But in this flat view, we just want them above the ghosts.
+                // Using a large base ensures positive values.
+                const zIndex = 100000000 - Math.floor(note.time);
 
                 return (
                     <div 
@@ -133,7 +134,7 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true, sc
                             left: `${pos.x}%`,
                             top: `${pos.y}%`,
                             opacity: Math.max(0, opacity),
-                            zIndex: Math.floor(10000 - note.time)
+                            zIndex: zIndex
                         }}
                     >
                         <div 
