@@ -5,13 +5,14 @@ import { EditorToolbox } from './components/EditorToolbox';
 import { Playfield } from '../gameplay/components/Playfield';
 import { MetadataModal } from './modals/MetadataModal';
 import { TimingModal } from './modals/TimingModal';
-import { ResnapModal } from './modals/ResnapModal'; // New Import
+import { ResnapModal } from './modals/ResnapModal';
+import { ProjectManagerModal } from './modals/ProjectManagerModal';
 import { useShortcuts } from './hooks/useShortcuts';
 import { useMetronome } from './hooks/useMetronome';
 import { exportBeatmapPackage } from './utils/exporter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faPlay, faPause, faUndo, faRedo, faFileUpload, faChevronLeft, faVolumeUp, faVolumeMute, faAngleDown
+    faPlay, faPause, faUndo, faRedo, faFileUpload, faChevronLeft, faVolumeUp, faVolumeMute, faAngleDown, faFolder
 } from '@fortawesome/free-solid-svg-icons';
 
 const TopMenuBar = ({ onOpenModal }: { onOpenModal: (modal: string) => void }) => {
@@ -25,6 +26,10 @@ const TopMenuBar = ({ onOpenModal }: { onOpenModal: (modal: string) => void }) =
                 </button>
                 <div className="h-4 w-[1px] bg-white/20" />
                 <nav className="flex gap-1">
+                    <button onClick={() => onOpenModal('projects')} className="px-4 py-1.5 rounded hover:bg-white/10 text-sm font-medium transition-colors text-white flex items-center gap-2">
+                        <FontAwesomeIcon icon={faFolder} /> Projects
+                    </button>
+                    <div className="w-[1px] h-4 bg-white/10 mx-2" />
                     <button onClick={() => onOpenModal('metadata')} className="px-4 py-1.5 rounded hover:bg-white/10 text-sm font-medium transition-colors text-muted hover:text-white">Setup</button>
                     <button onClick={() => onOpenModal('timing')} className="px-4 py-1.5 rounded hover:bg-white/10 text-sm font-medium transition-colors text-muted hover:text-white">Timing</button>
                     <button className="px-4 py-1.5 rounded bg-primary/20 text-primary text-sm font-bold shadow-inner">Compose</button>
@@ -154,6 +159,7 @@ const EditorLayout = () => {
             <MetadataModal isOpen={activeModal === 'metadata'} onClose={() => setActiveModal(null)} />
             <TimingModal isOpen={activeModal === 'timing'} onClose={() => setActiveModal(null)} />
             <ResnapModal isOpen={activeModal === 'resnap'} onClose={() => setActiveModal(null)} />
+            <ProjectManagerModal isOpen={activeModal === 'projects'} onClose={() => setActiveModal(null)} />
         </div>
     );
 };
