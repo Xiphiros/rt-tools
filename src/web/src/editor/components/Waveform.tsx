@@ -1,30 +1,88 @@
 import { useRef, useEffect, useState } from 'react';
 
+export type WaveformMode = 'full' | 'bass' | 'treble';
+
 interface WaveformProps {
     buffer: AudioBuffer | null;
     zoom: number; // px per second
     duration: number; // ms
     height: number;
     color?: string;
+    mode?: WaveformMode; // New Prop
 }
 
-const MAX_CANVAS_WIDTH = 8000; // Conservative limit to ensure stability on all devices
+const MAX_CANVAS_WIDTH = 8000;
 
-export const Waveform = ({ buffer, zoom, duration, height, color = '#4b5563' }: WaveformProps) => {
+export const Waveform = ({ buffer, zoom, duration, height, color = '#4b5563', mode = 'full' }: WaveformProps) => {
     const [bitmap, setBitmap] = useState<ImageBitmap | null>(null);
+    const [processedBuffer, setProcessedBuffer] = useState<AudioBuffer | null>(null);
+    const [isProcessing, setIsProcessing] = useState(false);
 
+    // 1. Filter Audio Buffer based on Mode
     useEffect(() => {
         if (!buffer) return;
+        if (mode === 'full') {
+            setProcessedBuffer(buffer);
+            return;
+        }
+
+        let active = true;
+        setIsProcessing(true);
+
+        const process = async () => {
+            try {
+                // Offline context renders faster than real-time
+                const offlineCtx = new OfflineAudioContext(
+                    buffer.numberOfChannels,
+                    buffer.length,
+                    buffer.sampleRate
+                );
+
+                const source = offlineCtx.createBufferSource();
+                source.buffer = buffer;
+
+                const filter = offlineCtx.createBiquadFilter();
+                
+                if (mode === 'bass') {
+                    filter.type = 'lowpass';
+                    filter.frequency.value = 140; // Focus on Kick/Bass
+                    filter.Q.value = 1;
+                } else if (mode === 'treble') {
+                    filter.type = 'highpass';
+                    filter.frequency.value = 2000; // Focus on Vocals/Hi-hats
+                    filter.Q.value = 1;
+                }
+
+                source.connect(filter);
+                filter.connect(offlineCtx.destination);
+                source.start();
+
+                const renderedBuffer = await offlineCtx.startRendering();
+                
+                if (active) {
+                    setProcessedBuffer(renderedBuffer);
+                    setIsProcessing(false);
+                }
+            } catch (e) {
+                console.error("Audio filtering failed:", e);
+                if (active) setIsProcessing(false);
+            }
+        };
+
+        process();
+
+        return () => { active = false; };
+    }, [buffer, mode]);
+
+    // 2. Generate Visual Bitmap from (Processed) Buffer
+    useEffect(() => {
+        if (!processedBuffer) return;
 
         let active = true;
 
         const generate = async () => {
             try {
-                // Calculate desired width
                 let targetWidth = (duration / 1000) * zoom;
-                
-                // Clamp logical width to safe limit
-                // We will stretch this to fit targetWidth via CSS later
                 const logicalWidth = Math.min(targetWidth, MAX_CANVAS_WIDTH);
                 
                 if (logicalWidth <= 0) return;
@@ -36,10 +94,7 @@ export const Waveform = ({ buffer, zoom, duration, height, color = '#4b5563' }: 
                 
                 if (!ctx) return;
 
-                const data = buffer.getChannelData(0); 
-                
-                // Compression factor: How many audio samples per pixel
-                // If we clamped the width, step size increases significantly (downsampling)
+                const data = processedBuffer.getChannelData(0); 
                 const step = Math.ceil(data.length / logicalWidth);
                 const amp = height / 2;
 
@@ -50,9 +105,6 @@ export const Waveform = ({ buffer, zoom, duration, height, color = '#4b5563' }: 
                     let min = 1.0;
                     let max = -1.0;
                     
-                    // Optimization: If step is huge, don't iterate ALL samples
-                    // Just take a strided sample or min/max chunk
-                    // For safety vs freezing, we limit loop size per pixel
                     const chunk = Math.min(step, 1000); 
                     const offset = i * step;
 
@@ -83,19 +135,16 @@ export const Waveform = ({ buffer, zoom, duration, height, color = '#4b5563' }: 
 
         generate();
 
-        return () => {
-            active = false;
-        };
-    }, [buffer, zoom, duration, height, color]);
+        return () => { active = false; };
+    }, [processedBuffer, zoom, duration, height, color]);
 
     if (!bitmap) return null;
 
-    // The container determines the actual visual width (can be huge)
     const realWidth = (duration / 1000) * zoom;
 
     return (
         <div 
-            className="absolute top-0 left-0 pointer-events-none opacity-40 z-0"
+            className={`absolute top-0 left-0 pointer-events-none z-0 transition-opacity duration-200 ${isProcessing ? 'opacity-50' : 'opacity-100'}`}
             style={{ width: realWidth, height }}
         >
             <CanvasRenderer bitmap={bitmap} height={height} />
@@ -111,11 +160,10 @@ const CanvasRenderer = ({ bitmap, height }: { bitmap: ImageBitmap, height: numbe
         if (!ctx || !bitmap) return;
 
         try {
-            // Safe draw: The canvas logical size matches the bitmap size (clamped)
             ctx.clearRect(0, 0, bitmap.width, height);
             ctx.drawImage(bitmap, 0, 0);
         } catch (e) {
-            console.error("CanvasRenderer draw error:", e);
+            // Ignore error state
         }
     }, [bitmap, height]);
 
@@ -124,7 +172,7 @@ const CanvasRenderer = ({ bitmap, height }: { bitmap: ImageBitmap, height: numbe
             ref={canvasRef} 
             width={bitmap.width} 
             height={height} 
-            style={{ width: '100%', height: '100%' }} // STRETCH to fill container
+            style={{ width: '100%', height: '100%' }}
         />
     );
 };
