@@ -4,6 +4,7 @@ import { TimelineGrid } from './TimelineGrid';
 import { TimelineRuler } from './TimelineRuler';
 import { ChordPreview } from './ChordPreview';
 import { EditorNote } from '../types';
+import { getSnapColor, getSnapDivisor } from '../utils/snapColors';
 
 export const EditorTimeline = () => {
     const { mapData, settings, setSettings, playback, dispatch, audio, activeTool } = useEditor();
@@ -12,21 +13,31 @@ export const EditorTimeline = () => {
     const [hoverTime, setHoverTime] = useState(0);
     const [hoveredChord, setHoveredChord] = useState<{ time: number, notes: EditorNote[], x: number, y: number } | null>(null);
     
-    // Drag Selection State
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState<{ x: number, time: number } | null>(null);
     const [dragCurrent, setDragCurrent] = useState<{ x: number, time: number } | null>(null);
 
-    // --- AGGREGATION LOGIC ---
-    // Group notes by time for visualization
+    // --- AGGREGATION ---
     const tickGroups = useMemo(() => {
         const groups = new Map<number, EditorNote[]>();
+        const msPerBeat = 60000 / mapData.bpm;
+
         mapData.notes.forEach(note => {
-            if (!groups.has(note.time)) groups.set(note.time, []);
-            groups.get(note.time)!.push(note);
+            const key = Math.round(note.time);
+            if (!groups.has(key)) groups.set(key, []);
+            groups.get(key)!.push(note);
         });
-        return Array.from(groups.entries()).map(([time, notes]) => ({ time, notes }));
-    }, [mapData.notes]);
+
+        return Array.from(groups.entries()).map(([time, notes]) => {
+            // Determine snap color for this tick
+            // We need beat index: (time - offset) / msPerBeat
+            const beatIndex = (time - mapData.offset) / msPerBeat;
+            const snap = getSnapDivisor(beatIndex);
+            const color = getSnapColor(snap || 4); // Default to blue (1/4) if unsnapped
+
+            return { time, notes, color };
+        });
+    }, [mapData.notes, mapData.bpm, mapData.offset]);
 
     // --- ZOOM ---
     useEffect(() => {
@@ -44,37 +55,28 @@ export const EditorTimeline = () => {
     }, [setSettings]);
 
     // --- MOUSE HANDLERS ---
-    
-    // 1. Mouse Down: Start Drag OR Seek
     const handleMouseDown = (e: React.MouseEvent) => {
         if (!containerRef.current) return;
-        
         const rect = containerRef.current.getBoundingClientRect();
         const clickX = e.clientX - rect.left + containerRef.current.scrollLeft;
         const rawTime = (clickX / settings.zoom) * 1000;
 
-        // If Tool is Select, start dragging box
         if (activeTool === 'select' && e.button === 0) {
             setIsDragging(true);
             setDragStart({ x: clickX, time: rawTime });
             setDragCurrent({ x: clickX, time: rawTime });
         }
         
-        // Always seek on click (unless purely dragging? No, usually seek on down)
-        // If holding shift/ctrl, maybe skip seek.
         if (!e.shiftKey && !e.ctrlKey) {
-            // Apply snapping if enabled for precise seek
             const msPerBeat = 60000 / mapData.bpm;
             const snapInterval = msPerBeat / settings.snapDivisor;
             const seekTime = settings.snappingEnabled 
                 ? Math.round(rawTime / snapInterval) * snapInterval
                 : rawTime;
-            
             audio.seek(seekTime);
         }
     };
 
-    // 2. Mouse Move: Update Drag / Hover
     const handleMouseMove = (e: React.MouseEvent) => {
         if (!containerRef.current) return;
         const rect = containerRef.current.getBoundingClientRect();
@@ -82,7 +84,6 @@ export const EditorTimeline = () => {
         const x = e.clientX - rect.left + scrollLeft;
         const rawTime = (x / settings.zoom) * 1000;
 
-        // Update Hover Snapping
         const msPerBeat = 60000 / mapData.bpm;
         const snapInterval = msPerBeat / settings.snapDivisor;
         const snapped = Math.round(rawTime / snapInterval) * snapInterval;
@@ -93,26 +94,18 @@ export const EditorTimeline = () => {
         }
     };
 
-    // 3. Mouse Up: Finalize Selection
     const handleMouseUp = () => {
         if (isDragging && dragStart && dragCurrent) {
-            // Calculate Box Range
             const t1 = Math.min(dragStart.time, dragCurrent.time);
             const t2 = Math.max(dragStart.time, dragCurrent.time);
             
-            // If box is tiny, treat as single click (clear selection)
             if (t2 - t1 < 5) {
                 dispatch({ type: 'DESELECT_ALL' });
             } else {
-                // Find notes in range
                 const selectedIds = mapData.notes
                     .filter(n => n.time >= t1 && n.time <= t2)
                     .map(n => n.id);
-                
-                dispatch({ 
-                    type: 'SELECT_NOTES', 
-                    payload: { ids: selectedIds, append: false } // Ctrl support logic handled elsewhere if needed
-                });
+                dispatch({ type: 'SELECT_NOTES', payload: { ids: selectedIds, append: false } });
             }
         }
         setIsDragging(false);
@@ -120,7 +113,6 @@ export const EditorTimeline = () => {
         setDragCurrent(null);
     };
 
-    // Auto-scroll
     useEffect(() => {
         if (playback.isPlaying && containerRef.current) {
             const scrollPos = (playback.currentTime / 1000) * settings.zoom - (containerRef.current.clientWidth / 2);
@@ -128,68 +120,58 @@ export const EditorTimeline = () => {
         }
     }, [playback.currentTime, playback.isPlaying, settings.zoom]);
 
-    // Tick Interaction
     const handleTickEnter = (e: React.MouseEvent, time: number, notes: EditorNote[]) => {
+        // e.target is the specific tick div
         const rect = (e.target as HTMLElement).getBoundingClientRect();
+        
+        // Ensure tooltip renders within viewport
         setHoveredChord({
             time,
             notes,
-            x: rect.left,
-            y: rect.top - 140
+            x: rect.left + (rect.width / 2),
+            y: rect.top - 150 // Position distinctly above
         });
     };
 
     return (
         <div className="flex-1 flex flex-col bg-background relative select-none h-full">
+            {/* Tooltip Layer */}
             {hoveredChord && (
-                <div className="fixed z-[999] pointer-events-none transition-opacity duration-200"
-                     style={{ left: hoveredChord.x, top: hoveredChord.y }}>
-                    <ChordPreview notes={hoveredChord.notes} />
+                <div 
+                    className="fixed z-[9999] pointer-events-none transition-all duration-150 transform -translate-x-1/2"
+                    style={{ left: hoveredChord.x, top: hoveredChord.y }}
+                >
+                    <div className="animate-in fade-in zoom-in-95 duration-100">
+                        <ChordPreview notes={hoveredChord.notes} scale={0.5} />
+                        {/* Triangle pointer */}
+                        <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-black/90" />
+                    </div>
                 </div>
             )}
 
             <div 
                 ref={containerRef}
-                className="flex-1 overflow-x-auto overflow-y-hidden relative custom-scrollbar h-full"
+                className="flex-1 overflow-x-auto overflow-y-hidden relative custom-scrollbar h-full group"
                 onMouseMove={handleMouseMove}
                 onMouseDown={handleMouseDown}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={() => { handleMouseUp(); setHoveredChord(null); }}
             >
                 <div className="relative" style={{ width: (playback.duration / 1000) * settings.zoom, minWidth: '100%', height: '100%' }}>
-                    {/* Components */}
-                    <div className="sticky top-0 z-20">
+                    {/* Layer 1: Ruler */}
+                    <div className="sticky top-0 z-30">
                         <TimelineRuler duration={playback.duration} bpm={mapData.bpm} zoom={settings.zoom} snapDivisor={settings.snapDivisor} />
                     </div>
-                    <div className="absolute top-8 bottom-0 left-0 right-0">
+
+                    {/* Layer 2: Grid */}
+                    <div className="absolute top-8 bottom-0 left-0 right-0 z-0">
                         <TimelineGrid duration={playback.duration} bpm={mapData.bpm} offset={mapData.offset} settings={settings} />
                     </div>
 
-                    {/* Generic Note Ticks (Aggregated) */}
-                    <div className="absolute top-8 left-0 right-0 bottom-0 pointer-events-none">
-                        {tickGroups.map(group => {
-                            const isSelected = group.notes.some(n => n.selected);
-                            return (
-                                <div
-                                    key={group.time}
-                                    className={`absolute top-2 h-16 w-1 cursor-pointer pointer-events-auto transition-colors hover:bg-white
-                                        ${isSelected ? 'bg-primary shadow-[0_0_10px_var(--color-primary)]' : 'bg-primary/50'}
-                                    `}
-                                    style={{
-                                        left: (group.time / 1000) * settings.zoom,
-                                        width: Math.max(2, settings.zoom / 50) // Scale width slightly
-                                    }}
-                                    onMouseEnter={(e) => handleTickEnter(e, group.time, group.notes)}
-                                    onMouseLeave={() => setHoveredChord(null)}
-                                />
-                            );
-                        })}
-                    </div>
-
-                    {/* Selection Box */}
+                    {/* Layer 3: Selection Box */}
                     {isDragging && dragStart && dragCurrent && (
                         <div 
-                            className="absolute top-8 bottom-0 bg-primary/20 border border-primary/50 z-30 pointer-events-none"
+                            className="absolute top-8 bottom-0 bg-blue-500/20 border border-blue-400 z-20 pointer-events-none"
                             style={{
                                 left: Math.min(dragStart.x, dragCurrent.x),
                                 width: Math.abs(dragCurrent.x - dragStart.x)
@@ -197,12 +179,58 @@ export const EditorTimeline = () => {
                         />
                     )}
 
-                    {/* Cursors */}
+                    {/* Layer 4: Note Ticks */}
+                    {/* Ensure z-index is high enough to capture hover over grid */}
+                    <div className="absolute top-8 left-0 right-0 bottom-0 pointer-events-none z-40">
+                        {tickGroups.map(group => {
+                            const isSelected = group.notes.some(n => n.selected);
+                            const hasHold = group.notes.some(n => n.type === 'hold');
+                            const tickColor = isSelected ? '#fff' : group.color;
+                            const tickWidth = Math.max(4, settings.zoom / 30);
+
+                            return (
+                                <React.Fragment key={group.time}>
+                                    {/* Hit Object Visual */}
+                                    <div
+                                        className={`absolute top-1/2 -translate-y-1/2 cursor-pointer pointer-events-auto transition-transform hover:scale-y-110 hover:brightness-125
+                                            ${isSelected ? 'shadow-[0_0_8px_white] z-50' : 'z-40'}
+                                        `}
+                                        style={{
+                                            left: (group.time / 1000) * settings.zoom - (tickWidth / 2),
+                                            width: tickWidth,
+                                            height: '40%', // Modern look: centered bar, not full height
+                                            backgroundColor: tickColor,
+                                            borderRadius: '4px',
+                                            boxShadow: `0 0 4px ${tickColor}80`
+                                        }}
+                                        onMouseEnter={(e) => handleTickEnter(e, group.time, group.notes)}
+                                        onMouseLeave={() => setHoveredChord(null)}
+                                    />
+                                    
+                                    {/* Hold Tail (Visual Only) */}
+                                    {hasHold && group.notes.map((n) => n.type === 'hold' && (
+                                        <div 
+                                            key={`${n.id}_tail`}
+                                            className="absolute top-1/2 -translate-y-1/2 h-1 opacity-40 pointer-events-none"
+                                            style={{
+                                                left: (group.time / 1000) * settings.zoom,
+                                                width: (n.duration! / 1000) * settings.zoom,
+                                                backgroundColor: tickColor,
+                                                zIndex: 35
+                                            }}
+                                        />
+                                    ))}
+                                </React.Fragment>
+                            );
+                        })}
+                    </div>
+
+                    {/* Layer 5: Cursors */}
                     {!playback.isPlaying && (
-                        <div className="absolute top-8 bottom-0 w-0.5 bg-white/20 pointer-events-none z-30" style={{ left: (hoverTime / 1000) * settings.zoom }} />
+                        <div className="absolute top-8 bottom-0 w-[1px] bg-white/30 pointer-events-none z-30" style={{ left: (hoverTime / 1000) * settings.zoom }} />
                     )}
-                    <div className="absolute top-0 bottom-0 w-0.5 bg-warning z-40 pointer-events-none shadow-[0_0_15px_rgba(251,191,36,0.8)]" style={{ left: (playback.currentTime / 1000) * settings.zoom }}>
-                        <div className="absolute top-0 -left-1.5 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-warning" />
+                    <div className="absolute top-0 bottom-0 w-[2px] bg-yellow-400 z-50 pointer-events-none shadow-[0_0_10px_rgba(250,204,21,0.8)]" style={{ left: (playback.currentTime / 1000) * settings.zoom }}>
+                        <div className="absolute top-0 -left-1.5 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-yellow-400" />
                     </div>
                 </div>
             </div>
