@@ -3,6 +3,9 @@ import { useEditor } from '../store/EditorContext';
 
 export const useMetronome = () => {
     const { audio, settings, mapData, playback } = useEditor();
+    
+    // We track the next note time in AudioContext time, not Song time, 
+    // to allow precise lookahead scheduling.
     const nextNoteTimeRef = useRef<number>(0);
     
     // Config
@@ -11,75 +14,73 @@ export const useMetronome = () => {
     const SCHEDULE_AHEAD = 0.1; // 100ms
 
     useEffect(() => {
-        if (!ENABLED || !playback.isPlaying || !audio.audioContext) return;
+        if (!ENABLED || !playback.isPlaying) return;
 
-        const ctx = audio.audioContext;
+        const manager = audio.manager;
+        const ctx = manager.getContext();
         
-        const scheduler = () => {
-            // Calculate current time in song
-            // We use audio.currentTime (which is updated via RAF in useEditorAudio)
-            // But for precise scheduling, we should sync with ctx.currentTime if we were purely WebAudio.
-            // Since we are hybrid (HTMLAudioElement master), we check playback.currentTime.
-            
-            const songTimeSec = playback.currentTime / 1000;
-            
-            // If we just started or seeked, reset next note
-            if (Math.abs(songTimeSec - nextNoteTimeRef.current) > 1.0) {
-                // Find next beat
-                const msPerBeat = 60000 / mapData.bpm;
-                const beatSec = msPerBeat / 1000;
-                const offsetSec = mapData.offset / 1000;
-                
-                // Calculate next beat time
-                const elapsedBeats = Math.ceil((songTimeSec - offsetSec) / beatSec);
-                nextNoteTimeRef.current = offsetSec + (elapsedBeats * beatSec);
-            }
+        // When starting/resuming, we need to find where we are in terms of beats
+        // and align nextNoteTimeRef to the *next* beat in Context Time.
+        
+        const resetScheduler = () => {
+            const currentTime = manager.getCurrentTimeMs() / 1000; // Song Time (Seconds)
+            const msPerBeat = 60000 / mapData.bpm;
+            const beatSec = msPerBeat / 1000;
+            const offsetSec = mapData.offset / 1000;
 
-            while (nextNoteTimeRef.current < songTimeSec + SCHEDULE_AHEAD) {
+            // Calculate which beat we are currently past
+            // Beat N time = Offset + N * Duration
+            const currentBeatIndex = Math.ceil((currentTime - offsetSec) / beatSec);
+            const nextBeatSongTime = offsetSec + (currentBeatIndex * beatSec);
+            
+            // Convert Song Time to Context Time
+            // ContextTime = (SongTime - CurrentSongTime) / Rate + CurrentContextTime
+            // But simplified: We know when the song *started* in context time inside Manager, but that's private.
+            // Easier approach: Delay = (TargetSongTime - CurrentSongTime) / Rate.
+            // ScheduleAt = ctx.currentTime + Delay.
+            
+            const delay = (nextBeatSongTime - currentTime) / playback.playbackRate;
+            nextNoteTimeRef.current = ctx.currentTime + delay;
+        };
+
+        resetScheduler();
+
+        const scheduler = () => {
+            // While next note is within the lookahead window
+            while (nextNoteTimeRef.current < ctx.currentTime + SCHEDULE_AHEAD) {
                 scheduleClick(nextNoteTimeRef.current, ctx);
                 
                 // Advance
                 const msPerBeat = 60000 / mapData.bpm;
-                // Currently 1/1 measure only for simplicity, can subdivide later
-                // If we want 1/4 ticks, divide duration by 4
-                const beatDuration = msPerBeat / 1000;
-                nextNoteTimeRef.current += beatDuration; 
+                const beatDuration = (msPerBeat / 1000) / playback.playbackRate;
+                nextNoteTimeRef.current += beatDuration;
             }
             
-            if (playback.isPlaying) {
+            if (manager.isAudioPlaying()) {
                 requestAnimationFrame(scheduler);
             }
         };
 
         const handle = requestAnimationFrame(scheduler);
         return () => cancelAnimationFrame(handle);
-    }, [ENABLED, playback.isPlaying, mapData.bpm, mapData.offset, audio.audioContext]);
+    }, [ENABLED, playback.isPlaying, mapData.bpm, mapData.offset, audio.manager, playback.playbackRate]);
 
     const scheduleClick = (time: number, ctx: AudioContext) => {
-        // Since ctx.currentTime is running independently of the HTMLAudioElement,
-        // we need to map Song Time -> Context Time.
-        // This is tricky without a shared clock. 
-        // Simple approach: Just play immediately if we are "close enough".
-        // Robust approach: Requires fully WebAudio player.
-        
-        // For this hybrid editor, we'll try a simplified "Play Now" if within window.
-        // Or, we create an oscillator immediately.
-        
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         
         osc.connect(gain);
         gain.connect(ctx.destination);
         
-        // High pitch for downbeat (measure), low for others?
-        // We'll calculate measure index later. For now, standard click.
-        osc.frequency.value = 1000;
+        // High pitch tick
+        osc.frequency.value = 1200;
         
-        // Envelope
-        gain.gain.setValueAtTime(0.5, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+        // Short envelope
+        gain.gain.setValueAtTime(0.0, time);
+        gain.gain.linearRampToValueAtTime(0.5, time + 0.005);
+        gain.gain.exponentialRampToValueAtTime(0.001, time + 0.05);
         
-        osc.start(ctx.currentTime);
-        osc.stop(ctx.currentTime + 0.05);
+        osc.start(time);
+        osc.stop(time + 0.055);
     };
 };
