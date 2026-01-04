@@ -10,7 +10,7 @@ export const Timeline = () => {
 
     // Constants
     const ROW_HEIGHT = 60;
-    const ROW_COUNT = 4; // Assuming 4 rows for simplicity in this version
+    const ROW_COUNT = 4; 
 
     // Auto-scroll logic when playing
     useEffect(() => {
@@ -24,31 +24,24 @@ export const Timeline = () => {
     const handleTimelineClick = (e: React.MouseEvent) => {
         if (!containerRef.current) return;
         
-        // 1. Calculate Time from click position
         const rect = containerRef.current.getBoundingClientRect();
         const scrollLeft = containerRef.current.scrollLeft;
         const clickX = e.clientX - rect.left + scrollLeft;
         
         const rawTime = (clickX / settings.zoom) * 1000;
-        
-        // 2. Snap Logic
         const msPerBeat = 60000 / mapData.bpm;
         const snapInterval = msPerBeat / settings.snapDivisor;
         const snappedTime = Math.round(rawTime / snapInterval) * snapInterval;
 
-        // 3. Row Logic
         const clickY = e.clientY - rect.top;
         const row = Math.floor(clickY / ROW_HEIGHT);
 
         if (row >= 0 && row < ROW_COUNT) {
-            // Determine Key char based on row (QWERTY default)
-            const keys = ['q', 'w', 'e', 'r']; // Simplified mapping
+            const keys = ['q', 'w', 'e', 'r'];
             const key = keys[row] || '?';
 
-            // Seek audio to this point (Preview)
             audio.seek(snappedTime);
 
-            // Add Note
             dispatch({
                 type: 'ADD_NOTE',
                 payload: {
@@ -56,14 +49,13 @@ export const Timeline = () => {
                     time: snappedTime,
                     column: row,
                     key: key,
-                    type: 'tap' // Default to tap
+                    type: 'tap' 
                 }
             });
         }
     };
 
     const handleNoteClick = (e: React.MouseEvent, note: EditorNote) => {
-        // Selection logic
         dispatch({
             type: 'SELECT_NOTES',
             payload: { ids: [note.id], append: e.ctrlKey || e.shiftKey }
@@ -71,35 +63,28 @@ export const Timeline = () => {
     };
 
     const handleNoteRightClick = (e: React.MouseEvent, note: EditorNote) => {
-        // Prevent context menu (using e here now)
         e.preventDefault(); 
         dispatch({ type: 'REMOVE_NOTES', payload: [note.id] });
     };
 
     return (
         <div className="flex-1 relative overflow-hidden bg-background border-t border-border flex flex-col">
-            {/* Track Info / Header Row could go here */}
-            
-            {/* Scrollable Area */}
             <div 
                 ref={containerRef}
                 className="flex-1 overflow-x-auto relative custom-scrollbar select-none"
                 onClick={handleTimelineClick}
             >
-                {/* Fixed Height Container based on rows */}
                 <div 
                     className="relative"
                     style={{ height: ROW_HEIGHT * ROW_COUNT, minWidth: '100%' }}
                 >
-                    {/* 1. Grid */}
                     <TimelineGrid 
-                        duration={playback.duration || 180000} // Default 3min if loading
+                        duration={playback.duration || 180000} 
                         bpm={mapData.bpm} 
                         offset={mapData.offset}
                         settings={settings}
                     />
 
-                    {/* 2. Row Backgrounds (Visual guide) */}
                     {Array.from({ length: ROW_COUNT }).map((_, i) => (
                         <div 
                             key={i} 
@@ -108,7 +93,6 @@ export const Timeline = () => {
                         />
                     ))}
 
-                    {/* 3. Notes */}
                     {mapData.notes.map(note => (
                         <NoteObject 
                             key={note.id} 
@@ -117,10 +101,12 @@ export const Timeline = () => {
                             rowHeight={ROW_HEIGHT}
                             onClick={handleNoteClick}
                             onContextMenu={handleNoteRightClick}
+                            // Pass no-ops for hover to satisfy interface
+                            onMouseEnter={() => {}}
+                            onMouseLeave={() => {}}
                         />
                     ))}
 
-                    {/* 4. Playhead Cursor */}
                     <div 
                         className="absolute top-0 bottom-0 w-0.5 bg-warning z-50 pointer-events-none shadow-[0_0_10px_rgba(251,191,36,0.5)]"
                         style={{ left: (playback.currentTime / 1000) * settings.zoom }}
