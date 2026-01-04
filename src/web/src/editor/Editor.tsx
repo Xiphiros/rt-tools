@@ -1,12 +1,74 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { EditorProvider, useEditor } from './store/EditorContext';
 import { EditorTimeline } from './components/EditorTimeline';
+import { Playfield } from '../gameplay/components/Playfield';
+import { MetadataModal } from './modals/MetadataModal';
+import { TimingModal } from './modals/TimingModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faPlay, faPause, faUndo, faRedo, faSave, faCog, faMinus, faPlus
+    faPlay, faPause, faUndo, faRedo, faSave, faCog, faMusic, faClock, faPencilAlt, faFileUpload, faChevronLeft
 } from '@fortawesome/free-solid-svg-icons';
 
-const EditorToolbar = () => {
+// --- SUB-COMPONENTS ---
+
+const TopMenuBar = ({ onOpenModal }: { onOpenModal: (modal: string) => void }) => {
+    const { mapData } = useEditor();
+
+    return (
+        <div className="h-12 bg-black border-b border-white/10 flex items-center px-4 justify-between select-none z-50">
+            {/* Left: Navigation */}
+            <div className="flex items-center gap-6">
+                <button className="text-sm font-bold text-muted hover:text-white transition-colors flex items-center gap-2">
+                    <FontAwesomeIcon icon={faChevronLeft} />
+                    <span>Exit</span>
+                </button>
+                
+                <div className="h-4 w-[1px] bg-white/20" />
+
+                <nav className="flex gap-1">
+                    <button 
+                        onClick={() => onOpenModal('metadata')}
+                        className="px-4 py-1.5 rounded hover:bg-white/10 text-sm font-medium transition-colors text-muted hover:text-white"
+                    >
+                        Setup
+                    </button>
+                    <button 
+                        onClick={() => onOpenModal('timing')}
+                        className="px-4 py-1.5 rounded hover:bg-white/10 text-sm font-medium transition-colors text-muted hover:text-white"
+                    >
+                        Timing
+                    </button>
+                    <button className="px-4 py-1.5 rounded bg-primary/20 text-primary text-sm font-bold shadow-inner">
+                        Compose
+                    </button>
+                    <button className="px-4 py-1.5 rounded hover:bg-white/10 text-sm font-medium transition-colors text-muted hover:text-white">
+                        Design
+                    </button>
+                </nav>
+            </div>
+
+            {/* Center: Song Info */}
+            <div className="absolute left-1/2 -translate-x-1/2 text-center opacity-80 pointer-events-none hidden md:block">
+                <div className="text-sm font-bold text-white tracking-wide">
+                    {mapData.metadata.artist || "Artist"} - {mapData.metadata.title || "Title"}
+                </div>
+                <div className="text-xs text-primary font-mono tracking-wider">
+                    [{mapData.metadata.difficultyName || "Difficulty"}]
+                </div>
+            </div>
+
+            {/* Right: Export/Actions */}
+            <div className="flex items-center gap-4">
+                <button className="text-sm text-secondary hover:text-white transition-colors flex items-center gap-2">
+                    <FontAwesomeIcon icon={faFileUpload} />
+                    <span>Export</span>
+                </button>
+            </div>
+        </div>
+    );
+};
+
+const EditorBottomBar = () => {
     const { playback, audio, canUndo, canRedo, dispatch, settings, setSettings } = useEditor();
 
     const togglePlay = () => {
@@ -15,126 +77,133 @@ const EditorToolbar = () => {
     };
 
     return (
-        <div className="h-14 bg-card border-b border-border flex items-center px-4 justify-between select-none shadow-lg z-50 relative">
-            {/* Left: Playback Controls */}
-            <div className="flex items-center gap-2">
+        <div className="h-16 bg-card border-t border-border flex items-center px-4 justify-between select-none shadow-[0_-5px_20px_rgba(0,0,0,0.3)] z-50">
+            {/* Playback Controls */}
+            <div className="flex items-center gap-3">
                 <button 
                     onClick={togglePlay}
-                    className="w-10 h-10 rounded-lg bg-primary hover:bg-primary-hover text-black flex items-center justify-center transition-colors shadow-lg shadow-cyan-500/20 active:scale-95"
+                    className="w-12 h-12 rounded-full bg-primary hover:bg-primary-hover text-black flex items-center justify-center transition-all active:scale-95 shadow-lg shadow-primary/20"
                 >
-                    <FontAwesomeIcon icon={playback.isPlaying ? faPause : faPlay} />
+                    <FontAwesomeIcon icon={playback.isPlaying ? faPause : faPlay} size="lg" />
                 </button>
                 
-                <div className="bg-input rounded px-3 py-1 text-mono text-sm border border-border w-24 text-center font-bold text-primary">
-                    {(playback.currentTime / 1000).toFixed(3)}s
-                </div>
-
-                <div className="flex gap-1 ml-4 border-l border-border pl-4">
-                    <button 
-                        disabled={!canUndo}
-                        onClick={() => dispatch({ type: 'UNDO' })}
-                        className="p-2 text-muted hover:text-text-primary disabled:opacity-30 transition-colors"
-                        title="Undo (Ctrl+Z)"
-                    >
-                        <FontAwesomeIcon icon={faUndo} />
-                    </button>
-                    <button 
-                        disabled={!canRedo}
-                        onClick={() => dispatch({ type: 'REDO' })}
-                        className="p-2 text-muted hover:text-text-primary disabled:opacity-30 transition-colors"
-                        title="Redo (Ctrl+Y)"
-                    >
-                        <FontAwesomeIcon icon={faRedo} />
-                    </button>
+                <div className="flex flex-col ml-2">
+                    <span className="text-xs text-muted uppercase font-bold tracking-wider">Time</span>
+                    <span className="text-xl font-mono font-medium text-white">
+                        {(playback.currentTime / 1000).toFixed(3)}
+                    </span>
                 </div>
             </div>
 
-            {/* Center: Settings */}
+            {/* Snapping / Tool Settings */}
             <div className="flex items-center gap-6">
-                {/* Snapping */}
-                <div className="flex items-center gap-2 text-sm text-muted bg-input/50 px-2 py-1 rounded border border-border/50">
-                    <span className="font-semibold text-xs uppercase tracking-wider">Snap</span>
-                    <select 
-                        className="bg-transparent border-none text-text-primary font-bold focus:outline-none cursor-pointer"
-                        value={settings.snapDivisor}
-                        onChange={(e) => setSettings(s => ({ ...s, snapDivisor: Number(e.target.value) }))}
-                    >
-                        <option value="1">1/1</option>
-                        <option value="2">1/2</option>
-                        <option value="3">1/3</option>
-                        <option value="4">1/4</option>
-                        <option value="6">1/6</option>
-                        <option value="8">1/8</option>
-                        <option value="12">1/12</option>
-                        <option value="16">1/16</option>
-                    </select>
+                <div className="flex flex-col items-center">
+                    <span className="text-[10px] text-muted uppercase font-bold mb-1">Beat Snap</span>
+                    <div className="flex items-center bg-input rounded-full px-1 py-0.5 border border-border">
+                        <select 
+                            className="bg-transparent border-none text-sm font-bold text-center w-16 focus:outline-none cursor-pointer text-white"
+                            value={settings.snapDivisor}
+                            onChange={(e) => setSettings(s => ({ ...s, snapDivisor: Number(e.target.value) }))}
+                        >
+                            {[1, 2, 3, 4, 6, 8, 12, 16].map(v => (
+                                <option key={v} value={v}>1/{v}</option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
-                
-                {/* Zoom Control */}
-                <div className="flex items-center gap-2 text-sm text-muted">
-                    <button 
-                        onClick={() => setSettings(s => ({...s, zoom: Math.max(50, s.zoom - 25)}))}
-                        className="hover:text-white"
-                    >
-                        <FontAwesomeIcon icon={faMinus} size="sm" />
-                    </button>
-                    <span className="w-12 text-center text-xs">{settings.zoom}%</span>
-                    <button 
-                        onClick={() => setSettings(s => ({...s, zoom: Math.min(500, s.zoom + 25)}))}
-                        className="hover:text-white"
-                    >
-                        <FontAwesomeIcon icon={faPlus} size="sm" />
-                    </button>
+
+                <div className="flex flex-col items-center">
+                    <span className="text-[10px] text-muted uppercase font-bold mb-1">Playback Rate</span>
+                    <div className="flex gap-1">
+                        {[0.5, 0.75, 1.0].map(rate => (
+                            <button
+                                key={rate}
+                                onClick={() => setSettings(s => ({ ...s, playbackSpeed: rate }))}
+                                className={`px-2 py-0.5 text-xs rounded font-bold transition-colors ${
+                                    settings.playbackSpeed === rate 
+                                    ? 'bg-secondary text-black' 
+                                    : 'bg-input text-muted hover:text-white'
+                                }`}
+                            >
+                                {rate}x
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
 
-            {/* Right: Meta Actions */}
-            <div className="flex items-center gap-2">
-                <button className="px-4 py-1.5 rounded-md bg-secondary/10 border border-secondary/30 text-secondary hover:bg-secondary/20 text-sm font-bold transition-all flex items-center gap-2">
-                    <FontAwesomeIcon icon={faSave} />
-                    <span>Save .RTM</span>
+            {/* Undo/Redo */}
+            <div className="flex gap-2">
+                <button 
+                    disabled={!canUndo} 
+                    onClick={() => dispatch({ type: 'UNDO' })}
+                    className="w-10 h-10 rounded hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors"
+                >
+                    <FontAwesomeIcon icon={faUndo} />
+                </button>
+                <button 
+                    disabled={!canRedo} 
+                    onClick={() => dispatch({ type: 'REDO' })}
+                    className="w-10 h-10 rounded hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors"
+                >
+                    <FontAwesomeIcon icon={faRedo} />
                 </button>
             </div>
         </div>
     );
 };
 
+// --- MAIN LAYOUT ---
+
 const EditorLayout = () => {
-    const { audio } = useEditor();
-    
-    // Simulate loading for dev
+    const { mapData, playback, audio } = useEditor();
+    const [activeModal, setActiveModal] = useState<string | null>(null);
+
+    // Initial load logic placeholder
     useEffect(() => {
-        // audio.load('path/to/test.mp3'); 
+        // audio.load('path/to/audio.mp3');
     }, [audio]);
 
     return (
-        <div className="flex flex-col h-[calc(100vh-4rem)] bg-[#0a0a0a]">
-            <EditorToolbar />
-            
-            {/* Split View */}
-            <div className="flex-1 flex overflow-hidden">
-                {/* Main Timeline */}
-                <div className="flex-1 flex flex-col min-w-0">
-                    {/* Info Bar (Optional) */}
-                    <div className="h-8 bg-card/50 border-b border-border flex items-center px-4 text-xs text-muted">
-                        <span>Press <b>Q-P</b> (Row 1), <b>A-;</b> (Row 2), <b>Z-/</b> (Row 3) to place notes. Hold <b>Shift</b> for long notes.</span>
-                    </div>
+        <div className="flex flex-col h-[calc(100vh-4rem)] bg-[#121212] text-text-primary overflow-hidden font-sans">
+            <TopMenuBar onOpenModal={setActiveModal} />
+
+            {/* Main Content Area */}
+            <div className="flex-1 flex flex-col relative min-h-0">
+                
+                {/* 1. Playfield (Game View) - Takes remaining space */}
+                <div className="flex-1 relative bg-black/50 overflow-hidden shadow-inner">
+                    {/* Background Image Layer */}
+                    {mapData.metadata.backgroundFile && (
+                        <div 
+                            className="absolute inset-0 bg-cover bg-center opacity-30 blur-sm pointer-events-none"
+                            style={{ backgroundImage: `url(${mapData.metadata.backgroundFile})` }}
+                        />
+                    )}
                     
+                    {/* The Actual Playfield */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="aspect-video w-full max-h-full relative">
+                            <Playfield 
+                                mapData={mapData} 
+                                currentTime={playback.currentTime} 
+                                playbackRate={playback.playbackRate} 
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* 2. Timeline - Bottom section, fixed height */}
+                <div className="h-48 border-t border-border bg-card/95 backdrop-blur shadow-2xl relative z-10">
                     <EditorTimeline />
                 </div>
-                
-                {/* Right Sidebar: Properties & Metadata (Collapsible in future) */}
-                <div className="w-72 bg-card border-l border-border p-0 flex flex-col shadow-xl z-40">
-                    <div className="p-4 border-b border-border bg-input/20">
-                        <h3 className="text-xs uppercase font-bold text-muted tracking-widest flex items-center gap-2">
-                            <FontAwesomeIcon icon={faCog} /> Properties
-                        </h3>
-                    </div>
-                    <div className="p-6 text-center text-muted/40 text-sm italic flex-1 flex items-center justify-center">
-                        No object selected
-                    </div>
-                </div>
             </div>
+
+            <EditorBottomBar />
+
+            {/* Modals */}
+            <MetadataModal isOpen={activeModal === 'metadata'} onClose={() => setActiveModal(null)} />
+            <TimingModal isOpen={activeModal === 'timing'} onClose={() => setActiveModal(null)} />
         </div>
     );
 };
