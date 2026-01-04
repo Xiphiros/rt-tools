@@ -100,10 +100,15 @@ const EditorBottomBar = () => {
 };
 
 const EditorLayout = () => {
-    const { mapData, playback, bgBlobUrl } = useEditor();
+    const { mapData, playback, bgBlobUrl, settings } = useEditor();
     const [activeModal, setActiveModal] = useState<string | null>(null);
     useShortcuts();
     useMetronome();
+
+    // Dynamic Height Calculation
+    // Waveform Open: 240px (Ample space for 80px waveform + 120px notes)
+    // Waveform Closed: 160px (Compact)
+    const bottomPanelHeight = settings.showWaveform ? 'h-[240px]' : 'h-[160px]';
 
     return (
         <div className="flex flex-col h-[calc(100vh-4rem)] bg-[#121212] text-text-primary overflow-hidden font-sans">
@@ -122,7 +127,9 @@ const EditorLayout = () => {
                         <EditorToolbox />
                     </div>
                 </div>
-                <div className="h-48 border-t border-border bg-card/95 backdrop-blur shadow-2xl relative z-10">
+                
+                {/* Dynamic Height Container */}
+                <div className={`${bottomPanelHeight} transition-all duration-300 ease-in-out border-t border-border bg-card/95 backdrop-blur shadow-2xl relative z-10`}>
                     <EditorTimeline />
                 </div>
             </div>
