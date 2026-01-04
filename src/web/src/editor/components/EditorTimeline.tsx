@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { useEditor } from '../store/EditorContext';
 import { TimelineGrid } from './TimelineGrid';
 import { TimelineRuler } from './TimelineRuler';
@@ -29,12 +30,9 @@ export const EditorTimeline = () => {
         });
 
         return Array.from(groups.entries()).map(([time, notes]) => {
-            // Determine snap color for this tick
-            // We need beat index: (time - offset) / msPerBeat
             const beatIndex = (time - mapData.offset) / msPerBeat;
             const snap = getSnapDivisor(beatIndex);
-            const color = getSnapColor(snap || 4); // Default to blue (1/4) if unsnapped
-
+            const color = getSnapColor(snap || 4);
             return { time, notes, color };
         });
     }, [mapData.notes, mapData.bpm, mapData.offset]);
@@ -121,33 +119,39 @@ export const EditorTimeline = () => {
     }, [playback.currentTime, playback.isPlaying, settings.zoom]);
 
     const handleTickEnter = (e: React.MouseEvent, time: number, notes: EditorNote[]) => {
-        // e.target is the specific tick div
         const rect = (e.target as HTMLElement).getBoundingClientRect();
-        
-        // Ensure tooltip renders within viewport
         setHoveredChord({
             time,
             notes,
+            // Calculate center of the tick
             x: rect.left + (rect.width / 2),
-            y: rect.top - 150 // Position distinctly above
+            // Position above the timeline container
+            y: rect.top - 10
         });
     };
 
+    // Render Tooltip via Portal to break out of overflow:hidden
+    const tooltip = hoveredChord ? (
+        <div 
+            className="fixed z-[9999] pointer-events-none transition-all duration-150"
+            style={{ 
+                left: hoveredChord.x, 
+                top: hoveredChord.y,
+                transform: 'translate(-50%, -100%)' // Center horizontal, Place above
+            }}
+        >
+            <div className="animate-in fade-in zoom-in-95 duration-100 mb-2">
+                <ChordPreview notes={hoveredChord.notes} scale={0.5} />
+                {/* Pointer */}
+                <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-black/90" />
+            </div>
+        </div>
+    ) : null;
+
     return (
         <div className="flex-1 flex flex-col bg-background relative select-none h-full">
-            {/* Tooltip Layer */}
-            {hoveredChord && (
-                <div 
-                    className="fixed z-[9999] pointer-events-none transition-all duration-150 transform -translate-x-1/2"
-                    style={{ left: hoveredChord.x, top: hoveredChord.y }}
-                >
-                    <div className="animate-in fade-in zoom-in-95 duration-100">
-                        <ChordPreview notes={hoveredChord.notes} scale={0.5} />
-                        {/* Triangle pointer */}
-                        <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-black/90" />
-                    </div>
-                </div>
-            )}
+            {/* Render Portal */}
+            {createPortal(tooltip, document.body)}
 
             <div 
                 ref={containerRef}
@@ -180,7 +184,6 @@ export const EditorTimeline = () => {
                     )}
 
                     {/* Layer 4: Note Ticks */}
-                    {/* Ensure z-index is high enough to capture hover over grid */}
                     <div className="absolute top-8 left-0 right-0 bottom-0 pointer-events-none z-40">
                         {tickGroups.map(group => {
                             const isSelected = group.notes.some(n => n.selected);
@@ -190,7 +193,6 @@ export const EditorTimeline = () => {
 
                             return (
                                 <React.Fragment key={group.time}>
-                                    {/* Hit Object Visual */}
                                     <div
                                         className={`absolute top-1/2 -translate-y-1/2 cursor-pointer pointer-events-auto transition-transform hover:scale-y-110 hover:brightness-125
                                             ${isSelected ? 'shadow-[0_0_8px_white] z-50' : 'z-40'}
@@ -198,7 +200,7 @@ export const EditorTimeline = () => {
                                         style={{
                                             left: (group.time / 1000) * settings.zoom - (tickWidth / 2),
                                             width: tickWidth,
-                                            height: '40%', // Modern look: centered bar, not full height
+                                            height: '40%',
                                             backgroundColor: tickColor,
                                             borderRadius: '4px',
                                             boxShadow: `0 0 4px ${tickColor}80`
@@ -207,7 +209,6 @@ export const EditorTimeline = () => {
                                         onMouseLeave={() => setHoveredChord(null)}
                                     />
                                     
-                                    {/* Hold Tail (Visual Only) */}
                                     {hasHold && group.notes.map((n) => n.type === 'hold' && (
                                         <div 
                                             key={`${n.id}_tail`}
