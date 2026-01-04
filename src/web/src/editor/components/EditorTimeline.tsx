@@ -22,18 +22,14 @@ export const EditorTimeline = () => {
 
     // --- AGGREGATION ---
     const tickGroups = useMemo(() => {
-        // Use a string map to preserve precision without grouping unrelated floats
-        // "100.333" -> String key
         const groups = new Map<string, EditorNote[]>();
 
         mapData.notes.forEach(note => {
-            // Fix: Use high precision key instead of Math.round to prevent 0.5ms visual drift
             const key = note.time.toFixed(3); 
             if (!groups.has(key)) groups.set(key, []);
             groups.get(key)!.push(note);
         });
 
-        // Convert back to array
         return Array.from(groups.entries()).map(([timeStr, notes]) => {
             const time = parseFloat(timeStr);
             const tp = getActiveTimingPoint(time, mapData.timingPoints);
@@ -152,7 +148,6 @@ export const EditorTimeline = () => {
         </div>
     ) : null;
 
-    // --- PLAYHEAD COLOR LOGIC ---
     const playheadColor = useMemo(() => {
         const defaultColor = '#FACC15'; 
         
@@ -221,8 +216,16 @@ export const EditorTimeline = () => {
                             const hasHold = group.notes.some(n => n.type === 'hold');
                             const tickColor = isSelected ? '#fff' : group.color;
                             
-                            let rawWidth = group.isUnsnapped ? 2 : Math.max(4, settings.zoom / 30);
-                            if (rawWidth % 2 !== 0) rawWidth += 1;
+                            // FORCE EVEN INTEGER WIDTH
+                            // 1. Calculate raw width based on zoom
+                            const rawCalc = settings.zoom / 30;
+                            // 2. Ensure minimum 4px, round to nearest int
+                            let width = Math.max(4, Math.round(rawCalc));
+                            // 3. Make even (e.g. 5 -> 6) to ensure centering works with translate(-50%)
+                            if (width % 2 !== 0) width++;
+                            
+                            // Unsnapped notes use smaller width, fixed at 2px (also even)
+                            if (group.isUnsnapped) width = 2;
 
                             const bgStyle = group.isUnsnapped 
                                 ? { backgroundColor: '#fff', opacity: 0.8 } 
@@ -236,7 +239,7 @@ export const EditorTimeline = () => {
                                         `}
                                         style={{
                                             left: (group.time / 1000) * settings.zoom,
-                                            width: rawWidth,
+                                            width: width,
                                             height: '40%',
                                             borderRadius: '4px',
                                             transform: 'translate(-50%, -50%)',
