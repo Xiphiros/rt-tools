@@ -1,6 +1,6 @@
 import React from 'react';
 import { EditorMapData } from '../../editor/types';
-import { NOTE_SIZE, ROW_COLORS, ROW_TOP, ROW_HOME, ROW_BOTTOM } from '../constants';
+import { NOTE_SIZE, ROW_COLORS, ROW_TOP, ROW_HOME, ROW_BOTTOM, KEY_TO_ROW } from '../constants';
 
 interface PlayfieldProps {
     mapData: EditorMapData;
@@ -19,6 +19,7 @@ const ROW_Y_OFFSETS: Record<number, number> = {
     [ROW_BOTTOM]: 15   
 };
 
+// Default layout for ghosts
 const KEY_ORDER: Record<number, string[]> = {
     [ROW_TOP]: ['q','w','e','r','t','y','u','i','o','p'],
     [ROW_HOME]: ['a','s','d','f','g','h','j','k','l',';'],
@@ -32,26 +33,43 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true, sc
     const visibleNotes = mapData.notes.filter(n => {
         const relativeTime = n.time - currentTime;
         const endTime = n.type === 'hold' ? n.time + (n.duration || 0) : n.time;
+        // Extend visibility for holds to ensure they don't disappear while held
         return (relativeTime <= PREEMPT && (endTime - currentTime) >= -FADE_OUT);
     });
 
     const getPosition = (row: number, char: string) => {
-        const rowKeys = KEY_ORDER[row] || [];
-        const keyIndex = rowKeys.indexOf(char.toLowerCase());
-        const rowWidth = rowKeys.length;
-        const xOffsetPct = ((keyIndex - (rowWidth / 2)) + 0.5) * 8; 
+        // Fallback: If key isn't in KEY_ORDER, assume it belongs to the row derived from KEY_TO_ROW
+        // If it's totally unknown, put it in center (fallback)
+        const lowerChar = char.toLowerCase();
+        
+        let targetRow = row;
+        // Double check row if note.column might be wrong (importer logic)
+        if (KEY_TO_ROW[lowerChar] !== undefined) {
+            targetRow = KEY_TO_ROW[lowerChar];
+        }
 
-        let rowStagger = 0;
-        if (row === ROW_HOME) rowStagger = 2;
-        if (row === ROW_BOTTOM) rowStagger = 4;
+        const rowKeys = KEY_ORDER[targetRow] || [];
+        const keyIndex = rowKeys.indexOf(lowerChar);
+        
+        // If key found in standard layout
+        if (keyIndex !== -1) {
+            const rowWidth = rowKeys.length;
+            const xOffsetPct = ((keyIndex - (rowWidth / 2)) + 0.5) * 8; 
+            let rowStagger = 0;
+            if (targetRow === ROW_HOME) rowStagger = 2;
+            if (targetRow === ROW_BOTTOM) rowStagger = 4;
 
-        return {
-            x: CENTER_X + xOffsetPct + rowStagger,
-            y: CENTER_Y + (ROW_Y_OFFSETS[row] || 0)
-        };
+            return {
+                x: CENTER_X + xOffsetPct + rowStagger,
+                y: CENTER_Y + (ROW_Y_OFFSETS[targetRow] || 0)
+            };
+        } else {
+            // Unknown key? Render in center or skip?
+            // Let's render it slightly offset to show "Error" state or just center
+            return { x: CENTER_X, y: CENTER_Y };
+        }
     };
 
-    // Scaled Size
     const actualSize = NOTE_SIZE * scale;
 
     const renderGhosts = () => {
@@ -103,7 +121,9 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true, sc
                 const approachScale = 3 - (2 * progress);
 
                 const colors = ROW_COLORS as Record<number, string>;
-                const color = colors[note.column] || '#fff';
+                // Recalculate row just in case
+                const row = KEY_TO_ROW[note.key.toLowerCase()] ?? note.column;
+                const color = colors[row] || '#fff';
 
                 return (
                     <div 
