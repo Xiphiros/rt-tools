@@ -13,12 +13,11 @@ export const EditorTimeline = () => {
 
     // --- KEYBOARD INPUT HANDLING ---
     useEffect(() => {
-        const handleKeyDown = (e: React.Event) => {
+        const handleKeyDown = (e: KeyboardEvent) => {
             // Only process input if not typing in a text field
             if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
             
-            const event = e as KeyboardEvent;
-            const key = event.key.toLowerCase();
+            const key = e.key.toLowerCase();
 
             // 1. Check if key maps to a row
             if (KEY_TO_ROW[key] !== undefined) {
@@ -41,17 +40,14 @@ export const EditorTimeline = () => {
                         time: snappedTime,
                         column: row,
                         key: key,
-                        type: event.shiftKey ? 'hold' : 'tap', // Shift+Key = Hold Note start
-                        duration: event.shiftKey ? msPerBeat : 0 // Default hold length = 1 beat
+                        type: e.shiftKey ? 'hold' : 'tap', // Shift+Key = Hold Note start
+                        duration: e.shiftKey ? msPerBeat : 0 // Default hold length = 1 beat
                     }
                 });
-
-                // Play Hitsound (Feedback)
-                // In a real app, this would trigger the actual audio engine sample
             }
             
             // Delete Key
-            if (event.key === 'Delete' || event.key === 'Backspace') {
+            if (e.key === 'Delete' || e.key === 'Backspace') {
                 const selectedIds = mapData.notes.filter(n => n.selected).map(n => n.id);
                 if (selectedIds.length > 0) {
                     dispatch({ type: 'REMOVE_NOTES', payload: selectedIds });
@@ -61,7 +57,7 @@ export const EditorTimeline = () => {
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [mapData.bpm, settings.snapDivisor, playback.isPlaying, playback.currentTime, hoverTime, dispatch]);
+    }, [mapData.bpm, mapData.notes, settings.snapDivisor, playback.isPlaying, playback.currentTime, hoverTime, dispatch]);
 
 
     // --- MOUSE HANDLING ---
@@ -100,7 +96,7 @@ export const EditorTimeline = () => {
     };
 
     // Background Click -> Seek
-    const handleBgClick = (e: React.MouseEvent) => {
+    const handleBgClick = () => {
         if (playback.isPlaying) return;
         audio.seek(hoverTime);
     };
