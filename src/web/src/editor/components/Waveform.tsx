@@ -1,4 +1,5 @@
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
+import { WaveformTile } from './WaveformTile';
 
 export type WaveformMode = 'full' | 'bass' | 'treble';
 
@@ -8,17 +9,16 @@ interface WaveformProps {
     duration: number; // ms
     height: number;
     color?: string;
-    mode?: WaveformMode; // New Prop
+    mode?: WaveformMode;
 }
 
-const MAX_CANVAS_WIDTH = 8000;
+const TILE_WIDTH = 4000; // 4000px per canvas is safe on all GPUs
 
 export const Waveform = ({ buffer, zoom, duration, height, color = '#4b5563', mode = 'full' }: WaveformProps) => {
-    const [bitmap, setBitmap] = useState<ImageBitmap | null>(null);
     const [processedBuffer, setProcessedBuffer] = useState<AudioBuffer | null>(null);
     const [isProcessing, setIsProcessing] = useState(false);
 
-    // 1. Filter Audio Buffer based on Mode
+    // 1. Process Buffer (Filter Logic)
     useEffect(() => {
         if (!buffer) return;
         if (mode === 'full') {
@@ -31,7 +31,6 @@ export const Waveform = ({ buffer, zoom, duration, height, color = '#4b5563', mo
 
         const process = async () => {
             try {
-                // Offline context renders faster than real-time
                 const offlineCtx = new OfflineAudioContext(
                     buffer.numberOfChannels,
                     buffer.length,
@@ -45,11 +44,11 @@ export const Waveform = ({ buffer, zoom, duration, height, color = '#4b5563', mo
                 
                 if (mode === 'bass') {
                     filter.type = 'lowpass';
-                    filter.frequency.value = 140; // Focus on Kick/Bass
+                    filter.frequency.value = 140;
                     filter.Q.value = 1;
                 } else if (mode === 'treble') {
                     filter.type = 'highpass';
-                    filter.frequency.value = 2000; // Focus on Vocals/Hi-hats
+                    filter.frequency.value = 2000;
                     filter.Q.value = 1;
                 }
 
@@ -70,75 +69,24 @@ export const Waveform = ({ buffer, zoom, duration, height, color = '#4b5563', mo
         };
 
         process();
-
         return () => { active = false; };
     }, [buffer, mode]);
 
-    // 2. Generate Visual Bitmap from (Processed) Buffer
-    useEffect(() => {
-        if (!processedBuffer) return;
+    // 2. Calculate Tiles
+    const tiles = useMemo(() => {
+        if (!processedBuffer) return [];
+        
+        const totalWidth = (duration / 1000) * zoom;
+        const count = Math.ceil(totalWidth / TILE_WIDTH);
+        
+        return Array.from({ length: count }).map((_, i) => ({
+            id: i,
+            startPx: i * TILE_WIDTH,
+            width: Math.min(TILE_WIDTH, totalWidth - (i * TILE_WIDTH))
+        }));
+    }, [processedBuffer, zoom, duration]);
 
-        let active = true;
-
-        const generate = async () => {
-            try {
-                let targetWidth = (duration / 1000) * zoom;
-                const logicalWidth = Math.min(targetWidth, MAX_CANVAS_WIDTH);
-                
-                if (logicalWidth <= 0) return;
-
-                const canvas = document.createElement('canvas');
-                canvas.width = Math.floor(logicalWidth);
-                canvas.height = height;
-                const ctx = canvas.getContext('2d');
-                
-                if (!ctx) return;
-
-                const data = processedBuffer.getChannelData(0); 
-                const step = Math.ceil(data.length / logicalWidth);
-                const amp = height / 2;
-
-                ctx.fillStyle = color;
-                ctx.beginPath();
-
-                for (let i = 0; i < logicalWidth; i++) {
-                    let min = 1.0;
-                    let max = -1.0;
-                    
-                    const chunk = Math.min(step, 1000); 
-                    const offset = i * step;
-
-                    for (let j = 0; j < chunk; j++) {
-                        const idx = offset + j;
-                        if (idx < data.length) {
-                            const datum = data[idx];
-                            if (datum < min) min = datum;
-                            if (datum > max) max = datum;
-                        }
-                    }
-                    
-                    if (max >= min) {
-                        ctx.fillRect(i, (1 + min) * amp, 1, Math.max(1, (max - min) * amp));
-                    }
-                }
-
-                if (!active) return;
-
-                const bmp = await createImageBitmap(canvas);
-                if (active) setBitmap(bmp);
-                else bmp.close();
-
-            } catch (e) {
-                console.warn("Waveform generation failed:", e);
-            }
-        };
-
-        generate();
-
-        return () => { active = false; };
-    }, [processedBuffer, zoom, duration, height, color]);
-
-    if (!bitmap) return null;
+    if (!processedBuffer) return null;
 
     const realWidth = (duration / 1000) * zoom;
 
@@ -147,32 +95,18 @@ export const Waveform = ({ buffer, zoom, duration, height, color = '#4b5563', mo
             className={`absolute top-0 left-0 pointer-events-none z-0 transition-opacity duration-200 ${isProcessing ? 'opacity-50' : 'opacity-100'}`}
             style={{ width: realWidth, height }}
         >
-            <CanvasRenderer bitmap={bitmap} height={height} />
+            {tiles.map(tile => (
+                <WaveformTile 
+                    key={`${tile.id}-${zoom}-${mode}`} // Re-mount if zoom/mode changes
+                    buffer={processedBuffer}
+                    startPx={tile.startPx}
+                    width={tile.width}
+                    height={height}
+                    zoom={zoom}
+                    color={color}
+                    sampleRate={processedBuffer.sampleRate}
+                />
+            ))}
         </div>
-    );
-};
-
-const CanvasRenderer = ({ bitmap, height }: { bitmap: ImageBitmap, height: number }) => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-
-    useEffect(() => {
-        const ctx = canvasRef.current?.getContext('2d');
-        if (!ctx || !bitmap) return;
-
-        try {
-            ctx.clearRect(0, 0, bitmap.width, height);
-            ctx.drawImage(bitmap, 0, 0);
-        } catch (e) {
-            // Ignore error state
-        }
-    }, [bitmap, height]);
-
-    return (
-        <canvas 
-            ref={canvasRef} 
-            width={bitmap.width} 
-            height={height} 
-            style={{ width: '100%', height: '100%' }}
-        />
     );
 };
