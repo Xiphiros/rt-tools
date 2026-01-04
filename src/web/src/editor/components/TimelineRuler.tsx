@@ -64,11 +64,11 @@ export const TimelineRuler = ({ duration, timingPoints, zoom, snapDivisor }: Tim
             return `${interval}px ${height}`;
         });
 
-        // ALIGNMENT FIX (Same as Grid)
         const relativeOffset = offset - sectionStart;
         const offsetPx = (relativeOffset / 1000) * zoom;
         
-        const positions = validSnaps.map(_ => `${offsetPx}px 100%`); 
+        // SHIFT FIX: Subtract 0.5px to center the tick
+        const positions = validSnaps.map(_ => `calc(${offsetPx}px - 0.5px) 100%`); 
 
         return {
             backgroundImage: layers.join(', '),
