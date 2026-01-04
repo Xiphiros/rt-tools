@@ -12,11 +12,34 @@ export interface EditorNote {
     selected?: boolean;
 }
 
+export interface MapMetadata {
+    title: string;
+    artist: string;
+    mapper: string;
+    difficultyName: string;
+    source: string;
+    tags: string;
+    backgroundFile: string;
+    audioFile: string;
+    previewTime: number;
+}
+
+export interface TimingPoint {
+    id: string;
+    time: number;
+    bpm: number;
+    meter: number; // e.g., 4 for 4/4
+    kiai: boolean;
+}
+
 export interface EditorMapData {
     notes: EditorNote[];
+    metadata: MapMetadata;
+    timingPoints: TimingPoint[];
+    
+    // Legacy/Convenience accessors (derived from first timing point usually)
     bpm: number;
     offset: number;
-    // Metadata can be expanded here
 }
 
 export interface PlaybackState {
