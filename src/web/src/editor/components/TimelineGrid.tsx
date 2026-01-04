@@ -1,4 +1,3 @@
-import React from 'react';
 import { EditorSettings } from '../types';
 
 interface TimelineGridProps {
@@ -23,14 +22,8 @@ export const TimelineGrid = ({ duration, bpm, offset, settings }: TimelineGridPr
     // 1. Measure Lines (4 beats usually)
     const measureSize = pixelsPerBeat * 4;
     
-    // 2. Beat Lines
-    const beatSize = pixelsPerBeat;
-
-    // 3. Snap Lines (Sub-beats based on divisor)
-    const snapSize = pixelsPerBeat / (settings.snapDivisor / 4); // If divisor is 4 (1/4th), we need beat/1.
-
-    // Correction: Snap Divisor logic.
-    // Standard: 1 = 1/1 beat. 2 = 1/2 beat. 4 = 1/4 beat.
+    // 2. Snap Lines (Sub-beats based on divisor)
+    // Snap Divisor logic: 1 = 1/1 beat. 2 = 1/2 beat. 4 = 1/4 beat.
     const intervalSize = pixelsPerBeat / settings.snapDivisor;
 
     return (
