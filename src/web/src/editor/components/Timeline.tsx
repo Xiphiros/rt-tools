@@ -71,6 +71,8 @@ export const Timeline = () => {
     };
 
     const handleNoteRightClick = (e: React.MouseEvent, note: EditorNote) => {
+        // Prevent context menu (using e here now)
+        e.preventDefault(); 
         dispatch({ type: 'REMOVE_NOTES', payload: [note.id] });
     };
 
