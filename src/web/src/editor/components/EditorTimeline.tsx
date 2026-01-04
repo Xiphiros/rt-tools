@@ -9,23 +9,40 @@ import { EditorNote } from '../types';
 import { getSnapColor, getSnapDivisor } from '../utils/snapColors';
 import { snapTime, getActiveTimingPoint } from '../utils/timing';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWaveSquare, faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faWaveSquare } from '@fortawesome/free-solid-svg-icons';
+
+// Simple debounce helper
+function useDebouncedSeek(callback: (time: number) => void, delay: number) {
+    const callbackRef = useRef(callback);
+    useEffect(() => { callbackRef.current = callback; }, [callback]);
+    
+    return useMemo(() => {
+        let timer: any;
+        return (time: number) => {
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(() => {
+                callbackRef.current(time);
+            }, delay);
+        };
+    }, [delay]);
+}
 
 export const EditorTimeline = () => {
     const { mapData, settings, setSettings, playback, dispatch, audio, activeTool } = useEditor();
     const containerRef = useRef<HTMLDivElement>(null);
     
-    // UI State
     const [showWaveform, setShowWaveform] = useState(true);
     const [hoverTime, setHoverTime] = useState(0);
     const [hoveredChord, setHoveredChord] = useState<{ time: number, notes: EditorNote[], x: number, y: number } | null>(null);
-    
-    // Drag State
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState<{ x: number, time: number } | null>(null);
     const [dragCurrent, setDragCurrent] = useState<{ x: number, time: number } | null>(null);
 
-    // --- AGGREGATION ---
+    // Debounced seek for smooth scrolling
+    const debouncedSeek = useDebouncedSeek((time) => {
+        audio.seek(time);
+    }, 50); // 50ms delay to prevent audio engine stutter
+
     const tickGroups = useMemo(() => {
         const groups = new Map<string, EditorNote[]>();
 
@@ -49,7 +66,6 @@ export const EditorTimeline = () => {
         });
     }, [mapData.notes, mapData.timingPoints, mapData.bpm, mapData.offset]);
 
-    // --- ZOOM & SEEK ---
     useEffect(() => {
         const container = containerRef.current;
         if (!container) return;
@@ -60,6 +76,11 @@ export const EditorTimeline = () => {
                 const delta = e.deltaY > 0 ? -25 : 25;
                 setSettings(s => ({ ...s, zoom: Math.max(50, Math.min(500, s.zoom + delta)) }));
             } else {
+                // When scrolling, calculate target and seek
+                // To prevent stutter, we can pause temporarily or debounce
+                // Ideally: If playing, pause -> scroll -> resume?
+                // Current approach: Just seek (debounced)
+                
                 const direction = e.deltaY > 0 ? 1 : -1;
                 const tp = getActiveTimingPoint(playback.currentTime, mapData.timingPoints);
                 const bpm = tp ? tp.bpm : 120;
@@ -69,27 +90,25 @@ export const EditorTimeline = () => {
                 const rawTarget = playback.currentTime + (step * direction);
                 const cleanTarget = snapTime(rawTarget, mapData.timingPoints, settings.snapDivisor);
                 
-                audio.seek(cleanTarget);
+                // If the user is scrolling rapidly, we want to update the Visuals immediately
+                // but the Audio engine lazily.
+                // However, playback.currentTime IS the source of truth for visuals currently (via Context).
+                // We need to optimistically update playback.currentTime in context without waiting for audio?
+                // For now, using debounced seek is safer.
+                debouncedSeek(cleanTarget);
             }
         };
         container.addEventListener('wheel', handleWheel, { passive: false });
         return () => container.removeEventListener('wheel', handleWheel);
-    }, [setSettings, playback.currentTime, mapData.timingPoints, settings.snapDivisor, audio]);
+    }, [setSettings, playback.currentTime, mapData.timingPoints, settings.snapDivisor, debouncedSeek]);
 
-    // --- MOUSE HANDLERS ---
     const handleMouseDown = (e: React.MouseEvent) => {
         if (!containerRef.current) return;
         const rect = containerRef.current.getBoundingClientRect();
-        // Adjust for scroll
-        const scrollLeft = containerRef.current.scrollLeft;
-        
-        // We only care about X for time
-        const clickX = e.clientX - rect.left + scrollLeft;
+        const clickX = e.clientX - rect.left + containerRef.current.scrollLeft;
         const rawTime = (clickX / settings.zoom) * 1000;
 
         if (activeTool === 'select' && e.button === 0) {
-            // Only start box select if clicking in the note area? 
-            // For now, allow global selection start
             setIsDragging(true);
             setDragStart({ x: clickX, time: rawTime });
             setDragCurrent({ x: clickX, time: rawTime });
@@ -138,8 +157,9 @@ export const EditorTimeline = () => {
         setDragCurrent(null);
     };
 
-    // Auto-Scroll
+    // Auto-Scroll during playback
     useEffect(() => {
+        // Only scroll if playing to avoid fighting with user scroll
         if (playback.isPlaying && containerRef.current) {
             const scrollPos = (playback.currentTime / 1000) * settings.zoom - (containerRef.current.clientWidth / 2);
             containerRef.current.scrollLeft = scrollPos;
@@ -188,14 +208,13 @@ export const EditorTimeline = () => {
         <div className="flex-1 flex flex-col bg-background relative select-none h-full">
             {createPortal(tooltip, document.body)}
 
-            {/* Toggle Button - Fixed Overlay */}
             <div className="absolute top-0 left-0 z-50 p-1">
                 <button 
                     onClick={() => setShowWaveform(!showWaveform)}
                     className="w-6 h-6 bg-card border border-border rounded flex items-center justify-center text-xs text-muted hover:text-white transition-colors shadow-md"
                     title="Toggle Waveform"
                 >
-                    <FontAwesomeIcon icon={showWaveform ? faWaveSquare : faWaveSquare} className={showWaveform ? "text-primary" : "text-muted"} />
+                    <FontAwesomeIcon icon={faWaveSquare} className={showWaveform ? "text-primary" : "text-muted"} />
                 </button>
             </div>
 
@@ -211,7 +230,6 @@ export const EditorTimeline = () => {
                     className="relative flex flex-col min-h-full" 
                     style={{ width: (playback.duration / 1000) * settings.zoom, minWidth: '100%' }}
                 >
-                    {/* 1. LAYER: GRID LINES (Absolute, covers everything) */}
                     <div className="absolute inset-0 z-0">
                         <TimelineGrid 
                             duration={playback.duration} 
@@ -220,7 +238,6 @@ export const EditorTimeline = () => {
                         />
                     </div>
 
-                    {/* 2. LAYER: SELECTION BOX (Absolute) */}
                     {isDragging && dragStart && dragCurrent && (
                         <div 
                             className="absolute top-0 bottom-0 bg-blue-500/20 border-x border-blue-400 z-20 pointer-events-none"
@@ -231,7 +248,6 @@ export const EditorTimeline = () => {
                         />
                     )}
 
-                    {/* 3. LAYER: PLAYHEAD (Absolute, covers everything) */}
                     {!playback.isPlaying && (
                         <div className="absolute top-0 bottom-0 w-[1px] bg-white/30 pointer-events-none z-30" style={{ left: (hoverTime / 1000) * settings.zoom }} />
                     )}
@@ -252,9 +268,6 @@ export const EditorTimeline = () => {
                         />
                     </div>
 
-                    {/* --- CONTENT STACK --- */}
-                    
-                    {/* ROW 1: RULER (Sticky) */}
                     <div className="sticky top-0 z-40">
                         <TimelineRuler 
                             duration={playback.duration} 
@@ -264,12 +277,12 @@ export const EditorTimeline = () => {
                         />
                     </div>
 
-                    {/* ROW 2: WAVEFORM (Collapsible) */}
                     <div 
                         className="relative w-full transition-all duration-300 ease-in-out overflow-hidden border-b border-white/5 bg-black/20"
                         style={{ height: showWaveform ? '80px' : '0px' }}
                     >
                         <div className="absolute inset-0 z-10 opacity-80">
+                            {/* Passed buffer from manager safely */}
                             <Waveform 
                                 buffer={audio.manager.getBuffer()} 
                                 zoom={settings.zoom} 
@@ -279,7 +292,6 @@ export const EditorTimeline = () => {
                         </div>
                     </div>
 
-                    {/* ROW 3: NOTES (Flex Grow) */}
                     <div className="flex-1 relative min-h-[120px] z-30 mt-2">
                         {tickGroups.map(group => {
                             const isSelected = group.notes.some(n => n.selected);
@@ -309,7 +321,7 @@ export const EditorTimeline = () => {
                                         style={{
                                             left: (group.time / 1000) * settings.zoom,
                                             width: width,
-                                            height: '60%', // Taller notes in the specific note area
+                                            height: '60%', 
                                             borderRadius: '4px',
                                             transform: 'translate(-50%, -50%)',
                                             ...bgStyle
@@ -318,7 +330,6 @@ export const EditorTimeline = () => {
                                         onMouseLeave={() => setHoveredChord(null)}
                                     />
                                     
-                                    {/* Hold tails only rendered in Note area */}
                                     {group.notes.map((n) => n.type === 'hold' && (
                                         <div 
                                             key={`${n.id}_tail`}
