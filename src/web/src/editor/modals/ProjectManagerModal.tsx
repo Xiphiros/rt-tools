@@ -6,7 +6,7 @@ import { listProjects, deleteProject } from '../utils/opfs';
 import { importRtmPackage } from '../utils/importer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faPlus, faUpload, faTrash, faFolderOpen, faFileExport, faSpinner
+    faPlus, faUpload, faTrash, faFileExport, faSpinner
 } from '@fortawesome/free-solid-svg-icons';
 import { exportBeatmapPackage } from '../utils/exporter';
 
@@ -43,7 +43,6 @@ export const ProjectManagerModal = ({ isOpen, onClose }: ProjectManagerModalProp
             await deleteProject(id);
             await refreshList();
             if (id === activeProjectId) {
-                // If we deleted the active project, create a new blank one
                 createNewProject();
             }
         }
@@ -73,7 +72,7 @@ export const ProjectManagerModal = ({ isOpen, onClose }: ProjectManagerModalProp
 
     const handleExport = (e: React.MouseEvent) => {
         e.stopPropagation();
-        exportBeatmapPackage(mapData);
+        exportBeatmapPackage(mapData, activeProjectId || undefined);
     };
 
     return (
