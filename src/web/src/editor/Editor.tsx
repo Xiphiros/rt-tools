@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { EditorProvider, useEditor } from './store/EditorContext';
 import { EditorTimeline } from './components/EditorTimeline';
 import { EditorToolbox } from './components/EditorToolbox';
