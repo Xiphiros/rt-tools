@@ -1,10 +1,9 @@
 import React, { createContext, useContext, useReducer, ReactNode, useEffect, useState } from 'react';
 import { editorReducer, initialHistory, EditorAction, initialMapData } from './editorReducer';
 import { useEditorAudio } from '../hooks/useEditorAudio';
-import { EditorMapData, EditorSettings, PlaybackState } from '../types';
+import { EditorMapData, EditorSettings, PlaybackState, EditorTool } from '../types';
 import { loadProjectJSON, saveProjectJSON, readFileFromOPFS } from '../utils/opfs';
 
-// --- STATE DEFINITION ---
 interface EditorContextState {
     mapData: EditorMapData;
     canUndo: boolean;
@@ -14,8 +13,9 @@ interface EditorContextState {
     audio: ReturnType<typeof useEditorAudio>;
 
     settings: EditorSettings;
+    activeTool: EditorTool;
+    setActiveTool: (tool: EditorTool) => void;
     
-    // Asset URLs (Blobs)
     audioBlobUrl: string | null;
     bgBlobUrl: string | null;
     reloadAssets: () => void;
@@ -35,28 +35,30 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     const [audioBlobUrl, setAudioBlobUrl] = useState<string | null>(null);
     const [bgBlobUrl, setBgBlobUrl] = useState<string | null>(null);
     const [assetsVersion, setAssetsVersion] = useState(0);
+    const [activeTool, setActiveTool] = useState<EditorTool>('select');
 
     // Settings
     const [settings, setSettings] = React.useState<EditorSettings>({
         snapDivisor: 4,
         playbackSpeed: 1.0,
         zoom: 150, 
-        metronome: false
+        metronome: false,
+        snappingEnabled: true
     });
 
-    // 1. Auto-Load Project on Mount
+    // Auto-Load
     useEffect(() => {
         const load = async () => {
             const data = await loadProjectJSON();
             if (data) {
                 dispatch({ type: 'LOAD_MAP', payload: data });
-                setAssetsVersion(v => v + 1); // Trigger asset reload
+                setAssetsVersion(v => v + 1); 
             }
         };
         load();
     }, []);
 
-    // 2. Auto-Save on Change (Debounced)
+    // Auto-Save
     useEffect(() => {
         const timer = setTimeout(() => {
             if (history.present !== initialMapData) {
@@ -66,40 +68,29 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         return () => clearTimeout(timer);
     }, [history.present]);
 
-    // 3. Asset Loading
+    // Asset Loading
     useEffect(() => {
         const loadAssets = async () => {
             const meta = history.present.metadata;
-            
-            // Audio
             if (meta.audioFile) {
                 const file = await readFileFromOPFS(meta.audioFile);
                 if (file) {
                     const url = URL.createObjectURL(file);
-                    setAudioBlobUrl(prev => {
-                        if (prev) URL.revokeObjectURL(prev);
-                        return url;
-                    });
+                    setAudioBlobUrl(prev => { if (prev) URL.revokeObjectURL(prev); return url; });
                     audioHook.load(url);
                 }
             }
-
-            // Background
             if (meta.backgroundFile) {
                 const file = await readFileFromOPFS(meta.backgroundFile);
                 if (file) {
                     const url = URL.createObjectURL(file);
-                    setBgBlobUrl(prev => {
-                        if (prev) URL.revokeObjectURL(prev);
-                        return url;
-                    });
+                    setBgBlobUrl(prev => { if (prev) URL.revokeObjectURL(prev); return url; });
                 }
             }
         };
         loadAssets();
     }, [assetsVersion, history.present.metadata.audioFile, history.present.metadata.backgroundFile]);
 
-    // Sync Audio Rate
     useEffect(() => {
         audioHook.setRate(settings.playbackSpeed);
     }, [settings.playbackSpeed, audioHook]);
@@ -120,6 +111,9 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         settings,
         setSettings,
         dispatch,
+        
+        activeTool,
+        setActiveTool,
         
         audioBlobUrl,
         bgBlobUrl,
