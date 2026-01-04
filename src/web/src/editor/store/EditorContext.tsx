@@ -19,20 +19,20 @@ interface EditorContextState {
     audioBlobUrl: string | null;
     bgBlobUrl: string | null;
     reloadAssets: () => void;
-}
-
-interface EditorContextDispatch {
+    
     dispatch: React.Dispatch<EditorAction>;
     setSettings: React.Dispatch<React.SetStateAction<EditorSettings>>;
 }
 
-const EditorContext = createContext<(EditorContextState & EditorContextDispatch) | null>(null);
+const EditorContext = createContext<EditorContextState | null>(null);
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
     const [history, dispatch] = useReducer(editorReducer, initialHistory);
     const audioHook = useEditorAudio();
     
-    const [audioBlobUrl, setAudioBlobUrl] = useState<string | null>(null);
+    // We don't use audioBlobUrl for the main engine anymore (it uses Buffer),
+    // but we might need it for legacy visuals or export if we want to avoid re-reading.
+    // However, since AudioManager handles loading, we just track BG URL here.
     const [bgBlobUrl, setBgBlobUrl] = useState<string | null>(null);
     const [assetsVersion, setAssetsVersion] = useState(0);
     const [activeTool, setActiveTool] = useState<EditorTool>('select');
@@ -46,7 +46,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         snappingEnabled: true
     });
 
-    // Auto-Load
+    // Auto-Load Project Data
     useEffect(() => {
         const load = async () => {
             const data = await loadProjectJSON();
@@ -58,7 +58,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         load();
     }, []);
 
-    // Auto-Save
+    // Auto-Save Project Data
     useEffect(() => {
         const timer = setTimeout(() => {
             if (history.present !== initialMapData) {
@@ -68,18 +68,20 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         return () => clearTimeout(timer);
     }, [history.present]);
 
-    // Asset Loading
+    // Asset Loading Logic
     useEffect(() => {
         const loadAssets = async () => {
             const meta = history.present.metadata;
+            
+            // 1. Load Audio into Manager
             if (meta.audioFile) {
                 const file = await readFileFromOPFS(meta.audioFile);
                 if (file) {
-                    const url = URL.createObjectURL(file);
-                    setAudioBlobUrl(prev => { if (prev) URL.revokeObjectURL(prev); return url; });
-                    audioHook.load(url);
+                    await audioHook.load(file);
                 }
             }
+
+            // 2. Load Background for Display
             if (meta.backgroundFile) {
                 const file = await readFileFromOPFS(meta.backgroundFile);
                 if (file) {
@@ -91,11 +93,12 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         loadAssets();
     }, [assetsVersion, history.present.metadata.audioFile, history.present.metadata.backgroundFile]);
 
+    // Sync Playback Rate
     useEffect(() => {
         audioHook.setRate(settings.playbackSpeed);
     }, [settings.playbackSpeed, audioHook]);
 
-    const value: EditorContextState & EditorContextDispatch = {
+    const value: EditorContextState = {
         mapData: history.present,
         canUndo: history.past.length > 0,
         canRedo: history.future.length > 0,
@@ -115,7 +118,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         activeTool,
         setActiveTool,
         
-        audioBlobUrl,
+        audioBlobUrl: null, // Deprecated in favor of internal buffer
         bgBlobUrl,
         reloadAssets: () => setAssetsVersion(v => v + 1)
     };
