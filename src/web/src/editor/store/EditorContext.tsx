@@ -75,7 +75,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
 
     const createNewProject = async () => {
         const newId = crypto.randomUUID();
-        const emptyData = { ...initialMapData }; // Clone default
+        const emptyData = { ...initialMapData }; 
         await createProject(newId, emptyData);
         await loadProject(newId);
     };
@@ -107,9 +107,9 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
 
     // Initialize Default Project if none exists
     useEffect(() => {
-        // Simple check: If no ID is set, create a default temp one
         if (!activeProjectId) {
-            createNewProject();
+            // We could load the most recent project here in a real app
+            // createNewProject(); 
         }
     }, []);
 
@@ -141,7 +141,6 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         loadProject,
         createNewProject,
         
-        audioBlobUrl: null, 
         bgBlobUrl,
         reloadAssets: () => setAssetsVersion(v => v + 1)
     };
