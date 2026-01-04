@@ -11,7 +11,6 @@ import { snapTime, getActiveTimingPoint } from '../utils/timing';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWaveSquare } from '@fortawesome/free-solid-svg-icons';
 
-// Simple debounce helper
 function useDebouncedSeek(callback: (time: number) => void, delay: number) {
     const callbackRef = useRef(callback);
     useEffect(() => { callbackRef.current = callback; }, [callback]);
@@ -31,17 +30,15 @@ export const EditorTimeline = () => {
     const { mapData, settings, setSettings, playback, dispatch, audio, activeTool } = useEditor();
     const containerRef = useRef<HTMLDivElement>(null);
     
-    const [showWaveform, setShowWaveform] = useState(true);
     const [hoverTime, setHoverTime] = useState(0);
     const [hoveredChord, setHoveredChord] = useState<{ time: number, notes: EditorNote[], x: number, y: number } | null>(null);
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState<{ x: number, time: number } | null>(null);
     const [dragCurrent, setDragCurrent] = useState<{ x: number, time: number } | null>(null);
 
-    // Debounced seek for smooth scrolling
     const debouncedSeek = useDebouncedSeek((time) => {
         audio.seek(time);
-    }, 50); // 50ms delay to prevent audio engine stutter
+    }, 50);
 
     const tickGroups = useMemo(() => {
         const groups = new Map<string, EditorNote[]>();
@@ -76,11 +73,6 @@ export const EditorTimeline = () => {
                 const delta = e.deltaY > 0 ? -25 : 25;
                 setSettings(s => ({ ...s, zoom: Math.max(50, Math.min(500, s.zoom + delta)) }));
             } else {
-                // When scrolling, calculate target and seek
-                // To prevent stutter, we can pause temporarily or debounce
-                // Ideally: If playing, pause -> scroll -> resume?
-                // Current approach: Just seek (debounced)
-                
                 const direction = e.deltaY > 0 ? 1 : -1;
                 const tp = getActiveTimingPoint(playback.currentTime, mapData.timingPoints);
                 const bpm = tp ? tp.bpm : 120;
@@ -90,11 +82,6 @@ export const EditorTimeline = () => {
                 const rawTarget = playback.currentTime + (step * direction);
                 const cleanTarget = snapTime(rawTarget, mapData.timingPoints, settings.snapDivisor);
                 
-                // If the user is scrolling rapidly, we want to update the Visuals immediately
-                // but the Audio engine lazily.
-                // However, playback.currentTime IS the source of truth for visuals currently (via Context).
-                // We need to optimistically update playback.currentTime in context without waiting for audio?
-                // For now, using debounced seek is safer.
                 debouncedSeek(cleanTarget);
             }
         };
@@ -157,9 +144,8 @@ export const EditorTimeline = () => {
         setDragCurrent(null);
     };
 
-    // Auto-Scroll during playback
+    // Auto-Scroll
     useEffect(() => {
-        // Only scroll if playing to avoid fighting with user scroll
         if (playback.isPlaying && containerRef.current) {
             const scrollPos = (playback.currentTime / 1000) * settings.zoom - (containerRef.current.clientWidth / 2);
             containerRef.current.scrollLeft = scrollPos;
@@ -208,13 +194,14 @@ export const EditorTimeline = () => {
         <div className="flex-1 flex flex-col bg-background relative select-none h-full">
             {createPortal(tooltip, document.body)}
 
+            {/* Toggle Button: Updates Global Settings */}
             <div className="absolute top-0 left-0 z-50 p-1">
                 <button 
-                    onClick={() => setShowWaveform(!showWaveform)}
+                    onClick={() => setSettings(s => ({ ...s, showWaveform: !s.showWaveform }))}
                     className="w-6 h-6 bg-card border border-border rounded flex items-center justify-center text-xs text-muted hover:text-white transition-colors shadow-md"
                     title="Toggle Waveform"
                 >
-                    <FontAwesomeIcon icon={faWaveSquare} className={showWaveform ? "text-primary" : "text-muted"} />
+                    <FontAwesomeIcon icon={faWaveSquare} className={settings.showWaveform ? "text-primary" : "text-muted"} />
                 </button>
             </div>
 
@@ -279,10 +266,9 @@ export const EditorTimeline = () => {
 
                     <div 
                         className="relative w-full transition-all duration-300 ease-in-out overflow-hidden border-b border-white/5 bg-black/20"
-                        style={{ height: showWaveform ? '80px' : '0px' }}
+                        style={{ height: settings.showWaveform ? '80px' : '0px' }}
                     >
                         <div className="absolute inset-0 z-10 opacity-80">
-                            {/* Passed buffer from manager safely */}
                             <Waveform 
                                 buffer={audio.manager.getBuffer()} 
                                 zoom={settings.zoom} 
