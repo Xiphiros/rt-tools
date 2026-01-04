@@ -10,26 +10,39 @@ interface UseEditorAudioReturn {
     setRate: (rate: number) => void;
     setVolume: (vol: number) => void;
     load: (url: string) => void;
-    audioRef: React.RefObject<HTMLAudioElement>;
+    audioContext: AudioContext | null;
+    audioBuffer: AudioBuffer | null;
 }
 
 export const useEditorAudio = (): UseEditorAudioReturn => {
     const audioRef = useRef<HTMLAudioElement | null>(null);
+    const contextRef = useRef<AudioContext | null>(null);
     const rafRef = useRef<number | null>(null);
     
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [audioBuffer, setAudioBuffer] = useState<AudioBuffer | null>(null);
 
-    // Initialize Audio Element purely in memory if not attached to DOM yet
+    // Initialize HTML5 Audio
     if (!audioRef.current) {
         audioRef.current = new Audio();
     }
 
+    // Initialize Web Audio Context (Lazily)
+    const getContext = useCallback(() => {
+        if (!contextRef.current) {
+            contextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+        }
+        if (contextRef.current.state === 'suspended') {
+            contextRef.current.resume();
+        }
+        return contextRef.current;
+    }, []);
+
     const updateTime = useCallback(() => {
         if (audioRef.current) {
             setCurrentTime(audioRef.current.currentTime * 1000);
-            
             if (!audioRef.current.paused) {
                 rafRef.current = requestAnimationFrame(updateTime);
             }
@@ -37,11 +50,12 @@ export const useEditorAudio = (): UseEditorAudioReturn => {
     }, []);
 
     const play = useCallback(() => {
+        getContext(); // Ensure context is running
         audioRef.current?.play().then(() => {
             setIsPlaying(true);
             rafRef.current = requestAnimationFrame(updateTime);
         }).catch(e => console.error("Audio play failed", e));
-    }, [updateTime]);
+    }, [updateTime, getContext]);
 
     const pause = useCallback(() => {
         audioRef.current?.pause();
@@ -60,36 +74,42 @@ export const useEditorAudio = (): UseEditorAudioReturn => {
     }, []);
 
     const setRate = useCallback((rate: number) => {
-        if (audioRef.current) {
-            audioRef.current.playbackRate = rate;
-        }
+        if (audioRef.current) audioRef.current.playbackRate = rate;
     }, []);
 
     const setVolume = useCallback((vol: number) => {
-        if (audioRef.current) {
-            audioRef.current.volume = Math.max(0, Math.min(1, vol));
-        }
+        if (audioRef.current) audioRef.current.volume = Math.max(0, Math.min(1, vol));
     }, []);
 
-    const load = useCallback((url: string) => {
+    const load = useCallback(async (url: string) => {
         if (audioRef.current) {
             pause();
             audioRef.current.src = url;
             audioRef.current.load();
             
-            audioRef.current.onloadedmetadata = () => {
-                setDuration((audioRef.current?.duration || 0) * 1000);
-            };
+            // Fetch for WebAudio (Waveform/Metronome sync)
+            try {
+                const response = await fetch(url);
+                const arrayBuffer = await response.arrayBuffer();
+                const ctx = getContext();
+                const buffer = await ctx.decodeAudioData(arrayBuffer);
+                setAudioBuffer(buffer);
+                setDuration(buffer.duration * 1000);
+            } catch (e) {
+                console.error("Failed to decode audio data", e);
+            }
         }
-    }, [pause]);
+    }, [pause, getContext]);
 
-    // Cleanup on unmount
     useEffect(() => {
         return () => {
             if (rafRef.current) cancelAnimationFrame(rafRef.current);
             if (audioRef.current) {
                 audioRef.current.pause();
                 audioRef.current.src = '';
+            }
+            if (contextRef.current) {
+                contextRef.current.close();
             }
         };
     }, []);
@@ -104,6 +124,7 @@ export const useEditorAudio = (): UseEditorAudioReturn => {
         setRate,
         setVolume,
         load,
-        audioRef
+        audioContext: contextRef.current,
+        audioBuffer
     };
 };
