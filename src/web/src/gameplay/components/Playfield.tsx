@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditorMapData, EditorNote } from '../../editor/types';
+import { EditorMapData } from '../../editor/types';
 import { NOTE_SIZE, ROW_COLORS, ROW_TOP, ROW_HOME, ROW_BOTTOM } from '../constants';
 
 interface PlayfieldProps {
@@ -56,9 +56,6 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true }: 
         [ROW_TOP, ROW_HOME, ROW_BOTTOM].forEach(row => {
             KEY_ORDER[row].forEach(char => {
                 const pos = getPosition(row, char);
-                // Check if this specific key is currently active (being hit right now)
-                // "Active" means a note is at time ~0 relative to current time (within hit window)
-                // For simplicity in editor, we just render the ghost always, notes render on top.
                 
                 elements.push(
                     <div 
