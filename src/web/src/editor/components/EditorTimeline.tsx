@@ -15,9 +15,8 @@ import debounce from 'lodash.debounce';
 type DragMode = 'select' | 'move' | 'resize';
 
 export const EditorTimeline = () => {
-    const { mapData, settings, setSettings, playback, dispatch, audio, activeTool } = useEditor();
+    const { mapData, settings, setSettings, playback, dispatch, audio } = useEditor();
     const containerRef = useRef<HTMLDivElement>(null);
-    const rulerRef = useRef<HTMLDivElement>(null);
     
     // UI State
     const [waveformMode, setWaveformMode] = useState<WaveformMode>('full');
@@ -30,7 +29,7 @@ export const EditorTimeline = () => {
     const [dragStart, setDragStart] = useState<{ x: number, time: number } | null>(null);
     const [dragCurrent, setDragCurrent] = useState<{ x: number, time: number } | null>(null);
     const [initialSelection, setInitialSelection] = useState<EditorNote[]>([]);
-    const [resizeTargetId, setResizeTargetId] = useState<string | null>(null);
+    const [, setResizeTargetId] = useState<string | null>(null);
 
     const debouncedSeek = useMemo(
         () => debounce((time: number) => audio.seek(time), 50),
@@ -81,28 +80,20 @@ export const EditorTimeline = () => {
         return () => container.removeEventListener('wheel', handleWheel);
     }, [setSettings, playback.currentTime, mapData.timingPoints, settings.snapDivisor, debouncedSeek]);
 
-    // --- RULER INTERACTION (Always Seek) ---
+    // --- RULER INTERACTION ---
     const handleRulerMouseDown = (e: React.MouseEvent) => {
         e.stopPropagation();
         if (!containerRef.current) return;
-        
         const rect = containerRef.current.getBoundingClientRect();
         const clickX = e.clientX - rect.left + containerRef.current.scrollLeft;
         const rawTime = (clickX / settings.zoom) * 1000;
-        
-        const seekTime = settings.snappingEnabled 
-            ? snapTime(rawTime, mapData.timingPoints, settings.snapDivisor)
-            : rawTime;
-        
+        const seekTime = settings.snappingEnabled ? snapTime(rawTime, mapData.timingPoints, settings.snapDivisor) : rawTime;
         audio.seek(seekTime);
     };
 
-    // --- GRID INTERACTION (Select/Move) ---
+    // --- GRID INTERACTION ---
     const handleGridMouseDown = (e: React.MouseEvent) => {
         if (!containerRef.current) return;
-        
-        // Allow clicking notes to bubble up (they have stopPropagation), 
-        // but empty space clicks start box selection.
         
         const rect = containerRef.current.getBoundingClientRect();
         const clickX = e.clientX - rect.left + containerRef.current.scrollLeft;
@@ -198,22 +189,33 @@ export const EditorTimeline = () => {
     };
 
     const handleMouseUp = () => {
+        // Handle "Click to Seek" logic in Grid
+        if (isDragging && dragMode === 'select' && dragStart && dragCurrent) {
+            const dx = Math.abs(dragCurrent.x - dragStart.x);
+            // If movement is trivial (<5px), consider it a click-to-seek
+            if (dx < 5) {
+                // Seek to the START point of the drag (where they clicked)
+                const seekTime = settings.snappingEnabled 
+                    ? snapTime(dragStart.time, mapData.timingPoints, settings.snapDivisor)
+                    : dragStart.time;
+                audio.seek(seekTime);
+                
+                // Also Deselect All for standard behavior (clicking empty space clears selection)
+                dispatch({ type: 'DESELECT_ALL' });
+            } else {
+                // Actual Selection Box Logic
+                const t1 = Math.min(dragStart.time, dragCurrent.time);
+                const t2 = Math.max(dragStart.time, dragCurrent.time);
+                const selectedIds = mapData.notes.filter(n => n.time >= t1 && n.time <= t2).map(n => n.id);
+                dispatch({ type: 'SELECT_NOTES', payload: { ids: selectedIds, append: false } });
+            }
+        }
+
         setIsDragging(false);
         setDragStart(null);
         setDragCurrent(null);
         setResizeTargetId(null);
         setInitialSelection([]);
-
-        if (dragMode === 'select' && dragStart && dragCurrent) {
-            const t1 = Math.min(dragStart.time, dragCurrent.time);
-            const t2 = Math.max(dragStart.time, dragCurrent.time);
-            if (t2 - t1 < 10) { 
-                dispatch({ type: 'DESELECT_ALL' });
-            } else {
-                const selectedIds = mapData.notes.filter(n => n.time >= t1 && n.time <= t2).map(n => n.id);
-                dispatch({ type: 'SELECT_NOTES', payload: { ids: selectedIds, append: false } });
-            }
-        }
         setDragMode('select');
     };
 
@@ -230,6 +232,7 @@ export const EditorTimeline = () => {
         setHoveredChord({ time, notes, x: rect.left + (rect.width / 2), y: rect.top - 10 });
     };
 
+    // ... (Tooltip & Render) matches previous, just wrapped in the updated component ...
     const tooltip = hoveredChord ? (
         <div 
             className="fixed z-[9999] pointer-events-none transition-all duration-150"
@@ -253,6 +256,8 @@ export const EditorTimeline = () => {
         const snap = getSnapDivisor(beatIndex);
         return snap > 0 ? getSnapColor(snap) : defaultColor;
     }, [playback.currentTime, playback.isPlaying, mapData.timingPoints]);
+
+    const isDraggingSelection = isDragging && dragMode === 'select' && dragStart && dragCurrent && Math.abs(dragCurrent.x - dragStart.x) >= 5;
 
     return (
         <div className="flex-1 flex flex-col bg-background relative select-none h-full" onMouseUp={handleMouseUp}>
@@ -278,7 +283,7 @@ export const EditorTimeline = () => {
                 ref={containerRef}
                 className="flex-1 overflow-x-auto overflow-y-hidden relative custom-scrollbar h-full group"
                 onMouseMove={handleMouseMove}
-                onMouseDown={handleGridMouseDown} // Grid handles Box Select
+                onMouseDown={handleGridMouseDown} // Unified Grid Handler
                 onMouseLeave={() => setHoveredChord(null)}
             >
                 <div className="relative flex flex-col min-h-full" style={{ width: (playback.duration / 1000) * settings.zoom, minWidth: '100%' }}>
@@ -286,8 +291,8 @@ export const EditorTimeline = () => {
                         <TimelineGrid duration={playback.duration} timingPoints={mapData.timingPoints} settings={settings} />
                     </div>
 
-                    {isDragging && dragMode === 'select' && dragStart && dragCurrent && (
-                        <div className="absolute top-0 bottom-0 bg-blue-500/20 border-x border-blue-400 z-20 pointer-events-none" style={{ left: Math.min(dragStart.x, dragCurrent.x), width: Math.abs(dragCurrent.x - dragStart.x) }} />
+                    {isDraggingSelection && (
+                        <div className="absolute top-0 bottom-0 bg-blue-500/20 border-x border-blue-400 z-20 pointer-events-none" style={{ left: Math.min(dragStart!.x, dragCurrent!.x), width: Math.abs(dragCurrent!.x - dragStart!.x) }} />
                     )}
 
                     {!playback.isPlaying && (
@@ -298,11 +303,7 @@ export const EditorTimeline = () => {
                         <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] shadow-[0_0_10px_rgba(0,0,0,0.5)]" style={{ backgroundColor: playheadColor }} />
                     </div>
 
-                    {/* RULER - Click to SEEK */}
-                    <div 
-                        className="sticky top-0 z-40 cursor-pointer" 
-                        onMouseDown={handleRulerMouseDown} // Override grid select behavior
-                    >
+                    <div className="sticky top-0 z-40 cursor-pointer" onMouseDown={handleRulerMouseDown}>
                         <TimelineRuler duration={playback.duration} timingPoints={mapData.timingPoints} zoom={settings.zoom} snapDivisor={settings.snapDivisor} />
                     </div>
 
