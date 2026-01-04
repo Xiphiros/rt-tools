@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { MapData } from '../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faFilter, faSpinner, faSort, faExclamationTriangle, faExternalLinkAlt, faArrowUp, faArrowDown, faEquals } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faSpinner, faSort, faExclamationTriangle, faExternalLinkAlt, faArrowUp, faArrowDown, faEquals } from '@fortawesome/free-solid-svg-icons';
 
 export const Dashboard = () => {
     const [data, setData] = useState<MapData[]>([]);
@@ -50,7 +50,7 @@ export const Dashboard = () => {
         return sortDesc ? valB - valA : valA - valB;
     });
 
-    const getBarColor = (val: number, type: string) => `var(--strain-${type})`;
+    const getBarColor = (_val: number, type: string) => `var(--strain-${type})`;
 
     const renderDelta = (official: number, rework: number) => {
         const diff = rework - official;
@@ -147,14 +147,12 @@ export const Dashboard = () => {
                                             </span>
                                         </td>
                                         
-                                        {/* OFFICIAL */}
                                         <td className="px-6 py-4 text-right">
                                             <div className="text-base font-semibold text-muted">
                                                 {map.starsOfficial.toFixed(2)}
                                             </div>
                                         </td>
 
-                                        {/* REWORK */}
                                         <td className="px-6 py-4 text-right">
                                             <div className="flex flex-col items-end">
                                                 <div className="text-lg font-bold text-[var(--color-warning)]">
