@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { EditorProvider, useEditor } from './store/EditorContext';
 import { EditorTimeline } from './components/EditorTimeline';
 import { Playfield } from '../gameplay/components/Playfield';
 import { MetadataModal } from './modals/MetadataModal';
 import { TimingModal } from './modals/TimingModal';
+import { useShortcuts } from './hooks/useShortcuts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faPlay, faPause, faUndo, faRedo, faFileUpload, faChevronLeft
@@ -83,6 +84,7 @@ const EditorBottomBar = () => {
                 <button 
                     onClick={togglePlay}
                     className="w-12 h-12 rounded-full bg-primary hover:bg-primary-hover text-black flex items-center justify-center transition-all active:scale-95 shadow-lg shadow-primary/20"
+                    title="Play/Pause (Space)"
                 >
                     <FontAwesomeIcon icon={playback.isPlaying ? faPause : faPlay} size="lg" />
                 </button>
@@ -138,6 +140,7 @@ const EditorBottomBar = () => {
                     disabled={!canUndo} 
                     onClick={() => dispatch({ type: 'UNDO' })}
                     className="w-10 h-10 rounded hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors"
+                    title="Undo (Ctrl+Z)"
                 >
                     <FontAwesomeIcon icon={faUndo} />
                 </button>
@@ -145,6 +148,7 @@ const EditorBottomBar = () => {
                     disabled={!canRedo} 
                     onClick={() => dispatch({ type: 'REDO' })}
                     className="w-10 h-10 rounded hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors"
+                    title="Redo (Ctrl+Y)"
                 >
                     <FontAwesomeIcon icon={faRedo} />
                 </button>
@@ -158,6 +162,9 @@ const EditorBottomBar = () => {
 const EditorLayout = () => {
     const { mapData, playback, audio } = useEditor();
     const [activeModal, setActiveModal] = useState<string | null>(null);
+
+    // Initialize Shortcuts Hook
+    useShortcuts();
 
     // Initial load logic placeholder
     useEffect(() => {
