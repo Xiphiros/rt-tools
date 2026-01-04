@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { EditorProvider, useEditor } from './store/EditorContext';
 import { EditorTimeline } from './components/EditorTimeline';
+import { EditorToolbox } from './components/EditorToolbox';
 import { Playfield } from '../gameplay/components/Playfield';
 import { MetadataModal } from './modals/MetadataModal';
 import { TimingModal } from './modals/TimingModal';
@@ -13,11 +14,6 @@ import {
 
 const TopMenuBar = ({ onOpenModal }: { onOpenModal: (modal: string) => void }) => {
     const { mapData } = useEditor();
-
-    const handleExport = () => {
-        exportBeatmapPackage(mapData);
-    };
-
     return (
         <div className="h-12 bg-black border-b border-white/10 flex items-center px-4 justify-between select-none z-50">
             <div className="flex items-center gap-6">
@@ -33,21 +29,13 @@ const TopMenuBar = ({ onOpenModal }: { onOpenModal: (modal: string) => void }) =
                     <button className="px-4 py-1.5 rounded hover:bg-white/10 text-sm font-medium transition-colors text-muted hover:text-white">Design</button>
                 </nav>
             </div>
-
             <div className="absolute left-1/2 -translate-x-1/2 text-center opacity-80 pointer-events-none hidden md:block">
                 <div className="text-sm font-bold text-white tracking-wide">
                     {mapData.metadata.artist || "Artist"} - {mapData.metadata.title || "Title"}
                 </div>
-                <div className="text-xs text-primary font-mono tracking-wider">
-                    [{mapData.metadata.difficultyName || "Difficulty"}]
-                </div>
             </div>
-
             <div className="flex items-center gap-4">
-                <button 
-                    onClick={handleExport}
-                    className="text-sm text-secondary hover:text-white transition-colors flex items-center gap-2"
-                >
+                <button onClick={() => exportBeatmapPackage(mapData)} className="text-sm text-secondary hover:text-white transition-colors flex items-center gap-2">
                     <FontAwesomeIcon icon={faFileUpload} />
                     <span>Export</span>
                 </button>
@@ -58,16 +46,12 @@ const TopMenuBar = ({ onOpenModal }: { onOpenModal: (modal: string) => void }) =
 
 const EditorBottomBar = () => {
     const { playback, audio, canUndo, canRedo, dispatch, settings, setSettings } = useEditor();
-
-    const togglePlay = () => {
-        if (playback.isPlaying) audio.pause();
-        else audio.play();
-    };
+    const togglePlay = () => { playback.isPlaying ? audio.pause() : audio.play(); };
 
     return (
         <div className="h-16 bg-card border-t border-border flex items-center px-4 justify-between select-none shadow-[0_-5px_20px_rgba(0,0,0,0.3)] z-50">
             <div className="flex items-center gap-3">
-                <button onClick={togglePlay} className="w-12 h-12 rounded-full bg-primary hover:bg-primary-hover text-black flex items-center justify-center transition-all active:scale-95 shadow-lg shadow-primary/20" title="Play/Pause (Space)">
+                <button onClick={togglePlay} className="w-12 h-12 rounded-full bg-primary hover:bg-primary-hover text-black flex items-center justify-center transition-all active:scale-95 shadow-lg shadow-primary/20">
                     <FontAwesomeIcon icon={playback.isPlaying ? faPause : faPlay} size="lg" />
                 </button>
                 <div className="flex flex-col ml-2">
@@ -75,7 +59,6 @@ const EditorBottomBar = () => {
                     <span className="text-xl font-mono font-medium text-white">{(playback.currentTime / 1000).toFixed(3)}</span>
                 </div>
             </div>
-
             <div className="flex items-center gap-6">
                 <div className="flex flex-col items-center">
                     <span className="text-[10px] text-muted uppercase font-bold mb-1">Beat Snap</span>
@@ -94,10 +77,9 @@ const EditorBottomBar = () => {
                     </div>
                 </div>
             </div>
-
             <div className="flex gap-2">
-                <button disabled={!canUndo} onClick={() => dispatch({ type: 'UNDO' })} className="w-10 h-10 rounded hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors" title="Undo (Ctrl+Z)"><FontAwesomeIcon icon={faUndo} /></button>
-                <button disabled={!canRedo} onClick={() => dispatch({ type: 'REDO' })} className="w-10 h-10 rounded hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors" title="Redo (Ctrl+Y)"><FontAwesomeIcon icon={faRedo} /></button>
+                <button disabled={!canUndo} onClick={() => dispatch({ type: 'UNDO' })} className="w-10 h-10 rounded hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors"><FontAwesomeIcon icon={faUndo} /></button>
+                <button disabled={!canRedo} onClick={() => dispatch({ type: 'REDO' })} className="w-10 h-10 rounded hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors"><FontAwesomeIcon icon={faRedo} /></button>
             </div>
         </div>
     );
@@ -106,33 +88,38 @@ const EditorBottomBar = () => {
 const EditorLayout = () => {
     const { mapData, playback, bgBlobUrl } = useEditor();
     const [activeModal, setActiveModal] = useState<string | null>(null);
-
     useShortcuts();
 
     return (
         <div className="flex flex-col h-[calc(100vh-4rem)] bg-[#121212] text-text-primary overflow-hidden font-sans">
             <TopMenuBar onOpenModal={setActiveModal} />
-
             <div className="flex-1 flex flex-col relative min-h-0">
+                
+                {/* Game View */}
                 <div className="flex-1 relative bg-black/50 overflow-hidden shadow-inner">
+                    {/* Background */}
                     {bgBlobUrl && (
-                        <div 
-                            className="absolute inset-0 bg-cover bg-center opacity-30 blur-sm pointer-events-none"
-                            style={{ backgroundImage: `url(${bgBlobUrl})` }}
-                        />
+                        <div className="absolute inset-0 bg-cover bg-center opacity-30 blur-sm pointer-events-none" style={{ backgroundImage: `url(${bgBlobUrl})` }} />
                     )}
+                    
+                    {/* Playfield */}
                     <div className="absolute inset-0 flex items-center justify-center">
                         <div className="aspect-video w-full max-h-full relative">
                             <Playfield mapData={mapData} currentTime={playback.currentTime} playbackRate={playback.playbackRate} />
                         </div>
                     </div>
+
+                    {/* Floating Toolbox */}
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 z-40">
+                        <EditorToolbox />
+                    </div>
                 </div>
 
-                <div className="h-64 border-t border-border bg-card/95 backdrop-blur shadow-2xl relative z-10">
+                {/* Timeline */}
+                <div className="h-32 border-t border-border bg-card/95 backdrop-blur shadow-2xl relative z-10">
                     <EditorTimeline />
                 </div>
             </div>
-
             <EditorBottomBar />
             <MetadataModal isOpen={activeModal === 'metadata'} onClose={() => setActiveModal(null)} />
             <TimingModal isOpen={activeModal === 'timing'} onClose={() => setActiveModal(null)} />
