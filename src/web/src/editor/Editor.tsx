@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { EditorProvider, useEditor } from './store/EditorContext';
 import { EditorTimeline } from './components/EditorTimeline';
 import { EditorToolbox } from './components/EditorToolbox';
@@ -6,10 +6,11 @@ import { Playfield } from '../gameplay/components/Playfield';
 import { MetadataModal } from './modals/MetadataModal';
 import { TimingModal } from './modals/TimingModal';
 import { useShortcuts } from './hooks/useShortcuts';
+import { useMetronome } from './hooks/useMetronome';
 import { exportBeatmapPackage } from './utils/exporter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faPlay, faPause, faUndo, faRedo, faFileUpload, faChevronLeft
+    faPlay, faPause, faUndo, faRedo, faFileUpload, faChevronLeft, faVolumeUp, faVolumeMute
 } from '@fortawesome/free-solid-svg-icons';
 
 const TopMenuBar = ({ onOpenModal }: { onOpenModal: (modal: string) => void }) => {
@@ -59,6 +60,7 @@ const EditorBottomBar = () => {
                     <span className="text-xl font-mono font-medium text-white">{(playback.currentTime / 1000).toFixed(3)}</span>
                 </div>
             </div>
+            
             <div className="flex items-center gap-6">
                 <div className="flex flex-col items-center">
                     <span className="text-[10px] text-muted uppercase font-bold mb-1">Beat Snap</span>
@@ -68,6 +70,17 @@ const EditorBottomBar = () => {
                         </select>
                     </div>
                 </div>
+                
+                <div className="flex flex-col items-center">
+                    <span className="text-[10px] text-muted uppercase font-bold mb-1">Metronome</span>
+                    <button 
+                        onClick={() => setSettings(s => ({ ...s, metronome: !s.metronome }))}
+                        className={`w-8 h-8 rounded flex items-center justify-center transition-colors ${settings.metronome ? 'bg-primary text-black' : 'bg-input text-muted'}`}
+                    >
+                        <FontAwesomeIcon icon={settings.metronome ? faVolumeUp : faVolumeMute} />
+                    </button>
+                </div>
+
                 <div className="flex flex-col items-center">
                     <span className="text-[10px] text-muted uppercase font-bold mb-1">Playback Rate</span>
                     <div className="flex gap-1">
@@ -77,6 +90,7 @@ const EditorBottomBar = () => {
                     </div>
                 </div>
             </div>
+
             <div className="flex gap-2">
                 <button disabled={!canUndo} onClick={() => dispatch({ type: 'UNDO' })} className="w-10 h-10 rounded hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors"><FontAwesomeIcon icon={faUndo} /></button>
                 <button disabled={!canRedo} onClick={() => dispatch({ type: 'REDO' })} className="w-10 h-10 rounded hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors"><FontAwesomeIcon icon={faRedo} /></button>
@@ -89,6 +103,7 @@ const EditorLayout = () => {
     const { mapData, playback, bgBlobUrl } = useEditor();
     const [activeModal, setActiveModal] = useState<string | null>(null);
     useShortcuts();
+    useMetronome(); // Init Metronome
 
     return (
         <div className="flex flex-col h-[calc(100vh-4rem)] bg-[#121212] text-text-primary overflow-hidden font-sans">
@@ -107,7 +122,7 @@ const EditorLayout = () => {
                         <EditorToolbox />
                     </div>
                 </div>
-                <div className="h-32 border-t border-border bg-card/95 backdrop-blur shadow-2xl relative z-10">
+                <div className="h-64 border-t border-border bg-card/95 backdrop-blur shadow-2xl relative z-10">
                     <EditorTimeline />
                 </div>
             </div>
