@@ -1,3 +1,4 @@
+import React from 'react';
 import { EditorNote } from '../types';
 import { NOTE_SIZE, ROW_COLORS, ROW_TOP, ROW_HOME, ROW_BOTTOM } from '../../gameplay/constants';
 
@@ -41,7 +42,9 @@ export const MiniPlayfield = ({ notes, scale = 0.4 }: MiniPlayfieldProps) => {
 
     // Render Full Grid (Ghost Notes)
     const renderGrid = () => {
-        const ghosts = [];
+        // Explicitly type the array to satisfy TypeScript
+        const ghosts: React.ReactNode[] = [];
+        
         [ROW_TOP, ROW_HOME, ROW_BOTTOM].forEach(row => {
             KEY_ORDER[row].forEach(char => {
                 // Check if this key is active
