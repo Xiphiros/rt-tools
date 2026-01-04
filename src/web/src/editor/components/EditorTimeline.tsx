@@ -4,7 +4,7 @@ import { useEditor } from '../store/EditorContext';
 import { TimelineGrid } from './TimelineGrid';
 import { TimelineRuler } from './TimelineRuler';
 import { MiniPlayfield } from './MiniPlayfield';
-import { Waveform } from './Waveform'; // New Import
+import { Waveform } from './Waveform';
 import { EditorNote } from '../types';
 import { getSnapColor, getSnapDivisor } from '../utils/snapColors';
 
@@ -164,11 +164,12 @@ export const EditorTimeline = () => {
 
                     <div className="absolute top-8 bottom-0 left-0 right-0 z-0">
                         {/* Waveform Layer (Below Grid) */}
+                        {/* Fix: Access buffer via manager getter */}
                         <Waveform 
-                            buffer={audio.audioBuffer} 
+                            buffer={audio.manager.getBuffer()} 
                             zoom={settings.zoom} 
                             duration={playback.duration} 
-                            height={200} // Fill container
+                            height={200}
                         />
                         <TimelineGrid duration={playback.duration} bpm={mapData.bpm} offset={mapData.offset} settings={settings} />
                     </div>
