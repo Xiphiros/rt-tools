@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useEditor } from '../store/EditorContext';
 import { TimelineGrid } from './TimelineGrid';
 import { TimelineRuler } from './TimelineRuler';
-import { ChordPreview } from './ChordPreview';
+import { MiniPlayfield } from './MiniPlayfield'; // Fixed import
 import { EditorNote } from '../types';
 import { getSnapColor, getSnapDivisor } from '../utils/snapColors';
 
@@ -123,26 +123,23 @@ export const EditorTimeline = () => {
         setHoveredChord({
             time,
             notes,
-            // Calculate center of the tick
             x: rect.left + (rect.width / 2),
-            // Position above the timeline container
             y: rect.top - 10
         });
     };
 
-    // Render Tooltip via Portal to break out of overflow:hidden
     const tooltip = hoveredChord ? (
         <div 
             className="fixed z-[9999] pointer-events-none transition-all duration-150"
             style={{ 
                 left: hoveredChord.x, 
                 top: hoveredChord.y,
-                transform: 'translate(-50%, -100%)' // Center horizontal, Place above
+                transform: 'translate(-50%, -100%)' 
             }}
         >
             <div className="animate-in fade-in zoom-in-95 duration-100 mb-2">
-                <ChordPreview notes={hoveredChord.notes} scale={0.5} />
-                {/* Pointer */}
+                {/* Updated Component Name */}
+                <MiniPlayfield notes={hoveredChord.notes} scale={0.5} />
                 <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-black/90" />
             </div>
         </div>
@@ -150,7 +147,6 @@ export const EditorTimeline = () => {
 
     return (
         <div className="flex-1 flex flex-col bg-background relative select-none h-full">
-            {/* Render Portal */}
             {createPortal(tooltip, document.body)}
 
             <div 
@@ -162,17 +158,14 @@ export const EditorTimeline = () => {
                 onMouseLeave={() => { handleMouseUp(); setHoveredChord(null); }}
             >
                 <div className="relative" style={{ width: (playback.duration / 1000) * settings.zoom, minWidth: '100%', height: '100%' }}>
-                    {/* Layer 1: Ruler */}
                     <div className="sticky top-0 z-30">
                         <TimelineRuler duration={playback.duration} bpm={mapData.bpm} zoom={settings.zoom} snapDivisor={settings.snapDivisor} />
                     </div>
 
-                    {/* Layer 2: Grid */}
                     <div className="absolute top-8 bottom-0 left-0 right-0 z-0">
                         <TimelineGrid duration={playback.duration} bpm={mapData.bpm} offset={mapData.offset} settings={settings} />
                     </div>
 
-                    {/* Layer 3: Selection Box */}
                     {isDragging && dragStart && dragCurrent && (
                         <div 
                             className="absolute top-8 bottom-0 bg-blue-500/20 border border-blue-400 z-20 pointer-events-none"
@@ -183,7 +176,6 @@ export const EditorTimeline = () => {
                         />
                     )}
 
-                    {/* Layer 4: Note Ticks */}
                     <div className="absolute top-8 left-0 right-0 bottom-0 pointer-events-none z-40">
                         {tickGroups.map(group => {
                             const isSelected = group.notes.some(n => n.selected);
@@ -226,7 +218,6 @@ export const EditorTimeline = () => {
                         })}
                     </div>
 
-                    {/* Layer 5: Cursors */}
                     {!playback.isPlaying && (
                         <div className="absolute top-8 bottom-0 w-[1px] bg-white/30 pointer-events-none z-30" style={{ left: (hoverTime / 1000) * settings.zoom }} />
                     )}
