@@ -5,6 +5,7 @@ import { EditorToolbox } from './components/EditorToolbox';
 import { Playfield } from '../gameplay/components/Playfield';
 import { MetadataModal } from './modals/MetadataModal';
 import { TimingModal } from './modals/TimingModal';
+import { ResnapModal } from './modals/ResnapModal'; // New Import
 import { useShortcuts } from './hooks/useShortcuts';
 import { useMetronome } from './hooks/useMetronome';
 import { exportBeatmapPackage } from './utils/exporter';
@@ -137,8 +138,9 @@ const EditorLayout = () => {
                             <Playfield mapData={mapData} currentTime={playback.currentTime} playbackRate={playback.playbackRate} scale={1.1} />
                         </div>
                     </div>
+                    {/* Wired onOpenModal */}
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 z-40">
-                        <EditorToolbox />
+                        <EditorToolbox onOpenModal={setActiveModal} />
                     </div>
                 </div>
                 
@@ -147,8 +149,11 @@ const EditorLayout = () => {
                 </div>
             </div>
             <EditorBottomBar />
+            
+            {/* Modals */}
             <MetadataModal isOpen={activeModal === 'metadata'} onClose={() => setActiveModal(null)} />
             <TimingModal isOpen={activeModal === 'timing'} onClose={() => setActiveModal(null)} />
+            <ResnapModal isOpen={activeModal === 'resnap'} onClose={() => setActiveModal(null)} />
         </div>
     );
 };
