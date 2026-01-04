@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useEditor } from '../store/EditorContext';
 import { TimelineGrid } from './TimelineGrid';
 import { TimelineRuler } from './TimelineRuler';
-import { MiniPlayfield } from './MiniPlayfield'; // Fixed import
+import { MiniPlayfield } from './MiniPlayfield';
 import { EditorNote } from '../types';
 import { getSnapColor, getSnapDivisor } from '../utils/snapColors';
 
@@ -32,8 +32,8 @@ export const EditorTimeline = () => {
         return Array.from(groups.entries()).map(([time, notes]) => {
             const beatIndex = (time - mapData.offset) / msPerBeat;
             const snap = getSnapDivisor(beatIndex);
-            const color = getSnapColor(snap || 4);
-            return { time, notes, color };
+            const color = snap > 0 ? getSnapColor(snap) : '#FFFFFF'; 
+            return { time, notes, color, isUnsnapped: snap === 0 };
         });
     }, [mapData.notes, mapData.bpm, mapData.offset]);
 
@@ -138,9 +138,8 @@ export const EditorTimeline = () => {
             }}
         >
             <div className="animate-in fade-in zoom-in-95 duration-100 mb-2">
-                {/* Updated Component Name */}
-                <MiniPlayfield notes={hoveredChord.notes} scale={0.5} />
-                <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-black/90" />
+                <MiniPlayfield notes={hoveredChord.notes} scale={0.25} />
+                <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-black/95" />
             </div>
         </div>
     ) : null;
@@ -181,21 +180,30 @@ export const EditorTimeline = () => {
                             const isSelected = group.notes.some(n => n.selected);
                             const hasHold = group.notes.some(n => n.type === 'hold');
                             const tickColor = isSelected ? '#fff' : group.color;
-                            const tickWidth = Math.max(4, settings.zoom / 30);
+                            
+                            // Align Logic:
+                            // We want width to be EVEN to allow perfect centering with integer transforms.
+                            let rawWidth = group.isUnsnapped ? 2 : Math.max(4, settings.zoom / 30);
+                            if (rawWidth % 2 !== 0) rawWidth += 1;
+
+                            const bgStyle = group.isUnsnapped 
+                                ? { backgroundColor: '#fff', opacity: 0.8 } 
+                                : { backgroundColor: tickColor };
 
                             return (
                                 <React.Fragment key={group.time}>
                                     <div
-                                        className={`absolute top-1/2 -translate-y-1/2 cursor-pointer pointer-events-auto transition-transform hover:scale-y-110 hover:brightness-125
+                                        className={`absolute top-1/2 cursor-pointer pointer-events-auto transition-transform hover:scale-y-110 hover:brightness-125
                                             ${isSelected ? 'shadow-[0_0_8px_white] z-50' : 'z-40'}
                                         `}
                                         style={{
-                                            left: (group.time / 1000) * settings.zoom - (tickWidth / 2),
-                                            width: tickWidth,
-                                            height: '40%',
-                                            backgroundColor: tickColor,
+                                            left: (group.time / 1000) * settings.zoom,
+                                            width: rawWidth,
+                                            height: '50%',
                                             borderRadius: '4px',
-                                            boxShadow: `0 0 4px ${tickColor}80`
+                                            transform: 'translate(-50%, -50%)', // Centered relative to 'left'
+                                            boxShadow: group.isUnsnapped ? 'none' : `0 0 4px ${tickColor}80`,
+                                            ...bgStyle
                                         }}
                                         onMouseEnter={(e) => handleTickEnter(e, group.time, group.notes)}
                                         onMouseLeave={() => setHoveredChord(null)}
@@ -204,11 +212,12 @@ export const EditorTimeline = () => {
                                     {hasHold && group.notes.map((n) => n.type === 'hold' && (
                                         <div 
                                             key={`${n.id}_tail`}
-                                            className="absolute top-1/2 -translate-y-1/2 h-1 opacity-40 pointer-events-none"
+                                            className="absolute top-1/2 h-1 opacity-40 pointer-events-none"
                                             style={{
                                                 left: (group.time / 1000) * settings.zoom,
                                                 width: (n.duration! / 1000) * settings.zoom,
                                                 backgroundColor: tickColor,
+                                                transform: 'translate(0, -50%)', 
                                                 zIndex: 35
                                             }}
                                         />
