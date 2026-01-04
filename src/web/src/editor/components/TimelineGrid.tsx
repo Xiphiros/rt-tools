@@ -51,7 +51,8 @@ export const TimelineGrid = ({ duration, timingPoints, settings }: TimelineGridP
         const backgroundImage = validSnaps.map(s => {
             const color = SNAP_COLORS[s];
             const opacity = s === 1 ? '40' : '15';
-            return `linear-gradient(90deg, ${color}${opacity} 1px, transparent 1px)`;
+            // Explicit stops: color from 0 to 1px, then transparent
+            return `linear-gradient(90deg, ${color}${opacity} 0, ${color}${opacity} 1px, transparent 1px)`;
         }).join(', ');
 
         const backgroundSize = validSnaps.map(s => {
@@ -62,7 +63,7 @@ export const TimelineGrid = ({ duration, timingPoints, settings }: TimelineGridP
         const relativeOffset = offset - sectionStart;
         const offsetPx = (relativeOffset / 1000) * settings.zoom;
         
-        // SHIFT FIX: Subtract 0.5px to center the 1px line on the exact coordinate
+        // Subtract 0.5px to center the 1px line exactly on the coordinate
         const backgroundPosition = validSnaps.map(_ => `calc(${offsetPx}px - 0.5px) 0`).join(', ');
 
         return { backgroundImage, backgroundSize, backgroundPosition };
@@ -79,7 +80,7 @@ export const TimelineGrid = ({ duration, timingPoints, settings }: TimelineGridP
                 return (
                     <div 
                         key={section.key}
-                        className="absolute top-0 bottom-0 overflow-hidden border-l border-white/10"
+                        className="absolute top-0 bottom-0 overflow-hidden"
                         style={{
                             left: left,
                             width: width,
