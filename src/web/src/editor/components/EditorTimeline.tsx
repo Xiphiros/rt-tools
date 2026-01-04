@@ -22,15 +22,20 @@ export const EditorTimeline = () => {
 
     // --- AGGREGATION ---
     const tickGroups = useMemo(() => {
-        const groups = new Map<number, EditorNote[]>();
+        // Use a string map to preserve precision without grouping unrelated floats
+        // "100.333" -> String key
+        const groups = new Map<string, EditorNote[]>();
 
         mapData.notes.forEach(note => {
-            const key = Math.round(note.time);
+            // Fix: Use high precision key instead of Math.round to prevent 0.5ms visual drift
+            const key = note.time.toFixed(3); 
             if (!groups.has(key)) groups.set(key, []);
             groups.get(key)!.push(note);
         });
 
-        return Array.from(groups.entries()).map(([time, notes]) => {
+        // Convert back to array
+        return Array.from(groups.entries()).map(([timeStr, notes]) => {
+            const time = parseFloat(timeStr);
             const tp = getActiveTimingPoint(time, mapData.timingPoints);
             const bpm = tp ? tp.bpm : mapData.bpm;
             const offset = tp ? tp.time : mapData.offset;
@@ -142,7 +147,6 @@ export const EditorTimeline = () => {
         >
             <div className="animate-in fade-in zoom-in-95 duration-100 mb-2 drop-shadow-2xl">
                 <MiniPlayfield notes={hoveredChord.notes} scale={0.35} />
-                {/* TOOLTIP ARROW: Matches the dark container but with a subtle border */}
                 <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white/10" />
             </div>
         </div>
@@ -150,7 +154,7 @@ export const EditorTimeline = () => {
 
     // --- PLAYHEAD COLOR LOGIC ---
     const playheadColor = useMemo(() => {
-        const defaultColor = '#FACC15'; // Yellow
+        const defaultColor = '#FACC15'; 
         
         if (playback.isPlaying) return defaultColor;
 
@@ -158,19 +162,10 @@ export const EditorTimeline = () => {
         if (!tp) return defaultColor;
 
         const msPerBeat = 60000 / tp.bpm;
-        // Calculate offset difference
         const diff = playback.currentTime - tp.time;
-        // Floating point modulo
-        // Normalized remainder (0 to 1)
-        
-        // Tolerance for snapping (e.g. 1ms)
-        
-        // Check standard snaps
-        // Since we are likely Snapped via audio.seek, we can check the divisor
         const beatIndex = diff / msPerBeat;
         const snap = getSnapDivisor(beatIndex);
         
-        // If we are cleanly on a snap, return that color. Otherwise default.
         return snap > 0 ? getSnapColor(snap) : defaultColor;
     }, [playback.currentTime, playback.isPlaying, mapData.timingPoints]);
 
@@ -274,20 +269,17 @@ export const EditorTimeline = () => {
                         <div className="absolute top-8 bottom-0 w-[1px] bg-white/30 pointer-events-none z-30" style={{ left: (hoverTime / 1000) * settings.zoom }} />
                     )}
                     
-                    {/* PLAYHEAD */}
                     <div 
                         className="absolute top-0 bottom-0 z-50 pointer-events-none will-change-transform"
                         style={{ 
                             left: (playback.currentTime / 1000) * settings.zoom,
-                            transform: 'translateX(-50%)' // Centers the group on the time
+                            transform: 'translateX(-50%)'
                         }}
                     >
-                        {/* Arrow */}
                         <div 
                             className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px]" 
                             style={{ borderTopColor: playheadColor }}
                         />
-                        {/* Line */}
                         <div 
                             className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] shadow-[0_0_10px_rgba(0,0,0,0.5)]"
                             style={{ backgroundColor: playheadColor }}
