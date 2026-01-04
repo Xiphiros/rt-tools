@@ -100,12 +100,7 @@ const EditorLayout = () => {
                     )}
                     <div className="absolute inset-0 flex items-center justify-center">
                         <div className="aspect-video w-full max-h-full relative">
-                            <Playfield 
-                                mapData={mapData} 
-                                currentTime={playback.currentTime} 
-                                playbackRate={playback.playbackRate} 
-                                scale={1.5}
-                            />
+                            <Playfield mapData={mapData} currentTime={playback.currentTime} playbackRate={playback.playbackRate} scale={1.1} />
                         </div>
                     </div>
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 z-40">
