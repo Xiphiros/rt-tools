@@ -30,9 +30,6 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     const [history, dispatch] = useReducer(editorReducer, initialHistory);
     const audioHook = useEditorAudio();
     
-    // We don't use audioBlobUrl for the main engine anymore (it uses Buffer),
-    // but we might need it for legacy visuals or export if we want to avoid re-reading.
-    // However, since AudioManager handles loading, we just track BG URL here.
     const [bgBlobUrl, setBgBlobUrl] = useState<string | null>(null);
     const [assetsVersion, setAssetsVersion] = useState(0);
     const [activeTool, setActiveTool] = useState<EditorTool>('select');
@@ -43,7 +40,8 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         playbackSpeed: 1.0,
         zoom: 150, 
         metronome: false,
-        snappingEnabled: true
+        snappingEnabled: true,
+        showWaveform: true // Default to Open
     });
 
     // Auto-Load Project Data
@@ -73,7 +71,6 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         const loadAssets = async () => {
             const meta = history.present.metadata;
             
-            // 1. Load Audio into Manager
             if (meta.audioFile) {
                 const file = await readFileFromOPFS(meta.audioFile);
                 if (file) {
@@ -81,7 +78,6 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
                 }
             }
 
-            // 2. Load Background for Display
             if (meta.backgroundFile) {
                 const file = await readFileFromOPFS(meta.backgroundFile);
                 if (file) {
@@ -118,7 +114,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         activeTool,
         setActiveTool,
         
-        audioBlobUrl: null, // Deprecated in favor of internal buffer
+        audioBlobUrl: null, 
         bgBlobUrl,
         reloadAssets: () => setAssetsVersion(v => v + 1)
     };
