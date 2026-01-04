@@ -1,21 +1,24 @@
-import React, { createContext, useContext, useReducer, ReactNode } from 'react';
-import { editorReducer, initialHistory, EditorAction } from './editorReducer';
+import React, { createContext, useContext, useReducer, ReactNode, useEffect, useState } from 'react';
+import { editorReducer, initialHistory, EditorAction, initialMapData } from './editorReducer';
 import { useEditorAudio } from '../hooks/useEditorAudio';
 import { EditorMapData, EditorSettings, PlaybackState } from '../types';
+import { loadProjectJSON, saveProjectJSON, readFileFromOPFS } from '../utils/opfs';
 
 // --- STATE DEFINITION ---
 interface EditorContextState {
-    // Data (History Wrapper)
     mapData: EditorMapData;
     canUndo: boolean;
     canRedo: boolean;
     
-    // Playback
     playback: PlaybackState;
     audio: ReturnType<typeof useEditorAudio>;
 
-    // Settings
     settings: EditorSettings;
+    
+    // Asset URLs (Blobs)
+    audioBlobUrl: string | null;
+    bgBlobUrl: string | null;
+    reloadAssets: () => void;
 }
 
 interface EditorContextDispatch {
@@ -26,26 +29,81 @@ interface EditorContextDispatch {
 const EditorContext = createContext<(EditorContextState & EditorContextDispatch) | null>(null);
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
-    // 1. Logic State (Redux-like)
     const [history, dispatch] = useReducer(editorReducer, initialHistory);
-
-    // 2. Audio State (Hook)
     const audioHook = useEditorAudio();
+    
+    const [audioBlobUrl, setAudioBlobUrl] = useState<string | null>(null);
+    const [bgBlobUrl, setBgBlobUrl] = useState<string | null>(null);
+    const [assetsVersion, setAssetsVersion] = useState(0);
 
-    // 3. UI Settings (Local State)
+    // Settings
     const [settings, setSettings] = React.useState<EditorSettings>({
-        snapDivisor: 4, // 1/4 beat
+        snapDivisor: 4,
         playbackSpeed: 1.0,
-        zoom: 100, // 100px per second
+        zoom: 150, 
         metronome: false
     });
 
-    // Sync Audio Rate with Settings
-    React.useEffect(() => {
+    // 1. Auto-Load Project on Mount
+    useEffect(() => {
+        const load = async () => {
+            const data = await loadProjectJSON();
+            if (data) {
+                dispatch({ type: 'LOAD_MAP', payload: data });
+                setAssetsVersion(v => v + 1); // Trigger asset reload
+            }
+        };
+        load();
+    }, []);
+
+    // 2. Auto-Save on Change (Debounced)
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (history.present !== initialMapData) {
+                saveProjectJSON(history.present);
+            }
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, [history.present]);
+
+    // 3. Asset Loading
+    useEffect(() => {
+        const loadAssets = async () => {
+            const meta = history.present.metadata;
+            
+            // Audio
+            if (meta.audioFile) {
+                const file = await readFileFromOPFS(meta.audioFile);
+                if (file) {
+                    const url = URL.createObjectURL(file);
+                    setAudioBlobUrl(prev => {
+                        if (prev) URL.revokeObjectURL(prev);
+                        return url;
+                    });
+                    audioHook.load(url);
+                }
+            }
+
+            // Background
+            if (meta.backgroundFile) {
+                const file = await readFileFromOPFS(meta.backgroundFile);
+                if (file) {
+                    const url = URL.createObjectURL(file);
+                    setBgBlobUrl(prev => {
+                        if (prev) URL.revokeObjectURL(prev);
+                        return url;
+                    });
+                }
+            }
+        };
+        loadAssets();
+    }, [assetsVersion, history.present.metadata.audioFile, history.present.metadata.backgroundFile]);
+
+    // Sync Audio Rate
+    useEffect(() => {
         audioHook.setRate(settings.playbackSpeed);
     }, [settings.playbackSpeed, audioHook]);
 
-    // Derived State
     const value: EditorContextState & EditorContextDispatch = {
         mapData: history.present,
         canUndo: history.past.length > 0,
@@ -61,7 +119,11 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         
         settings,
         setSettings,
-        dispatch
+        dispatch,
+        
+        audioBlobUrl,
+        bgBlobUrl,
+        reloadAssets: () => setAssetsVersion(v => v + 1)
     };
 
     return (
@@ -73,8 +135,6 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
 
 export const useEditor = () => {
     const context = useContext(EditorContext);
-    if (!context) {
-        throw new Error("useEditor must be used within an EditorProvider");
-    }
+    if (!context) throw new Error("useEditor must be used within an EditorProvider");
     return context;
 };
