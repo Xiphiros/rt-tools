@@ -1,118 +1,113 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { AudioManager } from '../audio/AudioManager';
 
 interface UseEditorAudioReturn {
     isPlaying: boolean;
-    currentTime: number;
-    duration: number;
+    currentTime: number; // Ms
+    duration: number;    // Ms
+    
     play: () => void;
     pause: () => void;
     seek: (timeMs: number) => void;
     setRate: (rate: number) => void;
     setVolume: (vol: number) => void;
-    load: (url: string) => void;
-    audioContext: AudioContext | null;
-    audioBuffer: AudioBuffer | null;
+    
+    // Loading
+    load: (file: Blob | File) => Promise<void>;
+    
+    // Direct Access
+    manager: AudioManager;
+    
+    // For React to force re-renders on low-level changes
+    version: number; 
 }
 
 export const useEditorAudio = (): UseEditorAudioReturn => {
-    const audioRef = useRef<HTMLAudioElement | null>(null);
-    const contextRef = useRef<AudioContext | null>(null);
-    const rafRef = useRef<number | null>(null);
-    
+    // Persistent Manager instance
+    const managerRef = useRef<AudioManager | null>(null);
+    if (!managerRef.current) {
+        managerRef.current = new AudioManager();
+    }
+    const manager = managerRef.current;
+
+    // React State for UI updates
+    const [version, setVersion] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [audioBuffer, setAudioBuffer] = useState<AudioBuffer | null>(null);
+    
+    // Animation Frame for UI Time Update
+    const rafRef = useRef<number | null>(null);
 
-    // Initialize HTML5 Audio
-    if (!audioRef.current) {
-        audioRef.current = new Audio();
-    }
-
-    // Initialize Web Audio Context (Lazily)
-    const getContext = useCallback(() => {
-        if (!contextRef.current) {
-            contextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
-        }
-        if (contextRef.current.state === 'suspended') {
-            contextRef.current.resume();
-        }
-        return contextRef.current;
-    }, []);
-
-    const updateTime = useCallback(() => {
-        if (audioRef.current) {
-            setCurrentTime(audioRef.current.currentTime * 1000);
-            if (!audioRef.current.paused) {
-                rafRef.current = requestAnimationFrame(updateTime);
+    const updateUI = useCallback(() => {
+        if (manager) {
+            setCurrentTime(manager.getCurrentTimeMs());
+            setIsPlaying(manager.isAudioPlaying());
+            
+            if (manager.isAudioPlaying()) {
+                rafRef.current = requestAnimationFrame(updateUI);
+            } else {
+                rafRef.current = null;
             }
         }
-    }, []);
+    }, [manager]);
 
-    const play = useCallback(() => {
-        getContext(); // Ensure context is running
-        audioRef.current?.play().then(() => {
-            setIsPlaying(true);
-            rafRef.current = requestAnimationFrame(updateTime);
-        }).catch(e => console.error("Audio play failed", e));
-    }, [updateTime, getContext]);
-
-    const pause = useCallback(() => {
-        audioRef.current?.pause();
-        setIsPlaying(false);
-        if (rafRef.current) {
+    // Force sync when playback state changes
+    const syncState = useCallback(() => {
+        setIsPlaying(manager.isAudioPlaying());
+        setCurrentTime(manager.getCurrentTimeMs());
+        setDuration(manager.getDurationMs());
+        setVersion(v => v + 1);
+        
+        if (manager.isAudioPlaying() && !rafRef.current) {
+            rafRef.current = requestAnimationFrame(updateUI);
+        } else if (!manager.isAudioPlaying() && rafRef.current) {
             cancelAnimationFrame(rafRef.current);
             rafRef.current = null;
         }
-    }, []);
+    }, [manager, updateUI]);
+
+    const play = useCallback(() => {
+        manager.play();
+        syncState();
+    }, [manager, syncState]);
+
+    const pause = useCallback(() => {
+        manager.pause();
+        syncState();
+    }, [manager, syncState]);
 
     const seek = useCallback((timeMs: number) => {
-        if (audioRef.current) {
-            audioRef.current.currentTime = timeMs / 1000;
-            setCurrentTime(timeMs);
-        }
-    }, []);
+        manager.seek(timeMs);
+        syncState();
+    }, [manager, syncState]);
 
     const setRate = useCallback((rate: number) => {
-        if (audioRef.current) audioRef.current.playbackRate = rate;
-    }, []);
+        manager.setRate(rate);
+    }, [manager]);
 
     const setVolume = useCallback((vol: number) => {
-        if (audioRef.current) audioRef.current.volume = Math.max(0, Math.min(1, vol));
-    }, []);
+        manager.setVolume(vol);
+    }, [manager]);
 
-    const load = useCallback(async (url: string) => {
-        if (audioRef.current) {
-            pause();
-            audioRef.current.src = url;
-            audioRef.current.load();
-            
-            // Fetch for WebAudio (Waveform/Metronome sync)
-            try {
-                const response = await fetch(url);
-                const arrayBuffer = await response.arrayBuffer();
-                const ctx = getContext();
-                const buffer = await ctx.decodeAudioData(arrayBuffer);
-                setAudioBuffer(buffer);
-                setDuration(buffer.duration * 1000);
-            } catch (e) {
-                console.error("Failed to decode audio data", e);
-            }
+    const load = useCallback(async (file: Blob | File) => {
+        try {
+            const buffer = await file.arrayBuffer();
+            await manager.loadAudio(buffer);
+            setDuration(manager.getDurationMs());
+            seek(0);
+        } catch (e) {
+            console.error("Hook: Failed to load audio", e);
         }
-    }, [pause, getContext]);
+    }, [manager, seek]);
 
+    // Cleanup
     useEffect(() => {
         return () => {
             if (rafRef.current) cancelAnimationFrame(rafRef.current);
-            if (audioRef.current) {
-                audioRef.current.pause();
-                audioRef.current.src = '';
-            }
-            if (contextRef.current) {
-                contextRef.current.close();
-            }
+            manager.pause();
         };
-    }, []);
+    }, [manager]);
 
     return {
         isPlaying,
@@ -124,7 +119,7 @@ export const useEditorAudio = (): UseEditorAudioReturn => {
         setRate,
         setVolume,
         load,
-        audioContext: contextRef.current,
-        audioBuffer
+        manager,
+        version
     };
 };
