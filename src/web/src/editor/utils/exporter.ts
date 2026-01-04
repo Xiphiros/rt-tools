@@ -1,18 +1,16 @@
 import JSZip from 'jszip';
 import { EditorMapData } from '../types';
-import { readFileFromOPFS } from './opfs';
+import { readFileFromProject } from './opfs';
 
-export const exportBeatmapPackage = async (mapData: EditorMapData) => {
+export const exportBeatmapPackage = async (mapData: EditorMapData, projectId?: string) => {
+    // If no project ID, we can't export assets properly unless we had them in memory.
+    // For now, if projectId is missing, we just export the JSON structure.
+    
     const zip = new JSZip();
 
     // 1. Add Meta/Diff JSON
-    // Standard RTM structure: 
-    // - meta.json
-    // - difficulty.rtm.json
-    
-    // Construct meta.json (subset of mapData)
     const meta = {
-        mapsetId: Date.now().toString(36), // Temp ID
+        mapsetId: Date.now().toString(36), 
         songName: mapData.metadata.title,
         artistName: mapData.metadata.artist,
         mapper: mapData.metadata.mapper,
@@ -33,32 +31,32 @@ export const exportBeatmapPackage = async (mapData: EditorMapData) => {
 
     zip.file('meta.json', JSON.stringify(meta, null, 2));
 
-    // Construct Difficulty JSON
     const difficultyData = {
         ...mapData,
-        // Ensure notes are clean
         notes: mapData.notes.map(n => ({
             key: n.key,
             time: n.time,
             type: n.type,
-            // Only include duration if hold
             ...(n.type === 'hold' ? { duration: n.duration } : {})
         }))
     };
 
     zip.file('beatmap.rtm.json', JSON.stringify(difficultyData, null, 2));
 
-    // 2. Add Audio
-    const audioFile = await readFileFromOPFS(mapData.metadata.audioFile || 'audio.mp3');
-    if (audioFile) {
-        zip.file(mapData.metadata.audioFile || 'audio.mp3', audioFile);
-    }
+    // 2. Add Assets
+    if (projectId) {
+        if (mapData.metadata.audioFile) {
+            const audioFile = await readFileFromProject(projectId, mapData.metadata.audioFile);
+            if (audioFile) {
+                zip.file(mapData.metadata.audioFile, audioFile);
+            }
+        }
 
-    // 3. Add Background
-    if (mapData.metadata.backgroundFile) {
-        const bgFile = await readFileFromOPFS(mapData.metadata.backgroundFile);
-        if (bgFile) {
-            zip.file(mapData.metadata.backgroundFile, bgFile);
+        if (mapData.metadata.backgroundFile) {
+            const bgFile = await readFileFromProject(projectId, mapData.metadata.backgroundFile);
+            if (bgFile) {
+                zip.file(mapData.metadata.backgroundFile, bgFile);
+            }
         }
     }
 
