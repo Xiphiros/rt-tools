@@ -10,7 +10,6 @@ export const useMetronome = () => {
     
     // Config
     const ENABLED = settings.metronome;
-    const LOOKAHEAD = 0.1; // 100ms
     const SCHEDULE_AHEAD = 0.1; // 100ms
 
     useEffect(() => {
@@ -33,12 +32,7 @@ export const useMetronome = () => {
             const currentBeatIndex = Math.ceil((currentTime - offsetSec) / beatSec);
             const nextBeatSongTime = offsetSec + (currentBeatIndex * beatSec);
             
-            // Convert Song Time to Context Time
-            // ContextTime = (SongTime - CurrentSongTime) / Rate + CurrentContextTime
-            // But simplified: We know when the song *started* in context time inside Manager, but that's private.
-            // Easier approach: Delay = (TargetSongTime - CurrentSongTime) / Rate.
-            // ScheduleAt = ctx.currentTime + Delay.
-            
+            // Calculate delay to next beat relative to current playback speed
             const delay = (nextBeatSongTime - currentTime) / playback.playbackRate;
             nextNoteTimeRef.current = ctx.currentTime + delay;
         };
