@@ -85,18 +85,19 @@ export class AudioManager {
 
         // Auto-handle natural finish
         this.source.onended = () => {
-            // Only consider it a natural stop if we were actually playing
-            // (onended also fires when we manually call stop())
+            // CRITICAL: This callback might fire after we manually stopped/replaced the source.
+            // We only care if *this specific source* ended while we still think we are playing.
+            // But since source nodes are recreated, checking `this.isPlaying` is tricky if we just restarted.
+            // Best practice: The `stopSource` method removes this listener so this ONLY fires on natural end.
+            
             if (this.isPlaying) {
-                // Determine if we reached the end or were stopped manually logic is handled in stop()
-                // But for natural end, we just update state
+                // Determine if we reached the end
                 const predictedEnd = this.startContextTime + (this.buffer!.duration - this.startTrackTime) / this.playbackRate;
                 
                 // Allow a small buffer for timing variations
-                if (this.ctx.currentTime >= predictedEnd - 0.1) {
+                if (this.ctx.currentTime >= predictedEnd - 0.2) {
                     this.isPlaying = false;
                     this.startTrackTime = this.buffer!.duration;
-                    // Dispatch event listener if we add one later
                 }
             }
         };
@@ -195,6 +196,8 @@ export class AudioManager {
 
     private stopSource(): void {
         if (this.source) {
+            this.source.onended = null;
+            
             try {
                 this.source.stop();
                 this.source.disconnect();
