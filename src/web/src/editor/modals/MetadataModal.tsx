@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal } from '../../components/ui/Modal';
 import { useEditor } from '../store/EditorContext';
 import { MapMetadata } from '../types';
-import { saveFileToOPFS } from '../utils/opfs';
+import { saveFileToProject } from '../utils/opfs';
 
 interface MetadataModalProps {
     isOpen: boolean;
@@ -10,7 +10,7 @@ interface MetadataModalProps {
 }
 
 export const MetadataModal = ({ isOpen, onClose }: MetadataModalProps) => {
-    const { mapData, dispatch, reloadAssets } = useEditor();
+    const { mapData, dispatch, reloadAssets, activeProjectId } = useEditor();
     const [form, setForm] = useState<MapMetadata>(mapData.metadata);
     const [uploading, setUploading] = useState(false);
 
@@ -24,14 +24,14 @@ export const MetadataModal = ({ isOpen, onClose }: MetadataModalProps) => {
     };
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>, type: 'audio' | 'image') => {
-        if (!e.target.files || e.target.files.length === 0) return;
+        if (!e.target.files || e.target.files.length === 0 || !activeProjectId) return;
         
         const file = e.target.files[0];
         const filename = file.name;
         
         setUploading(true);
         try {
-            await saveFileToOPFS(filename, file);
+            await saveFileToProject(activeProjectId, filename, file);
             
             if (type === 'audio') {
                 setForm(prev => ({ ...prev, audioFile: filename }));
@@ -45,13 +45,19 @@ export const MetadataModal = ({ isOpen, onClose }: MetadataModalProps) => {
 
     const handleSave = () => {
         dispatch({ type: 'UPDATE_METADATA', payload: form });
-        reloadAssets(); // Trigger reload in context
+        reloadAssets(); 
         onClose();
     };
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} title="Beatmap Setup">
             <div className="space-y-6">
+                {!activeProjectId && (
+                    <div className="bg-danger/20 text-danger p-3 rounded text-sm font-bold border border-danger/50">
+                        Warning: No active project. Changes will not be saved to disk.
+                    </div>
+                )}
+
                 <div className="space-y-4">
                     <h3 className="text-sm uppercase font-bold text-primary tracking-widest border-b border-border pb-1">General</h3>
                     <div className="grid grid-cols-2 gap-4">
@@ -85,9 +91,9 @@ export const MetadataModal = ({ isOpen, onClose }: MetadataModalProps) => {
                                     value={form.audioFile} 
                                     className="flex-1 bg-input/50 border border-border rounded px-3 py-2 text-sm text-muted" 
                                 />
-                                <label className="cursor-pointer px-4 py-2 bg-input border border-border hover:bg-white/5 rounded text-sm font-medium transition-colors">
+                                <label className={`cursor-pointer px-4 py-2 bg-input border border-border hover:bg-white/5 rounded text-sm font-medium transition-colors ${!activeProjectId ? 'opacity-50 pointer-events-none' : ''}`}>
                                     Browse
-                                    <input type="file" accept="audio/*" className="hidden" onChange={(e) => handleFileChange(e, 'audio')} />
+                                    <input type="file" accept="audio/*" className="hidden" onChange={(e) => handleFileChange(e, 'audio')} disabled={!activeProjectId} />
                                 </label>
                             </div>
                         </div>
@@ -99,9 +105,9 @@ export const MetadataModal = ({ isOpen, onClose }: MetadataModalProps) => {
                                     value={form.backgroundFile} 
                                     className="flex-1 bg-input/50 border border-border rounded px-3 py-2 text-sm text-muted" 
                                 />
-                                <label className="cursor-pointer px-4 py-2 bg-input border border-border hover:bg-white/5 rounded text-sm font-medium transition-colors">
+                                <label className={`cursor-pointer px-4 py-2 bg-input border border-border hover:bg-white/5 rounded text-sm font-medium transition-colors ${!activeProjectId ? 'opacity-50 pointer-events-none' : ''}`}>
                                     Browse
-                                    <input type="file" accept="image/*" className="hidden" onChange={(e) => handleFileChange(e, 'image')} />
+                                    <input type="file" accept="image/*" className="hidden" onChange={(e) => handleFileChange(e, 'image')} disabled={!activeProjectId} />
                                 </label>
                             </div>
                         </div>
