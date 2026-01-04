@@ -4,6 +4,7 @@ import { useEditor } from '../store/EditorContext';
 import { TimelineGrid } from './TimelineGrid';
 import { TimelineRuler } from './TimelineRuler';
 import { MiniPlayfield } from './MiniPlayfield';
+import { Waveform } from './Waveform'; // New Import
 import { EditorNote } from '../types';
 import { getSnapColor, getSnapDivisor } from '../utils/snapColors';
 
@@ -162,6 +163,13 @@ export const EditorTimeline = () => {
                     </div>
 
                     <div className="absolute top-8 bottom-0 left-0 right-0 z-0">
+                        {/* Waveform Layer (Below Grid) */}
+                        <Waveform 
+                            buffer={audio.audioBuffer} 
+                            zoom={settings.zoom} 
+                            duration={playback.duration} 
+                            height={200} // Fill container
+                        />
                         <TimelineGrid duration={playback.duration} bpm={mapData.bpm} offset={mapData.offset} settings={settings} />
                     </div>
 
