@@ -138,7 +138,7 @@ export const EditorTimeline = () => {
             }}
         >
             <div className="animate-in fade-in zoom-in-95 duration-100 mb-2">
-                <MiniPlayfield notes={hoveredChord.notes} scale={0.25} />
+                <MiniPlayfield notes={hoveredChord.notes} scale={0.35} />
                 <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-black/95" />
             </div>
         </div>
@@ -181,8 +181,6 @@ export const EditorTimeline = () => {
                             const hasHold = group.notes.some(n => n.type === 'hold');
                             const tickColor = isSelected ? '#fff' : group.color;
                             
-                            // Align Logic:
-                            // We want width to be EVEN to allow perfect centering with integer transforms.
                             let rawWidth = group.isUnsnapped ? 2 : Math.max(4, settings.zoom / 30);
                             if (rawWidth % 2 !== 0) rawWidth += 1;
 
@@ -199,9 +197,9 @@ export const EditorTimeline = () => {
                                         style={{
                                             left: (group.time / 1000) * settings.zoom,
                                             width: rawWidth,
-                                            height: '50%',
+                                            height: '40%',
                                             borderRadius: '4px',
-                                            transform: 'translate(-50%, -50%)', // Centered relative to 'left'
+                                            transform: 'translate(-50%, -50%)',
                                             boxShadow: group.isUnsnapped ? 'none' : `0 0 4px ${tickColor}80`,
                                             ...bgStyle
                                         }}
