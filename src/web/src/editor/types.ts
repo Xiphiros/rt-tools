@@ -62,3 +62,11 @@ export interface HistoryState {
     present: EditorMapData;
     future: EditorMapData[];
 }
+
+export interface ProjectSummary {
+    id: string;
+    title: string;
+    artist: string;
+    mapper: string;
+    lastModified: number;
+}
