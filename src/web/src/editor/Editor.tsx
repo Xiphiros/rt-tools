@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { EditorProvider, useEditor } from './store/EditorContext';
 import { EditorTimeline } from './components/EditorTimeline';
 import { Playfield } from '../gameplay/components/Playfield';
@@ -6,7 +6,7 @@ import { MetadataModal } from './modals/MetadataModal';
 import { TimingModal } from './modals/TimingModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faPlay, faPause, faUndo, faRedo, faSave, faCog, faMusic, faClock, faPencilAlt, faFileUpload, faChevronLeft
+    faPlay, faPause, faUndo, faRedo, faFileUpload, faChevronLeft
 } from '@fortawesome/free-solid-svg-icons';
 
 // --- SUB-COMPONENTS ---
