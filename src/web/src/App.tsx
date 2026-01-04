@@ -3,11 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { Dashboard } from './components/Dashboard';
 import { Calculator } from './components/Calculator';
 import { Leaderboard } from './components/Leaderboard';
-import { Editor } from './editor/Editor'; // Import Editor
+import { Editor } from './editor/Editor';
 
 const Header = ({ activeTab, onTabChange }: { activeTab: string, onTabChange: (t: string) => void }) => {
     const { t } = useTranslation('common');
-    // Added 'editor' to tabs
     const tabs = ['dashboard', 'leaderboard', 'calculator', 'editor'];
 
     return (
@@ -35,7 +34,7 @@ const Header = ({ activeTab, onTabChange }: { activeTab: string, onTabChange: (t
                                 : 'text-muted hover:text-secondary hover:bg-white/5'
                             }`}
                         >
-                            {/* Fallback to tab name if translation missing */}
+                            {/* Fallback translation */}
                             {t(tab) === tab ? tab.charAt(0).toUpperCase() + tab.slice(1) : t(tab)}
                         </button>
                     ))}
@@ -53,7 +52,7 @@ function App() {
           case 'leaderboard': return <Leaderboard />;
           case 'calculator': return <Calculator />;
           case 'editor': 
-            // Editor needs full width, remove container constraints in future cleanup if needed
+            // Editor handles its own layout, so we bypass container constraints if needed
             return <Editor />;
           case 'dashboard':
           default: return <Dashboard />;
@@ -63,10 +62,6 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-text-primary selection:bg-cyan-500/20 selection:text-cyan-200">
       <Header activeTab={activeTab} onTabChange={setActiveTab} />
-      {/* 
-         If Editor is active, we might want to bypass the container padding 
-         to give it maximum screen real estate.
-      */}
       <main className={`flex-1 ${activeTab === 'editor' ? '' : 'container mx-auto p-6 max-w-7xl'} animate-in fade-in duration-300`}>
         {renderContent()}
       </main>
