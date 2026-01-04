@@ -54,6 +54,7 @@ export interface EditorSettings {
     zoom: number;        
     metronome: boolean;
     snappingEnabled: boolean;
+    showWaveform: boolean;
 }
 
 export interface HistoryState {
