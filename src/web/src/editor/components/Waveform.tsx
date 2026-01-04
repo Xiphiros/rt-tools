@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 interface WaveformProps {
     buffer: AudioBuffer | null;
@@ -9,7 +9,6 @@ interface WaveformProps {
 }
 
 export const Waveform = ({ buffer, zoom, duration, height, color = '#4b5563' }: WaveformProps) => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
     const [bitmap, setBitmap] = useState<ImageBitmap | null>(null);
 
     // 1. Generate Static Waveform Image (Once per buffer/zoom change)
@@ -57,14 +56,6 @@ export const Waveform = ({ buffer, zoom, duration, height, color = '#4b5563' }: 
             className="absolute top-0 left-0 pointer-events-none opacity-40 z-0"
             style={{ width: (duration / 1000) * zoom, height }}
         >
-            <img src={URL.createObjectURL(new Blob())} ref={(img) => {
-                if (img && bitmap) {
-                    // We actually can't put ImageBitmap directly in src easily without a canvas wrapper
-                    // or drawing it to a visible canvas.
-                    // Let's just use a Canvas component directly.
-                }
-            }} className="hidden" />
-            
             {/* Direct Canvas Render */}
             <CanvasRenderer bitmap={bitmap} width={(duration / 1000) * zoom} height={height} />
         </div>
