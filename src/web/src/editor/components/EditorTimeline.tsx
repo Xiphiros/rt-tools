@@ -4,12 +4,12 @@ import { useEditor } from '../store/EditorContext';
 import { TimelineGrid } from './TimelineGrid';
 import { TimelineRuler } from './TimelineRuler';
 import { MiniPlayfield } from './MiniPlayfield';
-import { Waveform } from './Waveform';
+import { Waveform, WaveformMode } from './Waveform';
 import { EditorNote } from '../types';
 import { getSnapColor, getSnapDivisor } from '../utils/snapColors';
 import { snapTime, getActiveTimingPoint } from '../utils/timing';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWaveSquare } from '@fortawesome/free-solid-svg-icons';
+import { faWaveSquare, faDrum, faMusic } from '@fortawesome/free-solid-svg-icons';
 
 function useDebouncedSeek(callback: (time: number) => void, delay: number) {
     const callbackRef = useRef(callback);
@@ -30,6 +30,8 @@ export const EditorTimeline = () => {
     const { mapData, settings, setSettings, playback, dispatch, audio, activeTool } = useEditor();
     const containerRef = useRef<HTMLDivElement>(null);
     
+    // UI State
+    const [waveformMode, setWaveformMode] = useState<WaveformMode>('full'); // Local state for visual mode
     const [hoverTime, setHoverTime] = useState(0);
     const [hoveredChord, setHoveredChord] = useState<{ time: number, notes: EditorNote[], x: number, y: number } | null>(null);
     const [isDragging, setIsDragging] = useState(false);
@@ -144,7 +146,6 @@ export const EditorTimeline = () => {
         setDragCurrent(null);
     };
 
-    // Auto-Scroll
     useEffect(() => {
         if (playback.isPlaying && containerRef.current) {
             const scrollPos = (playback.currentTime / 1000) * settings.zoom - (containerRef.current.clientWidth / 2);
@@ -194,15 +195,43 @@ export const EditorTimeline = () => {
         <div className="flex-1 flex flex-col bg-background relative select-none h-full">
             {createPortal(tooltip, document.body)}
 
-            {/* Toggle Button: Updates Global Settings */}
-            <div className="absolute top-0 left-0 z-50 p-1">
+            {/* TRACK HEADER CONTROLS */}
+            <div className="absolute top-0 left-0 z-50 p-2 flex flex-col gap-2">
+                {/* Expand Toggle */}
                 <button 
                     onClick={() => setSettings(s => ({ ...s, showWaveform: !s.showWaveform }))}
-                    className="w-6 h-6 bg-card border border-border rounded flex items-center justify-center text-xs text-muted hover:text-white transition-colors shadow-md"
-                    title="Toggle Waveform"
+                    className={`w-8 h-8 bg-card border border-border rounded flex items-center justify-center text-xs transition-colors shadow-md ${settings.showWaveform ? 'text-white' : 'text-muted'}`}
+                    title={settings.showWaveform ? "Collapse Waveform" : "Expand Waveform"}
                 >
-                    <FontAwesomeIcon icon={faWaveSquare} className={settings.showWaveform ? "text-primary" : "text-muted"} />
+                    <FontAwesomeIcon icon={faWaveSquare} />
                 </button>
+
+                {/* Filter Modes (Only if Expanded) */}
+                {settings.showWaveform && (
+                    <div className="flex flex-col gap-1 bg-card border border-border rounded p-1 shadow-md animate-in fade-in slide-in-from-top-2">
+                        <button 
+                            onClick={() => setWaveformMode('full')}
+                            className={`w-6 h-6 rounded flex items-center justify-center text-[10px] transition-colors ${waveformMode === 'full' ? 'bg-primary text-black' : 'text-muted hover:text-white'}`}
+                            title="Full Range"
+                        >
+                            ALL
+                        </button>
+                        <button 
+                            onClick={() => setWaveformMode('bass')}
+                            className={`w-6 h-6 rounded flex items-center justify-center text-xs transition-colors ${waveformMode === 'bass' ? 'bg-danger text-white' : 'text-muted hover:text-white'}`}
+                            title="Bass / Kick Focus (< 140Hz)"
+                        >
+                            <FontAwesomeIcon icon={faDrum} />
+                        </button>
+                        <button 
+                            onClick={() => setWaveformMode('treble')}
+                            className={`w-6 h-6 rounded flex items-center justify-center text-xs transition-colors ${waveformMode === 'treble' ? 'bg-secondary text-white' : 'text-muted hover:text-white'}`}
+                            title="Treble / Vocal Focus (> 2kHz)"
+                        >
+                            <FontAwesomeIcon icon={faMusic} />
+                        </button>
+                    </div>
+                )}
             </div>
 
             <div 
@@ -274,6 +303,7 @@ export const EditorTimeline = () => {
                                 zoom={settings.zoom} 
                                 duration={playback.duration} 
                                 height={80}
+                                mode={waveformMode} // PASS MODE
                             />
                         </div>
                     </div>
