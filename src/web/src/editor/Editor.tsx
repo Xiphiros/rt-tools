@@ -16,7 +16,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const TopMenuBar = ({ onOpenModal }: { onOpenModal: (modal: string) => void }) => {
-    const { mapData } = useEditor();
+    const { mapData, activeProjectId } = useEditor();
     return (
         <div className="h-12 bg-black border-b border-white/10 flex items-center px-4 justify-between select-none z-50">
             <div className="flex items-center gap-6">
@@ -42,7 +42,10 @@ const TopMenuBar = ({ onOpenModal }: { onOpenModal: (modal: string) => void }) =
                 </div>
             </div>
             <div className="flex items-center gap-4">
-                <button onClick={() => exportBeatmapPackage(mapData)} className="text-sm text-secondary hover:text-white transition-colors flex items-center gap-2">
+                <button 
+                    onClick={() => exportBeatmapPackage(mapData, activeProjectId || undefined)} 
+                    className="text-sm text-secondary hover:text-white transition-colors flex items-center gap-2"
+                >
                     <FontAwesomeIcon icon={faFileUpload} />
                     <span>Export</span>
                 </button>
