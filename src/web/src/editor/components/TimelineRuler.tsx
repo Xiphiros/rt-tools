@@ -1,75 +1,116 @@
+import { EditorSettings, TimingPoint } from '../types';
 import { SNAP_COLORS } from '../utils/snapColors';
 
 interface TimelineRulerProps {
     duration: number;
-    bpm: number;
+    timingPoints: TimingPoint[];
     zoom: number; // pixels per second
     snapDivisor: number;
 }
 
-export const TimelineRuler = ({ duration, bpm, zoom, snapDivisor }: TimelineRulerProps) => {
-    const msPerBeat = 60000 / bpm;
-    const pxPerBeat = (msPerBeat / 1000) * zoom;
+export const TimelineRuler = ({ duration, timingPoints, zoom, snapDivisor }: TimelineRulerProps) => {
     const totalWidth = (duration / 1000) * zoom;
 
-    // We generate CSS gradients for each supported snap level up to the current divisor
-    // Order matters: Finer snaps drawn first (bottom), Coarser snaps last (top/visible)
-    // 1/1 should be on top of 1/2, etc.
+    // --- SECTION GENERATION (Matches TimelineGrid) ---
+    // Sort points
+    const sortedPoints = [...timingPoints].sort((a, b) => a.time - b.time);
     
-    const layers: string[] = [];
-    const supportedSnaps = [1, 2, 3, 4, 6, 8, 12, 16];
-
-    // Reverse order: render large divisors first (background), small divisors last (foreground)? 
-    // No, CSS background layers: first one defined is ON TOP.
-    // So we want 1/1 first, then 1/2, etc.
+    const sections = [];
     
-    supportedSnaps.forEach(snap => {
-        if (snap > snapDivisor) return; // Don't render 1/8 if we are on 1/4 snap
+    if (sortedPoints.length > 0) {
+        // 1. Backward Extrapolation Section (0ms to First TP)
+        const firstTp = sortedPoints[0];
+        if (firstTp.time > 0) {
+            sections.push({
+                bpm: firstTp.bpm,
+                offset: firstTp.time, 
+                start: 0,
+                end: firstTp.time,
+                key: 'pre-intro'
+            });
+        }
 
-        const color = SNAP_COLORS[snap];
-        const tickWidth = '1px'; // standard width
+        // 2. Normal Sections
+        for (let i = 0; i < sortedPoints.length; i++) {
+            const current = sortedPoints[i];
+            const next = sortedPoints[i + 1];
+            const endTime = next ? next.time : duration;
+            
+            sections.push({
+                bpm: current.bpm,
+                offset: current.time,
+                start: current.time,
+                end: Math.max(current.time, endTime),
+                key: current.id
+            });
+        }
+    } else {
+        // Fallback default
+        sections.push({ bpm: 120, offset: 0, start: 0, end: duration, key: 'default' });
+    }
+
+    // --- STYLE GENERATOR ---
+    const getRulerStyle = (bpm: number, offset: number) => {
+        const msPerBeat = 60000 / bpm;
+        const pxPerBeat = (msPerBeat / 1000) * zoom;
         
-        // CSS Repeat Size = pxPerBeat / (snap / 4)? No.
-        // 1/1 = 1 beat interval
-        // 1/2 = 0.5 beat interval
+        // 1. We want specific heights for specific snaps to create a ruler effect
+        // 1/1 (Measure) = Full Height
+        // 1/4 (Beat) = Medium
+        // Others = Short
+        const validSnaps = [1, 2, 3, 4, 6, 8, 12, 16].filter(s => s <= snapDivisor);
 
-        layers.push(
-            `linear-gradient(90deg, ${color} ${tickWidth}, transparent ${tickWidth})`
-        );
-    });
-
-    const backgroundSizes = supportedSnaps
-        .filter(s => s <= snapDivisor)
-        .map(s => {
-            const pxInterval = pxPerBeat / s;
-            const h = s === 1 ? '100%' : s === 2 ? '60%' : '35%';
-            return `${pxInterval}px ${h}`;
-        })
-        .join(', ');
-
-    const backgroundImage = supportedSnaps
-        .filter(s => s <= snapDivisor)
-        .map(s => {
+        // Reverse order so smaller ticks are drawn first (background), larger on top? 
+        // CSS background stack: First defined is Top.
+        // We want 1/1 on top.
+        
+        const layers = validSnaps.map(s => {
             const color = SNAP_COLORS[s];
             return `linear-gradient(90deg, ${color} 1px, transparent 1px)`;
-        })
-        .join(', ');
+        });
+
+        const sizes = validSnaps.map(s => {
+            const interval = pxPerBeat / s;
+            let height = '20%'; // Default tiny tick
+            if (s === 1) height = '100%';
+            else if (s === 2) height = '60%'; // 1/2
+            else if (s === 4) height = '40%'; // 1/4
+            
+            return `${interval}px ${height}`;
+        });
+
+        const offsetPx = (offset / 1000) * zoom;
+        const positions = validSnaps.map(_ => `${offsetPx}px 100%`); // Align to bottom
+
+        return {
+            backgroundImage: layers.join(', '),
+            backgroundSize: sizes.join(', '),
+            backgroundPosition: positions.join(', '),
+            backgroundRepeat: 'repeat-x'
+        };
+    };
 
     return (
         <div 
-            className="h-6 bg-card border-b border-border relative overflow-hidden select-none pointer-events-none"
+            className="h-6 bg-card border-b border-border relative overflow-hidden select-none pointer-events-none z-10"
             style={{ width: totalWidth, minWidth: '100%' }}
         >
-            <div 
-                className="absolute inset-0"
-                style={{
-                    backgroundImage,
-                    backgroundSize: backgroundSizes,
-                    backgroundPosition: '0 100%', // Bottom aligned
-                    backgroundRepeat: 'repeat-x',
-                    opacity: 0.8
-                }}
-            />
+            {sections.map(section => {
+                const left = (section.start / 1000) * zoom;
+                const width = ((section.end - section.start) / 1000) * zoom;
+                
+                return (
+                    <div 
+                        key={section.key}
+                        className="absolute top-0 bottom-0 overflow-hidden border-l border-white/5"
+                        style={{
+                            left: left,
+                            width: width,
+                            ...getRulerStyle(section.bpm, section.offset)
+                        }}
+                    />
+                );
+            })}
         </div>
     );
 };
