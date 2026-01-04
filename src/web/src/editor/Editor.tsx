@@ -94,28 +94,24 @@ const EditorLayout = () => {
         <div className="flex flex-col h-[calc(100vh-4rem)] bg-[#121212] text-text-primary overflow-hidden font-sans">
             <TopMenuBar onOpenModal={setActiveModal} />
             <div className="flex-1 flex flex-col relative min-h-0">
-                
-                {/* Game View */}
                 <div className="flex-1 relative bg-black/50 overflow-hidden shadow-inner">
-                    {/* Background */}
                     {bgBlobUrl && (
                         <div className="absolute inset-0 bg-cover bg-center opacity-30 blur-sm pointer-events-none" style={{ backgroundImage: `url(${bgBlobUrl})` }} />
                     )}
-                    
-                    {/* Playfield */}
                     <div className="absolute inset-0 flex items-center justify-center">
                         <div className="aspect-video w-full max-h-full relative">
-                            <Playfield mapData={mapData} currentTime={playback.currentTime} playbackRate={playback.playbackRate} />
+                            <Playfield 
+                                mapData={mapData} 
+                                currentTime={playback.currentTime} 
+                                playbackRate={playback.playbackRate} 
+                                scale={1.5}
+                            />
                         </div>
                     </div>
-
-                    {/* Floating Toolbox */}
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 z-40">
                         <EditorToolbox />
                     </div>
                 </div>
-
-                {/* Timeline */}
                 <div className="h-32 border-t border-border bg-card/95 backdrop-blur shadow-2xl relative z-10">
                     <EditorTimeline />
                 </div>
