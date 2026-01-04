@@ -8,14 +8,19 @@ import { Waveform } from './Waveform';
 import { EditorNote } from '../types';
 import { getSnapColor, getSnapDivisor } from '../utils/snapColors';
 import { snapTime, getActiveTimingPoint } from '../utils/timing';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWaveSquare, faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 export const EditorTimeline = () => {
     const { mapData, settings, setSettings, playback, dispatch, audio, activeTool } = useEditor();
     const containerRef = useRef<HTMLDivElement>(null);
     
+    // UI State
+    const [showWaveform, setShowWaveform] = useState(true);
     const [hoverTime, setHoverTime] = useState(0);
     const [hoveredChord, setHoveredChord] = useState<{ time: number, notes: EditorNote[], x: number, y: number } | null>(null);
     
+    // Drag State
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState<{ x: number, time: number } | null>(null);
     const [dragCurrent, setDragCurrent] = useState<{ x: number, time: number } | null>(null);
@@ -44,7 +49,7 @@ export const EditorTimeline = () => {
         });
     }, [mapData.notes, mapData.timingPoints, mapData.bpm, mapData.offset]);
 
-    // --- ZOOM & SEEK (WHEEL) ---
+    // --- ZOOM & SEEK ---
     useEffect(() => {
         const container = containerRef.current;
         if (!container) return;
@@ -52,14 +57,10 @@ export const EditorTimeline = () => {
             e.preventDefault();
             
             if (e.ctrlKey) {
-                // ZOOM
                 const delta = e.deltaY > 0 ? -25 : 25;
                 setSettings(s => ({ ...s, zoom: Math.max(50, Math.min(500, s.zoom + delta)) }));
             } else {
-                // SEEK (Snap based)
-                const direction = e.deltaY > 0 ? 1 : -1; // Down = Next
-                
-                // Get current Snap Interval
+                const direction = e.deltaY > 0 ? 1 : -1;
                 const tp = getActiveTimingPoint(playback.currentTime, mapData.timingPoints);
                 const bpm = tp ? tp.bpm : 120;
                 const msPerBeat = 60000 / bpm;
@@ -79,10 +80,16 @@ export const EditorTimeline = () => {
     const handleMouseDown = (e: React.MouseEvent) => {
         if (!containerRef.current) return;
         const rect = containerRef.current.getBoundingClientRect();
-        const clickX = e.clientX - rect.left + containerRef.current.scrollLeft;
+        // Adjust for scroll
+        const scrollLeft = containerRef.current.scrollLeft;
+        
+        // We only care about X for time
+        const clickX = e.clientX - rect.left + scrollLeft;
         const rawTime = (clickX / settings.zoom) * 1000;
 
         if (activeTool === 'select' && e.button === 0) {
+            // Only start box select if clicking in the note area? 
+            // For now, allow global selection start
             setIsDragging(true);
             setDragStart({ x: clickX, time: rawTime });
             setDragCurrent({ x: clickX, time: rawTime });
@@ -131,6 +138,7 @@ export const EditorTimeline = () => {
         setDragCurrent(null);
     };
 
+    // Auto-Scroll
     useEffect(() => {
         if (playback.isPlaying && containerRef.current) {
             const scrollPos = (playback.currentTime / 1000) * settings.zoom - (containerRef.current.clientWidth / 2);
@@ -180,6 +188,17 @@ export const EditorTimeline = () => {
         <div className="flex-1 flex flex-col bg-background relative select-none h-full">
             {createPortal(tooltip, document.body)}
 
+            {/* Toggle Button - Fixed Overlay */}
+            <div className="absolute top-0 left-0 z-50 p-1">
+                <button 
+                    onClick={() => setShowWaveform(!showWaveform)}
+                    className="w-6 h-6 bg-card border border-border rounded flex items-center justify-center text-xs text-muted hover:text-white transition-colors shadow-md"
+                    title="Toggle Waveform"
+                >
+                    <FontAwesomeIcon icon={showWaveform ? faWaveSquare : faWaveSquare} className={showWaveform ? "text-primary" : "text-muted"} />
+                </button>
+            </div>
+
             <div 
                 ref={containerRef}
                 className="flex-1 overflow-x-auto overflow-y-hidden relative custom-scrollbar h-full group"
@@ -188,23 +207,12 @@ export const EditorTimeline = () => {
                 onMouseUp={handleMouseUp}
                 onMouseLeave={() => { handleMouseUp(); setHoveredChord(null); }}
             >
-                <div className="relative" style={{ width: (playback.duration / 1000) * settings.zoom, minWidth: '100%', height: '100%' }}>
-                    <div className="sticky top-0 z-30">
-                        <TimelineRuler 
-                            duration={playback.duration} 
-                            timingPoints={mapData.timingPoints} 
-                            zoom={settings.zoom} 
-                            snapDivisor={settings.snapDivisor} 
-                        />
-                    </div>
-
-                    <div className="absolute top-8 bottom-0 left-0 right-0 z-0">
-                        <Waveform 
-                            buffer={audio.manager.getBuffer()} 
-                            zoom={settings.zoom} 
-                            duration={playback.duration} 
-                            height={200}
-                        />
+                <div 
+                    className="relative flex flex-col min-h-full" 
+                    style={{ width: (playback.duration / 1000) * settings.zoom, minWidth: '100%' }}
+                >
+                    {/* 1. LAYER: GRID LINES (Absolute, covers everything) */}
+                    <div className="absolute inset-0 z-0">
                         <TimelineGrid 
                             duration={playback.duration} 
                             timingPoints={mapData.timingPoints} 
@@ -212,9 +220,10 @@ export const EditorTimeline = () => {
                         />
                     </div>
 
+                    {/* 2. LAYER: SELECTION BOX (Absolute) */}
                     {isDragging && dragStart && dragCurrent && (
                         <div 
-                            className="absolute top-8 bottom-0 bg-blue-500/20 border border-blue-400 z-20 pointer-events-none"
+                            className="absolute top-0 bottom-0 bg-blue-500/20 border-x border-blue-400 z-20 pointer-events-none"
                             style={{
                                 left: Math.min(dragStart.x, dragCurrent.x),
                                 width: Math.abs(dragCurrent.x - dragStart.x)
@@ -222,55 +231,10 @@ export const EditorTimeline = () => {
                         />
                     )}
 
-                    <div className="absolute top-8 left-0 right-0 bottom-0 pointer-events-none z-40">
-                        {tickGroups.map(group => {
-                            const isSelected = group.notes.some(n => n.selected);
-                            const tickColor = group.color; // Base color always (snap color)
-                            
-                            // Width logic
-                            const rawCalc = settings.zoom / 30;
-                            let width = Math.max(4, Math.round(rawCalc));
-                            if (width % 2 !== 0) width++;
-                            if (group.isUnsnapped) width = 2;
-
-                            // Gradient Highlight + White Border for selection
-                            const bgStyle: React.CSSProperties = {
-                                background: isSelected 
-                                    ? `linear-gradient(to bottom, #ffffff 0%, ${tickColor} 40%, ${tickColor} 100%)`
-                                    : (group.isUnsnapped ? '#fff' : tickColor),
-                                
-                                opacity: group.isUnsnapped ? 0.8 : 1,
-                                border: isSelected ? '1px solid white' : 'none',
-                                boxShadow: isSelected 
-                                    ? `0 0 8px ${tickColor}, 0 0 2px white` 
-                                    : (group.isUnsnapped ? 'none' : `0 0 4px ${tickColor}80`),
-                                zIndex: isSelected ? 50 : 40
-                            };
-
-                            return (
-                                <React.Fragment key={group.time}>
-                                    <div
-                                        className="absolute top-1/2 cursor-pointer pointer-events-auto transition-transform hover:scale-y-110"
-                                        style={{
-                                            left: (group.time / 1000) * settings.zoom,
-                                            width: width,
-                                            height: '40%',
-                                            borderRadius: '4px',
-                                            transform: 'translate(-50%, -50%)',
-                                            ...bgStyle
-                                        }}
-                                        onMouseEnter={(e) => handleTickEnter(e, group.time, group.notes)}
-                                        onMouseLeave={() => setHoveredChord(null)}
-                                    />
-                                </React.Fragment>
-                            );
-                        })}
-                    </div>
-
+                    {/* 3. LAYER: PLAYHEAD (Absolute, covers everything) */}
                     {!playback.isPlaying && (
-                        <div className="absolute top-8 bottom-0 w-[1px] bg-white/30 pointer-events-none z-30" style={{ left: (hoverTime / 1000) * settings.zoom }} />
+                        <div className="absolute top-0 bottom-0 w-[1px] bg-white/30 pointer-events-none z-30" style={{ left: (hoverTime / 1000) * settings.zoom }} />
                     )}
-                    
                     <div 
                         className="absolute top-0 bottom-0 z-50 pointer-events-none will-change-transform"
                         style={{ 
@@ -286,6 +250,91 @@ export const EditorTimeline = () => {
                             className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] shadow-[0_0_10px_rgba(0,0,0,0.5)]"
                             style={{ backgroundColor: playheadColor }}
                         />
+                    </div>
+
+                    {/* --- CONTENT STACK --- */}
+                    
+                    {/* ROW 1: RULER (Sticky) */}
+                    <div className="sticky top-0 z-40">
+                        <TimelineRuler 
+                            duration={playback.duration} 
+                            timingPoints={mapData.timingPoints} 
+                            zoom={settings.zoom} 
+                            snapDivisor={settings.snapDivisor} 
+                        />
+                    </div>
+
+                    {/* ROW 2: WAVEFORM (Collapsible) */}
+                    <div 
+                        className="relative w-full transition-all duration-300 ease-in-out overflow-hidden border-b border-white/5 bg-black/20"
+                        style={{ height: showWaveform ? '80px' : '0px' }}
+                    >
+                        <div className="absolute inset-0 z-10 opacity-80">
+                            <Waveform 
+                                buffer={audio.manager.getBuffer()} 
+                                zoom={settings.zoom} 
+                                duration={playback.duration} 
+                                height={80}
+                            />
+                        </div>
+                    </div>
+
+                    {/* ROW 3: NOTES (Flex Grow) */}
+                    <div className="flex-1 relative min-h-[120px] z-30 mt-2">
+                        {tickGroups.map(group => {
+                            const isSelected = group.notes.some(n => n.selected);
+                            const tickColor = group.color;
+                            
+                            const rawCalc = settings.zoom / 30;
+                            let width = Math.max(4, Math.round(rawCalc));
+                            if (width % 2 !== 0) width++;
+                            if (group.isUnsnapped) width = 2;
+
+                            const bgStyle: React.CSSProperties = {
+                                background: isSelected 
+                                    ? `linear-gradient(to bottom, #ffffff 0%, ${tickColor} 40%, ${tickColor} 100%)`
+                                    : (group.isUnsnapped ? '#fff' : tickColor),
+                                opacity: group.isUnsnapped ? 0.8 : 1,
+                                border: isSelected ? '1px solid white' : 'none',
+                                boxShadow: isSelected 
+                                    ? `0 0 8px ${tickColor}, 0 0 2px white` 
+                                    : (group.isUnsnapped ? 'none' : `0 0 4px ${tickColor}80`),
+                                zIndex: isSelected ? 50 : 40
+                            };
+
+                            return (
+                                <React.Fragment key={group.time}>
+                                    <div
+                                        className="absolute top-1/2 cursor-pointer pointer-events-auto transition-transform hover:scale-y-110"
+                                        style={{
+                                            left: (group.time / 1000) * settings.zoom,
+                                            width: width,
+                                            height: '60%', // Taller notes in the specific note area
+                                            borderRadius: '4px',
+                                            transform: 'translate(-50%, -50%)',
+                                            ...bgStyle
+                                        }}
+                                        onMouseEnter={(e) => handleTickEnter(e, group.time, group.notes)}
+                                        onMouseLeave={() => setHoveredChord(null)}
+                                    />
+                                    
+                                    {/* Hold tails only rendered in Note area */}
+                                    {group.notes.map((n) => n.type === 'hold' && (
+                                        <div 
+                                            key={`${n.id}_tail`}
+                                            className="absolute top-1/2 h-1.5 opacity-40 pointer-events-none rounded-r-full"
+                                            style={{
+                                                left: (group.time / 1000) * settings.zoom,
+                                                width: (n.duration! / 1000) * settings.zoom,
+                                                backgroundColor: tickColor,
+                                                transform: 'translate(0, -50%)', 
+                                                zIndex: 35
+                                            }}
+                                        />
+                                    ))}
+                                </React.Fragment>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
