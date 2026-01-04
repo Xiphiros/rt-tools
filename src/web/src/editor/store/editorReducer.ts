@@ -1,13 +1,20 @@
-import { EditorMapData, EditorNote, EditorSettings, HistoryState } from '../types';
+import { EditorMapData, EditorNote, HistoryState, MapMetadata, TimingPoint } from '../types';
 
 // --- ACTIONS ---
 export type EditorAction =
     | { type: 'LOAD_MAP'; payload: EditorMapData }
+    // Note Actions
     | { type: 'ADD_NOTE'; payload: EditorNote }
-    | { type: 'REMOVE_NOTES'; payload: string[] } // IDs
+    | { type: 'REMOVE_NOTES'; payload: string[] }
     | { type: 'UPDATE_NOTE'; payload: { id: string; changes: Partial<EditorNote> } }
     | { type: 'SELECT_NOTES'; payload: { ids: string[]; append: boolean } }
     | { type: 'DESELECT_ALL' }
+    // Metadata & Timing
+    | { type: 'UPDATE_METADATA'; payload: Partial<MapMetadata> }
+    | { type: 'ADD_TIMING_POINT'; payload: TimingPoint }
+    | { type: 'UPDATE_TIMING_POINT'; payload: { id: string; changes: Partial<TimingPoint> } }
+    | { type: 'REMOVE_TIMING_POINT'; payload: string }
+    // Global
     | { type: 'SET_SNAP'; payload: number }
     | { type: 'SET_ZOOM'; payload: number }
     | { type: 'UNDO' }
@@ -15,18 +22,35 @@ export type EditorAction =
 
 // --- HELPERS ---
 const pushHistory = (state: HistoryState): HistoryState => {
-    // Limit history size to 50 steps
     const newPast = [...state.past, state.present].slice(-50);
     return {
         past: newPast,
-        present: { ...state.present }, // Shallow copy for immutability check
+        present: { ...state.present },
         future: []
     };
 };
 
-// --- REDUCER ---
+// --- INITIAL STATE ---
 export const initialMapData: EditorMapData = {
     notes: [],
+    metadata: {
+        title: '',
+        artist: '',
+        mapper: '',
+        difficultyName: '',
+        source: '',
+        tags: '',
+        backgroundFile: '',
+        audioFile: '',
+        previewTime: 0
+    },
+    timingPoints: [{
+        id: 'initial-timing',
+        time: 0,
+        bpm: 120,
+        meter: 4,
+        kiai: false
+    }],
     bpm: 120,
     offset: 0
 };
@@ -37,6 +61,7 @@ export const initialHistory: HistoryState = {
     future: []
 };
 
+// --- REDUCER ---
 export const editorReducer = (state: HistoryState, action: EditorAction): HistoryState => {
     switch (action.type) {
         case 'LOAD_MAP':
@@ -46,10 +71,10 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
                 future: []
             };
 
+        // --- NOTE OPERATIONS ---
         case 'ADD_NOTE': {
             const next = pushHistory(state);
             next.present.notes = [...next.present.notes, action.payload];
-            // Keep sorted by time
             next.present.notes.sort((a, b) => a.time - b.time);
             return next;
         }
@@ -71,12 +96,8 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
         }
 
         case 'SELECT_NOTES': {
-            // Selection is transient state, usually NOT strictly part of Undo/Redo history 
-            // regarding "Data Integrity", but we handle it in 'present' for simplicity here.
-            // We do NOT call pushHistory because selecting isn't a "destructive" edit.
             const next = { ...state, present: { ...state.present } };
             const idsToSelect = new Set(action.payload.ids);
-
             next.present.notes = next.present.notes.map(n => {
                 if (action.payload.append) {
                     if (idsToSelect.has(n.id)) return { ...n, selected: true };
@@ -94,6 +115,51 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
             return next;
         }
 
+        // --- METADATA & TIMING ---
+        case 'UPDATE_METADATA': {
+            const next = pushHistory(state);
+            next.present.metadata = { ...next.present.metadata, ...action.payload };
+            return next;
+        }
+
+        case 'ADD_TIMING_POINT': {
+            const next = pushHistory(state);
+            next.present.timingPoints = [...next.present.timingPoints, action.payload]
+                .sort((a, b) => a.time - b.time);
+            
+            // Sync legacy fields if it's the first point
+            if (next.present.timingPoints[0]) {
+                next.present.bpm = next.present.timingPoints[0].bpm;
+                next.present.offset = next.present.timingPoints[0].time;
+            }
+            return next;
+        }
+
+        case 'UPDATE_TIMING_POINT': {
+            const next = pushHistory(state);
+            next.present.timingPoints = next.present.timingPoints.map(tp => 
+                tp.id === action.payload.id ? { ...tp, ...action.payload.changes } : tp
+            ).sort((a, b) => a.time - b.time);
+
+            if (next.present.timingPoints[0]) {
+                next.present.bpm = next.present.timingPoints[0].bpm;
+                next.present.offset = next.present.timingPoints[0].time;
+            }
+            return next;
+        }
+
+        case 'REMOVE_TIMING_POINT': {
+            const next = pushHistory(state);
+            next.present.timingPoints = next.present.timingPoints.filter(tp => tp.id !== action.payload);
+            
+            if (next.present.timingPoints[0]) {
+                next.present.bpm = next.present.timingPoints[0].bpm;
+                next.present.offset = next.present.timingPoints[0].time;
+            }
+            return next;
+        }
+
+        // --- HISTORY ---
         case 'UNDO': {
             if (state.past.length === 0) return state;
             const previous = state.past[state.past.length - 1];
