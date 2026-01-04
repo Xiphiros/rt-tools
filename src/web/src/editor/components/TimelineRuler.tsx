@@ -1,6 +1,3 @@
-import React from 'react';
-import { EditorSettings } from '../types';
-
 interface TimelineRulerProps {
     duration: number;
     bpm: number;
@@ -9,16 +6,10 @@ interface TimelineRulerProps {
 }
 
 export const TimelineRuler = ({ duration, bpm, zoom, snapDivisor }: TimelineRulerProps) => {
-    // Canvas-based approach is often better for rulers, but we'll use CSS/DOM for consistency with grid
-    
     const msPerBeat = 60000 / bpm;
     const pxPerBeat = (msPerBeat / 1000) * zoom;
     const totalWidth = (duration / 1000) * zoom;
     
-    // We only render ticks that are relevant to the zoom level
-    // Optimization: In a real app, use virtualization (react-window). 
-    // Here we use CSS repeats to simulate it efficiently.
-
     const majorTickSize = pxPerBeat * 4; // Measure
     const beatTickSize = pxPerBeat;      // Beat
 
