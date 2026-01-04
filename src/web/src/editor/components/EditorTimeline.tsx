@@ -73,7 +73,6 @@ export const EditorTimeline = () => {
         }
         
         if (!e.shiftKey && !e.ctrlKey) {
-            // NEW: Use centralized snap utility
             const seekTime = settings.snappingEnabled 
                 ? snapTime(rawTime, mapData.timingPoints, settings.snapDivisor)
                 : rawTime;
@@ -89,7 +88,6 @@ export const EditorTimeline = () => {
         const x = e.clientX - rect.left + scrollLeft;
         const rawTime = (x / settings.zoom) * 1000;
 
-        // NEW: Use centralized snap utility
         const snapped = snapTime(rawTime, mapData.timingPoints, settings.snapDivisor);
         setHoverTime(snapped);
 
@@ -150,6 +148,20 @@ export const EditorTimeline = () => {
         </div>
     ) : null;
 
+    // --- PLAYHEAD COLOR LOGIC ---
+    const playheadColor = useMemo(() => {
+        if (playback.isPlaying) return '#FACC15'; // Default Yellow
+
+        const tp = getActiveTimingPoint(playback.currentTime, mapData.timingPoints);
+        if (!tp) return '#FACC15';
+
+        const msPerBeat = 60000 / tp.bpm;
+        const beatIndex = (playback.currentTime - tp.time) / msPerBeat;
+        const snap = getSnapDivisor(beatIndex);
+        
+        return snap > 0 ? getSnapColor(snap) : '#FACC15';
+    }, [playback.currentTime, playback.isPlaying, mapData.timingPoints]);
+
     return (
         <div className="flex-1 flex flex-col bg-background relative select-none h-full">
             {createPortal(tooltip, document.body)}
@@ -164,8 +176,13 @@ export const EditorTimeline = () => {
             >
                 <div className="relative" style={{ width: (playback.duration / 1000) * settings.zoom, minWidth: '100%', height: '100%' }}>
                     <div className="sticky top-0 z-30">
-                        {/* Ruler also needs updating to accept timing points, keeping simple for now */}
-                        <TimelineRuler duration={playback.duration} bpm={mapData.bpm} zoom={settings.zoom} snapDivisor={settings.snapDivisor} />
+                        {/* Ruler uses full TimingPoints now */}
+                        <TimelineRuler 
+                            duration={playback.duration} 
+                            timingPoints={mapData.timingPoints} 
+                            zoom={settings.zoom} 
+                            snapDivisor={settings.snapDivisor} 
+                        />
                     </div>
 
                     <div className="absolute top-8 bottom-0 left-0 right-0 z-0">
@@ -175,7 +192,6 @@ export const EditorTimeline = () => {
                             duration={playback.duration} 
                             height={200}
                         />
-                        {/* UPDATE GRID PROPS */}
                         <TimelineGrid 
                             duration={playback.duration} 
                             timingPoints={mapData.timingPoints} 
@@ -246,8 +262,25 @@ export const EditorTimeline = () => {
                     {!playback.isPlaying && (
                         <div className="absolute top-8 bottom-0 w-[1px] bg-white/30 pointer-events-none z-30" style={{ left: (hoverTime / 1000) * settings.zoom }} />
                     )}
-                    <div className="absolute top-0 bottom-0 w-[2px] bg-yellow-400 z-50 pointer-events-none shadow-[0_0_10px_rgba(250,204,21,0.8)]" style={{ left: (playback.currentTime / 1000) * settings.zoom }}>
-                        <div className="absolute top-0 -left-1.5 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-yellow-400" />
+                    
+                    {/* PLAYHEAD */}
+                    <div 
+                        className="absolute top-0 bottom-0 z-50 pointer-events-none will-change-transform"
+                        style={{ 
+                            left: (playback.currentTime / 1000) * settings.zoom,
+                            transform: 'translateX(-50%)' // PERFECT CENTERING
+                        }}
+                    >
+                        {/* Arrow */}
+                        <div 
+                            className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px]" 
+                            style={{ borderTopColor: playheadColor }}
+                        />
+                        {/* Line */}
+                        <div 
+                            className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] shadow-[0_0_10px_rgba(0,0,0,0.5)]"
+                            style={{ backgroundColor: playheadColor }}
+                        />
                     </div>
                 </div>
             </div>
