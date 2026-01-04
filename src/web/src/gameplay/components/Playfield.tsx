@@ -1,6 +1,5 @@
-import React from 'react';
 import { EditorMapData, EditorNote } from '../../editor/types';
-import { KEY_TO_ROW, NOTE_SIZE, ROW_COLORS, ROW_TOP, ROW_HOME, ROW_BOTTOM } from '../constants';
+import { NOTE_SIZE, ROW_COLORS, ROW_TOP, ROW_HOME, ROW_BOTTOM } from '../constants';
 
 interface PlayfieldProps {
     mapData: EditorMapData;
@@ -10,35 +9,17 @@ interface PlayfieldProps {
 }
 
 // Layout Constants for Diamond Grid (CSS-like coords)
-// We assume a 16:9 container, but we render centrally.
 const CENTER_X = 50; // %
 const CENTER_Y = 50; // %
 
 // Row Offsets (Vertical)
-// Top Row is higher, Bottom Row is lower
-const ROW_Y_OFFSETS = {
+const ROW_Y_OFFSETS: Record<number, number> = {
     [ROW_TOP]: -15,    // % Up
     [ROW_HOME]: 0,     // Center
     [ROW_BOTTOM]: 15   // % Down
 };
 
-// Column Offsets (Horizontal)
-// We need to map specific keys to specific X positions to match the diamond shape.
-// Simplified Logic: 
-// Top Row (QWERTY): Shifted Left
-// Home Row (ASDFGH): Centered
-// Bot Row (ZXCVBN): Shifted Right? 
-// Actually, let's replicate the screenshot's diagonal stagger.
-// Ideally, keys should be distinct. For this editor view, we'll auto-distribute notes based on time if we don't have explicit columns,
-// OR since we DO have columns (0, 1, 2 = Rows), we need X separation for concurrent notes.
-// 
-// CURRENT EDITOR LOGIC: `note.column` is actually the ROW index (0,1,2). 
-// `note.key` determines the horizontal placement in the physical keyboard sense, 
-// but visually they often overlap if just using row.
-// 
-// Let's implement a dynamic X based on the key index within the row for visualization.
-
-const KEY_ORDER = {
+const KEY_ORDER: Record<number, string[]> = {
     [ROW_TOP]: ['q','w','e','r','t','y','u','i','o','p'],
     [ROW_HOME]: ['a','s','d','f','g','h','j','k','l',';'],
     [ROW_BOTTOM]: ['z','x','c','v','b','n','m',',','.','/']
@@ -73,7 +54,7 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true }: 
 
         return {
             x: CENTER_X + xOffsetPct + rowStagger,
-            y: CENTER_Y + ROW_Y_OFFSETS[note.column]
+            y: CENTER_Y + (ROW_Y_OFFSETS[note.column] || 0)
         };
     };
 
@@ -104,7 +85,9 @@ export const Playfield = ({ mapData, currentTime, showApproachCircles = true }: 
                 const progress = 1 - (relativeTime / PREEMPT);
                 const approachScale = 3 - (2 * progress);
 
-                const color = ROW_COLORS[note.column] || '#fff';
+                // Safe cast for color lookup
+                const colors = ROW_COLORS as Record<number, string>;
+                const color = colors[note.column] || '#fff';
 
                 return (
                     <div 
