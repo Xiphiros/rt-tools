@@ -61,7 +61,9 @@ export class AudioManager {
     }
 
     play(): void {
-        if (this.isPlaying || !this.buffer) return;
+        // FIX: Only return if we are playing AND have an active source.
+        // If we are "playing" but source is null (during seek), we must proceed.
+        if ((this.isPlaying && this.source) || !this.buffer) return;
         
         this.ensureContext();
 
@@ -85,13 +87,8 @@ export class AudioManager {
 
         // Auto-handle natural finish
         this.source.onended = () => {
-            // CRITICAL: This callback might fire after we manually stopped/replaced the source.
-            // We only care if *this specific source* ended while we still think we are playing.
-            // But since source nodes are recreated, checking `this.isPlaying` is tricky if we just restarted.
-            // Best practice: The `stopSource` method removes this listener so this ONLY fires on natural end.
-            
+            // Only fire if this specific source ends naturally while we expect it to be playing
             if (this.isPlaying) {
-                // Determine if we reached the end
                 const predictedEnd = this.startContextTime + (this.buffer!.duration - this.startTrackTime) / this.playbackRate;
                 
                 // Allow a small buffer for timing variations
@@ -122,15 +119,24 @@ export class AudioManager {
     seek(timeMs: number): void {
         const timeSeconds = Math.max(0, timeMs / 1000);
         
+        // Capture state before stopping
         const wasPlaying = this.isPlaying;
+        
         if (wasPlaying) {
             this.stopSource();
-        }
-
-        this.startTrackTime = timeSeconds;
-
-        if (wasPlaying) {
+            // Important: We do NOT set isPlaying = false here.
+            // We want the system to treat this as a seamless jump.
+            // The time update happens below.
+            
+            // We update the track start position:
+            this.startTrackTime = timeSeconds;
+            
+            // We restart playback immediately.
+            // Since stopSource() cleared this.source, the play() guard will allow this.
             this.play();
+        } else {
+            // Just update the pointer
+            this.startTrackTime = timeSeconds;
         }
     }
 
@@ -196,6 +202,7 @@ export class AudioManager {
 
     private stopSource(): void {
         if (this.source) {
+            // Unbind onended to prevent race conditions during seek/restart
             this.source.onended = null;
             
             try {
