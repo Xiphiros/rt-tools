@@ -13,7 +13,9 @@ interface HitCircleProps {
 }
 
 export const HitCircle = ({ char, row, selected, type = 'tap', duration = 0, zoom = 100 }: HitCircleProps) => {
-    const baseColor = ROW_COLORS[row] || '#fff';
+    // Cast ROW_COLORS to allow number indexing or check existence
+    const colors = ROW_COLORS as Record<number, string>;
+    const baseColor = colors[row] || '#fff';
     
     // Style for the inner circle (The Hit Object)
     const circleStyle: React.CSSProperties = {
@@ -59,9 +61,6 @@ export const HitCircle = ({ char, row, selected, type = 'tap', duration = 0, zoo
             </div>
 
             {/* 4. Approach Circle (Editor Visualization) */}
-            {/* In a static editor, we might show the approach circle as a ring slightly larger 
-                to indicate spacing, or only show it during playback/hover. 
-                For now, we render a static faint ring to simulate the "concept". */}
             <div 
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/30 z-20 pointer-events-none"
                 style={{
