@@ -44,20 +44,36 @@ export const EditorTimeline = () => {
         });
     }, [mapData.notes, mapData.timingPoints, mapData.bpm, mapData.offset]);
 
-    // --- ZOOM ---
+    // --- ZOOM & SEEK (WHEEL) ---
     useEffect(() => {
         const container = containerRef.current;
         if (!container) return;
         const handleWheel = (e: WheelEvent) => {
+            e.preventDefault();
+            
             if (e.ctrlKey) {
-                e.preventDefault();
+                // ZOOM
                 const delta = e.deltaY > 0 ? -25 : 25;
                 setSettings(s => ({ ...s, zoom: Math.max(50, Math.min(500, s.zoom + delta)) }));
+            } else {
+                // SEEK (Snap based)
+                const direction = e.deltaY > 0 ? 1 : -1; // Down = Next
+                
+                // Get current Snap Interval
+                const tp = getActiveTimingPoint(playback.currentTime, mapData.timingPoints);
+                const bpm = tp ? tp.bpm : 120;
+                const msPerBeat = 60000 / bpm;
+                const step = msPerBeat / settings.snapDivisor;
+
+                const rawTarget = playback.currentTime + (step * direction);
+                const cleanTarget = snapTime(rawTarget, mapData.timingPoints, settings.snapDivisor);
+                
+                audio.seek(cleanTarget);
             }
         };
         container.addEventListener('wheel', handleWheel, { passive: false });
         return () => container.removeEventListener('wheel', handleWheel);
-    }, [setSettings]);
+    }, [setSettings, playback.currentTime, mapData.timingPoints, settings.snapDivisor, audio]);
 
     // --- MOUSE HANDLERS ---
     const handleMouseDown = (e: React.MouseEvent) => {
@@ -143,24 +159,20 @@ export const EditorTimeline = () => {
         >
             <div className="animate-in fade-in zoom-in-95 duration-100 mb-2 drop-shadow-2xl">
                 <MiniPlayfield notes={hoveredChord.notes} scale={0.35} />
-                <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white/10" />
+                <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-[#222] border-t-solid" />
             </div>
         </div>
     ) : null;
 
     const playheadColor = useMemo(() => {
         const defaultColor = '#FACC15'; 
-        
         if (playback.isPlaying) return defaultColor;
-
         const tp = getActiveTimingPoint(playback.currentTime, mapData.timingPoints);
         if (!tp) return defaultColor;
-
         const msPerBeat = 60000 / tp.bpm;
         const diff = playback.currentTime - tp.time;
         const beatIndex = diff / msPerBeat;
         const snap = getSnapDivisor(beatIndex);
-        
         return snap > 0 ? getSnapColor(snap) : defaultColor;
     }, [playback.currentTime, playback.isPlaying, mapData.timingPoints]);
 
@@ -213,56 +225,43 @@ export const EditorTimeline = () => {
                     <div className="absolute top-8 left-0 right-0 bottom-0 pointer-events-none z-40">
                         {tickGroups.map(group => {
                             const isSelected = group.notes.some(n => n.selected);
-                            const hasHold = group.notes.some(n => n.type === 'hold');
-                            const tickColor = isSelected ? '#fff' : group.color;
+                            const tickColor = group.color; // Base color always (snap color)
                             
-                            // FORCE EVEN INTEGER WIDTH
-                            // 1. Calculate raw width based on zoom
+                            // Width logic
                             const rawCalc = settings.zoom / 30;
-                            // 2. Ensure minimum 4px, round to nearest int
                             let width = Math.max(4, Math.round(rawCalc));
-                            // 3. Make even (e.g. 5 -> 6) to ensure centering works with translate(-50%)
                             if (width % 2 !== 0) width++;
-                            
-                            // Unsnapped notes use smaller width, fixed at 2px (also even)
                             if (group.isUnsnapped) width = 2;
 
-                            const bgStyle = group.isUnsnapped 
-                                ? { backgroundColor: '#fff', opacity: 0.8 } 
-                                : { backgroundColor: tickColor };
+                            // Gradient Highlight + White Border for selection
+                            const bgStyle: React.CSSProperties = {
+                                background: isSelected 
+                                    ? `linear-gradient(to bottom, #ffffff 0%, ${tickColor} 40%, ${tickColor} 100%)`
+                                    : (group.isUnsnapped ? '#fff' : tickColor),
+                                
+                                opacity: group.isUnsnapped ? 0.8 : 1,
+                                border: isSelected ? '1px solid white' : 'none',
+                                boxShadow: isSelected 
+                                    ? `0 0 8px ${tickColor}, 0 0 2px white` 
+                                    : (group.isUnsnapped ? 'none' : `0 0 4px ${tickColor}80`),
+                                zIndex: isSelected ? 50 : 40
+                            };
 
                             return (
                                 <React.Fragment key={group.time}>
                                     <div
-                                        className={`absolute top-1/2 cursor-pointer pointer-events-auto transition-transform hover:scale-y-110 hover:brightness-125
-                                            ${isSelected ? 'shadow-[0_0_8px_white] z-50' : 'z-40'}
-                                        `}
+                                        className="absolute top-1/2 cursor-pointer pointer-events-auto transition-transform hover:scale-y-110"
                                         style={{
                                             left: (group.time / 1000) * settings.zoom,
                                             width: width,
                                             height: '40%',
                                             borderRadius: '4px',
                                             transform: 'translate(-50%, -50%)',
-                                            boxShadow: group.isUnsnapped ? 'none' : `0 0 4px ${tickColor}80`,
                                             ...bgStyle
                                         }}
                                         onMouseEnter={(e) => handleTickEnter(e, group.time, group.notes)}
                                         onMouseLeave={() => setHoveredChord(null)}
                                     />
-                                    
-                                    {hasHold && group.notes.map((n) => n.type === 'hold' && (
-                                        <div 
-                                            key={`${n.id}_tail`}
-                                            className="absolute top-1/2 h-1 opacity-40 pointer-events-none"
-                                            style={{
-                                                left: (group.time / 1000) * settings.zoom,
-                                                width: (n.duration! / 1000) * settings.zoom,
-                                                backgroundColor: tickColor,
-                                                transform: 'translate(0, -50%)', 
-                                                zIndex: 35
-                                            }}
-                                        />
-                                    ))}
                                 </React.Fragment>
                             );
                         })}
