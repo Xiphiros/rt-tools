@@ -1,4 +1,4 @@
-import { EditorSettings, TimingPoint } from '../types';
+import { TimingPoint } from '../types';
 import { SNAP_COLORS } from '../utils/snapColors';
 
 interface TimelineRulerProps {
@@ -60,10 +60,6 @@ export const TimelineRuler = ({ duration, timingPoints, zoom, snapDivisor }: Tim
         // Others = Short
         const validSnaps = [1, 2, 3, 4, 6, 8, 12, 16].filter(s => s <= snapDivisor);
 
-        // Reverse order so smaller ticks are drawn first (background), larger on top? 
-        // CSS background stack: First defined is Top.
-        // We want 1/1 on top.
-        
         const layers = validSnaps.map(s => {
             const color = SNAP_COLORS[s];
             return `linear-gradient(90deg, ${color} 1px, transparent 1px)`;
