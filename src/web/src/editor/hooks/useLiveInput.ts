@@ -3,13 +3,7 @@ import { useEditor } from '../store/EditorContext';
 import { KEY_TO_ROW } from '../../gameplay/constants';
 import { snapTime } from '../utils/timing';
 import { useHitsounds } from './useHitsounds';
-import { EditorNote, HitsoundSettings } from '../types';
-
-const DEFAULT_HITSOUND: HitsoundSettings = {
-    sampleSet: 'normal',
-    volume: 100,
-    additions: { whistle: false, finish: false, clap: false }
-};
+import { EditorNote } from '../types';
 
 interface HeldKey {
     startTime: number; // Raw playhead time
@@ -17,7 +11,7 @@ interface HeldKey {
 }
 
 export const useLiveInput = () => {
-    const { playback, mapData, dispatch, settings, activeLayerId } = useEditor();
+    const { playback, mapData, dispatch, settings, activeLayerId, defaultHitsounds } = useEditor();
     const { play } = useHitsounds();
     
     // Track keys currently being held down
@@ -41,8 +35,8 @@ export const useLiveInput = () => {
                 const activeLayer = mapData.layers.find(l => l.id === activeLayerId);
                 if (activeLayer && activeLayer.locked) return;
 
-                // Play feedback sound
-                play(DEFAULT_HITSOUND);
+                // Play feedback sound with current defaults
+                play(defaultHitsounds);
 
                 // Start tracking this hold
                 heldKeys.current.set(key, {
@@ -79,15 +73,8 @@ export const useLiveInput = () => {
                     end = snapTime(releaseTime, mapData.timingPoints, settings.snapDivisor);
                 }
 
-                // Logic:
-                // If the snapped end is <= snapped start, force it to be at least a Tap.
-                // If the user held it long enough to span grid lines, make it a Hold.
-                
                 // Sanity check: Ensure non-negative duration
                 let duration = Math.max(0, end - start);
-                
-                // Minimum hold duration check (e.g. 1/16th note) to prevent accidental tiny holds
-                // For now, if duration is 0 after snapping, it's a tap.
                 
                 const type = duration > 0 ? 'hold' : 'tap';
                 const row = KEY_TO_ROW[key];
@@ -100,7 +87,7 @@ export const useLiveInput = () => {
                     type: type,
                     duration: duration,
                     layerId: held.layerId,
-                    hitsound: { ...DEFAULT_HITSOUND }
+                    hitsound: { ...defaultHitsounds }
                 };
 
                 dispatch({ type: 'ADD_NOTE', payload: newNote });
@@ -114,7 +101,7 @@ export const useLiveInput = () => {
             window.removeEventListener('keydown', handleKeyDown);
             window.removeEventListener('keyup', handleKeyUp);
         };
-    }, [playback.isPlaying, playback.currentTime, mapData, settings, activeLayerId, dispatch, play]);
+    }, [playback.isPlaying, playback.currentTime, mapData, settings, activeLayerId, dispatch, play, defaultHitsounds]);
 
     return { activeKeys };
 };
