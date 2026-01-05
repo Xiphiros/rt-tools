@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useEditor } from '../store/EditorContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -34,6 +35,8 @@ const VolumeSlider = ({
 export const EditorBottomBar = () => {
     const { playback, audio, canUndo, canRedo, dispatch, settings, setSettings } = useEditor();
     const [showVolume, setShowVolume] = useState(false);
+    const volumeBtnRef = useRef<HTMLButtonElement>(null);
+    const [popupPosition, setPopupPosition] = useState({ left: 0, bottom: 0 });
     
     // Check if buffer is ready
     const isReady = !!audio.manager.getBuffer();
@@ -42,6 +45,18 @@ export const EditorBottomBar = () => {
         if (!isReady) return;
         playback.isPlaying ? audio.pause() : audio.play(); 
     };
+
+    // Calculate position for the portal
+    useEffect(() => {
+        if (showVolume && volumeBtnRef.current) {
+            const rect = volumeBtnRef.current.getBoundingClientRect();
+            // Center horizontally on button, position above
+            setPopupPosition({
+                left: rect.left + rect.width / 2,
+                bottom: window.innerHeight - rect.top + 10
+            });
+        }
+    }, [showVolume]);
 
     return (
         <div className="h-16 bg-card border-t border-border flex items-center px-4 justify-between select-none shadow-[0_-5px_20px_rgba(0,0,0,0.3)] z-50 relative">
@@ -88,52 +103,64 @@ export const EditorBottomBar = () => {
                 <div className="flex flex-col items-center relative">
                     <span className="text-[10px] text-muted uppercase font-bold mb-1">Volume</span>
                     <button 
+                        ref={volumeBtnRef}
                         onClick={() => setShowVolume(!showVolume)}
                         className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all border ${showVolume ? 'bg-card border-primary text-primary' : 'bg-input text-muted border-border hover:text-white hover:border-white/20'}`}
                     >
                         <FontAwesomeIcon icon={settings.masterVolume === 0 ? faVolumeMute : faVolumeUp} />
                     </button>
 
-                    {/* Mixer Popover */}
-                    {showVolume && (
-                        <div className="absolute bottom-14 left-1/2 -translate-x-1/2 w-64 bg-card border border-border rounded-xl shadow-2xl p-4 animate-in fade-in slide-in-from-bottom-2 z-50 flex flex-col gap-4">
-                            <div className="flex justify-between items-center border-b border-border pb-2 mb-1">
-                                <span className="text-xs font-bold text-white">Audio Mixer</span>
-                                <button onClick={() => setShowVolume(false)} className="text-[10px] bg-input px-2 py-0.5 rounded text-muted hover:text-white">Close</button>
-                            </div>
-                            
-                            <VolumeSlider 
-                                label="Master" 
-                                value={settings.masterVolume} 
-                                onChange={(v) => setSettings(s => ({...s, masterVolume: v}))} 
-                                icon={faVolumeUp} 
-                            />
-                            <VolumeSlider 
-                                label="Music" 
-                                value={settings.musicVolume} 
-                                onChange={(v) => setSettings(s => ({...s, musicVolume: v}))} 
-                                icon={faMusic} 
-                            />
-                            <VolumeSlider 
-                                label="Hitsounds" 
-                                value={settings.hitsoundVolume} 
-                                onChange={(v) => setSettings(s => ({...s, hitsoundVolume: v}))} 
-                                icon={faDrum} 
-                            />
-                            <VolumeSlider 
-                                label="Metronome" 
-                                value={settings.metronomeVolume} 
-                                onChange={(v) => setSettings(s => ({...s, metronomeVolume: v}))} 
-                                icon={faDrum} // Reusing drum for metro tick
-                            />
-                            
-                            <button 
-                                onClick={() => setSettings(s => ({...s, metronome: !s.metronome}))}
-                                className={`mt-2 w-full py-2 rounded text-xs font-bold transition-colors ${settings.metronome ? 'bg-primary text-black' : 'bg-input text-muted hover:text-white'}`}
+                    {/* Mixer Popover (PORTAL) */}
+                    {showVolume && createPortal(
+                        <>
+                            <div className="fixed inset-0 z-[60]" onClick={() => setShowVolume(false)} />
+                            <div 
+                                className="fixed w-64 bg-card border border-border rounded-xl shadow-2xl p-4 animate-in fade-in slide-in-from-bottom-2 z-[70] flex flex-col gap-4"
+                                style={{
+                                    left: popupPosition.left,
+                                    bottom: popupPosition.bottom,
+                                    transform: 'translateX(-50%)'
+                                }}
                             >
-                                Metronome: {settings.metronome ? "ON" : "OFF"}
-                            </button>
-                        </div>
+                                <div className="flex justify-between items-center border-b border-border pb-2 mb-1">
+                                    <span className="text-xs font-bold text-white">Audio Mixer</span>
+                                    <button onClick={() => setShowVolume(false)} className="text-[10px] bg-input px-2 py-0.5 rounded text-muted hover:text-white">Close</button>
+                                </div>
+                                
+                                <VolumeSlider 
+                                    label="Master" 
+                                    value={settings.masterVolume} 
+                                    onChange={(v) => setSettings(s => ({...s, masterVolume: v}))} 
+                                    icon={faVolumeUp} 
+                                />
+                                <VolumeSlider 
+                                    label="Music" 
+                                    value={settings.musicVolume} 
+                                    onChange={(v) => setSettings(s => ({...s, musicVolume: v}))} 
+                                    icon={faMusic} 
+                                />
+                                <VolumeSlider 
+                                    label="Hitsounds" 
+                                    value={settings.hitsoundVolume} 
+                                    onChange={(v) => setSettings(s => ({...s, hitsoundVolume: v}))} 
+                                    icon={faDrum} 
+                                />
+                                <VolumeSlider 
+                                    label="Metronome" 
+                                    value={settings.metronomeVolume} 
+                                    onChange={(v) => setSettings(s => ({...s, metronomeVolume: v}))} 
+                                    icon={faDrum} 
+                                />
+                                
+                                <button 
+                                    onClick={() => setSettings(s => ({...s, metronome: !s.metronome}))}
+                                    className={`mt-2 w-full py-2 rounded text-xs font-bold transition-colors ${settings.metronome ? 'bg-primary text-black' : 'bg-input text-muted hover:text-white'}`}
+                                >
+                                    Metronome: {settings.metronome ? "ON" : "OFF"}
+                                </button>
+                            </div>
+                        </>,
+                        document.body
                     )}
                 </div>
 
@@ -162,11 +189,6 @@ export const EditorBottomBar = () => {
                 <button disabled={!canUndo} onClick={() => dispatch({ type: 'UNDO' })} className="w-10 h-10 rounded-lg hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors"><FontAwesomeIcon icon={faUndo} /></button>
                 <button disabled={!canRedo} onClick={() => dispatch({ type: 'REDO' })} className="w-10 h-10 rounded-lg hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors"><FontAwesomeIcon icon={faRedo} /></button>
             </div>
-            
-            {/* Backdrop for closing volume mixer */}
-            {showVolume && (
-                <div className="fixed inset-0 z-40" onClick={() => setShowVolume(false)} />
-            )}
         </div>
     );
 };
