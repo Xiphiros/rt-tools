@@ -1,5 +1,4 @@
 import { useState, useEffect, RefObject, useCallback } from 'react';
-import debounce from 'lodash.debounce';
 
 interface VirtualWindow {
     startTime: number;
@@ -14,6 +13,7 @@ interface UseVirtualWindowProps {
     zoom: number; // pixels per second
     totalDuration: number; // ms
     bufferPx?: number; // Extra pixels to render off-screen
+    contentOffset?: number; // Padding at the start (px)
 }
 
 /**
@@ -24,7 +24,8 @@ export const useVirtualWindow = ({
     containerRef,
     zoom,
     totalDuration,
-    bufferPx = 1000 // Render 1000px ahead/behind (~2 screens usually)
+    bufferPx = 1000, // Render 1000px ahead/behind (~2 screens usually)
+    contentOffset = 0
 }: UseVirtualWindowProps): VirtualWindow => {
     const [windowState, setWindowState] = useState<VirtualWindow>({
         startTime: 0,
@@ -40,26 +41,29 @@ export const useVirtualWindow = ({
 
         const { scrollLeft, clientWidth } = container;
 
-        // Determine visible pixel range
-        const startPx = scrollLeft;
-        const endPx = scrollLeft + clientWidth;
+        // Determine visible pixel range relative to CONTENT start (t=0)
+        // If scrollLeft is 0, and offset is 300, we are viewing -300px to width-300px.
+        // We only care about positive time for rendering, so we clamp.
+        
+        const visibleStartPx = scrollLeft - contentOffset;
+        const visibleEndPx = scrollLeft + clientWidth - contentOffset;
 
         // Apply buffer
-        const renderStartPx = Math.max(0, startPx - bufferPx);
-        const renderEndPx = endPx + bufferPx;
+        const renderStartPx = Math.max(0, visibleStartPx - bufferPx);
+        const renderEndPx = visibleEndPx + bufferPx;
 
         // Convert to time (ms)
         const startTime = (renderStartPx / zoom) * 1000;
         const endTime = (renderEndPx / zoom) * 1000;
 
         setWindowState({
-            startTime,
-            endTime: Math.min(endTime, totalDuration),
-            startPx,
-            endPx,
-            renderStartPx
+            startTime: Math.max(0, startTime),
+            endTime: Math.min(Math.max(0, endTime), totalDuration),
+            startPx: scrollLeft,
+            endPx: scrollLeft + clientWidth,
+            renderStartPx: Math.max(0, renderStartPx) // Absolute pixel position for some virtualizers
         });
-    }, [containerRef, zoom, totalDuration, bufferPx]);
+    }, [containerRef, zoom, totalDuration, bufferPx, contentOffset]);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -69,7 +73,6 @@ export const useVirtualWindow = ({
         calculateWindow();
 
         // Optimized scroll handler
-        // We use requestAnimationFrame to throttle without losing the "latest" frame
         let rAF: number | null = null;
 
         const onScroll = () => {
@@ -80,7 +83,6 @@ export const useVirtualWindow = ({
             });
         };
 
-        // Resize observer to handle window resizing
         const resizeObserver = new ResizeObserver(() => {
             calculateWindow();
         });
