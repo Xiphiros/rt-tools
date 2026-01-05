@@ -1,4 +1,4 @@
-import { EditorMapData, EditorNote, HistoryState, MapMetadata, TimingPoint } from '../types';
+import { EditorMapData, EditorNote, HistoryState, MapMetadata, TimingPoint, EditorLayer } from '../types';
 
 // --- ACTIONS ---
 export type EditorAction =
@@ -12,6 +12,14 @@ export type EditorAction =
     | { type: 'ADD_TIMING_POINT'; payload: TimingPoint }
     | { type: 'UPDATE_TIMING_POINT'; payload: { id: string; changes: Partial<TimingPoint> } }
     | { type: 'REMOVE_TIMING_POINT'; payload: string }
+    
+    // Layer Actions
+    | { type: 'ADD_LAYER'; payload: EditorLayer }
+    | { type: 'REMOVE_LAYER'; payload: string }
+    | { type: 'UPDATE_LAYER'; payload: { id: string; changes: Partial<EditorLayer> } }
+    | { type: 'REORDER_LAYERS'; payload: EditorLayer[] }
+    | { type: 'MERGE_LAYER_DOWN'; payload: string }
+
     | { type: 'UNDO' }
     | { type: 'REDO' };
 
@@ -24,8 +32,15 @@ const pushHistory = (state: HistoryState): HistoryState => {
     };
 };
 
+// Default Layer ID
+export const DEFAULT_LAYER_ID = 'default-layer';
+
 export const initialMapData: EditorMapData = {
     notes: [],
+    // Initialize with a default layer
+    layers: [
+        { id: DEFAULT_LAYER_ID, name: 'Pattern 1', visible: true, locked: false, color: '#38bdf8' }
+    ],
     metadata: {
         title: '', artist: '', mapper: '', difficultyName: '', source: '', tags: '',
         backgroundFile: '', audioFile: '', previewTime: 0
@@ -40,10 +55,32 @@ export const initialHistory: HistoryState = {
     future: []
 };
 
+// Helper to ensure data validity
+const validateMapData = (data: EditorMapData): EditorMapData => {
+    // 1. Ensure at least one layer exists
+    if (!data.layers || data.layers.length === 0) {
+        data.layers = [
+            { id: DEFAULT_LAYER_ID, name: 'Default', visible: true, locked: false, color: '#38bdf8' }
+        ];
+    }
+    
+    // 2. Ensure all notes have a valid layerId
+    // If missing, assign to the first layer
+    const firstLayerId = data.layers[0].id;
+    data.notes = data.notes.map(n => ({
+        ...n,
+        layerId: n.layerId || firstLayerId
+    }));
+
+    return data;
+};
+
 export const editorReducer = (state: HistoryState, action: EditorAction): HistoryState => {
     switch (action.type) {
-        case 'LOAD_MAP':
-            return { past: [], present: action.payload, future: [] };
+        case 'LOAD_MAP': {
+            const validated = validateMapData(action.payload);
+            return { past: [], present: validated, future: [] };
+        }
 
         case 'ADD_NOTE': {
             const next = pushHistory(state);
@@ -59,41 +96,15 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
         }
 
         case 'UPDATE_NOTE': {
-            // NOTE: For drag operations, this might create too many history states if dispatched on every mousemove.
-            // Ideally, we'd have a 'TRANSIENT_UPDATE' that doesn't push history, 
-            // and a 'COMMIT_UPDATE' on mouseUp. 
-            // For now, assume this is fine or the UI throttles it.
-            
-            // To prevent massive history stacks, check if the last action was also an update to the SAME note? 
-            // Too complex for this reducer. Let's just mutate deeply.
-            
             const next = { ...state, present: { ...state.present } };
-            // We ONLY push history if this isn't a high-frequency drag?
-            // Actually, `pushHistory` copies `past`.
-            // Let's rely on the fact that `EditorTimeline` calls this rapidly.
-            // We should NOT push history on every pixel drag.
-            // Implementation detail: The user probably wants undo to revert the whole drag.
-            // We need a 'COMMIT_DRAG' action for the end.
-            // Current simplified approach: We treat every update as a history state. 
-            // (Note: This will flood history. A robust editor needs a separate transient layer).
-            
-            // Temporary Hack: Don't push history here. Rely on a separate 'SNAPSHOT' action or just accept it.
-            // Actually, we must push history to enable Undo. 
-            // Implementing transient edits requires a large refactor.
-            // We will stick to standard Redux pattern: Dragging updates state.
-            
-            // Optimization: If the last state in `past` is identical except for this note's time, replace it?
-            
             const nextNotes = next.present.notes.map(n => 
                 n.id === action.payload.id ? { ...n, ...action.payload.changes } : n
             ).sort((a, b) => a.time - b.time);
-            
             next.present.notes = nextNotes;
             return next; 
         }
 
         case 'SELECT_NOTES': {
-            // Selection changes don't need history
             const next = { ...state, present: { ...state.present } };
             const ids = new Set(action.payload.ids);
             next.present.notes = next.present.notes.map(n => {
@@ -135,6 +146,48 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
         case 'REMOVE_TIMING_POINT': {
             const next = pushHistory(state);
             next.present.timingPoints = next.present.timingPoints.filter(tp => tp.id !== action.payload);
+            return next;
+        }
+
+        // --- LAYER ACTIONS ---
+
+        case 'ADD_LAYER': {
+            const next = pushHistory(state);
+            next.present.layers = [...next.present.layers, action.payload];
+            return next;
+        }
+
+        case 'REMOVE_LAYER': {
+            const layerId = action.payload;
+            // Prevent deleting the last layer
+            if (state.present.layers.length <= 1) return state;
+
+            const next = pushHistory(state);
+            
+            // Delete the layer
+            next.present.layers = next.present.layers.filter(l => l.id !== layerId);
+            
+            // Delete all notes in that layer
+            // (Alternative design: Move notes to Default layer? For now, delete like Photoshop)
+            next.present.notes = next.present.notes.filter(n => n.layerId !== layerId);
+            
+            return next;
+        }
+
+        case 'UPDATE_LAYER': {
+            // Updating visibility/lock doesn't strictly need history if we want instant feedback,
+            // but for "Rename" or "Color Change", undo is nice.
+            // Let's push history for safety.
+            const next = pushHistory(state);
+            next.present.layers = next.present.layers.map(l => 
+                l.id === action.payload.id ? { ...l, ...action.payload.changes } : l
+            );
+            return next;
+        }
+
+        case 'REORDER_LAYERS': {
+            const next = pushHistory(state);
+            next.present.layers = action.payload;
             return next;
         }
 
