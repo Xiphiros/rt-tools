@@ -84,17 +84,18 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
 
         case 'ADD_NOTE': {
             const next = pushHistory(state);
-            const { time, column, layerId } = action.payload;
+            const { time, key, layerId } = action.payload;
 
             // Collision Detection:
-            // Remove any existing note at the exact same Time, Column, and Layer.
-            // This prevents duplicate stacking.
+            // Remove any existing note at the exact same Time, Key, and Layer.
+            // checking 'key' instead of 'column' allows chords on the same row (e.g. 'D' + 'F').
             const cleanNotes = next.present.notes.filter(n => {
                 const isSameLayer = n.layerId === layerId;
-                const isSameCol = n.column === column;
+                const isSameKey = n.key === key; 
                 const isSameTime = Math.abs(n.time - time) < 2; // 2ms tolerance for float precision
                 
-                return !(isSameLayer && isSameCol && isSameTime);
+                // Keep the note if it DOESN'T match all criteria
+                return !(isSameLayer && isSameKey && isSameTime);
             });
 
             next.present.notes = [...cleanNotes, action.payload].sort((a, b) => a.time - b.time);
