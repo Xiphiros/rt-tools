@@ -1,14 +1,5 @@
 /**
  * Core Audio Engine for the Editor.
- * 
- * ARCHITECTURE UPDATE:
- * Implements a Mixer Graph to handle volume types independently and instantly.
- * 
- * [Music Source] --> [Music Gain] --+
- *                                   |
- * [Hitsound Src] --> [HS Gain] -----+--> [Master Gain] --> [Destination]
- *                                   |
- * [Metronome Src] -> [Metro Gain] --+
  */
 
 export class AudioManager {
@@ -71,22 +62,18 @@ export class AudioManager {
         if ((this.isPlaying && this.source) || !this.buffer) return;
         this.ensureContext();
 
-        // Create a new source node (Source nodes are one-time use)
         this.source = this.ctx.createBufferSource();
         this.source.buffer = this.buffer;
         this.source.playbackRate.value = this.playbackRate;
         
-        // Connect to MUSIC channel, not destination directly
         this.source.connect(this.musicGain);
 
-        // Calculate anchors
         if (this.startTrackTime >= this.buffer.duration) {
             this.startTrackTime = 0;
         }
 
         this.startContextTime = this.ctx.currentTime;
         
-        // Start playback
         this.source.start(0, this.startTrackTime);
         this.isPlaying = true;
 
@@ -145,13 +132,34 @@ export class AudioManager {
 
     // --- VOLUME CONTROL ---
 
+    /**
+     * Converts a 0-100 UI value to a 0.0-1.0 Gain value.
+     * Uses a square curve (x^2) to approximate audio tapering,
+     * which feels much more natural than linear mapping.
+     */
+    private volumeToGain(volume: number): number {
+        const clamped = Math.max(0, Math.min(100, volume));
+        const normalized = clamped / 100;
+        // x^2 curve: 50% volume -> 0.25 gain (-12dB)
+        // x^1 curve: 50% volume -> 0.50 gain (-6dB) -> Usually too loud
+        return Math.pow(normalized, 2);
+    }
+
     private setNodeGain(node: GainNode, volume: number) {
-        // Volume 0-100 -> Gain 0.0-1.0
-        const gain = Math.max(0, Math.min(1, volume / 100));
+        const gain = this.volumeToGain(volume);
         const currentTime = this.ctx.currentTime;
         
+        // Use exponential ramp for smooth volume changes (prevents popping)
+        // We clamp to a tiny non-zero value because exponentialRampToValueAtTime cannot hit 0
+        const safeGain = Math.max(0.0001, gain);
+        
         node.gain.cancelScheduledValues(currentTime);
-        node.gain.setTargetAtTime(gain, currentTime, 0.015); // Smooth transition
+        node.gain.setTargetAtTime(safeGain, currentTime, 0.02);
+        
+        // If 0, actually snap to 0 after the ramp to ensure silence
+        if (gain === 0) {
+            node.gain.setValueAtTime(0, currentTime + 0.1);
+        }
     }
 
     setMasterVolume(volume: number) { this.setNodeGain(this.masterGain, volume); }
@@ -161,15 +169,7 @@ export class AudioManager {
 
     // --- ACCESSORS ---
 
-    /** 
-     * Returns the persistent Hitsound Gain Node.
-     * Connect ephemeral hitsound sources here.
-     */
     getHitsoundNode(): GainNode { return this.hitsoundGain; }
-
-    /**
-     * Returns the persistent Metronome Gain Node.
-     */
     getMetronomeNode(): GainNode { return this.metronomeGain; }
 
     getCurrentTimeMs(): number {
@@ -184,17 +184,11 @@ export class AudioManager {
         return this.startTrackTime * 1000;
     }
 
-    /**
-     * Converts a target Song Time (in ms) to the absolute AudioContext time (in seconds)
-     * where that moment will occur (or occurred), given current playback state.
-     */
     songTimeToContextTime(songTimeMs: number): number {
         if (!this.isPlaying) return this.ctx.currentTime;
 
         const songTimeSec = songTimeMs / 1000;
         const deltaSec = songTimeSec - this.startTrackTime;
-        
-        // ContextTime = Anchor + (Delta / Rate)
         return this.startContextTime + (deltaSec / this.playbackRate);
     }
 
