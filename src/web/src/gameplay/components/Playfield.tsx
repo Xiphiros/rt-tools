@@ -107,7 +107,7 @@ export const Playfield = ({
 
     return (
         // "isolate" creates a new stacking context. 
-        // Z-indices inside (even 100 million) will be flattened to z-0 relative to the outside world.
+        // Any massive Z-indices inside here are flattened relative to the rest of the app.
         <div 
             className="relative w-full h-full bg-black/40 overflow-hidden select-none isolate"
             onMouseDown={handleBgClick} 
@@ -139,11 +139,10 @@ export const Playfield = ({
                 const row = KEY_TO_ROW[note.key.toLowerCase()] ?? note.column;
                 const color = colors[row] || '#fff';
 
-                // Use reasonable Z-indices relative to this container
-                // 5000 is enough buffer for concurrent notes
+                // Reduce the ceiling of Z-index to avoid potential browser integer limits if any, 
+                // but main fix is 'isolate'
                 const zIndex = 5000 - (Math.floor(note.time) % 5000); 
                 
-                // Styles for selection
                 const isSelected = note.selected;
                 const borderColor = isSelected ? '#fff' : (isHolding ? '#fff' : color);
                 const borderWidth = isSelected ? '6px' : '4px';
