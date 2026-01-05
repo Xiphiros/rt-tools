@@ -11,6 +11,7 @@ import { ResnapModal } from './modals/ResnapModal';
 import { ProjectManagerModal } from './modals/ProjectManagerModal';
 import { NotePropertiesModal } from './modals/NotePropertiesModal';
 import { DifficultyManagerModal } from './modals/DifficultyManagerModal';
+import { LayerColorModal } from './modals/LayerColorModal';
 import { useShortcuts } from './hooks/useShortcuts';
 import { useMetronome } from './hooks/useMetronome';
 import { usePlaybackHitsounds } from './hooks/usePlaybackHitsounds';
@@ -76,6 +77,7 @@ const EditorLayout = () => {
     const { mapData, playback, bgBlobUrl, settings, dispatch, activeLayerId } = useEditor();
     const [activeModal, setActiveModal] = useState<string | null>(null);
     const [showSidebar, setShowSidebar] = useState(true);
+    const [layerColorId, setLayerColorId] = useState<string | null>(null);
     
     useShortcuts();
     useMetronome();
@@ -135,7 +137,7 @@ const EditorLayout = () => {
 
                 {/* Right Sidebar */}
                 {showSidebar && (
-                    <EditorRightBar />
+                    <EditorRightBar onEditColor={setLayerColorId} />
                 )}
             </div>
             
@@ -148,6 +150,7 @@ const EditorLayout = () => {
             <ProjectManagerModal isOpen={activeModal === 'projects'} onClose={() => setActiveModal(null)} />
             <DifficultyManagerModal isOpen={activeModal === 'difficulties'} onClose={() => setActiveModal(null)} />
             <NotePropertiesModal isOpen={activeModal === 'properties'} onClose={() => setActiveModal(null)} />
+            <LayerColorModal isOpen={!!layerColorId} layerId={layerColorId} onClose={() => setLayerColorId(null)} />
         </div>
     );
 };
