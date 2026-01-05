@@ -35,14 +35,17 @@ const pushHistory = (state: HistoryState): HistoryState => {
 // Default Layer ID
 export const DEFAULT_LAYER_ID = 'default-layer';
 
+// Generate a random ID for initial state to prevent conflicts
+const INITIAL_DIFF_ID = 'init-diff-id';
+
 export const initialMapData: EditorMapData = {
+    diffId: INITIAL_DIFF_ID,
     notes: [],
-    // Initialize with a default layer
     layers: [
         { id: DEFAULT_LAYER_ID, name: 'Pattern 1', visible: true, locked: false, color: '#38bdf8' }
     ],
     metadata: {
-        title: '', artist: '', mapper: '', difficultyName: '', source: '', tags: '',
+        title: '', artist: '', mapper: '', difficultyName: 'Normal', source: '', tags: '',
         backgroundFile: '', audioFile: '', previewTime: 0
     },
     timingPoints: [{ id: 'initial-timing', time: 0, bpm: 120, meter: 4, kiai: false }],
@@ -65,12 +68,16 @@ const validateMapData = (data: EditorMapData): EditorMapData => {
     }
     
     // 2. Ensure all notes have a valid layerId
-    // If missing, assign to the first layer
     const firstLayerId = data.layers[0].id;
     data.notes = data.notes.map(n => ({
         ...n,
         layerId: n.layerId || firstLayerId
     }));
+
+    // 3. Ensure diffId
+    if (!data.diffId) {
+        data.diffId = crypto.randomUUID();
+    }
 
     return data;
 };
@@ -86,15 +93,10 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
             const next = pushHistory(state);
             const { time, key, layerId } = action.payload;
 
-            // Collision Detection:
-            // Remove any existing note at the exact same Time, Key, and Layer.
-            // checking 'key' instead of 'column' allows chords on the same row (e.g. 'D' + 'F').
             const cleanNotes = next.present.notes.filter(n => {
                 const isSameLayer = n.layerId === layerId;
                 const isSameKey = n.key === key; 
-                const isSameTime = Math.abs(n.time - time) < 2; // 2ms tolerance for float precision
-                
-                // Keep the note if it DOESN'T match all criteria
+                const isSameTime = Math.abs(n.time - time) < 2; 
                 return !(isSameLayer && isSameKey && isSameTime);
             });
 
@@ -163,8 +165,6 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
             return next;
         }
 
-        // --- LAYER ACTIONS ---
-
         case 'ADD_LAYER': {
             const next = pushHistory(state);
             next.present.layers = [...next.present.layers, action.payload];
@@ -173,15 +173,10 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
 
         case 'REMOVE_LAYER': {
             const layerId = action.payload;
-            // Prevent deleting the last layer
             if (state.present.layers.length <= 1) return state;
 
             const next = pushHistory(state);
-            
-            // Delete the layer
             next.present.layers = next.present.layers.filter(l => l.id !== layerId);
-            
-            // Delete all notes in that layer
             next.present.notes = next.present.notes.filter(n => n.layerId !== layerId);
             
             return next;
