@@ -10,33 +10,30 @@ interface UseEditorAudioReturn {
     pause: () => void;
     seek: (timeMs: number) => void;
     setRate: (rate: number) => void;
-    setVolume: (vol: number) => void;
     
-    // Loading
+    // Granular setters
+    setMasterVolume: (vol: number) => void;
+    setMusicVolume: (vol: number) => void;
+    setHitsoundVolume: (vol: number) => void;
+    setMetronomeVolume: (vol: number) => void;
+    
     load: (file: Blob | File) => Promise<void>;
-    
-    // Direct Access
     manager: AudioManager;
-    
-    // For React to force re-renders on low-level changes
     version: number; 
 }
 
 export const useEditorAudio = (): UseEditorAudioReturn => {
-    // Persistent Manager instance
     const managerRef = useRef<AudioManager | null>(null);
     if (!managerRef.current) {
         managerRef.current = new AudioManager();
     }
     const manager = managerRef.current;
 
-    // React State for UI updates
     const [version, setVersion] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     
-    // Animation Frame for UI Time Update
     const rafRef = useRef<number | null>(null);
 
     const updateUI = useCallback(() => {
@@ -52,7 +49,6 @@ export const useEditorAudio = (): UseEditorAudioReturn => {
         }
     }, [manager]);
 
-    // Force sync when playback state changes
     const syncState = useCallback(() => {
         setIsPlaying(manager.isAudioPlaying());
         setCurrentTime(manager.getCurrentTimeMs());
@@ -67,28 +63,16 @@ export const useEditorAudio = (): UseEditorAudioReturn => {
         }
     }, [manager, updateUI]);
 
-    const play = useCallback(() => {
-        manager.play();
-        syncState();
-    }, [manager, syncState]);
+    const play = useCallback(() => { manager.play(); syncState(); }, [manager, syncState]);
+    const pause = useCallback(() => { manager.pause(); syncState(); }, [manager, syncState]);
+    const seek = useCallback((t: number) => { manager.seek(t); syncState(); }, [manager, syncState]);
+    const setRate = useCallback((r: number) => { manager.setRate(r); }, [manager]);
 
-    const pause = useCallback(() => {
-        manager.pause();
-        syncState();
-    }, [manager, syncState]);
-
-    const seek = useCallback((timeMs: number) => {
-        manager.seek(timeMs);
-        syncState();
-    }, [manager, syncState]);
-
-    const setRate = useCallback((rate: number) => {
-        manager.setRate(rate);
-    }, [manager]);
-
-    const setVolume = useCallback((vol: number) => {
-        manager.setVolume(vol);
-    }, [manager]);
+    // Volume Proxies
+    const setMasterVolume = useCallback((v: number) => manager.setMasterVolume(v), [manager]);
+    const setMusicVolume = useCallback((v: number) => manager.setMusicVolume(v), [manager]);
+    const setHitsoundVolume = useCallback((v: number) => manager.setHitsoundVolume(v), [manager]);
+    const setMetronomeVolume = useCallback((v: number) => manager.setMetronomeVolume(v), [manager]);
 
     const load = useCallback(async (file: Blob | File) => {
         try {
@@ -101,7 +85,6 @@ export const useEditorAudio = (): UseEditorAudioReturn => {
         }
     }, [manager, seek]);
 
-    // Cleanup
     useEffect(() => {
         return () => {
             if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -117,7 +100,10 @@ export const useEditorAudio = (): UseEditorAudioReturn => {
         pause,
         seek,
         setRate,
-        setVolume,
+        setMasterVolume,
+        setMusicVolume,
+        setHitsoundVolume,
+        setMetronomeVolume,
         load,
         manager,
         version
