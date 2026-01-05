@@ -46,7 +46,7 @@ export const initialMapData: EditorMapData = {
     ],
     metadata: {
         title: '', artist: '', mapper: '', difficultyName: 'Normal', source: '', tags: '',
-        backgroundFile: '', audioFile: '', previewTime: 0
+        backgroundFile: '', audioFile: '', previewTime: 0, overallDifficulty: 8
     },
     timingPoints: [{ id: 'initial-timing', time: 0, bpm: 120, meter: 4, kiai: false }],
     bpm: 120, offset: 0
@@ -77,6 +77,11 @@ const validateMapData = (data: EditorMapData): EditorMapData => {
     // 3. Ensure diffId
     if (!data.diffId) {
         data.diffId = crypto.randomUUID();
+    }
+    
+    // 4. Ensure OD exists
+    if (typeof data.metadata.overallDifficulty === 'undefined') {
+        data.metadata.overallDifficulty = 8;
     }
 
     return data;
@@ -178,7 +183,6 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
             const next = pushHistory(state);
             next.present.layers = next.present.layers.filter(l => l.id !== layerId);
             next.present.notes = next.present.notes.filter(n => n.layerId !== layerId);
-            
             return next;
         }
 
