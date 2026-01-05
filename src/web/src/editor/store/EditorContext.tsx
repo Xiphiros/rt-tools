@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer, ReactNode, useEffect, useState } from 'react';
 import { editorReducer, initialHistory, EditorAction, initialMapData, DEFAULT_LAYER_ID } from './editorReducer';
 import { useEditorAudio } from '../hooks/useEditorAudio';
-import { EditorMapData, EditorSettings, PlaybackState, EditorTool } from '../types';
+import { EditorMapData, EditorSettings, PlaybackState, EditorTool, HitsoundSettings } from '../types';
 import { loadProjectJSON, saveProjectJSON, readFileFromProject, createProject } from '../utils/opfs';
 
 interface EditorContextState {
@@ -20,6 +20,8 @@ interface EditorContextState {
     reloadAssets: () => void;
     activeLayerId: string;
     setActiveLayerId: (id: string) => void;
+    defaultHitsounds: HitsoundSettings;
+    setDefaultHitsounds: React.Dispatch<React.SetStateAction<HitsoundSettings>>;
     dispatch: React.Dispatch<EditorAction>;
     setSettings: React.Dispatch<React.SetStateAction<EditorSettings>>;
 }
@@ -35,6 +37,13 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     const [assetsVersion, setAssetsVersion] = useState(0);
     const [activeTool, setActiveTool] = useState<EditorTool>('select');
     const [activeLayerId, setActiveLayerId] = useState<string>(DEFAULT_LAYER_ID);
+
+    // Global default for new notes
+    const [defaultHitsounds, setDefaultHitsounds] = useState<HitsoundSettings>({
+        sampleSet: 'normal',
+        volume: 100,
+        additions: { whistle: false, finish: false, clap: false }
+    });
 
     const [settings, setSettings] = React.useState<EditorSettings>({
         snapDivisor: 4,
@@ -58,8 +67,6 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     }, [history.present.layers, activeLayerId]);
 
     // --- VOLUME SYNC ---
-    // This connects the React State (Sliders) to the Audio Engine (GainNodes)
-    // Since setters are stable callbacks, this only triggers updates when values change
     const { setMasterVolume, setMusicVolume, setHitsoundVolume, setMetronomeVolume } = audioHook;
     
     useEffect(() => {
@@ -150,7 +157,9 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         bgBlobUrl,
         reloadAssets: () => setAssetsVersion(v => v + 1),
         activeLayerId,
-        setActiveLayerId
+        setActiveLayerId,
+        defaultHitsounds,
+        setDefaultHitsounds
     };
 
     return (
