@@ -44,8 +44,21 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         zoom: 150, 
         metronome: false,
         snappingEnabled: true,
-        showWaveform: true
+        showWaveform: true,
+        
+        // Defaults
+        masterVolume: 80,
+        musicVolume: 70,
+        hitsoundVolume: 100,
+        metronomeVolume: 60
     });
+
+    // Sync Music Volume (Master * Music)
+    useEffect(() => {
+        const master = Math.max(0, Math.min(1, settings.masterVolume / 100));
+        const music = Math.max(0, Math.min(1, settings.musicVolume / 100));
+        audioHook.setVolume(master * music);
+    }, [settings.masterVolume, settings.musicVolume, audioHook]);
 
     // Auto-Save to Active Project
     useEffect(() => {
@@ -107,10 +120,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
 
     // Initialize Default Project if none exists
     useEffect(() => {
-        if (!activeProjectId) {
-            // We could load the most recent project here in a real app
-            // createNewProject(); 
-        }
+        // Optional: Load default project
     }, []);
 
     useEffect(() => {
