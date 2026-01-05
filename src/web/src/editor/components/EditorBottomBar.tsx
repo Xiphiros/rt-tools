@@ -1,9 +1,20 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useEditor } from '../store/EditorContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faPlay, faPause, faUndo, faRedo, faSliders, faSpinner, faAngleDown, faMusic, faDrum, faClock, faVolumeUp} from '@fortawesome/free-solid-svg-icons';
+    faPlay, 
+    faPause, 
+    faUndo, 
+    faRedo, 
+    faSliders, 
+    faSpinner, 
+    faAngleDown, 
+    faMusic, 
+    faDrum, 
+    faClock, 
+    faVolumeUp 
+} from '@fortawesome/free-solid-svg-icons';
 
 const VolumeSlider = ({ 
     label, 
@@ -45,10 +56,11 @@ export const EditorBottomBar = () => {
         playback.isPlaying ? audio.pause() : audio.play(); 
     };
 
-    // Calculate position for the portal
-    useEffect(() => {
+    // Calculate position for the portal using useLayoutEffect to prevent flickering
+    useLayoutEffect(() => {
         if (showVolume && volumeBtnRef.current) {
             const rect = volumeBtnRef.current.getBoundingClientRect();
+            // Position above the button, centered horizontally
             setPopupPosition({
                 left: rect.left + rect.width / 2,
                 bottom: window.innerHeight - rect.top + 10
@@ -133,10 +145,13 @@ export const EditorBottomBar = () => {
 
                     {/* Mixer Popover (PORTAL) */}
                     {showVolume && createPortal(
-                        <>
-                            <div className="fixed inset-0 z-[60]" onClick={() => setShowVolume(false)} />
+                        <div className="relative z-[9999]">
+                            {/* Backdrop */}
+                            <div className="fixed inset-0 bg-transparent" onClick={() => setShowVolume(false)} />
+                            
+                            {/* Popup */}
                             <div 
-                                className="fixed w-64 bg-card border border-border rounded-xl shadow-2xl p-4 animate-in fade-in slide-in-from-bottom-2 z-[70] flex flex-col gap-4"
+                                className="fixed w-64 bg-card border border-border rounded-xl shadow-2xl p-4 flex flex-col gap-4"
                                 style={{
                                     left: popupPosition.left,
                                     bottom: popupPosition.bottom,
@@ -173,7 +188,7 @@ export const EditorBottomBar = () => {
                                     icon={faClock} 
                                 />
                             </div>
-                        </>,
+                        </div>,
                         document.body
                     )}
                 </div>

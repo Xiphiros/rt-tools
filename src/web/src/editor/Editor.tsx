@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { EditorProvider, useEditor } from './store/EditorContext';
 import { EditorTimeline } from './components/EditorTimeline';
 import { EditorToolbox } from './components/EditorToolbox';
+import { EditorBottomBar } from './components/EditorBottomBar';
 import { Playfield } from '../gameplay/components/Playfield';
 import { MetadataModal } from './modals/MetadataModal';
 import { TimingModal } from './modals/TimingModal';
@@ -14,7 +15,7 @@ import { usePlaybackHitsounds } from './hooks/usePlaybackHitsounds';
 import { exportBeatmapPackage } from './utils/exporter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faPlay, faPause, faUndo, faRedo, faFileUpload, faChevronLeft, faVolumeUp, faVolumeMute, faAngleDown, faFolder
+    faFileUpload, faChevronLeft, faFolder
 } from '@fortawesome/free-solid-svg-icons';
 import { EditorNote } from './types';
 
@@ -52,77 +53,6 @@ const TopMenuBar = ({ onOpenModal }: { onOpenModal: (modal: string) => void }) =
                     <FontAwesomeIcon icon={faFileUpload} />
                     <span>Export</span>
                 </button>
-            </div>
-        </div>
-    );
-};
-
-const EditorBottomBar = () => {
-    const { playback, audio, canUndo, canRedo, dispatch, settings, setSettings } = useEditor();
-    const togglePlay = () => { playback.isPlaying ? audio.pause() : audio.play(); };
-
-    return (
-        <div className="h-16 bg-card border-t border-border flex items-center px-4 justify-between select-none shadow-[0_-5px_20px_rgba(0,0,0,0.3)] z-50">
-            <div className="flex items-center gap-3">
-                <button onClick={togglePlay} className="w-12 h-12 rounded-full bg-primary hover:bg-primary-hover text-black flex items-center justify-center transition-all active:scale-95 shadow-lg shadow-primary/20">
-                    <FontAwesomeIcon icon={playback.isPlaying ? faPause : faPlay} size="lg" />
-                </button>
-                <div className="flex flex-col ml-2">
-                    <span className="text-xs text-muted uppercase font-bold tracking-wider">Time</span>
-                    <span className="text-xl font-mono font-medium text-white">{(playback.currentTime / 1000).toFixed(3)}</span>
-                </div>
-            </div>
-            
-            <div className="flex items-center gap-6">
-                <div className="flex flex-col items-center">
-                    <span className="text-[10px] text-muted uppercase font-bold mb-1 tracking-wider">Beat Snap</span>
-                    <div className="relative group">
-                        <select 
-                            className="appearance-none bg-input border border-border hover:border-primary/50 text-white font-bold text-center pl-4 pr-8 py-1.5 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all cursor-pointer shadow-sm w-24"
-                            value={settings.snapDivisor} 
-                            onChange={(e) => setSettings(s => ({ ...s, snapDivisor: Number(e.target.value) }))}
-                        >
-                            {[1, 2, 3, 4, 6, 8, 12, 16].map(v => (<option key={v} value={v}>1/{v}</option>))}
-                        </select>
-                        <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-muted group-hover:text-primary transition-colors">
-                            <FontAwesomeIcon icon={faAngleDown} size="sm" />
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="flex flex-col items-center">
-                    <span className="text-[10px] text-muted uppercase font-bold mb-1 tracking-wider">Metronome</span>
-                    <button 
-                        onClick={() => setSettings(s => ({ ...s, metronome: !s.metronome }))}
-                        className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all border ${settings.metronome ? 'bg-primary text-black border-primary shadow-[0_0_10px_rgba(34,211,238,0.3)]' : 'bg-input text-muted border-border hover:text-white hover:border-white/20'}`}
-                    >
-                        <FontAwesomeIcon icon={settings.metronome ? faVolumeUp : faVolumeMute} />
-                    </button>
-                </div>
-
-                <div className="flex flex-col items-center">
-                    <span className="text-[10px] text-muted uppercase font-bold mb-1 tracking-wider">Playback Rate</span>
-                    <div className="flex gap-1 bg-input p-1 rounded-lg border border-border">
-                        {[0.5, 0.75, 1.0].map(rate => (
-                            <button 
-                                key={rate} 
-                                onClick={() => setSettings(s => ({ ...s, playbackSpeed: rate }))} 
-                                className={`px-2.5 py-1 text-xs rounded-md font-bold transition-all ${
-                                    settings.playbackSpeed === rate 
-                                    ? 'bg-secondary text-black shadow-sm' 
-                                    : 'text-muted hover:text-white hover:bg-white/5'
-                                }`}
-                            >
-                                {rate}x
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            <div className="flex gap-2">
-                <button disabled={!canUndo} onClick={() => dispatch({ type: 'UNDO' })} className="w-10 h-10 rounded-lg hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors"><FontAwesomeIcon icon={faUndo} /></button>
-                <button disabled={!canRedo} onClick={() => dispatch({ type: 'REDO' })} className="w-10 h-10 rounded-lg hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors"><FontAwesomeIcon icon={faRedo} /></button>
             </div>
         </div>
     );
@@ -183,6 +113,8 @@ const EditorLayout = () => {
                     <EditorTimeline />
                 </div>
             </div>
+            
+            {/* Swapped inline component for the imported one */}
             <EditorBottomBar />
             
             {/* Modals */}
