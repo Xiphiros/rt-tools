@@ -2,11 +2,11 @@
 // Structure:
 // /projects/
 //   /{uuid}/
-//     map.json
+//     diff_{uuid}.json
 //     audio.mp3
 //     bg.jpg
 
-import { EditorMapData, ProjectSummary } from '../types';
+import { EditorMapData, ProjectSummary, DifficultySummary } from '../types';
 
 const PROJECTS_DIR = 'projects';
 
@@ -56,33 +56,49 @@ export const listProjects = async (): Promise<ProjectSummary[]> => {
     const projectsDir = await getProjectsDir();
     const summaries: ProjectSummary[] = [];
 
-    // Iterate over project folders
-    // @ts-ignore - TS types for FileSystemHandle iteration might be missing in some setups
+    // @ts-ignore
     for await (const [name, handle] of projectsDir.entries()) {
         if (handle.kind === 'directory') {
             try {
-                // Try to read map.json to get metadata
-                const fileHandle = await handle.getFileHandle('map.json');
-                const file = await fileHandle.getFile();
-                const text = await file.text();
-                const data = JSON.parse(text) as EditorMapData;
+                // Try to find ANY diff file to get metadata
+                let metadataFound = false;
+                // @ts-ignore
+                for await (const [fileName, fileHandle] of handle.entries()) {
+                    if (fileName.startsWith('diff_') && fileName.endsWith('.json')) {
+                         const file = await fileHandle.getFile();
+                         const text = await file.text();
+                         const data = JSON.parse(text) as EditorMapData;
+                         
+                         summaries.push({
+                             id: name,
+                             title: data.metadata.title || 'Untitled',
+                             artist: data.metadata.artist || 'Unknown',
+                             mapper: data.metadata.mapper || 'Unknown',
+                             lastModified: file.lastModified
+                         });
+                         metadataFound = true;
+                         break;
+                    }
+                }
                 
-                summaries.push({
-                    id: name,
-                    title: data.metadata.title || 'Untitled',
-                    artist: data.metadata.artist || 'Unknown',
-                    mapper: data.metadata.mapper || 'Unknown',
-                    lastModified: file.lastModified
-                });
+                // Fallback for legacy "map.json" projects
+                if (!metadataFound) {
+                    try {
+                        const fileHandle = await handle.getFileHandle('map.json');
+                        const file = await fileHandle.getFile();
+                        const text = await file.text();
+                        const data = JSON.parse(text) as EditorMapData;
+                        summaries.push({
+                            id: name,
+                            title: data.metadata.title || 'Untitled',
+                            artist: data.metadata.artist || 'Unknown',
+                            mapper: data.metadata.mapper || 'Unknown',
+                            lastModified: file.lastModified
+                        });
+                    } catch {}
+                }
             } catch (e) {
-                // Corrupt or empty project
-                summaries.push({
-                    id: name,
-                    title: 'Corrupt Project',
-                    artist: '-',
-                    mapper: '-',
-                    lastModified: 0
-                });
+                // Ignore corrupt
             }
         }
     }
@@ -91,7 +107,7 @@ export const listProjects = async (): Promise<ProjectSummary[]> => {
 };
 
 export const createProject = async (id: string, initialData: EditorMapData) => {
-    await saveProjectJSON(id, initialData);
+    await saveDifficulty(id, initialData);
 };
 
 export const deleteProject = async (id: string) => {
@@ -99,21 +115,105 @@ export const deleteProject = async (id: string) => {
     await projectsDir.removeEntry(id, { recursive: true });
 };
 
-// --- JSON IO ---
+// --- DIFFICULTY MANAGEMENT ---
 
-export const saveProjectJSON = async (projectId: string, data: EditorMapData) => {
+export const saveDifficulty = async (projectId: string, data: EditorMapData) => {
+    const filename = `diff_${data.diffId}.json`;
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    await saveFileToProject(projectId, 'map.json', blob);
+    await saveFileToProject(projectId, filename, blob);
+    
+    // Clean up legacy map.json if it exists and we are migrating
+    try {
+        const dir = await getProjectDir(projectId);
+        await dir.removeEntry('map.json');
+    } catch {}
 };
 
-export const loadProjectJSON = async (projectId: string): Promise<EditorMapData | null> => {
+export const loadDifficulty = async (projectId: string, diffId: string): Promise<EditorMapData | null> => {
     try {
-        const file = await readFileFromProject(projectId, 'map.json');
+        const file = await readFileFromProject(projectId, `diff_${diffId}.json`);
         if (!file) return null;
         const text = await file.text();
         return JSON.parse(text);
     } catch (e) {
-        console.error(`Failed to load project ${projectId}`, e);
+        console.error(`Failed to load difficulty ${diffId}`, e);
         return null;
     }
+};
+
+export const listDifficulties = async (projectId: string): Promise<DifficultySummary[]> => {
+    try {
+        const dir = await getProjectDir(projectId);
+        const diffs: DifficultySummary[] = [];
+
+        // @ts-ignore
+        for await (const [name, handle] of dir.entries()) {
+            if (name.startsWith('diff_') && name.endsWith('.json')) {
+                const file = await handle.getFile();
+                const text = await file.text();
+                const data = JSON.parse(text) as EditorMapData;
+                diffs.push({
+                    id: data.diffId,
+                    name: data.metadata.difficultyName || 'Unnamed',
+                    lastModified: file.lastModified
+                });
+            }
+        }
+
+        // Handle Legacy
+        if (diffs.length === 0) {
+            try {
+                const file = await readFileFromProject(projectId, 'map.json');
+                if (file) {
+                    const text = await file.text();
+                    const data = JSON.parse(text) as EditorMapData;
+                    // Auto-assign ID if missing
+                    const id = data.diffId || crypto.randomUUID();
+                    diffs.push({
+                        id: id,
+                        name: data.metadata.difficultyName || 'Normal',
+                        lastModified: file.lastModified
+                    });
+                }
+            } catch {}
+        }
+
+        return diffs.sort((a, b) => b.lastModified - a.lastModified);
+    } catch {
+        return [];
+    }
+};
+
+export const deleteDifficulty = async (projectId: string, diffId: string) => {
+    try {
+        const dir = await getProjectDir(projectId);
+        await dir.removeEntry(`diff_${diffId}.json`);
+    } catch (e) {
+        console.error("Failed to delete difficulty", e);
+    }
+};
+
+// Compatibility Wrapper for LoadProject (Defaults to first found difficulty)
+export const loadProjectAnyDiff = async (projectId: string): Promise<EditorMapData | null> => {
+    const diffs = await listDifficulties(projectId);
+    if (diffs.length > 0) {
+        // Prefer one named 'map.json' if migrating? No, listDifficulties handles legacy read.
+        // If it was legacy, it returned a virtual entry.
+        // We try to load the actual file.
+        
+        let data = await loadDifficulty(projectId, diffs[0].id);
+        
+        // If failed (maybe legacy map.json), try legacy load
+        if (!data) {
+             const file = await readFileFromProject(projectId, 'map.json');
+             if (file) {
+                 const text = await file.text();
+                 data = JSON.parse(text);
+                 // Migrate ID
+                 if (data && !data.diffId) data.diffId = diffs[0].id;
+             }
+        }
+        return data;
+    }
+    return null;
 };
