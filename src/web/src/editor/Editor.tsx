@@ -10,6 +10,7 @@ import { TimingModal } from './modals/TimingModal';
 import { ResnapModal } from './modals/ResnapModal';
 import { ProjectManagerModal } from './modals/ProjectManagerModal';
 import { NotePropertiesModal } from './modals/NotePropertiesModal';
+import { DifficultyManagerModal } from './modals/DifficultyManagerModal';
 import { useShortcuts } from './hooks/useShortcuts';
 import { useMetronome } from './hooks/useMetronome';
 import { usePlaybackHitsounds } from './hooks/usePlaybackHitsounds';
@@ -17,7 +18,7 @@ import { useLiveInput } from './hooks/useLiveInput';
 import { exportBeatmapPackage } from './utils/exporter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faFileUpload, faChevronLeft, faFolder, faColumns
+    faFileUpload, faChevronLeft, faFolder, faColumns, faLayerGroup
 } from '@fortawesome/free-solid-svg-icons';
 import { EditorNote } from './types';
 
@@ -38,7 +39,10 @@ const TopMenuBar = ({ onOpenModal, showSidebar, toggleSidebar }: { onOpenModal: 
                     <div className="w-[1px] h-4 bg-white/10 mx-2" />
                     <button onClick={() => onOpenModal('metadata')} className="px-4 py-1.5 rounded hover:bg-white/10 text-sm font-medium transition-colors text-muted hover:text-white">Setup</button>
                     <button onClick={() => onOpenModal('timing')} className="px-4 py-1.5 rounded hover:bg-white/10 text-sm font-medium transition-colors text-muted hover:text-white">Timing</button>
-                    <button className="px-4 py-1.5 rounded bg-primary/20 text-primary text-sm font-bold shadow-inner">Compose</button>
+                    <button onClick={() => onOpenModal('difficulties')} className="px-4 py-1.5 rounded hover:bg-white/10 text-sm font-medium transition-colors text-muted hover:text-white flex items-center gap-2">
+                        <FontAwesomeIcon icon={faLayerGroup} />
+                        {mapData.metadata.difficultyName || "Difficulty"}
+                    </button>
                     <button className="px-4 py-1.5 rounded hover:bg-white/10 text-sm font-medium transition-colors text-muted hover:text-white">Design</button>
                 </nav>
             </div>
@@ -115,6 +119,7 @@ const EditorLayout = () => {
                                     onNoteClick={handlePlayfieldNoteClick}
                                     onBackgroundClick={handlePlayfieldBgClick}
                                     activeLayerId={activeLayerId}
+                                    dimInactiveLayers={settings.dimInactiveLayers}
                                 />
                             </div>
                         </div>
@@ -141,6 +146,7 @@ const EditorLayout = () => {
             <TimingModal isOpen={activeModal === 'timing'} onClose={() => setActiveModal(null)} />
             <ResnapModal isOpen={activeModal === 'resnap'} onClose={() => setActiveModal(null)} />
             <ProjectManagerModal isOpen={activeModal === 'projects'} onClose={() => setActiveModal(null)} />
+            <DifficultyManagerModal isOpen={activeModal === 'difficulties'} onClose={() => setActiveModal(null)} />
             <NotePropertiesModal isOpen={activeModal === 'properties'} onClose={() => setActiveModal(null)} />
         </div>
     );
