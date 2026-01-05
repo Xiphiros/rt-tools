@@ -8,7 +8,8 @@ interface PlayfieldProps {
     playbackRate: number;
     showApproachCircles?: boolean;
     scale?: number;
-    activeLayerId?: string;
+    activeLayerId?: string; // New prop for layer highlighting
+    dimInactiveLayers?: boolean; // Control flag
     
     // Editor Interactions
     onNoteClick?: (e: React.MouseEvent, note: EditorNote) => void;
@@ -37,7 +38,8 @@ export const Playfield = ({
     scale = 1.0,
     onNoteClick,
     onBackgroundClick,
-    activeLayerId
+    activeLayerId,
+    dimInactiveLayers = true
 }: PlayfieldProps) => {
     const PREEMPT = 1200; 
     const FADE_OUT = 200;
@@ -119,7 +121,6 @@ export const Playfield = ({
     };
 
     return (
-        // "isolate" creates a new stacking context
         <div 
             className="relative w-full h-full bg-black/40 overflow-hidden select-none isolate"
             onMouseDown={handleBgClick} 
@@ -146,9 +147,9 @@ export const Playfield = ({
                 }
 
                 // Layer Dimming Logic
-                // If activeLayerId is set, dim notes from other layers
-                if (activeLayerId && note.layerId !== activeLayerId) {
-                    opacity *= 0.3; // Dim inactive layers
+                // If dimming enabled AND activeLayerId is set AND note is not in active layer
+                if (dimInactiveLayers && activeLayerId && note.layerId !== activeLayerId) {
+                    opacity *= 0.3; 
                 }
 
                 const progress = 1 - (relativeTime / PREEMPT);
@@ -157,8 +158,6 @@ export const Playfield = ({
                 const colors = ROW_COLORS as Record<number, string>;
                 const row = KEY_TO_ROW[note.key.toLowerCase()] ?? note.column;
                 
-                // Use Layer Color if available and active? Or just row color?
-                // Standard: Row color. Border: Layer Color.
                 const noteLayer = layerMap.get(note.layerId);
                 const layerColor = noteLayer ? noteLayer.color : '#fff';
                 const rowColor = colors[row] || '#fff';
@@ -166,9 +165,6 @@ export const Playfield = ({
                 const zIndex = 5000 - (Math.floor(note.time) % 5000); 
                 
                 const isSelected = note.selected;
-                // Highlight: If selected -> White. If Holding -> White. Else -> Row Color.
-                // Border: If active layer -> Row Color. If Inactive -> Layer Color (to identify it).
-                
                 const borderColor = isSelected 
                     ? '#fff' 
                     : (isHolding ? '#fff' : rowColor);
@@ -227,8 +223,8 @@ export const Playfield = ({
                             </span>
                         </div>
 
-                        {/* Layer Indicator Dot (if not active layer) */}
-                        {activeLayerId && note.layerId !== activeLayerId && (
+                        {/* Layer Indicator Dot (if not active layer and not fully opaque) */}
+                        {activeLayerId && note.layerId !== activeLayerId && dimInactiveLayers && (
                             <div 
                                 className="absolute -top-1 -right-1 w-3 h-3 rounded-full border border-black"
                                 style={{ backgroundColor: layerColor }}
