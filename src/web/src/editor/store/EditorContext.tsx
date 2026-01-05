@@ -8,25 +8,18 @@ interface EditorContextState {
     mapData: EditorMapData;
     canUndo: boolean;
     canRedo: boolean;
-    
     playback: PlaybackState;
     audio: ReturnType<typeof useEditorAudio>;
-
     settings: EditorSettings;
     activeTool: EditorTool;
     setActiveTool: (tool: EditorTool) => void;
-    
     activeProjectId: string | null;
     loadProject: (id: string) => Promise<void>;
     createNewProject: () => Promise<void>;
-    
     bgBlobUrl: string | null;
     reloadAssets: () => void;
-    
-    // Layer Management
     activeLayerId: string;
     setActiveLayerId: (id: string) => void;
-    
     dispatch: React.Dispatch<EditorAction>;
     setSettings: React.Dispatch<React.SetStateAction<EditorSettings>>;
 }
@@ -41,8 +34,6 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     const [bgBlobUrl, setBgBlobUrl] = useState<string | null>(null);
     const [assetsVersion, setAssetsVersion] = useState(0);
     const [activeTool, setActiveTool] = useState<EditorTool>('select');
-    
-    // Default to the first layer if possible
     const [activeLayerId, setActiveLayerId] = useState<string>(DEFAULT_LAYER_ID);
 
     const [settings, setSettings] = React.useState<EditorSettings>({
@@ -52,8 +43,6 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         metronome: false,
         snappingEnabled: true,
         showWaveform: true,
-        
-        // Defaults
         masterVolume: 80,
         musicVolume: 70,
         hitsoundVolume: 100,
@@ -68,36 +57,43 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         }
     }, [history.present.layers, activeLayerId]);
 
-    // Sync Music Volume (Master * Music)
-    const { setVolume } = audioHook;
+    // --- VOLUME SYNC ---
+    // This connects the React State (Sliders) to the Audio Engine (GainNodes)
+    // Since setters are stable callbacks, this only triggers updates when values change
+    const { setMasterVolume, setMusicVolume, setHitsoundVolume, setMetronomeVolume } = audioHook;
+    
     useEffect(() => {
-        const master = Math.max(0, Math.min(1, settings.masterVolume / 100));
-        const music = Math.max(0, Math.min(1, settings.musicVolume / 100));
-        setVolume(master * music);
-    }, [settings.masterVolume, settings.musicVolume, setVolume]);
+        setMasterVolume(settings.masterVolume);
+    }, [settings.masterVolume, setMasterVolume]);
 
-    // Auto-Save to Active Project
+    useEffect(() => {
+        setMusicVolume(settings.musicVolume);
+    }, [settings.musicVolume, setMusicVolume]);
+
+    useEffect(() => {
+        setHitsoundVolume(settings.hitsoundVolume);
+    }, [settings.hitsoundVolume, setHitsoundVolume]);
+
+    useEffect(() => {
+        setMetronomeVolume(settings.metronomeVolume);
+    }, [settings.metronomeVolume, setMetronomeVolume]);
+
+    // Auto-Save
     useEffect(() => {
         if (!activeProjectId) return;
-        
         const timer = setTimeout(() => {
             saveProjectJSON(activeProjectId, history.present);
         }, 2000);
         return () => clearTimeout(timer);
     }, [history.present, activeProjectId]);
 
-    // Load Project Logic
     const loadProject = async (id: string) => {
         const data = await loadProjectJSON(id);
         if (data) {
             setActiveProjectId(id);
             dispatch({ type: 'LOAD_MAP', payload: data });
-            
-            // Reset Audio/Visuals
             audioHook.pause();
             audioHook.seek(0);
-            
-            // Trigger Asset Reload
             setAssetsVersion(v => v + 1);
         }
     };
@@ -109,20 +105,14 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         await loadProject(newId);
     };
 
-    // Asset Loading Logic
     useEffect(() => {
         if (!activeProjectId) return;
-
         const loadAssets = async () => {
             const meta = history.present.metadata;
-            
             if (meta.audioFile) {
                 const file = await readFileFromProject(activeProjectId, meta.audioFile);
-                if (file) {
-                    await audioHook.load(file);
-                }
+                if (file) await audioHook.load(file);
             }
-
             if (meta.backgroundFile) {
                 const file = await readFileFromProject(activeProjectId, meta.backgroundFile);
                 if (file) {
@@ -142,7 +132,6 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         mapData: history.present,
         canUndo: history.past.length > 0,
         canRedo: history.future.length > 0,
-        
         playback: {
             isPlaying: audioHook.isPlaying,
             currentTime: audioHook.currentTime,
@@ -150,21 +139,16 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
             duration: audioHook.duration
         },
         audio: audioHook,
-        
         settings,
         setSettings,
         dispatch,
-        
         activeTool,
         setActiveTool,
-        
         activeProjectId,
         loadProject,
         createNewProject,
-        
         bgBlobUrl,
         reloadAssets: () => setAssetsVersion(v => v + 1),
-        
         activeLayerId,
         setActiveLayerId
     };
