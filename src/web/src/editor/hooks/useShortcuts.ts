@@ -2,13 +2,19 @@ import { useEffect } from 'react';
 import { useEditor } from '../store/EditorContext';
 import { KEY_TO_ROW } from '../../gameplay/constants';
 import { snapTime, getActiveTimingPoint } from '../utils/timing';
+import { HitsoundSettings } from '../types';
+
+const DEFAULT_HITSOUND: HitsoundSettings = {
+    sampleSet: 'normal',
+    volume: 100,
+    additions: { whistle: false, finish: false, clap: false }
+};
 
 export const useShortcuts = () => {
     const { dispatch, audio, playback, mapData, settings } = useEditor();
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            // 1. IGNORE INPUTS
             if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
                 return;
             }
@@ -17,7 +23,7 @@ export const useShortcuts = () => {
             const isCtrl = e.ctrlKey || e.metaKey; 
             const isShift = e.shiftKey;
 
-            // --- PLAYBACK (Space) ---
+            // PLAYBACK
             if (e.code === 'Space') {
                 e.preventDefault();
                 if (playback.isPlaying) audio.pause();
@@ -25,14 +31,12 @@ export const useShortcuts = () => {
                 return;
             }
 
-            // --- NOTE DURATION ADJUSTMENT (Shift + Arrows) ---
+            // NOTE DURATION (Shift + Arrow)
             if (isShift && (e.code === 'ArrowLeft' || e.code === 'ArrowRight')) {
                 e.preventDefault();
-                
                 const selectedNotes = mapData.notes.filter(n => n.selected);
                 if (selectedNotes.length === 0) return;
 
-                // Calculate Step
                 const tp = getActiveTimingPoint(playback.currentTime, mapData.timingPoints);
                 const bpm = tp ? tp.bpm : 120;
                 const msPerBeat = 60000 / bpm;
@@ -42,14 +46,7 @@ export const useShortcuts = () => {
                 selectedNotes.forEach(note => {
                     const currentDuration = note.duration || 0;
                     let newDuration = currentDuration + (step * direction);
-                    
-                    // Snap the END time to grid if possible, or just delta?
-                    // Simple delta is usually more predictable for "extending"
-                    
-                    // Logic: If shrinking a tap (0 duration), do nothing or ensure it stays 0
                     if (newDuration < step / 2) newDuration = 0; 
-                    
-                    // Switch types
                     const type = newDuration > 0 ? 'hold' : 'tap';
                     
                     dispatch({
@@ -63,17 +60,15 @@ export const useShortcuts = () => {
                 return;
             }
 
-            // --- NAVIGATION (Arrows) ---
-            // Only if NOT Shift (Shift is for duration)
+            // SEEK (Arrow)
             if (!isShift && (e.code === 'ArrowLeft' || e.code === 'ArrowRight')) {
                 e.preventDefault();
                 const direction = e.code === 'ArrowRight' ? 1 : -1;
-                
                 const tp = getActiveTimingPoint(playback.currentTime, mapData.timingPoints);
                 const bpm = tp ? tp.bpm : 120;
                 const msPerBeat = 60000 / bpm;
                 const step = msPerBeat / settings.snapDivisor;
-
+                
                 const rawTarget = playback.currentTime + (step * direction);
                 const cleanTarget = snapTime(rawTarget, mapData.timingPoints, settings.snapDivisor);
                 
@@ -81,7 +76,7 @@ export const useShortcuts = () => {
                 return;
             }
 
-            // --- SELECT ALL (Ctrl + A) ---
+            // SELECT ALL
             if (isCtrl && key === 'a') {
                 e.preventDefault();
                 const allIds = mapData.notes.map(n => n.id);
@@ -89,7 +84,7 @@ export const useShortcuts = () => {
                 return;
             }
 
-            // --- NOTE PLACEMENT (Gameplay Keys) ---
+            // PLACE NOTE
             if (!isCtrl && !e.repeat) {
                 const row = KEY_TO_ROW[key];
                 if (row !== undefined) {
@@ -101,7 +96,6 @@ export const useShortcuts = () => {
 
                     const newId = crypto.randomUUID();
 
-                    // 1. Add Note
                     dispatch({
                         type: 'ADD_NOTE',
                         payload: {
@@ -109,11 +103,11 @@ export const useShortcuts = () => {
                             time: time,
                             column: row,
                             key: key,
-                            type: 'tap'
+                            type: 'tap',
+                            hitsound: { ...DEFAULT_HITSOUND } // Copy default
                         }
                     });
 
-                    // 2. Auto-Select it (for immediate Shift+Arrow extension)
                     dispatch({
                         type: 'SELECT_NOTES',
                         payload: { ids: [newId], append: false }
@@ -123,7 +117,7 @@ export const useShortcuts = () => {
                 }
             }
 
-            // --- UNDO/REDO ---
+            // UNDO/REDO
             if (isCtrl && !isShift && key === 'z') {
                 e.preventDefault();
                 dispatch({ type: 'UNDO' });
@@ -135,13 +129,10 @@ export const useShortcuts = () => {
                 return;
             }
 
-            // --- DELETE ---
+            // DELETE
             if (key === 'delete' || key === 'backspace') {
                 e.preventDefault();
-                const selectedIds = mapData.notes
-                    .filter(n => n.selected)
-                    .map(n => n.id);
-                
+                const selectedIds = mapData.notes.filter(n => n.selected).map(n => n.id);
                 if (selectedIds.length > 0) {
                     dispatch({ type: 'REMOVE_NOTES', payload: selectedIds });
                 }
