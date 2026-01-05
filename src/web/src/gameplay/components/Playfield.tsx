@@ -102,14 +102,14 @@ export const Playfield = ({
     };
 
     const handleBgClick = (e: React.MouseEvent) => {
-        // Only trigger if clicking the container directly, not a note
-        // However, React events bubble. We rely on stopPropagation in note handlers.
         if (onBackgroundClick) onBackgroundClick(e);
     };
 
     return (
+        // "isolate" creates a new stacking context. 
+        // Z-indices inside (even 100 million) will be flattened to z-0 relative to the outside world.
         <div 
-            className="relative w-full h-full bg-black/40 overflow-hidden select-none"
+            className="relative w-full h-full bg-black/40 overflow-hidden select-none isolate"
             onMouseDown={handleBgClick} 
         >
             <div className="absolute inset-0 opacity-10 pointer-events-none" 
@@ -139,7 +139,9 @@ export const Playfield = ({
                 const row = KEY_TO_ROW[note.key.toLowerCase()] ?? note.column;
                 const color = colors[row] || '#fff';
 
-                const zIndex = 100000000 - Math.floor(note.time);
+                // Use reasonable Z-indices relative to this container
+                // 5000 is enough buffer for concurrent notes
+                const zIndex = 5000 - (Math.floor(note.time) % 5000); 
                 
                 // Styles for selection
                 const isSelected = note.selected;
