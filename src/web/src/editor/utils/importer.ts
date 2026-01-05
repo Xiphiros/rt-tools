@@ -27,11 +27,13 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
         
         // 3. Construct Editor Data
         const editorData: EditorMapData = {
+            diffId: diffData.diffId || crypto.randomUUID(),
             metadata: {
                 title: meta.songName || '',
                 artist: meta.artistName || '',
                 mapper: meta.mapper || '',
                 difficultyName: diffRef.name || '',
+                overallDifficulty: diffData.overallDifficulty ?? 8,
                 source: '',
                 tags: meta.tags || '',
                 backgroundFile: (meta.backgroundFiles && meta.backgroundFiles[0]) || '',
@@ -63,9 +65,13 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
                     key: n.key,
                     type: n.type,
                     duration: n.endTime ? n.endTime - n.startTime : 0,
-                    hitsound: hs
+                    hitsound: hs,
+                    layerId: 'default-layer' // Assign to default during import
                 };
             }),
+            layers: [
+                { id: 'default-layer', name: 'Imported', visible: true, locked: false, color: '#38bdf8' }
+            ],
             timingPoints: meta.timingPoints || [],
             bpm: meta.bpm || 120,
             offset: meta.offset || 0
