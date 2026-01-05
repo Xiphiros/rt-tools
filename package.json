@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "RhythmTyper Calculator & Visualization Suite",
   "private": true,
+  "type": "module",
   "author": "Xiphiros",
   "workspaces": [
     "src/web",
@@ -11,12 +12,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate": "npm run generate --workspace=@rt-tools/dataset-generator",
-    "dev": "npm run dev --workspace=@rt-tools/web"
+    "dev": "npm run dev --workspace=@rt-tools/web",
+    "convert": "node src/tools/osu-converter/index.js"
   },
   "keywords": [
     "rhythm-game",
     "difficulty-calculator",
     "strain-manifold"
   ],
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "jszip": "^3.10.1"
+  }
 }
