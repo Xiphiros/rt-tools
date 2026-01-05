@@ -16,6 +16,11 @@ export default {
         muted: "var(--color-text-muted)",
         border: "var(--color-border)",
         input: "var(--color-input-bg)",
+        
+        // Semantic Colors
+        warning: "var(--color-warning)",
+        danger: "var(--color-danger)",
+        success: "var(--color-success)",
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
