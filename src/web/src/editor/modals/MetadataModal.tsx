@@ -23,6 +23,11 @@ export const MetadataModal = ({ isOpen, onClose }: MetadataModalProps) => {
         setForm(prev => ({ ...prev, [name]: value }));
     };
 
+    const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setForm(prev => ({ ...prev, [name]: parseFloat(value) }));
+    };
+
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>, type: 'audio' | 'image') => {
         if (!e.target.files || e.target.files.length === 0 || !activeProjectId) return;
         
@@ -76,6 +81,28 @@ export const MetadataModal = ({ isOpen, onClose }: MetadataModalProps) => {
                         <div className="space-y-1">
                             <label className="text-xs font-semibold text-muted">Mapper</label>
                             <input name="mapper" value={form.mapper} onChange={handleChange} className="w-full bg-input border border-border rounded px-3 py-2 text-sm focus:border-primary focus:outline-none" />
+                        </div>
+                    </div>
+
+                    <div className="space-y-2 pt-2">
+                        <div className="flex justify-between items-center">
+                             <label className="text-xs font-semibold text-muted">Overall Difficulty (OD)</label>
+                             <span className="text-sm font-bold text-primary">{form.overallDifficulty?.toFixed(1) || "8.0"}</span>
+                        </div>
+                        <input 
+                            type="range" 
+                            name="overallDifficulty"
+                            min="0" 
+                            max="10" 
+                            step="0.1" 
+                            value={form.overallDifficulty ?? 8} 
+                            onChange={handleNumberChange}
+                            className="w-full accent-primary h-2 bg-input rounded-lg appearance-none cursor-pointer"
+                        />
+                        <div className="flex justify-between text-[10px] text-muted font-mono">
+                            <span>0 (Loose)</span>
+                            <span>5 (Normal)</span>
+                            <span>10 (Strict)</span>
                         </div>
                     </div>
                 </div>
