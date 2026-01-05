@@ -13,6 +13,7 @@ import { NotePropertiesModal } from './modals/NotePropertiesModal';
 import { useShortcuts } from './hooks/useShortcuts';
 import { useMetronome } from './hooks/useMetronome';
 import { usePlaybackHitsounds } from './hooks/usePlaybackHitsounds';
+import { useLiveInput } from './hooks/useLiveInput';
 import { exportBeatmapPackage } from './utils/exporter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -68,13 +69,14 @@ const TopMenuBar = ({ onOpenModal, showSidebar, toggleSidebar }: { onOpenModal: 
 };
 
 const EditorLayout = () => {
-    const { mapData, playback, bgBlobUrl, settings, dispatch } = useEditor();
+    const { mapData, playback, bgBlobUrl, settings, dispatch, activeLayerId } = useEditor();
     const [activeModal, setActiveModal] = useState<string | null>(null);
     const [showSidebar, setShowSidebar] = useState(true);
     
     useShortcuts();
     useMetronome();
     usePlaybackHitsounds();
+    useLiveInput();
     
     const bottomPanelHeight = settings.showWaveform ? 'h-[240px]' : 'h-[160px]';
 
@@ -112,6 +114,7 @@ const EditorLayout = () => {
                                     scale={1.1} 
                                     onNoteClick={handlePlayfieldNoteClick}
                                     onBackgroundClick={handlePlayfieldBgClick}
+                                    activeLayerId={activeLayerId}
                                 />
                             </div>
                         </div>
