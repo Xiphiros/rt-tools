@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { EditorProvider, useEditor } from './store/EditorContext';
 import { EditorTimeline } from './components/EditorTimeline';
 import { EditorToolbox } from './components/EditorToolbox';
@@ -9,9 +9,9 @@ import { MetadataModal } from './modals/MetadataModal';
 import { TimingModal } from './modals/TimingModal';
 import { ResnapModal } from './modals/ResnapModal';
 import { ProjectManagerModal } from './modals/ProjectManagerModal';
-import { NotePropertiesModal } from './modals/NotePropertiesModal';
 import { DifficultyManagerModal } from './modals/DifficultyManagerModal';
 import { LayerColorModal } from './modals/LayerColorModal';
+import { HitsoundPanel } from './components/HitsoundPanel';
 import { useShortcuts } from './hooks/useShortcuts';
 import { useMetronome } from './hooks/useMetronome';
 import { usePlaybackHitsounds } from './hooks/usePlaybackHitsounds';
@@ -79,6 +79,25 @@ const EditorLayout = () => {
     const [showSidebar, setShowSidebar] = useState(true);
     const [layerColorId, setLayerColorId] = useState<string | null>(null);
     
+    // Panel Visibility State
+    const [showHitsoundPanel, setShowHitsoundPanel] = useState(false);
+    
+    // Track selection changes to auto-open panel
+    const prevSelectionCount = useRef(0);
+    const selectionCount = mapData.notes.filter(n => n.selected).length;
+
+    useEffect(() => {
+        // If selection increased from 0, open panel
+        if (prevSelectionCount.current === 0 && selectionCount > 0) {
+            setShowHitsoundPanel(true);
+        }
+        // If selection dropped to 0, close panel
+        if (selectionCount === 0) {
+            setShowHitsoundPanel(false);
+        }
+        prevSelectionCount.current = selectionCount;
+    }, [selectionCount]);
+
     useShortcuts();
     useMetronome();
     usePlaybackHitsounds();
@@ -111,6 +130,8 @@ const EditorLayout = () => {
                         {bgBlobUrl && (
                             <div className="absolute inset-0 bg-cover bg-center opacity-30 blur-sm pointer-events-none" style={{ backgroundImage: `url(${bgBlobUrl})` }} />
                         )}
+                        
+                        {/* The Playfield */}
                         <div className="absolute inset-0 flex items-center justify-center">
                             <div className="aspect-video w-full max-h-full relative">
                                 <Playfield 
@@ -123,10 +144,22 @@ const EditorLayout = () => {
                                     activeLayerId={activeLayerId}
                                     dimInactiveLayers={settings.dimInactiveLayers}
                                 />
+                                
+                                {/* Floating Hitsound Panel */}
+                                <HitsoundPanel 
+                                    isOpen={showHitsoundPanel} 
+                                    onClose={() => setShowHitsoundPanel(false)} 
+                                />
                             </div>
                         </div>
+
+                        {/* Toolbox (Absolute to overlap playfield) */}
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 z-40">
-                            <EditorToolbox onOpenModal={setActiveModal} />
+                            <EditorToolbox 
+                                onOpenModal={setActiveModal} 
+                                onToggleHitsounds={() => setShowHitsoundPanel(!showHitsoundPanel)}
+                                isHitsoundsOpen={showHitsoundPanel}
+                            />
                         </div>
                     </div>
                     
@@ -149,7 +182,6 @@ const EditorLayout = () => {
             <ResnapModal isOpen={activeModal === 'resnap'} onClose={() => setActiveModal(null)} />
             <ProjectManagerModal isOpen={activeModal === 'projects'} onClose={() => setActiveModal(null)} />
             <DifficultyManagerModal isOpen={activeModal === 'difficulties'} onClose={() => setActiveModal(null)} />
-            <NotePropertiesModal isOpen={activeModal === 'properties'} onClose={() => setActiveModal(null)} />
             <LayerColorModal isOpen={!!layerColorId} layerId={layerColorId} onClose={() => setLayerColorId(null)} />
         </div>
     );
