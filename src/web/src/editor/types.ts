@@ -38,6 +38,7 @@ export interface MapMetadata {
     artist: string;
     mapper: string;
     difficultyName: string;
+    overallDifficulty: number;
     source: string;
     tags: string;
     backgroundFile: string;
