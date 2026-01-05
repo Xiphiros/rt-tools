@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useEditor } from '../store/EditorContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faPlay, faPause, faUndo, faRedo, faVolumeUp, faVolumeMute, faSpinner, faAngleDown, faMusic, faDrum
+    faPlay, faPause, faUndo, faRedo, faSlidersH, faSpinner, faAngleDown, faMusic, faDrum, faClock, faVolumeUp
 } from '@fortawesome/free-solid-svg-icons';
 
 const VolumeSlider = ({ 
@@ -19,7 +19,7 @@ const VolumeSlider = ({
 }) => (
     <div className="flex flex-col gap-1 w-full">
         <div className="flex justify-between text-[10px] uppercase font-bold text-muted tracking-wider">
-            <span className="flex items-center gap-2"><FontAwesomeIcon icon={icon} /> {label}</span>
+            <span className="flex items-center gap-2"><FontAwesomeIcon icon={icon} className="w-3" /> {label}</span>
             <span>{value}%</span>
         </div>
         <input 
@@ -50,7 +50,6 @@ export const EditorBottomBar = () => {
     useEffect(() => {
         if (showVolume && volumeBtnRef.current) {
             const rect = volumeBtnRef.current.getBoundingClientRect();
-            // Center horizontally on button, position above
             setPopupPosition({
                 left: rect.left + rect.width / 2,
                 bottom: window.innerHeight - rect.top + 10
@@ -60,7 +59,7 @@ export const EditorBottomBar = () => {
 
     return (
         <div className="h-16 bg-card border-t border-border flex items-center px-4 justify-between select-none shadow-[0_-5px_20px_rgba(0,0,0,0.3)] z-50 relative">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 w-48">
                 <button 
                     onClick={togglePlay} 
                     disabled={!isReady}
@@ -81,33 +80,54 @@ export const EditorBottomBar = () => {
                 </div>
             </div>
             
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-8">
                 {/* Beat Snap */}
-                <div className="flex flex-col items-center">
-                    <span className="text-[10px] text-muted uppercase font-bold mb-1">Beat Snap</span>
+                <div className="flex flex-col items-center gap-1">
+                    <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Snap</span>
                     <div className="relative group">
                         <select 
-                            className="appearance-none bg-input border border-border hover:border-primary/50 text-white font-bold text-center pl-4 pr-8 py-1.5 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all cursor-pointer shadow-sm w-24"
+                            className="appearance-none bg-input border border-border hover:border-primary/50 text-white font-bold text-center pl-3 pr-7 py-1 rounded focus:outline-none focus:border-primary transition-all cursor-pointer text-xs w-20"
                             value={settings.snapDivisor} 
                             onChange={(e) => setSettings(s => ({ ...s, snapDivisor: Number(e.target.value) }))}
                         >
                             {[1, 2, 3, 4, 6, 8, 12, 16].map(v => (<option key={v} value={v}>1/{v}</option>))}
                         </select>
                         <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-muted group-hover:text-primary transition-colors">
-                            <FontAwesomeIcon icon={faAngleDown} size="sm" />
+                            <FontAwesomeIcon icon={faAngleDown} size="xs" />
                         </div>
                     </div>
                 </div>
                 
+                {/* Metronome */}
+                <div className="flex flex-col items-center gap-1">
+                    <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Metro</span>
+                    <button 
+                        onClick={() => setSettings(s => ({ ...s, metronome: !s.metronome }))}
+                        className={`w-16 py-1 rounded text-xs font-bold transition-all border flex items-center justify-center gap-2 ${
+                            settings.metronome 
+                            ? 'bg-secondary/20 text-secondary border-secondary shadow-[0_0_10px_rgba(168,85,247,0.2)]' 
+                            : 'bg-input text-muted border-border hover:text-white hover:border-white/20'
+                        }`}
+                    >
+                        <FontAwesomeIcon icon={faClock} />
+                        {settings.metronome ? "ON" : "OFF"}
+                    </button>
+                </div>
+
                 {/* Volume Mixer Toggle */}
-                <div className="flex flex-col items-center relative">
-                    <span className="text-[10px] text-muted uppercase font-bold mb-1">Volume</span>
+                <div className="flex flex-col items-center gap-1 relative">
+                    <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Mixer</span>
                     <button 
                         ref={volumeBtnRef}
                         onClick={() => setShowVolume(!showVolume)}
-                        className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all border ${showVolume ? 'bg-card border-primary text-primary' : 'bg-input text-muted border-border hover:text-white hover:border-white/20'}`}
+                        className={`w-16 py-1 rounded text-xs font-bold transition-all border flex items-center justify-center gap-2 ${
+                            showVolume 
+                            ? 'bg-primary/20 text-primary border-primary shadow-[0_0_10px_rgba(34,211,238,0.2)]' 
+                            : 'bg-input text-muted border-border hover:text-white hover:border-white/20'
+                        }`}
                     >
-                        <FontAwesomeIcon icon={settings.masterVolume === 0 ? faVolumeMute : faVolumeUp} />
+                        <FontAwesomeIcon icon={faSlidersH} />
+                        VOL
                     </button>
 
                     {/* Mixer Popover (PORTAL) */}
@@ -123,8 +143,8 @@ export const EditorBottomBar = () => {
                                 }}
                             >
                                 <div className="flex justify-between items-center border-b border-border pb-2 mb-1">
-                                    <span className="text-xs font-bold text-white">Audio Mixer</span>
-                                    <button onClick={() => setShowVolume(false)} className="text-[10px] bg-input px-2 py-0.5 rounded text-muted hover:text-white">Close</button>
+                                    <span className="text-xs font-bold text-white uppercase tracking-wider">Audio Mixer</span>
+                                    <button onClick={() => setShowVolume(false)} className="text-[10px] bg-input px-2 py-0.5 rounded text-muted hover:text-white">✕</button>
                                 </div>
                                 
                                 <VolumeSlider 
@@ -149,15 +169,8 @@ export const EditorBottomBar = () => {
                                     label="Metronome" 
                                     value={settings.metronomeVolume} 
                                     onChange={(v) => setSettings(s => ({...s, metronomeVolume: v}))} 
-                                    icon={faDrum} 
+                                    icon={faClock} 
                                 />
-                                
-                                <button 
-                                    onClick={() => setSettings(s => ({...s, metronome: !s.metronome}))}
-                                    className={`mt-2 w-full py-2 rounded text-xs font-bold transition-colors ${settings.metronome ? 'bg-primary text-black' : 'bg-input text-muted hover:text-white'}`}
-                                >
-                                    Metronome: {settings.metronome ? "ON" : "OFF"}
-                                </button>
                             </div>
                         </>,
                         document.body
@@ -165,16 +178,16 @@ export const EditorBottomBar = () => {
                 </div>
 
                 {/* Playback Rate */}
-                <div className="flex flex-col items-center">
-                    <span className="text-[10px] text-muted uppercase font-bold mb-1">Rate</span>
-                    <div className="flex gap-1 bg-input p-1 rounded-lg border border-border">
+                <div className="flex flex-col items-center gap-1">
+                    <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Rate</span>
+                    <div className="flex gap-0.5 bg-input p-0.5 rounded border border-border">
                         {[0.5, 0.75, 1.0].map(rate => (
                             <button 
                                 key={rate} 
                                 onClick={() => setSettings(s => ({ ...s, playbackSpeed: rate }))} 
-                                className={`px-2.5 py-1 text-xs rounded-md font-bold transition-all ${
+                                className={`px-2 py-0.5 text-[10px] rounded font-bold transition-all ${
                                     settings.playbackSpeed === rate 
-                                    ? 'bg-secondary text-black shadow-sm' 
+                                    ? 'bg-white/10 text-white shadow-sm' 
                                     : 'text-muted hover:text-white hover:bg-white/5'
                                 }`}
                             >
@@ -185,7 +198,7 @@ export const EditorBottomBar = () => {
                 </div>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex gap-2 w-48 justify-end">
                 <button disabled={!canUndo} onClick={() => dispatch({ type: 'UNDO' })} className="w-10 h-10 rounded-lg hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors"><FontAwesomeIcon icon={faUndo} /></button>
                 <button disabled={!canRedo} onClick={() => dispatch({ type: 'REDO' })} className="w-10 h-10 rounded-lg hover:bg-white/10 flex items-center justify-center text-muted hover:text-white disabled:opacity-30 transition-colors"><FontAwesomeIcon icon={faRedo} /></button>
             </div>
