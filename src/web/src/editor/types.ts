@@ -3,6 +3,16 @@
 export type NoteType = 'tap' | 'hold';
 export type EditorTool = 'select' | 'pen' | 'eraser';
 
+export interface HitsoundSettings {
+    sampleSet: 'normal' | 'soft' | 'drum';
+    volume: number; // 0-100
+    additions: {
+        whistle: boolean;
+        finish: boolean;
+        clap: boolean;
+    };
+}
+
 export interface EditorNote {
     id: string;         
     time: number;       
@@ -11,6 +21,7 @@ export interface EditorNote {
     type: NoteType;
     duration?: number;  
     selected?: boolean;
+    hitsound: HitsoundSettings;
 }
 
 export interface MapMetadata {
