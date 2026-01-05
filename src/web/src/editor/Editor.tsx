@@ -7,6 +7,7 @@ import { MetadataModal } from './modals/MetadataModal';
 import { TimingModal } from './modals/TimingModal';
 import { ResnapModal } from './modals/ResnapModal';
 import { ProjectManagerModal } from './modals/ProjectManagerModal';
+import { NotePropertiesModal } from './modals/NotePropertiesModal'; // New Import
 import { useShortcuts } from './hooks/useShortcuts';
 import { useMetronome } from './hooks/useMetronome';
 import { exportBeatmapPackage } from './utils/exporter';
@@ -146,7 +147,6 @@ const EditorLayout = () => {
                             <Playfield mapData={mapData} currentTime={playback.currentTime} playbackRate={playback.playbackRate} scale={1.1} />
                         </div>
                     </div>
-                    {/* Wired onOpenModal */}
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 z-40">
                         <EditorToolbox onOpenModal={setActiveModal} />
                     </div>
@@ -158,11 +158,11 @@ const EditorLayout = () => {
             </div>
             <EditorBottomBar />
             
-            {/* Modals */}
             <MetadataModal isOpen={activeModal === 'metadata'} onClose={() => setActiveModal(null)} />
             <TimingModal isOpen={activeModal === 'timing'} onClose={() => setActiveModal(null)} />
             <ResnapModal isOpen={activeModal === 'resnap'} onClose={() => setActiveModal(null)} />
             <ProjectManagerModal isOpen={activeModal === 'projects'} onClose={() => setActiveModal(null)} />
+            <NotePropertiesModal isOpen={activeModal === 'properties'} onClose={() => setActiveModal(null)} />
         </div>
     );
 };
