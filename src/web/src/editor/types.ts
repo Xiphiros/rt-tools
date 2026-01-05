@@ -66,6 +66,12 @@ export interface EditorSettings {
     metronome: boolean;
     snappingEnabled: boolean;
     showWaveform: boolean;
+    
+    // Volume Channels (0-100)
+    masterVolume: number;
+    musicVolume: number;
+    hitsoundVolume: number;
+    metronomeVolume: number;
 }
 
 export interface HistoryState {
