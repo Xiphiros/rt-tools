@@ -1,27 +1,1091 @@
 [
   {
-    "id": "ln0hnkdbhk1f",
-    "title": "Igaku",
-    "artist": "Sasuke Haraguchi",
-    "mapper": "olc",
+    "id": "mwrb5o65dvv2",
+    "title": "Miserea",
+    "artist": "KURORYU vs. Dispel",
+    "mapper": "Did3u5z",
     "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ln0hnkdbhk1f/ln0hnkdbhk1f.rtm"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/mwrb5o65dvv2/mwrb5o65dvv2.rtm"
   },
   {
-    "id": "zbob5cizws3e",
+    "id": "z6d80bbx24xo",
+    "title": "PFFFT FFFT BBVVT?",
+    "artist": "Yung Nevadean Delta",
+    "mapper": "AFS",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/z6d80bbx24xo/z6d80bbx24xo.rtm"
+  },
+  {
+    "id": "vwtadjz0gxru",
+    "title": "The Monk",
+    "artist": "Telekinesis",
+    "mapper": "Yomia",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/vwtadjz0gxru/vwtadjz0gxru.rtm"
+  },
+  {
+    "id": "seiudvobsy9g",
+    "title": "Fart",
+    "artist": "stock sound effect (probably)",
+    "mapper": "Py9",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/seiudvobsy9g/seiudvobsy9g.rtm"
+  },
+  {
+    "id": "bcbjgveilbgl",
+    "title": "Ren'ai Heiki! Lethal Weapon-chan",
+    "artist": ":) feat. KAFU",
+    "mapper": "darkify",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/bcbjgveilbgl/bcbjgveilbgl.rtm"
+  },
+  {
+    "id": "wqyct99yyat7",
+    "title": "Sa Ngalan Ng Pag-Ibig",
+    "artist": "December Avenue",
+    "mapper": "Happy566",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/wqyct99yyat7/wqyct99yyat7.rtm"
+  },
+  {
+    "id": "rxn2y4vs9idg",
+    "title": "Whisper Whisper Whisper",
+    "artist": "Azari",
+    "mapper": "juzek",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/rxn2y4vs9idg/rxn2y4vs9idg.rtm"
+  },
+  {
+    "id": "5g94bdzzjn6a",
+    "title": "phantasmagoria",
+    "artist": "mzlff",
+    "mapper": "Piger",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/5g94bdzzjn6a/5g94bdzzjn6a.rtm"
+  },
+  {
+    "id": "v4n3r0dmxg7k",
+    "title": "Let Me Hit It (Audiostalkers Original Mix)",
+    "artist": "Sporty-O",
+    "mapper": "Zabrid",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/v4n3r0dmxg7k/v4n3r0dmxg7k.rtm"
+  },
+  {
+    "id": "obxim9ue2yuj",
+    "title": "Sad Machine",
+    "artist": "Porter Robinson",
+    "mapper": "mushroom",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/obxim9ue2yuj/obxim9ue2yuj.rtm"
+  },
+  {
+    "id": "3c1j2em2lu8s",
+    "title": "Người tình Mai Ya Hee!",
+    "artist": "Vũ Hà",
+    "mapper": "PhongSutaros2011",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/3c1j2em2lu8s/3c1j2em2lu8s.rtm"
+  },
+  {
+    "id": "jkxcxyy5do95",
+    "title": "basics in behavior sped up",
+    "artist": "the living tombstone",
+    "mapper": "ST4RLIGHT",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/jkxcxyy5do95/jkxcxyy5do95.rtm"
+  },
+  {
+    "id": "fd6bqvjioj2u",
+    "title": "Aishite Aishite Aishite",
+    "artist": "Ado",
+    "mapper": "Vespertea",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/fd6bqvjioj2u/fd6bqvjioj2u.rtm"
+  },
+  {
+    "id": "gennwvl8p2qo",
+    "title": "SUPERNOVA",
+    "artist": "BACO",
+    "mapper": "Knight",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/gennwvl8p2qo/gennwvl8p2qo.rtm"
+  },
+  {
+    "id": "a3tlc7tzv1dt",
+    "title": "OMORIBOY the PIRATE!!! ☠️☠️☠️",
+    "artist": "UUN4",
+    "mapper": "hah",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/a3tlc7tzv1dt/a3tlc7tzv1dt.rtm"
+  },
+  {
+    "id": "49i15gkdblvu",
+    "title": "Cold Green Eyes feat. Roos Denayer",
+    "artist": "Station Earth",
+    "mapper": "Happy566",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/49i15gkdblvu/49i15gkdblvu.rtm"
+  },
+  {
+    "id": "a4skuabwpy0f",
+    "title": "The World Revolving",
+    "artist": "axiom",
+    "mapper": "axiom",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/a4skuabwpy0f/a4skuabwpy0f.rtm"
+  },
+  {
+    "id": "0othgwqn7yi8",
+    "title": "You Suck at Love (Nightcore & Cut Ver.)",
+    "artist": "Simple Plan",
+    "mapper": "ChukiShuki",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/0othgwqn7yi8/0othgwqn7yi8.rtm"
+  },
+  {
+    "id": "m0o642amxjzw",
+    "title": "KATAMARI",
+    "artist": "femtanyl",
+    "mapper": "Pablo",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/m0o642amxjzw/m0o642amxjzw.rtm"
+  },
+  {
+    "id": "0ody7eudhe1t",
+    "title": "Pushing Buddies",
+    "artist": "Toby Fox",
+    "mapper": "ProfessorZ430",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/0ody7eudhe1t/0ody7eudhe1t.rtm"
+  },
+  {
+    "id": "49n3uynw6ikr",
+    "title": "Overjoy ★ OVERDOSE!!",
+    "artist": "BilliumMoto, Sobrem, 黒皇帝, vally.exe",
+    "mapper": "Fakundddo",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/49n3uynw6ikr/49n3uynw6ikr.rtm"
+  },
+  {
+    "id": "8om7tp9yjg5z",
+    "title": "Noisy Rainy",
+    "artist": "Tsukuyomi",
+    "mapper": "Cyanara",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/8om7tp9yjg5z/8om7tp9yjg5z.rtm"
+  },
+  {
+    "id": "dr2tch8788dd",
+    "title": "Scatman (ski-ba-bop-ba-dop-bop)",
+    "artist": "Scatman John",
+    "mapper": "goink",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/dr2tch8788dd/dr2tch8788dd.rtm"
+  },
+  {
+    "id": "j3xwdontddl8",
+    "title": "Chaos",
+    "artist": "5AM",
+    "mapper": "hembegur",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/j3xwdontddl8/j3xwdontddl8.rtm"
+  },
+  {
+    "id": "cs92n7z4idyo",
+    "title": "Harvest Moon Night",
+    "artist": "Mikochi (CV: Shimoji Shino) & Konju (CV: Yuuki Aoi)",
+    "mapper": "Cyanara",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/cs92n7z4idyo/cs92n7z4idyo.rtm"
+  },
+  {
+    "id": "1ihgm705o4ip",
+    "title": "KNOW ABOUT ME",
+    "artist": "NMIXX",
+    "mapper": "popeye",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/1ihgm705o4ip/1ihgm705o4ip.rtm"
+  },
+  {
+    "id": "blyg8u1a9s2f",
+    "title": "Harlequin (Homestuck)",
+    "artist": "Mark Hadley",
+    "mapper": "ajongahas",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/blyg8u1a9s2f/blyg8u1a9s2f.rtm"
+  },
+  {
+    "id": "1op8nvr168sx",
+    "title": "NEON LIGHTS",
+    "artist": "Kirbae",
+    "mapper": "b__",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/1op8nvr168sx/1op8nvr168sx.rtm"
+  },
+  {
+    "id": "f5cfldzie9nd",
+    "title": "Don't Forget",
+    "artist": "Toby Fox Feat. Laura Shigihara",
+    "mapper": "Taxe",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/f5cfldzie9nd/f5cfldzie9nd.rtm"
+  },
+  {
+    "id": "xnjgqzls5lve",
+    "title": "Igaku",
+    "artist": "Sasuke Haraguchi feat. Kasane Teto",
+    "mapper": "olc",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/xnjgqzls5lve/xnjgqzls5lve.rtm"
+  },
+  {
+    "id": "hjyirocfxqsq",
+    "title": "Rabbit Hole",
+    "artist": "DECO*27",
+    "mapper": "probablynotacat",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/hjyirocfxqsq/hjyirocfxqsq.rtm"
+  },
+  {
+    "id": "qr6bl59icdng",
+    "title": "Shinzou o Sasageyo! [TV Size]",
+    "artist": "Linked Horizon",
+    "mapper": "mike_zzz",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/qr6bl59icdng/qr6bl59icdng.rtm"
+  },
+  {
+    "id": "u2ksls49r25t",
+    "title": "Broken Moon (Instrumental)",
+    "artist": "Haru",
+    "mapper": "mike_zzz",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/u2ksls49r25t/u2ksls49r25t.rtm"
+  },
+  {
+    "id": "ldwn5m49vs6m",
+    "title": "Kids",
+    "artist": "MGMT",
+    "mapper": "Mr_ButterKatze",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ldwn5m49vs6m/ldwn5m49vs6m.rtm"
+  },
+  {
+    "id": "e8935omp94z8",
+    "title": "ROT FOR CLOUT",
+    "artist": "Jamie Paige, Visualeyes",
+    "mapper": "Fakundddo",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/e8935omp94z8/e8935omp94z8.rtm"
+  },
+  {
+    "id": "rd6guzl9hctt",
+    "title": "Fukashigi no Karte (Cut Ver.)",
+    "artist": "Seishun Buta Yarou Cast",
+    "mapper": "Joflex",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/rd6guzl9hctt/rd6guzl9hctt.rtm"
+  },
+  {
+    "id": "pgc2s5se9mj2",
+    "title": "Hishoku no Sora (TV Size)",
+    "artist": "Kawada Mami",
+    "mapper": "mike_zzz",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/pgc2s5se9mj2/pgc2s5se9mj2.rtm"
+  },
+  {
+    "id": "ovziqnz9jfwu",
+    "title": "Basketball Is Just BETTER",
+    "artist": "Brandon Dwyer",
+    "mapper": "Killytheapple",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ovziqnz9jfwu/ovziqnz9jfwu.rtm"
+  },
+  {
+    "id": "3vlg805v6pdu",
+    "title": "Proper Rhythm",
+    "artist": "Peak Divide",
+    "mapper": "K0egs",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/3vlg805v6pdu/3vlg805v6pdu.rtm"
+  },
+  {
+    "id": "jprfkxhe1zg5",
+    "title": "END≠MIND",
+    "artist": "暁Records",
+    "mapper": "Yomia",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/jprfkxhe1zg5/jprfkxhe1zg5.rtm"
+  },
+  {
+    "id": "o2la3r0i0o2f",
+    "title": "dragoste de dat",
+    "artist": "traian",
+    "mapper": "Dei",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/o2la3r0i0o2f/o2la3r0i0o2f.rtm"
+  },
+  {
+    "id": "1e2q81u8d5sw",
+    "title": "Time Files",
+    "artist": "xi",
+    "mapper": "Happy566",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/1e2q81u8d5sw/1e2q81u8d5sw.rtm"
+  },
+  {
+    "id": "6cpg2lrkx0az",
+    "title": "Rabbit Hole",
+    "artist": "DECO*27",
+    "mapper": "Happy566",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/6cpg2lrkx0az/6cpg2lrkx0az.rtm"
+  },
+  {
+    "id": "8grw12lb5i7m",
+    "title": "Risa Furanku 420 / Gendai no Konpyu",
+    "artist": "MACINTOSH PLUS",
+    "mapper": "axi",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/8grw12lb5i7m/8grw12lb5i7m.rtm"
+  },
+  {
+    "id": "m0x1ryujbbou",
+    "title": "Silly 300bpm thing",
+    "artist": "easynam",
+    "mapper": "Happy566",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/m0x1ryujbbou/m0x1ryujbbou.rtm"
+  },
+  {
+    "id": "ns16ks580az0",
+    "title": "Fukashigi no Karte (TV Size)",
+    "artist": "Futaba Rio (CV: Tanezaki Atsumi)",
+    "mapper": "lol",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ns16ks580az0/ns16ks580az0.rtm"
+  },
+  {
+    "id": "0orukfxm10x5",
+    "title": "z tobą być",
+    "artist": "kets4eki",
+    "mapper": "Dei",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/0orukfxm10x5/0orukfxm10x5.rtm"
+  },
+  {
+    "id": "la6y7g2w94q8",
+    "title": "TYPEWRITE LESSON",
+    "artist": "Cornelius",
+    "mapper": "Nortromka",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/la6y7g2w94q8/la6y7g2w94q8.rtm"
+  },
+  {
+    "id": "zeavyp3bvl58",
+    "title": "Ao to Natsu (katagiri Bootleg) (Sped Up & Cut Ver.)",
+    "artist": "Mrs. GREEN APPLE",
+    "mapper": "ikero",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/zeavyp3bvl58/zeavyp3bvl58.rtm"
+  },
+  {
+    "id": "claavaq30i9z",
+    "title": "Lagtrain",
+    "artist": "inabakumori",
+    "mapper": "mqno",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/claavaq30i9z/claavaq30i9z.rtm"
+  },
+  {
+    "id": "40681tj6v4jl",
+    "title": "Take A Chance On Me (Cut Ver)",
+    "artist": "ABBA",
+    "mapper": "goink",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/40681tj6v4jl/40681tj6v4jl.rtm"
+  },
+  {
+    "id": "j6aqr2tusgfk",
+    "title": "No",
+    "artist": "acsd",
+    "mapper": "HexDecBin",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/j6aqr2tusgfk/j6aqr2tusgfk.rtm"
+  },
+  {
+    "id": "7r7k456f51ul",
+    "title": "Very Possible Chart",
+    "artist": "Unknown Artist",
+    "mapper": "HexDecBin",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/7r7k456f51ul/7r7k456f51ul.rtm"
+  },
+  {
+    "id": "2d3vdqdowoq0",
+    "title": "Without Warning",
+    "artist": "Taitoki",
+    "mapper": "lolol",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/2d3vdqdowoq0/2d3vdqdowoq0.rtm"
+  },
+  {
+    "id": "zhnz3f7q78u3",
+    "title": "Ghost Fight",
+    "artist": "Toby Fox",
+    "mapper": "DerpyBacon",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/zhnz3f7q78u3/zhnz3f7q78u3.rtm"
+  },
+  {
+    "id": "23rvy3cndia6",
+    "title": "Chess Battle Advanced Menu Theme",
+    "artist": "Leonardo \"StrShPlyr\"",
+    "mapper": "average_",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/23rvy3cndia6/23rvy3cndia6.rtm"
+  },
+  {
+    "id": "xaaadj18zbpl",
+    "title": "Spin of Ice Crystals",
+    "artist": "Yu-Peng Chen (HOYO-MiX)",
+    "mapper": "Psalt",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/xaaadj18zbpl/xaaadj18zbpl.rtm"
+  },
+  {
+    "id": "sdapz82cw49l",
+    "title": "Amenbo no Uta",
+    "artist": "howtolearn JAPAN / Nihongo manabu + sssbb",
+    "mapper": "sssbb",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/sdapz82cw49l/sdapz82cw49l.rtm"
+  },
+  {
+    "id": "td48kgp954cw",
+    "title": "Miserea",
+    "artist": "KURORYU vs. Dispel",
+    "mapper": "Did3u5z",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/td48kgp954cw/td48kgp954cw.rtm"
+  },
+  {
+    "id": "ggrfprru5tc3",
+    "title": "PLEASE HOLD",
+    "artist": "JONO",
+    "mapper": "Cardboard_Dragon",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ggrfprru5tc3/ggrfprru5tc3.rtm"
+  },
+  {
+    "id": "oxau0lfk3ei5",
+    "title": "Firefly",
+    "artist": "Buzinkai",
+    "mapper": "nya",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/oxau0lfk3ei5/oxau0lfk3ei5.rtm"
+  },
+  {
+    "id": "oqzf2767h5jc",
+    "title": "What is me",
+    "artist": "Kirbae",
+    "mapper": "b__",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/oqzf2767h5jc/oqzf2767h5jc.rtm"
+  },
+  {
+    "id": "u8b6rcg1isvq",
+    "title": "intertwined",
+    "artist": "Vylet Pony",
+    "mapper": "nya",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/u8b6rcg1isvq/u8b6rcg1isvq.rtm"
+  },
+  {
+    "id": "mljqmwhtz8ie",
+    "title": "Sukisuki Zecchoushou",
+    "artist": "Kano",
+    "mapper": "kroniri",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/mljqmwhtz8ie/mljqmwhtz8ie.rtm"
+  },
+  {
+    "id": "rj0qen7wfh2b",
+    "title": "C.R.E.A.M.",
+    "artist": "nosgov",
+    "mapper": "Dei",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/rj0qen7wfh2b/rj0qen7wfh2b.rtm"
+  },
+  {
+    "id": "tq1150dzzxgv",
+    "title": "Sonorously Box",
+    "artist": "MusMus",
+    "mapper": "TTMDPOMIKHTT",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/tq1150dzzxgv/tq1150dzzxgv.rtm"
+  },
+  {
+    "id": "bijczxt2xo9h",
+    "title": "Chicken Dance",
+    "artist": "DJ Birdy",
+    "mapper": "AFS",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/bijczxt2xo9h/bijczxt2xo9h.rtm"
+  },
+  {
+    "id": "atkjnidhpqzv",
+    "title": "Be Careful, Everyone!",
+    "artist": "Studio Thumpy Puppy",
+    "mapper": "DerpyBacon",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/atkjnidhpqzv/atkjnidhpqzv.rtm"
+  },
+  {
+    "id": "gp2wf8h3rrc7",
+    "title": "Madoromi no Yakusoku (TV Size)",
+    "artist": "Satou Satomi & Kayano Ai",
+    "mapper": "mgt",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/gp2wf8h3rrc7/gp2wf8h3rrc7.rtm"
+  },
+  {
+    "id": "vjkijnd2wjpl",
+    "title": "Huey",
+    "artist": "Earl Sweatshirt",
+    "mapper": "aida",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/vjkijnd2wjpl/vjkijnd2wjpl.rtm"
+  },
+  {
+    "id": "l3eajap7yy5e",
+    "title": "L9",
+    "artist": "paraoka",
+    "mapper": "relikOS",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/l3eajap7yy5e/l3eajap7yy5e.rtm"
+  },
+  {
+    "id": "8r9ghdsq0lq0",
+    "title": "Sound Chimera",
+    "artist": "Laur",
+    "mapper": "probablynotacat",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/8r9ghdsq0lq0/8r9ghdsq0lq0.rtm"
+  },
+  {
+    "id": "0kkse99dj31c",
+    "title": "Watashi Dake Yuurei",
+    "artist": "SICK HACK",
+    "mapper": "COR",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/0kkse99dj31c/0kkse99dj31c.rtm"
+  },
+  {
+    "id": "paunfa7znbg8",
+    "title": "Hell's Hazy Skies",
+    "artist": "★reverienova",
+    "mapper": "Project_XYZ",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/paunfa7znbg8/paunfa7znbg8.rtm"
+  },
+  {
+    "id": "n38e33hugxjy",
+    "title": "Hero of My Story 3style3",
+    "artist": "bladee",
+    "mapper": "333",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/n38e33hugxjy/n38e33hugxjy.rtm"
+  },
+  {
+    "id": "wdlwelxm3pxh",
+    "title": "Tequila",
+    "artist": "The Champs",
+    "mapper": "goink",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/wdlwelxm3pxh/wdlwelxm3pxh.rtm"
+  },
+  {
+    "id": "lh6kkjrrbc31",
+    "title": "Lagtrain",
+    "artist": "inabakumori",
+    "mapper": "Fakundddo",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/lh6kkjrrbc31/lh6kkjrrbc31.rtm"
+  },
+  {
+    "id": "u5j4ap1sfm3c",
+    "title": "Noragami Opening (Goya wa Machiawase)",
+    "artist": "Hello Sleepwalkers",
+    "mapper": "JaxxHunter",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/u5j4ap1sfm3c/u5j4ap1sfm3c.rtm"
+  },
+  {
+    "id": "gdkps2wf6ent",
+    "title": "Golden (Harry Styles Cover)",
+    "artist": "Cannons",
+    "mapper": "JN_",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/gdkps2wf6ent/gdkps2wf6ent.rtm"
+  },
+  {
+    "id": "toqwbvmkkgzi",
+    "title": "PLAYING WITH FIRE",
+    "artist": "AZALI",
+    "mapper": "powpow7015",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/toqwbvmkkgzi/toqwbvmkkgzi.rtm"
+  },
+  {
+    "id": "mj7gaj7ba4za",
+    "title": "seal.mp4",
+    "artist": "joeyclassic",
+    "mapper": "Ereal",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/mj7gaj7ba4za/mj7gaj7ba4za.rtm"
+  },
+  {
+    "id": "hewmjdpt5xju",
+    "title": "Flim",
+    "artist": "Aphex Twin",
+    "mapper": "Procurador",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/hewmjdpt5xju/hewmjdpt5xju.rtm"
+  },
+  {
+    "id": "3do91xtp43r3",
+    "title": "zedd x Valorant music theme",
+    "artist": "zedd x valorant",
+    "mapper": "pepeabl",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/3do91xtp43r3/3do91xtp43r3.rtm"
+  },
+  {
+    "id": "oyfs92rwan31",
+    "title": "i turned a bad copypasta into a bad rap",
+    "artist": "senzawa",
+    "mapper": "RubyPiec",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/oyfs92rwan31/oyfs92rwan31.rtm"
+  },
+  {
+    "id": "dm86letst3yy",
+    "title": "Harumachi the Madness",
+    "artist": "ModlesS_Flash",
+    "mapper": "Neph",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/dm86letst3yy/dm86letst3yy.rtm"
+  },
+  {
+    "id": "mmm8nm4d4yde",
+    "title": "Shrimp Miku (second draft)",
+    "artist": "justan oval",
+    "mapper": "Cardboard_Dragon",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/mmm8nm4d4yde/mmm8nm4d4yde.rtm"
+  },
+  {
+    "id": "gkbg6uha2n3b",
+    "title": "We want to run",
+    "artist": "Frums",
+    "mapper": "Happy566",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/gkbg6uha2n3b/gkbg6uha2n3b.rtm"
+  },
+  {
+    "id": "iv3wlal3ybte",
+    "title": "DiSANiMATE",
+    "artist": "seatrus",
+    "mapper": "voxprism",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/iv3wlal3ybte/iv3wlal3ybte.rtm"
+  },
+  {
+    "id": "sxvfxr30b4yr",
+    "title": "conformity",
+    "artist": "kikoyu",
+    "mapper": "Vector",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/sxvfxr30b4yr/sxvfxr30b4yr.rtm"
+  },
+  {
+    "id": "165kdatqco1j",
+    "title": "Number Memorization Game",
+    "artist": "abababa!",
+    "mapper": "axi",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/165kdatqco1j/165kdatqco1j.rtm"
+  },
+  {
+    "id": "qbwdy0dl51ku",
+    "title": "Los! Los! Los! (UndreamedPanic remix)",
+    "artist": "Selphius, UndreamedPanic",
+    "mapper": "Vadenaach",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/qbwdy0dl51ku/qbwdy0dl51ku.rtm"
+  },
+  {
+    "id": "l0wuo6kijb5y",
+    "title": "chord test",
+    "artist": "agagaga!",
+    "mapper": "axi",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/l0wuo6kijb5y/l0wuo6kijb5y.rtm"
+  },
+  {
+    "id": "c7o6ssq0n4o9",
+    "title": "Chouon Chuu Haikatsuryou Test",
+    "artist": "KimurawaiP",
+    "mapper": "AFS",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/c7o6ssq0n4o9/c7o6ssq0n4o9.rtm"
+  },
+  {
+    "id": "ztkoas1vk9vn",
+    "title": "crossing field (TV Size)",
+    "artist": "LiSA",
+    "mapper": "jfiu",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ztkoas1vk9vn/ztkoas1vk9vn.rtm"
+  },
+  {
+    "id": "m4opcq4ncbiv",
+    "title": "Period. ~ Seishin no Kousoku to Jiyuu o Tsukamu Jouka (Cut Ver.)",
+    "artist": "tsunamix_underground",
+    "mapper": "Nortromka",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/m4opcq4ncbiv/m4opcq4ncbiv.rtm"
+  },
+  {
+    "id": "zqls2dntne2d",
+    "title": "Blueberry Faygo",
+    "artist": "Lil Mosey",
+    "mapper": "notRacist",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/zqls2dntne2d/zqls2dntne2d.rtm"
+  },
+  {
+    "id": "lbta658yc836",
+    "title": "More One Night",
+    "artist": "Chito (CV: Minase Inori), Yuuri (CV: Kubo Yurika)",
+    "mapper": "crawdadd",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/lbta658yc836/lbta658yc836.rtm"
+  },
+  {
+    "id": "khx863nhfwbu",
+    "title": "Greetings",
+    "artist": "VINXIS",
+    "mapper": "Aniviuh",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/khx863nhfwbu/khx863nhfwbu.rtm"
+  },
+  {
+    "id": "7am8vn3djy7y",
+    "title": "Madoromi no Yakusoku (TV Size)",
+    "artist": "Satou Satomi & Kayano Ai",
+    "mapper": "mgt",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/7am8vn3djy7y/7am8vn3djy7y.rtm"
+  },
+  {
+    "id": "n6hbv56a9dpy",
+    "title": "Heart111",
+    "artist": "yuri",
+    "mapper": "acorn",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/n6hbv56a9dpy/n6hbv56a9dpy.rtm"
+  },
+  {
+    "id": "eo29x7vaqnra",
+    "title": "MoeChakkaFire",
+    "artist": "Kotoha",
+    "mapper": "Duckygirll",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/eo29x7vaqnra/eo29x7vaqnra.rtm"
+  },
+  {
+    "id": "8hbdyeaiuttw",
+    "title": "Infinity Heaven",
+    "artist": "HyuN",
+    "mapper": "Happy566",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/8hbdyeaiuttw/8hbdyeaiuttw.rtm"
+  },
+  {
+    "id": "zzh65vc8hn0b",
+    "title": "Dark Sheep",
+    "artist": "Chroma",
+    "mapper": "Flubs",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/zzh65vc8hn0b/zzh65vc8hn0b.rtm"
+  },
+  {
+    "id": "96wxtkl18hw8",
+    "title": "Oyasumi Nakigoe, Sayonara Utahime",
+    "artist": "Laplus Darknesss",
+    "mapper": "hammerhead",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/96wxtkl18hw8/96wxtkl18hw8.rtm"
+  },
+  {
+    "id": "q9clqzndumk6",
+    "title": "phantasmagoria (cut ver.)",
+    "artist": "mzlff",
+    "mapper": "Artomesik",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/q9clqzndumk6/q9clqzndumk6.rtm"
+  },
+  {
+    "id": "1u96e853s2p3",
+    "title": "peace of mind",
+    "artist": "ren perriáe feat. doubleyouhat",
+    "mapper": "woohoo",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/1u96e853s2p3/1u96e853s2p3.rtm"
+  },
+  {
+    "id": "oh9j5wxuy42m",
+    "title": "OH NO NO NO FUNK",
+    "artist": "DJ KVNXD",
+    "mapper": "Anwul_",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/oh9j5wxuy42m/oh9j5wxuy42m.rtm"
+  },
+  {
+    "id": "jlyylb4e68ds",
+    "title": "again",
+    "artist": "YUI",
+    "mapper": "WD_master",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/jlyylb4e68ds/jlyylb4e68ds.rtm"
+  },
+  {
+    "id": "7lpjq8z9ex0n",
+    "title": "Nightclub for Seahorse",
+    "artist": "Kirbae",
+    "mapper": "b__",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/7lpjq8z9ex0n/7lpjq8z9ex0n.rtm"
+  },
+  {
+    "id": "3x12u5h3bbm4",
+    "title": "Over the Starlit sky",
+    "artist": "MUZIK SERVANT feat.CHERICa",
+    "mapper": "Did3u5z",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/3x12u5h3bbm4/3x12u5h3bbm4.rtm"
+  },
+  {
+    "id": "a46w92vyyzf3",
+    "title": "Ricochet Love",
+    "artist": "Waterflame",
+    "mapper": "d0zeOff",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/a46w92vyyzf3/a46w92vyyzf3.rtm"
+  },
+  {
+    "id": "c1nq8o829xdl",
+    "title": "Bonetrousle",
+    "artist": "toby fox",
+    "mapper": "rowu",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/c1nq8o829xdl/c1nq8o829xdl.rtm"
+  },
+  {
+    "id": "nxkozbug8413",
+    "title": "Rythm Hell",
+    "artist": "Sorry I Dont Remember",
+    "mapper": "d0zeOff",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/nxkozbug8413/nxkozbug8413.rtm"
+  },
+  {
+    "id": "egvd67b557xc",
+    "title": "Bluberry Fuego",
+    "artist": "Lil Mosey",
+    "mapper": "d0zeOff",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/egvd67b557xc/egvd67b557xc.rtm"
+  },
+  {
+    "id": "mtd2pbu4740j",
+    "title": "Hava Naguila - (Techno Remix)",
+    "artist": "BestJewishSongs",
+    "mapper": "jew",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/mtd2pbu4740j/mtd2pbu4740j.rtm"
+  },
+  {
+    "id": "wo26gezamplj",
     "title": "Tsukiakari",
     "artist": "Hoshimachi Suisei & Amane Kanata",
     "mapper": "hammerhead",
     "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/zbob5cizws3e/zbob5cizws3e.rtm"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/wo26gezamplj/wo26gezamplj.rtm"
   },
   {
-    "id": "e3uom0ojlx3k",
-    "title": "Pet Names",
-    "artist": "Smash Mouth",
-    "mapper": "olc",
+    "id": "w3ngmnylg3g1",
+    "title": "anybody can kind love (except you.)",
+    "artist": "hkmori",
+    "mapper": "probablynotacat",
     "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/e3uom0ojlx3k/e3uom0ojlx3k.rtm"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/w3ngmnylg3g1/w3ngmnylg3g1.rtm"
+  },
+  {
+    "id": "ihnxbos8yi28",
+    "title": "big daddy",
+    "artist": "USAO",
+    "mapper": "tanoos711",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ihnxbos8yi28/ihnxbos8yi28.rtm"
+  },
+  {
+    "id": "6j7zwqr1v5rn",
+    "title": "Journey through the Decade (TV Size)",
+    "artist": "GACKT",
+    "mapper": "ZakoHiroko",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/6j7zwqr1v5rn/6j7zwqr1v5rn.rtm"
+  },
+  {
+    "id": "s8z0o62ddj4i",
+    "title": "Deadlines (yeule Remix)",
+    "artist": "Car Seat Headrest, yeule",
+    "mapper": "popeye",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/s8z0o62ddj4i/s8z0o62ddj4i.rtm"
+  },
+  {
+    "id": "yntyseiqqjf4",
+    "title": "Ghost Town",
+    "artist": "Kanye West",
+    "mapper": "pepeabl",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/yntyseiqqjf4/yntyseiqqjf4.rtm"
+  },
+  {
+    "id": "hgf7stcfzcx5",
+    "title": "VORACITY",
+    "artist": "KAZU",
+    "mapper": "Vadenaach",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/hgf7stcfzcx5/hgf7stcfzcx5.rtm"
+  },
+  {
+    "id": "xwgtkqlz8ozd",
+    "title": "In Hell We Live, Lament",
+    "artist": "Mili, KIHOW",
+    "mapper": "Vadenaach",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/xwgtkqlz8ozd/xwgtkqlz8ozd.rtm"
+  },
+  {
+    "id": "qkyo5zmbz2ge",
+    "title": "Giygas is Wounded!",
+    "artist": "Suzuki Keiichi, Tanaka Hirokazu",
+    "mapper": "axi",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/qkyo5zmbz2ge/qkyo5zmbz2ge.rtm"
+  },
+  {
+    "id": "p9iyemf4kak6",
+    "title": "Angel Of Darkness (Video Mix) (Nightcore & Cut Ver.)",
+    "artist": "Alex C. feat. Yasmin K.",
+    "mapper": "lol",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/p9iyemf4kak6/p9iyemf4kak6.rtm"
+  },
+  {
+    "id": "husuz37j78a1",
+    "title": "MACHINEGUN POEM DOLL (unfinished)",
+    "artist": "cosmo@bousouP",
+    "mapper": "FlightEld",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/husuz37j78a1/husuz37j78a1.rtm"
+  },
+  {
+    "id": "h5nu1xf1czh9",
+    "title": "Everybody Wants To Rule The World (Cut Ver.)",
+    "artist": "Tears For Fears",
+    "mapper": "Entity",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/h5nu1xf1czh9/h5nu1xf1czh9.rtm"
+  },
+  {
+    "id": "zqj0cgrll3qk",
+    "title": "YOU",
+    "artist": "m1v",
+    "mapper": "Wzeta",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/zqj0cgrll3qk/zqj0cgrll3qk.rtm"
+  },
+  {
+    "id": "825wcoubn8k1",
+    "title": "HATSUBOSHI GAKUEN - Sekaiichi kawaii watashi",
+    "artist": "Kotone Fujita",
+    "mapper": "Fechote",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/825wcoubn8k1/825wcoubn8k1.rtm"
+  },
+  {
+    "id": "67jzpfspz508",
+    "title": "Fubuki Guys",
+    "artist": "Hamburgaga",
+    "mapper": "Neph",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/67jzpfspz508/67jzpfspz508.rtm"
+  },
+  {
+    "id": "hiy7lvwd93kb",
+    "title": "MANDE MANDE",
+    "artist": "CHASHKAKEFIRA",
+    "mapper": "TomeTwister",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/hiy7lvwd93kb/hiy7lvwd93kb.rtm"
+  },
+  {
+    "id": "alnsen3tjke9",
+    "title": "1 to 10 note",
+    "artist": "Daisuke Matsuoka, Asuka Ito",
+    "mapper": "cnxvk",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/alnsen3tjke9/alnsen3tjke9.rtm"
+  },
+  {
+    "id": "cuqiixrofv6c",
+    "title": "1 to 10 note",
+    "artist": "Daisuke Matsuoka, Asuka Ito",
+    "mapper": "cnxvk",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/cuqiixrofv6c/cuqiixrofv6c.rtm"
+  },
+  {
+    "id": "6ih1g5ui276p",
+    "title": "Madoromi no Yakusoku (TV Size)",
+    "artist": "Satou Satomi & Kayano Ai",
+    "mapper": "mgt",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/6ih1g5ui276p/6ih1g5ui276p.rtm"
+  },
+  {
+    "id": "5bs6nqf3ubit",
+    "title": "Madoromi no Yakusoku (TV Size)",
+    "artist": "Satou Satomi & Kayano Ai",
+    "mapper": "mgt",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/5bs6nqf3ubit/5bs6nqf3ubit.rtm"
+  },
+  {
+    "id": "ond7lrhdmmyr",
+    "title": "plus my peanuts got an attitude",
+    "artist": "McMaNGOS, eminem",
+    "mapper": "MEMORY",
+    "status": "unranked",
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ond7lrhdmmyr/ond7lrhdmmyr.rtm"
   },
   {
     "id": "5uzs53tbdt31",
@@ -32,22 +1096,6 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/5uzs53tbdt31/5uzs53tbdt31.rtm"
   },
   {
-    "id": "pv41bkb5k2xf",
-    "title": "Bonetrousle",
-    "artist": "toby fox",
-    "mapper": "rowu",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/pv41bkb5k2xf/pv41bkb5k2xf.rtm"
-  },
-  {
-    "id": "l520erhmcpu8",
-    "title": "Lagtrain",
-    "artist": "inabakumori",
-    "mapper": "Fakundddo",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/l520erhmcpu8/l520erhmcpu8.rtm"
-  },
-  {
     "id": "lrpzgsq8mls1",
     "title": "Photo Shot",
     "artist": "Rengoku Teien",
@@ -56,68 +1104,12 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/lrpzgsq8mls1/lrpzgsq8mls1.rtm"
   },
   {
-    "id": "9qq521z03cj3",
-    "title": "(tau) extended",
-    "artist": "Wooden",
-    "mapper": "FetherFall",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/9qq521z03cj3/9qq521z03cj3.rtm"
-  },
-  {
-    "id": "9874actd2n29",
-    "title": "peace of mind",
-    "artist": "ren perriáe feat. doubleyouhat",
-    "mapper": "woohoo",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/9874actd2n29/9874actd2n29.rtm"
-  },
-  {
-    "id": "pnbdxswusfzt",
-    "title": "(tau) extended",
-    "artist": "Wooden",
-    "mapper": "FetherFall",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/pnbdxswusfzt/pnbdxswusfzt.rtm"
-  },
-  {
-    "id": "f8xeowxo9msg",
-    "title": "OMORIBOY the PIRATE!!!",
-    "artist": "UUN4",
-    "mapper": "hah",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/f8xeowxo9msg/f8xeowxo9msg.rtm"
-  },
-  {
     "id": "pc76r7ob52nr",
     "title": "QKThr",
     "artist": "Aphex Twin",
     "mapper": "Procurador",
     "status": "unranked",
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/pc76r7ob52nr/pc76r7ob52nr.rtm"
-  },
-  {
-    "id": "fe9jwxv5d27f",
-    "title": "END≠MIND",
-    "artist": "暁Records",
-    "mapper": "Yomia",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/fe9jwxv5d27f/fe9jwxv5d27f.rtm"
-  },
-  {
-    "id": "v5pcq1vzd3fh",
-    "title": "ROT FOR CLOUT",
-    "artist": "Jamie Paige, Visualeyes",
-    "mapper": "Fakundddo",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/v5pcq1vzd3fh/v5pcq1vzd3fh.rtm"
-  },
-  {
-    "id": "wm54hqg3ifxr",
-    "title": "again",
-    "artist": "YUI",
-    "mapper": "WD_master",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/wm54hqg3ifxr/wm54hqg3ifxr.rtm"
   },
   {
     "id": "ou16ahh0ompt",
@@ -158,14 +1150,6 @@
     "mapper": "Cryptonite",
     "status": "unranked",
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/l5fixhn7htls/l5fixhn7htls.rtm"
-  },
-  {
-    "id": "l80wc7fugval",
-    "title": "Sound Chimera",
-    "artist": "Laur",
-    "mapper": "probablynotacat",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/l80wc7fugval/l80wc7fugval.rtm"
   },
   {
     "id": "eo38ckoxtx6u",
@@ -240,14 +1224,6 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/xla3ox5rimkc/xla3ox5rimkc.rtm"
   },
   {
-    "id": "izut6t2x8kwx",
-    "title": "SPUTNIK-3",
-    "artist": "II-L",
-    "mapper": "Happy566",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/izut6t2x8kwx/izut6t2x8kwx.rtm"
-  },
-  {
     "id": "btic4o4ulnby",
     "title": "Alphabet Shuffle",
     "artist": "Bill Wurtz",
@@ -280,44 +1256,12 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/8460q8vv4b2b/8460q8vv4b2b.rtm"
   },
   {
-    "id": "zb4g90ounua6",
-    "title": "Ghost Fight",
-    "artist": "Toby Fox",
-    "mapper": "DerpyBacon",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/zb4g90ounua6/zb4g90ounua6.rtm"
-  },
-  {
-    "id": "a2nz6ztrz8bb",
-    "title": "Fubuki Guys",
-    "artist": "Hamburgaga",
-    "mapper": "Neph",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/a2nz6ztrz8bb/a2nz6ztrz8bb.rtm"
-  },
-  {
     "id": "jh52vrtzk506",
     "title": "Lose Yourself",
     "artist": "Eminem",
     "mapper": "Ruby",
     "status": "unranked",
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/jh52vrtzk506/jh52vrtzk506.rtm"
-  },
-  {
-    "id": "1ok29r7poj29",
-    "title": "Harvest Moon Night",
-    "artist": "Mikochi (CV: Shimoji Shino) & Konju (CV: Yuuki Aoi)",
-    "mapper": "Cyanara",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/1ok29r7poj29/1ok29r7poj29.rtm"
-  },
-  {
-    "id": "kkizkjnwbhie",
-    "title": "KNOW ABOUT ME",
-    "artist": "NMIXX",
-    "mapper": "popeye",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/kkizkjnwbhie/kkizkjnwbhie.rtm"
   },
   {
     "id": "u4fk6word42j",
@@ -440,14 +1384,6 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/6br2z82h1c8x/6br2z82h1c8x.rtm"
   },
   {
-    "id": "6woruj15ai1e",
-    "title": "Ten Ten Tengoku Jigokukoku (Cut Ver.)",
-    "artist": "Aiobahn +81 feat. Nanahira & Pmarusama.",
-    "mapper": "QMimiKyuQ",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/6woruj15ai1e/6woruj15ai1e.rtm"
-  },
-  {
     "id": "psf0qq2d8s6a",
     "title": "Kimi no Sei (TV Size)",
     "artist": "the peggies",
@@ -464,36 +1400,12 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/6968b1iwae2e/6968b1iwae2e.rtm"
   },
   {
-    "id": "8vplhguewo8k",
-    "title": "Igaku",
-    "artist": "Sasuke Haraguchi feat. Kasane Teto",
-    "mapper": "Fakundddo",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/8vplhguewo8k/8vplhguewo8k.rtm"
-  },
-  {
-    "id": "htz8nudmvi89",
-    "title": "The Monk",
-    "artist": "Telekinesis",
-    "mapper": "Yomia",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/htz8nudmvi89/htz8nudmvi89.rtm"
-  },
-  {
     "id": "h46810siz7h3",
     "title": "Límpeto Oscuro KH3 (rh)",
     "artist": "Yoko Shimomura",
     "mapper": "Kihhat",
     "status": "unranked",
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/h46810siz7h3/h46810siz7h3.rtm"
-  },
-  {
-    "id": "j1rr698sh5oj",
-    "title": "RAISE MY SWORD",
-    "artist": "GALNERYUS",
-    "mapper": "Quacksometi",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/j1rr698sh5oj/j1rr698sh5oj.rtm"
   },
   {
     "id": "b3rkpkd3fqdf",
@@ -518,14 +1430,6 @@
     "mapper": "Chaodom",
     "status": "unranked",
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/hww3nbvc9gqv/hww3nbvc9gqv.rtm"
-  },
-  {
-    "id": "a6gxbnj19ljg",
-    "title": "OBSESSED POST-FRAILTY EXTENDED JERSEY MIX (NUMBER ANIMATION MEME)",
-    "artist": "Jane Remover",
-    "mapper": "zedq01",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/a6gxbnj19ljg/a6gxbnj19ljg.rtm"
   },
   {
     "id": "nsj54n997v39",
@@ -576,36 +1480,12 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/d8ib4yleedx2/d8ib4yleedx2.rtm"
   },
   {
-    "id": "uf87d4j7mian",
-    "title": "Dad Battle",
-    "artist": "Kawai Sprite",
-    "mapper": "RiffRaff",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/uf87d4j7mian/uf87d4j7mian.rtm"
-  },
-  {
     "id": "s3rkbtvuuavb",
     "title": "i turned a bad copypasta into a bad rap",
     "artist": "senzawa",
     "mapper": "RubyPiec",
     "status": "unranked",
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/s3rkbtvuuavb/s3rkbtvuuavb.rtm"
-  },
-  {
-    "id": "sq07npme4i3b",
-    "title": "Period. ~ Seishin no Kousoku to Jiyuu o Tsukamu Jouka (Cut Ver.)",
-    "artist": "tsunamix_underground",
-    "mapper": "Nortromka",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/sq07npme4i3b/sq07npme4i3b.rtm"
-  },
-  {
-    "id": "klq0wesu89rd",
-    "title": "KATAMARI",
-    "artist": "femtanyl",
-    "mapper": "Pablo",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/klq0wesu89rd/klq0wesu89rd.rtm"
   },
   {
     "id": "s31e3xr82ar8",
@@ -648,36 +1528,12 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/qnfn4q7vu4hz/qnfn4q7vu4hz.rtm"
   },
   {
-    "id": "pifyaubw2s22",
-    "title": "Sonorously Box",
-    "artist": "MusMus",
-    "mapper": "TTMDPOMIKHTT",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/pifyaubw2s22/pifyaubw2s22.rtm"
-  },
-  {
     "id": "e674hywdqz98",
     "title": "Anoneanoneanoneanoneanoneanoneanoneanone Kouji ga Okureteruno",
     "artist": "Light",
     "mapper": "Yuzu_OvO",
     "status": "unranked",
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/e674hywdqz98/e674hywdqz98.rtm"
-  },
-  {
-    "id": "t52pdw0a6zvx",
-    "title": "Gravity Falls Theme Song- 16 Bit Mix",
-    "artist": "Cass2",
-    "mapper": "juzek",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/t52pdw0a6zvx/t52pdw0a6zvx.rtm"
-  },
-  {
-    "id": "sl4j1n9448og",
-    "title": "last star in the universe",
-    "artist": "The Ghost Of 3.13",
-    "mapper": "Happy566",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/sl4j1n9448og/sl4j1n9448og.rtm"
   },
   {
     "id": "1r0zynt1b2yt",
@@ -694,14 +1550,6 @@
     "mapper": "shinobuoshino",
     "status": "unranked",
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/z7vr8f906dbw/z7vr8f906dbw.rtm"
-  },
-  {
-    "id": "zm7rkhzzlk0a",
-    "title": "Oyasumi Nakigoe, Sayonara Utahime",
-    "artist": "Laplus Darknesss",
-    "mapper": "hammerhead",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/zm7rkhzzlk0a/zm7rkhzzlk0a.rtm"
   },
   {
     "id": "88l5yiega0ta",
@@ -768,14 +1616,6 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/63b9gs8yyq9i/63b9gs8yyq9i.rtm"
   },
   {
-    "id": "bycelneacn86",
-    "title": "Silly 300 bpm thing",
-    "artist": "easynam",
-    "mapper": "Happy566",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/bycelneacn86/bycelneacn86.rtm"
-  },
-  {
     "id": "2rdjq63j26h3",
     "title": "Bad Apple But It's A Mashup Mapped By ZakoHiroko",
     "artist": "Nomico, Justice, & Others",
@@ -808,36 +1648,12 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/fc8che4qncw9/fc8che4qncw9.rtm"
   },
   {
-    "id": "8fg8p4pyoa4m",
-    "title": "Wheels on the Bus (Cut Ver.)",
-    "artist": "Cocomelon",
-    "mapper": "Jiuyn",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/8fg8p4pyoa4m/8fg8p4pyoa4m.rtm"
-  },
-  {
-    "id": "5sl6ufvwskno",
-    "title": "In my room",
-    "artist": "FELT",
-    "mapper": "Aniviuh",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/5sl6ufvwskno/5sl6ufvwskno.rtm"
-  },
-  {
     "id": "vqq761e2ekvy",
     "title": "bubble tea",
     "artist": "Zamir, marc indigo",
     "mapper": "KD_hooman",
     "status": "unranked",
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/vqq761e2ekvy/vqq761e2ekvy.rtm"
-  },
-  {
-    "id": "wh2niky1mzzr",
-    "title": "A-TYPE",
-    "artist": "Hirokazu Tanaka",
-    "mapper": "mqno",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/wh2niky1mzzr/wh2niky1mzzr.rtm"
   },
   {
     "id": "01wkrgtt0l4v",
@@ -920,28 +1736,12 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/z6zwd4lxx2iq/z6zwd4lxx2iq.rtm"
   },
   {
-    "id": "0sgcov66qy3c",
-    "title": "Whisper Whisper Whisper",
-    "artist": "Azari",
-    "mapper": "juzek",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/0sgcov66qy3c/0sgcov66qy3c.rtm"
-  },
-  {
     "id": "mfpr5lciqv93",
     "title": "Powiedz (intro)",
     "artist": "Enej",
     "mapper": "Someone56743",
     "status": "unranked",
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/mfpr5lciqv93/mfpr5lciqv93.rtm"
-  },
-  {
-    "id": "2pkxkxgjk2l1",
-    "title": "intertwined",
-    "artist": "Vylet Pony",
-    "mapper": "nya",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/2pkxkxgjk2l1/2pkxkxgjk2l1.rtm"
   },
   {
     "id": "jyuffr5cq96f",
@@ -1128,28 +1928,12 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/66xqmi7edoor/66xqmi7edoor.rtm"
   },
   {
-    "id": "6ebeosmyj5ay",
-    "title": "Rabbit Hole",
-    "artist": "DECO*27",
-    "mapper": "Happy566",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/6ebeosmyj5ay/6ebeosmyj5ay.rtm"
-  },
-  {
     "id": "narr6672n80w",
     "title": "Pass That Dutch",
     "artist": "Hirosashii",
     "mapper": "Hirosashii",
     "status": "unranked",
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/narr6672n80w/narr6672n80w.rtm"
-  },
-  {
-    "id": "ttj8n6lnn0iz",
-    "title": "IKUSAUTA Orglrya",
-    "artist": "Luze",
-    "mapper": "FiXsy",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ttj8n6lnn0iz/ttj8n6lnn0iz.rtm"
   },
   {
     "id": "w0yk4rgfebml",
@@ -1288,14 +2072,6 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/mb4b9v77zx7i/mb4b9v77zx7i.rtm"
   },
   {
-    "id": "hotl7rnrofir",
-    "title": "Flim",
-    "artist": "Aphex Twin",
-    "mapper": "Procurador",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/hotl7rnrofir/hotl7rnrofir.rtm"
-  },
-  {
     "id": "ruynrnsceruz",
     "title": "Monkeys Spinning Monkeys",
     "artist": "Kevin MacLeod",
@@ -1350,14 +2126,6 @@
     "mapper": "Mimmi",
     "status": "unranked",
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/2268udoeila7/2268udoeila7.rtm"
-  },
-  {
-    "id": "vk4wq7gjp5kt",
-    "title": "Heart111",
-    "artist": "yuri",
-    "mapper": "acorn",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/vk4wq7gjp5kt/vk4wq7gjp5kt.rtm"
   },
   {
     "id": "w71o0hb2lcsj",
@@ -1558,14 +2326,6 @@
     "mapper": "sssbb",
     "status": "unranked",
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/xme1mgqlpv13/xme1mgqlpv13.rtm"
-  },
-  {
-    "id": "mwn54wym22wz",
-    "title": "Risa Furanku 420 / Gendai no Konpyu",
-    "artist": "MACINTOSH PLUS",
-    "mapper": "axi",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/mwn54wym22wz/mwn54wym22wz.rtm"
   },
   {
     "id": "1un8sw0hwqg9",
@@ -1952,14 +2712,6 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ceumpz5fmpul/ceumpz5fmpul.rtm"
   },
   {
-    "id": "iezejlq65fvx",
-    "title": "SUPERNOVA",
-    "artist": "BACO",
-    "mapper": "Knight",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/iezejlq65fvx/iezejlq65fvx.rtm"
-  },
-  {
     "id": "qohfgc3lerdj",
     "title": "zdrastvui dedushka morozik",
     "artist": "1",
@@ -2238,14 +2990,6 @@
     "mapper": "ZakoHiroko",
     "status": "unranked",
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/1piajrpf7q5n/1piajrpf7q5n.rtm"
-  },
-  {
-    "id": "v96q2uzvleu4",
-    "title": "HATSUBOSHI GAKUEN - Sekaiichi kawaii watashi",
-    "artist": "Kotone Fujita",
-    "mapper": "Fechote",
-    "status": "unranked",
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/v96q2uzvleu4/v96q2uzvleu4.rtm"
   },
   {
     "id": "dk43ftotbx1k",
