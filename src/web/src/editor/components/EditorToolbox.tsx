@@ -6,9 +6,11 @@ import {
 
 interface EditorToolboxProps {
     onOpenModal?: (modal: string) => void;
+    onToggleHitsounds?: () => void;
+    isHitsoundsOpen?: boolean;
 }
 
-export const EditorToolbox = ({ onOpenModal }: EditorToolboxProps) => {
+export const EditorToolbox = ({ onOpenModal, onToggleHitsounds, isHitsoundsOpen }: EditorToolboxProps) => {
     const { activeTool, setActiveTool, settings, setSettings, mapData } = useEditor();
     
     // Disable edit button if nothing selected
@@ -37,9 +39,9 @@ export const EditorToolbox = ({ onOpenModal }: EditorToolboxProps) => {
             </button>
 
             <button 
-                onClick={() => hasSelection && onOpenModal && onOpenModal('properties')}
-                className={`w-10 h-10 flex items-center justify-center transition-colors ${hasSelection ? 'text-secondary hover:text-white' : 'text-muted/30 cursor-not-allowed'}`}
-                title="Edit Note Properties"
+                onClick={() => onToggleHitsounds && onToggleHitsounds()}
+                className={`w-10 h-10 flex items-center justify-center transition-colors ${hasSelection ? (isHitsoundsOpen ? 'bg-secondary text-white' : 'text-secondary hover:text-white') : 'text-muted/30 cursor-not-allowed'}`}
+                title="Hitsound Settings"
                 disabled={!hasSelection}
             >
                 <FontAwesomeIcon icon={faSlidersH} />
