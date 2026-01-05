@@ -4,5 +4,5 @@
   "description": "Core strain calculation logic for RhythmTyper",
   "main": "index.js",
   "author": "Xiphiros",
-  "license": "ISC"
+  "license": "MIT"
 }
