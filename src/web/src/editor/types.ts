@@ -13,6 +13,11 @@ export interface HitsoundSettings {
     };
 }
 
+export interface LoopSettings {
+    sampleSet: 'normal' | 'soft' | 'drum';
+    volume: number;
+}
+
 export interface EditorLayer {
     id: string;
     name: string;
@@ -29,8 +34,16 @@ export interface EditorNote {
     type: NoteType;
     duration?: number;  
     selected?: boolean;
-    hitsound: HitsoundSettings;
     layerId: string;
+    
+    // Primary Hitsound (Tap, or Head of Hold)
+    hitsound: HitsoundSettings;
+    
+    // Hold Specific Hitsounds (Optional, only used if type === 'hold')
+    // If undefined, they theoretically fallback to 'hitsound' or defaults, 
+    // but the editor will instantiate them on change.
+    holdTailHitsound?: HitsoundSettings;
+    holdLoopHitsound?: LoopSettings; 
 }
 
 export interface MapMetadata {
