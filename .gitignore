@@ -30,7 +30,10 @@ songs/
 *.json
 !package.json
 !**/package.json
+!package-lock.json
+!**/package-lock.json
 !tsconfig*.json
 !**/tsconfig*.json
 !data/*.json
 !src/web/public/beatmaps.json
+!src/web/public/players.json
