@@ -43,7 +43,7 @@ const TopMenuBar = ({ onOpenModal, showSidebar, toggleSidebar }: { onOpenModal: 
                         <FontAwesomeIcon icon={faLayerGroup} />
                         {mapData.metadata.difficultyName || "Difficulty"}
                     </button>
-                    <button className="px-4 py-1.5 rounded hover:bg-white/10 text-sm font-medium transition-colors text-muted hover:text-white">Design</button>
+                    <button className="px-4 py-1.5 rounded bg-primary/20 text-primary text-sm font-bold shadow-inner">Compose</button>
                 </nav>
             </div>
             <div className="absolute left-1/2 -translate-x-1/2 text-center opacity-80 pointer-events-none hidden md:block">
