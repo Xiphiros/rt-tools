@@ -21,7 +21,8 @@ const LayerItem = ({
     onToggleVisible, 
     onToggleLock, 
     onDelete, 
-    onRename 
+    onRename,
+    onClickColor
 }: { 
     layer: EditorLayer;
     isActive: boolean;
@@ -30,6 +31,7 @@ const LayerItem = ({
     onToggleLock: () => void;
     onDelete: () => void;
     onRename: (name: string) => void;
+    onClickColor: () => void;
 }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [tempName, setTempName] = useState(layer.name);
@@ -49,9 +51,11 @@ const LayerItem = ({
             }`}
         >
             {/* Color Indicator */}
-            <div 
-                className="w-1 h-8 rounded-full" 
-                style={{ backgroundColor: layer.color }} 
+            <button
+                onClick={(e) => { e.stopPropagation(); onClickColor(); }}
+                className="w-1 h-8 rounded-full hover:scale-x-150 transition-transform cursor-pointer"
+                style={{ backgroundColor: layer.color }}
+                title="Change Color"
             />
 
             {/* Controls */}
@@ -122,7 +126,11 @@ const LayerItem = ({
     );
 };
 
-export const EditorRightBar = () => {
+interface EditorRightBarProps {
+    onEditColor?: (layerId: string) => void;
+}
+
+export const EditorRightBar = ({ onEditColor }: EditorRightBarProps) => {
     const { mapData, dispatch, activeLayerId, setActiveLayerId } = useEditor();
 
     // Render in reverse order (Top layer visually at top of list)
@@ -182,10 +190,10 @@ export const EditorRightBar = () => {
                             type: 'UPDATE_LAYER',
                             payload: { id: layer.id, changes: { name } }
                         })}
+                        onClickColor={() => onEditColor && onEditColor(layer.id)}
                         onDelete={() => {
                             if (mapData.layers.length > 1 && confirm(`Delete layer "${layer.name}" and all its notes?`)) {
                                 dispatch({ type: 'REMOVE_LAYER', payload: layer.id });
-                                // If we deleted active layer, context will auto-switch in effect
                             }
                         }}
                     />
