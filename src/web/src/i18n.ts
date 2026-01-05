@@ -6,10 +6,11 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 const resources = {
   en: {
     common: {
-      title: "RT Tools",
+      title: "RT Community Tools",
       dashboard: "Maps",
       calculator: "Calculator",
       leaderboard: "Leaderboard",
+      editor: "Editor",
       settings: "Settings",
       loading: "Loading..."
     },
