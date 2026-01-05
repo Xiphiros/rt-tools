@@ -21,6 +21,7 @@ const formatNote = (n: EditorNote) => {
         time: Math.round(n.time) 
     };
 
+    // Primary Head Settings
     const hs = n.hitsound || { 
         sampleSet: 'normal', 
         volume: 100, 
@@ -28,6 +29,14 @@ const formatNote = (n: EditorNote) => {
     };
 
     if (n.type === 'hold') {
+        // Fallback Logic: If separate sections aren't defined, use Head settings
+        const loopSettings = n.holdLoopHitsound || { 
+            sampleSet: hs.sampleSet, 
+            volume: hs.volume 
+        };
+        
+        const endSettings = n.holdTailHitsound || hs;
+
         return {
             key: base.key,
             startTime: Math.round(n.time),
@@ -37,18 +46,10 @@ const formatNote = (n: EditorNote) => {
                 sampleSet: hs.sampleSet,
                 start: formatHitsound(hs),
                 hold: {
-                    volume: hs.volume,
-                    loop: "normal"
+                    volume: loopSettings.volume,
+                    loop: loopSettings.sampleSet
                 },
-                end: {
-                    volume: hs.volume,
-                    sounds: {
-                        hitnormal: true,
-                        hitclap: false,
-                        hitwhistle: false,
-                        hitfinish: false
-                    }
-                }
+                end: formatHitsound(endSettings)
             }
         };
     }
