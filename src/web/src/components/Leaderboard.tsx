@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PlayerProfile, ReworkPlay } from '../types';
+import { PlayerProfile } from '../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faSearch, 
@@ -12,8 +12,7 @@ import {
     faUserCircle,
     faChevronDown,
     faChevronUp,
-    faTrophy,
-    faMusic
+    faTrophy
 } from '@fortawesome/free-solid-svg-icons';
 
 export const Leaderboard = () => {
