@@ -10,6 +10,7 @@ import { ProjectManagerModal } from './modals/ProjectManagerModal';
 import { NotePropertiesModal } from './modals/NotePropertiesModal';
 import { useShortcuts } from './hooks/useShortcuts';
 import { useMetronome } from './hooks/useMetronome';
+import { usePlaybackHitsounds } from './hooks/usePlaybackHitsounds';
 import { exportBeatmapPackage } from './utils/exporter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -130,14 +131,15 @@ const EditorBottomBar = () => {
 const EditorLayout = () => {
     const { mapData, playback, bgBlobUrl, settings, dispatch } = useEditor();
     const [activeModal, setActiveModal] = useState<string | null>(null);
+    
+    // Hooks responsible for feedback and scheduling
     useShortcuts();
     useMetronome();
-
+    usePlaybackHitsounds();
     const bottomPanelHeight = settings.showWaveform ? 'h-[240px]' : 'h-[160px]';
 
     // Playfield Interaction Handlers
     const handlePlayfieldNoteClick = (e: React.MouseEvent, note: EditorNote) => {
-        // Support Ctrl (Toggle) or Shift (Add range - complex, treating as add for now)
         const append = e.ctrlKey || e.shiftKey;
         dispatch({
             type: 'SELECT_NOTES',
@@ -146,7 +148,6 @@ const EditorLayout = () => {
     };
 
     const handlePlayfieldBgClick = (e: React.MouseEvent) => {
-        // Deselect all on empty click
         if (e.button === 0) {
             dispatch({ type: 'DESELECT_ALL' });
         }
