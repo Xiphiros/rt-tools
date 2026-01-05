@@ -8,7 +8,7 @@ import { HitsoundSettings } from '../types';
  * Reuses the main AudioContext from EditorContext to ensure sync.
  */
 export const useHitsounds = () => {
-    const { audio } = useEditor();
+    const { audio, settings } = useEditor();
     const buffersRef = useRef<Map<string, AudioBuffer>>(new Map());
     const loadingRef = useRef<boolean>(false);
 
@@ -41,13 +41,24 @@ export const useHitsounds = () => {
 
     // 2. Playback Function
     // 'when' is in AudioContext time (seconds). If undefined, plays immediately.
-    const play = useCallback((settings: HitsoundSettings, when?: number) => {
+    const play = useCallback((hsSettings: HitsoundSettings, when?: number) => {
         const ctx = audio.manager.getContext();
         if (ctx.state === 'suspended') ctx.resume();
 
         const playTime = when ?? ctx.currentTime;
 
-        const playSample = (key: string, vol: number) => {
+        // Calculate Gains
+        // Master (0-1) * HitsoundChannel (0-1) * NoteVolume (0-1)
+        const masterGain = Math.max(0, Math.min(1, settings.masterVolume / 100));
+        const channelGain = Math.max(0, Math.min(1, settings.hitsoundVolume / 100));
+        const noteGain = Math.max(0, Math.min(1, hsSettings.volume / 100));
+        
+        const finalGain = masterGain * channelGain * noteGain;
+
+        // If silent, don't bother playing
+        if (finalGain < 0.01) return;
+
+        const playSample = (key: string) => {
             const buffer = buffersRef.current.get(key);
             if (!buffer) return;
 
@@ -55,9 +66,7 @@ export const useHitsounds = () => {
             source.buffer = buffer;
             
             const gain = ctx.createGain();
-            // Scale volume: 0-100 -> 0.0-1.0
-            // Hitsounds are often loud, so we might dampen slightly (e.g. * 0.8)
-            gain.gain.value = Math.max(0, Math.min(1, vol / 100));
+            gain.gain.value = finalGain;
             
             source.connect(gain);
             gain.connect(ctx.destination);
@@ -66,18 +75,18 @@ export const useHitsounds = () => {
             source.start(playTime);
         };
 
-        const set = settings.sampleSet || 'normal';
+        const set = hsSettings.sampleSet || 'normal';
         
         // Base Hit
         const baseKey = `${set}-hitnormal`;
-        playSample(baseKey, settings.volume);
+        playSample(baseKey);
 
         // Additions
-        if (settings.additions?.whistle) playSample(`${set}-hitwhistle`, settings.volume);
-        if (settings.additions?.finish) playSample(`${set}-hitfinish`, settings.volume);
-        if (settings.additions?.clap) playSample(`${set}-hitclap`, settings.volume);
+        if (hsSettings.additions?.whistle) playSample(`${set}-hitwhistle`);
+        if (hsSettings.additions?.finish) playSample(`${set}-hitfinish`);
+        if (hsSettings.additions?.clap) playSample(`${set}-hitclap`);
 
-    }, [audio.manager]);
+    }, [audio.manager, settings.masterVolume, settings.hitsoundVolume]);
 
     return { play };
 };
