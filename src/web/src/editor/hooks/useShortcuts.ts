@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useEditor } from '../store/EditorContext';
+import { useHitsounds } from './useHitsounds';
 import { KEY_TO_ROW } from '../../gameplay/constants';
 import { snapTime, getActiveTimingPoint } from '../utils/timing';
 import { HitsoundSettings } from '../types';
@@ -12,9 +13,11 @@ const DEFAULT_HITSOUND: HitsoundSettings = {
 
 export const useShortcuts = () => {
     const { dispatch, audio, playback, mapData, settings } = useEditor();
+    const { play } = useHitsounds();
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
+            // Ignore if typing in text fields
             if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
                 return;
             }
@@ -89,6 +92,10 @@ export const useShortcuts = () => {
                 const row = KEY_TO_ROW[key];
                 if (row !== undefined) {
                     e.preventDefault();
+                    
+                    // Immediate Feedback
+                    play(DEFAULT_HITSOUND);
+
                     const rawTime = playback.currentTime;
                     const time = settings.snappingEnabled
                         ? snapTime(rawTime, mapData.timingPoints, settings.snapDivisor)
@@ -142,5 +149,5 @@ export const useShortcuts = () => {
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [dispatch, audio, playback, mapData, settings]);
+    }, [dispatch, audio, playback, mapData, settings, play]);
 };
