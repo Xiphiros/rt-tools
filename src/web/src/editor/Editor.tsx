@@ -7,7 +7,7 @@ import { MetadataModal } from './modals/MetadataModal';
 import { TimingModal } from './modals/TimingModal';
 import { ResnapModal } from './modals/ResnapModal';
 import { ProjectManagerModal } from './modals/ProjectManagerModal';
-import { NotePropertiesModal } from './modals/NotePropertiesModal'; // New Import
+import { NotePropertiesModal } from './modals/NotePropertiesModal';
 import { useShortcuts } from './hooks/useShortcuts';
 import { useMetronome } from './hooks/useMetronome';
 import { exportBeatmapPackage } from './utils/exporter';
@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faPlay, faPause, faUndo, faRedo, faFileUpload, faChevronLeft, faVolumeUp, faVolumeMute, faAngleDown, faFolder
 } from '@fortawesome/free-solid-svg-icons';
+import { EditorNote } from './types';
 
 const TopMenuBar = ({ onOpenModal }: { onOpenModal: (modal: string) => void }) => {
     const { mapData, activeProjectId } = useEditor();
@@ -127,12 +128,29 @@ const EditorBottomBar = () => {
 };
 
 const EditorLayout = () => {
-    const { mapData, playback, bgBlobUrl, settings } = useEditor();
+    const { mapData, playback, bgBlobUrl, settings, dispatch } = useEditor();
     const [activeModal, setActiveModal] = useState<string | null>(null);
     useShortcuts();
     useMetronome();
 
     const bottomPanelHeight = settings.showWaveform ? 'h-[240px]' : 'h-[160px]';
+
+    // Playfield Interaction Handlers
+    const handlePlayfieldNoteClick = (e: React.MouseEvent, note: EditorNote) => {
+        // Support Ctrl (Toggle) or Shift (Add range - complex, treating as add for now)
+        const append = e.ctrlKey || e.shiftKey;
+        dispatch({
+            type: 'SELECT_NOTES',
+            payload: { ids: [note.id], append }
+        });
+    };
+
+    const handlePlayfieldBgClick = (e: React.MouseEvent) => {
+        // Deselect all on empty click
+        if (e.button === 0) {
+            dispatch({ type: 'DESELECT_ALL' });
+        }
+    };
 
     return (
         <div className="flex flex-col h-[calc(100vh-4rem)] bg-[#121212] text-text-primary overflow-hidden font-sans">
@@ -144,9 +162,17 @@ const EditorLayout = () => {
                     )}
                     <div className="absolute inset-0 flex items-center justify-center">
                         <div className="aspect-video w-full max-h-full relative">
-                            <Playfield mapData={mapData} currentTime={playback.currentTime} playbackRate={playback.playbackRate} scale={1.1} />
+                            <Playfield 
+                                mapData={mapData} 
+                                currentTime={playback.currentTime} 
+                                playbackRate={playback.playbackRate} 
+                                scale={1.1} 
+                                onNoteClick={handlePlayfieldNoteClick}
+                                onBackgroundClick={handlePlayfieldBgClick}
+                            />
                         </div>
                     </div>
+                    {/* Wired onOpenModal */}
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 z-40">
                         <EditorToolbox onOpenModal={setActiveModal} />
                     </div>
@@ -158,6 +184,7 @@ const EditorLayout = () => {
             </div>
             <EditorBottomBar />
             
+            {/* Modals */}
             <MetadataModal isOpen={activeModal === 'metadata'} onClose={() => setActiveModal(null)} />
             <TimingModal isOpen={activeModal === 'timing'} onClose={() => setActiveModal(null)} />
             <ResnapModal isOpen={activeModal === 'resnap'} onClose={() => setActiveModal(null)} />
