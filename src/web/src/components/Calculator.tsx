@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 import { StrainGraph } from './StrainGraph';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalculator, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 export const Calculator = () => {
-    const { t } = useTranslation('calculator');
     const [jsonInput, setJsonInput] = useState('');
     const [result, setResult] = useState<any>(null);
     const [error, setError] = useState('');
