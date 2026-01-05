@@ -2,7 +2,7 @@ import React, { createContext, useContext, useReducer, ReactNode, useEffect, use
 import { editorReducer, initialHistory, EditorAction, initialMapData, DEFAULT_LAYER_ID } from './editorReducer';
 import { useEditorAudio } from '../hooks/useEditorAudio';
 import { EditorMapData, EditorSettings, PlaybackState, EditorTool, HitsoundSettings } from '../types';
-import { loadProjectJSON, saveProjectJSON, readFileFromProject, createProject } from '../utils/opfs';
+import { loadProjectAnyDiff, loadDifficulty, saveDifficulty, createProject, readFileFromProject } from '../utils/opfs';
 
 interface EditorContextState {
     mapData: EditorMapData;
@@ -15,7 +15,9 @@ interface EditorContextState {
     setActiveTool: (tool: EditorTool) => void;
     activeProjectId: string | null;
     loadProject: (id: string) => Promise<void>;
+    switchDifficulty: (diffId: string) => Promise<void>;
     createNewProject: () => Promise<void>;
+    createNewDifficulty: (name: string, copySettings: boolean) => Promise<void>;
     bgBlobUrl: string | null;
     reloadAssets: () => void;
     activeLayerId: string;
@@ -69,34 +71,24 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
 
     // --- VOLUME SYNC ---
     const { setMasterVolume, setMusicVolume, setHitsoundVolume, setMetronomeVolume } = audioHook;
-    
-    useEffect(() => {
-        setMasterVolume(settings.masterVolume);
-    }, [settings.masterVolume, setMasterVolume]);
-
-    useEffect(() => {
-        setMusicVolume(settings.musicVolume);
-    }, [settings.musicVolume, setMusicVolume]);
-
-    useEffect(() => {
-        setHitsoundVolume(settings.hitsoundVolume);
-    }, [settings.hitsoundVolume, setHitsoundVolume]);
-
-    useEffect(() => {
-        setMetronomeVolume(settings.metronomeVolume);
-    }, [settings.metronomeVolume, setMetronomeVolume]);
+    useEffect(() => { setMasterVolume(settings.masterVolume); }, [settings.masterVolume, setMasterVolume]);
+    useEffect(() => { setMusicVolume(settings.musicVolume); }, [settings.musicVolume, setMusicVolume]);
+    useEffect(() => { setHitsoundVolume(settings.hitsoundVolume); }, [settings.hitsoundVolume, setHitsoundVolume]);
+    useEffect(() => { setMetronomeVolume(settings.metronomeVolume); }, [settings.metronomeVolume, setMetronomeVolume]);
 
     // Auto-Save
     useEffect(() => {
         if (!activeProjectId) return;
         const timer = setTimeout(() => {
-            saveProjectJSON(activeProjectId, history.present);
+            // Save the current difficulty to its specific file
+            saveDifficulty(activeProjectId, history.present);
         }, 2000);
         return () => clearTimeout(timer);
     }, [history.present, activeProjectId]);
 
     const loadProject = async (id: string) => {
-        const data = await loadProjectJSON(id);
+        // Loads the most recently modified difficulty in the project
+        const data = await loadProjectAnyDiff(id);
         if (data) {
             setActiveProjectId(id);
             dispatch({ type: 'LOAD_MAP', payload: data });
@@ -106,11 +98,56 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    const switchDifficulty = async (diffId: string) => {
+        if (!activeProjectId) return;
+        // Save current before switching (safety)
+        await saveDifficulty(activeProjectId, history.present);
+        
+        const data = await loadDifficulty(activeProjectId, diffId);
+        if (data) {
+            dispatch({ type: 'LOAD_MAP', payload: data });
+            // Don't reset audio pos, allows checking sync across diffs
+            setAssetsVersion(v => v + 1);
+        }
+    };
+
     const createNewProject = async () => {
         const newId = crypto.randomUUID();
-        const emptyData = { ...initialMapData }; 
+        const emptyData = { ...initialMapData, diffId: crypto.randomUUID() }; 
         await createProject(newId, emptyData);
         await loadProject(newId);
+    };
+
+    const createNewDifficulty = async (name: string, copySettings: boolean) => {
+        if (!activeProjectId) return;
+        await saveDifficulty(activeProjectId, history.present);
+
+        const newId = crypto.randomUUID();
+        const base = history.present;
+        
+        const newData: EditorMapData = {
+            ...initialMapData,
+            diffId: newId,
+            metadata: {
+                ...base.metadata,
+                difficultyName: name
+            },
+            // Clone shared assets linkage
+            timingPoints: copySettings ? [...base.timingPoints] : base.timingPoints,
+            bpm: base.bpm,
+            offset: base.offset
+        };
+
+        if (copySettings) {
+             // If we want to fully clone objects too, we could do that. 
+             // Usually "create difficulty" implies empty chart but same song.
+             // Let's stick to Empty Chart + Same Timing/Meta for now.
+             newData.metadata = { ...base.metadata, difficultyName: name };
+             newData.timingPoints = [...base.timingPoints];
+        }
+
+        await saveDifficulty(activeProjectId, newData);
+        dispatch({ type: 'LOAD_MAP', payload: newData });
     };
 
     useEffect(() => {
@@ -154,7 +191,9 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         setActiveTool,
         activeProjectId,
         loadProject,
+        switchDifficulty,
         createNewProject,
+        createNewDifficulty,
         bgBlobUrl,
         reloadAssets: () => setAssetsVersion(v => v + 1),
         activeLayerId,
