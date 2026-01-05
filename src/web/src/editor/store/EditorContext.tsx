@@ -52,6 +52,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         metronome: false,
         snappingEnabled: true,
         showWaveform: true,
+        dimInactiveLayers: true,
         masterVolume: 80,
         musicVolume: 70,
         hitsoundVolume: 100,
