@@ -3,6 +3,7 @@ import { EditorProvider, useEditor } from './store/EditorContext';
 import { EditorTimeline } from './components/EditorTimeline';
 import { EditorToolbox } from './components/EditorToolbox';
 import { EditorBottomBar } from './components/EditorBottomBar';
+import { EditorRightBar } from './components/EditorRightBar';
 import { Playfield } from '../gameplay/components/Playfield';
 import { MetadataModal } from './modals/MetadataModal';
 import { TimingModal } from './modals/TimingModal';
@@ -15,11 +16,11 @@ import { usePlaybackHitsounds } from './hooks/usePlaybackHitsounds';
 import { exportBeatmapPackage } from './utils/exporter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faFileUpload, faChevronLeft, faFolder
+    faFileUpload, faChevronLeft, faFolder, faColumns
 } from '@fortawesome/free-solid-svg-icons';
 import { EditorNote } from './types';
 
-const TopMenuBar = ({ onOpenModal }: { onOpenModal: (modal: string) => void }) => {
+const TopMenuBar = ({ onOpenModal, showSidebar, toggleSidebar }: { onOpenModal: (modal: string) => void, showSidebar: boolean, toggleSidebar: () => void }) => {
     const { mapData, activeProjectId } = useEditor();
     return (
         <div className="h-12 bg-black border-b border-white/10 flex items-center px-4 justify-between select-none z-50">
@@ -53,6 +54,14 @@ const TopMenuBar = ({ onOpenModal }: { onOpenModal: (modal: string) => void }) =
                     <FontAwesomeIcon icon={faFileUpload} />
                     <span>Export</span>
                 </button>
+                <div className="h-4 w-[1px] bg-white/20" />
+                <button 
+                    onClick={toggleSidebar}
+                    className={`text-sm transition-colors flex items-center gap-2 ${showSidebar ? 'text-primary' : 'text-muted hover:text-white'}`}
+                    title="Toggle Layers Panel"
+                >
+                    <FontAwesomeIcon icon={faColumns} />
+                </button>
             </div>
         </div>
     );
@@ -61,14 +70,14 @@ const TopMenuBar = ({ onOpenModal }: { onOpenModal: (modal: string) => void }) =
 const EditorLayout = () => {
     const { mapData, playback, bgBlobUrl, settings, dispatch } = useEditor();
     const [activeModal, setActiveModal] = useState<string | null>(null);
+    const [showSidebar, setShowSidebar] = useState(true);
     
-    // Hooks responsible for feedback and scheduling
     useShortcuts();
     useMetronome();
     usePlaybackHitsounds();
+    
     const bottomPanelHeight = settings.showWaveform ? 'h-[240px]' : 'h-[160px]';
 
-    // Playfield Interaction Handlers
     const handlePlayfieldNoteClick = (e: React.MouseEvent, note: EditorNote) => {
         const append = e.ctrlKey || e.shiftKey;
         dispatch({
@@ -85,36 +94,43 @@ const EditorLayout = () => {
 
     return (
         <div className="flex flex-col h-[calc(100vh-4rem)] bg-[#121212] text-text-primary overflow-hidden font-sans">
-            <TopMenuBar onOpenModal={setActiveModal} />
-            <div className="flex-1 flex flex-col relative min-h-0">
-                <div className="flex-1 relative bg-black/50 overflow-hidden shadow-inner">
-                    {bgBlobUrl && (
-                        <div className="absolute inset-0 bg-cover bg-center opacity-30 blur-sm pointer-events-none" style={{ backgroundImage: `url(${bgBlobUrl})` }} />
-                    )}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="aspect-video w-full max-h-full relative">
-                            <Playfield 
-                                mapData={mapData} 
-                                currentTime={playback.currentTime} 
-                                playbackRate={playback.playbackRate} 
-                                scale={1.1} 
-                                onNoteClick={handlePlayfieldNoteClick}
-                                onBackgroundClick={handlePlayfieldBgClick}
-                            />
+            <TopMenuBar onOpenModal={setActiveModal} showSidebar={showSidebar} toggleSidebar={() => setShowSidebar(!showSidebar)} />
+            
+            <div className="flex-1 flex overflow-hidden">
+                {/* Main Content Area */}
+                <div className="flex-1 flex flex-col relative min-h-0 min-w-0">
+                    <div className="flex-1 relative bg-black/50 overflow-hidden shadow-inner">
+                        {bgBlobUrl && (
+                            <div className="absolute inset-0 bg-cover bg-center opacity-30 blur-sm pointer-events-none" style={{ backgroundImage: `url(${bgBlobUrl})` }} />
+                        )}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="aspect-video w-full max-h-full relative">
+                                <Playfield 
+                                    mapData={mapData} 
+                                    currentTime={playback.currentTime} 
+                                    playbackRate={playback.playbackRate} 
+                                    scale={1.1} 
+                                    onNoteClick={handlePlayfieldNoteClick}
+                                    onBackgroundClick={handlePlayfieldBgClick}
+                                />
+                            </div>
+                        </div>
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 z-40">
+                            <EditorToolbox onOpenModal={setActiveModal} />
                         </div>
                     </div>
-                    {/* Wired onOpenModal */}
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 z-40">
-                        <EditorToolbox onOpenModal={setActiveModal} />
+                    
+                    <div className={`${bottomPanelHeight} transition-all duration-300 ease-in-out border-t border-border bg-card/95 backdrop-blur shadow-2xl relative z-10`}>
+                        <EditorTimeline />
                     </div>
                 </div>
-                
-                <div className={`${bottomPanelHeight} transition-all duration-300 ease-in-out border-t border-border bg-card/95 backdrop-blur shadow-2xl relative z-10`}>
-                    <EditorTimeline />
-                </div>
+
+                {/* Right Sidebar */}
+                {showSidebar && (
+                    <EditorRightBar />
+                )}
             </div>
             
-            {/* Swapped inline component for the imported one */}
             <EditorBottomBar />
             
             {/* Modals */}
