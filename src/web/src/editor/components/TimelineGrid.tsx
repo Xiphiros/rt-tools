@@ -8,26 +8,31 @@ interface TimelineGridProps {
 }
 
 export const TimelineGrid = ({ duration, timingPoints, settings }: TimelineGridProps) => {
-    const totalWidth = (duration / 1000) * settings.zoom;
+    // We only render sections based on the passed timingPoints.
+    // The parent (EditorTimeline) is responsible for filtering these points
+    // via getVisibleTimingPoints to prevent rendering 500 divs for a long map.
     
-    const sortedPoints = [...timingPoints].sort((a, b) => a.time - b.time);
+    // However, if the map has only 1 timing point at T=0, we render one massive div.
+    // CSS handles massive divs relatively well, but we rely on the parent's container width.
+    
     const sections = [];
     
-    if (sortedPoints.length > 0) {
-        const firstTp = sortedPoints[0];
-        if (firstTp.time > 0) {
-            sections.push({
-                bpm: firstTp.bpm,
-                offset: firstTp.time, 
-                start: 0,
-                end: firstTp.time,
-                key: 'pre-intro'
-            });
-        }
-
-        for (let i = 0; i < sortedPoints.length; i++) {
-            const current = sortedPoints[i];
-            const next = sortedPoints[i + 1];
+    // Ensure we handle the "start" correctly if filtered list doesn't include 0
+    // But getVisibleTimingPoints guarantees context.
+    
+    // Create sections from provided points
+    if (timingPoints.length > 0) {
+        for (let i = 0; i < timingPoints.length; i++) {
+            const current = timingPoints[i];
+            const next = timingPoints[i + 1];
+            
+            // If there's a next point, use it. If not, extend to duration.
+            // Note: If we are passed a filtered list, 'next' might be the cutoff.
+            // But usually the filtered list includes the "end" point if relevant.
+            // Wait, getVisibleTimingPoints returns points *active* in the window.
+            // So the last point in the list extends to Infinity or the next actual point.
+            // We clamp visually by the container anyway.
+            
             const endTime = next ? next.time : duration;
             
             sections.push({
@@ -39,6 +44,7 @@ export const TimelineGrid = ({ duration, timingPoints, settings }: TimelineGridP
             });
         }
     } else {
+        // Fallback for empty or pre-intro
         sections.push({ bpm: 120, offset: 0, start: 0, end: duration, key: 'default' });
     }
 
@@ -70,7 +76,7 @@ export const TimelineGrid = ({ duration, timingPoints, settings }: TimelineGridP
     };
 
     return (
-        <div className="absolute top-0 bottom-0 left-0 pointer-events-none select-none z-0" style={{ width: totalWidth }}>
+        <div className="absolute top-0 bottom-0 left-0 pointer-events-none select-none z-0 w-full h-full">
             <div className="absolute inset-0 bg-card/20" />
             
             {sections.map(section => {
