@@ -84,7 +84,20 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
 
         case 'ADD_NOTE': {
             const next = pushHistory(state);
-            next.present.notes = [...next.present.notes, action.payload].sort((a, b) => a.time - b.time);
+            const { time, column, layerId } = action.payload;
+
+            // Collision Detection:
+            // Remove any existing note at the exact same Time, Column, and Layer.
+            // This prevents duplicate stacking.
+            const cleanNotes = next.present.notes.filter(n => {
+                const isSameLayer = n.layerId === layerId;
+                const isSameCol = n.column === column;
+                const isSameTime = Math.abs(n.time - time) < 2; // 2ms tolerance for float precision
+                
+                return !(isSameLayer && isSameCol && isSameTime);
+            });
+
+            next.present.notes = [...cleanNotes, action.payload].sort((a, b) => a.time - b.time);
             return next;
         }
 
@@ -168,16 +181,12 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
             next.present.layers = next.present.layers.filter(l => l.id !== layerId);
             
             // Delete all notes in that layer
-            // (Alternative design: Move notes to Default layer? For now, delete like Photoshop)
             next.present.notes = next.present.notes.filter(n => n.layerId !== layerId);
             
             return next;
         }
 
         case 'UPDATE_LAYER': {
-            // Updating visibility/lock doesn't strictly need history if we want instant feedback,
-            // but for "Rename" or "Color Change", undo is nice.
-            // Let's push history for safety.
             const next = pushHistory(state);
             next.present.layers = next.present.layers.map(l => 
                 l.id === action.payload.id ? { ...l, ...action.payload.changes } : l
