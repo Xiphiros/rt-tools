@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
 import { useEditor } from '../store/EditorContext';
 import { useHitsounds } from './useHitsounds';
 
@@ -16,6 +16,16 @@ export const usePlaybackHitsounds = () => {
     // Config
     const SCHEDULE_AHEAD = 0.15; // 150ms lookahead
 
+    // Create a fast lookup set for visible layer IDs
+    // We memoize this to avoid rebuilding it every frame
+    const visibleLayerIds = useMemo(() => {
+        const set = new Set<string>();
+        mapData.layers.forEach(l => {
+            if (l.visible) set.add(l.id);
+        });
+        return set;
+    }, [mapData.layers]);
+
     useEffect(() => {
         if (!playback.isPlaying) return;
 
@@ -25,9 +35,6 @@ export const usePlaybackHitsounds = () => {
         // 1. Reset Scheduler on Start/Seek
         const resetScheduler = () => {
             const currentTimeMs = manager.getCurrentTimeMs();
-            
-            // Find the first note that is AFTER the current time
-            // We use a simple linear scan because `mapData.notes` is sorted by time
             let index = 0;
             while (
                 index < mapData.notes.length && 
@@ -54,15 +61,16 @@ export const usePlaybackHitsounds = () => {
                 if (note.time > currentTimeMs + lookaheadMs) break;
 
                 // Calculate exact context time to play
-                // Delta (ms) = TargetTime - CurrentTime
-                // Delay (s) = Delta / 1000 / PlaybackRate
                 const timeUntilNote = (note.time - currentTimeMs) / 1000;
                 const delay = timeUntilNote / playback.playbackRate;
                 const scheduleTime = contextTime + delay;
 
                 // Only schedule if it's in the future (or very slightly past due)
+                // AND if the layer is visible
                 if (scheduleTime >= contextTime - 0.05) {
-                    play(note.hitsound, scheduleTime);
+                    if (visibleLayerIds.has(note.layerId)) {
+                        play(note.hitsound, scheduleTime);
+                    }
                 }
 
                 nextNoteIndexRef.current++;
@@ -75,5 +83,5 @@ export const usePlaybackHitsounds = () => {
 
         const handle = requestAnimationFrame(scheduler);
         return () => cancelAnimationFrame(handle);
-    }, [playback.isPlaying, playback.playbackRate, mapData.notes, audio.manager, play]);
+    }, [playback.isPlaying, playback.playbackRate, mapData.notes, visibleLayerIds, audio.manager, play]);
 };
