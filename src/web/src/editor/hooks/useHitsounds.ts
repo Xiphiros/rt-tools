@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { useEditor } from '../store/EditorContext';
-import { HITSOUND_FILES, HitsoundKey } from '../assets/hitsounds';
+import { HITSOUND_FILES } from '../assets/hitsounds';
 import { HitsoundSettings } from '../types';
 
 /**
@@ -40,9 +40,12 @@ export const useHitsounds = () => {
     }, [audio.manager]);
 
     // 2. Playback Function
-    const play = useCallback((settings: HitsoundSettings) => {
+    // 'when' is in AudioContext time (seconds). If undefined, plays immediately.
+    const play = useCallback((settings: HitsoundSettings, when?: number) => {
         const ctx = audio.manager.getContext();
         if (ctx.state === 'suspended') ctx.resume();
+
+        const playTime = when ?? ctx.currentTime;
 
         const playSample = (key: string, vol: number) => {
             const buffer = buffersRef.current.get(key);
@@ -52,16 +55,20 @@ export const useHitsounds = () => {
             source.buffer = buffer;
             
             const gain = ctx.createGain();
+            // Scale volume: 0-100 -> 0.0-1.0
+            // Hitsounds are often loud, so we might dampen slightly (e.g. * 0.8)
             gain.gain.value = Math.max(0, Math.min(1, vol / 100));
             
             source.connect(gain);
             gain.connect(ctx.destination);
-            source.start(0);
+            
+            // Schedule
+            source.start(playTime);
         };
 
         const set = settings.sampleSet || 'normal';
         
-        // Base
+        // Base Hit
         const baseKey = `${set}-hitnormal`;
         playSample(baseKey, settings.volume);
 
