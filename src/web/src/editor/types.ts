@@ -54,6 +54,7 @@ export interface TimingPoint {
 }
 
 export interface EditorMapData {
+    diffId: string;
     notes: EditorNote[];
     layers: EditorLayer[];
     metadata: MapMetadata;
@@ -98,5 +99,11 @@ export interface ProjectSummary {
     title: string;
     artist: string;
     mapper: string;
+    lastModified: number;
+}
+
+export interface DifficultySummary {
+    id: string;
+    name: string;
     lastModified: number;
 }
