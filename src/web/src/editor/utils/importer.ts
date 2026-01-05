@@ -1,5 +1,5 @@
 import JSZip from 'jszip';
-import { EditorMapData } from '../types';
+import { EditorMapData, HitsoundSettings } from '../types';
 import { createProject, saveFileToProject } from './opfs';
 
 export const importRtmPackage = async (file: File): Promise<string | null> => {
@@ -14,8 +14,6 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
         const meta = JSON.parse(metaContent);
         
         // 2. Determine Difficulty to Load
-        // RTMs can have multiple diffs. For the editor, we load the first one found.
-        // In a real scenario, we might prompt the user, but for now we pick [0].
         if (!meta.difficulties || meta.difficulties.length === 0) {
             throw new Error("No difficulties found in RTM");
         }
@@ -28,33 +26,52 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
         const diffData = JSON.parse(diffContent);
         
         // 3. Construct Editor Data
-        // Merge meta and diff data into our flat EditorMapData structure
         const editorData: EditorMapData = {
             metadata: {
                 title: meta.songName || '',
                 artist: meta.artistName || '',
                 mapper: meta.mapper || '',
                 difficultyName: diffRef.name || '',
-                source: '', // RTM doesn't always have this
+                source: '',
                 tags: meta.tags || '',
                 backgroundFile: (meta.backgroundFiles && meta.backgroundFiles[0]) || '',
                 audioFile: meta.audioFile || '',
                 previewTime: meta.previewTime || 0
             },
-            notes: diffData.notes.map((n: any) => ({
-                id: crypto.randomUUID(),
-                time: n.time ?? n.startTime ?? 0,
-                column: getKeyColumn(n.key),
-                key: n.key,
-                type: n.type,
-                duration: n.endTime ? n.endTime - n.startTime : 0
-            })),
+            notes: diffData.notes.map((n: any) => {
+                // Parse Hitsound
+                const hs: HitsoundSettings = {
+                    sampleSet: 'normal',
+                    volume: 100,
+                    additions: { whistle: false, finish: false, clap: false }
+                };
+
+                if (n.hitsound) {
+                    hs.sampleSet = n.hitsound.sampleSet || 'normal';
+                    hs.volume = n.hitsound.volume ?? 100;
+                    if (n.hitsound.sounds) {
+                        hs.additions.whistle = !!n.hitsound.sounds.hitwhistle;
+                        hs.additions.finish = !!n.hitsound.sounds.hitfinish;
+                        hs.additions.clap = !!n.hitsound.sounds.hitclap;
+                    }
+                }
+
+                return {
+                    id: crypto.randomUUID(),
+                    time: n.time ?? n.startTime ?? 0,
+                    column: getKeyColumn(n.key),
+                    key: n.key,
+                    type: n.type,
+                    duration: n.endTime ? n.endTime - n.startTime : 0,
+                    hitsound: hs
+                };
+            }),
             timingPoints: meta.timingPoints || [],
             bpm: meta.bpm || 120,
             offset: meta.offset || 0
         };
 
-        // 4. Create Project in OPFS
+        // 4. Create Project
         const projectId = crypto.randomUUID();
         await createProject(projectId, editorData);
 
@@ -82,9 +99,6 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
     }
 };
 
-// Helper to map keys to columns (Simple QWERTY layout assumption if needed)
-// If the RTM keys are arbitrary, we might need a mapping strategy.
-// For now, we trust the key character.
 function getKeyColumn(key: string): number {
     const ROW_TOP = ['q','w','e','r','t','y','u','i','o','p'];
     const ROW_HOME = ['a','s','d','f','g','h','j','k','l',';'];
@@ -94,5 +108,5 @@ function getKeyColumn(key: string): number {
     if (ROW_TOP.includes(k)) return 0;
     if (ROW_HOME.includes(k)) return 1;
     if (ROW_BOTTOM.includes(k)) return 2;
-    return 0; // Default
+    return 0; 
 }
