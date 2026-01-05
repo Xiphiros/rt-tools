@@ -5,7 +5,7 @@ import { TimelineGrid } from './TimelineGrid';
 import { TimelineRuler } from './TimelineRuler';
 import { MiniPlayfield } from './MiniPlayfield';
 import { Waveform, WaveformMode } from './Waveform';
-import { EditorNote } from '../types';
+import { EditorNote, EditorLayer } from '../types';
 import { getSnapColor, getSnapDivisor } from '../utils/snapColors';
 import { snapTime, getActiveTimingPoint } from '../utils/timing';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,8 +20,6 @@ export const EditorTimeline = () => {
     const { mapData, settings, setSettings, playback, dispatch, audio, activeTool } = useEditor();
     const containerRef = useRef<HTMLDivElement>(null);
     
-    // Virtualization Hook
-    // Buffer: 1000px (roughly 1-2 screens depending on resolution)
     const windowState = useVirtualWindow({
         containerRef,
         zoom: settings.zoom,
@@ -29,12 +27,10 @@ export const EditorTimeline = () => {
         bufferPx: 1000
     });
 
-    // UI State
     const [waveformMode, setWaveformMode] = useState<WaveformMode>('full');
     const [hoverTime, setHoverTime] = useState(0);
     const [hoveredChord, setHoveredChord] = useState<{ time: number, notes: EditorNote[], x: number, y: number } | null>(null);
     
-    // Drag State
     const [isDragging, setIsDragging] = useState(false);
     const [dragMode, setDragMode] = useState<DragMode>('select');
     const [dragStart, setDragStart] = useState<{ x: number, time: number } | null>(null);
@@ -42,34 +38,39 @@ export const EditorTimeline = () => {
     const [initialSelection, setInitialSelection] = useState<EditorNote[]>([]);
     const [, setResizeTargetId] = useState<string | null>(null);
 
-    // Audio Debounce
     const debouncedSeek = useMemo(
         () => debounce((time: number) => audio.seek(time), 50),
         [audio]
     );
 
+    // --- LAYER LOOKUP ---
+    const layerMap = useMemo(() => {
+        return new Map<string, EditorLayer>(mapData.layers.map(l => [l.id, l]));
+    }, [mapData.layers]);
+
     // --- AGGREGATION ---
-    // We only group and render notes visible in the virtual window
     const tickGroups = useMemo(() => {
-        // O(log n) slicing
+        // 1. Get visible notes in time window
         const visibleNotes = getVisibleNotes(
             mapData.notes, 
             windowState.startTime, 
             windowState.endTime
         );
 
+        // 2. Filter by Layer Visibility
+        const renderableNotes = visibleNotes.filter(n => {
+            const layer = layerMap.get(n.layerId);
+            return layer ? layer.visible : true; // Default to true if layer missing
+        });
+
         const groups = new Map<string, EditorNote[]>();
 
-        visibleNotes.forEach(note => {
+        renderableNotes.forEach(note => {
             const key = note.time.toFixed(3); 
             if (!groups.has(key)) groups.set(key, []);
             groups.get(key)!.push(note);
         });
 
-        // We only process timing points relevant to the visible window to determine colors
-        // Note: For snap calculation, we usually need the specific point active at 'time'.
-        // getActiveTimingPoint is fast enough (linear scan of small array), so we use mapData.timingPoints directly.
-        
         return Array.from(groups.entries()).map(([timeStr, notes]) => {
             const time = parseFloat(timeStr);
             const tp = getActiveTimingPoint(time, mapData.timingPoints);
@@ -82,9 +83,8 @@ export const EditorTimeline = () => {
             const color = snap > 0 ? getSnapColor(snap) : '#FFFFFF'; 
             return { time, notes, color, isUnsnapped: snap === 0 };
         });
-    }, [mapData.notes, mapData.timingPoints, mapData.bpm, mapData.offset, windowState.startTime, windowState.endTime]);
+    }, [mapData.notes, mapData.timingPoints, mapData.bpm, mapData.offset, windowState.startTime, windowState.endTime, layerMap]);
 
-    // Optimization: Filter timing points for Grid/Ruler
     const visibleTimingPoints = useMemo(() => {
         return getVisibleTimingPoints(mapData.timingPoints, windowState.startTime, windowState.endTime);
     }, [mapData.timingPoints, windowState.startTime, windowState.endTime]);
@@ -95,7 +95,6 @@ export const EditorTimeline = () => {
         if (!container) return;
         const handleWheel = (e: WheelEvent) => {
             e.preventDefault();
-            
             if (e.ctrlKey) {
                 const delta = e.deltaY > 0 ? -25 : 25;
                 setSettings(s => ({ ...s, zoom: Math.max(50, Math.min(500, s.zoom + delta)) }));
@@ -105,10 +104,8 @@ export const EditorTimeline = () => {
                 const bpm = tp ? tp.bpm : 120;
                 const msPerBeat = 60000 / bpm;
                 const step = msPerBeat / settings.snapDivisor;
-
                 const rawTarget = playback.currentTime + (step * direction);
                 const cleanTarget = snapTime(rawTarget, mapData.timingPoints, settings.snapDivisor);
-                
                 debouncedSeek(cleanTarget);
             }
         };
@@ -138,20 +135,28 @@ export const EditorTimeline = () => {
         }
     };
 
+    // Helper to check lock status
+    const isNoteLocked = (note: EditorNote) => {
+        const layer = layerMap.get(note.layerId);
+        return layer ? layer.locked : false;
+    };
+
     const handleNoteMouseDown = (e: React.MouseEvent, note: EditorNote) => {
         e.stopPropagation();
         if (e.button !== 0) return;
+        if (isNoteLocked(note)) return; // Prevent interaction if locked
 
         if (note.selected || e.ctrlKey) {
             setDragMode('move');
             setDragStart({ x: e.clientX, time: note.time });
             setDragCurrent({ x: e.clientX, time: note.time });
             
+            // If dragging multiple notes, ensure we don't drag locked ones from selection
             if (!note.selected && !e.ctrlKey) {
                 dispatch({ type: 'SELECT_NOTES', payload: { ids: [note.id], append: false } });
                 setInitialSelection([{ ...note, selected: true }]);
             } else {
-                const selected = mapData.notes.filter(n => n.selected);
+                const selected = mapData.notes.filter(n => n.selected && !isNoteLocked(n));
                 if (!note.selected) selected.push(note); 
                 setInitialSelection(selected);
             }
@@ -169,11 +174,11 @@ export const EditorTimeline = () => {
     const handleResizeMouseDown = (e: React.MouseEvent, note: EditorNote) => {
         e.stopPropagation();
         if (e.button !== 0) return;
+        if (isNoteLocked(note)) return;
 
         setDragMode('resize');
         setResizeTargetId(note.id);
         setInitialSelection([note]); 
-        
         setDragStart({ x: e.clientX, time: note.time + (note.duration || 0) });
         setDragCurrent({ x: e.clientX, time: note.time + (note.duration || 0) });
         setIsDragging(true);
@@ -212,18 +217,14 @@ export const EditorTimeline = () => {
         } else if (dragMode === 'resize') {
             const pixelDelta = e.clientX - dragStart.x;
             const timeDelta = (pixelDelta / settings.zoom) * 1000;
-            
             const note = initialSelection[0];
             if (note) {
                 const originalEndTime = note.time + (note.duration || 0);
                 let newEndTime = originalEndTime + timeDelta;
-                
                 if (settings.snappingEnabled) {
                     newEndTime = snapTime(newEndTime, mapData.timingPoints, settings.snapDivisor);
                 }
-                
                 let newDuration = Math.max(0, newEndTime - note.time);
-                
                 dispatch({
                     type: 'UPDATE_NOTE',
                     payload: { id: note.id, changes: { duration: newDuration, type: newDuration > 0 ? 'hold' : 'tap' } }
@@ -244,9 +245,15 @@ export const EditorTimeline = () => {
             } else {
                 const t1 = Math.min(dragStart.time, dragCurrent.time);
                 const t2 = Math.max(dragStart.time, dragCurrent.time);
-
+                
+                // Select notes in range that are Visible AND Unlocked
                 const selectedIds = mapData.notes
-                    .filter(n => n.time >= t1 && n.time <= t2)
+                    .filter(n => {
+                        const layer = layerMap.get(n.layerId);
+                        const isVisible = layer ? layer.visible : true;
+                        const isLocked = layer ? layer.locked : false;
+                        return n.time >= t1 && n.time <= t2 && isVisible && !isLocked;
+                    })
                     .map(n => n.id);
                 dispatch({ type: 'SELECT_NOTES', payload: { ids: selectedIds, append: false } });
             }
@@ -281,11 +288,7 @@ export const EditorTimeline = () => {
     const tooltip = hoveredChord ? (
         <div 
             className="fixed z-[9999] pointer-events-none transition-all duration-150"
-            style={{ 
-                left: hoveredChord.x, 
-                top: hoveredChord.y,
-                transform: 'translate(-50%, -100%)' 
-            }}
+            style={{ left: hoveredChord.x, top: hoveredChord.y, transform: 'translate(-50%, -100%)' }}
         >
             <div className="animate-in fade-in zoom-in-95 duration-100 mb-2 drop-shadow-2xl">
                 <MiniPlayfield notes={hoveredChord.notes} scale={0.35} />
@@ -434,23 +437,28 @@ export const EditorTimeline = () => {
                             if (width % 2 !== 0) width++;
                             if (group.isUnsnapped) width = 2;
 
+                            // Apply locking visual style
+                            const isAnyLocked = group.notes.some(n => isNoteLocked(n));
+                            const cursorStyle = isAnyLocked ? 'not-allowed' : 'grab';
+                            const opacityMod = isAnyLocked ? 0.5 : 1;
+
                             const bgStyle: React.CSSProperties = {
                                 background: isSelected 
                                     ? `linear-gradient(to bottom, #ffffff 0%, ${tickColor} 40%, ${tickColor} 100%)`
                                     : (group.isUnsnapped ? '#fff' : tickColor),
-                                opacity: group.isUnsnapped ? 0.8 : 1,
+                                opacity: (group.isUnsnapped ? 0.8 : 1) * opacityMod,
                                 border: isSelected ? '1px solid white' : 'none',
                                 boxShadow: isSelected 
                                     ? `0 0 8px ${tickColor}, 0 0 2px white` 
                                     : (group.isUnsnapped ? 'none' : `0 0 4px ${tickColor}80`),
                                 zIndex: isSelected ? 50 : 40,
-                                cursor: 'grab'
+                                cursor: cursorStyle
                             };
 
                             return (
                                 <React.Fragment key={group.time}>
                                     <div
-                                        className="absolute top-1/2 cursor-pointer pointer-events-auto transition-transform hover:scale-y-110"
+                                        className="absolute top-1/2 transition-transform hover:scale-y-110 pointer-events-auto"
                                         style={{
                                             left: (group.time / 1000) * settings.zoom,
                                             width: width,
@@ -463,7 +471,6 @@ export const EditorTimeline = () => {
                                         onMouseDown={(e) => handleNoteMouseDown(e, group.notes[0])}
                                     />
                                     
-                                    {/* Virtualized Hold Tails: Only visible ones are iterated via tickGroups */}
                                     {group.notes.map((n) => n.type === 'hold' && (
                                         <React.Fragment key={`${n.id}_hold`}>
                                             <div 
@@ -477,7 +484,7 @@ export const EditorTimeline = () => {
                                                 }}
                                             />
                                             <div
-                                                className="absolute top-1/2 w-3 h-6 bg-white/20 hover:bg-white/80 cursor-col-resize z-50 rounded-sm transition-colors border border-white/30"
+                                                className={`absolute top-1/2 w-3 h-6 bg-white/20 z-50 rounded-sm transition-colors border border-white/30 ${isNoteLocked(n) ? 'cursor-not-allowed opacity-50' : 'hover:bg-white/80 cursor-col-resize'}`}
                                                 style={{
                                                     left: ((group.time + (n.duration || 0)) / 1000) * settings.zoom,
                                                     transform: 'translate(-50%, -50%)',
