@@ -13,6 +13,14 @@ export interface HitsoundSettings {
     };
 }
 
+export interface EditorLayer {
+    id: string;
+    name: string;
+    visible: boolean;
+    locked: boolean;
+    color: string;
+}
+
 export interface EditorNote {
     id: string;         
     time: number;       
@@ -22,6 +30,7 @@ export interface EditorNote {
     duration?: number;  
     selected?: boolean;
     hitsound: HitsoundSettings;
+    layerId: string;
 }
 
 export interface MapMetadata {
@@ -46,6 +55,7 @@ export interface TimingPoint {
 
 export interface EditorMapData {
     notes: EditorNote[];
+    layers: EditorLayer[];
     metadata: MapMetadata;
     timingPoints: TimingPoint[];
     bpm: number;
