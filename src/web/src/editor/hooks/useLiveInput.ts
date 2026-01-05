@@ -11,10 +11,9 @@ interface HeldKey {
 }
 
 export const useLiveInput = () => {
-    const { playback, mapData, dispatch, settings, activeLayerId, defaultHitsounds } = useEditor();
+    const { playback, mapData, dispatch, settings, activeLayerId, defaultHitsounds, audio } = useEditor();
     const { play } = useHitsounds();
     
-    // Track keys currently being held down
     const heldKeys = useRef<Map<string, HeldKey>>(new Map());
     const [activeKeys, setActiveKeys] = useState<Set<string>>(new Set());
 
@@ -26,17 +25,18 @@ export const useLiveInput = () => {
         mapData, 
         settings, 
         activeLayerId, 
-        defaultHitsounds 
+        defaultHitsounds,
+        audio 
     });
 
-    // Update the ref on every render
     useEffect(() => {
         stateRef.current = { 
             playback, 
             mapData, 
             settings, 
             activeLayerId, 
-            defaultHitsounds 
+            defaultHitsounds,
+            audio
         };
     });
 
@@ -46,14 +46,13 @@ export const useLiveInput = () => {
             if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
             if (e.ctrlKey || e.metaKey || e.altKey) return;
 
-            // Access latest state from Ref
-            const { playback, mapData, activeLayerId, defaultHitsounds } = stateRef.current;
+            const { mapData, activeLayerId, defaultHitsounds, audio } = stateRef.current;
 
             const key = e.key.toLowerCase();
             const row = KEY_TO_ROW[key];
 
-            // Only record if playing
-            if (row !== undefined && playback.isPlaying) {
+            // Trigger on any valid gameplay key, REGARDLESS of playback state
+            if (row !== undefined) {
                 // Check Lock
                 const activeLayer = mapData.layers.find(l => l.id === activeLayerId);
                 if (activeLayer && activeLayer.locked) return;
@@ -61,9 +60,12 @@ export const useLiveInput = () => {
                 // Audio Feedback
                 play(defaultHitsounds);
 
+                // Get Precise Time directly from manager if possible, fallback to playback state
+                const startTime = audio.manager.getCurrentTimeMs();
+
                 // Track Start Time
                 heldKeys.current.set(key, {
-                    startTime: playback.currentTime,
+                    startTime: startTime,
                     layerId: activeLayerId
                 });
                 
@@ -72,7 +74,7 @@ export const useLiveInput = () => {
         };
 
         const handleKeyUp = (e: KeyboardEvent) => {
-            const { playback, mapData, settings, defaultHitsounds } = stateRef.current;
+            const { mapData, settings, defaultHitsounds, audio } = stateRef.current;
             const key = e.key.toLowerCase();
             const held = heldKeys.current.get(key);
 
@@ -85,8 +87,8 @@ export const useLiveInput = () => {
                     return next;
                 });
 
-                // NOTE GENERATION LOGIC
-                const releaseTime = playback.currentTime;
+                // Get Release Time
+                const releaseTime = audio.manager.getCurrentTimeMs();
                 
                 let start = held.startTime;
                 let end = releaseTime;
@@ -127,8 +129,6 @@ export const useLiveInput = () => {
             window.removeEventListener('keyup', handleKeyUp);
         };
         
-        // Dependency array includes ONLY stable references. 
-        // We do NOT include 'playback' or 'mapData' here to avoid re-binding.
     }, [dispatch, play]);
 
     return { activeKeys };
