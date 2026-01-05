@@ -40,7 +40,9 @@ export class AudioManager {
         // Master Gain
         this.gainNode = this.ctx.createGain();
         this.gainNode.connect(this.ctx.destination);
-        this.gainNode.gain.value = this.volume;
+        
+        // Initialize volume immediately to avoid pop
+        this.gainNode.gain.setValueAtTime(this.volume, this.ctx.currentTime);
     }
 
     /**
@@ -164,8 +166,16 @@ export class AudioManager {
 
     setVolume(volume: number): void {
         this.volume = Math.max(0, Math.min(1, volume));
+        
         if (this.gainNode) {
-            this.gainNode.gain.setValueAtTime(this.volume, this.ctx.currentTime);
+            const currentTime = this.ctx.currentTime;
+            
+            // Cancel any future scheduled changes to take immediate control
+            this.gainNode.gain.cancelScheduledValues(currentTime);
+            
+            // Use setTargetAtTime for smooth transition (prevents zipper noise)
+            // Time constant 0.015s means roughly ~70ms to reach target
+            this.gainNode.gain.setTargetAtTime(this.volume, currentTime, 0.015);
         }
     }
 
