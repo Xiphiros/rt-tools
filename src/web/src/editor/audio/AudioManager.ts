@@ -184,6 +184,20 @@ export class AudioManager {
         return this.startTrackTime * 1000;
     }
 
+    /**
+     * Converts a target Song Time (in ms) to the absolute AudioContext time (in seconds)
+     * where that moment will occur (or occurred), given current playback state.
+     */
+    songTimeToContextTime(songTimeMs: number): number {
+        if (!this.isPlaying) return this.ctx.currentTime;
+
+        const songTimeSec = songTimeMs / 1000;
+        const deltaSec = songTimeSec - this.startTrackTime;
+        
+        // ContextTime = Anchor + (Delta / Rate)
+        return this.startContextTime + (deltaSec / this.playbackRate);
+    }
+
     getDurationMs(): number {
         return this.buffer ? this.buffer.duration * 1000 : 0;
     }
