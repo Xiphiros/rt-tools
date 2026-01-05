@@ -255,18 +255,17 @@ export const EditorTimeline = () => {
                 });
             });
         } else if (dragMode === 'resize') {
-            const pixelDelta = e.clientX - dragStart.x;
-            const timeDelta = (pixelDelta / settings.zoom) * 1000;
+            // Absolute Resizing Logic:
+            // All selected hold notes end at the cursor position (snapped).
+            
+            let targetEndTime = rawTime;
+            if (settings.snappingEnabled) {
+                targetEndTime = snapTime(rawTime, mapData.timingPoints, settings.snapDivisor);
+            }
             
             initialSelection.forEach(note => {
-                const originalEndTime = note.originalTime + note.originalDuration;
-                let newEndTime = originalEndTime + timeDelta;
-
-                if (settings.snappingEnabled) {
-                    newEndTime = snapTime(newEndTime, mapData.timingPoints, settings.snapDivisor);
-                }
-                
-                let newDuration = Math.max(0, newEndTime - note.originalTime);
+                // Calculate new duration based on original start time and target absolute end time
+                let newDuration = Math.max(0, targetEndTime - note.originalTime);
                 
                 dispatch({
                     type: 'UPDATE_NOTE',
@@ -407,10 +406,12 @@ export const EditorTimeline = () => {
                 onMouseDown={handleMouseDown}
                 onMouseLeave={() => setHoveredChord(null)}
             >
+                {/* Sizer Div: Sets total scroll width (including padding) */}
                 <div 
                     className="relative flex flex-col min-h-full" 
                     style={{ width: totalWidth, minWidth: '100%' }}
                 >
+                    {/* Content Wrapper: Shifts everything by TIMELINE_PADDING */}
                     <div 
                         className="relative flex flex-col h-full"
                         style={{ marginLeft: TIMELINE_PADDING, width: contentWidth }}
