@@ -11,6 +11,8 @@ import { snapTime, getActiveTimingPoint } from '../utils/timing';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWaveSquare, faDrum, faMusic } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce'; 
+import { useVirtualWindow } from '../hooks/useVirtualWindow';
+import { getVisibleNotes, getVisibleTimingPoints } from '../utils/binarySearch';
 
 type DragMode = 'select' | 'move' | 'resize';
 
@@ -18,6 +20,15 @@ export const EditorTimeline = () => {
     const { mapData, settings, setSettings, playback, dispatch, audio, activeTool } = useEditor();
     const containerRef = useRef<HTMLDivElement>(null);
     
+    // Virtualization Hook
+    // Buffer: 1000px (roughly 1-2 screens depending on resolution)
+    const windowState = useVirtualWindow({
+        containerRef,
+        zoom: settings.zoom,
+        totalDuration: playback.duration,
+        bufferPx: 1000
+    });
+
     // UI State
     const [waveformMode, setWaveformMode] = useState<WaveformMode>('full');
     const [hoverTime, setHoverTime] = useState(0);
@@ -29,8 +40,6 @@ export const EditorTimeline = () => {
     const [dragStart, setDragStart] = useState<{ x: number, time: number } | null>(null);
     const [dragCurrent, setDragCurrent] = useState<{ x: number, time: number } | null>(null);
     const [initialSelection, setInitialSelection] = useState<EditorNote[]>([]);
-    
-    // Using this to track resize target, even if TS flagged it as unused before, it is needed for logic
     const [, setResizeTargetId] = useState<string | null>(null);
 
     // Audio Debounce
@@ -40,15 +49,27 @@ export const EditorTimeline = () => {
     );
 
     // --- AGGREGATION ---
+    // We only group and render notes visible in the virtual window
     const tickGroups = useMemo(() => {
+        // O(log n) slicing
+        const visibleNotes = getVisibleNotes(
+            mapData.notes, 
+            windowState.startTime, 
+            windowState.endTime
+        );
+
         const groups = new Map<string, EditorNote[]>();
 
-        mapData.notes.forEach(note => {
+        visibleNotes.forEach(note => {
             const key = note.time.toFixed(3); 
             if (!groups.has(key)) groups.set(key, []);
             groups.get(key)!.push(note);
         });
 
+        // We only process timing points relevant to the visible window to determine colors
+        // Note: For snap calculation, we usually need the specific point active at 'time'.
+        // getActiveTimingPoint is fast enough (linear scan of small array), so we use mapData.timingPoints directly.
+        
         return Array.from(groups.entries()).map(([timeStr, notes]) => {
             const time = parseFloat(timeStr);
             const tp = getActiveTimingPoint(time, mapData.timingPoints);
@@ -61,7 +82,12 @@ export const EditorTimeline = () => {
             const color = snap > 0 ? getSnapColor(snap) : '#FFFFFF'; 
             return { time, notes, color, isUnsnapped: snap === 0 };
         });
-    }, [mapData.notes, mapData.timingPoints, mapData.bpm, mapData.offset]);
+    }, [mapData.notes, mapData.timingPoints, mapData.bpm, mapData.offset, windowState.startTime, windowState.endTime]);
+
+    // Optimization: Filter timing points for Grid/Ruler
+    const visibleTimingPoints = useMemo(() => {
+        return getVisibleTimingPoints(mapData.timingPoints, windowState.startTime, windowState.endTime);
+    }, [mapData.timingPoints, windowState.startTime, windowState.endTime]);
 
     // --- ZOOM & SEEK ---
     useEffect(() => {
@@ -207,20 +233,18 @@ export const EditorTimeline = () => {
     };
 
     const handleMouseUp = () => {
-        // Handle Click-to-Seek inside Grid (if not dragged)
         if (isDragging && dragMode === 'select' && dragStart && dragCurrent) {
             const dx = Math.abs(dragCurrent.x - dragStart.x);
             if (dx < 5) {
-                // Seek
                 const seekTime = settings.snappingEnabled 
                     ? snapTime(dragStart.time, mapData.timingPoints, settings.snapDivisor)
                     : dragStart.time;
                 audio.seek(seekTime);
                 dispatch({ type: 'DESELECT_ALL' });
             } else {
-                // Select Box
                 const t1 = Math.min(dragStart.time, dragCurrent.time);
                 const t2 = Math.max(dragStart.time, dragCurrent.time);
+
                 const selectedIds = mapData.notes
                     .filter(n => n.time >= t1 && n.time <= t2)
                     .map(n => n.id);
@@ -341,7 +365,7 @@ export const EditorTimeline = () => {
                     <div className="absolute inset-0 z-0">
                         <TimelineGrid 
                             duration={playback.duration} 
-                            timingPoints={mapData.timingPoints} 
+                            timingPoints={visibleTimingPoints} 
                             settings={settings} 
                         />
                     </div>
@@ -379,7 +403,7 @@ export const EditorTimeline = () => {
                     <div className="sticky top-0 z-40">
                         <TimelineRuler 
                             duration={playback.duration} 
-                            timingPoints={mapData.timingPoints} 
+                            timingPoints={visibleTimingPoints} 
                             zoom={settings.zoom} 
                             snapDivisor={settings.snapDivisor} 
                         />
@@ -390,7 +414,6 @@ export const EditorTimeline = () => {
                         style={{ height: settings.showWaveform ? '80px' : '0px' }}
                     >
                         <div className="absolute inset-0 z-10 opacity-80">
-                            {/* TILED WAVEFORM */}
                             <Waveform 
                                 buffer={audio.manager.getBuffer()} 
                                 zoom={settings.zoom} 
@@ -440,6 +463,7 @@ export const EditorTimeline = () => {
                                         onMouseDown={(e) => handleNoteMouseDown(e, group.notes[0])}
                                     />
                                     
+                                    {/* Virtualized Hold Tails: Only visible ones are iterated via tickGroups */}
                                     {group.notes.map((n) => n.type === 'hold' && (
                                         <React.Fragment key={`${n.id}_hold`}>
                                             <div 
