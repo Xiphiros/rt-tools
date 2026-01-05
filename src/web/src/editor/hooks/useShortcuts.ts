@@ -12,12 +12,11 @@ const DEFAULT_HITSOUND: HitsoundSettings = {
 };
 
 export const useShortcuts = () => {
-    const { dispatch, audio, playback, mapData, settings } = useEditor();
+    const { dispatch, audio, playback, mapData, settings, activeLayerId } = useEditor();
     const { play } = useHitsounds();
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            // Ignore if typing in text fields
             if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
                 return;
             }
@@ -37,7 +36,10 @@ export const useShortcuts = () => {
             // NOTE DURATION (Shift + Arrow)
             if (isShift && (e.code === 'ArrowLeft' || e.code === 'ArrowRight')) {
                 e.preventDefault();
-                const selectedNotes = mapData.notes.filter(n => n.selected);
+                // Filter selected notes to only those in UNLOCKED layers
+                const activeLayers = new Set(mapData.layers.filter(l => !l.locked).map(l => l.id));
+                const selectedNotes = mapData.notes.filter(n => n.selected && activeLayers.has(n.layerId));
+                
                 if (selectedNotes.length === 0) return;
 
                 const tp = getActiveTimingPoint(playback.currentTime, mapData.timingPoints);
@@ -82,7 +84,11 @@ export const useShortcuts = () => {
             // SELECT ALL
             if (isCtrl && key === 'a') {
                 e.preventDefault();
-                const allIds = mapData.notes.map(n => n.id);
+                // Select only from visible/unlocked layers? Usually select all means visible.
+                const visibleLayers = new Set(mapData.layers.filter(l => l.visible).map(l => l.id));
+                const allIds = mapData.notes
+                    .filter(n => visibleLayers.has(n.layerId))
+                    .map(n => n.id);
                 dispatch({ type: 'SELECT_NOTES', payload: { ids: allIds, append: false } });
                 return;
             }
@@ -93,7 +99,12 @@ export const useShortcuts = () => {
                 if (row !== undefined) {
                     e.preventDefault();
                     
-                    // Immediate Feedback
+                    // Check if active layer is locked
+                    const activeLayer = mapData.layers.find(l => l.id === activeLayerId);
+                    if (activeLayer && activeLayer.locked) {
+                        return;
+                    }
+
                     play(DEFAULT_HITSOUND);
 
                     const rawTime = playback.currentTime;
@@ -111,7 +122,8 @@ export const useShortcuts = () => {
                             column: row,
                             key: key,
                             type: 'tap',
-                            hitsound: { ...DEFAULT_HITSOUND } // Copy default
+                            hitsound: { ...DEFAULT_HITSOUND },
+                            layerId: activeLayerId // Attach to active layer
                         }
                     });
 
@@ -139,7 +151,12 @@ export const useShortcuts = () => {
             // DELETE
             if (key === 'delete' || key === 'backspace') {
                 e.preventDefault();
-                const selectedIds = mapData.notes.filter(n => n.selected).map(n => n.id);
+                // Filter out locked notes
+                const activeLayers = new Set(mapData.layers.filter(l => !l.locked).map(l => l.id));
+                const selectedIds = mapData.notes
+                    .filter(n => n.selected && activeLayers.has(n.layerId))
+                    .map(n => n.id);
+                    
                 if (selectedIds.length > 0) {
                     dispatch({ type: 'REMOVE_NOTES', payload: selectedIds });
                 }
@@ -149,5 +166,5 @@ export const useShortcuts = () => {
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [dispatch, audio, playback, mapData, settings, play]);
+    }, [dispatch, audio, playback, mapData, settings, play, activeLayerId]);
 };
