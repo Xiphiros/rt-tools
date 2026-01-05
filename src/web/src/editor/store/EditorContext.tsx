@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, ReactNode, useEffect, useState } from 'react';
-import { editorReducer, initialHistory, EditorAction, initialMapData } from './editorReducer';
+import { editorReducer, initialHistory, EditorAction, initialMapData, DEFAULT_LAYER_ID } from './editorReducer';
 import { useEditorAudio } from '../hooks/useEditorAudio';
 import { EditorMapData, EditorSettings, PlaybackState, EditorTool } from '../types';
 import { loadProjectJSON, saveProjectJSON, readFileFromProject, createProject } from '../utils/opfs';
@@ -23,6 +23,10 @@ interface EditorContextState {
     bgBlobUrl: string | null;
     reloadAssets: () => void;
     
+    // Layer Management
+    activeLayerId: string;
+    setActiveLayerId: (id: string) => void;
+    
     dispatch: React.Dispatch<EditorAction>;
     setSettings: React.Dispatch<React.SetStateAction<EditorSettings>>;
 }
@@ -37,6 +41,9 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     const [bgBlobUrl, setBgBlobUrl] = useState<string | null>(null);
     const [assetsVersion, setAssetsVersion] = useState(0);
     const [activeTool, setActiveTool] = useState<EditorTool>('select');
+    
+    // Default to the first layer if possible
+    const [activeLayerId, setActiveLayerId] = useState<string>(DEFAULT_LAYER_ID);
 
     const [settings, setSettings] = React.useState<EditorSettings>({
         snapDivisor: 4,
@@ -52,6 +59,14 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         hitsoundVolume: 100,
         metronomeVolume: 60
     });
+
+    // Ensure active layer exists
+    useEffect(() => {
+        const layers = history.present.layers;
+        if (!layers.find(l => l.id === activeLayerId) && layers.length > 0) {
+            setActiveLayerId(layers[0].id);
+        }
+    }, [history.present.layers, activeLayerId]);
 
     // Sync Music Volume (Master * Music)
     const { setVolume } = audioHook;
@@ -94,7 +109,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         await loadProject(newId);
     };
 
-    // Asset Loading Logic (Scoped to Active Project)
+    // Asset Loading Logic
     useEffect(() => {
         if (!activeProjectId) return;
 
@@ -118,11 +133,6 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         };
         loadAssets();
     }, [assetsVersion, activeProjectId, history.present.metadata.audioFile, history.present.metadata.backgroundFile]);
-
-    // Initialize Default Project if none exists
-    useEffect(() => {
-        // Optional: Load default project
-    }, []);
 
     useEffect(() => {
         audioHook.setRate(settings.playbackSpeed);
@@ -153,7 +163,10 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         createNewProject,
         
         bgBlobUrl,
-        reloadAssets: () => setAssetsVersion(v => v + 1)
+        reloadAssets: () => setAssetsVersion(v => v + 1),
+        
+        activeLayerId,
+        setActiveLayerId
     };
 
     return (
