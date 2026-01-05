@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useEditor } from '../store/EditorContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faPlay, faPause, faUndo, faRedo, faSlidersH, faSpinner, faAngleDown, faMusic, faDrum, faClock, faVolumeUp
+    faPlay, faPause, faUndo, faRedo, faSliders, faSpinner, faAngleDown, faMusic, faDrum, faClock, faVolumeUp
 } from '@fortawesome/free-solid-svg-icons';
 
 const VolumeSlider = ({ 
@@ -80,7 +80,8 @@ export const EditorBottomBar = () => {
                 </div>
             </div>
             
-            <div className="flex items-center gap-8">
+            {/* Center Controls */}
+            <div className="flex items-center gap-8 justify-center flex-1">
                 {/* Beat Snap */}
                 <div className="flex flex-col items-center gap-1">
                     <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Snap</span>
@@ -126,7 +127,7 @@ export const EditorBottomBar = () => {
                             : 'bg-input text-muted border-border hover:text-white hover:border-white/20'
                         }`}
                     >
-                        <FontAwesomeIcon icon={faSlidersH} />
+                        <FontAwesomeIcon icon={faSliders} />
                         VOL
                     </button>
 
