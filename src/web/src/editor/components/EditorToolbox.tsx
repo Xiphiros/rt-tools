@@ -1,7 +1,7 @@
 import { useEditor } from '../store/EditorContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faMousePointer, faMagnet, faTh, faMagic
+    faMousePointer, faMagnet, faTh, faMagic, faSlidersH
 } from '@fortawesome/free-solid-svg-icons';
 
 interface EditorToolboxProps {
@@ -9,7 +9,10 @@ interface EditorToolboxProps {
 }
 
 export const EditorToolbox = ({ onOpenModal }: EditorToolboxProps) => {
-    const { activeTool, setActiveTool, settings, setSettings } = useEditor();
+    const { activeTool, setActiveTool, settings, setSettings, mapData } = useEditor();
+    
+    // Disable edit button if nothing selected
+    const hasSelection = mapData.notes.some(n => n.selected);
 
     return (
         <div className="flex flex-col bg-card border border-border rounded-lg shadow-xl overflow-hidden w-10">
@@ -31,6 +34,15 @@ export const EditorToolbox = ({ onOpenModal }: EditorToolboxProps) => {
                 title="Quantize / Re-snap"
             >
                 <FontAwesomeIcon icon={faMagic} />
+            </button>
+
+            <button 
+                onClick={() => hasSelection && onOpenModal && onOpenModal('properties')}
+                className={`w-10 h-10 flex items-center justify-center transition-colors ${hasSelection ? 'text-secondary hover:text-white' : 'text-muted/30 cursor-not-allowed'}`}
+                title="Edit Note Properties"
+                disabled={!hasSelection}
+            >
+                <FontAwesomeIcon icon={faSlidersH} />
             </button>
 
             <div className="h-[1px] bg-border mx-2 my-1" />
