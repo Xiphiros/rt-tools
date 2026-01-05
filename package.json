@@ -1,6 +1,6 @@
 {
   "name": "rt-tools",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "RhythmTyper Calculator & Visualization Suite",
   "private": true,
   "type": "module",
@@ -13,7 +13,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate": "npm run generate --workspace=@rt-tools/dataset-generator",
     "dev": "npm run dev --workspace=@rt-tools/web",
-    "convert": "node src/tools/osu-converter/index.js"
+    "convert": "node src/tools/osu-converter/index.js",
+    "build": "npm run build --workspace=@rt-tools/web"
   },
   "keywords": [
     "rhythm-game",
