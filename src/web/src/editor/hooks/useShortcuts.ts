@@ -25,20 +25,56 @@ export const useShortcuts = () => {
                 return;
             }
 
+            // --- NOTE DURATION ADJUSTMENT (Shift + Arrows) ---
+            if (isShift && (e.code === 'ArrowLeft' || e.code === 'ArrowRight')) {
+                e.preventDefault();
+                
+                const selectedNotes = mapData.notes.filter(n => n.selected);
+                if (selectedNotes.length === 0) return;
+
+                // Calculate Step
+                const tp = getActiveTimingPoint(playback.currentTime, mapData.timingPoints);
+                const bpm = tp ? tp.bpm : 120;
+                const msPerBeat = 60000 / bpm;
+                const step = msPerBeat / settings.snapDivisor;
+                const direction = e.code === 'ArrowRight' ? 1 : -1;
+
+                selectedNotes.forEach(note => {
+                    const currentDuration = note.duration || 0;
+                    let newDuration = currentDuration + (step * direction);
+                    
+                    // Snap the END time to grid if possible, or just delta?
+                    // Simple delta is usually more predictable for "extending"
+                    
+                    // Logic: If shrinking a tap (0 duration), do nothing or ensure it stays 0
+                    if (newDuration < step / 2) newDuration = 0; 
+                    
+                    // Switch types
+                    const type = newDuration > 0 ? 'hold' : 'tap';
+                    
+                    dispatch({
+                        type: 'UPDATE_NOTE',
+                        payload: { 
+                            id: note.id, 
+                            changes: { duration: newDuration, type } 
+                        }
+                    });
+                });
+                return;
+            }
+
             // --- NAVIGATION (Arrows) ---
-            if (e.code === 'ArrowLeft' || e.code === 'ArrowRight') {
+            // Only if NOT Shift (Shift is for duration)
+            if (!isShift && (e.code === 'ArrowLeft' || e.code === 'ArrowRight')) {
                 e.preventDefault();
                 const direction = e.code === 'ArrowRight' ? 1 : -1;
                 
-                // Calculate Snap Step
                 const tp = getActiveTimingPoint(playback.currentTime, mapData.timingPoints);
                 const bpm = tp ? tp.bpm : 120;
                 const msPerBeat = 60000 / bpm;
                 const step = msPerBeat / settings.snapDivisor;
 
-                // Move and Re-Snap
                 const rawTarget = playback.currentTime + (step * direction);
-                // We re-snap to ensure we don't drift due to floating point math
                 const cleanTarget = snapTime(rawTarget, mapData.timingPoints, settings.snapDivisor);
                 
                 audio.seek(cleanTarget);
@@ -63,16 +99,26 @@ export const useShortcuts = () => {
                         ? snapTime(rawTime, mapData.timingPoints, settings.snapDivisor)
                         : rawTime;
 
+                    const newId = crypto.randomUUID();
+
+                    // 1. Add Note
                     dispatch({
                         type: 'ADD_NOTE',
                         payload: {
-                            id: crypto.randomUUID(),
+                            id: newId,
                             time: time,
                             column: row,
                             key: key,
                             type: 'tap'
                         }
                     });
+
+                    // 2. Auto-Select it (for immediate Shift+Arrow extension)
+                    dispatch({
+                        type: 'SELECT_NOTES',
+                        payload: { ids: [newId], append: false }
+                    });
+                    
                     return;
                 }
             }
