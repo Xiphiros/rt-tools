@@ -54,11 +54,12 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     });
 
     // Sync Music Volume (Master * Music)
+    const { setVolume } = audioHook;
     useEffect(() => {
         const master = Math.max(0, Math.min(1, settings.masterVolume / 100));
         const music = Math.max(0, Math.min(1, settings.musicVolume / 100));
-        audioHook.setVolume(master * music);
-    }, [settings.masterVolume, settings.musicVolume, audioHook]);
+        setVolume(master * music);
+    }, [settings.masterVolume, settings.musicVolume, setVolume]);
 
     // Auto-Save to Active Project
     useEffect(() => {
