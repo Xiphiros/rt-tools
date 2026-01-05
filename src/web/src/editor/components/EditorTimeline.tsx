@@ -38,9 +38,14 @@ export const EditorTimeline = () => {
     const [dragMode, setDragMode] = useState<DragMode>('select');
     const [dragStart, setDragStart] = useState<{ x: number, time: number } | null>(null);
     const [dragCurrent, setDragCurrent] = useState<{ x: number, time: number } | null>(null);
-    const [initialSelection, setInitialSelection] = useState<EditorNote[]>([]);
-    const [, setResizeTargetId] = useState<string | null>(null);
-
+    
+    interface InitialNoteState extends EditorNote {
+        originalTime: number;
+        originalDuration: number;
+    }
+    const [initialSelection, setInitialSelection] = useState<InitialNoteState[]>([]);
+    const [, setResizeHandleNoteId] = useState<string | null>(null);
+    
     const debouncedSeek = useMemo(
         () => debounce((time: number) => audio.seek(time), 50),
         [audio]
@@ -83,7 +88,7 @@ export const EditorTimeline = () => {
             const snap = getSnapDivisor(beatIndex);
             
             const baseColor = snap > 0 ? getSnapColor(snap) : '#FFFFFF';
-            const primaryNote = notes[0];
+            const primaryNote = notes[0]; 
             const noteLayer = layerMap.get(primaryNote.layerId);
             const isInactiveLayer = primaryNote.layerId !== activeLayerId;
             const displayColor = isInactiveLayer && noteLayer ? noteLayer.color : baseColor;
@@ -127,14 +132,12 @@ export const EditorTimeline = () => {
     }, [setSettings, playback.currentTime, mapData.timingPoints, settings.snapDivisor, debouncedSeek]);
 
     // --- MOUSE HANDLERS ---
-    // Calculates time based on mouse position accounting for padding
     const getTimeFromEvent = (e: React.MouseEvent) => {
         if (!containerRef.current) return 0;
         const rect = containerRef.current.getBoundingClientRect();
         const scrollLeft = containerRef.current.scrollLeft;
         const clickX = e.clientX - rect.left + scrollLeft;
         
-        // Subtract padding to get content-relative X
         const contentX = clickX - TIMELINE_PADDING;
         const rawTime = (contentX / settings.zoom) * 1000;
         return Math.max(0, rawTime);
@@ -143,9 +146,6 @@ export const EditorTimeline = () => {
     const handleMouseDown = (e: React.MouseEvent) => {
         if (e.button === 0) {
             const rawTime = getTimeFromEvent(e);
-            
-            // Re-calculate raw X for drag tracking (including scroll/padding for consistent delta)
-            // We use clientX primarily for deltas, but for drag start we need timeline coords
             const rect = containerRef.current!.getBoundingClientRect();
             const clickX = e.clientX - rect.left + containerRef.current!.scrollLeft;
 
@@ -163,7 +163,6 @@ export const EditorTimeline = () => {
         }
     };
 
-    // Helper to check lock status
     const isNoteLocked = (note: EditorNote) => {
         const layer = layerMap.get(note.layerId);
         return layer ? layer.locked : false;
@@ -179,18 +178,20 @@ export const EditorTimeline = () => {
             setDragStart({ x: e.clientX, time: note.time });
             setDragCurrent({ x: e.clientX, time: note.time });
             
+            const selectedForMove = mapData.notes.filter(n => n.selected && !isNoteLocked(n)).map(n => ({
+                ...n,
+                originalTime: n.time,
+                originalDuration: n.duration || 0
+            }));
             if (!note.selected && !e.ctrlKey) {
-                dispatch({ type: 'SELECT_NOTES', payload: { ids: [note.id], append: false } });
-                setInitialSelection([{ ...note, selected: true }]);
-            } else {
-                const selected = mapData.notes.filter(n => n.selected && !isNoteLocked(n));
-                if (!note.selected) selected.push(note); 
-                setInitialSelection(selected);
+                 dispatch({ type: 'SELECT_NOTES', payload: { ids: [note.id], append: false } });
+                 selectedForMove.push({ ...note, selected: true, originalTime: note.time, originalDuration: note.duration || 0 });
             }
+            setInitialSelection(selectedForMove);
             setIsDragging(true);
         } else {
             dispatch({ type: 'SELECT_NOTES', payload: { ids: [note.id], append: false } });
-            setInitialSelection([{ ...note, selected: true }]);
+            setInitialSelection([{ ...note, selected: true, originalTime: note.time, originalDuration: note.duration || 0 }]);
             setDragMode('move');
             setDragStart({ x: e.clientX, time: note.time });
             setDragCurrent({ x: e.clientX, time: note.time });
@@ -204,9 +205,21 @@ export const EditorTimeline = () => {
         if (isNoteLocked(note)) return;
 
         setDragMode('resize');
-        setResizeTargetId(note.id);
-        setInitialSelection([note]); 
-        setDragStart({ x: e.clientX, time: note.time + (note.duration || 0) });
+        setResizeHandleNoteId(note.id); 
+        
+        const selectedHolds = mapData.notes.filter(n => n.selected && n.type === 'hold' && !isNoteLocked(n)).map(n => ({
+            ...n,
+            originalTime: n.time,
+            originalDuration: n.duration || 0
+        }));
+
+        if (!selectedHolds.some(n => n.id === note.id)) {
+            selectedHolds.push({ ...note, originalTime: note.time, originalDuration: note.duration || 0 });
+            dispatch({ type: 'SELECT_NOTES', payload: { ids: [note.id], append: false } });
+        }
+        
+        setInitialSelection(selectedHolds); 
+        setDragStart({ x: e.clientX, time: note.time + (note.duration || 0) }); 
         setDragCurrent({ x: e.clientX, time: note.time + (note.duration || 0) });
         setIsDragging(true);
     };
@@ -214,14 +227,12 @@ export const EditorTimeline = () => {
     const handleMouseMove = (e: React.MouseEvent) => {
         if (!containerRef.current) return;
         
-        // For Hover Line
         const rawTime = getTimeFromEvent(e);
         const snapped = snapTime(rawTime, mapData.timingPoints, settings.snapDivisor);
         setHoverTime(snapped);
 
         if (!isDragging || !dragStart) return;
 
-        // Track Drag Current
         const rect = containerRef.current.getBoundingClientRect();
         const currentX = e.clientX - rect.left + containerRef.current.scrollLeft;
         
@@ -232,7 +243,7 @@ export const EditorTimeline = () => {
             const timeDelta = (pixelDelta / settings.zoom) * 1000;
             
             initialSelection.forEach(note => {
-                let newTime = note.time + timeDelta;
+                let newTime = note.originalTime + timeDelta;
                 if (settings.snappingEnabled) {
                     newTime = snapTime(newTime, mapData.timingPoints, settings.snapDivisor);
                 }
@@ -246,19 +257,22 @@ export const EditorTimeline = () => {
         } else if (dragMode === 'resize') {
             const pixelDelta = e.clientX - dragStart.x;
             const timeDelta = (pixelDelta / settings.zoom) * 1000;
-            const note = initialSelection[0];
-            if (note) {
-                const originalEndTime = note.time + (note.duration || 0);
+            
+            initialSelection.forEach(note => {
+                const originalEndTime = note.originalTime + note.originalDuration;
                 let newEndTime = originalEndTime + timeDelta;
+
                 if (settings.snappingEnabled) {
                     newEndTime = snapTime(newEndTime, mapData.timingPoints, settings.snapDivisor);
                 }
-                let newDuration = Math.max(0, newEndTime - note.time);
+                
+                let newDuration = Math.max(0, newEndTime - note.originalTime);
+                
                 dispatch({
                     type: 'UPDATE_NOTE',
                     payload: { id: note.id, changes: { duration: newDuration, type: newDuration > 0 ? 'hold' : 'tap' } }
                 });
-            }
+            });
         }
     };
 
@@ -290,16 +304,14 @@ export const EditorTimeline = () => {
         setIsDragging(false);
         setDragStart(null);
         setDragCurrent(null);
-        setResizeTargetId(null);
+        setResizeHandleNoteId(null);
         setInitialSelection([]);
         setDragMode('select');
     };
 
-    // Auto-Scroll
     useEffect(() => {
         if (playback.isPlaying && containerRef.current) {
             const songPx = (playback.currentTime / 1000) * settings.zoom;
-            // Center the view on the playhead, accounting for padding
             const centerOffset = containerRef.current.clientWidth / 2;
             const scrollPos = songPx + TIMELINE_PADDING - centerOffset;
             containerRef.current.scrollLeft = scrollPos;
@@ -342,7 +354,6 @@ export const EditorTimeline = () => {
 
     const isDraggingSelection = isDragging && dragMode === 'select' && dragStart && dragCurrent && Math.abs(dragCurrent.x - dragStart.x) >= 5;
 
-    // Dimensions
     const contentWidth = (playback.duration / 1000) * settings.zoom;
     const totalWidth = contentWidth + (TIMELINE_PADDING * 2);
 
@@ -396,17 +407,14 @@ export const EditorTimeline = () => {
                 onMouseDown={handleMouseDown}
                 onMouseLeave={() => setHoveredChord(null)}
             >
-                {/* Sizer Div: Sets total scroll width (including padding) */}
                 <div 
                     className="relative flex flex-col min-h-full" 
                     style={{ width: totalWidth, minWidth: '100%' }}
                 >
-                    {/* Content Wrapper: Shifts everything by TIMELINE_PADDING */}
                     <div 
                         className="relative flex flex-col h-full"
                         style={{ marginLeft: TIMELINE_PADDING, width: contentWidth }}
                     >
-                        {/* 1. Grid Background */}
                         <div className="absolute inset-0 z-0">
                             <TimelineGrid 
                                 duration={playback.duration} 
@@ -415,7 +423,6 @@ export const EditorTimeline = () => {
                             />
                         </div>
 
-                        {/* 2. Drag Selection Box */}
                         {isDraggingSelection && (
                             <div 
                                 className="absolute top-0 bottom-0 bg-blue-500/20 border-x border-blue-400 z-20 pointer-events-none"
@@ -426,12 +433,10 @@ export const EditorTimeline = () => {
                             />
                         )}
 
-                        {/* 3. Hover Line */}
                         {!playback.isPlaying && (
                             <div className="absolute top-0 bottom-0 w-[1px] bg-white/30 pointer-events-none z-30" style={{ left: (hoverTime / 1000) * settings.zoom }} />
                         )}
                         
-                        {/* 4. Playhead */}
                         <div 
                             className="absolute top-0 bottom-0 z-50 pointer-events-none will-change-transform"
                             style={{ 
@@ -449,7 +454,6 @@ export const EditorTimeline = () => {
                             />
                         </div>
 
-                        {/* 5. Ruler */}
                         <div className="sticky top-0 z-40">
                             <TimelineRuler 
                                 duration={playback.duration} 
@@ -459,7 +463,6 @@ export const EditorTimeline = () => {
                             />
                         </div>
 
-                        {/* 6. Waveform */}
                         <div 
                             className="relative w-full transition-all duration-300 ease-in-out overflow-hidden border-b border-white/5 bg-black/20"
                             style={{ height: settings.showWaveform ? '80px' : '0px' }}
@@ -475,7 +478,6 @@ export const EditorTimeline = () => {
                             </div>
                         </div>
 
-                        {/* 7. Note Ticks */}
                         <div className="flex-1 relative min-h-[120px] z-30 mt-2">
                             {tickGroups.map(group => {
                                 const isSelected = group.notes.some(n => n.selected);
@@ -487,7 +489,9 @@ export const EditorTimeline = () => {
 
                                 const isAnyLocked = group.notes.some(n => isNoteLocked(n));
                                 const cursorStyle = isAnyLocked ? 'not-allowed' : 'grab';
-                                const opacityMod = (isAnyLocked ? 0.5 : 1) * (group.isInactive ? 0.3 : 1);
+                                
+                                // Dim if Inactive Layer and Dimming is Enabled
+                                const opacityMod = (isAnyLocked ? 0.5 : 1) * (group.isInactive && settings.dimInactiveLayers ? 0.3 : 1);
 
                                 const bgStyle: React.CSSProperties = {
                                     background: isSelected 
