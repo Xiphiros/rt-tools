@@ -9,26 +9,13 @@ interface TimelineRulerProps {
 }
 
 export const TimelineRuler = ({ duration, timingPoints, zoom, snapDivisor }: TimelineRulerProps) => {
-    const totalWidth = (duration / 1000) * zoom;
-
-    const sortedPoints = [...timingPoints].sort((a, b) => a.time - b.time);
+    // Similar to TimelineGrid, we rely on the filtered timingPoints passed from parent.
     const sections = [];
     
-    if (sortedPoints.length > 0) {
-        const firstTp = sortedPoints[0];
-        if (firstTp.time > 0) {
-            sections.push({
-                bpm: firstTp.bpm,
-                offset: firstTp.time, 
-                start: 0,
-                end: firstTp.time,
-                key: 'pre-intro'
-            });
-        }
-
-        for (let i = 0; i < sortedPoints.length; i++) {
-            const current = sortedPoints[i];
-            const next = sortedPoints[i + 1];
+    if (timingPoints.length > 0) {
+        for (let i = 0; i < timingPoints.length; i++) {
+            const current = timingPoints[i];
+            const next = timingPoints[i + 1];
             const endTime = next ? next.time : duration;
             
             sections.push({
@@ -80,8 +67,7 @@ export const TimelineRuler = ({ duration, timingPoints, zoom, snapDivisor }: Tim
 
     return (
         <div 
-            className="h-6 bg-card border-b border-border relative overflow-hidden select-none pointer-events-none z-10"
-            style={{ width: totalWidth, minWidth: '100%' }}
+            className="h-6 bg-card border-b border-border relative overflow-hidden select-none pointer-events-none z-10 w-full"
         >
             {sections.map(section => {
                 const left = (section.start / 1000) * zoom;
