@@ -17,9 +17,16 @@ const Header = ({ activeTab, onTabChange }: { activeTab: string, onTabChange: (t
                     <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-900/20">
                         <span className="font-bold text-white text-xs tracking-wider">RT</span>
                     </div>
-                    <h1 className="text-xl font-bold tracking-tight text-header">
-                        {t('title')}
-                    </h1>
+                    <div className="flex flex-col leading-none">
+                        <div className="flex items-center gap-2">
+                            <h1 className="text-xl font-bold tracking-tight text-header">
+                                {t('title')}
+                            </h1>
+                            <span className="text-[10px] uppercase font-bold bg-white/10 text-muted px-1.5 py-0.5 rounded border border-white/5 tracking-wider">
+                                Unofficial
+                            </span>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Navigation */}
