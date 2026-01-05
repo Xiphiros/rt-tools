@@ -1,5 +1,5 @@
 import JSZip from 'jszip';
-import { EditorMapData, HitsoundSettings } from '../types';
+import { EditorMapData, HitsoundSettings, LoopSettings } from '../types';
 import { createProject, saveFileToProject } from './opfs';
 
 export const importRtmPackage = async (file: File): Promise<string | null> => {
@@ -41,20 +41,53 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
                 previewTime: meta.previewTime || 0
             },
             notes: diffData.notes.map((n: any) => {
-                // Parse Hitsound
-                const hs: HitsoundSettings = {
-                    sampleSet: 'normal',
-                    volume: 100,
-                    additions: { whistle: false, finish: false, clap: false }
+                // Helper to parse a raw JSON hitsound block into internal structure
+                const parseHS = (raw: any): HitsoundSettings => {
+                    if (!raw) return {
+                        sampleSet: 'normal',
+                        volume: 100,
+                        additions: { whistle: false, finish: false, clap: false }
+                    };
+                    
+                    const additions = raw.sounds || {};
+                    return {
+                        sampleSet: raw.sampleSet || 'normal',
+                        volume: raw.volume ?? 100,
+                        additions: {
+                            whistle: !!additions.hitwhistle,
+                            finish: !!additions.hitfinish,
+                            clap: !!additions.hitclap
+                        }
+                    };
                 };
 
-                if (n.hitsound) {
-                    hs.sampleSet = n.hitsound.sampleSet || 'normal';
-                    hs.volume = n.hitsound.volume ?? 100;
-                    if (n.hitsound.sounds) {
-                        hs.additions.whistle = !!n.hitsound.sounds.hitwhistle;
-                        hs.additions.finish = !!n.hitsound.sounds.hitfinish;
-                        hs.additions.clap = !!n.hitsound.sounds.hitclap;
+                // Primary (Head)
+                let headHS = parseHS(n.hitsound);
+                let tailHS: HitsoundSettings | undefined = undefined;
+                let loopHS: LoopSettings | undefined = undefined;
+
+                if (n.type === 'hold' && n.hitsound) {
+                    // Check for nested structure (RTM Format)
+                    if (n.hitsound.start) {
+                        headHS = parseHS(n.hitsound.start);
+                        // Also ensure the root sampleSet is carried over if missing in start block
+                        if (!n.hitsound.start.sampleSet && n.hitsound.sampleSet) {
+                            headHS.sampleSet = n.hitsound.sampleSet;
+                        }
+                    }
+
+                    if (n.hitsound.end) {
+                        tailHS = parseHS(n.hitsound.end);
+                        if (!n.hitsound.end.sampleSet && n.hitsound.sampleSet) {
+                             tailHS.sampleSet = n.hitsound.sampleSet;
+                        }
+                    }
+
+                    if (n.hitsound.hold) {
+                        loopHS = {
+                            sampleSet: n.hitsound.hold.loop || n.hitsound.sampleSet || 'normal',
+                            volume: n.hitsound.hold.volume ?? 100
+                        };
                     }
                 }
 
@@ -65,8 +98,10 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
                     key: n.key,
                     type: n.type,
                     duration: n.endTime ? n.endTime - n.startTime : 0,
-                    hitsound: hs,
-                    layerId: 'default-layer' // Assign to default during import
+                    hitsound: headHS,
+                    holdTailHitsound: tailHS,
+                    holdLoopHitsound: loopHS,
+                    layerId: 'default-layer' 
                 };
             }),
             layers: [
