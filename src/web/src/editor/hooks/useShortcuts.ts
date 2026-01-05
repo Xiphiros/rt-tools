@@ -3,16 +3,9 @@ import { useEditor } from '../store/EditorContext';
 import { useHitsounds } from './useHitsounds';
 import { KEY_TO_ROW } from '../../gameplay/constants';
 import { snapTime, getActiveTimingPoint } from '../utils/timing';
-import { HitsoundSettings } from '../types';
-
-const DEFAULT_HITSOUND: HitsoundSettings = {
-    sampleSet: 'normal',
-    volume: 100,
-    additions: { whistle: false, finish: false, clap: false }
-};
 
 export const useShortcuts = () => {
-    const { dispatch, audio, playback, mapData, settings, activeLayerId } = useEditor();
+    const { dispatch, audio, playback, mapData, settings, activeLayerId, defaultHitsounds } = useEditor();
     const { play } = useHitsounds();
 
     useEffect(() => {
@@ -105,7 +98,8 @@ export const useShortcuts = () => {
                         return;
                     }
 
-                    play(DEFAULT_HITSOUND);
+                    // Play feedback with current defaults
+                    play(defaultHitsounds);
 
                     const rawTime = playback.currentTime;
                     const time = settings.snappingEnabled
@@ -122,8 +116,8 @@ export const useShortcuts = () => {
                             column: row,
                             key: key,
                             type: 'tap',
-                            hitsound: { ...DEFAULT_HITSOUND },
-                            layerId: activeLayerId // Attach to active layer
+                            hitsound: { ...defaultHitsounds },
+                            layerId: activeLayerId
                         }
                     });
 
@@ -166,5 +160,5 @@ export const useShortcuts = () => {
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [dispatch, audio, playback, mapData, settings, play, activeLayerId]);
+    }, [dispatch, audio, playback, mapData, settings, play, activeLayerId, defaultHitsounds]);
 };
