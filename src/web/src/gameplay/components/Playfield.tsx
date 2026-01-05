@@ -8,6 +8,7 @@ interface PlayfieldProps {
     playbackRate: number;
     showApproachCircles?: boolean;
     scale?: number;
+    activeLayerId?: string;
     
     // Editor Interactions
     onNoteClick?: (e: React.MouseEvent, note: EditorNote) => void;
@@ -35,15 +36,27 @@ export const Playfield = ({
     showApproachCircles = true, 
     scale = 1.0,
     onNoteClick,
-    onBackgroundClick
+    onBackgroundClick,
+    activeLayerId
 }: PlayfieldProps) => {
     const PREEMPT = 1200; 
     const FADE_OUT = 200;
 
+    // Create a Layer Map for fast lookup
+    const layerMap = new Map(mapData.layers.map(l => [l.id, l]));
+
+    // Filter visible notes
     const visibleNotes = mapData.notes.filter(n => {
+        // 1. Time Check
         const relativeTime = n.time - currentTime;
         const endTime = n.type === 'hold' ? n.time + (n.duration || 0) : n.time;
-        return (relativeTime <= PREEMPT && (endTime - currentTime) >= -FADE_OUT);
+        if (relativeTime > PREEMPT || (endTime - currentTime) < -FADE_OUT) return false;
+
+        // 2. Layer Visibility Check
+        const layer = layerMap.get(n.layerId);
+        if (layer && !layer.visible) return false;
+
+        return true;
     });
 
     const getPosition = (row: number, char: string) => {
@@ -106,8 +119,7 @@ export const Playfield = ({
     };
 
     return (
-        // "isolate" creates a new stacking context. 
-        // Any massive Z-indices inside here are flattened relative to the rest of the app.
+        // "isolate" creates a new stacking context
         <div 
             className="relative w-full h-full bg-black/40 overflow-hidden select-none isolate"
             onMouseDown={handleBgClick} 
@@ -125,6 +137,7 @@ export const Playfield = ({
                 const endTime = note.type === 'hold' ? note.time + (note.duration || 0) : note.time;
                 const isHolding = note.type === 'hold' && currentTime >= note.time && currentTime <= endTime;
                 
+                // Fade Logic
                 let opacity = 1;
                 if (relativeTime > PREEMPT - 200) {
                     opacity = (PREEMPT - relativeTime) / 200;
@@ -132,19 +145,34 @@ export const Playfield = ({
                     opacity = 1 - (Math.abs(relativeTime) / FADE_OUT);
                 }
 
+                // Layer Dimming Logic
+                // If activeLayerId is set, dim notes from other layers
+                if (activeLayerId && note.layerId !== activeLayerId) {
+                    opacity *= 0.3; // Dim inactive layers
+                }
+
                 const progress = 1 - (relativeTime / PREEMPT);
                 const approachScale = 3 - (2 * progress);
 
                 const colors = ROW_COLORS as Record<number, string>;
                 const row = KEY_TO_ROW[note.key.toLowerCase()] ?? note.column;
-                const color = colors[row] || '#fff';
+                
+                // Use Layer Color if available and active? Or just row color?
+                // Standard: Row color. Border: Layer Color.
+                const noteLayer = layerMap.get(note.layerId);
+                const layerColor = noteLayer ? noteLayer.color : '#fff';
+                const rowColor = colors[row] || '#fff';
 
-                // Reduce the ceiling of Z-index to avoid potential browser integer limits if any, 
-                // but main fix is 'isolate'
                 const zIndex = 5000 - (Math.floor(note.time) % 5000); 
                 
                 const isSelected = note.selected;
-                const borderColor = isSelected ? '#fff' : (isHolding ? '#fff' : color);
+                // Highlight: If selected -> White. If Holding -> White. Else -> Row Color.
+                // Border: If active layer -> Row Color. If Inactive -> Layer Color (to identify it).
+                
+                const borderColor = isSelected 
+                    ? '#fff' 
+                    : (isHolding ? '#fff' : rowColor);
+                
                 const borderWidth = isSelected ? '6px' : '4px';
 
                 return (
@@ -169,7 +197,7 @@ export const Playfield = ({
                                 style={{
                                     width: actualSize * 1.4,
                                     height: actualSize * 1.4,
-                                    backgroundColor: color,
+                                    backgroundColor: rowColor,
                                     opacity: 0.3,
                                     filter: 'blur(8px)'
                                 }}
@@ -184,8 +212,8 @@ export const Playfield = ({
                                 backgroundColor: isHolding ? '#fff' : '#18181b', 
                                 border: `${borderWidth} solid ${borderColor}`,
                                 boxShadow: isHolding 
-                                    ? `0 0 20px ${color}, inset 0 0 10px ${color}`
-                                    : (isSelected ? `0 0 15px ${color}, inset 0 0 5px white` : `0 0 10px ${color}40`)
+                                    ? `0 0 20px ${rowColor}, inset 0 0 10px ${rowColor}`
+                                    : (isSelected ? `0 0 15px ${rowColor}, inset 0 0 5px white` : `0 0 10px ${rowColor}40`)
                             }}
                         >
                             <span 
@@ -199,13 +227,22 @@ export const Playfield = ({
                             </span>
                         </div>
 
+                        {/* Layer Indicator Dot (if not active layer) */}
+                        {activeLayerId && note.layerId !== activeLayerId && (
+                            <div 
+                                className="absolute -top-1 -right-1 w-3 h-3 rounded-full border border-black"
+                                style={{ backgroundColor: layerColor }}
+                                title={`Layer: ${noteLayer?.name}`}
+                            />
+                        )}
+
                         {showApproachCircles && relativeTime > 0 && (
                             <div 
                                 className="absolute rounded-full border-2 pointer-events-none"
                                 style={{
                                     width: actualSize,
                                     height: actualSize,
-                                    borderColor: color,
+                                    borderColor: rowColor,
                                     opacity: 0.6,
                                     transform: `scale(${approachScale})`
                                 }}
@@ -219,7 +256,7 @@ export const Playfield = ({
                                 style={{
                                     width: actualSize,
                                     height: actualSize,
-                                    borderColor: color,
+                                    borderColor: rowColor,
                                     opacity: 0.8
                                 }}
                             />
