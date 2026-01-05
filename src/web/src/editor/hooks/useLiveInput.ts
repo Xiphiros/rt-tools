@@ -6,7 +6,7 @@ import { useHitsounds } from './useHitsounds';
 import { EditorNote } from '../types';
 
 interface HeldKey {
-    startTime: number; // Raw playhead time
+    startTime: number; // Raw playhead time at press
     layerId: string;
 }
 
@@ -16,29 +16,52 @@ export const useLiveInput = () => {
     
     // Track keys currently being held down
     const heldKeys = useRef<Map<string, HeldKey>>(new Map());
-    
-    // For visual feedback (optional, to show "active" lanes)
     const [activeKeys, setActiveKeys] = useState<Set<string>>(new Set());
+
+    // STATE REF PATTERN
+    // We store the latest state in a ref so the event listener (which is bound once)
+    // always has access to the "current" values without needing to re-bind.
+    const stateRef = useRef({ 
+        playback, 
+        mapData, 
+        settings, 
+        activeLayerId, 
+        defaultHitsounds 
+    });
+
+    // Update the ref on every render
+    useEffect(() => {
+        stateRef.current = { 
+            playback, 
+            mapData, 
+            settings, 
+            activeLayerId, 
+            defaultHitsounds 
+        };
+    });
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.repeat) return; // Ignore auto-repeat
+            if (e.repeat) return;
             if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
-            if (e.ctrlKey || e.metaKey || e.altKey) return; // Ignore shortcuts
+            if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+            // Access latest state from Ref
+            const { playback, mapData, activeLayerId, defaultHitsounds } = stateRef.current;
 
             const key = e.key.toLowerCase();
             const row = KEY_TO_ROW[key];
 
-            // Only trigger if it's a valid gameplay key AND we are playing
+            // Only record if playing
             if (row !== undefined && playback.isPlaying) {
-                // Determine if we can record
+                // Check Lock
                 const activeLayer = mapData.layers.find(l => l.id === activeLayerId);
                 if (activeLayer && activeLayer.locked) return;
 
-                // Play feedback sound with current defaults
+                // Audio Feedback
                 play(defaultHitsounds);
 
-                // Start tracking this hold
+                // Track Start Time
                 heldKeys.current.set(key, {
                     startTime: playback.currentTime,
                     layerId: activeLayerId
@@ -49,6 +72,7 @@ export const useLiveInput = () => {
         };
 
         const handleKeyUp = (e: KeyboardEvent) => {
+            const { playback, mapData, settings, defaultHitsounds } = stateRef.current;
             const key = e.key.toLowerCase();
             const held = heldKeys.current.get(key);
 
@@ -61,8 +85,7 @@ export const useLiveInput = () => {
                     return next;
                 });
 
-                // Calculate Timings
-                // We use the snap settings to align the note
+                // NOTE GENERATION LOGIC
                 const releaseTime = playback.currentTime;
                 
                 let start = held.startTime;
@@ -73,7 +96,9 @@ export const useLiveInput = () => {
                     end = snapTime(releaseTime, mapData.timingPoints, settings.snapDivisor);
                 }
 
-                // Sanity check: Ensure non-negative duration
+                // If user tapped quickly (start and end snap to same beat), 
+                // duration is 0 -> Tap Note.
+                // If user held (end > start), duration > 0 -> Hold Note.
                 let duration = Math.max(0, end - start);
                 
                 const type = duration > 0 ? 'hold' : 'tap';
@@ -101,7 +126,10 @@ export const useLiveInput = () => {
             window.removeEventListener('keydown', handleKeyDown);
             window.removeEventListener('keyup', handleKeyUp);
         };
-    }, [playback.isPlaying, playback.currentTime, mapData, settings, activeLayerId, dispatch, play, defaultHitsounds]);
+        
+        // Dependency array includes ONLY stable references. 
+        // We do NOT include 'playback' or 'mapData' here to avoid re-binding.
+    }, [dispatch, play]);
 
     return { activeKeys };
 };
