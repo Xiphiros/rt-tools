@@ -17,7 +17,7 @@ import { getVisibleNotes, getVisibleTimingPoints } from '../utils/binarySearch';
 type DragMode = 'select' | 'move' | 'resize';
 
 export const EditorTimeline = () => {
-    const { mapData, settings, setSettings, playback, dispatch, audio, activeTool } = useEditor();
+    const { mapData, settings, setSettings, playback, dispatch, audio, activeTool, activeLayerId } = useEditor();
     const containerRef = useRef<HTMLDivElement>(null);
     
     const windowState = useVirtualWindow({
@@ -80,10 +80,33 @@ export const EditorTimeline = () => {
 
             const beatIndex = (time - offset) / msPerBeat;
             const snap = getSnapDivisor(beatIndex);
-            const color = snap > 0 ? getSnapColor(snap) : '#FFFFFF'; 
-            return { time, notes, color, isUnsnapped: snap === 0 };
+            
+            // COLOR LOGIC:
+            // 1. If Snap Color is preferred by settings (future feature), use snap.
+            // 2. Otherwise, check if notes belong to the ACTIVE layer.
+            // 3. If mixed, use a distinct color or the active layer's color.
+            
+            // Current strategy: Use Snap Color for the "Grid/Ruler" feel, 
+            // but tint the tick body if it's on a different layer.
+            
+            const baseColor = snap > 0 ? getSnapColor(snap) : '#FFFFFF';
+            
+            // Check layers
+            const primaryNote = notes[0];
+            const noteLayer = layerMap.get(primaryNote.layerId);
+            const isInactiveLayer = primaryNote.layerId !== activeLayerId;
+            
+            const displayColor = isInactiveLayer && noteLayer ? noteLayer.color : baseColor;
+
+            return { 
+                time, 
+                notes, 
+                color: displayColor,
+                isUnsnapped: snap === 0,
+                isInactive: isInactiveLayer
+            };
         });
-    }, [mapData.notes, mapData.timingPoints, mapData.bpm, mapData.offset, windowState.startTime, windowState.endTime, layerMap]);
+    }, [mapData.notes, mapData.timingPoints, mapData.bpm, mapData.offset, windowState.startTime, windowState.endTime, layerMap, activeLayerId]);
 
     const visibleTimingPoints = useMemo(() => {
         return getVisibleTimingPoints(mapData.timingPoints, windowState.startTime, windowState.endTime);
@@ -430,7 +453,6 @@ export const EditorTimeline = () => {
                     <div className="flex-1 relative min-h-[120px] z-30 mt-2">
                         {tickGroups.map(group => {
                             const isSelected = group.notes.some(n => n.selected);
-                            const tickColor = group.color;
                             
                             const rawCalc = settings.zoom / 30;
                             let width = Math.max(4, Math.round(rawCalc));
@@ -440,17 +462,19 @@ export const EditorTimeline = () => {
                             // Apply locking visual style
                             const isAnyLocked = group.notes.some(n => isNoteLocked(n));
                             const cursorStyle = isAnyLocked ? 'not-allowed' : 'grab';
-                            const opacityMod = isAnyLocked ? 0.5 : 1;
+                            
+                            // Dim inactive ticks
+                            const opacityMod = (isAnyLocked ? 0.5 : 1) * (group.isInactive ? 0.3 : 1);
 
                             const bgStyle: React.CSSProperties = {
                                 background: isSelected 
-                                    ? `linear-gradient(to bottom, #ffffff 0%, ${tickColor} 40%, ${tickColor} 100%)`
-                                    : (group.isUnsnapped ? '#fff' : tickColor),
+                                    ? `linear-gradient(to bottom, #ffffff 0%, ${group.color} 40%, ${group.color} 100%)`
+                                    : (group.isUnsnapped ? '#fff' : group.color),
                                 opacity: (group.isUnsnapped ? 0.8 : 1) * opacityMod,
                                 border: isSelected ? '1px solid white' : 'none',
                                 boxShadow: isSelected 
-                                    ? `0 0 8px ${tickColor}, 0 0 2px white` 
-                                    : (group.isUnsnapped ? 'none' : `0 0 4px ${tickColor}80`),
+                                    ? `0 0 8px ${group.color}, 0 0 2px white` 
+                                    : (group.isUnsnapped ? 'none' : `0 0 4px ${group.color}80`),
                                 zIndex: isSelected ? 50 : 40,
                                 cursor: cursorStyle
                             };
@@ -474,11 +498,12 @@ export const EditorTimeline = () => {
                                     {group.notes.map((n) => n.type === 'hold' && (
                                         <React.Fragment key={`${n.id}_hold`}>
                                             <div 
-                                                className="absolute top-1/2 h-1.5 opacity-40 pointer-events-none rounded-r-full"
+                                                className="absolute top-1/2 h-1.5 pointer-events-none rounded-r-full"
                                                 style={{
                                                     left: (group.time / 1000) * settings.zoom,
                                                     width: (n.duration! / 1000) * settings.zoom,
-                                                    backgroundColor: tickColor,
+                                                    backgroundColor: group.color,
+                                                    opacity: 0.4 * opacityMod,
                                                     transform: 'translate(0, -50%)', 
                                                     zIndex: 35
                                                 }}
