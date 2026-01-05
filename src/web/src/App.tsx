@@ -4,6 +4,19 @@ import { Dashboard } from './components/Dashboard';
 import { Calculator } from './components/Calculator';
 import { Leaderboard } from './components/Leaderboard';
 import { Editor } from './editor/Editor';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+
+const Disclaimer = () => (
+    <div className="bg-warning/10 border-b border-warning/20 text-warning px-4 py-2 text-center text-xs font-medium relative z-[60]">
+        <div className="container mx-auto flex items-center justify-center gap-2">
+            <FontAwesomeIcon icon={faTriangleExclamation} />
+            <span>
+                <strong className="uppercase tracking-wide opacity-90">Experimental:</strong> This tool is currently in active development. Features may break or change. Data loss is possible.
+            </span>
+        </div>
+    </div>
+);
 
 const Header = ({ activeTab, onTabChange }: { activeTab: string, onTabChange: (t: string) => void }) => {
     const { t } = useTranslation('common');
@@ -68,6 +81,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-text-primary selection:bg-cyan-500/20 selection:text-cyan-200">
+      <Disclaimer />
       <Header activeTab={activeTab} onTabChange={setActiveTab} />
       <main className={`flex-1 ${activeTab === 'editor' ? '' : 'container mx-auto p-6 max-w-7xl'} animate-in fade-in duration-300`}>
         {renderContent()}
