@@ -77,6 +77,9 @@ export interface EditorSettings {
     snappingEnabled: boolean;
     showWaveform: boolean;
     
+    // View Options
+    dimInactiveLayers: boolean;
+
     // Volume Channels (0-100)
     masterVolume: number;
     musicVolume: number;
