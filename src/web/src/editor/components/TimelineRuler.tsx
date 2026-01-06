@@ -9,13 +9,26 @@ interface TimelineRulerProps {
 }
 
 export const TimelineRuler = ({ duration, timingPoints, zoom, snapDivisor }: TimelineRulerProps) => {
-    // Similar to TimelineGrid, we rely on the filtered timingPoints passed from parent.
     const sections = [];
+    const sortedPoints = [...timingPoints].sort((a, b) => a.time - b.time);
     
-    if (timingPoints.length > 0) {
-        for (let i = 0; i < timingPoints.length; i++) {
-            const current = timingPoints[i];
-            const next = timingPoints[i + 1];
+    if (sortedPoints.length > 0) {
+        // 1. Backward Extrapolation
+        const first = sortedPoints[0];
+        if (first.time > 0) {
+            sections.push({
+                bpm: first.bpm,
+                offset: first.time,
+                start: 0,
+                end: first.time,
+                key: 'intro-extrapolated'
+            });
+        }
+
+        // 2. Normal Sections
+        for (let i = 0; i < sortedPoints.length; i++) {
+            const current = sortedPoints[i];
+            const next = sortedPoints[i + 1];
             const endTime = next ? next.time : duration;
             
             sections.push({
@@ -54,7 +67,6 @@ export const TimelineRuler = ({ duration, timingPoints, zoom, snapDivisor }: Tim
         const relativeOffset = offset - sectionStart;
         const offsetPx = (relativeOffset / 1000) * zoom;
         
-        // SHIFT FIX: Subtract 0.5px to center the tick
         const positions = validSnaps.map(_ => `calc(${offsetPx}px - 0.5px) 100%`); 
 
         return {
