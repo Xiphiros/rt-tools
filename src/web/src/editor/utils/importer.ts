@@ -1,6 +1,7 @@
 import JSZip from 'jszip';
 import { EditorMapData, HitsoundSettings, LoopSettings, TimingPoint } from '../types';
 import { createProject, saveFileToProject } from './opfs';
+import { checkSourceConsistency, validateMapData } from './validation';
 
 export const importRtmPackage = async (file: File): Promise<string | null> => {
     try {
@@ -13,6 +14,9 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
         const metaContent = await metaFile.async('string');
         const meta = JSON.parse(metaContent);
         
+        // CHECK CONSISTENCY
+        checkSourceConsistency(meta);
+
         // 2. Determine Difficulty to Load
         if (!meta.difficulties || meta.difficulties.length === 0) {
             throw new Error("No difficulties found in RTM");
@@ -70,7 +74,6 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
                     // Check for nested structure (RTM Format)
                     if (n.hitsound.start) {
                         headHS = parseHS(n.hitsound.start);
-                        // Also ensure the root sampleSet is carried over if missing in start block
                         if (!n.hitsound.start.sampleSet && n.hitsound.sampleSet) {
                             headHS.sampleSet = n.hitsound.sampleSet;
                         }
@@ -90,7 +93,8 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
                         };
                     }
                 }
-                
+
+                // NOTE PARSING:
                 const startTime = n.time ?? n.startTime ?? 0;
                 const endTime = n.endTime ?? startTime;
 
@@ -111,12 +115,11 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
                 { id: 'default-layer', name: 'Imported', visible: true, locked: false, color: '#38bdf8' }
             ],
             // Parse Timing Points
-            // CRITICAL: RTM meta.json uses 'time' in SECONDS and 'offset' in MILLISECONDS.
-            // The Editor expects 'time' in MILLISECONDS.
             timingPoints: (meta.timingPoints || []).map((tp: any) => {
                 let msTime = 0;
                 
                 // Priority: 'offset' (Explicit MS) -> 'time' * 1000 (Seconds to MS)
+                // This ensures we respect the musical anchor even if 'time' (start time) drifts
                 if (typeof tp.offset === 'number') {
                     msTime = tp.offset;
                 } else if (typeof tp.time === 'number') {
@@ -134,6 +137,17 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
             bpm: meta.bpm || 120,
             offset: meta.offset || 0
         };
+
+        // RUN VALIDATION
+        const validation = validateMapData(editorData);
+        if (!validation.valid) {
+            console.error("Map Validation Errors:", validation.errors);
+            alert(`Map issues detected:\n${validation.errors.join('\n')}`);
+            return null;
+        }
+        if (validation.warnings.length > 0) {
+            console.warn("Map Warnings:", validation.warnings);
+        }
 
         // 4. Create Project
         const projectId = crypto.randomUUID();
