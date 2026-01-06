@@ -90,14 +90,17 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
                         };
                     }
                 }
+                
+                const startTime = n.time ?? n.startTime ?? 0;
+                const endTime = n.endTime ?? startTime;
 
                 return {
                     id: crypto.randomUUID(),
-                    time: n.time ?? n.startTime ?? 0,
+                    time: startTime,
                     column: getKeyColumn(n.key),
                     key: n.key,
                     type: n.type,
-                    duration: n.endTime ? n.endTime - n.startTime : 0,
+                    duration: endTime - startTime,
                     hitsound: headHS,
                     holdTailHitsound: tailHS,
                     holdLoopHitsound: loopHS,
@@ -108,7 +111,7 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
                 { id: 'default-layer', name: 'Imported', visible: true, locked: false, color: '#38bdf8' }
             ],
             // Parse Timing Points
-            // RTM meta.json uses 'time' in SECONDS and 'offset' in MILLISECONDS.
+            // CRITICAL: RTM meta.json uses 'time' in SECONDS and 'offset' in MILLISECONDS.
             // The Editor expects 'time' in MILLISECONDS.
             timingPoints: (meta.timingPoints || []).map((tp: any) => {
                 let msTime = 0;

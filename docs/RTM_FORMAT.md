@@ -1,7 +1,7 @@
 # RTM File Format Specification
 
-**Version:** 1.0  
-**Status:** Active  
+**Version:** 1.0
+**Status:** Active
 **Context:** RhythmTyper Beatmap Format
 
 ## Overview
@@ -31,8 +31,8 @@ This file resides at the root of the archive and acts as the entry point for the
   "audioFile": "string (filename relative to root)",
   "backgroundFiles": ["string (filename)"],
   "bpm": number (display BPM),
-  "offset": number (audio offset in ms),
-  "previewTime": number (preview start point in ms),
+  "offset": number (audio offset in MILLISECONDS),
+  "previewTime": number (preview start point in MILLISECONDS),
   "difficulties": [
     {
       "diffId": "string (unique difficulty ID)",
@@ -49,11 +49,9 @@ This file resides at the root of the archive and acts as the entry point for the
 | Field | Type | Description |
 | :--- | :--- | :--- |
 | `mapsetId` | String | Unique ID for the mapset. Often alphanumeric (e.g., `ws1bzun0bv0k`). |
-| `songName` | String | Title of the track. |
-| `artistName` | String | Artist/Composer of the track. |
-| `mapper` | String | Creator of the beatmap. |
-| `audioFile` | String | Filename of the audio track within the zip. |
-| `difficulties` | Array | Registry of difficulties included in this set. |
+| `offset` | Number | Global audio offset in **Milliseconds**. |
+| `previewTime`| Number | Audio preview start time in **Milliseconds**. |
+| `difficulties`| Array | Registry of difficulties included in this set. |
 
 ### Timing Points
 
@@ -62,15 +60,14 @@ Used for metronome and beat-snapping logic.
 > **CRITICAL NOTE ON UNITS:**
 > *   `time` is expressed in **Seconds** (Float).
 > *   `offset` is expressed in **Milliseconds** (Integer/Float).
-> *   The `offset` field is the authoritative source for millisecond-level precision.
 
 ```json
 {
   "id": number,
-  "time": number,   // SECONDS (e.g., 0.75)
+  "time": number,   // SECONDS. The timestamp when this timing section becomes active.
   "bpm": number,
-  "offset": number, // MILLISECONDS (e.g., 750)
-  "timeSignature": [number, number] // e.g., [4, 4]
+  "offset": number, // MILLISECONDS. The anchor point used to align the beat grid/metronome.
+  "timeSignature": [number, number] // e.g., [4, 4] for 4/4 time
 }
 ```
 
@@ -99,8 +96,8 @@ Each difficulty is a separate JSON file linked by the `difficulties` array in `m
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
-| `overallDifficulty` | Number | OD Value. Determines the timing window strictness. |
-| `bgFile` | String | The specific background image used for this difficulty level. |
+| `overallDifficulty` | Number | OD Value. Determines the timing window strictness (0-11). |
+| `bgFile` | String | The specific background image filename used for this difficulty level. |
 | `notes` | Array | List of gameplay objects (Tap or Hold). |
 | `typingSections` | Array | Optional lyric/storyboard text sections. |
 | `starRating` | Number | Pre-calculated difficulty rating (Nomod). |
@@ -117,7 +114,7 @@ All notes share these properties, though timestamps differ by type:
 
 ```json
 {
-  "key": "string (single character)",
+  "key": "string (single character, lowercase)",
   "type": "tap" | "hold",
   "hitsound": { ... }
 }
@@ -129,7 +126,7 @@ A single keystroke.
 
 ```json
 {
-  "time": number (milliseconds),
+  "time": number (MILLISECONDS),
   "key": "j",
   "type": "tap",
   "hitsound": {
@@ -151,8 +148,8 @@ A keystroke that must be pressed at `startTime` and released at `endTime`.
 
 ```json
 {
-  "startTime": number (milliseconds),
-  "endTime": number (milliseconds),
+  "startTime": number (MILLISECONDS),
+  "endTime": number (MILLISECONDS),
   "key": "z",
   "type": "hold",
   "hitsound": {
@@ -164,7 +161,7 @@ A keystroke that must be pressed at `startTime` and released at `endTime`.
 }
 ```
 
-> **Note on Hitsounds:** Hold notes define hitsounds for three phases: the initial press (`start`), the loop during the hold (`hold`), and the release (`end`).
+> **Note:** Tap notes use the property `time`, whereas Hold notes use `startTime` and `endTime`. All note timings in the JSON are stored in **Milliseconds**.
 
 ---
 
@@ -174,8 +171,8 @@ Used for displaying lyrics or narrative text at the bottom of the screen during 
 
 ```json
 {
-  "startTime": number (milliseconds),
-  "endTime": number (milliseconds),
+  "startTime": number (MILLISECONDS),
+  "endTime": number (MILLISECONDS),
   "text": "string (content to display)"
 }
 ```
