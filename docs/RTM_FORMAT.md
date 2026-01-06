@@ -59,12 +59,17 @@ This file resides at the root of the archive and acts as the entry point for the
 
 Used for metronome and beat-snapping logic.
 
+> **CRITICAL NOTE ON UNITS:**
+> *   `time` is expressed in **Seconds** (Float).
+> *   `offset` is expressed in **Milliseconds** (Integer/Float).
+> *   The `offset` field is the authoritative source for millisecond-level precision.
+
 ```json
 {
   "id": number,
-  "time": number (seconds),
+  "time": number,   // SECONDS (e.g., 0.75)
   "bpm": number,
-  "offset": number (milliseconds),
+  "offset": number, // MILLISECONDS (e.g., 750)
   "timeSignature": [number, number] // e.g., [4, 4]
 }
 ```
