@@ -24,8 +24,7 @@ export const SNAP_COLORS: Record<number, string> = {
  * E.g., beat 0.5 matches 1/2 snap (divisor 2).
  */
 export const getSnapDivisor = (beatIndex: number): number => {
-    // Floating point tolerance
-    const EPSILON = 0.001;
+    const EPSILON = 0.015;
     
     const isInt = (n: number) => Math.abs(n - Math.round(n)) < EPSILON;
 
