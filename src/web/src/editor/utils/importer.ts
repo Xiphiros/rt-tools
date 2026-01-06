@@ -1,5 +1,5 @@
 import JSZip from 'jszip';
-import { EditorMapData, HitsoundSettings, LoopSettings } from '../types';
+import { EditorMapData, HitsoundSettings, LoopSettings, TimingPoint } from '../types';
 import { createProject, saveFileToProject } from './opfs';
 
 export const importRtmPackage = async (file: File): Promise<string | null> => {
@@ -107,7 +107,27 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
             layers: [
                 { id: 'default-layer', name: 'Imported', visible: true, locked: false, color: '#38bdf8' }
             ],
-            timingPoints: meta.timingPoints || [],
+            // Parse Timing Points
+            // RTM meta.json uses 'time' in SECONDS and 'offset' in MILLISECONDS.
+            // The Editor expects 'time' in MILLISECONDS.
+            timingPoints: (meta.timingPoints || []).map((tp: any) => {
+                let msTime = 0;
+                
+                // Priority: 'offset' (Explicit MS) -> 'time' * 1000 (Seconds to MS)
+                if (typeof tp.offset === 'number') {
+                    msTime = tp.offset;
+                } else if (typeof tp.time === 'number') {
+                    msTime = tp.time * 1000;
+                }
+
+                return {
+                    id: String(tp.id || crypto.randomUUID()),
+                    time: msTime,
+                    bpm: tp.bpm || 120,
+                    meter: tp.timeSignature ? tp.timeSignature[0] : 4,
+                    kiai: false
+                } as TimingPoint;
+            }),
             bpm: meta.bpm || 120,
             offset: meta.offset || 0
         };
