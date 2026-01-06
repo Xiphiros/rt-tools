@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { Modal } from '../../components/ui/Modal';
 import { useEditor } from '../store/EditorContext';
 import { snapTime } from '../utils/timing';
+import { COMMON_SNAPS } from '../utils/snapColors';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagic } from '@fortawesome/free-solid-svg-icons';
 
@@ -63,7 +64,7 @@ export const ResnapModal = ({ isOpen, onClose }: ResnapModalProps) => {
                             value={targetDivisor}
                             onChange={(e) => setTargetDivisor(Number(e.target.value))}
                         >
-                            {[1, 2, 3, 4, 6, 8, 12, 16].map(v => (
+                            {COMMON_SNAPS.map(v => (
                                 <option key={v} value={v}>1/{v}</option>
                             ))}
                         </select>
