@@ -1,5 +1,5 @@
 import { TimingPoint } from '../types';
-import { SNAP_COLORS } from '../utils/snapColors';
+import { SNAP_COLORS, COMMON_SNAPS } from '../utils/snapColors';
 
 interface TimelineRulerProps {
     duration: number;
@@ -47,7 +47,11 @@ export const TimelineRuler = ({ duration, timingPoints, zoom, snapDivisor }: Tim
         const msPerBeat = 60000 / bpm;
         const pxPerBeat = (msPerBeat / 1000) * zoom;
         
-        const validSnaps = [1, 2, 3, 4, 6, 8, 12, 16].filter(s => s <= snapDivisor);
+        // Harmonic Filtering (See TimelineGrid.tsx)
+        const validSnaps = COMMON_SNAPS.filter(s => {
+            if (s === 1) return true;
+            return snapDivisor % s === 0;
+        });
 
         const layers = validSnaps.map(s => {
             const color = SNAP_COLORS[s];
@@ -60,6 +64,7 @@ export const TimelineRuler = ({ duration, timingPoints, zoom, snapDivisor }: Tim
             if (s === 1) height = '100%';
             else if (s === 2) height = '60%'; 
             else if (s === 4) height = '40%'; 
+            else if (s === 3 || s === 6 || s === 12) height = '30%'; // Triplet height
             
             return `${interval}px ${height}`;
         });
