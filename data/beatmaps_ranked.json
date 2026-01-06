@@ -5,6 +5,33 @@
     "artist": "Cocomelon",
     "mapper": "Jiuyn",
     "status": "ranked",
+    "bpm": 125,
+    "lastUpdated": "2026-01-04T07:28:45.000Z",
+    "stats": {
+      "plays": 203,
+      "downloads": 0,
+      "favorites": 3
+    },
+    "difficulties": [
+      {
+        "name": "Easy",
+        "notes": 78,
+        "holds": 2,
+        "sr": 1.6680650272736843
+      },
+      {
+        "name": "Normal",
+        "notes": 115,
+        "holds": 2,
+        "sr": 2.6709434363129065
+      },
+      {
+        "name": "Hard",
+        "notes": 156,
+        "holds": 4,
+        "sr": 3.670382064250282
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/3tro09w2xcri/3tro09w2xcri.rtm"
   },
   {
@@ -13,6 +40,39 @@
     "artist": "Cass2",
     "mapper": "juzek",
     "status": "ranked",
+    "bpm": 166,
+    "lastUpdated": "2026-01-03T09:26:15.000Z",
+    "stats": {
+      "plays": 852,
+      "downloads": 0,
+      "favorites": 7
+    },
+    "difficulties": [
+      {
+        "name": "Normal",
+        "notes": 63,
+        "holds": 8,
+        "sr": 1.8858492161505027
+      },
+      {
+        "name": "Hard",
+        "notes": 90,
+        "holds": 20,
+        "sr": 3.472336453980491
+      },
+      {
+        "name": "Vector's Insane",
+        "notes": 121,
+        "holds": 52,
+        "sr": 4.041776107881001
+      },
+      {
+        "name": "shinobuoshino's Light Expert",
+        "notes": 141,
+        "holds": 51,
+        "sr": 5.715231535822878
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/std67lhutdo6/std67lhutdo6.rtm"
   },
   {
@@ -21,6 +81,33 @@
     "artist": "Smash Mouth",
     "mapper": "olc",
     "status": "ranked",
+    "bpm": 190.1592,
+    "lastUpdated": "2026-01-03T01:27:11.000Z",
+    "stats": {
+      "plays": 159,
+      "downloads": 0,
+      "favorites": 3
+    },
+    "difficulties": [
+      {
+        "name": "nya's Honey Bunch",
+        "notes": 295,
+        "holds": 32,
+        "sr": 3.2500107628748554
+      },
+      {
+        "name": "Pumpkin Face",
+        "notes": 599,
+        "holds": 61,
+        "sr": 6.646610159884764
+      },
+      {
+        "name": "You Dirty Rat!",
+        "notes": 702,
+        "holds": 63,
+        "sr": 7.654129932876035
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/8javmpl5k00e/8javmpl5k00e.rtm"
   },
   {
@@ -29,6 +116,27 @@
     "artist": "Djjaner",
     "mapper": "AFS",
     "status": "ranked",
+    "bpm": 198,
+    "lastUpdated": "2026-01-02T11:38:09.000Z",
+    "stats": {
+      "plays": 248,
+      "downloads": 0,
+      "favorites": 4
+    },
+    "difficulties": [
+      {
+        "name": "Easy 2",
+        "notes": 187,
+        "holds": 24,
+        "sr": 1.4451183245697639
+      },
+      {
+        "name": "Hardsane",
+        "notes": 518,
+        "holds": 0,
+        "sr": 6.4742668363099956
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/86d8he8v4j9i/86d8he8v4j9i.rtm"
   },
   {
@@ -37,6 +145,33 @@
     "artist": "Aiobahn +81 feat. Nanahira & Pmarusama.",
     "mapper": "QMimiKyuQ",
     "status": "ranked",
+    "bpm": 140,
+    "lastUpdated": "2026-01-01T03:19:32.000Z",
+    "stats": {
+      "plays": 1665,
+      "downloads": 0,
+      "favorites": 18
+    },
+    "difficulties": [
+      {
+        "name": "Easy",
+        "notes": 80,
+        "holds": 24,
+        "sr": 2.1774089789866253
+      },
+      {
+        "name": "Normal",
+        "notes": 84,
+        "holds": 25,
+        "sr": 2.276445440030306
+      },
+      {
+        "name": "Hard",
+        "notes": 129,
+        "holds": 27,
+        "sr": 4.318938722939994
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/peumhh62gcxl/peumhh62gcxl.rtm"
   },
   {
@@ -45,6 +180,27 @@
     "artist": "Sasuke Haraguchi feat. Kasane Teto",
     "mapper": "Fakundddo",
     "status": "ranked",
+    "bpm": 170,
+    "lastUpdated": "2025-12-30T20:08:11.000Z",
+    "stats": {
+      "plays": 498,
+      "downloads": 0,
+      "favorites": 22
+    },
+    "difficulties": [
+      {
+        "name": "Insane",
+        "notes": 396,
+        "holds": 12,
+        "sr": 4.2514816148491965
+      },
+      {
+        "name": "Yu!",
+        "notes": 556,
+        "holds": 32,
+        "sr": 6.892556238071373
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/8vplhguewo8k/8vplhguewo8k.rtm"
   },
   {
@@ -53,6 +209,33 @@
     "artist": "Jane Remover",
     "mapper": "zedq01",
     "status": "ranked",
+    "bpm": 145,
+    "lastUpdated": "2025-12-30T19:50:02.000Z",
+    "stats": {
+      "plays": 3719,
+      "downloads": 0,
+      "favorites": 37
+    },
+    "difficulties": [
+      {
+        "name": "Easy",
+        "notes": 78,
+        "holds": 1,
+        "sr": 1.7381750184209737
+      },
+      {
+        "name": "Hard",
+        "notes": 144,
+        "holds": 2,
+        "sr": 3.83398226357951
+      },
+      {
+        "name": "Insane",
+        "notes": 205,
+        "holds": 2,
+        "sr": 5.094539099344364
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/t8lrka423mo6/t8lrka423mo6.rtm"
   },
   {
@@ -61,6 +244,27 @@
     "artist": "dk darkly (Daft Punk X Justice)",
     "mapper": "god",
     "status": "ranked",
+    "bpm": 122,
+    "lastUpdated": "2025-12-30T19:22:18.000Z",
+    "stats": {
+      "plays": 246,
+      "downloads": 0,
+      "favorites": 6
+    },
+    "difficulties": [
+      {
+        "name": "normal",
+        "notes": 120,
+        "holds": 42,
+        "sr": 1.6836444545375717
+      },
+      {
+        "name": "hard",
+        "notes": 278,
+        "holds": 43,
+        "sr": 3.5728619385322915
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/575nrv0a31qx/575nrv0a31qx.rtm"
   },
   {
@@ -69,6 +273,21 @@
     "artist": "SoGreatandPowerful",
     "mapper": "nya",
     "status": "ranked",
+    "bpm": 129.86,
+    "lastUpdated": "2025-12-30T18:47:36.000Z",
+    "stats": {
+      "plays": 31,
+      "downloads": 0,
+      "favorites": 4
+    },
+    "difficulties": [
+      {
+        "name": "Generosity",
+        "notes": 1321,
+        "holds": 168,
+        "sr": 7.225389883630779
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/spz1wen39o95/spz1wen39o95.rtm"
   },
   {
@@ -77,6 +296,45 @@
     "artist": "The Caretaker",
     "mapper": "Autoplay",
     "status": "ranked",
+    "bpm": 60,
+    "lastUpdated": "2025-12-30T09:41:10.000Z",
+    "stats": {
+      "plays": 1463,
+      "downloads": 0,
+      "favorites": 9
+    },
+    "difficulties": [
+      {
+        "name": "Autoplay's Easy",
+        "notes": 36,
+        "holds": 4,
+        "sr": 1.197835992451638
+      },
+      {
+        "name": "Autoplay's easy",
+        "notes": 52,
+        "holds": 0,
+        "sr": 1.312128960237744
+      },
+      {
+        "name": "A  ‎ t‎ pla‎ ‎ ‎ 's easy",
+        "notes": 48,
+        "holds": 19,
+        "sr": 1.5442609226973938
+      },
+      {
+        "name": "a‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ 's  easy",
+        "notes": 52,
+        "holds": 0,
+        "sr": 1.8255783471144282
+      },
+      {
+        "name": "‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎  ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ easy",
+        "notes": 59,
+        "holds": 13,
+        "sr": 1.8263789196888696
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/qbo8z3cbipo2/qbo8z3cbipo2.rtm"
   },
   {
@@ -85,6 +343,45 @@
     "artist": "Toby Fox",
     "mapper": "nya",
     "status": "ranked",
+    "bpm": 107.5,
+    "lastUpdated": "2025-12-30T05:58:45.000Z",
+    "stats": {
+      "plays": 2485,
+      "downloads": 0,
+      "favorites": 24
+    },
+    "difficulties": [
+      {
+        "name": "Easy",
+        "notes": 54,
+        "holds": 0,
+        "sr": 1.1765813572880535
+      },
+      {
+        "name": "Normal",
+        "notes": 82,
+        "holds": 0,
+        "sr": 1.8172859391376908
+      },
+      {
+        "name": "Hard",
+        "notes": 143,
+        "holds": 0,
+        "sr": 3.6146883069257276
+      },
+      {
+        "name": "olc's Care",
+        "notes": 131,
+        "holds": 13,
+        "sr": 3.6665645812592462
+      },
+      {
+        "name": "Purity",
+        "notes": 141,
+        "holds": 11,
+        "sr": 4.308993554259883
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/zt540s9goi4k/zt540s9goi4k.rtm"
   },
   {
@@ -93,6 +390,27 @@
     "artist": "Hirokazu Tanaka",
     "mapper": "mqno",
     "status": "ranked",
+    "bpm": 149.3,
+    "lastUpdated": "2025-12-29T23:50:00.000Z",
+    "stats": {
+      "plays": 515,
+      "downloads": 0,
+      "favorites": 3
+    },
+    "difficulties": [
+      {
+        "name": "A-MAZING",
+        "notes": 140,
+        "holds": 0,
+        "sr": 3.658096394726608
+      },
+      {
+        "name": "goink's A-TYPER",
+        "notes": 147,
+        "holds": 2,
+        "sr": 4.616758038815101
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/wh2niky1mzzr/wh2niky1mzzr.rtm"
   },
   {
@@ -101,6 +419,27 @@
     "artist": "YOASOBI",
     "mapper": "voxprism",
     "status": "ranked",
+    "bpm": 208,
+    "lastUpdated": "2025-12-29T19:01:42.000Z",
+    "stats": {
+      "plays": 344,
+      "downloads": 0,
+      "favorites": 19
+    },
+    "difficulties": [
+      {
+        "name": "Normal",
+        "notes": 268,
+        "holds": 1,
+        "sr": 3.4790085046126027
+      },
+      {
+        "name": "Hard",
+        "notes": 415,
+        "holds": 7,
+        "sr": 5.916636632565543
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/az817ywe8y32/az817ywe8y32.rtm"
   },
   {
@@ -109,6 +448,21 @@
     "artist": "Eldritch",
     "mapper": "Knight",
     "status": "ranked",
+    "bpm": 120,
+    "lastUpdated": "2025-12-29T07:26:29.000Z",
+    "stats": {
+      "plays": 82,
+      "downloads": 0,
+      "favorites": 8
+    },
+    "difficulties": [
+      {
+        "name": "don't walk like this",
+        "notes": 867,
+        "holds": 0,
+        "sr": 9.460920613818153
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/rmvh1dk5ymgo/rmvh1dk5ymgo.rtm"
   },
   {
@@ -117,6 +471,21 @@
     "artist": "Qrispy Joybox",
     "mapper": "relikOS",
     "status": "ranked",
+    "bpm": 186,
+    "lastUpdated": "2025-12-29T07:23:14.000Z",
+    "stats": {
+      "plays": 230,
+      "downloads": 0,
+      "favorites": 7
+    },
+    "difficulties": [
+      {
+        "name": "World of Mist",
+        "notes": 780,
+        "holds": 42,
+        "sr": 12.710546726327209
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/of68vw884ang/of68vw884ang.rtm"
   },
   {
@@ -125,6 +494,21 @@
     "artist": "Britney Spears",
     "mapper": "olc",
     "status": "ranked",
+    "bpm": 92.97,
+    "lastUpdated": "2025-12-29T07:13:25.000Z",
+    "stats": {
+      "plays": 142,
+      "downloads": 0,
+      "favorites": 27
+    },
+    "difficulties": [
+      {
+        "name": "Heartbreak Collab",
+        "notes": 635,
+        "holds": 67,
+        "sr": 5.6243631031102845
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/k61dvml55xuc/k61dvml55xuc.rtm"
   },
   {
@@ -133,6 +517,21 @@
     "artist": "Luze",
     "mapper": "FiXsy",
     "status": "ranked",
+    "bpm": 250,
+    "lastUpdated": "2025-12-29T04:34:45.000Z",
+    "stats": {
+      "plays": 66,
+      "downloads": 0,
+      "favorites": 4
+    },
+    "difficulties": [
+      {
+        "name": "Bloodshed",
+        "notes": 1089,
+        "holds": 224,
+        "sr": 17.055349379855514
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ttj8n6lnn0iz/ttj8n6lnn0iz.rtm"
   },
   {
@@ -141,6 +540,21 @@
     "artist": "Mostima.mp4",
     "mapper": "Neph",
     "status": "ranked",
+    "bpm": 128,
+    "lastUpdated": "2025-12-29T00:14:48.000Z",
+    "stats": {
+      "plays": 437,
+      "downloads": 0,
+      "favorites": 5
+    },
+    "difficulties": [
+      {
+        "name": "ayamus",
+        "notes": 132,
+        "holds": 0,
+        "sr": 6.466358410767905
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/wy615cm5qw0w/wy615cm5qw0w.rtm"
   },
   {
@@ -149,6 +563,21 @@
     "artist": "yuri",
     "mapper": "acorn",
     "status": "ranked",
+    "bpm": 110,
+    "lastUpdated": "2025-12-28T23:58:50.000Z",
+    "stats": {
+      "plays": 75,
+      "downloads": 0,
+      "favorites": 10
+    },
+    "difficulties": [
+      {
+        "name": "Visualization",
+        "notes": 390,
+        "holds": 24,
+        "sr": 6.242564786534113
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/8ng2b8603lop/8ng2b8603lop.rtm"
   },
   {
@@ -157,6 +586,21 @@
     "artist": "Night Tapes",
     "mapper": "popeye",
     "status": "ranked",
+    "bpm": 91.2,
+    "lastUpdated": "2025-12-28T19:15:44.000Z",
+    "stats": {
+      "plays": 44,
+      "downloads": 0,
+      "favorites": 11
+    },
+    "difficulties": [
+      {
+        "name": "treat us like humans",
+        "notes": 454,
+        "holds": 28,
+        "sr": 2.782059468030255
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/jsgzufnw9afp/jsgzufnw9afp.rtm"
   },
   {
@@ -165,6 +609,33 @@
     "artist": "Zekk",
     "mapper": "Vector",
     "status": "ranked",
+    "bpm": 195,
+    "lastUpdated": "2025-12-28T18:14:47.000Z",
+    "stats": {
+      "plays": 543,
+      "downloads": 0,
+      "favorites": 13
+    },
+    "difficulties": [
+      {
+        "name": "Normal",
+        "notes": 97,
+        "holds": 22,
+        "sr": 1.3766124080707778
+      },
+      {
+        "name": "Hard",
+        "notes": 179,
+        "holds": 60,
+        "sr": 2.585290940398053
+      },
+      {
+        "name": "Insane",
+        "notes": 380,
+        "holds": 111,
+        "sr": 4.854004375342399
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/291xqsy0u7o9/291xqsy0u7o9.rtm"
   },
   {
@@ -173,6 +644,33 @@
     "artist": "Nakiri Ayame",
     "mapper": "Toiletwasher",
     "status": "ranked",
+    "bpm": 166,
+    "lastUpdated": "2025-12-28T12:08:00.000Z",
+    "stats": {
+      "plays": 3121,
+      "downloads": 0,
+      "favorites": 49
+    },
+    "difficulties": [
+      {
+        "name": "Normal",
+        "notes": 82,
+        "holds": 14,
+        "sr": 1.8438541534922865
+      },
+      {
+        "name": "Hard",
+        "notes": 184,
+        "holds": 20,
+        "sr": 3.7416321290713777
+      },
+      {
+        "name": "Insane",
+        "notes": 265,
+        "holds": 12,
+        "sr": 5.71431975804841
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/osmccys54ki4/osmccys54ki4.rtm"
   },
   {
@@ -181,6 +679,39 @@
     "artist": "Victorious Cast",
     "mapper": "Kras",
     "status": "ranked",
+    "bpm": 164.081,
+    "lastUpdated": "2025-12-28T02:16:25.000Z",
+    "stats": {
+      "plays": 2097,
+      "downloads": 0,
+      "favorites": 27
+    },
+    "difficulties": [
+      {
+        "name": "Easy",
+        "notes": 92,
+        "holds": 45,
+        "sr": 1.845061385340368
+      },
+      {
+        "name": "Normal",
+        "notes": 115,
+        "holds": 44,
+        "sr": 2.4313781485338897
+      },
+      {
+        "name": "Hard",
+        "notes": 150,
+        "holds": 72,
+        "sr": 3.7414653002790987
+      },
+      {
+        "name": "Extreme",
+        "notes": 195,
+        "holds": 53,
+        "sr": 6.010041552639871
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/mj69jlhpzo1o/mj69jlhpzo1o.rtm"
   },
   {
@@ -189,6 +720,21 @@
     "artist": "Super Simple Songs",
     "mapper": "shinobuoshino",
     "status": "ranked",
+    "bpm": 88,
+    "lastUpdated": "2025-12-27T20:01:04.000Z",
+    "stats": {
+      "plays": 1205,
+      "downloads": 0,
+      "favorites": 5
+    },
+    "difficulties": [
+      {
+        "name": "Tutorial difficulty",
+        "notes": 32,
+        "holds": 14,
+        "sr": 0.9997262175882496
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/7qdecu6b42ra/7qdecu6b42ra.rtm"
   },
   {
@@ -197,6 +743,27 @@
     "artist": "Kashii Moimi feat. KAFU",
     "mapper": "Did3u5z",
     "status": "ranked",
+    "bpm": 220,
+    "lastUpdated": "2025-12-27T19:18:26.000Z",
+    "stats": {
+      "plays": 1025,
+      "downloads": 0,
+      "favorites": 19
+    },
+    "difficulties": [
+      {
+        "name": "Easy",
+        "notes": 92,
+        "holds": 20,
+        "sr": 1.781748766328707
+      },
+      {
+        "name": "Insane",
+        "notes": 311,
+        "holds": 41,
+        "sr": 6.500736752372728
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/he3bzvjdejeu/he3bzvjdejeu.rtm"
   },
   {
@@ -205,6 +772,33 @@
     "artist": "DECO*27",
     "mapper": "justharsiz",
     "status": "ranked",
+    "bpm": 192,
+    "lastUpdated": "2025-12-27T18:22:31.000Z",
+    "stats": {
+      "plays": 1472,
+      "downloads": 0,
+      "favorites": 17
+    },
+    "difficulties": [
+      {
+        "name": "Newbie",
+        "notes": 95,
+        "holds": 45,
+        "sr": 1.8077161352652942
+      },
+      {
+        "name": "Intermediate",
+        "notes": 145,
+        "holds": 57,
+        "sr": 2.322757097318019
+      },
+      {
+        "name": "Tricky",
+        "notes": 226,
+        "holds": 65,
+        "sr": 3.903706484539847
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/v3m42usk1hqo/v3m42usk1hqo.rtm"
   },
   {
@@ -213,6 +807,21 @@
     "artist": "siinamota feat. Kagamine Rin",
     "mapper": "relikOS",
     "status": "ranked",
+    "bpm": 260,
+    "lastUpdated": "2025-12-27T16:41:20.000Z",
+    "stats": {
+      "plays": 1272,
+      "downloads": 0,
+      "favorites": 65
+    },
+    "difficulties": [
+      {
+        "name": "Chasing After a Far-Off Dream",
+        "notes": 262,
+        "holds": 60,
+        "sr": 15.232424256881332
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/vmzubpn3zu21/vmzubpn3zu21.rtm"
   },
   {
@@ -221,6 +830,27 @@
     "artist": "MIMI feat. Hatsune Miku",
     "mapper": "Ereal",
     "status": "ranked",
+    "bpm": 186,
+    "lastUpdated": "2025-12-27T12:28:46.000Z",
+    "stats": {
+      "plays": 2218,
+      "downloads": 0,
+      "favorites": 10
+    },
+    "difficulties": [
+      {
+        "name": "Beginner",
+        "notes": 25,
+        "holds": 5,
+        "sr": 1.2526972026420962
+      },
+      {
+        "name": "Raindrop",
+        "notes": 169,
+        "holds": 9,
+        "sr": 7.962576063217438
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/j8fubqmehjwm/j8fubqmehjwm.rtm"
   },
   {
@@ -229,6 +859,21 @@
     "artist": "Toby Fox",
     "mapper": "suki",
     "status": "ranked",
+    "bpm": 150,
+    "lastUpdated": "2025-12-27T12:14:46.000Z",
+    "stats": {
+      "plays": 312,
+      "downloads": 0,
+      "favorites": 33
+    },
+    "difficulties": [
+      {
+        "name": "Standard",
+        "notes": 180,
+        "holds": 87,
+        "sr": 2.3111198357396785
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/w38reblnw5jc/w38reblnw5jc.rtm"
   },
   {
@@ -237,6 +882,27 @@
     "artist": "Toby Fox",
     "mapper": "suki",
     "status": "ranked",
+    "bpm": 115,
+    "lastUpdated": "2025-12-27T12:13:06.000Z",
+    "stats": {
+      "plays": 1159,
+      "downloads": 0,
+      "favorites": 37
+    },
+    "difficulties": [
+      {
+        "name": "standard",
+        "notes": 122,
+        "holds": 21,
+        "sr": 1.8790608397660389
+      },
+      {
+        "name": "hard",
+        "notes": 242,
+        "holds": 35,
+        "sr": 4.319924420607455
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/p5dgkx1ky7vg/p5dgkx1ky7vg.rtm"
   },
   {
@@ -245,6 +911,21 @@
     "artist": "Johann Pachelbel",
     "mapper": "FlightEld",
     "status": "ranked",
+    "bpm": 140,
+    "lastUpdated": "2025-12-27T08:54:17.000Z",
+    "stats": {
+      "plays": 50,
+      "downloads": 0,
+      "favorites": 13
+    },
+    "difficulties": [
+      {
+        "name": "Hard+",
+        "notes": 646,
+        "holds": 67,
+        "sr": 7.560325786799778
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/w8anugqtcjgv/w8anugqtcjgv.rtm"
   },
   {
@@ -253,6 +934,45 @@
     "artist": "Apollo",
     "mapper": "Neph",
     "status": "ranked",
+    "bpm": 223,
+    "lastUpdated": "2025-12-27T05:55:44.000Z",
+    "stats": {
+      "plays": 1643,
+      "downloads": 0,
+      "favorites": 11
+    },
+    "difficulties": [
+      {
+        "name": "Normal",
+        "notes": 152,
+        "holds": 0,
+        "sr": 3.5220947610644093
+      },
+      {
+        "name": "Hard",
+        "notes": 184,
+        "holds": 0,
+        "sr": 5.782405721297345
+      },
+      {
+        "name": "Insane",
+        "notes": 207,
+        "holds": 0,
+        "sr": 6.625540122180853
+      },
+      {
+        "name": "Extreme",
+        "notes": 207,
+        "holds": 0,
+        "sr": 7.173777918599443
+      },
+      {
+        "name": "Atomic Scope",
+        "notes": 206,
+        "holds": 0,
+        "sr": 7.69116895105065
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/zhsj84jqfbgn/zhsj84jqfbgn.rtm"
   },
   {
@@ -261,6 +981,27 @@
     "artist": "S3RL feat Krystal",
     "mapper": "Kras",
     "status": "ranked",
+    "bpm": 175,
+    "lastUpdated": "2025-12-27T02:56:06.000Z",
+    "stats": {
+      "plays": 652,
+      "downloads": 0,
+      "favorites": 29
+    },
+    "difficulties": [
+      {
+        "name": "Normal",
+        "notes": 232,
+        "holds": 128,
+        "sr": 2.405976271919555
+      },
+      {
+        "name": "Hard",
+        "notes": 341,
+        "holds": 127,
+        "sr": 4.352452853737656
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/5hs7z76i6v25/5hs7z76i6v25.rtm"
   },
   {
@@ -269,6 +1010,21 @@
     "artist": "Teen Mortgage",
     "mapper": "shinobuoshino",
     "status": "ranked",
+    "bpm": 260,
+    "lastUpdated": "2025-12-27T00:05:36.000Z",
+    "stats": {
+      "plays": 219,
+      "downloads": 0,
+      "favorites": 5
+    },
+    "difficulties": [
+      {
+        "name": "Sorry boss, I'm having a sick day!",
+        "notes": 340,
+        "holds": 113,
+        "sr": 13.079655387689643
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/94icw8kqaisb/94icw8kqaisb.rtm"
   },
   {
@@ -277,6 +1033,45 @@
     "artist": "Icon For Hire",
     "mapper": "Toiletwasher",
     "status": "ranked",
+    "bpm": 202.54,
+    "lastUpdated": "2025-12-26T23:58:08.000Z",
+    "stats": {
+      "plays": 4003,
+      "downloads": 0,
+      "favorites": 15
+    },
+    "difficulties": [
+      {
+        "name": "NORMAL",
+        "notes": 72,
+        "holds": 18,
+        "sr": 2.27965856856364
+      },
+      {
+        "name": "HARD",
+        "notes": 129,
+        "holds": 15,
+        "sr": 4.11907260668573
+      },
+      {
+        "name": "INSANE",
+        "notes": 242,
+        "holds": 16,
+        "sr": 7.5625310563984085
+      },
+      {
+        "name": "EXPERT",
+        "notes": 268,
+        "holds": 30,
+        "sr": 10.029568615386577
+      },
+      {
+        "name": "WE DONT KNOW WHATS GOING ON",
+        "notes": 424,
+        "holds": 33,
+        "sr": 16.569852177373274
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/1gkqcs2vslew/1gkqcs2vslew.rtm"
   },
   {
@@ -285,6 +1080,21 @@
     "artist": "Unknown Artist",
     "mapper": "shinobuoshino",
     "status": "ranked",
+    "bpm": 120,
+    "lastUpdated": "2025-12-26T23:04:35.000Z",
+    "stats": {
+      "plays": 61,
+      "downloads": 0,
+      "favorites": 3
+    },
+    "difficulties": [
+      {
+        "name": "merikuri",
+        "notes": 280,
+        "holds": 93,
+        "sr": 11.78972275938881
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/da1n6z64cans/da1n6z64cans.rtm"
   },
   {
@@ -293,6 +1103,21 @@
     "artist": "MONKEY MAJIK",
     "mapper": "Cave",
     "status": "ranked",
+    "bpm": 125,
+    "lastUpdated": "2025-12-26T20:34:33.000Z",
+    "stats": {
+      "plays": 469,
+      "downloads": 0,
+      "favorites": 13
+    },
+    "difficulties": [
+      {
+        "name": "Hard",
+        "notes": 131,
+        "holds": 64,
+        "sr": 3.2102697550521713
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/dclmk2874jli/dclmk2874jli.rtm"
   },
   {
@@ -301,6 +1126,33 @@
     "artist": "Tenchio",
     "mapper": "naber",
     "status": "ranked",
+    "bpm": 234,
+    "lastUpdated": "2025-12-26T19:44:54.000Z",
+    "stats": {
+      "plays": 1024,
+      "downloads": 0,
+      "favorites": 7
+    },
+    "difficulties": [
+      {
+        "name": "Easy",
+        "notes": 78,
+        "holds": 11,
+        "sr": 1.3008930171317508
+      },
+      {
+        "name": "Normal",
+        "notes": 129,
+        "holds": 25,
+        "sr": 2.6599723696785387
+      },
+      {
+        "name": "Hard",
+        "notes": 174,
+        "holds": 21,
+        "sr": 3.757536593577281
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/itxegsxfqcix/itxegsxfqcix.rtm"
   },
   {
@@ -309,6 +1161,39 @@
     "artist": "Unknown Artist",
     "mapper": "lol",
     "status": "ranked",
+    "bpm": 125,
+    "lastUpdated": "2025-12-26T09:21:34.000Z",
+    "stats": {
+      "plays": 4599,
+      "downloads": 0,
+      "favorites": 10
+    },
+    "difficulties": [
+      {
+        "name": "Beginner",
+        "notes": 26,
+        "holds": 6,
+        "sr": 1.0788342855542192
+      },
+      {
+        "name": "Easy",
+        "notes": 39,
+        "holds": 8,
+        "sr": 1.5961570644014074
+      },
+      {
+        "name": "Normal",
+        "notes": 50,
+        "holds": 18,
+        "sr": 2.6686822419765863
+      },
+      {
+        "name": "Hard",
+        "notes": 65,
+        "holds": 12,
+        "sr": 3.4312810755295207
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/l1vmjq4ngt2a/l1vmjq4ngt2a.rtm"
   },
   {
@@ -317,6 +1202,45 @@
     "artist": "Primastella",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 140,
+    "lastUpdated": "2025-12-26T06:41:32.000Z",
+    "stats": {
+      "plays": 3196,
+      "downloads": 0,
+      "favorites": 35
+    },
+    "difficulties": [
+      {
+        "name": "Easy",
+        "notes": 68,
+        "holds": 40,
+        "sr": 1.3970040208127545
+      },
+      {
+        "name": "Advanced",
+        "notes": 120,
+        "holds": 62,
+        "sr": 3.0752971281348103
+      },
+      {
+        "name": "Hyper",
+        "notes": 157,
+        "holds": 78,
+        "sr": 4.686296724325981
+      },
+      {
+        "name": "Another",
+        "notes": 225,
+        "holds": 89,
+        "sr": 5.432158473039946
+      },
+      {
+        "name": "Love",
+        "notes": 347,
+        "holds": 126,
+        "sr": 10.298758318805383
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/p5stw45z7wzp/p5stw45z7wzp.rtm"
   },
   {
@@ -325,6 +1249,21 @@
     "artist": "Sakuzyo feat. Nikki Simmons",
     "mapper": "Toiletwasher",
     "status": "ranked",
+    "bpm": 90,
+    "lastUpdated": "2025-12-26T06:17:40.000Z",
+    "stats": {
+      "plays": 57,
+      "downloads": 0,
+      "favorites": 7
+    },
+    "difficulties": [
+      {
+        "name": "Bennett's Destr0yed",
+        "notes": 397,
+        "holds": 102,
+        "sr": 9.556203220037021
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/yi9ojeyivon3/yi9ojeyivon3.rtm"
   },
   {
@@ -333,6 +1272,21 @@
     "artist": "NewJeans",
     "mapper": "Paraliyzed_evo",
     "status": "ranked",
+    "bpm": 135,
+    "lastUpdated": "2025-12-26T04:44:40.000Z",
+    "stats": {
+      "plays": 58,
+      "downloads": 0,
+      "favorites": 50
+    },
+    "difficulties": [
+      {
+        "name": "bunnies",
+        "notes": 787,
+        "holds": 34,
+        "sr": 7.647589048366506
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/us1l2vn291yt/us1l2vn291yt.rtm"
   },
   {
@@ -341,6 +1295,39 @@
     "artist": "Chata",
     "mapper": "Entity",
     "status": "ranked",
+    "bpm": 50,
+    "lastUpdated": "2025-12-26T03:18:54.000Z",
+    "stats": {
+      "plays": 1239,
+      "downloads": 0,
+      "favorites": 23
+    },
+    "difficulties": [
+      {
+        "name": "Asleep Beginner",
+        "notes": 76,
+        "holds": 4,
+        "sr": 1.0373399996856179
+      },
+      {
+        "name": "Cozy Dumpling",
+        "notes": 184,
+        "holds": 5,
+        "sr": 2.7951748606485474
+      },
+      {
+        "name": "Big Dumpling",
+        "notes": 220,
+        "holds": 9,
+        "sr": 4.631010943481849
+      },
+      {
+        "name": "Big Dumpling Family",
+        "notes": 257,
+        "holds": 20,
+        "sr": 5.794615226802068
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/dvxrdz0b8atv/dvxrdz0b8atv.rtm"
   },
   {
@@ -349,6 +1336,39 @@
     "artist": "Unknown Artist",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 151,
+    "lastUpdated": "2025-12-26T02:28:26.000Z",
+    "stats": {
+      "plays": 2733,
+      "downloads": 0,
+      "favorites": 15
+    },
+    "difficulties": [
+      {
+        "name": "Easy",
+        "notes": 30,
+        "holds": 18,
+        "sr": 1.3731177105066406
+      },
+      {
+        "name": "Normal",
+        "notes": 62,
+        "holds": 34,
+        "sr": 2.3974893905397714
+      },
+      {
+        "name": "Hyper",
+        "notes": 115,
+        "holds": 36,
+        "sr": 4.129608280105161
+      },
+      {
+        "name": "Prece Enter Key",
+        "notes": 248,
+        "holds": 0,
+        "sr": 6.324050234070081
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/8vcr211eixqn/8vcr211eixqn.rtm"
   },
   {
@@ -357,6 +1377,39 @@
     "artist": "Porcelain Black",
     "mapper": "justharsiz",
     "status": "ranked",
+    "bpm": 178,
+    "lastUpdated": "2025-12-25T21:35:47.000Z",
+    "stats": {
+      "plays": 6939,
+      "downloads": 0,
+      "favorites": 64
+    },
+    "difficulties": [
+      {
+        "name": "Easy",
+        "notes": 65,
+        "holds": 0,
+        "sr": 1.5333981934518144
+      },
+      {
+        "name": "Normal",
+        "notes": 60,
+        "holds": 9,
+        "sr": 1.5565527787045152
+      },
+      {
+        "name": "Hard",
+        "notes": 89,
+        "holds": 30,
+        "sr": 2.8083573646440954
+      },
+      {
+        "name": "Hyper",
+        "notes": 99,
+        "holds": 28,
+        "sr": 3.237869926125426
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/05o528e7aco0/05o528e7aco0.rtm"
   },
   {
@@ -365,6 +1418,27 @@
     "artist": "Tanaka Hirokazu",
     "mapper": "goink",
     "status": "ranked",
+    "bpm": 149.3,
+    "lastUpdated": "2025-12-25T20:50:35.000Z",
+    "stats": {
+      "plays": 1407,
+      "downloads": 0,
+      "favorites": 10
+    },
+    "difficulties": [
+      {
+        "name": "Normal",
+        "notes": 90,
+        "holds": 24,
+        "sr": 2.9735530018123235
+      },
+      {
+        "name": "Hard",
+        "notes": 169,
+        "holds": 2,
+        "sr": 5.312303466726906
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/doga4r6a5mls/doga4r6a5mls.rtm"
   },
   {
@@ -373,6 +1447,21 @@
     "artist": "hemlocke springs",
     "mapper": "olc",
     "status": "ranked",
+    "bpm": 146,
+    "lastUpdated": "2025-12-25T20:06:00.000Z",
+    "stats": {
+      "plays": 115,
+      "downloads": 0,
+      "favorites": 11
+    },
+    "difficulties": [
+      {
+        "name": "Extra",
+        "notes": 675,
+        "holds": 28,
+        "sr": 7.821077442118651
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/q7di37ezntcr/q7di37ezntcr.rtm"
   },
   {
@@ -381,6 +1470,27 @@
     "artist": "Flanger Moose",
     "mapper": "Perugius",
     "status": "ranked",
+    "bpm": 109,
+    "lastUpdated": "2025-12-25T18:25:10.000Z",
+    "stats": {
+      "plays": 2375,
+      "downloads": 0,
+      "favorites": 37
+    },
+    "difficulties": [
+      {
+        "name": "1.000g",
+        "notes": 76,
+        "holds": 6,
+        "sr": 2.9749785766617127
+      },
+      {
+        "name": "10.000g",
+        "notes": 108,
+        "holds": 12,
+        "sr": 4.0301745189127525
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/1yc3p145ptpg/1yc3p145ptpg.rtm"
   },
   {
@@ -389,6 +1499,45 @@
     "artist": "Turbo",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 190,
+    "lastUpdated": "2025-12-25T14:28:12.000Z",
+    "stats": {
+      "plays": 6630,
+      "downloads": 0,
+      "favorites": 16
+    },
+    "difficulties": [
+      {
+        "name": "Easy",
+        "notes": 19,
+        "holds": 12,
+        "sr": 1.2598362745249143
+      },
+      {
+        "name": "Normal",
+        "notes": 38,
+        "holds": 23,
+        "sr": 2.113974542425814
+      },
+      {
+        "name": "Hard",
+        "notes": 63,
+        "holds": 16,
+        "sr": 3.1355180575727046
+      },
+      {
+        "name": "Insane",
+        "notes": 134,
+        "holds": 0,
+        "sr": 6.245613002651189
+      },
+      {
+        "name": "Expert",
+        "notes": 211,
+        "holds": 0,
+        "sr": 9.84632139722714
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/brq3amzi47ml/brq3amzi47ml.rtm"
   },
   {
@@ -397,6 +1546,21 @@
     "artist": "Lala's Liveliness",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 144,
+    "lastUpdated": "2025-12-25T12:56:11.000Z",
+    "stats": {
+      "plays": 181,
+      "downloads": 0,
+      "favorites": 14
+    },
+    "difficulties": [
+      {
+        "name": "Rhythm Superstore",
+        "notes": 56,
+        "holds": 56,
+        "sr": 4.905317842430774
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/qvlv2s4d1fde/qvlv2s4d1fde.rtm"
   },
   {
@@ -405,6 +1569,21 @@
     "artist": "FAIRY FORE",
     "mapper": "zen",
     "status": "ranked",
+    "bpm": 168,
+    "lastUpdated": "2025-12-25T09:27:46.000Z",
+    "stats": {
+      "plays": 832,
+      "downloads": 0,
+      "favorites": 5
+    },
+    "difficulties": [
+      {
+        "name": "Expert",
+        "notes": 107,
+        "holds": 4,
+        "sr": 9.239206515887128
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/e7j10ycg5n0m/e7j10ycg5n0m.rtm"
   },
   {
@@ -413,6 +1592,21 @@
     "artist": "Zachz Winner",
     "mapper": "andrew",
     "status": "ranked",
+    "bpm": 155,
+    "lastUpdated": "2025-11-12T04:04:19.000Z",
+    "stats": {
+      "plays": 1740,
+      "downloads": 0,
+      "favorites": 58
+    },
+    "difficulties": [
+      {
+        "name": "Extreme",
+        "notes": 226,
+        "holds": 93,
+        "sr": 4.99
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/yuq5rpdwrbu8/yuq5rpdwrbu8.rtm"
   },
   {
@@ -421,6 +1615,39 @@
     "artist": "BUD VIRGIN LOGIC",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 210,
+    "lastUpdated": "2025-10-22T15:01:27.000Z",
+    "stats": {
+      "plays": 1094,
+      "downloads": 0,
+      "favorites": 22
+    },
+    "difficulties": [
+      {
+        "name": "Normal.",
+        "notes": 130,
+        "holds": 26,
+        "sr": 3.17
+      },
+      {
+        "name": "Hard.",
+        "notes": 175,
+        "holds": 92,
+        "sr": 5.03
+      },
+      {
+        "name": "Insane.",
+        "notes": 347,
+        "holds": 7,
+        "sr": 6.19
+      },
+      {
+        "name": "Destroy the World.",
+        "notes": 514,
+        "holds": 18,
+        "sr": 8.64
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/8xn12luhudcb/8xn12luhudcb.rtm"
   },
   {
@@ -429,6 +1656,21 @@
     "artist": "inabakumori",
     "mapper": "Zex",
     "status": "ranked",
+    "bpm": 187,
+    "lastUpdated": "2025-10-21T22:11:03.000Z",
+    "stats": {
+      "plays": 258,
+      "downloads": 0,
+      "favorites": 17
+    },
+    "difficulties": [
+      {
+        "name": "Like a Sleep ₱aralysis",
+        "notes": 550,
+        "holds": 70,
+        "sr": 7.55
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/yq6ij7s0wg9u/yq6ij7s0wg9u.rtm"
   },
   {
@@ -437,6 +1679,21 @@
     "artist": "Tia",
     "mapper": "Refrum",
     "status": "ranked",
+    "bpm": 178,
+    "lastUpdated": "2025-10-06T14:48:23.000Z",
+    "stats": {
+      "plays": 229,
+      "downloads": 0,
+      "favorites": 6
+    },
+    "difficulties": [
+      {
+        "name": "Hard",
+        "notes": 461,
+        "holds": 21,
+        "sr": 9.45
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/062v4lkxcc4o/062v4lkxcc4o.rtm"
   },
   {
@@ -445,6 +1702,33 @@
     "artist": "Five Hammer",
     "mapper": "Zex",
     "status": "ranked",
+    "bpm": 138.00000000000006,
+    "lastUpdated": "2025-09-29T03:05:59.000Z",
+    "stats": {
+      "plays": 369,
+      "downloads": 0,
+      "favorites": 4
+    },
+    "difficulties": [
+      {
+        "name": "Sky Wheel",
+        "notes": 363,
+        "holds": 43,
+        "sr": 4.78
+      },
+      {
+        "name": "Loop-O-Plane",
+        "notes": 659,
+        "holds": 49,
+        "sr": 9.15
+      },
+      {
+        "name": "Cʌɼɴıvʌʟ Ħèʟʟ",
+        "notes": 862,
+        "holds": 0,
+        "sr": 9.87
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/acbeft1tw88z/acbeft1tw88z.rtm"
   },
   {
@@ -453,6 +1737,27 @@
     "artist": "R.H.S.",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 179,
+    "lastUpdated": "2025-09-24T07:04:37.000Z",
+    "stats": {
+      "plays": 841,
+      "downloads": 0,
+      "favorites": 6
+    },
+    "difficulties": [
+      {
+        "name": "TYPING SECTION (NOVICE)",
+        "notes": 3,
+        "holds": 0,
+        "sr": 3.04
+      },
+      {
+        "name": "TYPING SECTION (DIFFICULT)",
+        "notes": 5,
+        "holds": 0,
+        "sr": 3.73
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/gcmmlsaj3fde/gcmmlsaj3fde.rtm"
   },
   {
@@ -461,6 +1766,45 @@
     "artist": "Hanasaka Yui(CV: M.A.O)",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 141.9999999999999,
+    "lastUpdated": "2025-09-07T05:47:54.000Z",
+    "stats": {
+      "plays": 12371,
+      "downloads": 0,
+      "favorites": 32
+    },
+    "difficulties": [
+      {
+        "name": "Easy",
+        "notes": 29,
+        "holds": 8,
+        "sr": 2
+      },
+      {
+        "name": "Normal",
+        "notes": 39,
+        "holds": 10,
+        "sr": 2.46
+      },
+      {
+        "name": "Hard",
+        "notes": 53,
+        "holds": 10,
+        "sr": 2.84
+      },
+      {
+        "name": "Hyper",
+        "notes": 53,
+        "holds": 17,
+        "sr": 3.93
+      },
+      {
+        "name": "Insane",
+        "notes": 78,
+        "holds": 29,
+        "sr": 4.62
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/dy5kjkzhuee5/dy5kjkzhuee5.rtm"
   },
   {
@@ -469,6 +1813,21 @@
     "artist": "Beacon Street Studios",
     "mapper": "andrew",
     "status": "ranked",
+    "bpm": 105.00000000000009,
+    "lastUpdated": "2025-09-07T04:37:40.000Z",
+    "stats": {
+      "plays": 1594,
+      "downloads": 0,
+      "favorites": 28
+    },
+    "difficulties": [
+      {
+        "name": "Lyrics",
+        "notes": 0,
+        "holds": 0,
+        "sr": 0
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/s1rf956n2fdb/s1rf956n2fdb.rtm"
   },
   {
@@ -477,6 +1836,21 @@
     "artist": "sakanaction",
     "mapper": "Zex",
     "status": "ranked",
+    "bpm": 158,
+    "lastUpdated": "2025-09-05T15:52:42.000Z",
+    "stats": {
+      "plays": 121,
+      "downloads": 0,
+      "favorites": 12
+    },
+    "difficulties": [
+      {
+        "name": "New Treasure Island",
+        "notes": 1236,
+        "holds": 165,
+        "sr": 7.65
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/qer6ah8o6me4/qer6ah8o6me4.rtm"
   },
   {
@@ -485,6 +1859,21 @@
     "artist": "Set It Off",
     "mapper": "Neph",
     "status": "ranked",
+    "bpm": 170.0000000000001,
+    "lastUpdated": "2025-08-23T06:21:18.000Z",
+    "stats": {
+      "plays": 291,
+      "downloads": 0,
+      "favorites": 8
+    },
+    "difficulties": [
+      {
+        "name": "Neph's Cataclysm",
+        "notes": 280,
+        "holds": 2,
+        "sr": 5.93
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/qoq5o7oh1knn/qoq5o7oh1knn.rtm"
   },
   {
@@ -493,6 +1882,39 @@
     "artist": "Amatsuki Mashiro (CV: Inori Minase)",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 128,
+    "lastUpdated": "2025-08-19T15:26:05.000Z",
+    "stats": {
+      "plays": 4331,
+      "downloads": 0,
+      "favorites": 12
+    },
+    "difficulties": [
+      {
+        "name": "Easy",
+        "notes": 39,
+        "holds": 3,
+        "sr": 2.13
+      },
+      {
+        "name": "Normal",
+        "notes": 46,
+        "holds": 4,
+        "sr": 2.81
+      },
+      {
+        "name": "Hard",
+        "notes": 67,
+        "holds": 1,
+        "sr": 3.49
+      },
+      {
+        "name": "OneRoom",
+        "notes": 80,
+        "holds": 1,
+        "sr": 3.94
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/zyj2mryfdn04/zyj2mryfdn04.rtm"
   },
   {
@@ -501,6 +1923,21 @@
     "artist": "MIMIDEATH",
     "mapper": "andrew",
     "status": "ranked",
+    "bpm": 110.99999999999991,
+    "lastUpdated": "2025-08-19T03:37:46.000Z",
+    "stats": {
+      "plays": 1569,
+      "downloads": 0,
+      "favorites": 5
+    },
+    "difficulties": [
+      {
+        "name": "Insane",
+        "notes": 73,
+        "holds": 1,
+        "sr": 4.37
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/p5u26iytosmo/p5u26iytosmo.rtm"
   },
   {
@@ -509,6 +1946,21 @@
     "artist": "DJ SHARPNEL",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 190.80000000000027,
+    "lastUpdated": "2025-08-17T15:56:39.000Z",
+    "stats": {
+      "plays": 240,
+      "downloads": 0,
+      "favorites": 12
+    },
+    "difficulties": [
+      {
+        "name": "DECEPTION",
+        "notes": 869,
+        "holds": 4,
+        "sr": 3.46
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/m9s4rcq1s3ub/m9s4rcq1s3ub.rtm"
   },
   {
@@ -517,6 +1969,27 @@
     "artist": "DystopiaGround",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 207.00000000000009,
+    "lastUpdated": "2025-08-17T08:00:38.000Z",
+    "stats": {
+      "plays": 502,
+      "downloads": 0,
+      "favorites": 9
+    },
+    "difficulties": [
+      {
+        "name": "Freezing Advanced",
+        "notes": 337,
+        "holds": 8,
+        "sr": 2.3
+      },
+      {
+        "name": "The Abyss",
+        "notes": 241,
+        "holds": 10,
+        "sr": 5.42
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/cae1parbccr9/cae1parbccr9.rtm"
   },
   {
@@ -525,6 +1998,39 @@
     "artist": "Anytunz",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 135.00000000000014,
+    "lastUpdated": "2025-08-15T05:48:41.000Z",
+    "stats": {
+      "plays": 10254,
+      "downloads": 0,
+      "favorites": 53
+    },
+    "difficulties": [
+      {
+        "name": "BASIC",
+        "notes": 40,
+        "holds": 0,
+        "sr": 1.43
+      },
+      {
+        "name": "NOVICE",
+        "notes": 50,
+        "holds": 0,
+        "sr": 2.3
+      },
+      {
+        "name": "ADVANCED",
+        "notes": 83,
+        "holds": 0,
+        "sr": 2.39
+      },
+      {
+        "name": "EXHAUST",
+        "notes": 141,
+        "holds": 0,
+        "sr": 5.92
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/g3f4nhvrr1db/g3f4nhvrr1db.rtm"
   },
   {
@@ -533,6 +2039,21 @@
     "artist": "Mia REGINA",
     "mapper": "wtf",
     "status": "ranked",
+    "bpm": 210,
+    "lastUpdated": "2025-08-13T20:50:31.000Z",
+    "stats": {
+      "plays": 423,
+      "downloads": 0,
+      "favorites": 12
+    },
+    "difficulties": [
+      {
+        "name": "do you got it?",
+        "notes": 285,
+        "holds": 62,
+        "sr": 5.26
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/9svs550ko1ft/9svs550ko1ft.rtm"
   },
   {
@@ -541,6 +2062,27 @@
     "artist": "YOASOBI",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 170.0000000000001,
+    "lastUpdated": "2025-08-13T11:32:12.000Z",
+    "stats": {
+      "plays": 1147,
+      "downloads": 0,
+      "favorites": 37
+    },
+    "difficulties": [
+      {
+        "name": "Mualani's Normal",
+        "notes": 230,
+        "holds": 7,
+        "sr": 2.7
+      },
+      {
+        "name": "Mualani's World Full of Wrong",
+        "notes": 514,
+        "holds": 8,
+        "sr": 5.11
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/j0031txezs0w/j0031txezs0w.rtm"
   },
   {
@@ -549,6 +2091,21 @@
     "artist": "Caramell",
     "mapper": "andrew",
     "status": "ranked",
+    "bpm": 164.19999999999976,
+    "lastUpdated": "2025-08-13T05:02:19.000Z",
+    "stats": {
+      "plays": 2020,
+      "downloads": 0,
+      "favorites": 38
+    },
+    "difficulties": [
+      {
+        "name": "andrew's normal",
+        "notes": 81,
+        "holds": 22,
+        "sr": 1.46
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/w5xranafirm6/w5xranafirm6.rtm"
   },
   {
@@ -557,6 +2114,39 @@
     "artist": "Hechizeros Band x Koji Kondo",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 187.5,
+    "lastUpdated": "2025-08-12T15:11:11.000Z",
+    "stats": {
+      "plays": 6297,
+      "downloads": 0,
+      "favorites": 27
+    },
+    "difficulties": [
+      {
+        "name": "Uno",
+        "notes": 31,
+        "holds": 3,
+        "sr": 1.31
+      },
+      {
+        "name": "Dos",
+        "notes": 53,
+        "holds": 1,
+        "sr": 2.69
+      },
+      {
+        "name": "Tres",
+        "notes": 90,
+        "holds": 0,
+        "sr": 3.38
+      },
+      {
+        "name": "Cuatro",
+        "notes": 104,
+        "holds": 1,
+        "sr": 6.02
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/v1yga1m8c0mv/v1yga1m8c0mv.rtm"
   },
   {
@@ -565,6 +2155,45 @@
     "artist": "Aoyane",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 203.9999999999997,
+    "lastUpdated": "2025-08-12T09:09:51.000Z",
+    "stats": {
+      "plays": 7395,
+      "downloads": 0,
+      "favorites": 15
+    },
+    "difficulties": [
+      {
+        "name": "Beginner",
+        "notes": 32,
+        "holds": 2,
+        "sr": 1.15
+      },
+      {
+        "name": "Advanced",
+        "notes": 67,
+        "holds": 4,
+        "sr": 2.92
+      },
+      {
+        "name": "Hyper",
+        "notes": 113,
+        "holds": 2,
+        "sr": 3.59
+      },
+      {
+        "name": "Another",
+        "notes": 125,
+        "holds": 1,
+        "sr": 6.6
+      },
+      {
+        "name": "Leggendaria",
+        "notes": 156,
+        "holds": 0,
+        "sr": 8.09
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/7k5ku4fo0tqi/7k5ku4fo0tqi.rtm"
   },
   {
@@ -573,6 +2202,21 @@
     "artist": "Jamiroquai",
     "mapper": "rhythm",
     "status": "ranked",
+    "bpm": 128,
+    "lastUpdated": "2025-08-12T02:05:51.000Z",
+    "stats": {
+      "plays": 153,
+      "downloads": 0,
+      "favorites": 8
+    },
+    "difficulties": [
+      {
+        "name": "Tonight Baby",
+        "notes": 348,
+        "holds": 37,
+        "sr": 3.06
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/n3zeiwjqekyr/n3zeiwjqekyr.rtm"
   },
   {
@@ -581,6 +2225,21 @@
     "artist": "Maroon 5",
     "mapper": "rhythm",
     "status": "ranked",
+    "bpm": 88.02582090746616,
+    "lastUpdated": "2025-08-11T20:05:01.000Z",
+    "stats": {
+      "plays": 203,
+      "downloads": 0,
+      "favorites": 9
+    },
+    "difficulties": [
+      {
+        "name": "Sunday 2",
+        "notes": 371,
+        "holds": 6,
+        "sr": 2.79
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ikd3xprdg7b2/ikd3xprdg7b2.rtm"
   },
   {
@@ -589,6 +2248,27 @@
     "artist": "JIN",
     "mapper": "Mualani",
     "status": "ranked",
+    "bpm": 196.9999999999998,
+    "lastUpdated": "2025-08-11T08:21:52.000Z",
+    "stats": {
+      "plays": 3120,
+      "downloads": 0,
+      "favorites": 11
+    },
+    "difficulties": [
+      {
+        "name": "Normal",
+        "notes": 27,
+        "holds": 17,
+        "sr": 3.12
+      },
+      {
+        "name": "Insane",
+        "notes": 106,
+        "holds": 2,
+        "sr": 5.12
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/nsfnnuu3ugwa/nsfnnuu3ugwa.rtm"
   },
   {
@@ -597,6 +2277,27 @@
     "artist": "joyful",
     "mapper": "andrew",
     "status": "ranked",
+    "bpm": 108.57999999999997,
+    "lastUpdated": "2025-08-10T23:22:14.000Z",
+    "stats": {
+      "plays": 11938,
+      "downloads": 0,
+      "favorites": 100
+    },
+    "difficulties": [
+      {
+        "name": "andrew's easy",
+        "notes": 32,
+        "holds": 16,
+        "sr": 1.92
+      },
+      {
+        "name": "andrew's insane",
+        "notes": 96,
+        "holds": 12,
+        "sr": 3.84
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/t2ugl4acjx0s/t2ugl4acjx0s.rtm"
   },
   {
@@ -605,6 +2306,27 @@
     "artist": "Sia",
     "mapper": "andrew",
     "status": "ranked",
+    "bpm": 70.00000000000001,
+    "lastUpdated": "2025-08-10T23:18:33.000Z",
+    "stats": {
+      "plays": 2577,
+      "downloads": 0,
+      "favorites": 29
+    },
+    "difficulties": [
+      {
+        "name": "andrew's easy",
+        "notes": 36,
+        "holds": 10,
+        "sr": 1.12
+      },
+      {
+        "name": "andrew's expert",
+        "notes": 70,
+        "holds": 33,
+        "sr": 2.27
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/4l5gcql5asum/4l5gcql5asum.rtm"
   },
   {
@@ -613,6 +2335,27 @@
     "artist": "Jeff Williams feat. Casey Lee Williams",
     "mapper": "andrew",
     "status": "ranked",
+    "bpm": 250,
+    "lastUpdated": "2025-08-10T23:16:31.000Z",
+    "stats": {
+      "plays": 5022,
+      "downloads": 0,
+      "favorites": 34
+    },
+    "difficulties": [
+      {
+        "name": "andrew's normal",
+        "notes": 30,
+        "holds": 14,
+        "sr": 1.6
+      },
+      {
+        "name": "andrew's aimslop",
+        "notes": 71,
+        "holds": 24,
+        "sr": 3.45
+      }
+    ],
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/i6y0sxr5vbsa/i6y0sxr5vbsa.rtm"
   }
 ]
