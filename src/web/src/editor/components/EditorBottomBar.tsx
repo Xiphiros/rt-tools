@@ -2,6 +2,7 @@ import { useState, useRef, useLayoutEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useEditor } from '../store/EditorContext';
 import { HitsoundSettings } from '../types';
+import { COMMON_SNAPS } from '../utils/snapColors';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faPlay, 
@@ -156,7 +157,7 @@ export const EditorBottomBar = () => {
                             value={settings.snapDivisor} 
                             onChange={(e) => setSettings(s => ({ ...s, snapDivisor: Number(e.target.value) }))}
                         >
-                            {[1, 2, 3, 4, 6, 8, 12, 16].map(v => (<option key={v} value={v}>1/{v}</option>))}
+                            {COMMON_SNAPS.map(v => (<option key={v} value={v}>1/{v}</option>))}
                         </select>
                         <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-muted group-hover:text-primary transition-colors">
                             <FontAwesomeIcon icon={faAngleDown} size="xs" />
