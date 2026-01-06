@@ -1,5 +1,5 @@
 import { EditorSettings, TimingPoint } from '../types';
-import { SNAP_COLORS } from '../utils/snapColors';
+import { SNAP_COLORS, COMMON_SNAPS } from '../utils/snapColors';
 
 interface TimelineGridProps {
     duration: number; // ms
@@ -8,31 +8,26 @@ interface TimelineGridProps {
 }
 
 export const TimelineGrid = ({ duration, timingPoints, settings }: TimelineGridProps) => {
-    // We only render sections based on the passed timingPoints.
-    // The parent (EditorTimeline) is responsible for filtering these points
-    // via getVisibleTimingPoints to prevent rendering 500 divs for a long map.
-    
-    // However, if the map has only 1 timing point at T=0, we render one massive div.
-    // CSS handles massive divs relatively well, but we rely on the parent's container width.
-    
     const sections = [];
-    
-    // Ensure we handle the "start" correctly if filtered list doesn't include 0
-    // But getVisibleTimingPoints guarantees context.
-    
-    // Create sections from provided points
-    if (timingPoints.length > 0) {
-        for (let i = 0; i < timingPoints.length; i++) {
-            const current = timingPoints[i];
-            const next = timingPoints[i + 1];
-            
-            // If there's a next point, use it. If not, extend to duration.
-            // Note: If we are passed a filtered list, 'next' might be the cutoff.
-            // But usually the filtered list includes the "end" point if relevant.
-            // Wait, getVisibleTimingPoints returns points *active* in the window.
-            // So the last point in the list extends to Infinity or the next actual point.
-            // We clamp visually by the container anyway.
-            
+    const sortedPoints = [...timingPoints].sort((a, b) => a.time - b.time);
+
+    if (sortedPoints.length > 0) {
+        // 1. Backward Extrapolation (Intro Grid)
+        const first = sortedPoints[0];
+        if (first.time > 0) {
+            sections.push({
+                bpm: first.bpm,
+                offset: first.time, 
+                start: 0,
+                end: first.time,
+                key: 'intro-extrapolated'
+            });
+        }
+
+        // 2. Normal Sections
+        for (let i = 0; i < sortedPoints.length; i++) {
+            const current = sortedPoints[i];
+            const next = sortedPoints[i + 1];
             const endTime = next ? next.time : duration;
             
             sections.push({
@@ -52,12 +47,20 @@ export const TimelineGrid = ({ duration, timingPoints, settings }: TimelineGridP
         const msPerBeat = 60000 / bpm;
         const pxPerBeat = (msPerBeat / 1000) * settings.zoom;
         
-        const validSnaps = [1, 2, 3, 4, 6, 8, 12, 16].filter(s => s <= settings.snapDivisor);
+        // HARMONIC FILTERING
+        // Only show snap lines that divide the current selected snap divisor evenly.
+        // e.g. if snapDivisor is 16: show 1, 2, 4, 8, 16. (16 % s === 0)
+        // if snapDivisor is 12: show 1, 2, 3, 4, 6, 12.
+        // if snapDivisor is 5: show 1, 5.
+        // This prevents 1/3 lines appearing when 1/4 is selected (3 does not divide 4).
+        const validSnaps = COMMON_SNAPS.filter(s => {
+            if (s === 1) return true; // Always show beats
+            return settings.snapDivisor % s === 0;
+        });
 
         const backgroundImage = validSnaps.map(s => {
             const color = SNAP_COLORS[s];
             const opacity = s === 1 ? '40' : '15';
-            // Explicit stops: color from 0 to 1px, then transparent
             return `linear-gradient(90deg, ${color}${opacity} 0, ${color}${opacity} 1px, transparent 1px)`;
         }).join(', ');
 
@@ -69,7 +72,6 @@ export const TimelineGrid = ({ duration, timingPoints, settings }: TimelineGridP
         const relativeOffset = offset - sectionStart;
         const offsetPx = (relativeOffset / 1000) * settings.zoom;
         
-        // Subtract 0.5px to center the 1px line exactly on the coordinate
         const backgroundPosition = validSnaps.map(_ => `calc(${offsetPx}px - 0.5px) 0`).join(', ');
 
         return { backgroundImage, backgroundSize, backgroundPosition };
