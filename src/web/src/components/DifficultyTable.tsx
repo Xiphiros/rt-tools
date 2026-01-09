@@ -36,11 +36,6 @@ interface TableMetadata {
     totalLevels: number;
 }
 
-interface TableResponse {
-    metadata: TableMetadata;
-    levels: TableLevel[];
-}
-
 // Color coding based on difficulty range
 const getLevelColor = (level: number) => {
     if (level >= 100) return 'text-gray-400'; // Grandmaster (Black/Onyx)
@@ -88,17 +83,19 @@ export const DifficultyTable = () => {
             });
     }, []);
 
-    const formatDate = (isoString: string) => {
+    const formatUtcDate = (isoString: string) => {
         try {
-            return new Date(isoString).toLocaleDateString(undefined, { 
+            const date = new Date(isoString);
+            return date.toLocaleString('en-GB', { 
                 year: 'numeric', 
                 month: 'short', 
                 day: 'numeric',
                 hour: '2-digit',
-                minute: '2-digit'
-            });
+                minute: '2-digit',
+                timeZone: 'UTC'
+            }) + " UTC";
         } catch {
-            return "Unknown";
+            return "Unknown Date";
         }
     };
 
@@ -213,7 +210,7 @@ export const DifficultyTable = () => {
                         {metadata && (
                             <div className="text-[10px] text-blue-200/50 font-mono flex items-center gap-1.5" title="Data Generation Time">
                                 <FontAwesomeIcon icon={faClock} />
-                                Updated: {formatDate(metadata.lastUpdated)}
+                                Updated: {formatUtcDate(metadata.lastUpdated)}
                             </div>
                         )}
                     </div>
