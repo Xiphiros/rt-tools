@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Dashboard } from './components/Dashboard';
 import { Calculator } from './components/Calculator';
 import { Leaderboard } from './components/Leaderboard';
+import { DifficultyTable } from './components/DifficultyTable';
 import { Editor } from './editor/Editor';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
@@ -20,7 +21,7 @@ const Disclaimer = () => (
 
 const Header = ({ activeTab, onTabChange }: { activeTab: string, onTabChange: (t: string) => void }) => {
     const { t } = useTranslation('common');
-    const tabs = ['dashboard', 'leaderboard', 'calculator', 'editor'];
+    const tabs = ['dashboard', 'tables', 'leaderboard', 'calculator', 'editor'];
 
     return (
         <header className="border-b border-border bg-[var(--color-header-bg)] sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
@@ -43,12 +44,12 @@ const Header = ({ activeTab, onTabChange }: { activeTab: string, onTabChange: (t
                 </div>
 
                 {/* Navigation */}
-                <nav className="flex gap-1 bg-input p-1 rounded-lg border border-border">
+                <nav className="flex gap-1 bg-input p-1 rounded-lg border border-border overflow-x-auto">
                     {tabs.map((tab) => (
                         <button
                             key={tab}
                             onClick={() => onTabChange(tab)}
-                            className={`px-5 py-1.5 rounded-md text-sm font-medium transition-all duration-200 capitalize ${
+                            className={`px-5 py-1.5 rounded-md text-sm font-medium transition-all duration-200 capitalize whitespace-nowrap ${
                                 activeTab === tab 
                                 ? 'bg-card text-primary shadow-sm ring-1 ring-border' 
                                 : 'text-muted hover:text-secondary hover:bg-white/5'
@@ -71,6 +72,7 @@ function App() {
       switch(activeTab) {
           case 'leaderboard': return <Leaderboard />;
           case 'calculator': return <Calculator />;
+          case 'tables': return <DifficultyTable />;
           case 'editor': 
             // Editor handles its own layout, so we bypass container constraints if needed
             return <Editor />;
