@@ -86,6 +86,7 @@ export const DifficultyTable = () => {
     const formatUtcDate = (isoString: string) => {
         try {
             const date = new Date(isoString);
+            // Strictly display in UTC to match the requested format
             return date.toLocaleString('en-GB', { 
                 year: 'numeric', 
                 month: 'short', 
@@ -186,18 +187,22 @@ export const DifficultyTable = () => {
             <div className="flex-1 flex flex-col gap-4 min-w-0">
                 {/* Disclaimer Banner */}
                 <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-xl flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between animate-in fade-in slide-in-from-top-2">
-                    <div className="flex gap-3 items-start">
-                        <FontAwesomeIcon icon={faInfoCircle} className="text-blue-400 mt-0.5 flex-shrink-0" />
-                        <div className="text-sm text-blue-200/80 leading-relaxed">
-                            <strong className="text-blue-100 block mb-1">Community Curated Content</strong>
-                            Rankings here are estimates and subject to change.
-                            <div className="mt-1 opacity-75 text-xs">
+                    <div className="flex gap-3 items-start max-w-2xl">
+                        <FontAwesomeIcon icon={faInfoCircle} className="text-blue-400 mt-1 flex-shrink-0" />
+                        <div className="text-sm text-blue-200/80 leading-relaxed space-y-2">
+                            <div>
+                                <strong className="text-blue-100">Standardized Ratings:</strong> Rankings are based on a <strong className="text-white">90% Clear</strong> at <strong className="text-white">OD7</strong>.
+                                <span className="block opacity-80 mt-0.5">
+                                    We normalize all ratings to OD7 because differing native timing windows (OD) across maps would otherwise create inconsistencies in difficulty gauging.
+                                </span>
+                            </div>
+                            <div className="text-xs pt-1 border-t border-blue-400/20">
                                 <span className="text-warning/90 font-bold mr-1">Note:</span> 
                                 Data provided here is a snapshot and may lag behind the live source sheet.
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col items-end gap-2">
+                    <div className="flex flex-col items-end gap-2 flex-shrink-0">
                         <a 
                             href={SHEET_URL} 
                             target="_blank" 
