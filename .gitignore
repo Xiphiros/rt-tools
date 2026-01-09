@@ -37,3 +37,4 @@ songs/
 !data/*.json
 !src/web/public/beatmaps.json
 !src/web/public/players.json
+!src/web/public/difficulty_table.json
