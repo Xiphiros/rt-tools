@@ -7,7 +7,8 @@ import {
     faSearch, 
     faSpinner, 
     faExclamationTriangle,
-    faLayerGroup
+    faLayerGroup,
+    faInfoCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 // Types matching the JSON output from process_tables.js
@@ -99,7 +100,7 @@ export const DifficultyTable = () => {
                     <div className="p-3 border-b border-border/50 bg-input/30">
                         <span className="text-xs font-bold text-muted uppercase tracking-wider flex items-center gap-2">
                             <FontAwesomeIcon icon={faLayerGroup} />
-                            Tiers
+                            Difficulty Levels
                         </span>
                     </div>
                     <div className="overflow-y-auto flex-1 custom-scrollbar p-1 space-y-0.5">
@@ -129,6 +130,15 @@ export const DifficultyTable = () => {
 
             {/* MAIN CONTENT: Map List */}
             <div className="flex-1 flex flex-col gap-4 min-w-0">
+                {/* Disclaimer Banner */}
+                <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-xl flex gap-3 items-start animate-in fade-in slide-in-from-top-2">
+                    <FontAwesomeIcon icon={faInfoCircle} className="text-blue-400 mt-0.5 flex-shrink-0" />
+                    <div className="text-sm text-blue-200/80 leading-relaxed">
+                        <strong className="text-blue-100 block mb-1">Community Curated Content</strong>
+                        This difficulty table is manually maintained by the community. Rankings here are subjective estimates of clearing difficulty and may differ from the algorithmic Star Rating.
+                    </div>
+                </div>
+
                 {/* Toolbar */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-between items-center bg-card border border-border rounded-xl p-4 shadow-lg">
                     <div className="flex items-center gap-3">
