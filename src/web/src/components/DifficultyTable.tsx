@@ -8,7 +8,9 @@ import {
     faSpinner, 
     faExclamationTriangle,
     faLayerGroup,
-    faInfoCircle
+    faInfoCircle,
+    faTable,
+    faClock
 } from '@fortawesome/free-solid-svg-icons';
 
 // Types matching the JSON output from process_tables.js
@@ -28,6 +30,17 @@ interface TableLevel {
     maps: TableMapEntry[];
 }
 
+interface TableMetadata {
+    lastUpdated: string;
+    totalMaps: number;
+    totalLevels: number;
+}
+
+interface TableResponse {
+    metadata: TableMetadata;
+    levels: TableLevel[];
+}
+
 // Color coding based on difficulty range
 const getLevelColor = (level: number) => {
     if (level >= 100) return 'text-gray-400'; // Grandmaster (Black/Onyx)
@@ -39,8 +52,11 @@ const getLevelColor = (level: number) => {
     return 'text-cyan-400';                     // Basic
 };
 
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/1oqqpUE_qHv-dNkx6oQYD3Yh11fpe7IV5Dgt6zuqt9fA/edit?usp=sharing";
+
 export const DifficultyTable = () => {
     const [levels, setLevels] = useState<TableLevel[]>([]);
+    const [metadata, setMetadata] = useState<TableMetadata | null>(null);
     const [selectedLevelIndex, setSelectedLevelIndex] = useState<number>(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -53,8 +69,16 @@ export const DifficultyTable = () => {
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 return res.json();
             })
-            .then((data: TableLevel[]) => {
-                setLevels(data);
+            .then((data: any) => {
+                // Support both legacy array format and new object format for stability
+                if (Array.isArray(data)) {
+                    setLevels(data);
+                } else if (data.levels && Array.isArray(data.levels)) {
+                    setLevels(data.levels);
+                    setMetadata(data.metadata);
+                } else {
+                    throw new Error("Invalid data format");
+                }
                 setLoading(false);
             })
             .catch(err => {
@@ -63,6 +87,20 @@ export const DifficultyTable = () => {
                 setLoading(false);
             });
     }, []);
+
+    const formatDate = (isoString: string) => {
+        try {
+            return new Date(isoString).toLocaleDateString(undefined, { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        } catch {
+            return "Unknown";
+        }
+    };
 
     if (loading) {
         return (
@@ -150,11 +188,34 @@ export const DifficultyTable = () => {
             {/* MAIN CONTENT: Map List */}
             <div className="flex-1 flex flex-col gap-4 min-w-0">
                 {/* Disclaimer Banner */}
-                <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-xl flex gap-3 items-start animate-in fade-in slide-in-from-top-2">
-                    <FontAwesomeIcon icon={faInfoCircle} className="text-blue-400 mt-0.5 flex-shrink-0" />
-                    <div className="text-sm text-blue-200/80 leading-relaxed">
-                        <strong className="text-blue-100 block mb-1">Community Curated Content</strong>
-                        This difficulty table is manually maintained by the community. Rankings here are subjective estimates of clearing difficulty and may differ from the algorithmic Star Rating.
+                <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-xl flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between animate-in fade-in slide-in-from-top-2">
+                    <div className="flex gap-3 items-start">
+                        <FontAwesomeIcon icon={faInfoCircle} className="text-blue-400 mt-0.5 flex-shrink-0" />
+                        <div className="text-sm text-blue-200/80 leading-relaxed">
+                            <strong className="text-blue-100 block mb-1">Community Curated Content</strong>
+                            Rankings here are estimates and subject to change.
+                            <div className="mt-1 opacity-75 text-xs">
+                                <span className="text-warning/90 font-bold mr-1">Note:</span> 
+                                Data provided here is a snapshot and may lag behind the live source sheet.
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex flex-col items-end gap-2">
+                        <a 
+                            href={SHEET_URL} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/20 hover:bg-blue-500/30 text-blue-200 rounded-lg text-xs font-bold transition-colors whitespace-nowrap"
+                        >
+                            <FontAwesomeIcon icon={faTable} />
+                            View Source Sheet
+                        </a>
+                        {metadata && (
+                            <div className="text-[10px] text-blue-200/50 font-mono flex items-center gap-1.5" title="Data Generation Time">
+                                <FontAwesomeIcon icon={faClock} />
+                                Updated: {formatDate(metadata.lastUpdated)}
+                            </div>
+                        )}
                     </div>
                 </div>
 
