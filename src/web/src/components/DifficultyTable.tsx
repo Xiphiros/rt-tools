@@ -49,7 +49,7 @@ export const DifficultyTable = () => {
     useEffect(() => {
         fetch(`./difficulty_table.json?t=${Date.now()}`)
             .then(res => {
-                if (res.status === 404) throw new Error("Table data not found. Please run the processing script.");
+                if (res.status === 404) throw new Error("Database file missing (difficulty_table.json).");
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 return res.json();
             })
@@ -82,12 +82,11 @@ export const DifficultyTable = () => {
                     {error || "No levels found in the dataset."}
                 </p>
                 <div className="bg-card border border-border p-4 rounded-lg text-left text-xs text-muted font-mono w-full">
-                    <p className="mb-2 font-bold text-white">How to fix:</p>
-                    <ol className="list-decimal pl-4 space-y-1">
-                        <li>Ensure <span className="text-primary">data/difficulty_table.xlsx</span> exists.</li>
-                        <li>Run <span className="text-primary">npm run tables</span> in <span className="text-white">.local/scripts</span>.</li>
-                        <li>Reload this page.</li>
-                    </ol>
+                    <p className="mb-2 font-bold text-white">Troubleshooting:</p>
+                    <ul className="list-disc pl-4 space-y-1">
+                        <li>If you are a user: Please report this to the site administrator.</li>
+                        <li>If you are a maintainer: Ensure <code>difficulty_table.json</code> is generated and in the <code>public</code> folder.</li>
+                    </ul>
                 </div>
             </div>
         );
