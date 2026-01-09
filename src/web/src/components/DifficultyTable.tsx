@@ -28,6 +28,17 @@ interface TableLevel {
     maps: TableMapEntry[];
 }
 
+// Color coding based on difficulty range
+const getLevelColor = (level: number) => {
+    if (level >= 100) return 'text-gray-400'; // Grandmaster (Black/Onyx)
+    if (level >= 81) return 'text-fuchsia-400'; // Master
+    if (level >= 61) return 'text-red-500';     // Expert
+    if (level >= 41) return 'text-orange-400';  // Advanced
+    if (level >= 21) return 'text-yellow-400';  // Intermediate
+    if (level >= 11) return 'text-emerald-400'; // Novice
+    return 'text-cyan-400';                     // Basic
+};
+
 export const DifficultyTable = () => {
     const [levels, setLevels] = useState<TableLevel[]>([]);
     const [selectedLevelIndex, setSelectedLevelIndex] = useState<number>(0);
@@ -92,6 +103,8 @@ export const DifficultyTable = () => {
         m.comment.toLowerCase().includes(search.toLowerCase())
     );
 
+    const activeColor = getLevelColor(currentLevel.level);
+
     return (
         <div className="flex flex-col lg:flex-row gap-6 h-[calc(100vh-8rem)]">
             {/* SIDEBAR: Folder Structure */}
@@ -104,26 +117,33 @@ export const DifficultyTable = () => {
                         </span>
                     </div>
                     <div className="overflow-y-auto flex-1 custom-scrollbar p-1 space-y-0.5">
-                        {levels.map((lvl, idx) => (
-                            <button
-                                key={lvl.level}
-                                onClick={() => setSelectedLevelIndex(idx)}
-                                className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-3 ${
-                                    selectedLevelIndex === idx 
-                                    ? 'bg-primary/10 text-primary border border-primary/20 shadow-[inset_0_0_10px_rgba(34,211,238,0.1)]' 
-                                    : 'text-muted hover:text-white hover:bg-white/5 border border-transparent'
-                                }`}
-                            >
-                                <FontAwesomeIcon 
-                                    icon={selectedLevelIndex === idx ? faFolderOpen : faFolder} 
-                                    className={selectedLevelIndex === idx ? "text-primary" : "text-muted opacity-50"} 
-                                />
-                                <span className="flex-1">{lvl.name}</span>
-                                <span className="text-[10px] bg-black/20 px-1.5 py-0.5 rounded text-muted font-mono">
-                                    {lvl.maps.length}
-                                </span>
-                            </button>
-                        ))}
+                        {levels.map((lvl, idx) => {
+                            const isSelected = selectedLevelIndex === idx;
+                            const tierColor = getLevelColor(lvl.level);
+                            
+                            return (
+                                <button
+                                    key={lvl.level}
+                                    onClick={() => setSelectedLevelIndex(idx)}
+                                    className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-3 ${
+                                        isSelected 
+                                        ? 'bg-white/10 border border-white/20 shadow-[inset_0_0_10px_rgba(255,255,255,0.05)]' 
+                                        : 'text-muted hover:text-white hover:bg-white/5 border border-transparent'
+                                    }`}
+                                >
+                                    <FontAwesomeIcon 
+                                        icon={isSelected ? faFolderOpen : faFolder} 
+                                        className={isSelected ? tierColor : "text-muted opacity-50"} 
+                                    />
+                                    <span className={`flex-1 ${isSelected ? 'text-white' : ''}`}>
+                                        {lvl.name}
+                                    </span>
+                                    <span className="text-[10px] bg-black/20 px-1.5 py-0.5 rounded text-muted font-mono">
+                                        {lvl.maps.length}
+                                    </span>
+                                </button>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
@@ -143,7 +163,7 @@ export const DifficultyTable = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-between items-center bg-card border border-border rounded-xl p-4 shadow-lg">
                     <div className="flex items-center gap-3">
                         <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-3">
-                            <span className="text-primary">◆</span> 
+                            <span className={activeColor}>◆</span> 
                             {currentLevel.name}
                         </h2>
                         <span className="px-2 py-0.5 rounded text-xs font-bold bg-white/10 text-muted border border-white/5 uppercase tracking-wide">
@@ -174,19 +194,20 @@ export const DifficultyTable = () => {
                             filteredMaps.map((map, i) => (
                                 <div 
                                     key={`${map.mapsetId}-${i}`}
-                                    className="group bg-card hover:bg-card-hover border border-border hover:border-primary/50 rounded-xl p-4 transition-all duration-200 shadow-md hover:shadow-xl hover:shadow-primary/5 relative overflow-hidden"
+                                    className="group bg-card hover:bg-card-hover border border-border hover:border-white/20 rounded-xl p-4 transition-all duration-200 shadow-md hover:shadow-xl relative overflow-hidden"
                                 >
                                     {/* Deco Elements */}
                                     <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
                                         <FontAwesomeIcon icon={faExternalLinkAlt} className="text-4xl" />
                                     </div>
-                                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    {/* Hover Color Line */}
+                                    <div className={`absolute left-0 top-0 bottom-0 w-1 bg-current opacity-0 group-hover:opacity-100 transition-opacity ${activeColor}`} />
 
                                     <div className="flex justify-between items-start gap-4 relative z-10">
                                         <div className="min-w-0 flex-1">
                                             {/* Header: Diff Name */}
                                             <div className="flex items-center gap-2 mb-1">
-                                                <span className="text-primary text-xs font-bold">◆</span>
+                                                <span className={`${activeColor} text-xs font-bold`}>◆</span>
                                                 <span className="text-sm font-bold text-secondary uppercase tracking-wide truncate">
                                                     {map.diffName}
                                                 </span>
@@ -214,7 +235,7 @@ export const DifficultyTable = () => {
                                                 href={map.url} 
                                                 target="_blank" 
                                                 rel="noopener noreferrer"
-                                                className="w-10 h-10 bg-input group-hover:bg-primary group-hover:text-black border border-border group-hover:border-primary rounded-lg flex items-center justify-center text-muted transition-all duration-200 shadow-sm"
+                                                className="w-10 h-10 bg-input group-hover:bg-white/10 border border-border group-hover:border-white/30 rounded-lg flex items-center justify-center text-muted group-hover:text-white transition-all duration-200 shadow-sm"
                                                 title="Open Map Page"
                                             >
                                                 <FontAwesomeIcon icon={faExternalLinkAlt} />
