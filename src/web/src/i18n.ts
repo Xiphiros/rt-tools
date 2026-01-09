@@ -8,6 +8,7 @@ const resources = {
     common: {
       title: "RT Community Tools",
       dashboard: "Maps",
+      tables: "Tables",
       calculator: "Calculator",
       leaderboard: "Leaderboard",
       editor: "Editor",
