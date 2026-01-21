@@ -5,8 +5,8 @@ import {
     faSpinner, 
     faExclamationTriangle, 
     faSort, 
-    faClock,
-    faChartBar
+    faChartBar,
+    faClock
 } from '@fortawesome/free-solid-svg-icons';
 
 interface AnalysisEntry {
@@ -89,11 +89,12 @@ export const ScoreAnalysis = () => {
     }, [data, search, sortKey, sortDesc]);
 
     const getRatioColor = (ratio: number) => {
-        if (ratio >= 0.98) return 'text-purple-400'; // Very Easy / Farmable
-        if (ratio >= 0.95) return 'text-cyan-400';   // Easy
-        if (ratio >= 0.90) return 'text-emerald-400'; // Moderate
-        if (ratio >= 0.85) return 'text-yellow-400'; // Hard
-        return 'text-red-500';                       // Very Hard / Tech
+        if (ratio >= 1.0) return 'text-blue-400';    // Perfect/DT
+        if (ratio >= 0.98) return 'text-purple-400'; // S+
+        if (ratio >= 0.95) return 'text-cyan-400';   // S
+        if (ratio >= 0.90) return 'text-emerald-400'; // A
+        if (ratio >= 0.85) return 'text-yellow-400'; // B
+        return 'text-red-500';                       // C/D/F
     };
 
     const formatNumber = (num: number) => num.toLocaleString();
@@ -176,7 +177,7 @@ export const ScoreAnalysis = () => {
                                     Plays <FontAwesomeIcon icon={faSort} className={`ml-1 ${sortKey === 'playCount' ? 'opacity-100' : 'opacity-30'}`} />
                                 </th>
                                 <th className="px-6 py-4 text-right cursor-pointer hover:text-primary transition-colors select-none" onClick={() => handleSort('ratio')}>
-                                    Clear Ratio <FontAwesomeIcon icon={faSort} className={`ml-1 ${sortKey === 'ratio' ? 'opacity-100' : 'opacity-30'}`} />
+                                    Avg Score (Top 50) <FontAwesomeIcon icon={faSort} className={`ml-1 ${sortKey === 'ratio' ? 'opacity-100' : 'opacity-30'}`} />
                                 </th>
                             </tr>
                         </thead>
@@ -207,17 +208,13 @@ export const ScoreAnalysis = () => {
                                         {formatNumber(row.playCount)}
                                     </td>
                                     <td className="px-6 py-4 text-right">
-                                        <div className="flex flex-col items-end gap-1">
-                                            <span className={`font-bold ${getRatioColor(row.ratio)}`}>
-                                                {(row.ratio * 100).toFixed(2)}%
+                                        <div className="flex flex-col items-end">
+                                            <span className="font-bold text-white text-base">
+                                                {formatNumber(row.avgScore)}
                                             </span>
-                                            {/* Mini bar chart for visual ratio */}
-                                            <div className="w-16 h-1 bg-input rounded-full overflow-hidden">
-                                                <div 
-                                                    className="h-full bg-current opacity-50" 
-                                                    style={{ width: `${Math.min(100, row.ratio * 100)}%` }}
-                                                />
-                                            </div>
+                                            <span className={`text-[10px] font-bold ${getRatioColor(row.ratio)}`}>
+                                                {(row.ratio * 100).toFixed(2)}% of Max
+                                            </span>
                                         </div>
                                     </td>
                                 </tr>
