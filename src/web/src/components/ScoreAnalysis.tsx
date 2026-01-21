@@ -12,7 +12,7 @@ import {
     faTrophy,
     faPercentage,
     faSkull,
-    faFileCsv,
+    faFileExcel,
     faChevronLeft,
     faChevronRight
 } from '@fortawesome/free-solid-svg-icons';
@@ -90,6 +90,7 @@ const GradeBadge = ({ grade }: { grade: string }) => {
 export const ScoreAnalysis = () => {
     const [data, setData] = useState<AnalysisData | null>(null);
     const [loading, setLoading] = useState(true);
+    const [exporting, setExporting] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [search, setSearch] = useState('');
     const [sortKey, setSortKey] = useState<SortKey>('stars');
@@ -143,12 +144,10 @@ export const ScoreAnalysis = () => {
         });
     }, [data, search, sortKey, sortDesc]);
 
-    // Reset pagination when filters change
     useEffect(() => {
         setCurrentPage(1);
     }, [search, sortKey, sortDesc]);
 
-    // Pagination Calculations
     const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
     const paginatedData = filteredData.slice(
         (currentPage - 1) * ITEMS_PER_PAGE, 
@@ -162,48 +161,105 @@ export const ScoreAnalysis = () => {
         }
     };
 
-    const handleExport = () => {
+    const handleExportExcel = async () => {
         if (!filteredData.length) return;
+        setExporting(true);
 
-        const headers = [
-            "MapID", "Artist", "Title", "Difficulty", "Mapper", 
-            "Stars", "Notes", "Max Score (NM)", "Max Score (DT)", 
-            "Avg Score", "Ratio", "Plays", "Max Combo"
-        ];
+        try {
+            const ExcelJS = (await import('exceljs')).default;
+            const workbook = new ExcelJS.Workbook();
+            const sheet = workbook.addWorksheet('Analysis');
 
-        const csvRows = [headers.join(",")];
-        
-        for (const row of filteredData) {
-            // Escape quotes by doubling them, wrap fields in quotes
-            const escape = (val: string | number) => `"${String(val).replace(/"/g, '""')}"`;
-            
-            const values = [
-                escape(row.mapId),
-                escape(row.artist),
-                escape(row.title),
-                escape(row.difficulty),
-                escape(row.mapper),
-                row.stars.toFixed(2),
-                row.noteCount,
-                row.maxScoreNomod,
-                row.maxScoreDT,
-                row.avgScore,
-                row.ratio.toFixed(4),
-                row.playCount,
-                row.stats?.maxCombo || 0
+            // Define Columns
+            sheet.columns = [
+                { header: 'Map ID', key: 'mapId', width: 20 },
+                { header: 'Artist', key: 'artist', width: 25 },
+                { header: 'Title', key: 'title', width: 35 },
+                { header: 'Difficulty', key: 'difficulty', width: 20 },
+                { header: 'Mapper', key: 'mapper', width: 15 },
+                { header: 'Stars', key: 'stars', width: 10 },
+                { header: 'Notes', key: 'noteCount', width: 10 },
+                { header: 'Avg Score', key: 'avgScore', width: 15 },
+                { header: 'Max (NM)', key: 'maxScoreNomod', width: 15 },
+                { header: 'Max (DT)', key: 'maxScoreDT', width: 15 },
+                { header: 'Clear Ratio', key: 'ratio', width: 12 },
+                { header: 'Plays', key: 'playCount', width: 10 },
+                { header: 'Max Combo', key: 'maxCombo', width: 12 },
+                { header: 'Pass Rate', key: 'passRate', width: 12 },
+                { header: 'Avg Acc', key: 'avgAcc', width: 12 },
             ];
-            csvRows.push(values.join(","));
+
+            // Styling Header
+            sheet.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
+            sheet.getRow(1).fill = {
+                type: 'pattern',
+                pattern: 'solid',
+                fgColor: { argb: 'FF1E293B' } // Slate 800
+            };
+            sheet.getRow(1).alignment = { horizontal: 'center' };
+
+            // Add Rows
+            filteredData.forEach(row => {
+                const r = sheet.addRow({
+                    mapId: row.mapId,
+                    artist: row.artist,
+                    title: row.title,
+                    difficulty: row.difficulty,
+                    mapper: row.mapper,
+                    stars: row.stars,
+                    noteCount: row.noteCount,
+                    avgScore: row.avgScore,
+                    maxScoreNomod: row.maxScoreNomod,
+                    maxScoreDT: row.maxScoreDT,
+                    ratio: row.ratio,
+                    playCount: row.playCount,
+                    maxCombo: row.stats?.maxCombo || 0,
+                    passRate: row.stats?.passRate || 0,
+                    avgAcc: (row.stats?.avgAccuracy || 0) / 100
+                });
+
+                // Conditional Formatting for Ratio
+                const ratioCell = r.getCell('ratio');
+                ratioCell.numFmt = '0.00%';
+                
+                let argb = 'FFFF4444'; // Red (Default/Low)
+                if (row.ratio >= 1.0) argb = 'FF60A5FA';      // Blue
+                else if (row.ratio >= 0.98) argb = 'FFC084FC'; // Purple
+                else if (row.ratio >= 0.95) argb = 'FF22D3EE'; // Cyan
+                else if (row.ratio >= 0.90) argb = 'FF34D399'; // Green
+                else if (row.ratio >= 0.85) argb = 'FFFACC15'; // Yellow
+                
+                ratioCell.font = { color: { argb }, bold: true };
+
+                // Number Formatting
+                r.getCell('stars').numFmt = '0.00';
+                r.getCell('noteCount').numFmt = '#,##0';
+                r.getCell('avgScore').numFmt = '#,##0';
+                r.getCell('maxScoreNomod').numFmt = '#,##0';
+                r.getCell('maxScoreDT').numFmt = '#,##0';
+                r.getCell('playCount').numFmt = '#,##0';
+                r.getCell('passRate').numFmt = '0.0%';
+                r.getCell('avgAcc').numFmt = '0.00%';
+            });
+
+            // Generate & Save
+            const buffer = await workbook.xlsx.writeBuffer();
+            const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `rt_analysis_${new Date().toISOString().slice(0, 10)}.xlsx`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+
+        } catch (e) {
+            console.error("Export failed:", e);
+            alert("Failed to export Excel file.");
+        } finally {
+            setExporting(false);
         }
-        
-        const blob = new Blob([csvRows.join("\n")], { type: 'text/csv;charset=utf-8;' });
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `rt_analysis_export_${new Date().toISOString().slice(0,10)}.csv`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
     };
 
     const getRatioColor = (ratio: number) => {
@@ -279,12 +335,13 @@ export const ScoreAnalysis = () => {
                     />
                 </div>
                 <button 
-                    onClick={handleExport}
-                    className="px-4 py-2 bg-input border border-border rounded-lg text-sm font-bold text-muted hover:text-white hover:bg-white/5 transition-all flex items-center gap-2"
-                    title="Export current view to CSV"
+                    onClick={handleExportExcel}
+                    disabled={exporting}
+                    className="px-4 py-2 bg-input border border-border rounded-lg text-sm font-bold text-muted hover:text-white hover:bg-white/5 transition-all flex items-center gap-2 disabled:opacity-50"
+                    title="Export current view to Excel"
                 >
-                    <FontAwesomeIcon icon={faFileCsv} className="text-green-500" />
-                    <span>Export CSV</span>
+                    {exporting ? <FontAwesomeIcon icon={faSpinner} spin /> : <FontAwesomeIcon icon={faFileExcel} className="text-green-500" />}
+                    <span>{exporting ? 'Generating...' : 'Export Excel'}</span>
                 </button>
             </div>
 
