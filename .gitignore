@@ -37,7 +37,7 @@ songs/
 !data/*.json
 !src/web/public/beatmaps.json
 !src/web/public/players.json
-!src/web/public/difficulty_table.json
+!src/web/public/score_analysis.json
 
 # Source Data (Excel)
 data/*.xlsx
