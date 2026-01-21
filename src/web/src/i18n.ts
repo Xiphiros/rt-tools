@@ -9,6 +9,7 @@ const resources = {
       title: "RT Community Tools",
       dashboard: "Maps",
       tables: "Tables",
+      analysis: "Analysis",
       calculator: "Calculator",
       leaderboard: "Leaderboard",
       editor: "Editor",
