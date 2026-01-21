@@ -11,7 +11,10 @@ import {
     faChevronUp,
     faTrophy,
     faPercentage,
-    faSkull
+    faSkull,
+    faFileCsv,
+    faChevronLeft,
+    faChevronRight
 } from '@fortawesome/free-solid-svg-icons';
 
 interface CompactScore {
@@ -93,6 +96,10 @@ export const ScoreAnalysis = () => {
     const [sortDesc, setSortDesc] = useState(true);
     const [expandedId, setExpandedId] = useState<string | null>(null);
 
+    // Pagination State
+    const [currentPage, setCurrentPage] = useState(1);
+    const ITEMS_PER_PAGE = 50;
+
     useEffect(() => {
         fetch('./score_analysis.json?t=' + Date.now())
             .then(res => {
@@ -136,6 +143,69 @@ export const ScoreAnalysis = () => {
         });
     }, [data, search, sortKey, sortDesc]);
 
+    // Reset pagination when filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [search, sortKey, sortDesc]);
+
+    // Pagination Calculations
+    const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
+    const paginatedData = filteredData.slice(
+        (currentPage - 1) * ITEMS_PER_PAGE, 
+        currentPage * ITEMS_PER_PAGE
+    );
+
+    const handlePageChange = (newPage: number) => {
+        if (newPage >= 1 && newPage <= totalPages) {
+            setCurrentPage(newPage);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
+    const handleExport = () => {
+        if (!filteredData.length) return;
+
+        const headers = [
+            "MapID", "Artist", "Title", "Difficulty", "Mapper", 
+            "Stars", "Notes", "Max Score (NM)", "Max Score (DT)", 
+            "Avg Score", "Ratio", "Plays", "Max Combo"
+        ];
+
+        const csvRows = [headers.join(",")];
+        
+        for (const row of filteredData) {
+            // Escape quotes by doubling them, wrap fields in quotes
+            const escape = (val: string | number) => `"${String(val).replace(/"/g, '""')}"`;
+            
+            const values = [
+                escape(row.mapId),
+                escape(row.artist),
+                escape(row.title),
+                escape(row.difficulty),
+                escape(row.mapper),
+                row.stars.toFixed(2),
+                row.noteCount,
+                row.maxScoreNomod,
+                row.maxScoreDT,
+                row.avgScore,
+                row.ratio.toFixed(4),
+                row.playCount,
+                row.stats?.maxCombo || 0
+            ];
+            csvRows.push(values.join(","));
+        }
+        
+        const blob = new Blob([csvRows.join("\n")], { type: 'text/csv;charset=utf-8;' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `rt_analysis_export_${new Date().toISOString().slice(0,10)}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+    };
+
     const getRatioColor = (ratio: number) => {
         if (ratio >= 1.0) return 'text-blue-400';    
         if (ratio >= 0.98) return 'text-purple-400'; 
@@ -171,7 +241,7 @@ export const ScoreAnalysis = () => {
     }
 
     return (
-        <div className="space-y-6 pb-12">
+        <div className="space-y-6 pb-20">
             {/* Header / Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-card border border-border p-4 rounded-xl shadow-sm flex items-center gap-4">
@@ -196,7 +266,7 @@ export const ScoreAnalysis = () => {
                 </div>
             </div>
 
-            {/* Search */}
+            {/* Search and Export */}
             <div className="flex gap-4">
                 <div className="relative flex-1">
                     <FontAwesomeIcon icon={faSearch} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
@@ -208,10 +278,18 @@ export const ScoreAnalysis = () => {
                         onChange={(e) => setSearch(e.target.value)}
                     />
                 </div>
+                <button 
+                    onClick={handleExport}
+                    className="px-4 py-2 bg-input border border-border rounded-lg text-sm font-bold text-muted hover:text-white hover:bg-white/5 transition-all flex items-center gap-2"
+                    title="Export current view to CSV"
+                >
+                    <FontAwesomeIcon icon={faFileCsv} className="text-green-500" />
+                    <span>Export CSV</span>
+                </button>
             </div>
 
             {/* Table */}
-            <div className="bg-card rounded-xl border border-border shadow-xl overflow-hidden">
+            <div className="bg-card rounded-xl border border-border shadow-xl overflow-hidden flex flex-col">
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm text-left border-collapse">
                         <thead>
@@ -238,154 +316,207 @@ export const ScoreAnalysis = () => {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-border/50">
-                            {filteredData.slice(0, 100).map((row) => (
-                                <React.Fragment key={row.id}>
-                                    <tr 
-                                        onClick={() => toggleRow(row.id)}
-                                        className={`hover:bg-card-hover/50 transition-colors cursor-pointer ${expandedId === row.id ? 'bg-card-hover/30' : ''}`}
-                                    >
-                                        <td className="px-6 py-4">
-                                            <div className="font-semibold text-text-header truncate max-w-[300px]" title={row.title}>
-                                                {row.title}
-                                            </div>
-                                            <div className="text-xs text-muted mt-0.5 truncate max-w-[300px]">
-                                                {row.artist} • <span className="text-secondary">{row.difficulty}</span>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4 text-right">
-                                            <span className="font-bold text-[var(--color-warning)]">{row.stars.toFixed(2)} ★</span>
-                                        </td>
-                                        <td className="px-6 py-4 text-right font-mono text-muted">
-                                            {formatNumber(row.noteCount)}
-                                        </td>
-                                        <td className="px-6 py-4 text-right font-mono text-muted">
-                                            {formatNumber(row.maxScoreNomod)}
-                                        </td>
-                                        <td className="px-6 py-4 text-right font-mono text-danger/80">
-                                            {formatNumber(row.maxScoreDT)}
-                                        </td>
-                                        <td className="px-6 py-4 text-right font-mono text-muted">
-                                            {formatNumber(row.playCount)}
-                                        </td>
-                                        <td className="px-6 py-4 text-right font-mono text-white font-bold">
-                                            {formatNumber(row.avgScore)}
-                                        </td>
-                                        <td className="px-6 py-4 text-right">
-                                            <div className="flex flex-col items-end gap-1">
-                                                <span className={`text-xs font-bold ${getRatioColor(row.ratio)}`}>
-                                                    {(row.ratio * 100).toFixed(1)}%
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4 text-center text-muted">
-                                            <FontAwesomeIcon icon={expandedId === row.id ? faChevronUp : faChevronDown} />
-                                        </td>
-                                    </tr>
+                            {paginatedData.length === 0 ? (
+                                <tr>
+                                    <td colSpan={9} className="p-8 text-center text-muted">No maps found.</td>
+                                </tr>
+                            ) : (
+                                paginatedData.map((row) => (
+                                    <React.Fragment key={row.id}>
+                                        <tr 
+                                            onClick={() => toggleRow(row.id)}
+                                            className={`hover:bg-card-hover/50 transition-colors cursor-pointer ${expandedId === row.id ? 'bg-card-hover/30' : ''}`}
+                                        >
+                                            <td className="px-6 py-4">
+                                                <div className="font-semibold text-text-header truncate max-w-[300px]" title={row.title}>
+                                                    {row.title}
+                                                </div>
+                                                <div className="text-xs text-muted mt-0.5 truncate max-w-[300px]">
+                                                    {row.artist} • <span className="text-secondary">{row.difficulty}</span>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4 text-right">
+                                                <span className="font-bold text-[var(--color-warning)]">{row.stars.toFixed(2)} ★</span>
+                                            </td>
+                                            <td className="px-6 py-4 text-right font-mono text-muted">
+                                                {formatNumber(row.noteCount)}
+                                            </td>
+                                            <td className="px-6 py-4 text-right font-mono text-muted">
+                                                {formatNumber(row.maxScoreNomod)}
+                                            </td>
+                                            <td className="px-6 py-4 text-right font-mono text-danger/80">
+                                                {formatNumber(row.maxScoreDT)}
+                                            </td>
+                                            <td className="px-6 py-4 text-right font-mono text-muted">
+                                                {formatNumber(row.playCount)}
+                                            </td>
+                                            <td className="px-6 py-4 text-right font-mono text-white font-bold">
+                                                {formatNumber(row.avgScore)}
+                                            </td>
+                                            <td className="px-6 py-4 text-right">
+                                                <div className="flex flex-col items-end gap-1">
+                                                    <span className={`text-xs font-bold ${getRatioColor(row.ratio)}`}>
+                                                        {(row.ratio * 100).toFixed(1)}%
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4 text-center text-muted">
+                                                <FontAwesomeIcon icon={expandedId === row.id ? faChevronUp : faChevronDown} />
+                                            </td>
+                                        </tr>
 
-                                    {/* EXPANDED SECTION */}
-                                    {expandedId === row.id && (
-                                        <tr className="bg-input/20">
-                                            <td colSpan={9} className="p-0">
-                                                <div className="p-6 border-b border-border/50 animate-in slide-in-from-top-2 duration-200">
-                                                    
-                                                    {/* STATS ROW */}
-                                                    {row.stats && (
-                                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                                                            <div className="bg-card border border-border p-3 rounded-lg flex items-center gap-3">
-                                                                <div className="w-8 h-8 rounded bg-primary/10 text-primary flex items-center justify-center">
-                                                                    <FontAwesomeIcon icon={faTrophy} />
+                                        {/* EXPANDED SECTION */}
+                                        {expandedId === row.id && (
+                                            <tr className="bg-input/20">
+                                                <td colSpan={9} className="p-0">
+                                                    <div className="p-6 border-b border-border/50 animate-in slide-in-from-top-2 duration-200">
+                                                        
+                                                        {/* STATS ROW */}
+                                                        {row.stats && (
+                                                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                                                <div className="bg-card border border-border p-3 rounded-lg flex items-center gap-3">
+                                                                    <div className="w-8 h-8 rounded bg-primary/10 text-primary flex items-center justify-center">
+                                                                        <FontAwesomeIcon icon={faTrophy} />
+                                                                    </div>
+                                                                    <div>
+                                                                        <div className="text-[10px] text-muted uppercase font-bold">Pass Rate</div>
+                                                                        <div className="text-lg font-bold text-white">{(row.stats.passRate * 100).toFixed(1)}%</div>
+                                                                    </div>
                                                                 </div>
-                                                                <div>
-                                                                    <div className="text-[10px] text-muted uppercase font-bold">Pass Rate</div>
-                                                                    <div className="text-lg font-bold text-white">{(row.stats.passRate * 100).toFixed(1)}%</div>
+                                                                <div className="bg-card border border-border p-3 rounded-lg flex items-center gap-3">
+                                                                    <div className="w-8 h-8 rounded bg-secondary/10 text-secondary flex items-center justify-center">
+                                                                        <FontAwesomeIcon icon={faPercentage} />
+                                                                    </div>
+                                                                    <div>
+                                                                        <div className="text-[10px] text-muted uppercase font-bold">Avg Accuracy</div>
+                                                                        <div className="text-lg font-bold text-white">{row.stats.avgAccuracy.toFixed(2)}%</div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div className="bg-card border border-border p-3 rounded-lg flex items-center gap-3">
-                                                                <div className="w-8 h-8 rounded bg-secondary/10 text-secondary flex items-center justify-center">
-                                                                    <FontAwesomeIcon icon={faPercentage} />
+                                                                <div className="bg-card border border-border p-3 rounded-lg flex items-center gap-3">
+                                                                    <div className="w-8 h-8 rounded bg-danger/10 text-danger flex items-center justify-center">
+                                                                        <FontAwesomeIcon icon={faSkull} />
+                                                                    </div>
+                                                                    <div>
+                                                                        <div className="text-[10px] text-muted uppercase font-bold">Max Combo</div>
+                                                                        <div className="text-lg font-bold text-white">
+                                                                            {row.stats.maxCombo.toLocaleString()} <span className="text-muted text-xs">/ {row.noteCount}</span>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div>
-                                                                    <div className="text-[10px] text-muted uppercase font-bold">Avg Accuracy</div>
-                                                                    <div className="text-lg font-bold text-white">{row.stats.avgAccuracy.toFixed(2)}%</div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="bg-card border border-border p-3 rounded-lg flex items-center gap-3">
-                                                                <div className="w-8 h-8 rounded bg-danger/10 text-danger flex items-center justify-center">
-                                                                    <FontAwesomeIcon icon={faSkull} />
-                                                                </div>
-                                                                <div>
-                                                                    <div className="text-[10px] text-muted uppercase font-bold">Max Combo</div>
-                                                                    <div className="text-lg font-bold text-white">
-                                                                        {row.stats.maxCombo.toLocaleString()} <span className="text-muted text-xs">/ {row.noteCount}</span>
+                                                                <div className="bg-card border border-border p-3 rounded-lg flex flex-col justify-center">
+                                                                    <div className="text-[10px] text-muted uppercase font-bold mb-1">Grade Distribution</div>
+                                                                    <div className="flex gap-1">
+                                                                        {Object.entries(row.stats.gradeCounts).map(([grade, count]) => (
+                                                                            count > 0 && (
+                                                                                <span key={grade} className="text-xs" title={`${count} ${grade} ranks`}>
+                                                                                    <GradeBadge grade={grade} /> <span className="text-muted ml-0.5">{count}</span>
+                                                                                </span>
+                                                                            )
+                                                                        ))}
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div className="bg-card border border-border p-3 rounded-lg flex flex-col justify-center">
-                                                                <div className="text-[10px] text-muted uppercase font-bold mb-1">Grade Distribution</div>
-                                                                <div className="flex gap-1">
-                                                                    {Object.entries(row.stats.gradeCounts).map(([grade, count]) => (
-                                                                        count > 0 && (
-                                                                            <span key={grade} className="text-xs" title={`${count} ${grade} ranks`}>
-                                                                                <GradeBadge grade={grade} /> <span className="text-muted ml-0.5">{count}</span>
-                                                                            </span>
-                                                                        )
-                                                                    ))}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    )}
+                                                        )}
 
-                                                    {/* LEADERBOARD TABLE */}
-                                                    <h4 className="text-xs uppercase font-bold text-muted mb-3 tracking-wider">Top 50 Scores Snapshot</h4>
-                                                    <div className="overflow-x-auto rounded-lg border border-border">
-                                                        <table className="w-full text-xs text-left bg-card">
-                                                            <thead className="bg-input/50 text-muted font-semibold">
-                                                                <tr>
-                                                                    <th className="px-4 py-2 w-12 text-center">#</th>
-                                                                    <th className="px-4 py-2">Player</th>
-                                                                    <th className="px-4 py-2 text-right">Score</th>
-                                                                    <th className="px-4 py-2 text-right">Accuracy</th>
-                                                                    <th className="px-4 py-2 text-right">Combo</th>
-                                                                    <th className="px-4 py-2 text-center">Grade</th>
-                                                                    <th className="px-4 py-2 text-right">Mods</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody className="divide-y divide-border/50">
-                                                                {row.scores.map((score) => (
-                                                                    <tr key={score.rank} className="hover:bg-white/5 transition-colors">
-                                                                        <td className="px-4 py-2 text-center text-muted">{score.rank}</td>
-                                                                        <td className="px-4 py-2 font-medium text-white">{score.player}</td>
-                                                                        <td className="px-4 py-2 text-right font-mono">{score.score.toLocaleString()}</td>
-                                                                        <td className="px-4 py-2 text-right text-muted">{score.acc.toFixed(2)}%</td>
-                                                                        <td className="px-4 py-2 text-right text-muted">{score.combo}x</td>
-                                                                        <td className="px-4 py-2 text-center"><GradeBadge grade={score.grade} /></td>
-                                                                        <td className="px-4 py-2 text-right">
-                                                                            <div className="flex justify-end gap-1">
-                                                                                {score.mods.map(m => (
-                                                                                    <span key={m} className="text-[9px] bg-white/10 px-1 rounded text-white/80">{m}</span>
-                                                                                ))}
-                                                                            </div>
-                                                                        </td>
+                                                        {/* LEADERBOARD TABLE */}
+                                                        <h4 className="text-xs uppercase font-bold text-muted mb-3 tracking-wider">Top 50 Scores Snapshot</h4>
+                                                        <div className="overflow-x-auto rounded-lg border border-border">
+                                                            <table className="w-full text-xs text-left bg-card">
+                                                                <thead className="bg-input/50 text-muted font-semibold">
+                                                                    <tr>
+                                                                        <th className="px-4 py-2 w-12 text-center">#</th>
+                                                                        <th className="px-4 py-2">Player</th>
+                                                                        <th className="px-4 py-2 text-right">Score</th>
+                                                                        <th className="px-4 py-2 text-right">Accuracy</th>
+                                                                        <th className="px-4 py-2 text-right">Combo</th>
+                                                                        <th className="px-4 py-2 text-center">Grade</th>
+                                                                        <th className="px-4 py-2 text-right">Mods</th>
                                                                     </tr>
-                                                                ))}
-                                                                {row.scores.length === 0 && (
-                                                                    <tr><td colSpan={7} className="p-4 text-center text-muted">No scores recorded.</td></tr>
-                                                                )}
-                                                            </tbody>
-                                                        </table>
+                                                                </thead>
+                                                                <tbody className="divide-y divide-border/50">
+                                                                    {row.scores.map((score) => (
+                                                                        <tr key={score.rank} className="hover:bg-white/5 transition-colors">
+                                                                            <td className="px-4 py-2 text-center text-muted">{score.rank}</td>
+                                                                            <td className="px-4 py-2 font-medium text-white">{score.player}</td>
+                                                                            <td className="px-4 py-2 text-right font-mono">{score.score.toLocaleString()}</td>
+                                                                            <td className="px-4 py-2 text-right text-muted">{score.acc.toFixed(2)}%</td>
+                                                                            <td className="px-4 py-2 text-right text-muted">{score.combo}x</td>
+                                                                            <td className="px-4 py-2 text-center"><GradeBadge grade={score.grade} /></td>
+                                                                            <td className="px-4 py-2 text-right">
+                                                                                <div className="flex justify-end gap-1">
+                                                                                    {score.mods.map(m => (
+                                                                                        <span key={m} className="text-[9px] bg-white/10 px-1 rounded text-white/80">{m}</span>
+                                                                                    ))}
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    ))}
+                                                                    {row.scores.length === 0 && (
+                                                                        <tr><td colSpan={7} className="p-4 text-center text-muted">No scores recorded.</td></tr>
+                                                                    )}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    )}
-                                </React.Fragment>
-                            ))}
+                                                </td>
+                                            </tr>
+                                        )}
+                                    </React.Fragment>
+                                ))
+                            )}
                         </tbody>
                     </table>
                 </div>
-                {filteredData.length > 100 && (
-                    <div className="p-4 text-center text-xs text-muted border-t border-border/50">
-                        Showing top 100 results of {filteredData.length}
+
+                {/* Pagination Controls */}
+                {totalPages > 1 && (
+                    <div className="border-t border-border p-4 bg-input/30 flex justify-between items-center select-none">
+                        <div className="text-xs text-muted">
+                            Showing <span className="text-white font-bold">{(currentPage - 1) * ITEMS_PER_PAGE + 1}</span> to <span className="text-white font-bold">{Math.min(currentPage * ITEMS_PER_PAGE, filteredData.length)}</span> of <span className="text-white font-bold">{filteredData.length}</span> maps
+                        </div>
+                        
+                        <div className="flex gap-2">
+                            <button 
+                                onClick={() => handlePageChange(currentPage - 1)}
+                                disabled={currentPage === 1}
+                                className="px-3 py-1.5 rounded-lg border border-border bg-card text-xs font-bold text-muted hover:text-white hover:border-primary/50 disabled:opacity-30 disabled:hover:text-muted disabled:hover:border-border transition-all flex items-center gap-2"
+                            >
+                                <FontAwesomeIcon icon={faChevronLeft} /> Prev
+                            </button>
+                            
+                            <div className="flex gap-1">
+                                {[...Array(Math.min(5, totalPages))].map((_, i) => {
+                                    let p = currentPage - 2 + i;
+                                    if (currentPage < 3) p = 1 + i;
+                                    if (currentPage > totalPages - 2) p = totalPages - 4 + i;
+                                    
+                                    if (p > 0 && p <= totalPages) {
+                                        return (
+                                            <button
+                                                key={p}
+                                                onClick={() => handlePageChange(p)}
+                                                className={`w-8 h-8 rounded-lg text-xs font-bold flex items-center justify-center transition-all ${
+                                                    currentPage === p 
+                                                    ? 'bg-primary text-black' 
+                                                    : 'bg-card border border-border text-muted hover:text-white hover:border-white/20'
+                                                }`}
+                                            >
+                                                {p}
+                                            </button>
+                                        );
+                                    }
+                                    return null;
+                                })}
+                            </div>
+
+                            <button 
+                                onClick={() => handlePageChange(currentPage + 1)}
+                                disabled={currentPage === totalPages}
+                                className="px-3 py-1.5 rounded-lg border border-border bg-card text-xs font-bold text-muted hover:text-white hover:border-primary/50 disabled:opacity-30 disabled:hover:text-muted disabled:hover:border-border transition-all flex items-center gap-2"
+                            >
+                                Next <FontAwesomeIcon icon={faChevronRight} />
+                            </button>
+                        </div>
                     </div>
                 )}
             </div>
