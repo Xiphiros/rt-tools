@@ -35,7 +35,7 @@ interface AnalysisData {
     data: AnalysisEntry[];
 }
 
-type SortKey = 'stars' | 'ratio' | 'playCount' | 'noteCount';
+type SortKey = 'stars' | 'ratio' | 'playCount' | 'noteCount' | 'avgScore';
 
 export const ScoreAnalysis = () => {
     const [data, setData] = useState<AnalysisData | null>(null);
@@ -172,12 +172,14 @@ export const ScoreAnalysis = () => {
                                     Notes <FontAwesomeIcon icon={faSort} className={`ml-1 ${sortKey === 'noteCount' ? 'opacity-100' : 'opacity-30'}`} />
                                 </th>
                                 <th className="px-6 py-4 text-right">Max Score (NM)</th>
-                                <th className="px-6 py-4 text-right">Max Score (DT)</th>
                                 <th className="px-6 py-4 text-right cursor-pointer hover:text-primary transition-colors select-none" onClick={() => handleSort('playCount')}>
                                     Plays <FontAwesomeIcon icon={faSort} className={`ml-1 ${sortKey === 'playCount' ? 'opacity-100' : 'opacity-30'}`} />
                                 </th>
+                                <th className="px-6 py-4 text-right cursor-pointer hover:text-primary transition-colors select-none" onClick={() => handleSort('avgScore')}>
+                                    Avg Score (Top 50) <FontAwesomeIcon icon={faSort} className={`ml-1 ${sortKey === 'avgScore' ? 'opacity-100' : 'opacity-30'}`} />
+                                </th>
                                 <th className="px-6 py-4 text-right cursor-pointer hover:text-primary transition-colors select-none" onClick={() => handleSort('ratio')}>
-                                    Avg Score (Top 50) <FontAwesomeIcon icon={faSort} className={`ml-1 ${sortKey === 'ratio' ? 'opacity-100' : 'opacity-30'}`} />
+                                    Ratio <FontAwesomeIcon icon={faSort} className={`ml-1 ${sortKey === 'ratio' ? 'opacity-100' : 'opacity-30'}`} />
                                 </th>
                             </tr>
                         </thead>
@@ -201,19 +203,22 @@ export const ScoreAnalysis = () => {
                                     <td className="px-6 py-4 text-right font-mono text-muted">
                                         {formatNumber(row.maxScoreNomod)}
                                     </td>
-                                    <td className="px-6 py-4 text-right font-mono text-danger/80">
-                                        {formatNumber(row.maxScoreDT)}
-                                    </td>
                                     <td className="px-6 py-4 text-right font-mono text-muted">
                                         {formatNumber(row.playCount)}
                                     </td>
+                                    <td className="px-6 py-4 text-right font-mono text-white font-bold">
+                                        {formatNumber(row.avgScore)}
+                                    </td>
                                     <td className="px-6 py-4 text-right">
-                                        <div className="flex flex-col items-end">
-                                            <span className="font-bold text-white text-base">
-                                                {formatNumber(row.avgScore)}
-                                            </span>
-                                            <span className={`text-[10px] font-bold ${getRatioColor(row.ratio)}`}>
-                                                {(row.ratio * 100).toFixed(2)}% of Max
+                                        <div className="flex items-center justify-end gap-2">
+                                            <div className="w-12 h-1.5 bg-input rounded-full overflow-hidden">
+                                                <div 
+                                                    className={`h-full opacity-70 ${getRatioColor(row.ratio).replace('text-', 'bg-')}`}
+                                                    style={{ width: `${Math.min(100, row.ratio * 100)}%` }}
+                                                />
+                                            </div>
+                                            <span className={`text-xs font-bold ${getRatioColor(row.ratio)} w-12 text-right`}>
+                                                {(row.ratio * 100).toFixed(1)}%
                                             </span>
                                         </div>
                                     </td>
