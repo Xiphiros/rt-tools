@@ -480,6 +480,46 @@
     "link": "https://rhythmtyper.net/beatmap/uayd1l6uymrf"
   },
   {
+    "id": "bzb641aqt4h7_0phm_1_1_1_0_0_0_0",
+    "title": "Identity",
+    "artist": "tachibanaka",
+    "mapper": "Allizion",
+    "diffName": "Hard",
+    "bpm": 100,
+    "stars": 6.064981724456158,
+    "starsOfficial": 3.134771576678127,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 1.0803407704912087,
+      "prec": 0,
+      "ergo": 3.000756918036387,
+      "disp": 1.9998842056852162,
+      "stam": 0.32806020813505155
+    },
+    "link": "https://rhythmtyper.net/beatmap/bzb641aqt4h7"
+  },
+  {
+    "id": "bzb641aqt4h7_tydo_0_0_0_0_0_0_0_0_1_1_1_1",
+    "title": "Identity",
+    "artist": "tachibanaka",
+    "mapper": "Allizion",
+    "diffName": "Lunatic",
+    "bpm": 100,
+    "stars": 13.096825829383038,
+    "starsOfficial": 6.577264503872523,
+    "stats": {
+      "stream": 0,
+      "jack": 0.540140380365914,
+      "chord": 3.2055900743251673,
+      "prec": 3.7437366327590462,
+      "ergo": 3.6987686066677194,
+      "disp": 2.916130442874913,
+      "stam": 0.9697421780858868
+    },
+    "link": "https://rhythmtyper.net/beatmap/bzb641aqt4h7"
+  },
+  {
     "id": "8mlfnvfmoi1o_d94j_0",
     "title": "YOU",
     "artist": "m1v",
@@ -818,6 +858,26 @@
       "stam": 5.749522319583824
     },
     "link": "https://rhythmtyper.net/beatmap/03bnrupkhnwn"
+  },
+  {
+    "id": "p5rw6vkuw9h4_eqas_0_0_0_0_0_0",
+    "title": "Reblossia",
+    "artist": "D-D-Dice",
+    "mapper": "Happy566",
+    "diffName": "Amethyst Crystallization",
+    "bpm": 211,
+    "stars": 72.38600843721697,
+    "starsOfficial": 17.413902845906286,
+    "stats": {
+      "stream": 5.00660429060553,
+      "jack": 8.64037472906259,
+      "chord": 10.860920741118399,
+      "prec": 31.363941783060866,
+      "ergo": 5.961481649168593,
+      "disp": 17.20496023013316,
+      "stam": 5.158828647363559
+    },
+    "link": "https://rhythmtyper.net/beatmap/p5rw6vkuw9h4"
   },
   {
     "id": "91j39gxpikc8_5qoc",
@@ -1758,6 +1818,26 @@
       "stam": 0.8162208115364723
     },
     "link": "https://rhythmtyper.net/beatmap/xzg0jcb2160n"
+  },
+  {
+    "id": "95p2porkhuss_0y0e_0_0_0_0_0_0_0_0_0",
+    "title": "ULTRA C (Reol & nqrse cover)",
+    "artist": "Vivid BAD SQUAD, Hatsune Miku",
+    "mapper": "Artomesik",
+    "diffName": "Insane",
+    "bpm": 128,
+    "stars": 13.687641937864464,
+    "starsOfficial": 7.231238312579796,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 3.7693770326135283,
+      "prec": 0.003825859756095688,
+      "ergo": 3.7196945818724325,
+      "disp": 5.131333951034271,
+      "stam": 2.4148968032190834
+    },
+    "link": "https://rhythmtyper.net/beatmap/95p2porkhuss"
   },
   {
     "id": "i5kx1ummulf1_79fj",
@@ -3780,7 +3860,7 @@
     "link": "https://rhythmtyper.net/beatmap/efp7s40kuk91"
   },
   {
-    "id": "hq5fbwvvhq7m_pk6q_1_1_1_0_0_0_0",
+    "id": "ozbxuqqwj9dk_pk6q_1_1_1_0_0_0_0_0",
     "title": "~DISK 1~",
     "artist": "Veritas Unae",
     "mapper": "relikOS",
@@ -3797,10 +3877,10 @@
       "disp": 0.854730063373466,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/hq5fbwvvhq7m"
+    "link": "https://rhythmtyper.net/beatmap/ozbxuqqwj9dk"
   },
   {
-    "id": "hq5fbwvvhq7m_9zmb_2_2_2_1_1_1_1",
+    "id": "ozbxuqqwj9dk_9zmb_2_2_2_1_1_1_1_1",
     "title": "~DISK 1~",
     "artist": "Veritas Unae",
     "mapper": "relikOS",
@@ -3817,10 +3897,10 @@
       "disp": 1.1664770576809644,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/hq5fbwvvhq7m"
+    "link": "https://rhythmtyper.net/beatmap/ozbxuqqwj9dk"
   },
   {
-    "id": "hq5fbwvvhq7m_reui_3_3_3_2_2_2_2",
+    "id": "ozbxuqqwj9dk_reui_3_3_3_2_2_2_2_2",
     "title": "~DISK 1~",
     "artist": "Veritas Unae",
     "mapper": "relikOS",
@@ -3837,10 +3917,10 @@
       "disp": 1.3568216896010648,
       "stam": 1.1323843772732596
     },
-    "link": "https://rhythmtyper.net/beatmap/hq5fbwvvhq7m"
+    "link": "https://rhythmtyper.net/beatmap/ozbxuqqwj9dk"
   },
   {
-    "id": "hq5fbwvvhq7m_uz73_4_4_4_3_3_3_3",
+    "id": "ozbxuqqwj9dk_uz73_4_4_4_3_3_3_3_3",
     "title": "~DISK 1~",
     "artist": "Veritas Unae",
     "mapper": "relikOS",
@@ -3857,10 +3937,10 @@
       "disp": 1.7242029145012863,
       "stam": 1.1182650220496504
     },
-    "link": "https://rhythmtyper.net/beatmap/hq5fbwvvhq7m"
+    "link": "https://rhythmtyper.net/beatmap/ozbxuqqwj9dk"
   },
   {
-    "id": "hq5fbwvvhq7m_iuf8_5_5_5_4_4_4_4",
+    "id": "ozbxuqqwj9dk_iuf8_5_5_5_4_4_4_4_4",
     "title": "~DISK 1~",
     "artist": "Veritas Unae",
     "mapper": "relikOS",
@@ -3877,10 +3957,10 @@
       "disp": 1.660788076182542,
       "stam": 1.1245402057613192
     },
-    "link": "https://rhythmtyper.net/beatmap/hq5fbwvvhq7m"
+    "link": "https://rhythmtyper.net/beatmap/ozbxuqqwj9dk"
   },
   {
-    "id": "hq5fbwvvhq7m_bsgh_0_0_0_5_5_5_5",
+    "id": "ozbxuqqwj9dk_bsgh_0_0_0_5_5_5_5_5",
     "title": "~DISK 1~",
     "artist": "Veritas Unae",
     "mapper": "relikOS",
@@ -3897,7 +3977,7 @@
       "disp": 4.343905683767113,
       "stam": 2.057586577114385
     },
-    "link": "https://rhythmtyper.net/beatmap/hq5fbwvvhq7m"
+    "link": "https://rhythmtyper.net/beatmap/ozbxuqqwj9dk"
   },
   {
     "id": "93uov0ws6zwd_l7y7",
@@ -4500,6 +4580,86 @@
     "link": "https://rhythmtyper.net/beatmap/jvpq8ffya8hc"
   },
   {
+    "id": "vr9peclg8wbj_lscs_0_0",
+    "title": "Usseewa",
+    "artist": "Ado",
+    "mapper": "Mrpolasa",
+    "diffName": "簡単",
+    "bpm": 178,
+    "stars": 38.95015791223444,
+    "starsOfficial": 4.484298305188464,
+    "stats": {
+      "stream": 0,
+      "jack": 3.7294955926794007,
+      "chord": 10.27748970667512,
+      "prec": 6.595545076869407,
+      "ergo": 7.131723137179051,
+      "disp": 11.682222966531143,
+      "stam": 6.805370909094607
+    },
+    "link": "https://rhythmtyper.net/beatmap/vr9peclg8wbj"
+  },
+  {
+    "id": "vr9peclg8wbj_uht4_1_1",
+    "title": "Usseewa",
+    "artist": "Ado",
+    "mapper": "Mrpolasa",
+    "diffName": "中くらい",
+    "bpm": 178,
+    "stars": 34.424638732653804,
+    "starsOfficial": 4.792732152335856,
+    "stats": {
+      "stream": 0,
+      "jack": 3.203765122556047,
+      "chord": 8.411474273006128,
+      "prec": 5.318985697641594,
+      "ergo": 6.2754214086880795,
+      "disp": 11.874674946579162,
+      "stam": 5.340724677948119
+    },
+    "link": "https://rhythmtyper.net/beatmap/vr9peclg8wbj"
+  },
+  {
+    "id": "vr9peclg8wbj_0924_2_2",
+    "title": "Usseewa",
+    "artist": "Ado",
+    "mapper": "Mrpolasa",
+    "diffName": "硬い",
+    "bpm": 178,
+    "stars": 40.86332851672986,
+    "starsOfficial": 5.184799885525574,
+    "stats": {
+      "stream": 0,
+      "jack": 3.5093893370644507,
+      "chord": 9.425144107766501,
+      "prec": 8.481720520830597,
+      "ergo": 7.023624817183697,
+      "disp": 13.30267216496238,
+      "stam": 6.460652705246269
+    },
+    "link": "https://rhythmtyper.net/beatmap/vr9peclg8wbj"
+  },
+  {
+    "id": "vr9peclg8wbj_vx2q_3_3",
+    "title": "Usseewa",
+    "artist": "Ado",
+    "mapper": "Mrpolasa",
+    "diffName": "行く時間だ",
+    "bpm": 178,
+    "stars": 38.2851616550401,
+    "starsOfficial": 10.223848380602231,
+    "stats": {
+      "stream": 0,
+      "jack": 3.131248862289791,
+      "chord": 8.512425372054906,
+      "prec": 9.144588715240822,
+      "ergo": 7.387660575099011,
+      "disp": 10.908014782954968,
+      "stam": 6.448144185809286
+    },
+    "link": "https://rhythmtyper.net/beatmap/vr9peclg8wbj"
+  },
+  {
     "id": "azv0clretkfu_im10_0_0_0_0_0",
     "title": "Green Apple",
     "artist": "Shotgun99 GD",
@@ -5100,27 +5260,27 @@
     "link": "https://rhythmtyper.net/beatmap/hos9ln2pm01l"
   },
   {
-    "id": "cie8kot0mt8w_kiaj_0_0_0_0_0",
+    "id": "g6s471nkgdif_kiaj_0_0_0_0_0_0_0",
     "title": "Tetoris (Cosmowave Hardbass Remix & Cut Ver.)",
     "artist": "Hiiragi Magnetite",
     "mapper": "TeaMan",
     "diffName": "Shrimp Easy",
     "bpm": 170,
-    "stars": 6.643045360776299,
-    "starsOfficial": 1.7065430194592006,
+    "stars": 6.643447652833663,
+    "starsOfficial": 1.7079305396438471,
     "stats": {
       "stream": 0,
       "jack": 0,
-      "chord": 1.9571421211412185,
+      "chord": 1.957565586464361,
       "prec": 0,
-      "ergo": 2.996629740195896,
-      "disp": 1.3652712019729458,
+      "ergo": 2.9966297401958966,
+      "disp": 1.3652712019733892,
       "stam": 0.8355334450923224
     },
-    "link": "https://rhythmtyper.net/beatmap/cie8kot0mt8w"
+    "link": "https://rhythmtyper.net/beatmap/g6s471nkgdif"
   },
   {
-    "id": "cie8kot0mt8w_m8bm_1_1_1_1_1",
+    "id": "g6s471nkgdif_m8bm_1_1_1_1_1_1_1",
     "title": "Tetoris (Cosmowave Hardbass Remix & Cut Ver.)",
     "artist": "Hiiragi Magnetite",
     "mapper": "TeaMan",
@@ -5137,7 +5297,7 @@
       "disp": 2.2334509557894013,
       "stam": 0.9863125122047246
     },
-    "link": "https://rhythmtyper.net/beatmap/cie8kot0mt8w"
+    "link": "https://rhythmtyper.net/beatmap/g6s471nkgdif"
   },
   {
     "id": "u6pu3uowt21a_inyd",
@@ -6680,24 +6840,24 @@
     "link": "https://rhythmtyper.net/beatmap/or3tv8ubiski"
   },
   {
-    "id": "knjbz4c0l1m4_cxcy_0_0_0_0_0_0_0_0",
+    "id": "nmeyr91rntgf_cxcy_0_0_0_0_0_0_0_0_0_0",
     "title": "Nobosemon HERO feat. Kagamine Len & Zundamon",
     "artist": "ChibaNyan & Giga",
     "mapper": "Piger",
     "diffName": "Pon Pon Pon",
-    "bpm": 155,
-    "stars": 29.458693841948087,
-    "starsOfficial": 7.769980454250342,
+    "bpm": 165,
+    "stars": 31.671350825543723,
+    "starsOfficial": 7.754366473733701,
     "stats": {
-      "stream": 0.5549141705335972,
-      "jack": 1.8330535146586249,
-      "chord": 5.244452179030543,
-      "prec": 7.133485150704595,
-      "ergo": 5.185929285667302,
-      "disp": 10.697742749356564,
-      "stam": 3.660027804912861
+      "stream": 0.8565931930550583,
+      "jack": 1.9897346977465178,
+      "chord": 5.317979568683755,
+      "prec": 9.114033096709788,
+      "ergo": 5.187990878585055,
+      "disp": 10.699430932643494,
+      "stam": 3.7269102124162843
     },
-    "link": "https://rhythmtyper.net/beatmap/knjbz4c0l1m4"
+    "link": "https://rhythmtyper.net/beatmap/nmeyr91rntgf"
   },
   {
     "id": "70hqt3rh39r7_gfr4_0_0_0_0_0",
@@ -7518,6 +7678,86 @@
       "stam": 2.3810647708152604
     },
     "link": "https://rhythmtyper.net/beatmap/vwuyy0hk32k5"
+  },
+  {
+    "id": "ogowk8xcs2cg_4o8b_1_0",
+    "title": "Shrimp Miku - OG, unranked",
+    "artist": "justan oval",
+    "mapper": "Cardboard_Dragon",
+    "diffName": "Easy",
+    "bpm": 120,
+    "stars": 4.0931348536926055,
+    "starsOfficial": 2.1425642475857036,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 2.9106448190705234,
+      "disp": 1.2447263522337708,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/ogowk8xcs2cg"
+  },
+  {
+    "id": "ogowk8xcs2cg_e3sd_1",
+    "title": "Shrimp Miku - OG, unranked",
+    "artist": "justan oval",
+    "mapper": "Cardboard_Dragon",
+    "diffName": "Normal",
+    "bpm": 120,
+    "stars": 7.886824561763022,
+    "starsOfficial": 3.290290518554716,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 2.9313834196892006,
+      "prec": 0,
+      "ergo": 3.1572063673704327,
+      "disp": 1.2447637512777354,
+      "stam": 1.182339676135699
+    },
+    "link": "https://rhythmtyper.net/beatmap/ogowk8xcs2cg"
+  },
+  {
+    "id": "ogowk8xcs2cg_98qp_0_2",
+    "title": "Shrimp Miku - OG, unranked",
+    "artist": "justan oval",
+    "mapper": "Cardboard_Dragon",
+    "diffName": "Hard",
+    "bpm": 120,
+    "stars": 8.15526307139243,
+    "starsOfficial": 4.762832089280135,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 2.9313834196892006,
+      "prec": 0,
+      "ergo": 3.0784683958743044,
+      "disp": 1.6532066702489543,
+      "stam": 1.182339676135699
+    },
+    "link": "https://rhythmtyper.net/beatmap/ogowk8xcs2cg"
+  },
+  {
+    "id": "ogowk8xcs2cg_c6k4_3",
+    "title": "Shrimp Miku - OG, unranked",
+    "artist": "justan oval",
+    "mapper": "Cardboard_Dragon",
+    "diffName": "Rude to the Player",
+    "bpm": 120,
+    "stars": 16.724501966316687,
+    "starsOfficial": 8.387108782521903,
+    "stats": {
+      "stream": 0,
+      "jack": 1.046291625673359,
+      "chord": 5.665190279114283,
+      "prec": 2.6152857400172196,
+      "ergo": 4.342247211608114,
+      "disp": 3.35242357177825,
+      "stam": 2.3810647708152604
+    },
+    "link": "https://rhythmtyper.net/beatmap/ogowk8xcs2cg"
   },
   {
     "id": "c8dy19yilv2v_444w_0_0_0_0_0_0_0_0",
@@ -8600,7 +8840,7 @@
     "link": "https://rhythmtyper.net/beatmap/765s2pgc7xiz"
   },
   {
-    "id": "bfc57pf66p7l_zr00_0_0_0_0",
+    "id": "n0ortnfpxllw_m4w7",
     "title": "Maitake Dance",
     "artist": "Juufuutei Raden",
     "mapper": "Brofriendfnf",
@@ -8617,10 +8857,10 @@
       "disp": 1.0640169882474682,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/bfc57pf66p7l"
+    "link": "https://rhythmtyper.net/beatmap/n0ortnfpxllw"
   },
   {
-    "id": "bfc57pf66p7l_5ij4_3_3_3_1_1_1_1_1_1_1_1",
+    "id": "n0ortnfpxllw_ku22",
     "title": "Maitake Dance",
     "artist": "Juufuutei Raden",
     "mapper": "Brofriendfnf",
@@ -8637,17 +8877,17 @@
       "disp": 1.0662621059700317,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/bfc57pf66p7l"
+    "link": "https://rhythmtyper.net/beatmap/n0ortnfpxllw"
   },
   {
-    "id": "bfc57pf66p7l_e310_2_2_2_2",
+    "id": "n0ortnfpxllw_w4ze",
     "title": "Maitake Dance",
     "artist": "Juufuutei Raden",
     "mapper": "Brofriendfnf",
     "diffName": "Normal",
     "bpm": 143,
     "stars": 6.3134312758095525,
-    "starsOfficial": 2.618064727156458,
+    "starsOfficial": 2.618064727156462,
     "stats": {
       "stream": 0,
       "jack": 0,
@@ -8657,17 +8897,17 @@
       "disp": 1.5407418738640575,
       "stam": 0.695221593185058
     },
-    "link": "https://rhythmtyper.net/beatmap/bfc57pf66p7l"
+    "link": "https://rhythmtyper.net/beatmap/n0ortnfpxllw"
   },
   {
-    "id": "bfc57pf66p7l_5cx5_1_1_1_1_3_3_3_3_3_3_3_3",
+    "id": "n0ortnfpxllw_oj6e",
     "title": "Maitake Dance",
     "artist": "Juufuutei Raden",
     "mapper": "Brofriendfnf",
     "diffName": "Hard",
     "bpm": 143,
     "stars": 6.297650972400268,
-    "starsOfficial": 3.024061297018327,
+    "starsOfficial": 3.024061297018331,
     "stats": {
       "stream": 0,
       "jack": 0,
@@ -8677,17 +8917,17 @@
       "disp": 1.5134703821560436,
       "stam": 0.7035061676955375
     },
-    "link": "https://rhythmtyper.net/beatmap/bfc57pf66p7l"
+    "link": "https://rhythmtyper.net/beatmap/n0ortnfpxllw"
   },
   {
-    "id": "bfc57pf66p7l_r9p8_4_4_4_4",
+    "id": "n0ortnfpxllw_4w0m",
     "title": "Maitake Dance",
     "artist": "Juufuutei Raden",
     "mapper": "Brofriendfnf",
     "diffName": "Insane",
     "bpm": 143,
     "stars": 5.596714425278496,
-    "starsOfficial": 4.217145465183184,
+    "starsOfficial": 4.217145465183187,
     "stats": {
       "stream": 0,
       "jack": 0,
@@ -8697,17 +8937,17 @@
       "disp": 2.4948109605611255,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/bfc57pf66p7l"
+    "link": "https://rhythmtyper.net/beatmap/n0ortnfpxllw"
   },
   {
-    "id": "bfc57pf66p7l_6vmp_5_5_5_5_5_5_5_5_5",
+    "id": "n0ortnfpxllw_31je",
     "title": "Maitake Dance",
     "artist": "Juufuutei Raden",
     "mapper": "Brofriendfnf",
     "diffName": "Extreme",
     "bpm": 143,
     "stars": 10.506462281628039,
-    "starsOfficial": 6.209491078118221,
+    "starsOfficial": 6.209491078118223,
     "stats": {
       "stream": 0,
       "jack": 0,
@@ -8717,67 +8957,67 @@
       "disp": 3.147802991315753,
       "stam": 1.383140973584765
     },
-    "link": "https://rhythmtyper.net/beatmap/bfc57pf66p7l"
+    "link": "https://rhythmtyper.net/beatmap/n0ortnfpxllw"
   },
   {
-    "id": "bfc57pf66p7l_a39w_7_6_6_6_6_6_6_6_6",
+    "id": "n0ortnfpxllw_qrfz",
     "title": "Maitake Dance",
     "artist": "Juufuutei Raden",
     "mapper": "Brofriendfnf",
     "diffName": "TrickyGame's GURU",
     "bpm": 143,
-    "stars": 17.354927853408693,
-    "starsOfficial": 7.089138736934287,
+    "stars": 16.797024150021443,
+    "starsOfficial": 7.056697265278672,
     "stats": {
-      "stream": 0.7860329447170173,
-      "jack": 2.1567809414849326,
+      "stream": 0.7452684787086157,
+      "jack": 2.14501211476003,
       "chord": 0,
-      "prec": 6.69472223264089,
-      "ergo": 3.543043844768238,
-      "disp": 5.037550554027942,
-      "stam": 1.2508330779695336
+      "prec": 6.143307730012159,
+      "ergo": 3.535881529458505,
+      "disp": 5.074315322185641,
+      "stam": 1.244555099282215
     },
-    "link": "https://rhythmtyper.net/beatmap/bfc57pf66p7l"
+    "link": "https://rhythmtyper.net/beatmap/n0ortnfpxllw"
   },
   {
-    "id": "bfc57pf66p7l_9jaw_7_7_7_7_7",
+    "id": "n0ortnfpxllw_n0wy",
     "title": "Maitake Dance",
     "artist": "Juufuutei Raden",
     "mapper": "Brofriendfnf",
     "diffName": "Nortromka's Amattajikande",
     "bpm": 143,
-    "stars": 26.735441312911867,
-    "starsOfficial": 7.7729219059581025,
+    "stars": 23.340166313112466,
+    "starsOfficial": 7.774649809047604,
     "stats": {
-      "stream": 1.3431135493143491,
-      "jack": 3.6166530172557994,
-      "chord": 5.739491921399796,
-      "prec": 9.461418578089551,
-      "ergo": 4.157538535798317,
-      "disp": 4.984736426964865,
-      "stam": 2.747454520574383
+      "stream": 1.0296765428332109,
+      "jack": 3.6166414541873038,
+      "chord": 5.73836784290771,
+      "prec": 6.215909341651494,
+      "ergo": 4.157136161074217,
+      "disp": 4.976178443998337,
+      "stam": 2.7473315145412847
     },
-    "link": "https://rhythmtyper.net/beatmap/bfc57pf66p7l"
+    "link": "https://rhythmtyper.net/beatmap/n0ortnfpxllw"
   },
   {
-    "id": "bfc57pf66p7l_ydms_1_0_0_0_0_0_0_0_0_7_7_7_8_8_8_8_9",
+    "id": "n0ortnfpxllw_3h89",
     "title": "Maitake Dance",
     "artist": "Juufuutei Raden",
     "mapper": "Brofriendfnf",
     "diffName": "MAITAKE, MAITAKE, GURU GURU GURU GURU",
     "bpm": 143,
-    "stars": 24.16868973428201,
-    "starsOfficial": 11.386068648086702,
+    "stars": 25.66491675951861,
+    "starsOfficial": 11.04564486092532,
     "stats": {
-      "stream": 1.1473908064928684,
-      "jack": 2.2931648168512484,
-      "chord": 5.721200776106081,
-      "prec": 6.65700520456138,
-      "ergo": 4.387862441420617,
-      "disp": 6.346077917653045,
-      "stam": 2.38681000769943
+      "stream": 1.2922170681889074,
+      "jack": 2.1652881898050245,
+      "chord": 5.5850783075419805,
+      "prec": 6.705737359032002,
+      "ergo": 4.631500789460043,
+      "disp": 7.757916629454299,
+      "stam": 2.374155846769889
     },
-    "link": "https://rhythmtyper.net/beatmap/bfc57pf66p7l"
+    "link": "https://rhythmtyper.net/beatmap/n0ortnfpxllw"
   },
   {
     "id": "gx64fvhfs2td_o902",
@@ -9478,6 +9718,26 @@
       "stam": 2.004337633444926
     },
     "link": "https://rhythmtyper.net/beatmap/fk8fnm8hw100"
+  },
+  {
+    "id": "op2y5iwl8xsj_57qd_0_0_0_0_0_0_0_0",
+    "title": "SAIKAI",
+    "artist": "Mili",
+    "mapper": "Cheyne",
+    "diffName": "Cause S is not for \"sayonara\"",
+    "bpm": 132,
+    "stars": 8.137107089580518,
+    "starsOfficial": 2.745530884313431,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 2.1337556566148526,
+      "prec": 0.002616468642201271,
+      "ergo": 3.0156335256646463,
+      "disp": 2.7779621474585237,
+      "stam": 0.8893553481202904
+    },
+    "link": "https://rhythmtyper.net/beatmap/op2y5iwl8xsj"
   },
   {
     "id": "otcva7kch19h_s97v_1_0",
@@ -13080,24 +13340,24 @@
     "link": "https://rhythmtyper.net/beatmap/k6huij4214gt"
   },
   {
-    "id": "afqiwx3sdgql_ll8x_0_0_0_0_0_0_0_0_0_0_0_0",
+    "id": "dicxhez0b8se_ll8x_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0",
     "title": "GAME",
     "artist": "9Lana",
     "mapper": "Wiiinson",
     "diffName": "Normal",
     "bpm": 138,
-    "stars": 16.817926558077172,
-    "starsOfficial": 3.828394994007095,
+    "stars": 17.637310366783876,
+    "starsOfficial": 3.8528319600484564,
     "stats": {
-      "stream": 0.47453737643549543,
-      "jack": 0,
-      "chord": 3.722503592204111,
-      "prec": 1.10910095904333,
+      "stream": 0,
+      "jack": 0.6104543406045094,
+      "chord": 3.474537274232932,
+      "prec": 2.356727058681093,
       "ergo": 3.6386752889737535,
       "disp": 8.15090529750419,
-      "stam": 1.4078102292449353
+      "stam": 1.4969410466358852
     },
-    "link": "https://rhythmtyper.net/beatmap/afqiwx3sdgql"
+    "link": "https://rhythmtyper.net/beatmap/dicxhez0b8se"
   },
   {
     "id": "0x3zk9g1ua5h_ssxx",
@@ -13340,27 +13600,27 @@
     "link": "https://rhythmtyper.net/beatmap/8f34vyyihxrk"
   },
   {
-    "id": "htpbt3hju4ow_3lfq_0_0_0_0_0",
+    "id": "zmlsd8nr31xk_3lfq_0_0_0_0_0_0_0",
     "title": "Song That Might Play When You Fight Sans",
     "artist": "toby fox",
     "mapper": "mqno",
     "diffName": "Normal",
     "bpm": 240,
-    "stars": 9.097811987134309,
-    "starsOfficial": 4.486539238257734,
+    "stars": 9.097648668181538,
+    "starsOfficial": 4.486539238258047,
     "stats": {
       "stream": 0,
       "jack": 0,
       "chord": 0,
       "prec": 2.742820548051506,
-      "ergo": 3.8261012004819674,
-      "disp": 2.2656896051008784,
+      "ergo": 3.826162138783355,
+      "disp": 2.2654257730371636,
       "stam": 0.986926802223552
     },
-    "link": "https://rhythmtyper.net/beatmap/htpbt3hju4ow"
+    "link": "https://rhythmtyper.net/beatmap/zmlsd8nr31xk"
   },
   {
-    "id": "htpbt3hju4ow_fzn0_1_1_1_1_1",
+    "id": "zmlsd8nr31xk_fzn0_1_1_1_1_1_1_1",
     "title": "Song That Might Play When You Fight Sans",
     "artist": "toby fox",
     "mapper": "mqno",
@@ -13377,10 +13637,10 @@
       "disp": 7.624434749806321,
       "stam": 1.1767615244973029
     },
-    "link": "https://rhythmtyper.net/beatmap/htpbt3hju4ow"
+    "link": "https://rhythmtyper.net/beatmap/zmlsd8nr31xk"
   },
   {
-    "id": "htpbt3hju4ow_y5hx_0_0_0_0_0_0_2_2_2_2_2",
+    "id": "zmlsd8nr31xk_y5hx_0_0_0_0_0_0_2_2_2_2_2_2_2",
     "title": "Song That Might Play When You Fight Sans",
     "artist": "toby fox",
     "mapper": "mqno",
@@ -13397,7 +13657,7 @@
       "disp": 5.262944450926903,
       "stam": 1.0492716154831194
     },
-    "link": "https://rhythmtyper.net/beatmap/htpbt3hju4ow"
+    "link": "https://rhythmtyper.net/beatmap/zmlsd8nr31xk"
   },
   {
     "id": "7xj038ew3rd4_sfnn_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0",
@@ -13540,7 +13800,7 @@
     "link": "https://rhythmtyper.net/beatmap/alxlklb838cw"
   },
   {
-    "id": "ulvd6lax5dem_y6e3_0_0_0_0",
+    "id": "pilspre17dwt_y6e3_0_0_0_0_0",
     "title": "DuckTales (TV Size)",
     "artist": "Felicia Barton",
     "mapper": "AFS",
@@ -13557,10 +13817,10 @@
       "disp": 0.9864617393819698,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/ulvd6lax5dem"
+    "link": "https://rhythmtyper.net/beatmap/pilspre17dwt"
   },
   {
-    "id": "ulvd6lax5dem_oqv3_1_1_1_1",
+    "id": "pilspre17dwt_oqv3_1_1_1_1_1",
     "title": "DuckTales (TV Size)",
     "artist": "Felicia Barton",
     "mapper": "AFS",
@@ -13577,67 +13837,67 @@
       "disp": 0,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/ulvd6lax5dem"
+    "link": "https://rhythmtyper.net/beatmap/pilspre17dwt"
   },
   {
-    "id": "ulvd6lax5dem_nzr6_2_2_2_2",
+    "id": "pilspre17dwt_nzr6_2_2_2_2_2",
     "title": "DuckTales (TV Size)",
     "artist": "Felicia Barton",
     "mapper": "AFS",
     "diffName": "Easy",
     "bpm": 183,
-    "stars": 4.790374098958692,
-    "starsOfficial": 2.1719851992357437,
+    "stars": 4.712433085984607,
+    "starsOfficial": 2.1710986182289926,
     "stats": {
       "stream": 0,
       "jack": 0,
-      "chord": 0.9373821983729119,
+      "chord": 0.8578974570124759,
       "prec": 0,
-      "ergo": 2.6719199035730843,
-      "disp": 1.2597764563113807,
-      "stam": 0.1665222576970947
+      "ergo": 2.6614550078710595,
+      "disp": 1.2447018147622382,
+      "stam": 0.18573135417175518
     },
-    "link": "https://rhythmtyper.net/beatmap/ulvd6lax5dem"
+    "link": "https://rhythmtyper.net/beatmap/pilspre17dwt"
   },
   {
-    "id": "ulvd6lax5dem_rdb2_3_3_3",
+    "id": "pilspre17dwt_rdb2_3_3_3_3",
     "title": "DuckTales (TV Size)",
     "artist": "Felicia Barton",
     "mapper": "AFS",
     "diffName": "Normal",
     "bpm": 183,
-    "stars": 7.508456036845836,
-    "starsOfficial": 2.9463184800926157,
+    "stars": 7.334302910795803,
+    "starsOfficial": 2.9501148662040757,
     "stats": {
       "stream": 0,
-      "jack": 0.2673923092004173,
-      "chord": 2.11467780031201,
+      "jack": 0,
+      "chord": 2.1146778003120468,
       "prec": 0,
-      "ergo": 3.345787211547278,
+      "ergo": 3.3468986557244347,
       "disp": 1.5793253491917791,
-      "stam": 0.8499911562784869
+      "stam": 0.8480450639492157
     },
-    "link": "https://rhythmtyper.net/beatmap/ulvd6lax5dem"
+    "link": "https://rhythmtyper.net/beatmap/pilspre17dwt"
   },
   {
-    "id": "ulvd6lax5dem_jymd",
+    "id": "pilspre17dwt_jymd_4",
     "title": "DuckTales (TV Size)",
     "artist": "Felicia Barton",
     "mapper": "AFS",
     "diffName": "Hard",
     "bpm": 183,
-    "stars": 10.301165665076137,
-    "starsOfficial": 5.765185052324015,
+    "stars": 7.480996110607228,
+    "starsOfficial": 4.4348848993616885,
     "stats": {
-      "stream": 0.18396435537726438,
-      "jack": 1.1393122101275914,
-      "chord": 3.9937021956941496,
-      "prec": 0.001940602776199992,
-      "ergo": 3.3663586133689356,
-      "disp": 1.6895304423784958,
-      "stam": 1.1027447482419968
+      "stream": 0,
+      "jack": 0,
+      "chord": 2.262378144782766,
+      "prec": 0,
+      "ergo": 3.3590236850143276,
+      "disp": 1.4920864296331162,
+      "stam": 0.9392529638148333
     },
-    "link": "https://rhythmtyper.net/beatmap/ulvd6lax5dem"
+    "link": "https://rhythmtyper.net/beatmap/pilspre17dwt"
   },
   {
     "id": "1bksrsfblegd_lhew",
@@ -13680,7 +13940,7 @@
     "link": "https://rhythmtyper.net/beatmap/jtd8z08c6bfn"
   },
   {
-    "id": "n1fablzan9dj_cyp1_0_0_0_0_0_0_0_0_0_0_0",
+    "id": "0czb0zzkz6z1_cyp1_0_0_0_0_0_0_0_0_0_0_0_0_0_0",
     "title": "Calamity Fortune",
     "artist": "LeaF",
     "mapper": "probablynotacat",
@@ -13697,10 +13957,10 @@
       "disp": 1.9521371142782487,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/n1fablzan9dj"
+    "link": "https://rhythmtyper.net/beatmap/0czb0zzkz6z1"
   },
   {
-    "id": "n1fablzan9dj_vn7u_2_0_0_0_0_0_0_0_0_1_1_1_1_1_1_1_1_1_1_1",
+    "id": "0czb0zzkz6z1_vn7u_2_0_0_0_0_0_0_0_0_1_1_1_1_1_1_1_1_1_1_1_1_1_1",
     "title": "Calamity Fortune",
     "artist": "LeaF",
     "mapper": "probablynotacat",
@@ -13717,30 +13977,30 @@
       "disp": 2.1099736221347554,
       "stam": 0.4193606146825638
     },
-    "link": "https://rhythmtyper.net/beatmap/n1fablzan9dj"
+    "link": "https://rhythmtyper.net/beatmap/0czb0zzkz6z1"
   },
   {
-    "id": "n1fablzan9dj_2h1x_1_1_1_1_1_1_1_1_1_2_2_2_2_2_2_2_2_2_2_2",
+    "id": "0czb0zzkz6z1_2h1x_1_1_1_1_1_1_1_1_1_2_2_2_2_2_2_2_2_2_2_2_2_2_2",
     "title": "Calamity Fortune",
     "artist": "LeaF",
     "mapper": "probablynotacat",
     "diffName": "Hard",
     "bpm": 200,
-    "stars": 14.936766309213061,
+    "stars": 14.939667638154889,
     "starsOfficial": 6.18573754642263,
     "stats": {
       "stream": 0,
-      "jack": 0.6714991492032785,
+      "jack": 0.6721007787804208,
       "chord": 4.066200007462734,
       "prec": 3.936788529883866,
       "ergo": 3.2400573844774807,
-      "disp": 4.031066590340163,
+      "disp": 4.033772308944793,
       "stam": 1.377561877086111
     },
-    "link": "https://rhythmtyper.net/beatmap/n1fablzan9dj"
+    "link": "https://rhythmtyper.net/beatmap/0czb0zzkz6z1"
   },
   {
-    "id": "n1fablzan9dj_5qun_2_2_2_2_2_2_3_3_3_3_3_3_3_3_3_3_3",
+    "id": "0czb0zzkz6z1_5qun_2_2_2_2_2_2_3_3_3_3_3_3_3_3_3_3_3_3_3_3",
     "title": "Calamity Fortune",
     "artist": "LeaF",
     "mapper": "probablynotacat",
@@ -13757,27 +14017,27 @@
       "disp": 5.027434541269572,
       "stam": 2.389350909588469
     },
-    "link": "https://rhythmtyper.net/beatmap/n1fablzan9dj"
+    "link": "https://rhythmtyper.net/beatmap/0czb0zzkz6z1"
   },
   {
-    "id": "n1fablzan9dj_b79a_0_0_2_2_3_3_3_3_3_3_4_4_4_4_4_4_4_4_4_4_4",
+    "id": "0czb0zzkz6z1_b79a_0_0_2_2_3_3_3_3_3_3_4_4_4_4_4_4_4_4_4_4_4_4_4_4",
     "title": "Calamity Fortune",
     "artist": "LeaF",
     "mapper": "probablynotacat",
     "diffName": "Calamity",
     "bpm": 200,
-    "stars": 46.24475418589124,
+    "stars": 46.244414895842894,
     "starsOfficial": 13.037055225656635,
     "stats": {
       "stream": 3.2788546130390723,
       "jack": 8.214855808920273,
       "chord": 8.408549200850732,
       "prec": 11.710036538095727,
-      "ergo": 4.750495236553502,
+      "ergo": 4.749973251863736,
       "disp": 15.453226813499112,
       "stam": 3.260871206347971
     },
-    "link": "https://rhythmtyper.net/beatmap/n1fablzan9dj"
+    "link": "https://rhythmtyper.net/beatmap/0czb0zzkz6z1"
   },
   {
     "id": "xq53yw41u37i_s21m",
@@ -18240,6 +18500,26 @@
     "link": "https://rhythmtyper.net/beatmap/n288ypy7yd9e"
   },
   {
+    "id": "oewn61207rvc_jd48_0_0_0",
+    "title": "Unbreakable",
+    "artist": "Fireflight",
+    "mapper": "lol",
+    "diffName": "Hard",
+    "bpm": 90,
+    "stars": 10.173511106345215,
+    "starsOfficial": 4.6014611824922325,
+    "stats": {
+      "stream": 0,
+      "jack": 0.3174053704120731,
+      "chord": 2.8565742469310798,
+      "prec": 0.0037486406719719587,
+      "ergo": 3.7056800323645307,
+      "disp": 3.206714708172276,
+      "stam": 1.046651664250895
+    },
+    "link": "https://rhythmtyper.net/beatmap/oewn61207rvc"
+  },
+  {
     "id": "nagwihbkt22z_yrbd_0",
     "title": "Fast and hard Drum Warm up",
     "artist": "Keyper",
@@ -18320,27 +18600,27 @@
     "link": "https://rhythmtyper.net/beatmap/7zfki27d6122"
   },
   {
-    "id": "ajtmum5ngg3i_ax4r_0_0_0_0_0_0",
+    "id": "x89w8zhyxh74_ax4r_0_0_0_0_0_0_0",
     "title": "LIFE (Cut Ver.)",
     "artist": "Neuro-Sama",
     "mapper": "randgamor",
     "diffName": "Normal",
     "bpm": 172,
-    "stars": 6.997797381939006,
-    "starsOfficial": 2.781292360636542,
+    "stars": 7.134554618531302,
+    "starsOfficial": 3.04251955509885,
     "stats": {
       "stream": 0,
       "jack": 0,
-      "chord": 2.0381647907663827,
+      "chord": 2.0110373587390113,
       "prec": 0,
-      "ergo": 3.0391750916527163,
-      "disp": 1.599726099840583,
-      "stam": 0.883464738924975
+      "ergo": 3.1245951511210888,
+      "disp": 1.6552028314889975,
+      "stam": 0.9234020931233399
     },
-    "link": "https://rhythmtyper.net/beatmap/ajtmum5ngg3i"
+    "link": "https://rhythmtyper.net/beatmap/x89w8zhyxh74"
   },
   {
-    "id": "ajtmum5ngg3i_afnf_1_1_1_1_1_1",
+    "id": "x89w8zhyxh74_afnf_1_1_1_1_1_1_1",
     "title": "LIFE (Cut Ver.)",
     "artist": "Neuro-Sama",
     "mapper": "randgamor",
@@ -18357,10 +18637,10 @@
       "disp": 1.834194191697576,
       "stam": 1.7149627372390277
     },
-    "link": "https://rhythmtyper.net/beatmap/ajtmum5ngg3i"
+    "link": "https://rhythmtyper.net/beatmap/x89w8zhyxh74"
   },
   {
-    "id": "ajtmum5ngg3i_9hmj_2_2_2_2_2_2",
+    "id": "x89w8zhyxh74_9hmj_2_2_2_2_2_2_2",
     "title": "LIFE (Cut Ver.)",
     "artist": "Neuro-Sama",
     "mapper": "randgamor",
@@ -18377,10 +18657,10 @@
       "disp": 6.400305551146837,
       "stam": 4.096830234512605
     },
-    "link": "https://rhythmtyper.net/beatmap/ajtmum5ngg3i"
+    "link": "https://rhythmtyper.net/beatmap/x89w8zhyxh74"
   },
   {
-    "id": "ajtmum5ngg3i_m33o_3_3_3_3_3_3",
+    "id": "x89w8zhyxh74_m33o_3_3_3_3_3_3_3",
     "title": "LIFE (Cut Ver.)",
     "artist": "Neuro-Sama",
     "mapper": "randgamor",
@@ -18397,7 +18677,7 @@
       "disp": 4.101858594116903,
       "stam": 6.1304084858667
     },
-    "link": "https://rhythmtyper.net/beatmap/ajtmum5ngg3i"
+    "link": "https://rhythmtyper.net/beatmap/x89w8zhyxh74"
   },
   {
     "id": "0e9fu5tkci8w_ndch_2",
@@ -19560,24 +19840,24 @@
     "link": "https://rhythmtyper.net/beatmap/f8udrhf13oid"
   },
   {
-    "id": "bu659fgil2sf_7rtj_0_0_0_0_0_0_0",
+    "id": "lpwxrvr4rw4w_7rtj_0_0_0_0_0_0_0_0_0",
     "title": "Notion",
     "artist": "The Rare Occasions",
     "mapper": "Lazi",
     "diffName": "Hard",
     "bpm": 158,
-    "stars": 16.45759945431075,
-    "starsOfficial": 4.008758845234762,
+    "stars": 16.691761047459128,
+    "starsOfficial": 4.39054539923889,
     "stats": {
       "stream": 0,
       "jack": 0.08295369451072254,
-      "chord": 3.2349045264739744,
-      "prec": 5.411042316359537,
+      "chord": 3.2334363714625676,
+      "prec": 5.646305025766473,
       "ergo": 3.26385660056417,
       "disp": 5.053766395643547,
       "stam": 1.5375354227291014
     },
-    "link": "https://rhythmtyper.net/beatmap/bu659fgil2sf"
+    "link": "https://rhythmtyper.net/beatmap/lpwxrvr4rw4w"
   },
   {
     "id": "chudjyj032wd_j0ps",
@@ -20060,6 +20340,26 @@
     "link": "https://rhythmtyper.net/beatmap/cbdjc13cz0uf"
   },
   {
+    "id": "n8f2q8teans6_vy8s_0_0_0_0_0_0_0",
+    "title": "TEST ME (TV Ver.)",
+    "artist": "CHANMINA",
+    "mapper": "Wiiinson",
+    "diffName": "Normal",
+    "bpm": 130,
+    "stars": 15.979228408584675,
+    "starsOfficial": 3.9592691545236307,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 3.3482858859108227,
+      "prec": 0.7370575442335294,
+      "ergo": 3.549739728894308,
+      "disp": 8.134710080647427,
+      "stam": 1.529513571615548
+    },
+    "link": "https://rhythmtyper.net/beatmap/n8f2q8teans6"
+  },
+  {
     "id": "2d9t1xnadrs5_iman_0",
     "title": "OUTDATED",
     "artist": "Gribbly",
@@ -20340,7 +20640,7 @@
     "link": "https://rhythmtyper.net/beatmap/184wct36qlvs"
   },
   {
-    "id": "5pxmkrjr2r23_sext",
+    "id": "mty8ztuklcf6_sext_0",
     "title": "Flamewall",
     "artist": "Camellia",
     "mapper": "Mrpolasa",
@@ -20357,7 +20657,7 @@
       "disp": 17.97045387144662,
       "stam": 8.98962639101862
     },
-    "link": "https://rhythmtyper.net/beatmap/5pxmkrjr2r23"
+    "link": "https://rhythmtyper.net/beatmap/mty8ztuklcf6"
   },
   {
     "id": "gw0fw72hhifp_odgt",
@@ -21598,6 +21898,86 @@
       "stam": 1.312661169803782
     },
     "link": "https://rhythmtyper.net/beatmap/z3qlm6273212"
+  },
+  {
+    "id": "giz0zxi0rfnl_4o8b_1_0_0_0",
+    "title": "just a little shrimp",
+    "artist": "justan oval",
+    "mapper": "Cardboard_Dragon",
+    "diffName": "Easy",
+    "bpm": 120,
+    "stars": 3.270020560544045,
+    "starsOfficial": 1.5088312708577758,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 2.087530525921963,
+      "disp": 1.2447263522337708,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/giz0zxi0rfnl"
+  },
+  {
+    "id": "giz0zxi0rfnl_e3sd_1_1_1",
+    "title": "just a little shrimp",
+    "artist": "justan oval",
+    "mapper": "Cardboard_Dragon",
+    "diffName": "Normal",
+    "bpm": 120,
+    "stars": 7.882357411257955,
+    "starsOfficial": 2.5013939407548453,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 2.9267555407533834,
+      "prec": 0,
+      "ergo": 3.157193067093881,
+      "disp": 1.2447637512777354,
+      "stam": 1.1822631891497128
+    },
+    "link": "https://rhythmtyper.net/beatmap/giz0zxi0rfnl"
+  },
+  {
+    "id": "giz0zxi0rfnl_98qp_0_2_2_2",
+    "title": "just a little shrimp",
+    "artist": "justan oval",
+    "mapper": "Cardboard_Dragon",
+    "diffName": "Hard",
+    "bpm": 120,
+    "stars": 7.85041182556922,
+    "starsOfficial": 4.012989195038619,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 2.9267555407533834,
+      "prec": 0,
+      "ergo": 3.125333309009744,
+      "disp": 1.2446390317254978,
+      "stam": 1.1822901011694518
+    },
+    "link": "https://rhythmtyper.net/beatmap/giz0zxi0rfnl"
+  },
+  {
+    "id": "giz0zxi0rfnl_c6k4_3_3_3",
+    "title": "just a little shrimp",
+    "artist": "justan oval",
+    "mapper": "Cardboard_Dragon",
+    "diffName": "Harder",
+    "bpm": 120,
+    "stars": 10.18401767836189,
+    "starsOfficial": 5.018364751685994,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 3.4091461883272762,
+      "prec": 0,
+      "ergo": 4.055906866533403,
+      "disp": 1.637525066206321,
+      "stam": 1.9544448626621571
+    },
+    "link": "https://rhythmtyper.net/beatmap/giz0zxi0rfnl"
   },
   {
     "id": "g7vn891w9ddo_sxi1_0_0_0_0_0_0_0_0",
@@ -23360,6 +23740,66 @@
     "link": "https://rhythmtyper.net/beatmap/pv5tr1k51rum"
   },
   {
+    "id": "1xdg3aqizefi_gvii_1_1_1_1_1_1_1_1_1",
+    "title": "Yearning for my F-D",
+    "artist": "Ice",
+    "mapper": "parabeetle",
+    "diffName": "Beginner",
+    "bpm": 136,
+    "stars": 2.493202678034927,
+    "starsOfficial": 0.5981120813377389,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 1.612458902275471,
+      "disp": 0.9270987113257431,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/1xdg3aqizefi"
+  },
+  {
+    "id": "1xdg3aqizefi_2m0g_0_0_0_0_0_0_0_0_0_0_0_0",
+    "title": "Yearning for my F-D",
+    "artist": "Ice",
+    "mapper": "parabeetle",
+    "diffName": "Easy",
+    "bpm": 136,
+    "stars": 3.145898717757847,
+    "starsOfficial": 1.095407060349002,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 2.1365695549833412,
+      "disp": 1.062451750288953,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/1xdg3aqizefi"
+  },
+  {
+    "id": "1xdg3aqizefi_kr48_2_2_2_2_2_2_2_2",
+    "title": "Yearning for my F-D",
+    "artist": "Ice",
+    "mapper": "parabeetle",
+    "diffName": "Normal",
+    "bpm": 136,
+    "stars": 3.644413020891072,
+    "starsOfficial": 2.0379314280540943,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 2.4121961796783715,
+      "disp": 1.2970703591712638,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/1xdg3aqizefi"
+  },
+  {
     "id": "sd4266tt8yb3_1vvd_0_0_0_0_0_0_0_0_0",
     "title": "How Do U Want It",
     "artist": "2Pac",
@@ -24278,6 +24718,26 @@
       "stam": 1.6625722244058971
     },
     "link": "https://rhythmtyper.net/beatmap/3y2ao1tvkaga"
+  },
+  {
+    "id": "baltd2t2hcai_u3ij",
+    "title": "Mesmerizer (clip version)",
+    "artist": "32ki",
+    "mapper": "SH3LLY",
+    "diffName": "MESMERIZING",
+    "bpm": 120,
+    "stars": 6.0704812170677265,
+    "starsOfficial": 2.878020588992204,
+    "stats": {
+      "stream": 0,
+      "jack": 0.8996056960304742,
+      "chord": 0,
+      "prec": 1.7287016842957719,
+      "ergo": 2.4296857904416846,
+      "disp": 1.1968800788777771,
+      "stam": 0.4715022884247566
+    },
+    "link": "https://rhythmtyper.net/beatmap/baltd2t2hcai"
   },
   {
     "id": "bg448tuo76j2_6o7t",
@@ -25940,7 +26400,7 @@
     "link": "https://rhythmtyper.net/beatmap/3f6zlnyqdkoe"
   },
   {
-    "id": "n27izgose3wu_jhtd_0",
+    "id": "jvj4zeaiqklh_jhtd_0_0_0",
     "title": "Issee noo de",
     "artist": "MIMI feat. KAFU",
     "mapper": "Cyanara",
@@ -25957,27 +26417,27 @@
       "disp": 1.0076744208948785,
       "stam": 0.4442233574427187
     },
-    "link": "https://rhythmtyper.net/beatmap/n27izgose3wu"
+    "link": "https://rhythmtyper.net/beatmap/jvj4zeaiqklh"
   },
   {
-    "id": "n27izgose3wu_x5lq_0_0_0_0_0_0_0_0_0_0_0_0_0_1",
+    "id": "jvj4zeaiqklh_x5lq_0_0_0_0_0_0_0_0_0_0_0_0_0_1_1_1",
     "title": "Issee noo de",
     "artist": "MIMI feat. KAFU",
     "mapper": "Cyanara",
     "diffName": "1, 2, 3!",
     "bpm": 178,
-    "stars": 12.517026705777663,
-    "starsOfficial": 5.377171596255211,
+    "stars": 12.590816982456685,
+    "starsOfficial": 5.437603896053449,
     "stats": {
       "stream": 0,
-      "jack": 0.41760833707664285,
-      "chord": 3.462144280393098,
-      "prec": 0.006554657548668166,
-      "ergo": 3.397227104183546,
-      "disp": 4.888210311178221,
-      "stam": 1.5694477452245332
+      "jack": 0.4065288724153699,
+      "chord": 3.494065512697895,
+      "prec": 0.006561088046358482,
+      "ergo": 3.4413904168388774,
+      "disp": 4.934107101050444,
+      "stam": 1.5257512327129432
     },
-    "link": "https://rhythmtyper.net/beatmap/n27izgose3wu"
+    "link": "https://rhythmtyper.net/beatmap/jvj4zeaiqklh"
   },
   {
     "id": "xk9m1ycpwjfd_tpne_0_0",
@@ -27460,14 +27920,14 @@
     "link": "https://rhythmtyper.net/beatmap/9amu6ihx0h71"
   },
   {
-    "id": "4tuystx4ngod_iiqq",
+    "id": "lx4n1w1q7o84_kbz0_0_0",
     "title": "Hourglass",
     "artist": "Set It Off",
     "mapper": "Yomia",
-    "diffName": "Easy",
+    "diffName": "Normal",
     "bpm": 105,
     "stars": 3.9869938917978844,
-    "starsOfficial": 2.178132908751683,
+    "starsOfficial": 2.439508857801885,
     "stats": {
       "stream": 0,
       "jack": 0,
@@ -27477,47 +27937,67 @@
       "disp": 1.671144351083727,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/4tuystx4ngod"
+    "link": "https://rhythmtyper.net/beatmap/lx4n1w1q7o84"
   },
   {
-    "id": "4tuystx4ngod_19es_0_0",
-    "title": "Hourglass",
-    "artist": "Set It Off",
-    "mapper": "Yomia",
-    "diffName": "Normal",
-    "bpm": 105,
-    "stars": 4.587204766441577,
-    "starsOfficial": 3.166543915873728,
-    "stats": {
-      "stream": 0,
-      "jack": 0,
-      "chord": 0,
-      "prec": 0.0012485740283598966,
-      "ergo": 2.9764256751460225,
-      "disp": 1.6944397930225776,
-      "stam": 0
-    },
-    "link": "https://rhythmtyper.net/beatmap/4tuystx4ngod"
-  },
-  {
-    "id": "4tuystx4ngod_tkoh_0_1_1",
+    "id": "lx4n1w1q7o84_irhw_1_1",
     "title": "Hourglass",
     "artist": "Set It Off",
     "mapper": "Yomia",
     "diffName": "Hard",
     "bpm": 105,
-    "stars": 15.167839917232754,
-    "starsOfficial": 5.426322242434314,
+    "stars": 7.3129927274291955,
+    "starsOfficial": 3.7516597812978834,
+    "stats": {
+      "stream": 0,
+      "jack": 0.3837344760979049,
+      "chord": 0,
+      "prec": 2.086771891033938,
+      "ergo": 2.9764281163567503,
+      "disp": 2.203605528414757,
+      "stam": 0.27935753019407683
+    },
+    "link": "https://rhythmtyper.net/beatmap/lx4n1w1q7o84"
+  },
+  {
+    "id": "lx4n1w1q7o84_f5ef_2_2",
+    "title": "Hourglass",
+    "artist": "Set It Off",
+    "mapper": "Yomia",
+    "diffName": "Insane",
+    "bpm": 105,
+    "stars": 15.225359222834962,
+    "starsOfficial": 5.7428577065763164,
     "stats": {
       "stream": 0,
       "jack": 0.9309255313615566,
       "chord": 3.505523548839708,
-      "prec": 2.684234261436354,
+      "prec": 2.7609266689059644,
       "ergo": 3.5035597886468044,
       "disp": 4.97620324429389,
       "stam": 2.08950575825421
     },
-    "link": "https://rhythmtyper.net/beatmap/4tuystx4ngod"
+    "link": "https://rhythmtyper.net/beatmap/lx4n1w1q7o84"
+  },
+  {
+    "id": "lx4n1w1q7o84_96in_3_3",
+    "title": "Hourglass",
+    "artist": "Set It Off",
+    "mapper": "Yomia",
+    "diffName": "Everflowing",
+    "bpm": 105,
+    "stars": 16.62405610501788,
+    "starsOfficial": 7.80657764164998,
+    "stats": {
+      "stream": 0,
+      "jack": 0.7236771516698063,
+      "chord": 4.699620609464906,
+      "prec": 3.1356270442477867,
+      "ergo": 4.049361365674903,
+      "disp": 3.922407824887212,
+      "stam": 3.0673120467745414
+    },
+    "link": "https://rhythmtyper.net/beatmap/lx4n1w1q7o84"
   },
   {
     "id": "xv8xdyu21ei2_vpiv",
