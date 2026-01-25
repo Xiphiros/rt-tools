@@ -860,24 +860,24 @@
     "link": "https://rhythmtyper.net/beatmap/03bnrupkhnwn"
   },
   {
-    "id": "p5rw6vkuw9h4_eqas_0_0_0_0_0_0",
+    "id": "u6j3ij0nxfzj_eqas_0_0_0_0_0_0_0_0_0_0_0",
     "title": "Reblossia",
     "artist": "D-D-Dice",
     "mapper": "Happy566",
     "diffName": "Amethyst Crystallization",
     "bpm": 211,
-    "stars": 72.38600843721697,
-    "starsOfficial": 17.413902845906286,
+    "stars": 71.85796378077316,
+    "starsOfficial": 16.169768122009298,
     "stats": {
-      "stream": 5.00660429060553,
-      "jack": 8.64037472906259,
-      "chord": 10.860920741118399,
-      "prec": 31.363941783060866,
-      "ergo": 5.961481649168593,
-      "disp": 17.20496023013316,
-      "stam": 5.158828647363559
+      "stream": 5.005407868953424,
+      "jack": 8.759629813823807,
+      "chord": 10.70101637805865,
+      "prec": 30.783128046337517,
+      "ergo": 5.955650012048349,
+      "disp": 17.327996815811623,
+      "stam": 5.134629870611671
     },
-    "link": "https://rhythmtyper.net/beatmap/p5rw6vkuw9h4"
+    "link": "https://rhythmtyper.net/beatmap/u6j3ij0nxfzj"
   },
   {
     "id": "91j39gxpikc8_5qoc",
@@ -938,6 +938,26 @@
       "stam": 1.5729691687266376
     },
     "link": "https://rhythmtyper.net/beatmap/7b70ua11c2ij"
+  },
+  {
+    "id": "2s3lzzbekmww_d3q7_0",
+    "title": "shima song",
+    "artist": "Shima",
+    "mapper": "ChessStoned",
+    "diffName": "Normal",
+    "bpm": 102,
+    "stars": 21.622543243953572,
+    "starsOfficial": 7.483525130117445,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 8.792520031473149,
+      "prec": 0.000507461581057848,
+      "ergo": 5.777431948932577,
+      "disp": 4.2603012373168845,
+      "stam": 4.877537744681324
+    },
+    "link": "https://rhythmtyper.net/beatmap/2s3lzzbekmww"
   },
   {
     "id": "6jfa1mdmesor_xeuv",
@@ -1540,6 +1560,26 @@
     "link": "https://rhythmtyper.net/beatmap/v3isp5w4bssk"
   },
   {
+    "id": "ydvziirqcv8s_ku2j_0_0_0_0_0_0_0",
+    "title": "RADIANT FORCE",
+    "artist": "Elements Garden",
+    "mapper": "Yomia",
+    "diffName": "Miracle",
+    "bpm": 155,
+    "stars": 40.980901097388966,
+    "starsOfficial": 9.790340903179496,
+    "stats": {
+      "stream": 1.9278912481199073,
+      "jack": 4.048630812796823,
+      "chord": 10.785949300239956,
+      "prec": 9.265277554337228,
+      "ergo": 5.422323574363628,
+      "disp": 11.966211139254488,
+      "stam": 5.6983251595884115
+    },
+    "link": "https://rhythmtyper.net/beatmap/ydvziirqcv8s"
+  },
+  {
     "id": "h69guoyimvt3_uq25",
     "title": "Holdin' On (Skrillex & Nero Remix) (Cut Ver.)",
     "artist": "Monsta",
@@ -1678,6 +1718,26 @@
       "stam": 2.2032504090840597
     },
     "link": "https://rhythmtyper.net/beatmap/n2fap3sn17o6"
+  },
+  {
+    "id": "mstyi9xl1dwx_u3gl_0",
+    "title": "untitled song",
+    "artist": "lenoel713",
+    "mapper": "lenoel713",
+    "diffName": "Original",
+    "bpm": 120,
+    "stars": 4.056561258829344,
+    "starsOfficial": 3.6953816259701573,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 2.803222989457972,
+      "disp": 1.3193034414435496,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/mstyi9xl1dwx"
   },
   {
     "id": "ilyo8tiifro0_pqgf_0_0_0_0_0_0",
@@ -1938,6 +1998,26 @@
       "stam": 2.7018440359674325
     },
     "link": "https://rhythmtyper.net/beatmap/3io5p1x1tp9h"
+  },
+  {
+    "id": "8u4z5yy105tf_8qk0_0",
+    "title": "kitty kitty cat",
+    "artist": "PipiP feat. Kaai Yuki & KAFU",
+    "mapper": "kitty_irl",
+    "diffName": ":3",
+    "bpm": 135,
+    "stars": 25.1290139336289,
+    "starsOfficial": 12.952943557225108,
+    "stats": {
+      "stream": 0,
+      "jack": 1.9168113651730145,
+      "chord": 7.961531732107381,
+      "prec": 2.93858855371589,
+      "ergo": 5.202169594947183,
+      "disp": 6.865264128601551,
+      "stam": 4.345744417179274
+    },
+    "link": "https://rhythmtyper.net/beatmap/8u4z5yy105tf"
   },
   {
     "id": "5qe488ai7hmu_b829_2_1_0_0_0_0_0_0_0",
@@ -3460,6 +3540,86 @@
     "link": "https://rhythmtyper.net/beatmap/pe4jcdsoe20r"
   },
   {
+    "id": "wm9a5h7lc9sc_1293_0_0_0_0_0",
+    "title": "MY REZHEM KINOLENTY (feat. Cut The Crap) (Cut Ver.)",
+    "artist": "55x55",
+    "mapper": "Ereal",
+    "diffName": "CUT THE EASY",
+    "bpm": 125,
+    "stars": 5.95914134138933,
+    "starsOfficial": 2.298399957133459,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 2.5508651998108345,
+      "disp": 3.5358194015690376,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/wm9a5h7lc9sc"
+  },
+  {
+    "id": "wm9a5h7lc9sc_8pv0",
+    "title": "MY REZHEM KINOLENTY (feat. Cut The Crap) (Cut Ver.)",
+    "artist": "55x55",
+    "mapper": "Ereal",
+    "diffName": "D4neX's CUT THE NORMAL",
+    "bpm": 125,
+    "stars": 3.646400773112891,
+    "starsOfficial": 3.1256934849985667,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 2.448335145785119,
+      "disp": 1.2611217129766026,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/wm9a5h7lc9sc"
+  },
+  {
+    "id": "wm9a5h7lc9sc_cbkm_1_1_1_1_1",
+    "title": "MY REZHEM KINOLENTY (feat. Cut The Crap) (Cut Ver.)",
+    "artist": "55x55",
+    "mapper": "Ereal",
+    "diffName": "CUT THE HARD",
+    "bpm": 125,
+    "stars": 12.290224052817438,
+    "starsOfficial": 4.960896245847862,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 3.17374800194092,
+      "prec": 2.194484208758112,
+      "ergo": 2.9958773096197095,
+      "disp": 4.16098179128759,
+      "stam": 1.4181889076009795
+    },
+    "link": "https://rhythmtyper.net/beatmap/wm9a5h7lc9sc"
+  },
+  {
+    "id": "wm9a5h7lc9sc_b549_2_2_2",
+    "title": "MY REZHEM KINOLENTY (feat. Cut The Crap) (Cut Ver.)",
+    "artist": "55x55",
+    "mapper": "Ereal",
+    "diffName": "CUT THE INSANE",
+    "bpm": 125,
+    "stars": 13.351436645923147,
+    "starsOfficial": 6.8999950398021195,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 3.4368888096527597,
+      "prec": 0,
+      "ergo": 3.503196946652215,
+      "disp": 5.965411266941871,
+      "stam": 1.515510388609104
+    },
+    "link": "https://rhythmtyper.net/beatmap/wm9a5h7lc9sc"
+  },
+  {
     "id": "unrceyj5rkay_qyuj",
     "title": "Evanescent",
     "artist": "LeaF",
@@ -4720,7 +4880,7 @@
     "link": "https://rhythmtyper.net/beatmap/fvnsfdkk8dp3"
   },
   {
-    "id": "lfn7x1hi238y_hlq0_1_1_1_0_0_0",
+    "id": "74632zfiaall_hlq0_1_1_1_0_0_0_0",
     "title": "Kimi no Sei (TV Size)",
     "artist": "the peggies",
     "mapper": "orangeshortstuff",
@@ -4737,30 +4897,30 @@
       "disp": 1.4788575122727865,
       "stam": 0.09199657580748549
     },
-    "link": "https://rhythmtyper.net/beatmap/lfn7x1hi238y"
+    "link": "https://rhythmtyper.net/beatmap/74632zfiaall"
   },
   {
-    "id": "lfn7x1hi238y_keq5_1",
+    "id": "74632zfiaall_keq5_1_1",
     "title": "Kimi no Sei (TV Size)",
     "artist": "the peggies",
     "mapper": "orangeshortstuff",
     "diffName": "Hard",
     "bpm": 174,
-    "stars": 8.468017709971518,
-    "starsOfficial": 4.536697762191729,
+    "stars": 13.36394200534031,
+    "starsOfficial": 4.572734603945679,
     "stats": {
       "stream": 0,
-      "jack": 0.27409262501305104,
-      "chord": 2.3163338290552944,
-      "prec": 0.004526026507354178,
-      "ergo": 2.7499102697086344,
-      "disp": 3.2060853505260187,
-      "stam": 0.6666457702503606
+      "jack": 0.29373673035332154,
+      "chord": 2.844273230916854,
+      "prec": 4.72849547026331,
+      "ergo": 3.0366194754172957,
+      "disp": 3.235750188082253,
+      "stam": 1.0547648883264475
     },
-    "link": "https://rhythmtyper.net/beatmap/lfn7x1hi238y"
+    "link": "https://rhythmtyper.net/beatmap/74632zfiaall"
   },
   {
-    "id": "lfn7x1hi238y_kyry_2_2_1_1_2",
+    "id": "74632zfiaall_kyry_2_2_1_1_2_2",
     "title": "Kimi no Sei (TV Size)",
     "artist": "the peggies",
     "mapper": "orangeshortstuff",
@@ -4777,10 +4937,10 @@
       "disp": 3.9638350661114767,
       "stam": 1.4384285216420218
     },
-    "link": "https://rhythmtyper.net/beatmap/lfn7x1hi238y"
+    "link": "https://rhythmtyper.net/beatmap/74632zfiaall"
   },
   {
-    "id": "lfn7x1hi238y_1tzf_0_0_0_0_2_2_3",
+    "id": "74632zfiaall_1tzf_0_0_0_0_2_2_3_3",
     "title": "Kimi no Sei (TV Size)",
     "artist": "the peggies",
     "mapper": "orangeshortstuff",
@@ -4797,7 +4957,7 @@
       "disp": 8.17779460986991,
       "stam": 2.0694515877730186
     },
-    "link": "https://rhythmtyper.net/beatmap/lfn7x1hi238y"
+    "link": "https://rhythmtyper.net/beatmap/74632zfiaall"
   },
   {
     "id": "j45lhynflggf_pa3w_0",
@@ -5540,7 +5700,7 @@
     "link": "https://rhythmtyper.net/beatmap/23qasfah2uh2"
   },
   {
-    "id": "lzzw3zussn7r_qskm_0_0_0_0_0_0_0",
+    "id": "lcidmfuwtd3g_qskm_0_0_0_0_0_0_0_0",
     "title": "Shoujo A (cut. ver)",
     "artist": "siinamota feat. Kagamine Rin",
     "mapper": "D4neX",
@@ -5557,10 +5717,10 @@
       "disp": 1.8213089014458976,
       "stam": 0.5680119165538432
     },
-    "link": "https://rhythmtyper.net/beatmap/lzzw3zussn7r"
+    "link": "https://rhythmtyper.net/beatmap/lcidmfuwtd3g"
   },
   {
-    "id": "lzzw3zussn7r_7rkz_1_1_1_1_1_1",
+    "id": "lcidmfuwtd3g_7rkz_1_1_1_1_1_1_1",
     "title": "Shoujo A (cut. ver)",
     "artist": "siinamota feat. Kagamine Rin",
     "mapper": "D4neX",
@@ -5577,30 +5737,30 @@
       "disp": 4.713459054432172,
       "stam": 1.4828157885606006
     },
-    "link": "https://rhythmtyper.net/beatmap/lzzw3zussn7r"
+    "link": "https://rhythmtyper.net/beatmap/lcidmfuwtd3g"
   },
   {
-    "id": "lzzw3zussn7r_jex2_2_2",
+    "id": "lcidmfuwtd3g_p61s",
     "title": "Shoujo A (cut. ver)",
     "artist": "siinamota feat. Kagamine Rin",
     "mapper": "D4neX",
     "diffName": "A Insane",
     "bpm": 260,
-    "stars": 21.812408442604383,
+    "stars": 21.812489816101433,
     "starsOfficial": 8.012834712561618,
     "stats": {
       "stream": 0,
       "jack": 1.7075310448323016,
       "chord": 4.8688825641106215,
       "prec": 8.00794699840555,
-      "ergo": 3.758920286912688,
-      "disp": 4.748800859905119,
+      "ergo": 3.7590287875146435,
+      "disp": 4.748800857605803,
       "stam": 2.1295538269724785
     },
-    "link": "https://rhythmtyper.net/beatmap/lzzw3zussn7r"
+    "link": "https://rhythmtyper.net/beatmap/lcidmfuwtd3g"
   },
   {
-    "id": "lzzw3zussn7r_4lxa",
+    "id": "lcidmfuwtd3g_4lxa_3",
     "title": "Shoujo A (cut. ver)",
     "artist": "siinamota feat. Kagamine Rin",
     "mapper": "D4neX",
@@ -5617,7 +5777,7 @@
       "disp": 5.337022554491986,
       "stam": 2.899793726461269
     },
-    "link": "https://rhythmtyper.net/beatmap/lzzw3zussn7r"
+    "link": "https://rhythmtyper.net/beatmap/lcidmfuwtd3g"
   },
   {
     "id": "1uussuhuh8im_nwnq_0_0_0_0_0",
@@ -5980,6 +6140,26 @@
     "link": "https://rhythmtyper.net/beatmap/t5z0fcbs2cbg"
   },
   {
+    "id": "qaiifcabxl8u_i7tn_0",
+    "title": "Burn the House Down (Cut Ver.)",
+    "artist": "AJR",
+    "mapper": "TeaMan",
+    "diffName": "Math Test",
+    "bpm": 184,
+    "stars": 14.678133152636734,
+    "starsOfficial": 6.79319542368614,
+    "stats": {
+      "stream": 0,
+      "jack": 1.9987380022946846,
+      "chord": 2.8133453760324696,
+      "prec": 2.7284305974603,
+      "ergo": 3.029359734631396,
+      "disp": 5.553524663493214,
+      "stam": 0.9270373127805926
+    },
+    "link": "https://rhythmtyper.net/beatmap/qaiifcabxl8u"
+  },
+  {
     "id": "71rtcq335weh_q0n2_0_0_0_0_0_0_0_0_0",
     "title": "XXL",
     "artist": "5opka, MellSher",
@@ -6138,6 +6318,26 @@
       "stam": 1.393243521810509
     },
     "link": "https://rhythmtyper.net/beatmap/w1yhk5s5im4d"
+  },
+  {
+    "id": "9arpi49br7r9_tyiy",
+    "title": "tung",
+    "artist": "sehar",
+    "mapper": "Iquata",
+    "diffName": "Untitled Difficulty",
+    "bpm": 120,
+    "stars": 3.5663837187985985,
+    "starsOfficial": 1.608931215696497,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 2.695234674502169,
+      "disp": 0.9169989939962415,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/9arpi49br7r9"
   },
   {
     "id": "40xe56jmiq5k_3aka",
@@ -6840,24 +7040,24 @@
     "link": "https://rhythmtyper.net/beatmap/or3tv8ubiski"
   },
   {
-    "id": "nmeyr91rntgf_cxcy_0_0_0_0_0_0_0_0_0_0",
+    "id": "at8q60fzq3n0_cxcy_0_0_0_0_0_0_0_0_0_0_0_0",
     "title": "Nobosemon HERO feat. Kagamine Len & Zundamon",
     "artist": "ChibaNyan & Giga",
     "mapper": "Piger",
     "diffName": "Pon Pon Pon",
-    "bpm": 165,
-    "stars": 31.671350825543723,
-    "starsOfficial": 7.754366473733701,
+    "bpm": 155,
+    "stars": 29.458016389798747,
+    "starsOfficial": 7.75462474488582,
     "stats": {
-      "stream": 0.8565931930550583,
-      "jack": 1.9897346977465178,
-      "chord": 5.317979568683755,
-      "prec": 9.114033096709788,
-      "ergo": 5.187990878585055,
-      "disp": 10.699430932643494,
-      "stam": 3.7269102124162843
+      "stream": 0.5549141705335972,
+      "jack": 1.831500240507312,
+      "chord": 5.244930054157563,
+      "prec": 7.133485306366842,
+      "ergo": 5.185624404680783,
+      "disp": 10.697742749356564,
+      "stam": 3.660026524353885
     },
-    "link": "https://rhythmtyper.net/beatmap/nmeyr91rntgf"
+    "link": "https://rhythmtyper.net/beatmap/at8q60fzq3n0"
   },
   {
     "id": "70hqt3rh39r7_gfr4_0_0_0_0_0",
@@ -9880,6 +10080,26 @@
     "link": "https://rhythmtyper.net/beatmap/ws1bzun0bv0k"
   },
   {
+    "id": "ckx6tzuw9j9p_cp7z_0_0_0_0",
+    "title": "TALALALA",
+    "artist": "Hoshimachi Suisei",
+    "mapper": "kabi_vbs",
+    "diffName": "normal talala",
+    "bpm": 208.25,
+    "stars": 3.9577922479136043,
+    "starsOfficial": 1.8319111569700037,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0.9215101566453687,
+      "prec": 0.0005484939173091211,
+      "ergo": 2.6806497517603587,
+      "disp": 0,
+      "stam": 0.47211350223783954
+    },
+    "link": "https://rhythmtyper.net/beatmap/ckx6tzuw9j9p"
+  },
+  {
     "id": "os6tx480ob5v_vdth_0_0",
     "title": "Sad Machine",
     "artist": "Porter Robinson",
@@ -9998,6 +10218,46 @@
       "stam": 3.7469912304860933
     },
     "link": "https://rhythmtyper.net/beatmap/mg312pxskcih"
+  },
+  {
+    "id": "o5ptav1cva6s_cs9o_0",
+    "title": "Chess",
+    "artist": "Joyful",
+    "mapper": "Neph",
+    "diffName": "Hard",
+    "bpm": 134,
+    "stars": 11.304907000527507,
+    "starsOfficial": 3.747169564781313,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 2.6821577320854004,
+      "prec": 0.0015993761681596219,
+      "ergo": 3.015442568834491,
+      "disp": 5.416711275426082,
+      "stam": 0.9902021572356838
+    },
+    "link": "https://rhythmtyper.net/beatmap/o5ptav1cva6s"
+  },
+  {
+    "id": "o5ptav1cva6s_0jkq_0_0_0_1",
+    "title": "Chess",
+    "artist": "Joyful",
+    "mapper": "Neph",
+    "diffName": "Cat vs Rat",
+    "bpm": 134,
+    "stars": 13.265228381188546,
+    "starsOfficial": 4.8215896473648465,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 2.8390864914720426,
+      "prec": 0.0016224267918882767,
+      "ergo": 3.228509521620222,
+      "disp": 6.8327417320595165,
+      "stam": 1.2681660112318074
+    },
+    "link": "https://rhythmtyper.net/beatmap/o5ptav1cva6s"
   },
   {
     "id": "d6oa8kagpmlw_k7ut_0",
@@ -10380,6 +10640,46 @@
     "link": "https://rhythmtyper.net/beatmap/5208a9a8rfc4"
   },
   {
+    "id": "cihhuawgamqz_3jvd_0_0_0_0_0_0",
+    "title": "test",
+    "artist": "joyful",
+    "mapper": "andrew",
+    "diffName": "andrew's easy",
+    "bpm": 108.57999999999997,
+    "stars": 1.6567769344028558,
+    "starsOfficial": 1.5925034365823052,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 1.6567769344028558,
+      "disp": 0,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/cihhuawgamqz"
+  },
+  {
+    "id": "cihhuawgamqz_3jvd_1_1_1_1_1_1",
+    "title": "test",
+    "artist": "joyful",
+    "mapper": "andrew",
+    "diffName": "andrew's insane",
+    "bpm": 108.57999999999997,
+    "stars": 7.413363086648314,
+    "starsOfficial": 3.8350289045389836,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 2.3372543966506383,
+      "prec": 0.0012919597217074016,
+      "ergo": 2.9623184080374223,
+      "disp": 1.8320722098325517,
+      "stam": 0.8967357994880073
+    },
+    "link": "https://rhythmtyper.net/beatmap/cihhuawgamqz"
+  },
+  {
     "id": "w9p73kprjbcu_a3mg_0_0_0_0_0_0",
     "title": "world.execute(me);",
     "artist": "Mili",
@@ -10760,7 +11060,7 @@
     "link": "https://rhythmtyper.net/beatmap/24tyrh73ulh8"
   },
   {
-    "id": "1g7uzx90c1vo_3buu_0_0_0_0",
+    "id": "8r8w4eqx0am6_3buu_0_0_0_0_0",
     "title": "Lost Woods",
     "artist": "Koji Kondo",
     "mapper": "mqno",
@@ -10777,10 +11077,10 @@
       "disp": 1.1129652182738021,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/1g7uzx90c1vo"
+    "link": "https://rhythmtyper.net/beatmap/8r8w4eqx0am6"
   },
   {
-    "id": "1g7uzx90c1vo_rkuo_1_1_1_1",
+    "id": "8r8w4eqx0am6_rkuo_1_1_1_1_1",
     "title": "Lost Woods",
     "artist": "Koji Kondo",
     "mapper": "mqno",
@@ -10797,10 +11097,10 @@
       "disp": 2.8689332374617287,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/1g7uzx90c1vo"
+    "link": "https://rhythmtyper.net/beatmap/8r8w4eqx0am6"
   },
   {
-    "id": "1g7uzx90c1vo_a56q_2_2_2_2",
+    "id": "8r8w4eqx0am6_a56q_2_2_2_2_2",
     "title": "Lost Woods",
     "artist": "Koji Kondo",
     "mapper": "mqno",
@@ -10817,10 +11117,10 @@
       "disp": 3.304511670420484,
       "stam": 0.8850907365679118
     },
-    "link": "https://rhythmtyper.net/beatmap/1g7uzx90c1vo"
+    "link": "https://rhythmtyper.net/beatmap/8r8w4eqx0am6"
   },
   {
-    "id": "1g7uzx90c1vo_cqcm_3_3_3_3",
+    "id": "8r8w4eqx0am6_cqcm_3_3_3_3_3",
     "title": "Lost Woods",
     "artist": "Koji Kondo",
     "mapper": "mqno",
@@ -10837,27 +11137,27 @@
       "disp": 4.653811680562996,
       "stam": 1.4952199475557655
     },
-    "link": "https://rhythmtyper.net/beatmap/1g7uzx90c1vo"
+    "link": "https://rhythmtyper.net/beatmap/8r8w4eqx0am6"
   },
   {
-    "id": "1g7uzx90c1vo_nia4",
+    "id": "8r8w4eqx0am6_vqy5",
     "title": "Lost Woods",
     "artist": "Koji Kondo",
     "mapper": "mqno",
     "diffName": "goink's Expert",
     "bpm": 140,
-    "stars": 21.250566643380218,
-    "starsOfficial": 7.801623272375423,
+    "stars": 21.322994716117254,
+    "starsOfficial": 7.814829366721203,
     "stats": {
       "stream": 0.2750619090165062,
       "jack": 2.2420350657545276,
       "chord": 3.8545994829971617,
-      "prec": 7.753624163219548,
-      "ergo": 3.0634359269435985,
-      "disp": 5.819621638966484,
-      "stam": 1.4785723010715528
+      "prec": 7.753623971949894,
+      "ergo": 3.1612448995291893,
+      "disp": 5.818645600701128,
+      "stam": 1.4785700663798897
     },
-    "link": "https://rhythmtyper.net/beatmap/1g7uzx90c1vo"
+    "link": "https://rhythmtyper.net/beatmap/8r8w4eqx0am6"
   },
   {
     "id": "cdkt26kvdkkj_76br_0",
@@ -11140,11 +11440,11 @@
     "link": "https://rhythmtyper.net/beatmap/xk9pd2ygkag1"
   },
   {
-    "id": "zxh2g3k65fze_ko4o_0_0",
+    "id": "1tf0bwko3mmq_ko4o_0_0_0",
     "title": "seal.mp4",
     "artist": "joeyclassic",
     "mapper": "Ereal",
-    "diffName": "advanced.mp4",
+    "diffName": "normal.mp4",
     "bpm": 163.92,
     "stars": 3.688083244110372,
     "starsOfficial": 2.191280559612462,
@@ -11157,10 +11457,10 @@
       "disp": 1.5034570572348258,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/zxh2g3k65fze"
+    "link": "https://rhythmtyper.net/beatmap/1tf0bwko3mmq"
   },
   {
-    "id": "zxh2g3k65fze_bq48_1_1_1_1_1_1",
+    "id": "1tf0bwko3mmq_bq48_1_1_1_1_1_1_1",
     "title": "seal.mp4",
     "artist": "joeyclassic",
     "mapper": "Ereal",
@@ -11177,7 +11477,7 @@
       "disp": 3.9665120635484103,
       "stam": 1.0864019346724094
     },
-    "link": "https://rhythmtyper.net/beatmap/zxh2g3k65fze"
+    "link": "https://rhythmtyper.net/beatmap/1tf0bwko3mmq"
   },
   {
     "id": "4b84j1pj4xpn_plsk_2_2",
@@ -12100,6 +12400,66 @@
     "link": "https://rhythmtyper.net/beatmap/lyx2h5v3zibw"
   },
   {
+    "id": "coy9dxrpns26_svh2",
+    "title": "Himiko",
+    "artist": "Suzaku vs. Genbu",
+    "mapper": "Xiphrios",
+    "diffName": "parabeetle's NORMAL",
+    "bpm": 185,
+    "stars": 3.341229470565848,
+    "starsOfficial": 2.284982099843613,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 2.1899227380636,
+      "disp": 1.2119018236865768,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/coy9dxrpns26"
+  },
+  {
+    "id": "coy9dxrpns26_gh2t_0_1_1_1_1_1_1_1_1",
+    "title": "Himiko",
+    "artist": "Suzaku vs. Genbu",
+    "mapper": "Xiphrios",
+    "diffName": "Fakundddo's HYPER",
+    "bpm": 185,
+    "stars": 25.29554409280715,
+    "starsOfficial": 7.987075160535918,
+    "stats": {
+      "stream": 1.1428869334232155,
+      "jack": 3.1405165942573707,
+      "chord": 4.480165064365292,
+      "prec": 4.783878727638839,
+      "ergo": 4.654250977123794,
+      "disp": 9.351354039591298,
+      "stam": 2.777514957858235
+    },
+    "link": "https://rhythmtyper.net/beatmap/coy9dxrpns26"
+  },
+  {
+    "id": "coy9dxrpns26_0pht_0_0_0_0_0_0_0_0_0_0_1_2_2_2_2_2_2_2_2",
+    "title": "Himiko",
+    "artist": "Suzaku vs. Genbu",
+    "mapper": "Xiphrios",
+    "diffName": "LEGGENDARIA",
+    "bpm": 185,
+    "stars": 57.113336071137105,
+    "starsOfficial": 19.866591085534914,
+    "stats": {
+      "stream": 4.04923653761788,
+      "jack": 7.607579601635281,
+      "chord": 12.42331760129787,
+      "prec": 14.937915645840478,
+      "ergo": 5.259265625402688,
+      "disp": 18.226411405293653,
+      "stam": 5.716380929332045
+    },
+    "link": "https://rhythmtyper.net/beatmap/coy9dxrpns26"
+  },
+  {
     "id": "kry1co7ciy3h_uqks_0_0_0_0_0_0_0_0_0_0_0_0",
     "title": "Neko no Uta",
     "artist": "Various Artists",
@@ -12720,6 +13080,26 @@
     "link": "https://rhythmtyper.net/beatmap/dykxqekseze5"
   },
   {
+    "id": "hh6esybg9lf4_fmhg",
+    "title": "BlackBoxWarrior - OKULTRA",
+    "artist": "Will Wood",
+    "mapper": "Autoplay",
+    "diffName": "There's No More Looking Back",
+    "bpm": 161,
+    "stars": 0,
+    "starsOfficial": 0,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 0,
+      "disp": 0,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/hh6esybg9lf4"
+  },
+  {
     "id": "74fti3wcmusf_s5k1_0_0_0_0_0_0_0_0_0",
     "title": "L9",
     "artist": "paraoka",
@@ -13300,6 +13680,46 @@
     "link": "https://rhythmtyper.net/beatmap/3sw7wnyahpq9"
   },
   {
+    "id": "va6v077tq6tw_x5f8_0_0_0_0_0_0_0_0",
+    "title": "Rabbit Hole feat. Hatsune Miku",
+    "artist": "DECO*27",
+    "mapper": "Cyanara",
+    "diffName": "Insane",
+    "bpm": 173,
+    "stars": 16.08241685032795,
+    "starsOfficial": 5.4777463365767325,
+    "stats": {
+      "stream": 0,
+      "jack": 0.3406528175929234,
+      "chord": 3.8118584487847205,
+      "prec": 0.005639658823912743,
+      "ergo": 3.2371067621298413,
+      "disp": 8.279436052849078,
+      "stam": 1.607531172712628
+    },
+    "link": "https://rhythmtyper.net/beatmap/va6v077tq6tw"
+  },
+  {
+    "id": "va6v077tq6tw_gu16_1_1_1_1_1_1_1",
+    "title": "Rabbit Hole feat. Hatsune Miku",
+    "artist": "DECO*27",
+    "mapper": "Cyanara",
+    "diffName": "Bunny WIP",
+    "bpm": 173,
+    "stars": 16.506213137856154,
+    "starsOfficial": 7.129178322526129,
+    "stats": {
+      "stream": 0.26358042548833693,
+      "jack": 0.8527193680757059,
+      "chord": 3.5995379434518484,
+      "prec": 5.171114856494685,
+      "ergo": 4.3188392643063365,
+      "disp": 3.2672710245870857,
+      "stam": 1.7454363322841144
+    },
+    "link": "https://rhythmtyper.net/beatmap/va6v077tq6tw"
+  },
+  {
     "id": "k6huij4214gt_7llm_0_0_0",
     "title": "Kaijuu ni Naritai",
     "artist": "Sakuzyo feat. Hatsune Miku",
@@ -13578,6 +13998,26 @@
       "stam": 38.82272551113104
     },
     "link": "https://rhythmtyper.net/beatmap/6zqvquw23d7x"
+  },
+  {
+    "id": "ijs3jp1tks4j_36m3_0",
+    "title": "ラグトレイン",
+    "artist": "稲葉曇",
+    "mapper": "Momoi_Airi",
+    "diffName": "Train",
+    "bpm": 147,
+    "stars": 13.288214248082804,
+    "starsOfficial": 4.599799299998369,
+    "stats": {
+      "stream": 0.7120462570637696,
+      "jack": 2.030795140977784,
+      "chord": 3.468719280021907,
+      "prec": 1.9167995107864217,
+      "ergo": 3.122039252395434,
+      "disp": 3.706517864764259,
+      "stam": 0.987714271524377
+    },
+    "link": "https://rhythmtyper.net/beatmap/ijs3jp1tks4j"
   },
   {
     "id": "8f34vyyihxrk_agu5",
@@ -13940,7 +14380,7 @@
     "link": "https://rhythmtyper.net/beatmap/jtd8z08c6bfn"
   },
   {
-    "id": "0czb0zzkz6z1_cyp1_0_0_0_0_0_0_0_0_0_0_0_0_0_0",
+    "id": "3emw2tctq32t_cyp1_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0",
     "title": "Calamity Fortune",
     "artist": "LeaF",
     "mapper": "probablynotacat",
@@ -13957,10 +14397,10 @@
       "disp": 1.9521371142782487,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/0czb0zzkz6z1"
+    "link": "https://rhythmtyper.net/beatmap/3emw2tctq32t"
   },
   {
-    "id": "0czb0zzkz6z1_vn7u_2_0_0_0_0_0_0_0_0_1_1_1_1_1_1_1_1_1_1_1_1_1_1",
+    "id": "3emw2tctq32t_vn7u_2_0_0_0_0_0_0_0_0_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1",
     "title": "Calamity Fortune",
     "artist": "LeaF",
     "mapper": "probablynotacat",
@@ -13977,10 +14417,10 @@
       "disp": 2.1099736221347554,
       "stam": 0.4193606146825638
     },
-    "link": "https://rhythmtyper.net/beatmap/0czb0zzkz6z1"
+    "link": "https://rhythmtyper.net/beatmap/3emw2tctq32t"
   },
   {
-    "id": "0czb0zzkz6z1_2h1x_1_1_1_1_1_1_1_1_1_2_2_2_2_2_2_2_2_2_2_2_2_2_2",
+    "id": "3emw2tctq32t_2h1x_1_1_1_1_1_1_1_1_1_2_2_2_2_2_2_2_2_2_2_2_2_2_2_2",
     "title": "Calamity Fortune",
     "artist": "LeaF",
     "mapper": "probablynotacat",
@@ -13997,10 +14437,10 @@
       "disp": 4.033772308944793,
       "stam": 1.377561877086111
     },
-    "link": "https://rhythmtyper.net/beatmap/0czb0zzkz6z1"
+    "link": "https://rhythmtyper.net/beatmap/3emw2tctq32t"
   },
   {
-    "id": "0czb0zzkz6z1_5qun_2_2_2_2_2_2_3_3_3_3_3_3_3_3_3_3_3_3_3_3",
+    "id": "3emw2tctq32t_5qun_2_2_2_2_2_2_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3",
     "title": "Calamity Fortune",
     "artist": "LeaF",
     "mapper": "probablynotacat",
@@ -14017,10 +14457,10 @@
       "disp": 5.027434541269572,
       "stam": 2.389350909588469
     },
-    "link": "https://rhythmtyper.net/beatmap/0czb0zzkz6z1"
+    "link": "https://rhythmtyper.net/beatmap/3emw2tctq32t"
   },
   {
-    "id": "0czb0zzkz6z1_b79a_0_0_2_2_3_3_3_3_3_3_4_4_4_4_4_4_4_4_4_4_4_4_4_4",
+    "id": "3emw2tctq32t_b79a_0_0_2_2_3_3_3_3_3_3_4_4_4_4_4_4_4_4_4_4_4_4_4_4_4",
     "title": "Calamity Fortune",
     "artist": "LeaF",
     "mapper": "probablynotacat",
@@ -14037,7 +14477,7 @@
       "disp": 15.453226813499112,
       "stam": 3.260871206347971
     },
-    "link": "https://rhythmtyper.net/beatmap/0czb0zzkz6z1"
+    "link": "https://rhythmtyper.net/beatmap/3emw2tctq32t"
   },
   {
     "id": "xq53yw41u37i_s21m",
@@ -15960,6 +16400,26 @@
     "link": "https://rhythmtyper.net/beatmap/ivbu7ppgcmqk"
   },
   {
+    "id": "gbqdfhqidjyr_bvbe_0",
+    "title": "crazy fucking robot body",
+    "artist": "evil sama",
+    "mapper": "randgamor",
+    "diffName": "there's a point where it tips, theres a point where it breaks, there's a point where it bends and a point we just can't take, anymoreee",
+    "bpm": 120,
+    "stars": 5662.848349923063,
+    "starsOfficial": 33.77634444317113,
+    "stats": {
+      "stream": 0,
+      "jack": 87.71592112887936,
+      "chord": 5424.556322756943,
+      "prec": 21.957514734472408,
+      "ergo": 19.40887133707531,
+      "disp": 98.43203704920438,
+      "stam": 60.36772692937395
+    },
+    "link": "https://rhythmtyper.net/beatmap/gbqdfhqidjyr"
+  },
+  {
     "id": "anioohwkv6eb_y0fa_2_2",
     "title": "On Your Mind [Cut]",
     "artist": "Underscore",
@@ -16038,6 +16498,86 @@
       "stam": 6.435977765853254
     },
     "link": "https://rhythmtyper.net/beatmap/ckw9676dqcof"
+  },
+  {
+    "id": "p180csikeza8_3dq5",
+    "title": "kNow YEah",
+    "artist": "G6",
+    "mapper": "G_galvanize",
+    "diffName": "Ultra Easy",
+    "bpm": 120,
+    "stars": 5.887407892078908,
+    "starsOfficial": 2.3149483823694825,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 1.5475071720951883,
+      "prec": 0,
+      "ergo": 2.884307585192889,
+      "disp": 1.5982465267528683,
+      "stam": 0.2258466802531789
+    },
+    "link": "https://rhythmtyper.net/beatmap/p180csikeza8"
+  },
+  {
+    "id": "9jbi5d3ny5ni_3up8_0",
+    "title": "Sabat",
+    "artist": "Deloraine",
+    "mapper": "Harvest",
+    "diffName": "Untitled Difficulty",
+    "bpm": 120,
+    "stars": 17.248147447462614,
+    "starsOfficial": 3.118919303406586,
+    "stats": {
+      "stream": 0,
+      "jack": 1.5152047917611802,
+      "chord": 4.36055228280363,
+      "prec": 5.4143683731297685,
+      "ergo": 3.640004155335431,
+      "disp": 3.3616850746768328,
+      "stam": 1.9117298956277027
+    },
+    "link": "https://rhythmtyper.net/beatmap/9jbi5d3ny5ni"
+  },
+  {
+    "id": "0ru9wldk3tyo_hscy_0",
+    "title": "Sweater Weather (Happy Cover)",
+    "artist": "Supreme Overlord Happy",
+    "mapper": "Wiiinson",
+    "diffName": "[WIP] Happy Normal",
+    "bpm": 124,
+    "stars": 13.245667535271284,
+    "starsOfficial": 3.611186427168504,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 2.687795232349607,
+      "prec": 0.0007024816392862161,
+      "ergo": 2.9151857594252797,
+      "disp": 7.419976190272312,
+      "stam": 1.0282430839763426
+    },
+    "link": "https://rhythmtyper.net/beatmap/0ru9wldk3tyo"
+  },
+  {
+    "id": "pbyjj3heeyxg_hscy_0_0",
+    "title": "Sweater Weather (5happy5 Cover)",
+    "artist": "Supreme Overlord Happy",
+    "mapper": "Wiiinson",
+    "diffName": "[WIP] Happy Normal",
+    "bpm": 124,
+    "stars": 13.24937482003629,
+    "starsOfficial": 3.565941978370684,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 2.6918246289596506,
+      "prec": 0.0007024816392862161,
+      "ergo": 2.915197714070512,
+      "disp": 7.419976190272312,
+      "stam": 1.0286043382876746
+    },
+    "link": "https://rhythmtyper.net/beatmap/pbyjj3heeyxg"
   },
   {
     "id": "d1lqkzi0jmpx_ekl9_0",
@@ -17300,6 +17840,86 @@
     "link": "https://rhythmtyper.net/beatmap/l0q9bsj4075u"
   },
   {
+    "id": "nxowv1zho6hg_irnq",
+    "title": "Hellix [WIP]",
+    "artist": "Djjaner",
+    "mapper": "AFS",
+    "diffName": "Beginner",
+    "bpm": 185,
+    "stars": 3.380480288337514,
+    "starsOfficial": 1.1752069475994587,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 2.371186020919294,
+      "disp": 1.062415018334968,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/nxowv1zho6hg"
+  },
+  {
+    "id": "nxowv1zho6hg_cu4a_0_0",
+    "title": "Hellix [WIP]",
+    "artist": "Djjaner",
+    "mapper": "AFS",
+    "diffName": "Easy",
+    "bpm": 185,
+    "stars": 3.9506836058174413,
+    "starsOfficial": 2.375193932911874,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 2.627288388839473,
+      "disp": 1.3930475968189135,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/nxowv1zho6hg"
+  },
+  {
+    "id": "nxowv1zho6hg_fnqp_1_1",
+    "title": "Hellix [WIP]",
+    "artist": "Djjaner",
+    "mapper": "AFS",
+    "diffName": "Normal",
+    "bpm": 185,
+    "stars": 7.603314389443135,
+    "starsOfficial": 4.418604319592237,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 2.859300335619336,
+      "prec": 0.001464090741968277,
+      "ergo": 3.0144451406351265,
+      "disp": 1.5592711273009165,
+      "stam": 0.7282690837087747
+    },
+    "link": "https://rhythmtyper.net/beatmap/nxowv1zho6hg"
+  },
+  {
+    "id": "nxowv1zho6hg_v0pi_2",
+    "title": "Hellix [WIP]",
+    "artist": "Djjaner",
+    "mapper": "AFS",
+    "diffName": "Hard",
+    "bpm": 185,
+    "stars": 9.844227858801398,
+    "starsOfficial": 5.509725749174371,
+    "stats": {
+      "stream": 0,
+      "jack": 0.43559844704467354,
+      "chord": 3.622509895892236,
+      "prec": 0.0017814793971268187,
+      "ergo": 3.4372532161428673,
+      "disp": 1.7761748912851365,
+      "stam": 1.5499465943114847
+    },
+    "link": "https://rhythmtyper.net/beatmap/nxowv1zho6hg"
+  },
+  {
     "id": "hhebh6xfp0op_j3eq_0_0_0_0_0_0_0",
     "title": "pensamento tipico de esquerda caviar",
     "artist": "Maffalda",
@@ -17318,6 +17938,86 @@
       "stam": 1.694676551416848
     },
     "link": "https://rhythmtyper.net/beatmap/hhebh6xfp0op"
+  },
+  {
+    "id": "y4zf9wfav70t_c61q_0_0",
+    "title": "Tourner Dans Le Vide",
+    "artist": "Indila",
+    "mapper": "Tonic",
+    "diffName": "Easy",
+    "bpm": 120,
+    "stars": 5.5818240025381645,
+    "starsOfficial": 2.074975687812048,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 1.5820576024426751,
+      "prec": 0,
+      "ergo": 2.7607481708761465,
+      "disp": 1.1288910583465193,
+      "stam": 0.47808494632924736
+    },
+    "link": "https://rhythmtyper.net/beatmap/y4zf9wfav70t"
+  },
+  {
+    "id": "y4zf9wfav70t_75ie_0_0_1_1",
+    "title": "Tourner Dans Le Vide",
+    "artist": "Indila",
+    "mapper": "Tonic",
+    "diffName": "Medium",
+    "bpm": 120,
+    "stars": 7.4403349914939785,
+    "starsOfficial": 2.3965486384055703,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 2.1230398320488875,
+      "prec": 1.1777859537696331,
+      "ergo": 2.8396815452281023,
+      "disp": 1.5797214711069747,
+      "stam": 0.5502506000788928
+    },
+    "link": "https://rhythmtyper.net/beatmap/y4zf9wfav70t"
+  },
+  {
+    "id": "y4zf9wfav70t_hwaf_1_1_2_2",
+    "title": "Tourner Dans Le Vide",
+    "artist": "Indila",
+    "mapper": "Tonic",
+    "diffName": "Hard",
+    "bpm": 120,
+    "stars": 12.304823641040601,
+    "starsOfficial": 5.151020596558493,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 3.6049287188566543,
+      "prec": 2.805064358017247,
+      "ergo": 3.9277715354162845,
+      "disp": 1.927859315504396,
+      "stam": 1.726416356565441
+    },
+    "link": "https://rhythmtyper.net/beatmap/y4zf9wfav70t"
+  },
+  {
+    "id": "jfrlbpjp5mkw_416s_0",
+    "title": "Imprisoned XII",
+    "artist": "Ave Mujica",
+    "mapper": "Aaronix",
+    "diffName": "INSANE",
+    "bpm": 105.3333,
+    "stars": 20.96320484644964,
+    "starsOfficial": 7.975351046823801,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 4.523750605045892,
+      "prec": 4.898764351316883,
+      "ergo": 4.983018898131848,
+      "disp": 6.185565071361481,
+      "stam": 3.826167953014046
+    },
+    "link": "https://rhythmtyper.net/beatmap/jfrlbpjp5mkw"
   },
   {
     "id": "4md2vinnciyt_lkki_0",
@@ -17480,7 +18180,7 @@
     "link": "https://rhythmtyper.net/beatmap/mwfeozz7jj44"
   },
   {
-    "id": "4j8ok5kac13u_d3fg_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0",
+    "id": "f63et0hq7ztn_d3fg_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0",
     "title": "Wet Hands",
     "artist": "C418",
     "mapper": "parabeetle",
@@ -17497,10 +18197,10 @@
       "disp": 0.928012159449109,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/4j8ok5kac13u"
+    "link": "https://rhythmtyper.net/beatmap/f63et0hq7ztn"
   },
   {
-    "id": "4j8ok5kac13u_b7tt_1_1_1_1_1_1_1_1_1_1_1_1",
+    "id": "f63et0hq7ztn_b7tt_1_1_1_1_1_1_1_1_1_1_1_1_1",
     "title": "Wet Hands",
     "artist": "C418",
     "mapper": "parabeetle",
@@ -17517,10 +18217,10 @@
       "disp": 1.1124692780130747,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/4j8ok5kac13u"
+    "link": "https://rhythmtyper.net/beatmap/f63et0hq7ztn"
   },
   {
-    "id": "4j8ok5kac13u_jk05_2_2_2_2_2_2_2_2_2_2_2",
+    "id": "f63et0hq7ztn_jk05_2_2_2_2_2_2_2_2_2_2_2_2",
     "title": "Wet Hands",
     "artist": "C418",
     "mapper": "parabeetle",
@@ -17537,10 +18237,10 @@
       "disp": 1.387841587834489,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/4j8ok5kac13u"
+    "link": "https://rhythmtyper.net/beatmap/f63et0hq7ztn"
   },
   {
-    "id": "4j8ok5kac13u_ojq7_3_3_3_3_3_3_3_3_3_3_3",
+    "id": "f63et0hq7ztn_ojq7_3_3_3_3_3_3_3_3_3_3_3_3",
     "title": "Wet Hands",
     "artist": "C418",
     "mapper": "parabeetle",
@@ -17557,7 +18257,7 @@
       "disp": 1.629341742618542,
       "stam": 0.7805925629551813
     },
-    "link": "https://rhythmtyper.net/beatmap/4j8ok5kac13u"
+    "link": "https://rhythmtyper.net/beatmap/f63et0hq7ztn"
   },
   {
     "id": "pjzbmdlxt4sb_8s8z",
@@ -17720,24 +18420,44 @@
     "link": "https://rhythmtyper.net/beatmap/qzxdnszks7ow"
   },
   {
-    "id": "z8nnx93ldw2r_mqpn",
+    "id": "5xoi2o46h0lb_xynk",
+    "title": "Pinky Alart",
+    "artist": "nogi",
+    "mapper": "Piger",
+    "diffName": "Collab Insane (feat. mqno)",
+    "bpm": 185,
+    "stars": 24.996864985779673,
+    "starsOfficial": 7.071872200245287,
+    "stats": {
+      "stream": 0.9703585720744479,
+      "jack": 1.306159363396135,
+      "chord": 4.773149856277703,
+      "prec": 5.283610207247,
+      "ergo": 4.663308992859562,
+      "disp": 9.726751187107984,
+      "stam": 2.3707322646229945
+    },
+    "link": "https://rhythmtyper.net/beatmap/5xoi2o46h0lb"
+  },
+  {
+    "id": "5xoi2o46h0lb_mqpn_0_0_1_1_1_1",
     "title": "Pinky Alart",
     "artist": "nogi",
     "mapper": "Piger",
     "diffName": "ＥＲＲＲＲＲＲＲＲＲＯＲ",
     "bpm": 185,
-    "stars": 44.081991740735575,
+    "stars": 42.20916665793902,
     "starsOfficial": 12.64492344369552,
     "stats": {
       "stream": 0.5224225407160006,
-      "jack": 1.8471938613828178,
+      "jack": 1.8471938880967824,
       "chord": 10.226919714206204,
-      "prec": 8.549439215855926,
-      "ergo": 5.162185410934694,
+      "prec": 6.346134286266655,
+      "ergo": 5.1621642011502225,
       "disp": 19.047525359811353,
       "stam": 4.506436144103106
     },
-    "link": "https://rhythmtyper.net/beatmap/z8nnx93ldw2r"
+    "link": "https://rhythmtyper.net/beatmap/5xoi2o46h0lb"
   },
   {
     "id": "dukgyxampgp6_5btn",
@@ -17978,6 +18698,46 @@
       "stam": 1.8114301960222716
     },
     "link": "https://rhythmtyper.net/beatmap/5jcxpatdn1wg"
+  },
+  {
+    "id": "6j1twjqxomd5_shzu",
+    "title": "Yoru ni Kakeru (Keshigomu's Speaki Cover)",
+    "artist": "YOASOBI",
+    "mapper": "Happy566",
+    "diffName": "Very Normal",
+    "bpm": 130,
+    "stars": 5.258385618168353,
+    "starsOfficial": 1.888627406743949,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 1.5278061405968435,
+      "prec": 0,
+      "ergo": 2.3614271660472235,
+      "disp": 1.2367753881361643,
+      "stam": 0.5257113848511843
+    },
+    "link": "https://rhythmtyper.net/beatmap/6j1twjqxomd5"
+  },
+  {
+    "id": "6j1twjqxomd5_6r6r_0",
+    "title": "Yoru ni Kakeru (Keshigomu's Speaki Cover)",
+    "artist": "YOASOBI",
+    "mapper": "Happy566",
+    "diffName": "INTO THE SPEAKI",
+    "bpm": 130,
+    "stars": 21.13527778278942,
+    "starsOfficial": 6.838720888948105,
+    "stats": {
+      "stream": 0,
+      "jack": 1.5057765537110153,
+      "chord": 4.760367102559899,
+      "prec": 5.3709165705152175,
+      "ergo": 3.8278196221622847,
+      "disp": 6.8275299897142006,
+      "stam": 2.246189527303192
+    },
+    "link": "https://rhythmtyper.net/beatmap/6j1twjqxomd5"
   },
   {
     "id": "xjcq3vssjuey_ucd1",
@@ -18260,6 +19020,26 @@
     "link": "https://rhythmtyper.net/beatmap/9ev69zw2mfyg"
   },
   {
+    "id": "0j4fq9stmlxq_schy",
+    "title": "Round and Round",
+    "artist": "Lee Soo-in",
+    "mapper": "ChessStoned",
+    "diffName": "Hard",
+    "bpm": 105,
+    "stars": 8.291851019397354,
+    "starsOfficial": 4.2036830867170885,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 2.4419044214601437,
+      "prec": 0.0010081424688190383,
+      "ergo": 3.209620513105723,
+      "disp": 1.8934423203516144,
+      "stam": 1.5364533880011884
+    },
+    "link": "https://rhythmtyper.net/beatmap/0j4fq9stmlxq"
+  },
+  {
     "id": "pr5ugdoyk9xf_g21c",
     "title": "Animation Warrior Theme",
     "artist": "Nighthawk22",
@@ -18500,24 +19280,24 @@
     "link": "https://rhythmtyper.net/beatmap/n288ypy7yd9e"
   },
   {
-    "id": "oewn61207rvc_jd48_0_0_0",
+    "id": "n94d7r6iww97_jd48_0_0_0_0_0_0_0",
     "title": "Unbreakable",
     "artist": "Fireflight",
     "mapper": "lol",
     "diffName": "Hard",
     "bpm": 90,
-    "stars": 10.173511106345215,
-    "starsOfficial": 4.6014611824922325,
+    "stars": 10.173880790287209,
+    "starsOfficial": 4.601465443129568,
     "stats": {
       "stream": 0,
       "jack": 0.3174053704120731,
       "chord": 2.8565742469310798,
       "prec": 0.0037486406719719587,
       "ergo": 3.7056800323645307,
-      "disp": 3.206714708172276,
+      "disp": 3.207103849163849,
       "stam": 1.046651664250895
     },
-    "link": "https://rhythmtyper.net/beatmap/oewn61207rvc"
+    "link": "https://rhythmtyper.net/beatmap/n94d7r6iww97"
   },
   {
     "id": "nagwihbkt22z_yrbd_0",
@@ -18900,24 +19680,44 @@
     "link": "https://rhythmtyper.net/beatmap/8guvivawzdly"
   },
   {
-    "id": "cd4wqiw7vqcg_0wby",
+    "id": "3wx96vvwq18d_0wby_0",
     "title": "Unmeisenjou no Aria",
     "artist": "ShinRa-Bansho",
     "mapper": "Aaronix",
     "diffName": "HARD",
     "bpm": 185,
-    "stars": 13.321498228749691,
-    "starsOfficial": 5.4321246192847426,
+    "stars": 13.185294667066723,
+    "starsOfficial": 4.997554649741963,
     "stats": {
       "stream": 0.8384641065368169,
       "jack": 0.4874191742012838,
       "chord": 2.2933696317779195,
-      "prec": 3.6711061281731423,
+      "prec": 3.5242618830462167,
       "ergo": 3.557246594922318,
       "disp": 3.869444089510185,
       "stam": 0.8299567096692767
     },
-    "link": "https://rhythmtyper.net/beatmap/cd4wqiw7vqcg"
+    "link": "https://rhythmtyper.net/beatmap/3wx96vvwq18d"
+  },
+  {
+    "id": "3wx96vvwq18d_4dos",
+    "title": "Unmeisenjou no Aria",
+    "artist": "ShinRa-Bansho",
+    "mapper": "Aaronix",
+    "diffName": "INSANE",
+    "bpm": 185,
+    "stars": 18.803319920596813,
+    "starsOfficial": 8.394264708594674,
+    "stats": {
+      "stream": 0.8378950961106851,
+      "jack": 0.5129149543890782,
+      "chord": 4.72800334630076,
+      "prec": 4.014977123910176,
+      "ergo": 4.433442343689852,
+      "disp": 5.138312673195385,
+      "stam": 2.6186018477088275
+    },
+    "link": "https://rhythmtyper.net/beatmap/3wx96vvwq18d"
   },
   {
     "id": "kzxp3ztoya2w_1rhi",
@@ -19840,24 +20640,24 @@
     "link": "https://rhythmtyper.net/beatmap/f8udrhf13oid"
   },
   {
-    "id": "lpwxrvr4rw4w_7rtj_0_0_0_0_0_0_0_0_0",
+    "id": "gk769uav28vs_7rtj_0_0_0_0_0_0_0_0_0_0_0",
     "title": "Notion",
     "artist": "The Rare Occasions",
     "mapper": "Lazi",
     "diffName": "Hard",
     "bpm": 158,
-    "stars": 16.691761047459128,
-    "starsOfficial": 4.39054539923889,
+    "stars": 16.692862163717685,
+    "starsOfficial": 4.395432958972617,
     "stats": {
       "stream": 0,
       "jack": 0.08295369451072254,
-      "chord": 3.2334363714625676,
+      "chord": 3.2349045264739744,
       "prec": 5.646305025766473,
       "ergo": 3.26385660056417,
       "disp": 5.053766395643547,
       "stam": 1.5375354227291014
     },
-    "link": "https://rhythmtyper.net/beatmap/lpwxrvr4rw4w"
+    "link": "https://rhythmtyper.net/beatmap/gk769uav28vs"
   },
   {
     "id": "chudjyj032wd_j0ps",
@@ -20080,11 +20880,11 @@
     "link": "https://rhythmtyper.net/beatmap/839ma22xkl7e"
   },
   {
-    "id": "sk5ygyv1u5ys_wa4j",
+    "id": "1c6n1u58u268_wa4j_0",
     "title": "phantasmagoria",
     "artist": "mzlff",
     "mapper": "Piger",
-    "diffName": "Collab Insane",
+    "diffName": "Collab Insane (feat. Artomesik)",
     "bpm": 80,
     "stars": 12.74128702413908,
     "starsOfficial": 4.85241948725032,
@@ -20097,10 +20897,10 @@
       "disp": 5.528556263376274,
       "stam": 1.4459836954896732
     },
-    "link": "https://rhythmtyper.net/beatmap/sk5ygyv1u5ys"
+    "link": "https://rhythmtyper.net/beatmap/1c6n1u58u268"
   },
   {
-    "id": "sk5ygyv1u5ys_w1a9_0_1_1_1_1",
+    "id": "1c6n1u58u268_w1a9_0_1_1_1_1_1",
     "title": "phantasmagoria",
     "artist": "mzlff",
     "mapper": "Piger",
@@ -20117,7 +20917,27 @@
       "disp": 9.369386492225352,
       "stam": 1.3724400058437685
     },
-    "link": "https://rhythmtyper.net/beatmap/sk5ygyv1u5ys"
+    "link": "https://rhythmtyper.net/beatmap/1c6n1u58u268"
+  },
+  {
+    "id": "trvywpdunmuv_n3of_1_0_0_0_0",
+    "title": "I'm Here",
+    "artist": "Geoxor & poixone",
+    "mapper": "Piger",
+    "diffName": "When You Feel Alone",
+    "bpm": 128,
+    "stars": 21.63383986853901,
+    "starsOfficial": 5.585136885204841,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 4.563756513281034,
+      "prec": 0.0024851118739567944,
+      "ergo": 5.78018487185243,
+      "disp": 10.279169684217964,
+      "stam": 2.643581596072386
+    },
+    "link": "https://rhythmtyper.net/beatmap/trvywpdunmuv"
   },
   {
     "id": "259q2vggkerw_ubs1",
@@ -20900,6 +21720,26 @@
     "link": "https://rhythmtyper.net/beatmap/grkqz0aclzid"
   },
   {
+    "id": "0i60qvagbxw4_i014_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0",
+    "title": "cheatreal",
+    "artist": "t+pazolite",
+    "mapper": "Aniviuh",
+    "diffName": "HARD",
+    "bpm": 200,
+    "stars": 29.698834954012646,
+    "starsOfficial": 7.776356359478815,
+    "stats": {
+      "stream": 2.409751917976629,
+      "jack": 1.5684061862978822,
+      "chord": 5.890395388248033,
+      "prec": 8.973981835570681,
+      "ergo": 5.138135901148878,
+      "disp": 8.69955959540448,
+      "stam": 2.4133648587908114
+    },
+    "link": "https://rhythmtyper.net/beatmap/0i60qvagbxw4"
+  },
+  {
     "id": "ou7ayewsbrr1_n1ke_0",
     "title": "hotel room",
     "artist": "xaviersobased",
@@ -21298,6 +22138,46 @@
       "stam": 0.8374445192507824
     },
     "link": "https://rhythmtyper.net/beatmap/8irndufte8em"
+  },
+  {
+    "id": "c6497ao6s4m4_ie74_0_0_0",
+    "title": "FREEDOM DiVE",
+    "artist": "xi",
+    "mapper": "Flam_",
+    "diffName": "W.I.P DIVE",
+    "bpm": 222.22,
+    "stars": 16.465784331399693,
+    "starsOfficial": 8.837166842895401,
+    "stats": {
+      "stream": 0,
+      "jack": 0.681012128583123,
+      "chord": 4.159253554785357,
+      "prec": 5.634426660303283,
+      "ergo": 3.1127463700334,
+      "disp": 3.4310666369125657,
+      "stam": 1.9300672375828811
+    },
+    "link": "https://rhythmtyper.net/beatmap/c6497ao6s4m4"
+  },
+  {
+    "id": "ztg9vte8bgxl_x3t2_0_0_0_0_0",
+    "title": "Moonshot (TV Size)",
+    "artist": "Hoshimachi Suisei",
+    "mapper": "extra",
+    "diffName": "Fly me to the moon",
+    "bpm": 185,
+    "stars": 26.019532767810745,
+    "starsOfficial": 8.763392442841685,
+    "stats": {
+      "stream": 1.4409078375257085,
+      "jack": 3.915584687124277,
+      "chord": 5.325558549915284,
+      "prec": 4.4040362134219535,
+      "ergo": 3.1331786586068118,
+      "disp": 10.292412301838384,
+      "stam": 2.3686288942181366
+    },
+    "link": "https://rhythmtyper.net/beatmap/ztg9vte8bgxl"
   },
   {
     "id": "gg8iea9s0xwn_j0ps",
@@ -22160,24 +23040,44 @@
     "link": "https://rhythmtyper.net/beatmap/fwwce6z6lt59"
   },
   {
-    "id": "e5lfrbjfw2o4_py4p_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0",
+    "id": "7zrq0jhnzz6m_bjec_0",
+    "title": "test",
+    "artist": "Set It Off",
+    "mapper": "andrew",
+    "diffName": "Neph's Cataclysm",
+    "bpm": 170.0000000000001,
+    "stars": 18.017518133624773,
+    "starsOfficial": 5.92827483021401,
+    "stats": {
+      "stream": 0,
+      "jack": 3.272105973600658,
+      "chord": 2.821327998534,
+      "prec": 0.8387940046392024,
+      "ergo": 3.4601507164219987,
+      "disp": 8.456682409733688,
+      "stam": 1.4077996373501014
+    },
+    "link": "https://rhythmtyper.net/beatmap/7zrq0jhnzz6m"
+  },
+  {
+    "id": "rke06lz6m3vr_py4p_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0",
     "title": "[WIP] Signal (feat. Such) (osu! Edit)",
     "artist": "rejection",
     "mapper": "Wiiinson",
     "diffName": "Wiiinson's Insane",
     "bpm": 175,
-    "stars": 23.378732050444317,
-    "starsOfficial": 8.05496988279887,
+    "stars": 23.342723693785736,
+    "starsOfficial": 8.051762425868008,
     "stats": {
       "stream": 1.1801548143443832,
       "jack": 0.9572032396443144,
       "chord": 5.963538202228626,
-      "prec": 8.492744017831654,
-      "ergo": 4.13847816309671,
-      "disp": 3.9426489391272095,
-      "stam": 2.563241525828469
+      "prec": 8.425210147717035,
+      "ergo": 4.1485073706526565,
+      "disp": 3.9435505230141756,
+      "stam": 2.5975869090873256
     },
-    "link": "https://rhythmtyper.net/beatmap/e5lfrbjfw2o4"
+    "link": "https://rhythmtyper.net/beatmap/rke06lz6m3vr"
   },
   {
     "id": "qakvqfcipida_gfyj",
@@ -23080,6 +23980,26 @@
     "link": "https://rhythmtyper.net/beatmap/48qcbps6yk1t"
   },
   {
+    "id": "32x8c76jg5v8_v13w",
+    "title": "Cogwork Dancers",
+    "artist": "Christopher Larkin",
+    "mapper": "mqno",
+    "diffName": "Last Dance",
+    "bpm": 240,
+    "stars": 32.30578595201107,
+    "starsOfficial": 9.248641394517735,
+    "stats": {
+      "stream": 1.0974185065927595,
+      "jack": 4.358359808711647,
+      "chord": 9.229492311799001,
+      "prec": 6.864056067274951,
+      "ergo": 5.251261963937187,
+      "disp": 7.494118044232159,
+      "stam": 5.066232531225804
+    },
+    "link": "https://rhythmtyper.net/beatmap/32x8c76jg5v8"
+  },
+  {
     "id": "1z3kl26k5r76_t9p6",
     "title": "PHONKE DE GLORY",
     "artist": "Ogryzek",
@@ -23600,24 +24520,24 @@
     "link": "https://rhythmtyper.net/beatmap/338p68tolahk"
   },
   {
-    "id": "2ujh3jfg0p47_cni2_0_0_0_0_0",
+    "id": "26ma4bz5we04_cni2_0_0_0_0_0_0_0_0",
     "title": "Doomer",
     "artist": "Hasu",
     "mapper": "Piger",
-    "diffName": "In the depth of Dream",
+    "diffName": "In the depth of a Dream",
     "bpm": 131,
-    "stars": 16.290172093595807,
-    "starsOfficial": 5.6214901860341495,
+    "stars": 16.289282369052106,
+    "starsOfficial": 5.623215828494573,
     "stats": {
       "stream": 0,
       "jack": 0,
-      "chord": 3.6691914595696846,
+      "chord": 3.671326526692006,
       "prec": 0,
-      "ergo": 6.271421871927542,
-      "disp": 5.375270474588073,
-      "stam": 2.3912407069004864
+      "ergo": 6.27136977436373,
+      "disp": 5.375334908234045,
+      "stam": 2.3876225122371064
     },
-    "link": "https://rhythmtyper.net/beatmap/2ujh3jfg0p47"
+    "link": "https://rhythmtyper.net/beatmap/26ma4bz5we04"
   },
   {
     "id": "fkwf5k6crcew_cni2_0_0_0_0",
@@ -23740,12 +24660,12 @@
     "link": "https://rhythmtyper.net/beatmap/pv5tr1k51rum"
   },
   {
-    "id": "1xdg3aqizefi_gvii_1_1_1_1_1_1_1_1_1",
+    "id": "yunjgo3112ao_gvii_1_1_1_1_1_1_1_1_1_0_0_0_0_0_0_0_0_0_0_0_0_0_0",
     "title": "Yearning for my F-D",
     "artist": "Ice",
     "mapper": "parabeetle",
     "diffName": "Beginner",
-    "bpm": 136,
+    "bpm": 68,
     "stars": 2.493202678034927,
     "starsOfficial": 0.5981120813377389,
     "stats": {
@@ -23757,37 +24677,37 @@
       "disp": 0.9270987113257431,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/1xdg3aqizefi"
+    "link": "https://rhythmtyper.net/beatmap/yunjgo3112ao"
   },
   {
-    "id": "1xdg3aqizefi_2m0g_0_0_0_0_0_0_0_0_0_0_0_0",
+    "id": "yunjgo3112ao_2m0g_0_0_0_0_0_0_0_0_0_0_0_0_1_1_1_1_1_1_1_1_1_1_1_1_1_1",
     "title": "Yearning for my F-D",
     "artist": "Ice",
     "mapper": "parabeetle",
     "diffName": "Easy",
-    "bpm": 136,
-    "stars": 3.145898717757847,
-    "starsOfficial": 1.095407060349002,
+    "bpm": 68,
+    "stars": 3.145911069456445,
+    "starsOfficial": 1.0954070603490007,
     "stats": {
       "stream": 0,
       "jack": 0,
       "chord": 0,
       "prec": 0,
-      "ergo": 2.1365695549833412,
-      "disp": 1.062451750288953,
+      "ergo": 2.136581906681939,
+      "disp": 1.0624517502889539,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/1xdg3aqizefi"
+    "link": "https://rhythmtyper.net/beatmap/yunjgo3112ao"
   },
   {
-    "id": "1xdg3aqizefi_kr48_2_2_2_2_2_2_2_2",
+    "id": "yunjgo3112ao_kr48_2_2_2_2_2_2_2_2_2_2_2_2_2_2_2_2_2_2_2_2_2_2",
     "title": "Yearning for my F-D",
     "artist": "Ice",
     "mapper": "parabeetle",
     "diffName": "Normal",
-    "bpm": 136,
+    "bpm": 68,
     "stars": 3.644413020891072,
-    "starsOfficial": 2.0379314280540943,
+    "starsOfficial": 2.03756836599065,
     "stats": {
       "stream": 0,
       "jack": 0,
@@ -23797,27 +24717,47 @@
       "disp": 1.2970703591712638,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/1xdg3aqizefi"
+    "link": "https://rhythmtyper.net/beatmap/yunjgo3112ao"
   },
   {
-    "id": "sd4266tt8yb3_1vvd_0_0_0_0_0_0_0_0_0",
+    "id": "yunjgo3112ao_do2e_3_3_3_3_3_3_3_3_3_3",
+    "title": "Yearning for my F-D",
+    "artist": "Ice",
+    "mapper": "parabeetle",
+    "diffName": "Stella",
+    "bpm": 68,
+    "stars": 3.513309680851012,
+    "starsOfficial": 2.517381999055967,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 2.306342544955533,
+      "disp": 1.2704917219952412,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/yunjgo3112ao"
+  },
+  {
+    "id": "s6hgrw5aa35t_1vvd_0_0_0_0_0_0_0_0_0_0",
     "title": "How Do U Want It",
-    "artist": "2Pac",
+    "artist": "2Pac feat. K-Ci & JoJo",
     "mapper": "nya",
     "diffName": "Death Row",
     "bpm": 92.5,
-    "stars": 19.508839657869324,
-    "starsOfficial": 9.945285457408234,
+    "stars": 18.82283944517691,
+    "starsOfficial": 9.342812501805197,
     "stats": {
       "stream": 0,
       "jack": 0.6744122296656264,
       "chord": 4.9067318164051485,
-      "prec": 1.157870595359926,
-      "ergo": 3.7998456132087557,
-      "disp": 8.749393754241341,
+      "prec": 0.004303630877606931,
+      "ergo": 3.799845625803682,
+      "disp": 8.746201197877951,
       "stam": 2.3261857246874684
     },
-    "link": "https://rhythmtyper.net/beatmap/sd4266tt8yb3"
+    "link": "https://rhythmtyper.net/beatmap/s6hgrw5aa35t"
   },
   {
     "id": "ifonbbba0qf8_mjuq",
@@ -23940,6 +24880,26 @@
     "link": "https://rhythmtyper.net/beatmap/3qyr3mlr2lfn"
   },
   {
+    "id": "lfqnoh9or6rx_wvi2",
+    "title": "habirs",
+    "artist": "somson",
+    "mapper": "Iquata",
+    "diffName": "SUPER HARD",
+    "bpm": 120,
+    "stars": 33.04593879993544,
+    "starsOfficial": 12.773802511018813,
+    "stats": {
+      "stream": 0,
+      "jack": 3.0028822225217318,
+      "chord": 9.25906172512184,
+      "prec": 9.794412086757518,
+      "ergo": 5.062618252719575,
+      "disp": 6.340761778922625,
+      "stam": 5.497977967431026
+    },
+    "link": "https://rhythmtyper.net/beatmap/lfqnoh9or6rx"
+  },
+  {
     "id": "5ts1d06c2wsx_rlqg_1_1_1_1_1_1_1_1_0_0_0_0_0_1_1_1_1_1_1_1_0",
     "title": "Igaku [Ortho]",
     "artist": "Sasuke Haraguchi feat. Kasane Teto",
@@ -24040,7 +25000,7 @@
     "link": "https://rhythmtyper.net/beatmap/8eusbedtitbt"
   },
   {
-    "id": "0f5r81dr71q3_g9b9_0_1_1_1_1_1_1_1_1_1_1",
+    "id": "rxzjch9hq3uo_g9b9_0_1_1_1_1_1_1_1_1_1_1_0",
     "title": "Firefly",
     "artist": "Buzinkai",
     "mapper": "nya",
@@ -24057,10 +25017,10 @@
       "disp": 1.7216757218560912,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/0f5r81dr71q3"
+    "link": "https://rhythmtyper.net/beatmap/rxzjch9hq3uo"
   },
   {
-    "id": "0f5r81dr71q3_7596_0_0_0_0_0_0_0_0_0_0",
+    "id": "rxzjch9hq3uo_7596_0_0_0_0_0_0_0_0_0_0_1",
     "title": "Firefly",
     "artist": "Buzinkai",
     "mapper": "nya",
@@ -24077,10 +25037,10 @@
       "disp": 1.1717001340658089,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/0f5r81dr71q3"
+    "link": "https://rhythmtyper.net/beatmap/rxzjch9hq3uo"
   },
   {
-    "id": "0f5r81dr71q3_2gyc_2_2_2_2_2_2_2_2_2_2",
+    "id": "rxzjch9hq3uo_2gyc_2_2_2_2_2_2_2_2_2_2_2",
     "title": "Firefly",
     "artist": "Buzinkai",
     "mapper": "nya",
@@ -24097,10 +25057,10 @@
       "disp": 1.776681484140664,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/0f5r81dr71q3"
+    "link": "https://rhythmtyper.net/beatmap/rxzjch9hq3uo"
   },
   {
-    "id": "0f5r81dr71q3_bacq_3_3_3_3_3",
+    "id": "rxzjch9hq3uo_bacq_3_3_3_3_3_3",
     "title": "Firefly",
     "artist": "Buzinkai",
     "mapper": "nya",
@@ -24117,10 +25077,10 @@
       "disp": 1.9452655988669723,
       "stam": 0.9994079156191855
     },
-    "link": "https://rhythmtyper.net/beatmap/0f5r81dr71q3"
+    "link": "https://rhythmtyper.net/beatmap/rxzjch9hq3uo"
   },
   {
-    "id": "0f5r81dr71q3_evcy_4_4",
+    "id": "rxzjch9hq3uo_evcy_4_4_4",
     "title": "Firefly",
     "artist": "Buzinkai",
     "mapper": "nya",
@@ -24137,7 +25097,7 @@
       "disp": 2.0493880509910847,
       "stam": 1.181607909984062
     },
-    "link": "https://rhythmtyper.net/beatmap/0f5r81dr71q3"
+    "link": "https://rhythmtyper.net/beatmap/rxzjch9hq3uo"
   },
   {
     "id": "utjedsgo8sgg_a8ah",
@@ -24600,11 +25560,11 @@
     "link": "https://rhythmtyper.net/beatmap/f2lp8rkxwilb"
   },
   {
-    "id": "tojge4j4v9pz_v2bx_0_0_0_0_0_0_0_0",
+    "id": "edqdxlexk7vv_v2bx_0_0_0_0_0_0_0_0_0_0",
     "title": "Fubuki Guys",
     "artist": "Hamburgaga",
     "mapper": "Neph",
-    "diffName": "FOX",
+    "diffName": "FOX (HARD)",
     "bpm": 165,
     "stars": 11.851467737683155,
     "starsOfficial": 4.03894531367081,
@@ -24617,14 +25577,14 @@
       "disp": 5.224678968060608,
       "stam": 1.318504731996601
     },
-    "link": "https://rhythmtyper.net/beatmap/tojge4j4v9pz"
+    "link": "https://rhythmtyper.net/beatmap/edqdxlexk7vv"
   },
   {
-    "id": "tojge4j4v9pz_oeu9_1_1_1_1_1_1_1_1",
+    "id": "edqdxlexk7vv_oeu9_1_1_1_1_1_1_1_1_1_1",
     "title": "Fubuki Guys",
     "artist": "Hamburgaga",
     "mapper": "Neph",
-    "diffName": "BURGER",
+    "diffName": "BURGER (INSANE)",
     "bpm": 165,
     "stars": 11.009358371171704,
     "starsOfficial": 5.247703418179912,
@@ -24637,10 +25597,10 @@
       "disp": 4.646648695426684,
       "stam": 0.38421624926896797
     },
-    "link": "https://rhythmtyper.net/beatmap/tojge4j4v9pz"
+    "link": "https://rhythmtyper.net/beatmap/edqdxlexk7vv"
   },
   {
-    "id": "tojge4j4v9pz_1r25_2_2_2",
+    "id": "edqdxlexk7vv_1r25_2_2_2_2_2",
     "title": "Fubuki Guys",
     "artist": "Hamburgaga",
     "mapper": "Neph",
@@ -24657,7 +25617,7 @@
       "disp": 6.921095286185035,
       "stam": 0.7959993711613145
     },
-    "link": "https://rhythmtyper.net/beatmap/tojge4j4v9pz"
+    "link": "https://rhythmtyper.net/beatmap/edqdxlexk7vv"
   },
   {
     "id": "8vap8bwo9yea_6vgn_0",
@@ -25700,7 +26660,67 @@
     "link": "https://rhythmtyper.net/beatmap/xf4w9li0uhku"
   },
   {
-    "id": "ocyeb124hsyt_fed8",
+    "id": "q9nfs36g5orj_hkhp_0",
+    "title": "Boom Clap (kyoto Remix) (Sped Up & Cut Ver.)",
+    "artist": "Charli XCX",
+    "mapper": "D4neX",
+    "diffName": "Normal",
+    "bpm": 211.6,
+    "stars": 3.204532400352159,
+    "starsOfficial": 1.6969647851317808,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 2.1348902763260305,
+      "disp": 1.1259390779222407,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/q9nfs36g5orj"
+  },
+  {
+    "id": "q9nfs36g5orj_recb",
+    "title": "Boom Clap (kyoto Remix) (Sped Up & Cut Ver.)",
+    "artist": "Charli XCX",
+    "mapper": "D4neX",
+    "diffName": "Hard",
+    "bpm": 211.6,
+    "stars": 5.837400365624,
+    "starsOfficial": 2.9493850074376264,
+    "stats": {
+      "stream": 0,
+      "jack": 0.3176209748377072,
+      "chord": 1.6634492809032009,
+      "prec": 0.0014188168945543753,
+      "ergo": 2.6088380989600086,
+      "disp": 1.3778723257473589,
+      "stam": 0.3598133199789085
+    },
+    "link": "https://rhythmtyper.net/beatmap/q9nfs36g5orj"
+  },
+  {
+    "id": "q9nfs36g5orj_rok7_1",
+    "title": "Boom Clap (kyoto Remix) (Sped Up & Cut Ver.)",
+    "artist": "Charli XCX",
+    "mapper": "D4neX",
+    "diffName": "Insane",
+    "bpm": 211.6,
+    "stars": 8.235601178024918,
+    "starsOfficial": 5.181787981119238,
+    "stats": {
+      "stream": 0,
+      "jack": 0.7531771029173588,
+      "chord": 1.9703466116319848,
+      "prec": 1.4453429104717164,
+      "ergo": 2.8522173186427677,
+      "disp": 1.8117312131866197,
+      "stam": 0.7236559043146693
+    },
+    "link": "https://rhythmtyper.net/beatmap/q9nfs36g5orj"
+  },
+  {
+    "id": "q9nfs36g5orj_fed8_0_2",
     "title": "Boom Clap (kyoto Remix) (Sped Up & Cut Ver.)",
     "artist": "Charli XCX",
     "mapper": "D4neX",
@@ -25717,7 +26737,7 @@
       "disp": 3.0088326265785708,
       "stam": 2.1188752294910618
     },
-    "link": "https://rhythmtyper.net/beatmap/ocyeb124hsyt"
+    "link": "https://rhythmtyper.net/beatmap/q9nfs36g5orj"
   },
   {
     "id": "r0i9exn2tpdq_3x0h_1_0_0_1_1_0_0_0_0_0",
@@ -26400,44 +27420,44 @@
     "link": "https://rhythmtyper.net/beatmap/3f6zlnyqdkoe"
   },
   {
-    "id": "jvj4zeaiqklh_jhtd_0_0_0",
+    "id": "21bskjhzdmoy_jhtd_0_0_0_0_0_0_0",
     "title": "Issee noo de",
     "artist": "MIMI feat. KAFU",
     "mapper": "Cyanara",
     "diffName": "Normal",
     "bpm": 178,
-    "stars": 4.401963493676543,
-    "starsOfficial": 3.738825076601535,
+    "stars": 4.951462242467027,
+    "starsOfficial": 3.031616364311153,
     "stats": {
       "stream": 0,
-      "jack": 0.34592638666020226,
+      "jack": 0.35493551353624536,
       "chord": 0,
-      "prec": 0.001794794693337234,
-      "ergo": 2.8064715334542765,
-      "disp": 1.0076744208948785,
-      "stam": 0.4442233574427187
+      "prec": 0.0018126291979281347,
+      "ergo": 3.0231579811833043,
+      "disp": 1.3394570156398606,
+      "stam": 0.45698853211178575
     },
-    "link": "https://rhythmtyper.net/beatmap/jvj4zeaiqklh"
+    "link": "https://rhythmtyper.net/beatmap/21bskjhzdmoy"
   },
   {
-    "id": "jvj4zeaiqklh_x5lq_0_0_0_0_0_0_0_0_0_0_0_0_0_1_1_1",
+    "id": "21bskjhzdmoy_x5lq_0_0_0_0_0_0_0_0_0_0_0_0_0_1_1_1_1_1_1_1",
     "title": "Issee noo de",
     "artist": "MIMI feat. KAFU",
     "mapper": "Cyanara",
     "diffName": "1, 2, 3!",
     "bpm": 178,
-    "stars": 12.590816982456685,
-    "starsOfficial": 5.437603896053449,
+    "stars": 12.591571229532201,
+    "starsOfficial": 5.432089359307152,
     "stats": {
       "stream": 0,
-      "jack": 0.4065288724153699,
+      "jack": 0.40714811527433825,
       "chord": 3.494065512697895,
       "prec": 0.006561088046358482,
-      "ergo": 3.4413904168388774,
-      "disp": 4.934107101050444,
+      "ergo": 3.441705836479871,
+      "disp": 4.934190733572787,
       "stam": 1.5257512327129432
     },
-    "link": "https://rhythmtyper.net/beatmap/jvj4zeaiqklh"
+    "link": "https://rhythmtyper.net/beatmap/21bskjhzdmoy"
   },
   {
     "id": "xk9m1ycpwjfd_tpne_0_0",
@@ -26480,14 +27500,34 @@
     "link": "https://rhythmtyper.net/beatmap/xk9m1ycpwjfd"
   },
   {
-    "id": "64dvzuu5xqwx_vf0y_0_0_0",
+    "id": "cu1avkfi5dqu_s1dy",
+    "title": "Battle Against a Common Guy",
+    "artist": "K²",
+    "mapper": "nya",
+    "diffName": "BANG!!",
+    "bpm": 255.5,
+    "stars": 25.575860332910185,
+    "starsOfficial": 11.437147208521896,
+    "stats": {
+      "stream": 2.382980618231591,
+      "jack": 2.6987325539295077,
+      "chord": 5.73526795647652,
+      "prec": 6.311300576266184,
+      "ergo": 4.118086418115899,
+      "disp": 7.1268198830124065,
+      "stam": 2.9740279122884443
+    },
+    "link": "https://rhythmtyper.net/beatmap/cu1avkfi5dqu"
+  },
+  {
+    "id": "1zx5wz86cqkp_vf0y_0_0_0_0",
     "title": "Harebare Fanfare",
     "artist": "mimimemeMIMI",
     "mapper": "Neph",
-    "diffName": "Beginner",
+    "diffName": "Easy",
     "bpm": 168,
     "stars": 5.496763579089386,
-    "starsOfficial": 1.2603395350854352,
+    "starsOfficial": 1.478175997939708,
     "stats": {
       "stream": 0,
       "jack": 0,
@@ -26497,67 +27537,67 @@
       "disp": 0.9758019761945996,
       "stam": 0.6508359648219438
     },
-    "link": "https://rhythmtyper.net/beatmap/64dvzuu5xqwx"
+    "link": "https://rhythmtyper.net/beatmap/1zx5wz86cqkp"
   },
   {
-    "id": "64dvzuu5xqwx_lfsx_0_0_1_1_1",
-    "title": "Harebare Fanfare",
-    "artist": "mimimemeMIMI",
-    "mapper": "Neph",
-    "diffName": "Easy",
-    "bpm": 168,
-    "stars": 6.49206727350862,
-    "starsOfficial": 2.0258570120563837,
-    "stats": {
-      "stream": 0,
-      "jack": 0.15640062713664252,
-      "chord": 1.6351453550193509,
-      "prec": 0.000893635468400351,
-      "ergo": 2.7793711868250837,
-      "disp": 1.7505452888321178,
-      "stam": 0.7435368045068504
-    },
-    "link": "https://rhythmtyper.net/beatmap/64dvzuu5xqwx"
-  },
-  {
-    "id": "64dvzuu5xqwx_qa8m_0_0_0_1_1_2_2_2",
+    "id": "1zx5wz86cqkp_lfsx_0_0_1_1_1_1",
     "title": "Harebare Fanfare",
     "artist": "mimimemeMIMI",
     "mapper": "Neph",
     "diffName": "Normal",
     "bpm": 168,
-    "stars": 11.054991042984689,
-    "starsOfficial": 3.221807847079013,
+    "stars": 6.492109004598889,
+    "starsOfficial": 2.444999842137015,
     "stats": {
       "stream": 0,
-      "jack": 0.26815693466985363,
-      "chord": 2.587993155022366,
-      "prec": 0.00514517552750003,
-      "ergo": 3.2994164236418713,
-      "disp": 4.603745700665609,
-      "stam": 1.253164938686348
+      "jack": 0.15640062713664252,
+      "chord": 1.6351453550193509,
+      "prec": 0.000969510177981513,
+      "ergo": 2.7793711868250837,
+      "disp": 1.7505452888321178,
+      "stam": 0.7435368045068504
     },
-    "link": "https://rhythmtyper.net/beatmap/64dvzuu5xqwx"
+    "link": "https://rhythmtyper.net/beatmap/1zx5wz86cqkp"
   },
   {
-    "id": "64dvzuu5xqwx_p1yk_0_0_0_1_1_1_2_2_3_3_3",
+    "id": "1zx5wz86cqkp_qa8m_0_0_0_1_1_2_2_2_2",
     "title": "Harebare Fanfare",
     "artist": "mimimemeMIMI",
     "mapper": "Neph",
     "diffName": "Hard",
     "bpm": 168,
-    "stars": 12.764323843571779,
-    "starsOfficial": 4.57742467055293,
+    "stars": 11.055274027638701,
+    "starsOfficial": 3.96791071692889,
     "stats": {
       "stream": 0,
-      "jack": 0.24774052540634178,
-      "chord": 3.4196108177380795,
-      "prec": 0.005520637656343825,
-      "ergo": 3.454614163875446,
-      "disp": 5.412427569140677,
-      "stam": 1.332367908595935
+      "jack": 0.26815693466985363,
+      "chord": 2.587993155022366,
+      "prec": 0.005659693080250033,
+      "ergo": 3.2994164236418713,
+      "disp": 4.603745700665609,
+      "stam": 1.253164938686348
     },
-    "link": "https://rhythmtyper.net/beatmap/64dvzuu5xqwx"
+    "link": "https://rhythmtyper.net/beatmap/1zx5wz86cqkp"
+  },
+  {
+    "id": "1zx5wz86cqkp_p1yk_0_0_0_1_1_1_2_2_3_3_3_3",
+    "title": "Harebare Fanfare",
+    "artist": "mimimemeMIMI",
+    "mapper": "Neph",
+    "diffName": "Intense",
+    "bpm": 168,
+    "stars": 12.604833632799266,
+    "starsOfficial": 5.687308294807946,
+    "stats": {
+      "stream": 0,
+      "jack": 0.24149605861443585,
+      "chord": 3.4195962299126696,
+      "prec": 0.005913686163366942,
+      "ergo": 3.3789391758775116,
+      "disp": 5.412427569140677,
+      "stam": 1.2152885070085746
+    },
+    "link": "https://rhythmtyper.net/beatmap/1zx5wz86cqkp"
   },
   {
     "id": "l2t1434wjqx5_sy5l_0_0_0_0_0_0_3_0_0",
@@ -27840,6 +28880,26 @@
     "link": "https://rhythmtyper.net/beatmap/enrugzdlguzu"
   },
   {
+    "id": "5bgztjnpkj90_hjuk_0_0",
+    "title": "Risa Furanku 420 / Gendai no Konpyu",
+    "artist": "MACINTOSH PLUS",
+    "mapper": "axi",
+    "diffName": "Do you understand?",
+    "bpm": 58.5366,
+    "stars": 7.111180999321436,
+    "starsOfficial": 2.8552533167516803,
+    "stats": {
+      "stream": 0,
+      "jack": 0.23084151706482148,
+      "chord": 1.9487466134482985,
+      "prec": 0,
+      "ergo": 2.9236652820772964,
+      "disp": 1.8079095217461791,
+      "stam": 0.8659151398558284
+    },
+    "link": "https://rhythmtyper.net/beatmap/5bgztjnpkj90"
+  },
+  {
     "id": "9sx1w8gxtnuc_7pys_2",
     "title": "Keys To The Kingdom (Emily's Version)",
     "artist": "Linkin Park",
@@ -27920,14 +28980,34 @@
     "link": "https://rhythmtyper.net/beatmap/9amu6ihx0h71"
   },
   {
-    "id": "lx4n1w1q7o84_kbz0_0_0",
+    "id": "miix0rzbg5cd_6vu8_0",
+    "title": "Hourglass",
+    "artist": "Set It Off",
+    "mapper": "Yomia",
+    "diffName": "Easy",
+    "bpm": 105,
+    "stars": 2.714123899533511,
+    "starsOfficial": 1.5923918878914787,
+    "stats": {
+      "stream": 0,
+      "jack": 0,
+      "chord": 0,
+      "prec": 0,
+      "ergo": 1.7553718128221596,
+      "disp": 1.0092127228540542,
+      "stam": 0
+    },
+    "link": "https://rhythmtyper.net/beatmap/miix0rzbg5cd"
+  },
+  {
+    "id": "miix0rzbg5cd_kbz0_0_0_0_0_0_1",
     "title": "Hourglass",
     "artist": "Set It Off",
     "mapper": "Yomia",
     "diffName": "Normal",
     "bpm": 105,
     "stars": 3.9869938917978844,
-    "starsOfficial": 2.439508857801885,
+    "starsOfficial": 2.6355408195895365,
     "stats": {
       "stream": 0,
       "jack": 0,
@@ -27937,67 +29017,67 @@
       "disp": 1.671144351083727,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/lx4n1w1q7o84"
+    "link": "https://rhythmtyper.net/beatmap/miix0rzbg5cd"
   },
   {
-    "id": "lx4n1w1q7o84_irhw_1_1",
+    "id": "miix0rzbg5cd_irhw_1_1_1_1_1_2",
     "title": "Hourglass",
     "artist": "Set It Off",
     "mapper": "Yomia",
     "diffName": "Hard",
     "bpm": 105,
-    "stars": 7.3129927274291955,
-    "starsOfficial": 3.7516597812978834,
+    "stars": 7.378151115047194,
+    "starsOfficial": 4.033034264895225,
     "stats": {
       "stream": 0,
       "jack": 0.3837344760979049,
       "chord": 0,
-      "prec": 2.086771891033938,
+      "prec": 2.163428817643348,
       "ergo": 2.9764281163567503,
       "disp": 2.203605528414757,
       "stam": 0.27935753019407683
     },
-    "link": "https://rhythmtyper.net/beatmap/lx4n1w1q7o84"
+    "link": "https://rhythmtyper.net/beatmap/miix0rzbg5cd"
   },
   {
-    "id": "lx4n1w1q7o84_f5ef_2_2",
+    "id": "miix0rzbg5cd_f5ef_2_2_2_2_2_3",
     "title": "Hourglass",
     "artist": "Set It Off",
     "mapper": "Yomia",
     "diffName": "Insane",
     "bpm": 105,
-    "stars": 15.225359222834962,
-    "starsOfficial": 5.7428577065763164,
+    "stars": 15.28287852843717,
+    "starsOfficial": 6.059393170718318,
     "stats": {
       "stream": 0,
       "jack": 0.9309255313615566,
       "chord": 3.505523548839708,
-      "prec": 2.7609266689059644,
+      "prec": 2.8376190763755744,
       "ergo": 3.5035597886468044,
       "disp": 4.97620324429389,
       "stam": 2.08950575825421
     },
-    "link": "https://rhythmtyper.net/beatmap/lx4n1w1q7o84"
+    "link": "https://rhythmtyper.net/beatmap/miix0rzbg5cd"
   },
   {
-    "id": "lx4n1w1q7o84_96in_3_3",
+    "id": "miix0rzbg5cd_96in_3_3_3_3_3_4",
     "title": "Hourglass",
     "artist": "Set It Off",
     "mapper": "Yomia",
     "diffName": "Everflowing",
     "bpm": 105,
-    "stars": 16.62405610501788,
-    "starsOfficial": 7.80657764164998,
+    "stars": 18.39364978725823,
+    "starsOfficial": 8.514661197049874,
     "stats": {
       "stream": 0,
-      "jack": 0.7236771516698063,
-      "chord": 4.699620609464906,
-      "prec": 3.1356270442477867,
-      "ergo": 4.049361365674903,
-      "disp": 3.922407824887212,
-      "stam": 3.0673120467745414
+      "jack": 0.7266906332106732,
+      "chord": 5.026786796515619,
+      "prec": 3.486252841142808,
+      "ergo": 4.1165821341466735,
+      "disp": 4.890029591707478,
+      "stam": 3.3967239776505487
     },
-    "link": "https://rhythmtyper.net/beatmap/lx4n1w1q7o84"
+    "link": "https://rhythmtyper.net/beatmap/miix0rzbg5cd"
   },
   {
     "id": "xv8xdyu21ei2_vpiv",
@@ -28260,31 +29340,31 @@
     "link": "https://rhythmtyper.net/beatmap/dv7yovrksufv"
   },
   {
-    "id": "1xtsryuq84bu_s6y2_3_0",
+    "id": "i0naz28ek9gu_s6y2_3_0_0_0_0_0_0",
     "title": "Sonorously Box",
     "artist": "MusMus",
     "mapper": "TTMDPOMIKHTT",
-    "diffName": "Normal Box",
+    "diffName": "Easy Box",
     "bpm": 120.65,
-    "stars": 3.41602659071025,
-    "starsOfficial": 1.601411546766649,
+    "stars": 3.416475581655524,
+    "starsOfficial": 1.601411546995557,
     "stats": {
       "stream": 0,
       "jack": 0,
       "chord": 0,
       "prec": 0,
-      "ergo": 2.4094238907300882,
-      "disp": 1.0595817894528021,
+      "ergo": 2.409423890730088,
+      "disp": 1.0600544115004589,
       "stam": 0
     },
-    "link": "https://rhythmtyper.net/beatmap/1xtsryuq84bu"
+    "link": "https://rhythmtyper.net/beatmap/i0naz28ek9gu"
   },
   {
-    "id": "1xtsryuq84bu_m190_2_2_2_0_0_0_0_0_1",
+    "id": "i0naz28ek9gu_m190_2_2_2_0_0_0_0_0_1_1_1_1_1_1",
     "title": "Sonorously Box",
     "artist": "MusMus",
     "mapper": "TTMDPOMIKHTT",
-    "diffName": "Hard Box",
+    "diffName": "Normal Box",
     "bpm": 120.65,
     "stars": 6.539355135795535,
     "starsOfficial": 2.9407652110401123,
@@ -28297,47 +29377,47 @@
       "disp": 1.2101604866050486,
       "stam": 0.7887706033741115
     },
-    "link": "https://rhythmtyper.net/beatmap/1xtsryuq84bu"
+    "link": "https://rhythmtyper.net/beatmap/i0naz28ek9gu"
   },
   {
-    "id": "1xtsryuq84bu_49hv_0_0_0_0_1_1_1_1_1_2",
+    "id": "i0naz28ek9gu_4bdo_2_2_2_2",
     "title": "Sonorously Box",
     "artist": "MusMus",
     "mapper": "TTMDPOMIKHTT",
-    "diffName": "Extra Box",
+    "diffName": "Hard Box",
     "bpm": 120.65,
-    "stars": 15.961374067756445,
-    "starsOfficial": 5.348273962370521,
+    "stars": 7.2888475231499505,
+    "starsOfficial": 3.1711554814598215,
     "stats": {
       "stream": 0,
-      "jack": 1.6591882434386522,
-      "chord": 4.389241413990526,
-      "prec": 3.4338155589831496,
-      "ergo": 3.5513919137863375,
-      "disp": 4.463092801585572,
-      "stam": 1.1926995794345445
+      "jack": 0,
+      "chord": 1.9590821852719986,
+      "prec": 0,
+      "ergo": 3.018840422363881,
+      "disp": 2.0703140099205557,
+      "stam": 0.8506519118404573
     },
-    "link": "https://rhythmtyper.net/beatmap/1xtsryuq84bu"
+    "link": "https://rhythmtyper.net/beatmap/i0naz28ek9gu"
   },
   {
-    "id": "1xtsryuq84bu_xa5y_1_1_1_2_2_2_2_2_3",
+    "id": "i0naz28ek9gu_49hv_0_0_0_0_1_1_1_1_1_2_2_3_3_3_3",
     "title": "Sonorously Box",
     "artist": "MusMus",
     "mapper": "TTMDPOMIKHTT",
     "diffName": "Insane Box",
     "bpm": 120.65,
-    "stars": 15.234591754070973,
-    "starsOfficial": 5.803178260135277,
+    "stars": 15.96012464472698,
+    "starsOfficial": 5.3482733241184,
     "stats": {
       "stream": 0,
-      "jack": 1.6417328277883203,
-      "chord": 4.5189041687107565,
-      "prec": 1.6692469266443717,
-      "ergo": 4.464020637274465,
-      "disp": 4.2394227659149015,
-      "stam": 1.0041765379565846
+      "jack": 1.6591882434386522,
+      "chord": 4.389129751724042,
+      "prec": 3.4324000777978774,
+      "ergo": 3.551379101373397,
+      "disp": 4.463092801585572,
+      "stam": 1.1925707750048173
     },
-    "link": "https://rhythmtyper.net/beatmap/1xtsryuq84bu"
+    "link": "https://rhythmtyper.net/beatmap/i0naz28ek9gu"
   },
   {
     "id": "emk4xhzls225_5ijp",
@@ -28618,186 +29698,6 @@
       "stam": 3.092175999369829
     },
     "link": "https://rhythmtyper.net/beatmap/0foko4taiq18"
-  },
-  {
-    "id": "0ef7e3df_a1fc3c25-7636-4220-b45d-446eb3704a4f",
-    "title": "FREEDOM DiVE",
-    "artist": "xi",
-    "mapper": "razlteh & AI",
-    "diffName": "4K Another (AI)",
-    "bpm": 222.22000000000023,
-    "stars": 46.91828558426888,
-    "starsOfficial": 15.357322925942796,
-    "stats": {
-      "stream": 3.89333800034933,
-      "jack": 9.965241979704068,
-      "chord": 9.398212556078862,
-      "prec": 11.663714232671365,
-      "ergo": 5.2928218653917565,
-      "disp": 12.927960526142028,
-      "stam": 3.996991135672003
-    },
-    "link": "https://rhythmtyper.net/beatmap/0ef7e3df"
-  },
-  {
-    "id": "0ef7e3df_9c68be74-5e1a-4e06-95eb-ded1d5d1c624",
-    "title": "FREEDOM DiVE",
-    "artist": "xi",
-    "mapper": "razlteh & AI",
-    "diffName": "4K Hyper (AI)",
-    "bpm": 222.22000000000023,
-    "stars": 31.389906632580967,
-    "starsOfficial": 12.897130961108395,
-    "stats": {
-      "stream": 3.1993241727717465,
-      "jack": 6.007939189347268,
-      "chord": 7.287145474899501,
-      "prec": 8.037380032857405,
-      "ergo": 4.626144390284826,
-      "disp": 6.821241047144372,
-      "stam": 3.0202377061694934
-    },
-    "link": "https://rhythmtyper.net/beatmap/0ef7e3df"
-  },
-  {
-    "id": "0ef7e3df_970e3b78-a044-428a-a17b-6d6bb9c4cff2",
-    "title": "FREEDOM DiVE",
-    "artist": "xi",
-    "mapper": "razlteh & AI",
-    "diffName": "4K Normal (AI)",
-    "bpm": 222.22000000000023,
-    "stars": 23.601107337734554,
-    "starsOfficial": 7.762500794591602,
-    "stats": {
-      "stream": 1.1832831472451781,
-      "jack": 2.4127357553689923,
-      "chord": 4.867261395401794,
-      "prec": 7.638754606307799,
-      "ergo": 3.8977920380355364,
-      "disp": 5.920573379000866,
-      "stam": 2.139156635468321
-    },
-    "link": "https://rhythmtyper.net/beatmap/0ef7e3df"
-  },
-  {
-    "id": "0ef7e3df_1ed78f00-fc2d-4c00-a4a6-2e68f7c25c97",
-    "title": "FREEDOM DiVE",
-    "artist": "xi",
-    "mapper": "razlteh & AI",
-    "diffName": "Blocko's 7K Another (AI)",
-    "bpm": 222.22000000000023,
-    "stars": 65.60626788417056,
-    "starsOfficial": 21.154238895598212,
-    "stats": {
-      "stream": 4.12670628977426,
-      "jack": 15.517995526673454,
-      "chord": 16.045455272945585,
-      "prec": 12.434017795303722,
-      "ergo": 7.255190464164818,
-      "disp": 15.990394455112277,
-      "stam": 9.241162690813859
-    },
-    "link": "https://rhythmtyper.net/beatmap/0ef7e3df"
-  },
-  {
-    "id": "0ef7e3df_6374bf90-bcda-4742-ab32-ee519dfd7013",
-    "title": "FREEDOM DiVE",
-    "artist": "xi",
-    "mapper": "razlteh & AI",
-    "diffName": "Blocko's 7K Black Another (AI)",
-    "bpm": 222.22000000000023,
-    "stars": 73.16208747457235,
-    "starsOfficial": 23.605989565594943,
-    "stats": {
-      "stream": 4.016319446931912,
-      "jack": 15.868037515014908,
-      "chord": 20.975334456178285,
-      "prec": 11.448485900143872,
-      "ergo": 8.752529600307122,
-      "disp": 16.909072205395972,
-      "stam": 11.427235506321583
-    },
-    "link": "https://rhythmtyper.net/beatmap/0ef7e3df"
-  },
-  {
-    "id": "0ef7e3df_dcbb46bb-051c-4a5a-ada7-373558cdac63",
-    "title": "FREEDOM DiVE",
-    "artist": "xi",
-    "mapper": "razlteh & AI",
-    "diffName": "Blocko's 7K Normal (AI)",
-    "bpm": 222.22000000000023,
-    "stars": 33.9701497684545,
-    "starsOfficial": 9.516844706325616,
-    "stats": {
-      "stream": 2.387366298649601,
-      "jack": 4.875935537117052,
-      "chord": 6.438716160326377,
-      "prec": 12.132244715534714,
-      "ergo": 4.761033639602479,
-      "disp": 7.062022209473651,
-      "stam": 3.3275215721284956
-    },
-    "link": "https://rhythmtyper.net/beatmap/0ef7e3df"
-  },
-  {
-    "id": "0ef7e3df_40832ac8-df7e-462c-8efc-f940df776cda",
-    "title": "FREEDOM DiVE",
-    "artist": "xi",
-    "mapper": "razlteh & AI",
-    "diffName": "Dain's 7K Light (AI)",
-    "bpm": 222.22000000000023,
-    "stars": 13.6081949961435,
-    "starsOfficial": 6.65647715899682,
-    "stats": {
-      "stream": 0,
-      "jack": 0.779038836573051,
-      "chord": 3.0687101064005393,
-      "prec": 3.855339447617778,
-      "ergo": 3.7751376279616693,
-      "disp": 2.8622758105465955,
-      "stam": 1.512143066917773
-    },
-    "link": "https://rhythmtyper.net/beatmap/0ef7e3df"
-  },
-  {
-    "id": "0ef7e3df_40ecb500-ad50-4db6-a62e-6ac340ddb5f8",
-    "title": "FREEDOM DiVE",
-    "artist": "xi",
-    "mapper": "razlteh & AI",
-    "diffName": "Fullerene's 4K DIMENSIONS (AI)",
-    "bpm": 222.22000000000023,
-    "stars": 59.6368924991153,
-    "starsOfficial": 23.27864246479776,
-    "stats": {
-      "stream": 4.106749097086018,
-      "jack": 13.991244948380967,
-      "chord": 14.225642775567017,
-      "prec": 12.67563671497228,
-      "ergo": 6.3302866863896465,
-      "disp": 15.31411283738561,
-      "stam": 6.266199714083667
-    },
-    "link": "https://rhythmtyper.net/beatmap/0ef7e3df"
-  },
-  {
-    "id": "0ef7e3df_fa2a7aea-e1c8-47fe-b4f5-706ef72b886f",
-    "title": "FREEDOM DiVE",
-    "artist": "xi",
-    "mapper": "razlteh & AI",
-    "diffName": "Tear's 7K Hyper (AI)",
-    "bpm": 222.22000000000023,
-    "stars": 52.17994875968425,
-    "starsOfficial": 17.79452502373651,
-    "stats": {
-      "stream": 3.3351506861972378,
-      "jack": 10.208949864364012,
-      "chord": 10.649024650247409,
-      "prec": 15.46156965093801,
-      "ergo": 5.773755427774727,
-      "disp": 12.376266469967163,
-      "stam": 5.45233413536691
-    },
-    "link": "https://rhythmtyper.net/beatmap/0ef7e3df"
   },
   {
     "id": "463130pql5hs_jsdq",
