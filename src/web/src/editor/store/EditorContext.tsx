@@ -55,6 +55,13 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         snappingEnabled: true,
         showWaveform: true,
         dimInactiveLayers: true,
+        
+        // Visual Defaults
+        rowOffsets: [0, 0, 0], // Top, Home, Bot offsets
+        noteShape: 'circle',
+        approachStyle: 'standard',
+        approachRate: 0.5, // 500ms default
+
         masterVolume: 80,
         musicVolume: 70,
         hitsoundVolume: 100,
@@ -80,14 +87,12 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
         if (!activeProjectId) return;
         const timer = setTimeout(() => {
-            // Save the current difficulty to its specific file
             saveDifficulty(activeProjectId, history.present);
         }, 2000);
         return () => clearTimeout(timer);
     }, [history.present, activeProjectId]);
 
     const loadProject = async (id: string) => {
-        // Loads the most recently modified difficulty in the project
         const data = await loadProjectAnyDiff(id);
         if (data) {
             setActiveProjectId(id);
@@ -100,13 +105,11 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
 
     const switchDifficulty = async (diffId: string) => {
         if (!activeProjectId) return;
-        // Save current before switching (safety)
         await saveDifficulty(activeProjectId, history.present);
         
         const data = await loadDifficulty(activeProjectId, diffId);
         if (data) {
             dispatch({ type: 'LOAD_MAP', payload: data });
-            // Don't reset audio pos, allows checking sync across diffs
             setAssetsVersion(v => v + 1);
         }
     };
@@ -132,16 +135,12 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
                 ...base.metadata,
                 difficultyName: name
             },
-            // Clone shared assets linkage
             timingPoints: copySettings ? [...base.timingPoints] : base.timingPoints,
             bpm: base.bpm,
             offset: base.offset
         };
 
         if (copySettings) {
-             // If we want to fully clone objects too, we could do that. 
-             // Usually "create difficulty" implies empty chart but same song.
-             // Let's stick to Empty Chart + Same Timing/Meta for now.
              newData.metadata = { ...base.metadata, difficultyName: name };
              newData.timingPoints = [...base.timingPoints];
         }
