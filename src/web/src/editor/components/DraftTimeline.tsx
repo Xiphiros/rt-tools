@@ -104,18 +104,15 @@ export const DraftTimeline = ({ height = 100 }: DraftTimelineProps) => {
             {/* Timeline Strip */}
             <div className="flex-1 relative">
                 {/* Center Line (Playhead) */}
-                <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-yellow-400/50 z-10" />
+                <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-yellow-400/50 z-10">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-yellow-400/80 text-black text-[9px] font-bold px-1 rounded-sm whitespace-nowrap z-[60]">
+                        {(playback.currentTime / 1000).toFixed(3)}s
+                    </div>
+                </div>
 
                 {visibleDraftNotes.map(note => {
-                    // Logic: Center (50%) is playback.currentTime
-                    // Notes are positioned relative to center based on time diff
-                    // 1 second = 20% width? Let's use pixels.
                     const relativeTime = note.time - playback.currentTime;
                     const pxOffset = (relativeTime / 1000) * settings.zoom; 
-                    
-                    // Center + Offset
-                    // Note: If relativeTime is positive (future), it should be to the RIGHT.
-                    
                     const left = `calc(50% + ${pxOffset}px)`;
                     const width = Math.max(20, (note.duration || 0) / 1000 * settings.zoom);
 
