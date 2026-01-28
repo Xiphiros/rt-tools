@@ -26,6 +26,12 @@ export const KEY_TO_ROW: Record<string, number> = {
     '.': ROW_BOTTOM, '/': ROW_BOTTOM
 };
 
+export const KEY_ORDER: Record<number, string[]> = {
+    [ROW_TOP]: ['q','w','e','r','t','y','u','i','o','p'],
+    [ROW_HOME]: ['a','s','d','f','g','h','j','k','l',';'],
+    [ROW_BOTTOM]: ['z','x','c','v','b','n','m',',','.','/']
+};
+
 export const ROW_LABELS = [
     "QWERTY",
     "ASDFGH",
