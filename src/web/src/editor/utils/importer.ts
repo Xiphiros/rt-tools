@@ -1,7 +1,7 @@
 import JSZip from 'jszip';
 import { EditorMapData, HitsoundSettings, LoopSettings, TimingPoint } from '../types';
 import { createProject, saveDifficulty, saveFileToProject } from './opfs';
-import { checkSourceConsistency, validateMapData } from './validation';
+import { checkSourceConsistency } from './validation';
 
 export const importRtmPackage = async (file: File): Promise<string | null> => {
     try {
@@ -59,6 +59,7 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
             // 3. Construct Editor Data
             const editorData: EditorMapData = {
                 diffId: diffData.diffId || crypto.randomUUID(),
+                draftNotes: [], // Init Empty Drafts
                 metadata: {
                     title: meta.songName || '',
                     artist: meta.artistName || '',
@@ -154,8 +155,6 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
             };
 
             // 4. Save to Project
-            // If it's the first successful diff, create the project structure.
-            // Otherwise, append the difficulty file.
             if (!projectCreated) {
                 await createProject(projectId, editorData);
                 projectCreated = true;
@@ -169,18 +168,13 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
             throw new Error("No valid difficulties could be imported.");
         }
 
-        // 5. Extract Assets (Once per project)
-        // We scan all difficulties to find all unique asset references
-        // But since meta.json usually lists them globally or we can use the first diff's metadata
-        // we'll stick to the global meta fields if available, or just standard names.
-        
+        // 5. Extract Assets
         const audioName = meta.audioFile || 'audio.mp3';
         const audioBlob = await zip.file(audioName)?.async('blob');
         if (audioBlob) {
             await saveFileToProject(projectId, audioName, audioBlob);
         }
 
-        // Handle Backgrounds (meta.backgroundFiles is array)
         if (meta.backgroundFiles && Array.isArray(meta.backgroundFiles)) {
             for (const bgName of meta.backgroundFiles) {
                 const bgBlob = await zip.file(bgName)?.async('blob');
@@ -189,7 +183,6 @@ export const importRtmPackage = async (file: File): Promise<string | null> => {
                 }
             }
         } else if (meta.backgroundFile) {
-            // Fallback for legacy meta
              const bgBlob = await zip.file(meta.backgroundFile)?.async('blob');
              if (bgBlob) {
                  await saveFileToProject(projectId, meta.backgroundFile, bgBlob);
