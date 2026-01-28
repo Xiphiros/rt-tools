@@ -16,7 +16,8 @@ import {
     faDrum, 
     faClock, 
     faVolumeUp,
-    faBullseye
+    faBullseye,
+    faEye
 } from '@fortawesome/free-solid-svg-icons';
 
 const VolumeSlider = ({ 
@@ -82,7 +83,7 @@ const Popover = ({
                     left: position.left,
                     bottom: position.bottom,
                     transform: 'translateX(-50%)',
-                    width: '280px'
+                    width: '320px' // Widened for visuals
                 }}
             >
                 <div className="flex justify-between items-center border-b border-border pb-2 mb-1">
@@ -100,9 +101,11 @@ export const EditorBottomBar = () => {
     const { playback, audio, canUndo, canRedo, dispatch, settings, setSettings, defaultHitsounds, setDefaultHitsounds } = useEditor();
     const [showVolume, setShowVolume] = useState(false);
     const [showSamples, setShowSamples] = useState(false);
+    const [showVisuals, setShowVisuals] = useState(false);
     
     const volumeBtnRef = useRef<HTMLButtonElement>(null);
     const samplesBtnRef = useRef<HTMLButtonElement>(null);
+    const visualsBtnRef = useRef<HTMLButtonElement>(null);
     
     const isReady = !!audio.manager.getBuffer();
 
@@ -120,6 +123,12 @@ export const EditorBottomBar = () => {
             ...prev,
             additions: { ...prev.additions, [key]: !prev.additions[key] }
         }));
+    };
+
+    const updateOffset = (index: number, val: number) => {
+        const newOffsets = [...settings.rowOffsets] as [number, number, number];
+        newOffsets[index] = val;
+        setSettings(s => ({ ...s, rowOffsets: newOffsets }));
     };
 
     return (
@@ -245,6 +254,113 @@ export const EditorBottomBar = () => {
                                 icon={faDrum} 
                             />
                         </div>
+                    </Popover>
+                </div>
+
+                {/* Visual Settings Toggle */}
+                <div className="flex flex-col items-center gap-1">
+                    <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Visuals</span>
+                    <button 
+                        ref={visualsBtnRef}
+                        onClick={() => setShowVisuals(!showVisuals)}
+                        className={`w-16 py-1 rounded text-xs font-bold transition-all border flex items-center justify-center gap-2 ${
+                            showVisuals
+                            ? 'bg-warning/20 text-warning border-warning shadow-[0_0_10px_rgba(251,191,36,0.2)]' 
+                            : 'bg-input text-muted border-border hover:text-white hover:border-white/20'
+                        }`}
+                    >
+                        <FontAwesomeIcon icon={faEye} />
+                        EDIT
+                    </button>
+
+                    <Popover isOpen={showVisuals} onClose={() => setShowVisuals(false)} title="Visual Settings" anchorRef={visualsBtnRef}>
+                         <div className="flex flex-col gap-4">
+                            {/* Shape Selection */}
+                            <div className="flex flex-col gap-2">
+                                <span className="text-[10px] font-bold text-muted uppercase">Note Shape</span>
+                                <div className="flex gap-1 bg-input p-1 rounded-lg">
+                                    <button 
+                                        onClick={() => setSettings(s => ({ ...s, noteShape: 'circle' }))}
+                                        className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${settings.noteShape === 'circle' ? 'bg-primary text-black' : 'text-muted'}`}
+                                    >
+                                        Circle
+                                    </button>
+                                    <button 
+                                        onClick={() => setSettings(s => ({ ...s, noteShape: 'diamond' }))}
+                                        className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${settings.noteShape === 'diamond' ? 'bg-primary text-black' : 'text-muted'}`}
+                                    >
+                                        Diamond
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Approach Style */}
+                            <div className="flex flex-col gap-2">
+                                <span className="text-[10px] font-bold text-muted uppercase">Approach Style</span>
+                                <div className="flex gap-1 bg-input p-1 rounded-lg">
+                                    <button 
+                                        onClick={() => setSettings(s => ({ ...s, approachStyle: 'standard' }))}
+                                        className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${settings.approachStyle === 'standard' ? 'bg-secondary text-white' : 'text-muted'}`}
+                                    >
+                                        Standard
+                                    </button>
+                                    <button 
+                                        onClick={() => setSettings(s => ({ ...s, approachStyle: 'inverted' }))}
+                                        className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${settings.approachStyle === 'inverted' ? 'bg-secondary text-white' : 'text-muted'}`}
+                                    >
+                                        Inverted
+                                    </button>
+                                </div>
+                            </div>
+
+                             {/* AR Slider */}
+                             <div className="flex flex-col gap-1">
+                                <div className="flex justify-between text-[10px] font-bold text-muted uppercase">
+                                    <span>Approach Rate</span>
+                                    <span>{(settings.approachRate * 1000).toFixed(0)}ms</span>
+                                </div>
+                                <input 
+                                    type="range" 
+                                    min="0.1" max="1.5" step="0.05"
+                                    value={settings.approachRate} 
+                                    onChange={(e) => setSettings(s => ({ ...s, approachRate: parseFloat(e.target.value) }))}
+                                    className="w-full h-1.5 bg-input rounded-lg appearance-none cursor-pointer accent-secondary"
+                                />
+                            </div>
+
+                            <hr className="border-white/10" />
+
+                            {/* Offsets */}
+                            <div className="flex flex-col gap-2">
+                                <span className="text-[10px] font-bold text-muted uppercase">Row Offsets (Y-Axis)</span>
+                                <div className="grid grid-cols-3 gap-2">
+                                    <div className="flex flex-col items-center">
+                                        <span className="text-[9px] text-muted mb-1">Top</span>
+                                        <input 
+                                            type="number" className="w-full bg-input border border-border rounded px-1 py-1 text-center text-xs font-mono focus:border-primary focus:outline-none"
+                                            value={settings.rowOffsets[0]}
+                                            onChange={(e) => updateOffset(0, parseInt(e.target.value) || 0)}
+                                        />
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <span className="text-[9px] text-muted mb-1">Home</span>
+                                        <input 
+                                            type="number" className="w-full bg-input border border-border rounded px-1 py-1 text-center text-xs font-mono focus:border-primary focus:outline-none"
+                                            value={settings.rowOffsets[1]}
+                                            onChange={(e) => updateOffset(1, parseInt(e.target.value) || 0)}
+                                        />
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <span className="text-[9px] text-muted mb-1">Bot</span>
+                                        <input 
+                                            type="number" className="w-full bg-input border border-border rounded px-1 py-1 text-center text-xs font-mono focus:border-primary focus:outline-none"
+                                            value={settings.rowOffsets[2]}
+                                            onChange={(e) => updateOffset(2, parseInt(e.target.value) || 0)}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
                     </Popover>
                 </div>
 
