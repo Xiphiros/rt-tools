@@ -27,21 +27,19 @@ export interface EditorLayer {
 }
 
 export interface EditorNote {
-    id: string;         
-    time: number;       
-    column: number;     
+    id: string;          
+    time: number;        
+    column: number;      
     key: string;        
     type: NoteType;
-    duration?: number;  
+    duration?: number;   
     selected?: boolean;
     layerId: string;
     
     // Primary Hitsound (Tap, or Head of Hold)
     hitsound: HitsoundSettings;
     
-    // Hold Specific Hitsounds (Optional, only used if type === 'hold')
-    // If undefined, they theoretically fallback to 'hitsound' or defaults, 
-    // but the editor will instantiate them on change.
+    // Hold Specific Hitsounds
     holdTailHitsound?: HitsoundSettings;
     holdLoopHitsound?: LoopSettings; 
 }
@@ -94,6 +92,12 @@ export interface EditorSettings {
     
     // View Options
     dimInactiveLayers: boolean;
+    
+    // Visual Settings
+    rowOffsets: [number, number, number]; // [Top, Home, Bot] in px
+    noteShape: 'circle' | 'diamond';
+    approachStyle: 'standard' | 'inverted'; // Standard (Shrink), Inverted (Grow)
+    approachRate: number; // Duration in Seconds (e.g. 0.5)
 
     // Volume Channels (0-100)
     masterVolume: number;
