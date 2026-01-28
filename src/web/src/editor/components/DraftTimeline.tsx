@@ -1,9 +1,9 @@
-import React, { useRef, useMemo, useState } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { useEditor } from '../store/EditorContext';
 import { getVisibleNotes } from '../utils/binarySearch';
 import { EditorNote } from '../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileImport, faTrash, faGripVertical } from '@fortawesome/free-solid-svg-icons';
+import { faFileImport, faGripVertical } from '@fortawesome/free-solid-svg-icons';
 
 interface DraftTimelineProps {
     height?: number;
@@ -12,7 +12,6 @@ interface DraftTimelineProps {
 export const DraftTimeline = ({ height = 100 }: DraftTimelineProps) => {
     const { mapData, playback, settings, dispatch } = useEditor();
     const containerRef = useRef<HTMLDivElement>(null);
-    const [isDragging, setIsDragging] = useState(false);
 
     // Filter to show upcoming notes based on playhead
     // Window: -1 second to +4 seconds relative to current time
@@ -66,11 +65,6 @@ export const DraftTimeline = ({ height = 100 }: DraftTimelineProps) => {
         // We use standard HTML5 Drag & Drop for cross-component communication
         e.dataTransfer.setData('application/json', JSON.stringify(note));
         e.dataTransfer.effectAllowed = 'move';
-        setIsDragging(true);
-    };
-
-    const handleDragEnd = () => {
-        setIsDragging(false);
     };
 
     if ((mapData.draftNotes || []).length === 0) {
@@ -136,7 +130,6 @@ export const DraftTimeline = ({ height = 100 }: DraftTimelineProps) => {
                             }}
                             draggable
                             onDragStart={(e) => handleDragStart(e, note)}
-                            onDragEnd={handleDragEnd}
                         >
                             <span className="text-xs font-bold text-white/50 group-hover:text-white pointer-events-none">
                                 {note.key.toUpperCase()}
