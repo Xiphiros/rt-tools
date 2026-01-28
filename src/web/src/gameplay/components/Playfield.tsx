@@ -11,13 +11,13 @@ interface PlayfieldProps {
     activeLayerId?: string;
     dimInactiveLayers?: boolean;
     
-    // New Visual Settings Props
-    rowOffsets?: [number, number, number];
-    noteShape?: 'circle' | 'diamond';
+    // Visual Settings Props
+    rowOffsets?: [number, number, number];  // Y
+    rowXOffsets?: [number, number, number]; // X
+    noteShape?: 'circle' | 'diamond' | 'square';
     approachStyle?: 'standard' | 'inverted';
-    approachRate?: number; // Seconds
+    approachRate?: number; 
 
-    // Editor Interactions
     onNoteClick?: (e: React.MouseEvent, note: EditorNote) => void;
     onBackgroundClick?: (e: React.MouseEvent) => void;
 }
@@ -46,27 +46,23 @@ export const Playfield = ({
     onBackgroundClick,
     activeLayerId,
     dimInactiveLayers = true,
-    rowOffsets = [0, 0, 0], // Defaults
+    rowOffsets = [0, 0, 0], 
+    rowXOffsets = [0, 0, 0], // New X Defaults
     noteShape = 'circle',
     approachStyle = 'standard',
     approachRate = 0.5
 }: PlayfieldProps) => {
     
-    const PREEMPT = approachRate * 1000; // Convert seconds to ms
+    const PREEMPT = approachRate * 1000; 
     const FADE_OUT = 200;
 
-    // Create a Layer Map for fast lookup
     const layerMap = new Map(mapData.layers.map(l => [l.id, l]));
 
-    // Filter visible notes
     const visibleNotes = mapData.notes.filter(n => {
-        // 1. Time Check
         const relativeTime = n.time - currentTime;
         const endTime = n.type === 'hold' ? n.time + (n.duration || 0) : n.time;
-        // Show notes that are approaching OR currently being held/active
         if (relativeTime > PREEMPT || (endTime - currentTime) < -FADE_OUT) return false;
 
-        // 2. Layer Visibility Check
         const layer = layerMap.get(n.layerId);
         if (layer && !layer.visible) return false;
 
@@ -84,33 +80,51 @@ export const Playfield = ({
         const rowKeys = KEY_ORDER[targetRow] || [];
         const keyIndex = rowKeys.indexOf(lowerChar);
         
-        // Calculate Base Y
         const baseY = BASE_ROW_Y_OFFSETS[targetRow] || 0;
-        // Add User Configured Offset (Pixels -> Percent approximation)
-        // Assuming 100% height ~ 400px. 1px offset ~ 0.25%
         const userOffsetY = (rowOffsets[targetRow] || 0) * 0.25;
+        
+        // Apply X Offset
+        // Default stagger logic
+        let rowStagger = 0;
+        if (targetRow === ROW_HOME) rowStagger = 2; 
+        if (targetRow === ROW_BOTTOM) rowStagger = 4;
+
+        // User X Override
+        // 1 unit = 1% width approx
+        const userOffsetX = (rowXOffsets[targetRow] || 0);
+
+        // If user sets X to something specific, maybe we should disable default stagger?
+        // Let's Add them. If user wants aligned, they can compensate or we provide a "Flat" mode later.
+        // Actually, request said "0,0,0 resulting in perfect alignment".
+        // So we should remove rowStagger if offsets are being used? 
+        // No, let's keep it additive. To get alignment, user sets offsets to cancel stagger.
+        // Wait, "0,0,0 resulting in perfectly aligned" implies the BASE stagger should be removed or controllable.
+        // Let's remove the hardcoded stagger and rely on the new offsets + key position.
+        
+        // REVISED: Remove `rowStagger` hardcoded variable. 
+        // The default `rowXOffsets` in context should reproduce the stagger if desired, 
+        // OR we just make 0,0,0 the "flat" grid.
+        
+        // Going with "0,0,0 is flat grid".
+        // To preserve legacy look, defaults in Context should be [0, 2, 4]?
+        // The user asked for "0,0,0 resulting in aligned". So base calc should be aligned.
 
         if (keyIndex !== -1) {
             const rowWidth = rowKeys.length;
             const xOffsetPct = ((keyIndex - (rowWidth / 2)) + 0.5) * 8; 
-            let rowStagger = 0;
-            if (targetRow === ROW_HOME) rowStagger = 2; 
-            if (targetRow === ROW_BOTTOM) rowStagger = 4;
 
             return {
-                x: CENTER_X + xOffsetPct + rowStagger,
+                x: CENTER_X + xOffsetPct + userOffsetX,
                 y: CENTER_Y + baseY + userOffsetY
             };
         } else {
-            return { x: CENTER_X, y: CENTER_Y + baseY + userOffsetY };
+            return { x: CENTER_X + userOffsetX, y: CENTER_Y + baseY + userOffsetY };
         }
     };
 
     const actualSize = NOTE_SIZE * scale;
     const borderRadius = noteShape === 'circle' ? '50%' : '0%';
     const rotation = noteShape === 'diamond' ? 'rotate(45deg)' : 'none';
-
-    // 
 
     const renderGhosts = () => {
         const elements: React.ReactNode[] = [];
@@ -171,7 +185,6 @@ export const Playfield = ({
                 const endTime = note.type === 'hold' ? note.time + (note.duration || 0) : note.time;
                 const isHolding = note.type === 'hold' && currentTime >= note.time && currentTime <= endTime;
                 
-                // Opacity Logic
                 let opacity = 1;
                 if (relativeTime > PREEMPT - 200) {
                     opacity = (PREEMPT - relativeTime) / 200;
@@ -183,10 +196,8 @@ export const Playfield = ({
                     opacity *= 0.3; 
                 }
 
-                // Approach Progress (0 = just spawned, 1 = hit time)
                 const progress = 1 - (relativeTime / PREEMPT);
                 
-                // Calculate Approach Scale
                 let approachScale = 1;
                 if (approachStyle === 'standard') {
                      approachScale = 2.5 - (1.5 * progress);
@@ -225,7 +236,6 @@ export const Playfield = ({
                             if (onNoteClick) onNoteClick(e, note);
                         }}
                     >
-                        {/* ACTIVE HOLD GLOW */}
                         {isHolding && (
                             <div 
                                 className="absolute animate-pulse pointer-events-none"
@@ -266,7 +276,6 @@ export const Playfield = ({
                             </span>
                         </div>
 
-                        {/* APPROACH CIRCLE */}
                         {showApproachCircles && relativeTime > 0 && relativeTime <= PREEMPT && (
                             <div 
                                 className="absolute border-2 pointer-events-none"
@@ -281,7 +290,6 @@ export const Playfield = ({
                             />
                         )}
                         
-                        {/* Layer Indicator Dot */}
                         {activeLayerId && note.layerId !== activeLayerId && dimInactiveLayers && (
                             <div 
                                 className="absolute -top-1 -right-1 w-3 h-3 rounded-full border border-black"
