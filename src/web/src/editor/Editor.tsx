@@ -5,7 +5,7 @@ import { EditorToolbox } from './components/EditorToolbox';
 import { EditorBottomBar } from './components/EditorBottomBar';
 import { EditorRightBar } from './components/EditorRightBar';
 import { Playfield } from '../gameplay/components/Playfield';
-import { DraftTimeline } from './components/DraftTimeline';
+import { DraftTimeline } from './components/DraftTimeline'; 
 import { MetadataModal } from './modals/MetadataModal';
 import { TimingModal } from './modals/TimingModal';
 import { ResnapModal } from './modals/ResnapModal';
@@ -24,6 +24,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { EditorNote } from './types';
 import { snapTime } from './utils/timing';
+import { getNoteCoordinates } from '../gameplay/utils/playfieldCoordinates';
 
 const TopMenuBar = ({ onOpenModal, showSidebar, toggleSidebar }: { onOpenModal: (modal: string) => void, showSidebar: boolean, toggleSidebar: () => void }) => {
     const { mapData, activeProjectId } = useEditor();
@@ -77,7 +78,8 @@ const EditorLayout = () => {
     
     // Panel Visibility State
     const [showHitsoundPanel, setShowHitsoundPanel] = useState(false);
-    
+    const [highlightedNoteId, setHighlightedNoteId] = useState<string | null>(null);
+
     // Track selection changes to auto-open panel
     const prevSelectionCount = useRef(0);
     const selectionCount = mapData.notes.filter(n => n.selected).length;
@@ -116,39 +118,95 @@ const EditorLayout = () => {
     // --- DRAG AND DROP HANDLERS (Draft -> Playfield) ---
 
     const handleDragOver = (e: React.DragEvent) => {
-        e.preventDefault(); // Allow dropping
+        e.preventDefault(); 
         e.dataTransfer.dropEffect = 'move';
+        
+        // --- HIT TEST LOGIC ---
+        // 1. Get container dimensions
+        const rect = e.currentTarget.getBoundingClientRect();
+        const mxPct = ((e.clientX - rect.left) / rect.width) * 100;
+        const myPct = ((e.clientY - rect.top) / rect.height) * 100;
+
+        // 2. Scan visible notes for proximity
+        // Using same filtering logic as Playfield for efficiency would be ideal, 
+        // but finding "all" notes near current time is fast enough.
+        const PREEMPT = settings.approachRate * 1000;
+        const HIT_RADIUS = 5; // % distance tolerance (approx 5% of screen width)
+
+        let closestId: string | null = null;
+        let minDist = HIT_RADIUS;
+
+        // Optimization: Filter by time first
+        const candidates = mapData.notes.filter(n => Math.abs(n.time - playback.currentTime) < PREEMPT);
+
+        for (const note of candidates) {
+            const pos = getNoteCoordinates({
+                row: note.column,
+                key: note.key,
+                rowOffsets: settings.rowOffsets,
+                rowXOffsets: settings.rowXOffsets
+            });
+
+            const dist = Math.sqrt(Math.pow(pos.x - mxPct, 2) + Math.pow(pos.y - myPct, 2));
+            if (dist < minDist) {
+                minDist = dist;
+                closestId = note.id;
+            }
+        }
+
+        setHighlightedNoteId(closestId);
+    };
+
+    const handleDragLeave = () => {
+        setHighlightedNoteId(null);
     };
 
     const handleDrop = (e: React.DragEvent) => {
         e.preventDefault();
+        setHighlightedNoteId(null);
+
         try {
             const data = e.dataTransfer.getData('application/json');
             if (!data) return;
             const draftNote = JSON.parse(data) as EditorNote;
             
-            // Calculate Drop Row
-            const rect = e.currentTarget.getBoundingClientRect();
-            const yPct = (e.clientY - rect.top) / rect.height;
-            
-            let row = 1; // Home default
-            if (yPct < 0.4) row = 0; // Top
-            else if (yPct > 0.6) row = 2; // Bottom
-
-            // Commit Note
-            // Snap the time if needed
+            // --- DETERMINE DROP TARGET ---
             let finalTime = draftNote.time;
-            if (settings.snappingEnabled) {
-                finalTime = snapTime(draftNote.time, mapData.timingPoints, settings.snapDivisor);
+            let finalColumn = 1;
+            let finalKey = draftNote.key;
+
+            // 1. Check for Snap Target (Existing Note)
+            if (highlightedNoteId) {
+                const target = mapData.notes.find(n => n.id === highlightedNoteId);
+                if (target) {
+                    finalTime = target.time;
+                    finalColumn = target.column;
+                    // We don't overwrite key usually, but if we want to "stack", 
+                    // we keep the draft key so we can create a chord or variant.
+                    // Or, if user intends to REPLACE, they might delete the old one manually.
+                    // "Snap to note" implies taking its position (Time + Col).
+                }
+            } else {
+                // 2. Standard Spatial Drop
+                const rect = e.currentTarget.getBoundingClientRect();
+                const yPct = (e.clientY - rect.top) / rect.height;
+                
+                if (yPct < 0.4) finalColumn = 0; // Top
+                else if (yPct > 0.6) finalColumn = 2; // Bottom
+                else finalColumn = 1; // Home
+
+                if (settings.snappingEnabled) {
+                    finalTime = snapTime(draftNote.time, mapData.timingPoints, settings.snapDivisor);
+                }
             }
 
             const newNote: EditorNote = {
                 ...draftNote,
-                id: crypto.randomUUID(), // New ID for map note
-                column: row,
+                id: crypto.randomUUID(),
+                column: finalColumn,
                 layerId: activeLayerId,
                 time: finalTime,
-                // If it was tapped, ensure it's still a tap unless duration exists
+                key: finalKey
             };
 
             dispatch({ 
@@ -181,6 +239,7 @@ const EditorLayout = () => {
                         <div 
                             className="absolute inset-0 flex items-center justify-center"
                             onDragOver={handleDragOver}
+                            onDragLeave={handleDragLeave}
                             onDrop={handleDrop}
                         >
                             <div className="aspect-video w-full max-h-full relative">
@@ -195,9 +254,11 @@ const EditorLayout = () => {
                                     dimInactiveLayers={settings.dimInactiveLayers}
                                     // Visual Props
                                     rowOffsets={settings.rowOffsets}
+                                    rowXOffsets={settings.rowXOffsets}
                                     noteShape={settings.noteShape}
                                     approachStyle={settings.approachStyle}
                                     approachRate={settings.approachRate}
+                                    highlightedNoteId={highlightedNoteId}
                                 />
                                 
                                 {/* Floating Hitsound Panel */}
@@ -206,12 +267,14 @@ const EditorLayout = () => {
                                     onClose={() => setShowHitsoundPanel(false)} 
                                 />
 
-                                {/* Drop Hints */}
-                                <div className="absolute inset-0 pointer-events-none opacity-0 group-hover/playfield:opacity-100 transition-opacity flex flex-col">
-                                    <div className="flex-1 border-b border-white/5 bg-sky-500/5 text-xs text-sky-200/20 p-2 font-mono">TOP ROW DROP ZONE</div>
-                                    <div className="flex-1 border-b border-white/5 bg-purple-500/5 text-xs text-purple-200/20 p-2 font-mono">HOME ROW DROP ZONE</div>
-                                    <div className="flex-1 bg-pink-500/5 text-xs text-pink-200/20 p-2 font-mono">BOTTOM ROW DROP ZONE</div>
-                                </div>
+                                {/* Drop Hints (Only if not targeting a specific note) */}
+                                {!highlightedNoteId && (
+                                    <div className="absolute inset-0 pointer-events-none opacity-0 group-hover/playfield:opacity-100 transition-opacity flex flex-col">
+                                        <div className="flex-1 border-b border-white/5 bg-sky-500/5 text-xs text-sky-200/20 p-2 font-mono">TOP ROW DROP ZONE</div>
+                                        <div className="flex-1 border-b border-white/5 bg-purple-500/5 text-xs text-purple-200/20 p-2 font-mono">HOME ROW DROP ZONE</div>
+                                        <div className="flex-1 bg-pink-500/5 text-xs text-pink-200/20 p-2 font-mono">BOTTOM ROW DROP ZONE</div>
+                                    </div>
+                                )}
                             </div>
                         </div>
 
