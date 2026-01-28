@@ -18,7 +18,11 @@ export type EditorAction =
     | { type: 'REMOVE_LAYER'; payload: string }
     | { type: 'UPDATE_LAYER'; payload: { id: string; changes: Partial<EditorLayer> } }
     | { type: 'REORDER_LAYERS'; payload: EditorLayer[] }
-    | { type: 'MERGE_LAYER_DOWN'; payload: string }
+    
+    // Draft Actions
+    | { type: 'LOAD_DRAFT_NOTES'; payload: EditorNote[] }
+    | { type: 'REMOVE_DRAFT_NOTE'; payload: string }
+    | { type: 'COMMIT_DRAFT_NOTE'; payload: { draftId: string; finalNote: EditorNote } }
 
     | { type: 'UNDO' }
     | { type: 'REDO' };
@@ -32,15 +36,13 @@ const pushHistory = (state: HistoryState): HistoryState => {
     };
 };
 
-// Default Layer ID
 export const DEFAULT_LAYER_ID = 'default-layer';
-
-// Generate a random ID for initial state to prevent conflicts
 const INITIAL_DIFF_ID = 'init-diff-id';
 
 export const initialMapData: EditorMapData = {
     diffId: INITIAL_DIFF_ID,
     notes: [],
+    draftNotes: [], // Init empty draft
     layers: [
         { id: DEFAULT_LAYER_ID, name: 'Pattern 1', visible: true, locked: false, color: '#38bdf8' }
     ],
@@ -60,29 +62,20 @@ export const initialHistory: HistoryState = {
 
 // Helper to ensure data validity
 const validateMapData = (data: EditorMapData): EditorMapData => {
-    // 1. Ensure at least one layer exists
     if (!data.layers || data.layers.length === 0) {
         data.layers = [
             { id: DEFAULT_LAYER_ID, name: 'Default', visible: true, locked: false, color: '#38bdf8' }
         ];
     }
-    
-    // 2. Ensure all notes have a valid layerId
     const firstLayerId = data.layers[0].id;
     data.notes = data.notes.map(n => ({
         ...n,
         layerId: n.layerId || firstLayerId
     }));
 
-    // 3. Ensure diffId
-    if (!data.diffId) {
-        data.diffId = crypto.randomUUID();
-    }
-    
-    // 4. Ensure OD exists
-    if (typeof data.metadata.overallDifficulty === 'undefined') {
-        data.metadata.overallDifficulty = 8;
-    }
+    if (!data.diffId) data.diffId = crypto.randomUUID();
+    if (typeof data.metadata.overallDifficulty === 'undefined') data.metadata.overallDifficulty = 8;
+    if (!data.draftNotes) data.draftNotes = []; // Ensure draftNotes exists
 
     return data;
 };
@@ -97,14 +90,12 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
         case 'ADD_NOTE': {
             const next = pushHistory(state);
             const { time, key, layerId } = action.payload;
-
             const cleanNotes = next.present.notes.filter(n => {
                 const isSameLayer = n.layerId === layerId;
                 const isSameKey = n.key === key; 
                 const isSameTime = Math.abs(n.time - time) < 2; 
                 return !(isSameLayer && isSameKey && isSameTime);
             });
-
             next.present.notes = [...cleanNotes, action.payload].sort((a, b) => a.time - b.time);
             return next;
         }
@@ -179,7 +170,6 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
         case 'REMOVE_LAYER': {
             const layerId = action.payload;
             if (state.present.layers.length <= 1) return state;
-
             const next = pushHistory(state);
             next.present.layers = next.present.layers.filter(l => l.id !== layerId);
             next.present.notes = next.present.notes.filter(n => n.layerId !== layerId);
@@ -197,6 +187,39 @@ export const editorReducer = (state: HistoryState, action: EditorAction): Histor
         case 'REORDER_LAYERS': {
             const next = pushHistory(state);
             next.present.layers = action.payload;
+            return next;
+        }
+
+        case 'LOAD_DRAFT_NOTES': {
+            // Not adding to history stack as this is a staging action
+            const next = { ...state, present: { ...state.present } };
+            next.present.draftNotes = action.payload.sort((a, b) => a.time - b.time);
+            return next;
+        }
+
+        case 'REMOVE_DRAFT_NOTE': {
+            const next = { ...state, present: { ...state.present } };
+            next.present.draftNotes = next.present.draftNotes.filter(n => n.id !== action.payload);
+            return next;
+        }
+
+        case 'COMMIT_DRAFT_NOTE': {
+            // Combines removing from draft and adding to main notes in one atomic history step
+            const next = pushHistory(state);
+            // 1. Add to Main
+            const { draftId, finalNote } = action.payload;
+            
+            // Deduplicate logic
+            const cleanNotes = next.present.notes.filter(n => {
+                const isSameLayer = n.layerId === finalNote.layerId;
+                const isSameKey = n.key === finalNote.key; 
+                const isSameTime = Math.abs(n.time - finalNote.time) < 2; 
+                return !(isSameLayer && isSameKey && isSameTime);
+            });
+            next.present.notes = [...cleanNotes, finalNote].sort((a, b) => a.time - b.time);
+            
+            // 2. Remove from Draft
+            next.present.draftNotes = next.present.draftNotes.filter(n => n.id !== draftId);
             return next;
         }
 
