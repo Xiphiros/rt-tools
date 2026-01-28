@@ -69,6 +69,10 @@ export interface EditorMapData {
     diffId: string;
     notes: EditorNote[];
     layers: EditorLayer[];
+    
+    // Staging area for notes imported from references (like 7K dumps)
+    draftNotes: EditorNote[]; 
+
     metadata: MapMetadata;
     timingPoints: TimingPoint[];
     bpm: number;
@@ -94,10 +98,10 @@ export interface EditorSettings {
     dimInactiveLayers: boolean;
     
     // Visual Settings
-    rowOffsets: [number, number, number]; // [Top, Home, Bot] in px
+    rowOffsets: [number, number, number];
     noteShape: 'circle' | 'diamond';
-    approachStyle: 'standard' | 'inverted'; // Standard (Shrink), Inverted (Grow)
-    approachRate: number; // Duration in Seconds (e.g. 0.5)
+    approachStyle: 'standard' | 'inverted';
+    approachRate: number; 
 
     // Volume Channels (0-100)
     masterVolume: number;
