@@ -70,7 +70,7 @@ export interface EditorMapData {
     notes: EditorNote[];
     layers: EditorLayer[];
     
-    // Staging area for notes imported from references (like 7K dumps)
+    // Staging area for notes imported from references
     draftNotes: EditorNote[]; 
 
     metadata: MapMetadata;
@@ -98,9 +98,10 @@ export interface EditorSettings {
     dimInactiveLayers: boolean;
     
     // Visual Settings
-    rowOffsets: [number, number, number];
-    noteShape: 'circle' | 'diamond';
-    approachStyle: 'standard' | 'inverted';
+    rowOffsets: [number, number, number];   // Y-Axis [Top, Home, Bot]
+    rowXOffsets: [number, number, number];  // X-Axis [Top, Home, Bot] (New)
+    noteShape: 'circle' | 'diamond' | 'square';
+    approachStyle: 'standard' | 'inverted'; 
     approachRate: number; 
 
     // Volume Channels (0-100)
