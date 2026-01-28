@@ -19,74 +19,41 @@ import {
     faBullseye,
     faEye,
     faMinus,
-    faPlus
+    faPlus,
+    faSquare,
+    faCircle,
+    faDiamond
 } from '@fortawesome/free-solid-svg-icons';
 
-const VolumeSlider = ({ 
-    label, 
-    value, 
-    onChange, 
-    icon 
-}: { 
-    label: string, 
-    value: number, 
-    onChange: (val: number) => void,
-    icon: any 
-}) => (
+const VolumeSlider = ({ label, value, onChange, icon }: { label: string, value: number, onChange: (val: number) => void, icon: any }) => (
     <div className="flex flex-col gap-1 w-full">
         <div className="flex justify-between text-[10px] uppercase font-bold text-muted tracking-wider">
             <span className="flex items-center gap-2"><FontAwesomeIcon icon={icon} className="w-3" /> {label}</span>
             <span>{value}%</span>
         </div>
         <input 
-            type="range" 
-            min="0" max="100" 
-            value={value} 
+            type="range" min="0" max="100" value={value} 
             onChange={(e) => onChange(Number(e.target.value))}
             className="w-full h-1.5 bg-input rounded-lg appearance-none cursor-pointer accent-primary hover:accent-primary-hover"
         />
     </div>
 );
 
-// Generic Popover Wrapper
-const Popover = ({ 
-    isOpen, 
-    onClose, 
-    title, 
-    anchorRef, 
-    children 
-}: { 
-    isOpen: boolean, 
-    onClose: () => void, 
-    title: string, 
-    anchorRef: React.RefObject<HTMLElement>, 
-    children: React.ReactNode 
-}) => {
+const Popover = ({ isOpen, onClose, title, anchorRef, children }: { isOpen: boolean, onClose: () => void, title: string, anchorRef: React.RefObject<HTMLElement>, children: React.ReactNode }) => {
     const [position, setPosition] = useState({ left: 0, bottom: 0 });
-
     useLayoutEffect(() => {
         if (isOpen && anchorRef.current) {
             const rect = anchorRef.current.getBoundingClientRect();
-            setPosition({
-                left: rect.left + rect.width / 2,
-                bottom: window.innerHeight - rect.top + 10
-            });
+            setPosition({ left: rect.left + rect.width / 2, bottom: window.innerHeight - rect.top + 10 });
         }
     }, [isOpen, anchorRef]);
-
     if (!isOpen) return null;
-
     return createPortal(
         <div className="relative z-[9999]">
             <div className="fixed inset-0 bg-transparent" onClick={onClose} />
             <div 
                 className="fixed bg-card border border-border rounded-xl shadow-2xl p-4 flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-100"
-                style={{
-                    left: position.left,
-                    bottom: position.bottom,
-                    transform: 'translateX(-50%)',
-                    width: '320px' // Widened for visuals
-                }}
+                style={{ left: position.left, bottom: position.bottom, transform: 'translateX(-50%)', width: '320px' }}
             >
                 <div className="flex justify-between items-center border-b border-border pb-2 mb-1">
                     <span className="text-xs font-bold text-white uppercase tracking-wider">{title}</span>
@@ -94,8 +61,7 @@ const Popover = ({
                 </div>
                 {children}
             </div>
-        </div>,
-        document.body
+        </div>, document.body
     );
 };
 
@@ -110,53 +76,22 @@ export const EditorBottomBar = () => {
     const visualsBtnRef = useRef<HTMLButtonElement>(null);
     
     const isReady = !!audio.manager.getBuffer();
+    const togglePlay = () => { if (!isReady) return; playback.isPlaying ? audio.pause() : audio.play(); };
+    const updateDefaultSample = (key: keyof HitsoundSettings, val: any) => setDefaultHitsounds(prev => ({ ...prev, [key]: val }));
+    const toggleAddition = (key: keyof HitsoundSettings['additions']) => setDefaultHitsounds(prev => ({ ...prev, additions: { ...prev.additions, [key]: !prev.additions[key] } }));
+    const handleZoom = (delta: number) => setSettings(s => ({ ...s, zoom: Math.max(50, Math.min(500, s.zoom + delta)) }));
 
-    const togglePlay = () => { 
-        if (!isReady) return;
-        playback.isPlaying ? audio.pause() : audio.play(); 
-    };
-
-    const updateDefaultSample = (key: keyof HitsoundSettings, val: any) => {
-        setDefaultHitsounds(prev => ({ ...prev, [key]: val }));
-    };
-
-    const toggleAddition = (key: keyof HitsoundSettings['additions']) => {
-        setDefaultHitsounds(prev => ({
-            ...prev,
-            additions: { ...prev.additions, [key]: !prev.additions[key] }
-        }));
-    };
-
-    const updateOffset = (index: number, val: number) => {
-        const newOffsets = [...settings.rowOffsets] as [number, number, number];
-        newOffsets[index] = val;
-        setSettings(s => ({ ...s, rowOffsets: newOffsets }));
-    };
-
-    const handleZoom = (delta: number) => {
-        setSettings(s => ({ 
-            ...s, 
-            zoom: Math.max(50, Math.min(500, s.zoom + delta)) 
-        }));
+    const updateOffset = (axis: 'rowOffsets' | 'rowXOffsets', index: number, val: number) => {
+        const arr = [...settings[axis]] as [number, number, number];
+        arr[index] = val;
+        setSettings(s => ({ ...s, [axis]: arr }));
     };
 
     return (
         <div className="h-16 bg-card border-t border-border flex items-center px-4 justify-between select-none shadow-[0_-5px_20px_rgba(0,0,0,0.3)] z-50 relative">
-            {/* Left: Playback Controls */}
             <div className="flex items-center gap-3 w-48">
-                <button 
-                    onClick={togglePlay} 
-                    disabled={!isReady}
-                    className={`w-12 h-12 rounded-full flex items-center justify-center transition-all active:scale-95 shadow-lg 
-                        ${isReady 
-                            ? 'bg-primary hover:bg-primary-hover text-black shadow-primary/20' 
-                            : 'bg-input text-muted cursor-not-allowed'}`}
-                >
-                    {!isReady ? (
-                        <FontAwesomeIcon icon={faSpinner} spin />
-                    ) : (
-                        <FontAwesomeIcon icon={playback.isPlaying ? faPause : faPlay} size="lg" />
-                    )}
+                <button onClick={togglePlay} disabled={!isReady} className={`w-12 h-12 rounded-full flex items-center justify-center transition-all active:scale-95 shadow-lg ${isReady ? 'bg-primary hover:bg-primary-hover text-black shadow-primary/20' : 'bg-input text-muted cursor-not-allowed'}`}>
+                    {!isReady ? <FontAwesomeIcon icon={faSpinner} spin /> : <FontAwesomeIcon icon={playback.isPlaying ? faPause : faPlay} size="lg" />}
                 </button>
                 <div className="flex flex-col ml-2">
                     <span className="text-xs text-muted uppercase font-bold tracking-wider">Time</span>
@@ -164,301 +99,137 @@ export const EditorBottomBar = () => {
                 </div>
             </div>
             
-            {/* Center: Tools */}
             <div className="flex items-center gap-6 justify-center flex-1">
-                {/* Beat Snap */}
                 <div className="flex flex-col items-center gap-1">
                     <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Snap</span>
                     <div className="relative group">
-                        <select 
-                            className="appearance-none bg-input border border-border hover:border-primary/50 text-white font-bold text-center pl-3 pr-7 py-1 rounded focus:outline-none focus:border-primary transition-all cursor-pointer text-xs w-20"
-                            value={settings.snapDivisor} 
-                            onChange={(e) => setSettings(s => ({ ...s, snapDivisor: Number(e.target.value) }))}
-                        >
+                        <select className="appearance-none bg-input border border-border hover:border-primary/50 text-white font-bold text-center pl-3 pr-7 py-1 rounded focus:outline-none focus:border-primary transition-all cursor-pointer text-xs w-20" value={settings.snapDivisor} onChange={(e) => setSettings(s => ({ ...s, snapDivisor: Number(e.target.value) }))}>
                             {COMMON_SNAPS.map(v => (<option key={v} value={v}>1/{v}</option>))}
                         </select>
-                        <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-muted group-hover:text-primary transition-colors">
-                            <FontAwesomeIcon icon={faAngleDown} size="xs" />
-                        </div>
+                        <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-muted group-hover:text-primary transition-colors"><FontAwesomeIcon icon={faAngleDown} size="xs" /></div>
                     </div>
                 </div>
 
-                 {/* Zoom Controls */}
                  <div className="flex flex-col items-center gap-1">
                     <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Zoom</span>
                     <div className="flex bg-input border border-border rounded overflow-hidden">
-                        <button 
-                            onClick={() => handleZoom(-25)}
-                            className="w-8 py-1 hover:bg-white/10 text-muted hover:text-white transition-colors flex items-center justify-center border-r border-white/5"
-                            title="Zoom Out"
-                        >
-                            <FontAwesomeIcon icon={faMinus} size="xs" />
-                        </button>
-                        <div className="px-2 py-1 text-xs font-mono font-bold text-white min-w-[3rem] text-center bg-white/5 flex items-center justify-center">
-                            {Math.round((settings.zoom / 150) * 100)}%
-                        </div>
-                        <button 
-                            onClick={() => handleZoom(25)}
-                            className="w-8 py-1 hover:bg-white/10 text-muted hover:text-white transition-colors flex items-center justify-center border-l border-white/5"
-                            title="Zoom In"
-                        >
-                            <FontAwesomeIcon icon={faPlus} size="xs" />
-                        </button>
+                        <button onClick={() => handleZoom(-25)} className="w-8 py-1 hover:bg-white/10 text-muted hover:text-white transition-colors flex items-center justify-center border-r border-white/5"><FontAwesomeIcon icon={faMinus} size="xs" /></button>
+                        <div className="px-2 py-1 text-xs font-mono font-bold text-white min-w-[3rem] text-center bg-white/5 flex items-center justify-center">{Math.round((settings.zoom / 150) * 100)}%</div>
+                        <button onClick={() => handleZoom(25)} className="w-8 py-1 hover:bg-white/10 text-muted hover:text-white transition-colors flex items-center justify-center border-l border-white/5"><FontAwesomeIcon icon={faPlus} size="xs" /></button>
                     </div>
                 </div>
                 
                 <div className="w-[1px] h-8 bg-white/10 mx-2" />
 
-                {/* Metronome */}
                 <div className="flex flex-col items-center gap-1">
                     <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Metro</span>
-                    <button 
-                        onClick={() => setSettings(s => ({ ...s, metronome: !s.metronome }))}
-                        className={`w-16 py-1 rounded text-xs font-bold transition-all border flex items-center justify-center gap-2 ${
-                            settings.metronome 
-                            ? 'bg-secondary/20 text-secondary border-secondary shadow-[0_0_10px_rgba(168,85,247,0.2)]' 
-                            : 'bg-input text-muted border-border hover:text-white hover:border-white/20'
-                        }`}
-                    >
-                        <FontAwesomeIcon icon={faClock} />
-                        {settings.metronome ? "ON" : "OFF"}
+                    <button onClick={() => setSettings(s => ({ ...s, metronome: !s.metronome }))} className={`w-16 py-1 rounded text-xs font-bold transition-all border flex items-center justify-center gap-2 ${settings.metronome ? 'bg-secondary/20 text-secondary border-secondary shadow-[0_0_10px_rgba(168,85,247,0.2)]' : 'bg-input text-muted border-border hover:text-white hover:border-white/20'}`}>
+                        <FontAwesomeIcon icon={faClock} /> {settings.metronome ? "ON" : "OFF"}
                     </button>
                 </div>
 
-                {/* Samples Toggle */}
                 <div className="flex flex-col items-center gap-1">
                     <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Samples</span>
-                    <button 
-                        ref={samplesBtnRef}
-                        onClick={() => setShowSamples(!showSamples)}
-                        className={`w-16 py-1 rounded text-xs font-bold transition-all border flex items-center justify-center gap-2 ${
-                            showSamples
-                            ? 'bg-success/20 text-success border-success shadow-[0_0_10px_rgba(52,211,153,0.2)]' 
-                            : 'bg-input text-muted border-border hover:text-white hover:border-white/20'
-                        }`}
-                    >
-                        <FontAwesomeIcon icon={faBullseye} />
-                        SET
+                    <button ref={samplesBtnRef} onClick={() => setShowSamples(!showSamples)} className={`w-16 py-1 rounded text-xs font-bold transition-all border flex items-center justify-center gap-2 ${showSamples ? 'bg-success/20 text-success border-success shadow-[0_0_10px_rgba(52,211,153,0.2)]' : 'bg-input text-muted border-border hover:text-white hover:border-white/20'}`}>
+                        <FontAwesomeIcon icon={faBullseye} /> SET
                     </button>
-                    
                     <Popover isOpen={showSamples} onClose={() => setShowSamples(false)} title="Default Hitsounds" anchorRef={samplesBtnRef}>
                         <div className="flex flex-col gap-4">
-                            {/* Sets */}
                             <div className="flex gap-1 bg-input p-1 rounded-lg">
                                 {['normal', 'soft', 'drum'].map(set => (
-                                    <button 
-                                        key={set}
-                                        onClick={() => updateDefaultSample('sampleSet', set)}
-                                        className={`flex-1 py-1.5 text-xs font-bold uppercase rounded transition-all ${
-                                            defaultHitsounds.sampleSet === set 
-                                            ? 'bg-primary text-black shadow-sm' 
-                                            : 'text-muted hover:text-white hover:bg-white/5'
-                                        }`}
-                                    >
-                                        {set}
-                                    </button>
+                                    <button key={set} onClick={() => updateDefaultSample('sampleSet', set)} className={`flex-1 py-1.5 text-xs font-bold uppercase rounded transition-all ${defaultHitsounds.sampleSet === set ? 'bg-primary text-black shadow-sm' : 'text-muted hover:text-white hover:bg-white/5'}`}>{set}</button>
                                 ))}
                             </div>
-
-                            {/* Additions */}
                             <div className="flex gap-2">
-                                {['whistle', 'finish', 'clap'].map(add => {
-                                    const key = add as keyof typeof defaultHitsounds.additions;
-                                    const isActive = defaultHitsounds.additions[key];
-                                    return (
-                                        <button 
-                                            key={add}
-                                            onClick={() => toggleAddition(key)}
-                                            className={`flex-1 py-2 rounded border text-xs font-bold uppercase transition-all ${
-                                                isActive
-                                                ? 'bg-secondary text-white border-secondary' 
-                                                : 'bg-input border-border text-muted hover:text-white'
-                                            }`}
-                                        >
-                                            {add}
-                                        </button>
-                                    );
-                                })}
+                                {['whistle', 'finish', 'clap'].map(add => (
+                                    <button key={add} onClick={() => toggleAddition(add as any)} className={`flex-1 py-2 rounded border text-xs font-bold uppercase transition-all ${defaultHitsounds.additions[add as keyof HitsoundSettings['additions']] ? 'bg-secondary text-white border-secondary' : 'bg-input border-border text-muted hover:text-white'}`}>{add}</button>
+                                ))}
                             </div>
-
-                            {/* Volume */}
-                            <VolumeSlider 
-                                label="Sample Volume" 
-                                value={defaultHitsounds.volume} 
-                                onChange={(v) => updateDefaultSample('volume', v)} 
-                                icon={faDrum} 
-                            />
+                            <VolumeSlider label="Sample Volume" value={defaultHitsounds.volume} onChange={(v) => updateDefaultSample('volume', v)} icon={faDrum} />
                         </div>
                     </Popover>
                 </div>
 
-                {/* Visual Settings Toggle */}
                 <div className="flex flex-col items-center gap-1">
                     <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Visuals</span>
-                    <button 
-                        ref={visualsBtnRef}
-                        onClick={() => setShowVisuals(!showVisuals)}
-                        className={`w-16 py-1 rounded text-xs font-bold transition-all border flex items-center justify-center gap-2 ${
-                            showVisuals
-                            ? 'bg-warning/20 text-warning border-warning shadow-[0_0_10px_rgba(251,191,36,0.2)]' 
-                            : 'bg-input text-muted border-border hover:text-white hover:border-white/20'
-                        }`}
-                    >
-                        <FontAwesomeIcon icon={faEye} />
-                        EDIT
+                    <button ref={visualsBtnRef} onClick={() => setShowVisuals(!showVisuals)} className={`w-16 py-1 rounded text-xs font-bold transition-all border flex items-center justify-center gap-2 ${showVisuals ? 'bg-warning/20 text-warning border-warning shadow-[0_0_10px_rgba(251,191,36,0.2)]' : 'bg-input text-muted border-border hover:text-white hover:border-white/20'}`}>
+                        <FontAwesomeIcon icon={faEye} /> EDIT
                     </button>
-
                     <Popover isOpen={showVisuals} onClose={() => setShowVisuals(false)} title="Visual Settings" anchorRef={visualsBtnRef}>
                          <div className="flex flex-col gap-4">
-                            {/* Shape Selection */}
                             <div className="flex flex-col gap-2">
                                 <span className="text-[10px] font-bold text-muted uppercase">Note Shape</span>
                                 <div className="flex gap-1 bg-input p-1 rounded-lg">
-                                    <button 
-                                        onClick={() => setSettings(s => ({ ...s, noteShape: 'circle' }))}
-                                        className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${settings.noteShape === 'circle' ? 'bg-primary text-black' : 'text-muted'}`}
-                                    >
-                                        Circle
+                                    <button onClick={() => setSettings(s => ({ ...s, noteShape: 'circle' }))} className={`flex-1 py-1.5 text-xs font-bold rounded transition-all flex items-center justify-center gap-1 ${settings.noteShape === 'circle' ? 'bg-primary text-black' : 'text-muted'}`}>
+                                        <FontAwesomeIcon icon={faCircle} />
                                     </button>
-                                    <button 
-                                        onClick={() => setSettings(s => ({ ...s, noteShape: 'diamond' }))}
-                                        className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${settings.noteShape === 'diamond' ? 'bg-primary text-black' : 'text-muted'}`}
-                                    >
-                                        Diamond
+                                    <button onClick={() => setSettings(s => ({ ...s, noteShape: 'diamond' }))} className={`flex-1 py-1.5 text-xs font-bold rounded transition-all flex items-center justify-center gap-1 ${settings.noteShape === 'diamond' ? 'bg-primary text-black' : 'text-muted'}`}>
+                                        <FontAwesomeIcon icon={faDiamond} />
+                                    </button>
+                                    <button onClick={() => setSettings(s => ({ ...s, noteShape: 'square' }))} className={`flex-1 py-1.5 text-xs font-bold rounded transition-all flex items-center justify-center gap-1 ${settings.noteShape === 'square' ? 'bg-primary text-black' : 'text-muted'}`}>
+                                        <FontAwesomeIcon icon={faSquare} />
                                     </button>
                                 </div>
                             </div>
-
-                            {/* Approach Style */}
                             <div className="flex flex-col gap-2">
                                 <span className="text-[10px] font-bold text-muted uppercase">Approach Style</span>
                                 <div className="flex gap-1 bg-input p-1 rounded-lg">
-                                    <button 
-                                        onClick={() => setSettings(s => ({ ...s, approachStyle: 'standard' }))}
-                                        className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${settings.approachStyle === 'standard' ? 'bg-secondary text-white' : 'text-muted'}`}
-                                    >
-                                        Standard
-                                    </button>
-                                    <button 
-                                        onClick={() => setSettings(s => ({ ...s, approachStyle: 'inverted' }))}
-                                        className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${settings.approachStyle === 'inverted' ? 'bg-secondary text-white' : 'text-muted'}`}
-                                    >
-                                        Inverted
-                                    </button>
+                                    <button onClick={() => setSettings(s => ({ ...s, approachStyle: 'standard' }))} className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${settings.approachStyle === 'standard' ? 'bg-secondary text-white' : 'text-muted'}`}>Standard</button>
+                                    <button onClick={() => setSettings(s => ({ ...s, approachStyle: 'inverted' }))} className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${settings.approachStyle === 'inverted' ? 'bg-secondary text-white' : 'text-muted'}`}>Inverted</button>
                                 </div>
                             </div>
-
-                             {/* AR Slider */}
                              <div className="flex flex-col gap-1">
                                 <div className="flex justify-between text-[10px] font-bold text-muted uppercase">
                                     <span>Approach Rate</span>
                                     <span>{(settings.approachRate * 1000).toFixed(0)}ms</span>
                                 </div>
-                                <input 
-                                    type="range" 
-                                    min="0.1" max="1.5" step="0.05"
-                                    value={settings.approachRate} 
-                                    onChange={(e) => setSettings(s => ({ ...s, approachRate: parseFloat(e.target.value) }))}
-                                    className="w-full h-1.5 bg-input rounded-lg appearance-none cursor-pointer accent-secondary"
-                                />
+                                <input type="range" min="0.1" max="1.5" step="0.05" value={settings.approachRate} onChange={(e) => setSettings(s => ({ ...s, approachRate: parseFloat(e.target.value) }))} className="w-full h-1.5 bg-input rounded-lg appearance-none cursor-pointer accent-secondary" />
                             </div>
-
                             <hr className="border-white/10" />
-
-                            {/* Offsets */}
                             <div className="flex flex-col gap-2">
-                                <span className="text-[10px] font-bold text-muted uppercase">Row Offsets (Y-Axis)</span>
+                                <span className="text-[10px] font-bold text-muted uppercase">Row Y-Offsets</span>
                                 <div className="grid grid-cols-3 gap-2">
-                                    <div className="flex flex-col items-center">
-                                        <span className="text-[9px] text-muted mb-1">Top</span>
-                                        <input 
-                                            type="number" className="w-full bg-input border border-border rounded px-1 py-1 text-center text-xs font-mono focus:border-primary focus:outline-none"
-                                            value={settings.rowOffsets[0]}
-                                            onChange={(e) => updateOffset(0, parseInt(e.target.value) || 0)}
-                                        />
-                                    </div>
-                                    <div className="flex flex-col items-center">
-                                        <span className="text-[9px] text-muted mb-1">Home</span>
-                                        <input 
-                                            type="number" className="w-full bg-input border border-border rounded px-1 py-1 text-center text-xs font-mono focus:border-primary focus:outline-none"
-                                            value={settings.rowOffsets[1]}
-                                            onChange={(e) => updateOffset(1, parseInt(e.target.value) || 0)}
-                                        />
-                                    </div>
-                                    <div className="flex flex-col items-center">
-                                        <span className="text-[9px] text-muted mb-1">Bot</span>
-                                        <input 
-                                            type="number" className="w-full bg-input border border-border rounded px-1 py-1 text-center text-xs font-mono focus:border-primary focus:outline-none"
-                                            value={settings.rowOffsets[2]}
-                                            onChange={(e) => updateOffset(2, parseInt(e.target.value) || 0)}
-                                        />
-                                    </div>
+                                    {['Top', 'Home', 'Bot'].map((label, i) => (
+                                        <div key={label} className="flex flex-col items-center">
+                                            <span className="text-[9px] text-muted mb-1">{label}</span>
+                                            <input type="number" className="w-full bg-input border border-border rounded px-1 py-1 text-center text-xs font-mono focus:border-primary focus:outline-none" value={settings.rowOffsets[i]} onChange={(e) => updateOffset('rowOffsets', i, parseInt(e.target.value) || 0)} />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-2">
+                                <span className="text-[10px] font-bold text-muted uppercase">Row X-Offsets</span>
+                                <div className="grid grid-cols-3 gap-2">
+                                    {['Top', 'Home', 'Bot'].map((label, i) => (
+                                        <div key={label} className="flex flex-col items-center">
+                                            <span className="text-[9px] text-muted mb-1">{label}</span>
+                                            <input type="number" className="w-full bg-input border border-border rounded px-1 py-1 text-center text-xs font-mono focus:border-primary focus:outline-none" value={settings.rowXOffsets[i]} onChange={(e) => updateOffset('rowXOffsets', i, parseInt(e.target.value) || 0)} />
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                          </div>
                     </Popover>
                 </div>
 
-                {/* Volume Mixer Toggle */}
                 <div className="flex flex-col items-center gap-1">
                     <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Mixer</span>
-                    <button 
-                        ref={volumeBtnRef}
-                        onClick={() => setShowVolume(!showVolume)}
-                        className={`w-16 py-1 rounded text-xs font-bold transition-all border flex items-center justify-center gap-2 ${
-                            showVolume 
-                            ? 'bg-primary/20 text-primary border-primary shadow-[0_0_10px_rgba(34,211,238,0.2)]' 
-                            : 'bg-input text-muted border-border hover:text-white hover:border-white/20'
-                        }`}
-                    >
-                        <FontAwesomeIcon icon={faSliders} />
-                        VOL
+                    <button ref={volumeBtnRef} onClick={() => setShowVolume(!showVolume)} className={`w-16 py-1 rounded text-xs font-bold transition-all border flex items-center justify-center gap-2 ${showVolume ? 'bg-primary/20 text-primary border-primary shadow-[0_0_10px_rgba(34,211,238,0.2)]' : 'bg-input text-muted border-border hover:text-white hover:border-white/20'}`}>
+                        <FontAwesomeIcon icon={faSliders} /> VOL
                     </button>
-
                     <Popover isOpen={showVolume} onClose={() => setShowVolume(false)} title="Audio Mixer" anchorRef={volumeBtnRef}>
-                        <VolumeSlider 
-                            label="Master" 
-                            value={settings.masterVolume} 
-                            onChange={(v) => setSettings(s => ({...s, masterVolume: v}))} 
-                            icon={faVolumeUp} 
-                        />
-                        <VolumeSlider 
-                            label="Music" 
-                            value={settings.musicVolume} 
-                            onChange={(v) => setSettings(s => ({...s, musicVolume: v}))} 
-                            icon={faMusic} 
-                        />
-                        <VolumeSlider 
-                            label="Hitsounds" 
-                            value={settings.hitsoundVolume} 
-                            onChange={(v) => setSettings(s => ({...s, hitsoundVolume: v}))} 
-                            icon={faDrum} 
-                        />
-                        <VolumeSlider 
-                            label="Metronome" 
-                            value={settings.metronomeVolume} 
-                            onChange={(v) => setSettings(s => ({...s, metronomeVolume: v}))} 
-                            icon={faClock} 
-                        />
+                        <VolumeSlider label="Master" value={settings.masterVolume} onChange={(v) => setSettings(s => ({...s, masterVolume: v}))} icon={faVolumeUp} />
+                        <VolumeSlider label="Music" value={settings.musicVolume} onChange={(v) => setSettings(s => ({...s, musicVolume: v}))} icon={faMusic} />
+                        <VolumeSlider label="Hitsounds" value={settings.hitsoundVolume} onChange={(v) => setSettings(s => ({...s, hitsoundVolume: v}))} icon={faDrum} />
+                        <VolumeSlider label="Metronome" value={settings.metronomeVolume} onChange={(v) => setSettings(s => ({...s, metronomeVolume: v}))} icon={faClock} />
                     </Popover>
                 </div>
 
-                {/* Playback Rate */}
                 <div className="flex flex-col items-center gap-1">
                     <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Rate</span>
                     <div className="flex gap-0.5 bg-input p-0.5 rounded border border-border">
                         {[0.5, 0.75, 1.0].map(rate => (
-                            <button 
-                                key={rate} 
-                                onClick={() => setSettings(s => ({ ...s, playbackSpeed: rate }))} 
-                                className={`px-2 py-0.5 text-[10px] rounded font-bold transition-all ${
-                                    settings.playbackSpeed === rate 
-                                    ? 'bg-white/10 text-white shadow-sm' 
-                                    : 'text-muted hover:text-white hover:bg-white/5'
-                                }`}
-                            >
-                                {rate}x
-                            </button>
+                            <button key={rate} onClick={() => setSettings(s => ({ ...s, playbackSpeed: rate }))} className={`px-2 py-0.5 text-[10px] rounded font-bold transition-all ${settings.playbackSpeed === rate ? 'bg-white/10 text-white shadow-sm' : 'text-muted hover:text-white hover:bg-white/5'}`}>{rate}x</button>
                         ))}
                     </div>
                 </div>
