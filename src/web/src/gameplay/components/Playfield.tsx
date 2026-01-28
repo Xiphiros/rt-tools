@@ -1,6 +1,7 @@
 import React from 'react';
 import { EditorMapData, EditorNote } from '../../editor/types';
-import { NOTE_SIZE, ROW_COLORS, ROW_TOP, ROW_HOME, ROW_BOTTOM, KEY_TO_ROW } from '../constants';
+import { NOTE_SIZE, ROW_COLORS, KEY_TO_ROW } from '../constants';
+import { getNoteCoordinates } from '../utils/playfieldCoordinates';
 
 interface PlayfieldProps {
     mapData: EditorMapData;
@@ -11,31 +12,18 @@ interface PlayfieldProps {
     activeLayerId?: string;
     dimInactiveLayers?: boolean;
     
-    // Visual Settings Props
-    rowOffsets?: [number, number, number];  // Y
-    rowXOffsets?: [number, number, number]; // X
+    // Visual Settings
+    rowOffsets?: [number, number, number];
+    rowXOffsets?: [number, number, number];
     noteShape?: 'circle' | 'diamond' | 'square';
     approachStyle?: 'standard' | 'inverted';
     approachRate?: number; 
 
+    // Interaction
+    highlightedNoteId?: string | null; // NEW: ID of note to glow/highlight
     onNoteClick?: (e: React.MouseEvent, note: EditorNote) => void;
     onBackgroundClick?: (e: React.MouseEvent) => void;
 }
-
-const CENTER_X = 50; 
-const CENTER_Y = 50; 
-
-const BASE_ROW_Y_OFFSETS: Record<number, number> = {
-    [ROW_TOP]: -15,     
-    [ROW_HOME]: 0,      
-    [ROW_BOTTOM]: 15    
-};
-
-const KEY_ORDER: Record<number, string[]> = {
-    [ROW_TOP]: ['q','w','e','r','t','y','u','i','o','p'],
-    [ROW_HOME]: ['a','s','d','f','g','h','j','k','l',';'],
-    [ROW_BOTTOM]: ['z','x','c','v','b','n','m',',','.','/']
-};
 
 export const Playfield = ({ 
     mapData, 
@@ -47,10 +35,11 @@ export const Playfield = ({
     activeLayerId,
     dimInactiveLayers = true,
     rowOffsets = [0, 0, 0], 
-    rowXOffsets = [0, 0, 0], // New X Defaults
+    rowXOffsets = [0, 0, 0],
     noteShape = 'circle',
     approachStyle = 'standard',
-    approachRate = 0.5
+    approachRate = 0.5,
+    highlightedNoteId = null
 }: PlayfieldProps) => {
     
     const PREEMPT = approachRate * 1000; 
@@ -69,68 +58,31 @@ export const Playfield = ({
         return true;
     });
 
-    const getPosition = (row: number, char: string) => {
-        const lowerChar = char.toLowerCase();
-        let targetRow = row;
-        
-        if (KEY_TO_ROW[lowerChar] !== undefined) {
-            targetRow = KEY_TO_ROW[lowerChar];
-        }
-
-        const rowKeys = KEY_ORDER[targetRow] || [];
-        const keyIndex = rowKeys.indexOf(lowerChar);
-        
-        const baseY = BASE_ROW_Y_OFFSETS[targetRow] || 0;
-        const userOffsetY = (rowOffsets[targetRow] || 0) * 0.25;
-        
-        // Apply X Offset
-        // Default stagger logic
-        let rowStagger = 0;
-        if (targetRow === ROW_HOME) rowStagger = 2; 
-        if (targetRow === ROW_BOTTOM) rowStagger = 4;
-
-        // User X Override
-        // 1 unit = 1% width approx
-        const userOffsetX = (rowXOffsets[targetRow] || 0);
-
-        // If user sets X to something specific, maybe we should disable default stagger?
-        // Let's Add them. If user wants aligned, they can compensate or we provide a "Flat" mode later.
-        // Actually, request said "0,0,0 resulting in perfect alignment".
-        // So we should remove rowStagger if offsets are being used? 
-        // No, let's keep it additive. To get alignment, user sets offsets to cancel stagger.
-        // Wait, "0,0,0 resulting in perfectly aligned" implies the BASE stagger should be removed or controllable.
-        // Let's remove the hardcoded stagger and rely on the new offsets + key position.
-        
-        // REVISED: Remove `rowStagger` hardcoded variable. 
-        // The default `rowXOffsets` in context should reproduce the stagger if desired, 
-        // OR we just make 0,0,0 the "flat" grid.
-        
-        // Going with "0,0,0 is flat grid".
-        // To preserve legacy look, defaults in Context should be [0, 2, 4]?
-        // The user asked for "0,0,0 resulting in aligned". So base calc should be aligned.
-
-        if (keyIndex !== -1) {
-            const rowWidth = rowKeys.length;
-            const xOffsetPct = ((keyIndex - (rowWidth / 2)) + 0.5) * 8; 
-
-            return {
-                x: CENTER_X + xOffsetPct + userOffsetX,
-                y: CENTER_Y + baseY + userOffsetY
-            };
-        } else {
-            return { x: CENTER_X + userOffsetX, y: CENTER_Y + baseY + userOffsetY };
-        }
-    };
-
     const actualSize = NOTE_SIZE * scale;
     const borderRadius = noteShape === 'circle' ? '50%' : '0%';
     const rotation = noteShape === 'diamond' ? 'rotate(45deg)' : 'none';
 
     const renderGhosts = () => {
+        // Ghost rendering logic remains similar but uses the utility
+        // For brevity/DRY, we iterate keys
         const elements: React.ReactNode[] = [];
-        [ROW_TOP, ROW_HOME, ROW_BOTTOM].forEach(row => {
-            KEY_ORDER[row].forEach(char => {
-                const pos = getPosition(row, char);
+        // Hardcoded iteration to match utils logic implicitly
+        const rows = [0, 1, 2];
+        const keys = [
+            ['q','w','e','r','t','y','u','i','o','p'],
+            ['a','s','d','f','g','h','j','k','l',';'],
+            ['z','x','c','v','b','n','m',',','.','/']
+        ];
+
+        rows.forEach(r => {
+            keys[r].forEach(char => {
+                const pos = getNoteCoordinates({ 
+                    row: r, 
+                    key: char, 
+                    rowOffsets, 
+                    rowXOffsets 
+                });
+                
                 elements.push(
                     <div 
                         key={`ghost-${char}`}
@@ -179,9 +131,14 @@ export const Playfield = ({
             {renderGhosts()}
 
             {visibleNotes.map(note => {
-                const pos = getPosition(note.column, note.key);
-                const relativeTime = note.time - currentTime;
+                const pos = getNoteCoordinates({ 
+                    row: note.column, 
+                    key: note.key, 
+                    rowOffsets, 
+                    rowXOffsets 
+                });
                 
+                const relativeTime = note.time - currentTime;
                 const endTime = note.type === 'hold' ? note.time + (note.duration || 0) : note.time;
                 const isHolding = note.type === 'hold' && currentTime >= note.time && currentTime <= endTime;
                 
@@ -215,11 +172,16 @@ export const Playfield = ({
                 const zIndex = 5000 - (Math.floor(note.time) % 5000); 
                 
                 const isSelected = note.selected;
+                const isHighlighted = highlightedNoteId === note.id;
+                
                 const borderColor = isSelected 
                     ? '#fff' 
-                    : (isHolding ? '#fff' : rowColor);
+                    : (isHolding ? '#fff' : (isHighlighted ? '#22d3ee' : rowColor));
                 
-                const borderWidth = isSelected ? '6px' : '4px';
+                const borderWidth = (isSelected || isHighlighted) ? '6px' : '4px';
+                
+                // Add highlight glow effect
+                const boxShowExtras = isHighlighted ? `0 0 25px #22d3ee, inset 0 0 10px #22d3ee` : '';
 
                 return (
                     <div 
@@ -229,7 +191,7 @@ export const Playfield = ({
                             left: `${pos.x}%`,
                             top: `${pos.y}%`,
                             opacity: Math.max(0, opacity),
-                            zIndex: zIndex
+                            zIndex: isHighlighted ? 9999 : zIndex // Pop targeted notes to top
                         }}
                         onMouseDown={(e) => {
                             e.stopPropagation();
@@ -259,7 +221,9 @@ export const Playfield = ({
                                 border: `${borderWidth} solid ${borderColor}`,
                                 boxShadow: isHolding 
                                     ? `0 0 20px ${rowColor}, inset 0 0 10px ${rowColor}`
-                                    : (isSelected ? `0 0 15px ${rowColor}, inset 0 0 5px white` : `0 0 10px ${rowColor}40`),
+                                    : (isSelected 
+                                        ? `0 0 15px ${rowColor}, inset 0 0 5px white` 
+                                        : `0 0 10px ${rowColor}40 ${boxShowExtras ? ', ' + boxShowExtras : ''}`),
                                 borderRadius: borderRadius,
                                 transform: rotation
                             }}
