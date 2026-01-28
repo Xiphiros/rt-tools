@@ -5,7 +5,7 @@ import { EditorToolbox } from './components/EditorToolbox';
 import { EditorBottomBar } from './components/EditorBottomBar';
 import { EditorRightBar } from './components/EditorRightBar';
 import { Playfield } from '../gameplay/components/Playfield';
-import { DraftTimeline } from './components/DraftTimeline'; // Import DraftTimeline
+import { DraftTimeline } from './components/DraftTimeline';
 import { MetadataModal } from './modals/MetadataModal';
 import { TimingModal } from './modals/TimingModal';
 import { ResnapModal } from './modals/ResnapModal';
@@ -23,7 +23,6 @@ import {
     faFileUpload, faChevronLeft, faFolder, faColumns, faLayerGroup
 } from '@fortawesome/free-solid-svg-icons';
 import { EditorNote } from './types';
-import { KEY_TO_ROW } from '../gameplay/constants';
 import { snapTime } from './utils/timing';
 
 const TopMenuBar = ({ onOpenModal, showSidebar, toggleSidebar }: { onOpenModal: (modal: string) => void, showSidebar: boolean, toggleSidebar: () => void }) => {
@@ -129,10 +128,6 @@ const EditorLayout = () => {
             const draftNote = JSON.parse(data) as EditorNote;
             
             // Calculate Drop Row
-            // The Playfield renders centered. We need to approximate the row based on Y position.
-            // Screen Height / 3 roughly? 
-            // Better: Playfield has fixed logical size.
-            
             const rect = e.currentTarget.getBoundingClientRect();
             const yPct = (e.clientY - rect.top) / rect.height;
             
