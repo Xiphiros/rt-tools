@@ -17,13 +17,10 @@ import { getVisibleNotes, getVisibleTimingPoints } from '../utils/binarySearch';
 type DragMode = 'select' | 'move' | 'resize';
 
 const TIMELINE_PADDING = 300; // px
-const TRACK_HEIGHT = 120; // px
-const ROW_HEIGHT = TRACK_HEIGHT / 3; // 40px
 
 export const EditorTimeline = () => {
     const { mapData, settings, setSettings, playback, dispatch, audio, activeTool, activeLayerId } = useEditor();
     const containerRef = useRef<HTMLDivElement>(null);
-    const trackRef = useRef<HTMLDivElement>(null); // Ref for the note track area
     
     const windowState = useVirtualWindow({
         containerRef,
@@ -39,18 +36,15 @@ export const EditorTimeline = () => {
     
     const [isDragging, setIsDragging] = useState(false);
     const [dragMode, setDragMode] = useState<DragMode>('select');
-    
-    // Drag State
-    const [dragStart, setDragStart] = useState<{ x: number, y: number, time: number } | null>(null);
-    const [dragCurrent, setDragCurrent] = useState<{ x: number, y: number, time: number } | null>(null);
+    const [dragStart, setDragStart] = useState<{ x: number, time: number } | null>(null);
+    const [dragCurrent, setDragCurrent] = useState<{ x: number, time: number } | null>(null);
     
     interface InitialNoteState extends EditorNote {
         originalTime: number;
         originalDuration: number;
-        originalColumn: number;
     }
     const [initialSelection, setInitialSelection] = useState<InitialNoteState[]>([]);
-    const [resizeHandleNoteId, setResizeHandleNoteId] = useState<string | null>(null);
+    const [, setResizeHandleNoteId] = useState<string | null>(null);
     
     const debouncedSeek = useMemo(
         () => debounce((time: number) => audio.seek(time), 50),
@@ -62,18 +56,52 @@ export const EditorTimeline = () => {
         return new Map<string, EditorLayer>(mapData.layers.map(l => [l.id, l]));
     }, [mapData.layers]);
 
-    // --- VISIBLE NOTES ---
-    const visibleNotes = useMemo(() => {
-        const notes = getVisibleNotes(
+    // --- AGGREGATION (Single Strip Logic) ---
+    const tickGroups = useMemo(() => {
+        const visibleNotes = getVisibleNotes(
             mapData.notes, 
             windowState.startTime, 
             windowState.endTime
         );
-        return notes.filter(n => {
+
+        const renderableNotes = visibleNotes.filter(n => {
             const layer = layerMap.get(n.layerId);
-            return layer ? layer.visible : true;
+            return layer ? layer.visible : true; 
         });
-    }, [mapData.notes, windowState.startTime, windowState.endTime, layerMap]);
+
+        const groups = new Map<string, EditorNote[]>();
+
+        renderableNotes.forEach(note => {
+            const key = note.time.toFixed(3); 
+            if (!groups.has(key)) groups.set(key, []);
+            groups.get(key)!.push(note);
+        });
+
+        return Array.from(groups.entries()).map(([timeStr, notes]) => {
+            const time = parseFloat(timeStr);
+            const tp = getActiveTimingPoint(time, mapData.timingPoints);
+            const bpm = tp ? tp.bpm : mapData.bpm;
+            const offset = tp ? tp.time : mapData.offset;
+            const msPerBeat = 60000 / bpm;
+
+            const beatIndex = (time - offset) / msPerBeat;
+            const snap = getSnapDivisor(beatIndex);
+            
+            const baseColor = snap > 0 ? getSnapColor(snap) : '#FFFFFF';
+            const primaryNote = notes[0]; 
+            const noteLayer = layerMap.get(primaryNote.layerId);
+            const isInactiveLayer = primaryNote.layerId !== activeLayerId;
+            const displayColor = isInactiveLayer && noteLayer ? noteLayer.color : baseColor;
+
+            return { 
+                time, 
+                notes, 
+                color: displayColor,
+                isUnsnapped: snap === 0,
+                isInactive: isInactiveLayer
+            };
+        });
+    }, [mapData.notes, mapData.timingPoints, mapData.bpm, mapData.offset, windowState.startTime, windowState.endTime, layerMap, activeLayerId]);
 
     const visibleTimingPoints = useMemo(() => {
         return getVisibleTimingPoints(mapData.timingPoints, windowState.startTime, windowState.endTime);
@@ -118,16 +146,14 @@ export const EditorTimeline = () => {
     const handleMouseDown = (e: React.MouseEvent) => {
         if (e.button === 0) {
             const rawTime = getTimeFromEvent(e);
-            const containerRect = containerRef.current!.getBoundingClientRect();
-            const clickX = e.clientX - containerRect.left + containerRef.current!.scrollLeft;
-            const clickY = e.clientY;
+            const rect = containerRef.current!.getBoundingClientRect();
+            const clickX = e.clientX - rect.left + containerRef.current!.scrollLeft;
 
             if (activeTool === 'select') {
                 setDragMode('select');
                 setIsDragging(true);
-                setDragStart({ x: clickX, y: clickY, time: rawTime });
-                setDragCurrent({ x: clickX, y: clickY, time: rawTime });
-                // If not clicking a note (handled by stopPropagation), verify deselect logic in MouseUp
+                setDragStart({ x: clickX, time: rawTime });
+                setDragCurrent({ x: clickX, time: rawTime });
             } else {
                 const seekTime = settings.snappingEnabled 
                     ? snapTime(rawTime, mapData.timingPoints, settings.snapDivisor)
@@ -147,34 +173,28 @@ export const EditorTimeline = () => {
         if (e.button !== 0) return;
         if (isNoteLocked(note)) return;
 
-        // Calculate initial Y offset for accurate row dragging
-        // We track where the mouse is relative to the screen to calculate deltaY
-        const startY = e.clientY;
-
         if (note.selected || e.ctrlKey) {
             setDragMode('move');
-            setDragStart({ x: e.clientX, y: startY, time: note.time });
-            setDragCurrent({ x: e.clientX, y: startY, time: note.time });
+            setDragStart({ x: e.clientX, time: note.time });
+            setDragCurrent({ x: e.clientX, time: note.time });
             
             const selectedForMove = mapData.notes.filter(n => n.selected && !isNoteLocked(n)).map(n => ({
                 ...n,
                 originalTime: n.time,
-                originalDuration: n.duration || 0,
-                originalColumn: n.column
+                originalDuration: n.duration || 0
             }));
-
             if (!note.selected && !e.ctrlKey) {
                  dispatch({ type: 'SELECT_NOTES', payload: { ids: [note.id], append: false } });
-                 selectedForMove.push({ ...note, selected: true, originalTime: note.time, originalDuration: note.duration || 0, originalColumn: note.column });
+                 selectedForMove.push({ ...note, selected: true, originalTime: note.time, originalDuration: note.duration || 0 });
             }
             setInitialSelection(selectedForMove);
             setIsDragging(true);
         } else {
             dispatch({ type: 'SELECT_NOTES', payload: { ids: [note.id], append: false } });
-            setInitialSelection([{ ...note, selected: true, originalTime: note.time, originalDuration: note.duration || 0, originalColumn: note.column }]);
+            setInitialSelection([{ ...note, selected: true, originalTime: note.time, originalDuration: note.duration || 0 }]);
             setDragMode('move');
-            setDragStart({ x: e.clientX, y: startY, time: note.time });
-            setDragCurrent({ x: e.clientX, y: startY, time: note.time });
+            setDragStart({ x: e.clientX, time: note.time });
+            setDragCurrent({ x: e.clientX, time: note.time });
             setIsDragging(true);
         }
     };
@@ -190,19 +210,17 @@ export const EditorTimeline = () => {
         const selectedHolds = mapData.notes.filter(n => n.selected && n.type === 'hold' && !isNoteLocked(n)).map(n => ({
             ...n,
             originalTime: n.time,
-            originalDuration: n.duration || 0,
-            originalColumn: n.column
+            originalDuration: n.duration || 0
         }));
 
         if (!selectedHolds.some(n => n.id === note.id)) {
-            selectedHolds.push({ ...note, originalTime: note.time, originalDuration: note.duration || 0, originalColumn: note.column });
+            selectedHolds.push({ ...note, originalTime: note.time, originalDuration: note.duration || 0 });
             dispatch({ type: 'SELECT_NOTES', payload: { ids: [note.id], append: false } });
         }
         
         setInitialSelection(selectedHolds); 
-        const endTime = note.time + (note.duration || 0);
-        setDragStart({ x: e.clientX, y: e.clientY, time: endTime }); 
-        setDragCurrent({ x: e.clientX, y: e.clientY, time: endTime });
+        setDragStart({ x: e.clientX, time: note.time + (note.duration || 0) }); 
+        setDragCurrent({ x: e.clientX, time: note.time + (note.duration || 0) });
         setIsDragging(true);
     };
 
@@ -215,41 +233,26 @@ export const EditorTimeline = () => {
 
         if (!isDragging || !dragStart) return;
 
-        const containerRect = containerRef.current.getBoundingClientRect();
-        const currentX = e.clientX - containerRect.left + containerRef.current.scrollLeft;
+        const rect = containerRef.current.getBoundingClientRect();
+        const currentX = e.clientX - rect.left + containerRef.current.scrollLeft;
         
         if (dragMode === 'select') {
-            setDragCurrent({ x: currentX, y: e.clientY, time: rawTime });
+            setDragCurrent({ x: currentX, time: rawTime });
         } else if (dragMode === 'move') {
-            const pixelDeltaX = e.clientX - dragStart.x;
-            const pixelDeltaY = e.clientY - dragStart.y;
-            
-            const timeDelta = (pixelDeltaX / settings.zoom) * 1000;
-            
-            // Calculate Row Delta
-            // Moving down adds to column index (0 -> 1 -> 2)
-            // Threshold is slightly sticky to prevent accidental row swaps
-            const rowDelta = Math.round(pixelDeltaY / ROW_HEIGHT);
+            const pixelDelta = e.clientX - dragStart.x;
+            const timeDelta = (pixelDelta / settings.zoom) * 1000;
             
             initialSelection.forEach(note => {
                 let newTime = note.originalTime + timeDelta;
-                let newColumn = note.originalColumn + rowDelta;
-
-                // Snap X
                 if (settings.snappingEnabled) {
                     newTime = snapTime(newTime, mapData.timingPoints, settings.snapDivisor);
                 }
                 newTime = Math.max(0, newTime); 
 
-                // Clamp Y
-                newColumn = Math.max(0, Math.min(2, newColumn));
-
-                if (Math.abs(newTime - note.time) > 0.001 || newColumn !== note.column) {
-                    dispatch({
-                        type: 'UPDATE_NOTE',
-                        payload: { id: note.id, changes: { time: newTime, column: newColumn } }
-                    });
-                }
+                dispatch({
+                    type: 'UPDATE_NOTE',
+                    payload: { id: note.id, changes: { time: newTime } }
+                });
             });
         } else if (dragMode === 'resize') {
             let targetEndTime = rawTime;
@@ -259,12 +262,11 @@ export const EditorTimeline = () => {
             
             initialSelection.forEach(note => {
                 let newDuration = Math.max(0, targetEndTime - note.originalTime);
-                if (newDuration !== note.duration) {
-                    dispatch({
-                        type: 'UPDATE_NOTE',
-                        payload: { id: note.id, changes: { duration: newDuration, type: newDuration > 0 ? 'hold' : 'tap' } }
-                    });
-                }
+                
+                dispatch({
+                    type: 'UPDATE_NOTE',
+                    payload: { id: note.id, changes: { duration: newDuration, type: newDuration > 0 ? 'hold' : 'tap' } }
+                });
             });
         }
     };
@@ -272,7 +274,6 @@ export const EditorTimeline = () => {
     const handleMouseUp = () => {
         if (isDragging && dragMode === 'select' && dragStart && dragCurrent) {
             const dx = Math.abs(dragCurrent.x - dragStart.x);
-            // If click (not drag), move playhead & deselect
             if (dx < 5) {
                 const seekTime = settings.snappingEnabled 
                     ? snapTime(dragStart.time, mapData.timingPoints, settings.snapDivisor)
@@ -280,42 +281,18 @@ export const EditorTimeline = () => {
                 audio.seek(seekTime);
                 dispatch({ type: 'DESELECT_ALL' });
             } else {
-                // Box Selection Logic
-                // We need to calculate the time range covered by the selection box
                 const t1 = Math.min(dragStart.time, dragCurrent.time);
                 const t2 = Math.max(dragStart.time, dragCurrent.time);
                 
-                // We also need to calculate the Y range (Rows)
-                // Convert screen Y to Track Y
-                if (trackRef.current) {
-                    const trackRect = trackRef.current.getBoundingClientRect();
-                    const startY = dragStart.y - trackRect.top;
-                    const endY = dragCurrent.y - trackRect.top;
-                    
-                    const y1 = Math.min(startY, endY);
-                    const y2 = Math.max(startY, endY);
-
-                    const selectedIds = mapData.notes
-                        .filter(n => {
-                            const layer = layerMap.get(n.layerId);
-                            const isVisible = layer ? layer.visible : true;
-                            const isLocked = layer ? layer.locked : false;
-                            
-                            // Check Time Intersection
-                            const inTime = n.time >= t1 && n.time <= t2;
-                            
-                            // Check Row Intersection
-                            const noteTop = n.column * ROW_HEIGHT;
-                            const noteBottom = noteTop + ROW_HEIGHT;
-                            // Simple AABB intersection: Note overlaps SelectionBoxY
-                            const inRow = (noteTop < y2 && noteBottom > y1);
-
-                            return inTime && inRow && isVisible && !isLocked;
-                        })
-                        .map(n => n.id);
-                        
-                    dispatch({ type: 'SELECT_NOTES', payload: { ids: selectedIds, append: false } });
-                }
+                const selectedIds = mapData.notes
+                    .filter(n => {
+                        const layer = layerMap.get(n.layerId);
+                        const isVisible = layer ? layer.visible : true;
+                        const isLocked = layer ? layer.locked : false;
+                        return n.time >= t1 && n.time <= t2 && isVisible && !isLocked;
+                    })
+                    .map(n => n.id);
+                dispatch({ type: 'SELECT_NOTES', payload: { ids: selectedIds, append: false } });
             }
         }
 
@@ -337,8 +314,26 @@ export const EditorTimeline = () => {
     }, [playback.currentTime, playback.isPlaying, settings.zoom]);
 
     const handleTickEnter = (e: React.MouseEvent, time: number, notes: EditorNote[]) => {
-        // Optional: Tooltip logic if needed for dense clusters
+        const rect = (e.target as HTMLElement).getBoundingClientRect();
+        setHoveredChord({
+            time,
+            notes,
+            x: rect.left + (rect.width / 2),
+            y: rect.top - 10
+        });
     };
+
+    const tooltip = hoveredChord ? (
+        <div 
+            className="fixed z-[9999] pointer-events-none transition-all duration-150"
+            style={{ left: hoveredChord.x, top: hoveredChord.y, transform: 'translate(-50%, -100%)' }}
+        >
+            <div className="animate-in fade-in zoom-in-95 duration-100 mb-2 drop-shadow-2xl">
+                <MiniPlayfield notes={hoveredChord.notes} scale={0.35} />
+                <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-[#222] border-t-solid" />
+            </div>
+        </div>
+    ) : null;
 
     const playheadColor = useMemo(() => {
         const defaultColor = '#FACC15'; 
@@ -362,6 +357,8 @@ export const EditorTimeline = () => {
             className="flex-1 flex flex-col bg-background relative select-none h-full"
             onMouseUp={handleMouseUp}
         >
+            {createPortal(tooltip, document.body)}
+
             <div className="absolute top-0 left-0 z-50 p-2 flex flex-col gap-2">
                 <button 
                     onClick={() => setSettings(s => ({ ...s, showWaveform: !s.showWaveform }))}
@@ -415,7 +412,6 @@ export const EditorTimeline = () => {
                         className="relative flex flex-col h-full"
                         style={{ marginLeft: TIMELINE_PADDING, width: contentWidth }}
                     >
-                        {/* Background Grid */}
                         <div className="absolute inset-0 z-0">
                             <TimelineGrid 
                                 duration={playback.duration} 
@@ -424,10 +420,9 @@ export const EditorTimeline = () => {
                             />
                         </div>
 
-                        {/* Selection Box */}
                         {isDraggingSelection && (
                             <div 
-                                className="absolute top-0 bottom-0 bg-blue-500/20 border-x border-blue-400 z-50 pointer-events-none"
+                                className="absolute top-0 bottom-0 bg-blue-500/20 border-x border-blue-400 z-20 pointer-events-none"
                                 style={{
                                     left: Math.min(dragStart!.x - TIMELINE_PADDING, dragCurrent!.x - TIMELINE_PADDING),
                                     width: Math.abs(dragCurrent!.x - dragStart!.x)
@@ -435,12 +430,10 @@ export const EditorTimeline = () => {
                             />
                         )}
 
-                        {/* Hover Line */}
                         {!playback.isPlaying && (
                             <div className="absolute top-0 bottom-0 w-[1px] bg-white/30 pointer-events-none z-30" style={{ left: (hoverTime / 1000) * settings.zoom }} />
                         )}
                         
-                        {/* Playhead */}
                         <div 
                             className="absolute top-0 bottom-0 z-50 pointer-events-none will-change-transform"
                             style={{ 
@@ -458,7 +451,6 @@ export const EditorTimeline = () => {
                             />
                         </div>
 
-                        {/* Ruler */}
                         <div className="sticky top-0 z-40">
                             <TimelineRuler 
                                 duration={playback.duration} 
@@ -468,7 +460,6 @@ export const EditorTimeline = () => {
                             />
                         </div>
 
-                        {/* Waveform */}
                         <div 
                             className="relative w-full transition-all duration-300 ease-in-out overflow-hidden border-b border-white/5 bg-black/20"
                             style={{ height: settings.showWaveform ? '80px' : '0px' }}
@@ -484,74 +475,73 @@ export const EditorTimeline = () => {
                             </div>
                         </div>
 
-                        {/* NOTES TRACK */}
-                        <div 
-                            ref={trackRef}
-                            className="relative z-30 mt-2 border-t border-white/10"
-                            style={{ height: TRACK_HEIGHT }}
-                        >
-                            {/* Lane Dividers */}
-                            <div className="absolute inset-0 flex flex-col pointer-events-none">
-                                <div className="h-[40px] border-b border-white/5 bg-sky-500/5 relative"><span className="absolute left-1 top-1 text-[8px] text-white/30 font-mono">TOP</span></div>
-                                <div className="h-[40px] border-b border-white/5 bg-purple-500/5 relative"><span className="absolute left-1 top-1 text-[8px] text-white/30 font-mono">HOME</span></div>
-                                <div className="h-[40px] bg-pink-500/5 relative"><span className="absolute left-1 top-1 text-[8px] text-white/30 font-mono">BOT</span></div>
-                            </div>
+                        <div className="flex-1 relative min-h-[120px] z-30 mt-2">
+                            {tickGroups.map(group => {
+                                const isSelected = group.notes.some(n => n.selected);
+                                
+                                const rawCalc = settings.zoom / 30;
+                                let width = Math.max(4, Math.round(rawCalc));
+                                if (width % 2 !== 0) width++;
+                                if (group.isUnsnapped) width = 2;
 
-                            {/* Render Individual Notes */}
-                            {visibleNotes.map(note => {
-                                const left = (note.time / 1000) * settings.zoom;
-                                const width = note.type === 'hold' && note.duration 
-                                    ? (note.duration / 1000) * settings.zoom 
-                                    : 24; 
-                                const top = note.column * ROW_HEIGHT;
+                                const isAnyLocked = group.notes.some(n => isNoteLocked(n));
+                                const cursorStyle = isAnyLocked ? 'not-allowed' : 'grab';
                                 
-                                const noteLayer = layerMap.get(note.layerId);
-                                const layerColor = noteLayer ? noteLayer.color : '#fff';
-                                const isActiveLayer = note.layerId === activeLayerId;
-                                const isLocked = noteLayer ? noteLayer.locked : false;
-                                
-                                // Dimming
-                                const opacity = (isActiveLayer || !settings.dimInactiveLayers) ? 1.0 : 0.4;
-                                const isSelected = note.selected;
+                                const opacityMod = (isAnyLocked ? 0.5 : 1) * (group.isInactive && settings.dimInactiveLayers ? 0.3 : 1);
+
+                                const bgStyle: React.CSSProperties = {
+                                    background: isSelected 
+                                        ? `linear-gradient(to bottom, #ffffff 0%, ${group.color} 40%, ${group.color} 100%)`
+                                        : (group.isUnsnapped ? '#fff' : group.color),
+                                    opacity: (group.isUnsnapped ? 0.8 : 1) * opacityMod,
+                                    border: isSelected ? '1px solid white' : 'none',
+                                    boxShadow: isSelected 
+                                        ? `0 0 8px ${group.color}, 0 0 2px white` 
+                                        : (group.isUnsnapped ? 'none' : `0 0 4px ${group.color}80`),
+                                    zIndex: isSelected ? 50 : 40,
+                                    cursor: cursorStyle
+                                };
 
                                 return (
-                                    <React.Fragment key={note.id}>
-                                        {/* Note Body */}
+                                    <React.Fragment key={group.time}>
                                         <div
-                                            className={`absolute rounded-sm border shadow-sm cursor-grab active:cursor-grabbing hover:brightness-110 transition-colors flex items-center justify-center select-none ${isLocked ? 'cursor-not-allowed' : ''}`}
+                                            className="absolute top-1/2 transition-transform hover:scale-y-110 pointer-events-auto"
                                             style={{
-                                                left: left,
-                                                top: top + 4, // Padding within row
-                                                width: Math.max(width, 12),
-                                                height: ROW_HEIGHT - 8,
-                                                backgroundColor: isSelected ? '#fff' : (isActiveLayer ? layerColor : '#333'),
-                                                borderColor: isSelected ? layerColor : 'transparent',
-                                                borderWidth: isSelected ? '2px' : '0px',
-                                                opacity: opacity,
-                                                zIndex: isSelected ? 100 : 50,
-                                                boxShadow: isSelected ? `0 0 10px ${layerColor}80` : 'none'
+                                                left: (group.time / 1000) * settings.zoom,
+                                                width: width,
+                                                height: '60%', 
+                                                borderRadius: '4px',
+                                                transform: 'translate(-50%, -50%)',
+                                                ...bgStyle
                                             }}
-                                            onMouseDown={(e) => handleNoteMouseDown(e, note)}
-                                        >
-                                            <span className={`text-[10px] font-bold ${isSelected ? 'text-black' : 'text-white/90'} pointer-events-none`}>
-                                                {note.key.toUpperCase()}
-                                            </span>
-                                        </div>
-
-                                        {/* Hold Handle (Resize) */}
-                                        {note.type === 'hold' && !isLocked && (
-                                            <div
-                                                className={`absolute top-0 bottom-0 w-3 cursor-col-resize hover:bg-white/30 z-[101] flex items-center justify-center rounded-r-sm`}
-                                                style={{
-                                                    left: left + width - 6,
-                                                    top: top + 4,
-                                                    height: ROW_HEIGHT - 8,
-                                                }}
-                                                onMouseDown={(e) => handleResizeMouseDown(e, note)}
-                                            >
-                                                <div className="w-[1px] h-3 bg-black/50" />
-                                            </div>
-                                        )}
+                                            onMouseEnter={(e) => handleTickEnter(e, group.time, group.notes)}
+                                            onMouseDown={(e) => handleNoteMouseDown(e, group.notes[0])}
+                                        />
+                                        
+                                        {group.notes.map((n) => n.type === 'hold' && (
+                                            <React.Fragment key={`${n.id}_hold`}>
+                                                <div 
+                                                    className="absolute top-1/2 h-1.5 pointer-events-none rounded-r-full"
+                                                    style={{
+                                                        left: (group.time / 1000) * settings.zoom,
+                                                        width: (n.duration! / 1000) * settings.zoom,
+                                                        backgroundColor: group.color,
+                                                        opacity: 0.4 * opacityMod,
+                                                        transform: 'translate(0, -50%)', 
+                                                        zIndex: 35
+                                                    }}
+                                                />
+                                                <div
+                                                    className={`absolute top-1/2 w-3 h-6 bg-white/20 z-50 rounded-sm transition-colors border border-white/30 ${isNoteLocked(n) ? 'cursor-not-allowed opacity-50' : 'hover:bg-white/80 cursor-col-resize'}`}
+                                                    style={{
+                                                        left: ((group.time + (n.duration || 0)) / 1000) * settings.zoom,
+                                                        transform: 'translate(-50%, -50%)',
+                                                    }}
+                                                    onMouseDown={(e) => handleResizeMouseDown(e, n)}
+                                                    title="Resize Hold"
+                                                />
+                                            </React.Fragment>
+                                        ))}
                                     </React.Fragment>
                                 );
                             })}
