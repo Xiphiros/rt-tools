@@ -12,7 +12,7 @@ interface HitCircleProps {
     zoom?: number; // px per second (for holding trail)
     
     // New Visual Props
-    shape?: 'circle' | 'diamond';
+    shape?: 'circle' | 'diamond' | 'square';
     approachStyle?: 'standard' | 'inverted';
     progress?: number; // 0 to 1 (0 = start of approach, 1 = hit time)
 }
@@ -26,7 +26,7 @@ export const HitCircle = ({
     zoom = 100,
     shape = 'circle',
     approachStyle = 'standard',
-    progress = 1 // Defaults to fully visible if not passed
+    progress = 1 
 }: HitCircleProps) => {
     const colors = ROW_COLORS as Record<number, string>;
     const baseColor = colors[row] || '#fff';
@@ -35,7 +35,6 @@ export const HitCircle = ({
     const borderRadius = shape === 'circle' ? '50%' : '0%';
     const rotation = shape === 'diamond' ? 'rotate(45deg)' : 'rotate(0deg)';
     
-    // Style for the inner note (Head)
     const noteStyle: React.CSSProperties = {
         width: NOTE_SIZE,
         height: NOTE_SIZE,
@@ -51,26 +50,23 @@ export const HitCircle = ({
     const bodyWidth = type === 'hold' ? (duration / 1000) * zoom : 0;
 
     // Approach Circle Logic
-    // Standard: Scales from 2.5 -> 1.0
-    // Inverted: Scales from 0.0 -> 1.0 (Inside Out)
     let approachScale = 1;
     let approachOpacity = 0;
 
     if (progress < 1) {
-        approachOpacity = 0.6; // Base visibility during approach
+        approachOpacity = 0.6; 
         if (approachStyle === 'standard') {
             // 2.5 down to 1
             approachScale = 2.5 - (1.5 * progress); 
         } else {
-            // 0 up to 1
-            // We use a slight oversize (1.1) to ensure it locks in visually around the border
+            // 0 up to 1 (With slight overshoot to lock in)
             approachScale = progress * 1.3; 
         }
     }
 
     return (
         <div className="relative group select-none pointer-events-none">
-            {/* 1. Hold Body (Rendered behind the head) */}
+            {/* 1. Hold Body */}
             {type === 'hold' && (
                 <div 
                     className="absolute top-1/2 left-1/2 h-8 -translate-y-1/2 z-0 rounded-r-full opacity-60 origin-left"
@@ -89,7 +85,7 @@ export const HitCircle = ({
                 className="flex items-center justify-center z-10 relative transition-transform duration-75 active:scale-95"
                 style={noteStyle}
             >
-                {/* Text needs to counter-rotate if diamond so it stays upright */}
+                {/* Counter-rotate text if diamond */}
                 <span 
                     className="text-xl font-bold text-white drop-shadow-md font-mono"
                     style={{ transform: shape === 'diamond' ? 'rotate(-45deg)' : 'none' }}
@@ -97,7 +93,6 @@ export const HitCircle = ({
                     {char.toUpperCase()}
                 </span>
                 
-                {/* 3. Number/Overlay (Optional osu! style numbering) */}
                 <div 
                     className="absolute inset-0 border border-white/20" 
                     style={{ borderRadius: borderRadius }}
@@ -114,8 +109,7 @@ export const HitCircle = ({
                         borderColor: selected ? '#fff' : baseColor,
                         opacity: approachOpacity,
                         borderRadius: borderRadius,
-                        transform: `${rotation} scale(${approachScale})`,
-                        // If inverted, we want it to clip inside? No, overlay is better.
+                        transform: `${rotation} scale(${approachScale})`
                     }}
                 />
             )}
