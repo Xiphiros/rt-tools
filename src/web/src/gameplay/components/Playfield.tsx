@@ -8,9 +8,15 @@ interface PlayfieldProps {
     playbackRate: number;
     showApproachCircles?: boolean;
     scale?: number;
-    activeLayerId?: string; // New prop for layer highlighting
-    dimInactiveLayers?: boolean; // Control flag
+    activeLayerId?: string;
+    dimInactiveLayers?: boolean;
     
+    // New Visual Settings Props
+    rowOffsets?: [number, number, number];
+    noteShape?: 'circle' | 'diamond';
+    approachStyle?: 'standard' | 'inverted';
+    approachRate?: number; // Seconds
+
     // Editor Interactions
     onNoteClick?: (e: React.MouseEvent, note: EditorNote) => void;
     onBackgroundClick?: (e: React.MouseEvent) => void;
@@ -19,10 +25,10 @@ interface PlayfieldProps {
 const CENTER_X = 50; 
 const CENTER_Y = 50; 
 
-const ROW_Y_OFFSETS: Record<number, number> = {
-    [ROW_TOP]: -15,    
-    [ROW_HOME]: 0,     
-    [ROW_BOTTOM]: 15   
+const BASE_ROW_Y_OFFSETS: Record<number, number> = {
+    [ROW_TOP]: -15,     
+    [ROW_HOME]: 0,      
+    [ROW_BOTTOM]: 15    
 };
 
 const KEY_ORDER: Record<number, string[]> = {
@@ -39,9 +45,14 @@ export const Playfield = ({
     onNoteClick,
     onBackgroundClick,
     activeLayerId,
-    dimInactiveLayers = true
+    dimInactiveLayers = true,
+    rowOffsets = [0, 0, 0], // Defaults
+    noteShape = 'circle',
+    approachStyle = 'standard',
+    approachRate = 0.5
 }: PlayfieldProps) => {
-    const PREEMPT = 1200; 
+    
+    const PREEMPT = approachRate * 1000; // Convert seconds to ms
     const FADE_OUT = 200;
 
     // Create a Layer Map for fast lookup
@@ -52,6 +63,7 @@ export const Playfield = ({
         // 1. Time Check
         const relativeTime = n.time - currentTime;
         const endTime = n.type === 'hold' ? n.time + (n.duration || 0) : n.time;
+        // Show notes that are approaching OR currently being held/active
         if (relativeTime > PREEMPT || (endTime - currentTime) < -FADE_OUT) return false;
 
         // 2. Layer Visibility Check
@@ -72,23 +84,33 @@ export const Playfield = ({
         const rowKeys = KEY_ORDER[targetRow] || [];
         const keyIndex = rowKeys.indexOf(lowerChar);
         
+        // Calculate Base Y
+        const baseY = BASE_ROW_Y_OFFSETS[targetRow] || 0;
+        // Add User Configured Offset (Pixels -> Percent approximation)
+        // Assuming 100% height ~ 400px. 1px offset ~ 0.25%
+        const userOffsetY = (rowOffsets[targetRow] || 0) * 0.25;
+
         if (keyIndex !== -1) {
             const rowWidth = rowKeys.length;
             const xOffsetPct = ((keyIndex - (rowWidth / 2)) + 0.5) * 8; 
             let rowStagger = 0;
-            if (targetRow === ROW_HOME) rowStagger = 2;
+            if (targetRow === ROW_HOME) rowStagger = 2; 
             if (targetRow === ROW_BOTTOM) rowStagger = 4;
 
             return {
                 x: CENTER_X + xOffsetPct + rowStagger,
-                y: CENTER_Y + (ROW_Y_OFFSETS[targetRow] || 0)
+                y: CENTER_Y + baseY + userOffsetY
             };
         } else {
-            return { x: CENTER_X, y: CENTER_Y };
+            return { x: CENTER_X, y: CENTER_Y + baseY + userOffsetY };
         }
     };
 
     const actualSize = NOTE_SIZE * scale;
+    const borderRadius = noteShape === 'circle' ? '50%' : '0%';
+    const rotation = noteShape === 'diamond' ? 'rotate(45deg)' : 'none';
+
+    // 
 
     const renderGhosts = () => {
         const elements: React.ReactNode[] = [];
@@ -102,10 +124,21 @@ export const Playfield = ({
                         style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
                     >
                         <div 
-                            className="rounded-full border-2 border-white/5 bg-white/5 flex items-center justify-center"
-                            style={{ width: actualSize, height: actualSize }}
+                            className="border-2 border-white/5 bg-white/5 flex items-center justify-center"
+                            style={{ 
+                                width: actualSize, 
+                                height: actualSize,
+                                borderRadius: borderRadius,
+                                transform: rotation
+                            }}
                         >
-                            <span className="font-bold text-white/10 font-mono" style={{ fontSize: actualSize * 0.4 }}>
+                            <span 
+                                className="font-bold text-white/10 font-mono" 
+                                style={{ 
+                                    fontSize: actualSize * 0.4,
+                                    transform: noteShape === 'diamond' ? 'rotate(-45deg)' : 'none'
+                                }}
+                            >
                                 {char.toUpperCase()}
                             </span>
                         </div>
@@ -138,7 +171,7 @@ export const Playfield = ({
                 const endTime = note.type === 'hold' ? note.time + (note.duration || 0) : note.time;
                 const isHolding = note.type === 'hold' && currentTime >= note.time && currentTime <= endTime;
                 
-                // Fade Logic
+                // Opacity Logic
                 let opacity = 1;
                 if (relativeTime > PREEMPT - 200) {
                     opacity = (PREEMPT - relativeTime) / 200;
@@ -146,14 +179,20 @@ export const Playfield = ({
                     opacity = 1 - (Math.abs(relativeTime) / FADE_OUT);
                 }
 
-                // Layer Dimming Logic
-                // If dimming enabled AND activeLayerId is set AND note is not in active layer
                 if (dimInactiveLayers && activeLayerId && note.layerId !== activeLayerId) {
                     opacity *= 0.3; 
                 }
 
+                // Approach Progress (0 = just spawned, 1 = hit time)
                 const progress = 1 - (relativeTime / PREEMPT);
-                const approachScale = 3 - (2 * progress);
+                
+                // Calculate Approach Scale
+                let approachScale = 1;
+                if (approachStyle === 'standard') {
+                     approachScale = 2.5 - (1.5 * progress);
+                } else {
+                     approachScale = progress * 1.3;
+                }
 
                 const colors = ROW_COLORS as Record<number, string>;
                 const row = KEY_TO_ROW[note.key.toLowerCase()] ?? note.column;
@@ -189,19 +228,20 @@ export const Playfield = ({
                         {/* ACTIVE HOLD GLOW */}
                         {isHolding && (
                             <div 
-                                className="absolute rounded-full animate-pulse pointer-events-none"
+                                className="absolute animate-pulse pointer-events-none"
                                 style={{
                                     width: actualSize * 1.4,
                                     height: actualSize * 1.4,
                                     backgroundColor: rowColor,
                                     opacity: 0.3,
-                                    filter: 'blur(8px)'
+                                    filter: 'blur(8px)',
+                                    borderRadius: borderRadius
                                 }}
                             />
                         )}
 
                         <div 
-                            className="rounded-full flex items-center justify-center shadow-lg transition-all duration-100 hover:brightness-125"
+                            className="flex items-center justify-center shadow-lg transition-all duration-100 hover:brightness-125"
                             style={{
                                 width: actualSize,
                                 height: actualSize,
@@ -209,52 +249,44 @@ export const Playfield = ({
                                 border: `${borderWidth} solid ${borderColor}`,
                                 boxShadow: isHolding 
                                     ? `0 0 20px ${rowColor}, inset 0 0 10px ${rowColor}`
-                                    : (isSelected ? `0 0 15px ${rowColor}, inset 0 0 5px white` : `0 0 10px ${rowColor}40`)
+                                    : (isSelected ? `0 0 15px ${rowColor}, inset 0 0 5px white` : `0 0 10px ${rowColor}40`),
+                                borderRadius: borderRadius,
+                                transform: rotation
                             }}
                         >
                             <span 
                                 className="font-bold font-mono drop-shadow-md" 
                                 style={{ 
                                     fontSize: actualSize * 0.4,
-                                    color: isHolding ? '#000' : '#fff'
+                                    color: isHolding ? '#000' : '#fff',
+                                    transform: noteShape === 'diamond' ? 'rotate(-45deg)' : 'none'
                                 }}
                             >
                                 {note.key.toUpperCase()}
                             </span>
                         </div>
 
-                        {/* Layer Indicator Dot (if not active layer and not fully opaque) */}
-                        {activeLayerId && note.layerId !== activeLayerId && dimInactiveLayers && (
+                        {/* APPROACH CIRCLE */}
+                        {showApproachCircles && relativeTime > 0 && relativeTime <= PREEMPT && (
                             <div 
-                                className="absolute -top-1 -right-1 w-3 h-3 rounded-full border border-black"
-                                style={{ backgroundColor: layerColor }}
-                                title={`Layer: ${noteLayer?.name}`}
-                            />
-                        )}
-
-                        {showApproachCircles && relativeTime > 0 && (
-                            <div 
-                                className="absolute rounded-full border-2 pointer-events-none"
+                                className="absolute border-2 pointer-events-none"
                                 style={{
                                     width: actualSize,
                                     height: actualSize,
                                     borderColor: rowColor,
                                     opacity: 0.6,
-                                    transform: `scale(${approachScale})`
+                                    borderRadius: borderRadius,
+                                    transform: `${rotation} scale(${approachScale})`
                                 }}
                             />
                         )}
                         
-                        {/* HOLD RING (While Active) */}
-                        {isHolding && (
+                        {/* Layer Indicator Dot */}
+                        {activeLayerId && note.layerId !== activeLayerId && dimInactiveLayers && (
                             <div 
-                                className="absolute rounded-full border-4 pointer-events-none"
-                                style={{
-                                    width: actualSize,
-                                    height: actualSize,
-                                    borderColor: rowColor,
-                                    opacity: 0.8
-                                }}
+                                className="absolute -top-1 -right-1 w-3 h-3 rounded-full border border-black"
+                                style={{ backgroundColor: layerColor }}
+                                title={`Layer: ${noteLayer?.name}`}
                             />
                         )}
                     </div>
