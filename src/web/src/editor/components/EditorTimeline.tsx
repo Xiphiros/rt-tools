@@ -441,6 +441,9 @@ export const EditorTimeline = () => {
                                 transform: 'translateX(-50%)'
                             }}
                         >
+                            <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-yellow-400 text-black text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm whitespace-nowrap z-[60]">
+                                {(playback.currentTime / 1000).toFixed(3)}s
+                            </div>
                             <div 
                                 className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px]" 
                                 style={{ borderTopColor: playheadColor }}
