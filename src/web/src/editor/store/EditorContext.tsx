@@ -40,7 +40,6 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     const [activeTool, setActiveTool] = useState<EditorTool>('select');
     const [activeLayerId, setActiveLayerId] = useState<string>(DEFAULT_LAYER_ID);
 
-    // Global default for new notes
     const [defaultHitsounds, setDefaultHitsounds] = useState<HitsoundSettings>({
         sampleSet: 'normal',
         volume: 100,
@@ -57,10 +56,11 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         dimInactiveLayers: true,
         
         // Visual Defaults
-        rowOffsets: [0, 0, 0], // Top, Home, Bot offsets
+        rowOffsets: [0, 0, 0], 
+        rowXOffsets: [0, 0, 0], // Default X offsets (0 = aligned)
         noteShape: 'circle',
         approachStyle: 'standard',
-        approachRate: 0.5, // 500ms default
+        approachRate: 0.5,
 
         masterVolume: 80,
         musicVolume: 70,
@@ -68,7 +68,6 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         metronomeVolume: 60
     });
 
-    // Ensure active layer exists
     useEffect(() => {
         const layers = history.present.layers;
         if (!layers.find(l => l.id === activeLayerId) && layers.length > 0) {
@@ -76,14 +75,12 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         }
     }, [history.present.layers, activeLayerId]);
 
-    // --- VOLUME SYNC ---
     const { setMasterVolume, setMusicVolume, setHitsoundVolume, setMetronomeVolume } = audioHook;
     useEffect(() => { setMasterVolume(settings.masterVolume); }, [settings.masterVolume, setMasterVolume]);
     useEffect(() => { setMusicVolume(settings.musicVolume); }, [settings.musicVolume, setMusicVolume]);
     useEffect(() => { setHitsoundVolume(settings.hitsoundVolume); }, [settings.hitsoundVolume, setHitsoundVolume]);
     useEffect(() => { setMetronomeVolume(settings.metronomeVolume); }, [settings.metronomeVolume, setMetronomeVolume]);
 
-    // Auto-Save
     useEffect(() => {
         if (!activeProjectId) return;
         const timer = setTimeout(() => {
