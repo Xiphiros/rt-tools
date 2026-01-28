@@ -17,7 +17,9 @@ import {
     faClock, 
     faVolumeUp,
     faBullseye,
-    faEye
+    faEye,
+    faMinus,
+    faPlus
 } from '@fortawesome/free-solid-svg-icons';
 
 const VolumeSlider = ({ 
@@ -131,6 +133,13 @@ export const EditorBottomBar = () => {
         setSettings(s => ({ ...s, rowOffsets: newOffsets }));
     };
 
+    const handleZoom = (delta: number) => {
+        setSettings(s => ({ 
+            ...s, 
+            zoom: Math.max(50, Math.min(500, s.zoom + delta)) 
+        }));
+    };
+
     return (
         <div className="h-16 bg-card border-t border-border flex items-center px-4 justify-between select-none shadow-[0_-5px_20px_rgba(0,0,0,0.3)] z-50 relative">
             {/* Left: Playback Controls */}
@@ -156,7 +165,7 @@ export const EditorBottomBar = () => {
             </div>
             
             {/* Center: Tools */}
-            <div className="flex items-center gap-8 justify-center flex-1">
+            <div className="flex items-center gap-6 justify-center flex-1">
                 {/* Beat Snap */}
                 <div className="flex flex-col items-center gap-1">
                     <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Snap</span>
@@ -173,7 +182,33 @@ export const EditorBottomBar = () => {
                         </div>
                     </div>
                 </div>
+
+                 {/* Zoom Controls */}
+                 <div className="flex flex-col items-center gap-1">
+                    <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Zoom</span>
+                    <div className="flex bg-input border border-border rounded overflow-hidden">
+                        <button 
+                            onClick={() => handleZoom(-25)}
+                            className="w-8 py-1 hover:bg-white/10 text-muted hover:text-white transition-colors flex items-center justify-center border-r border-white/5"
+                            title="Zoom Out"
+                        >
+                            <FontAwesomeIcon icon={faMinus} size="xs" />
+                        </button>
+                        <div className="px-2 py-1 text-xs font-mono font-bold text-white min-w-[3rem] text-center bg-white/5 flex items-center justify-center">
+                            {Math.round((settings.zoom / 150) * 100)}%
+                        </div>
+                        <button 
+                            onClick={() => handleZoom(25)}
+                            className="w-8 py-1 hover:bg-white/10 text-muted hover:text-white transition-colors flex items-center justify-center border-l border-white/5"
+                            title="Zoom In"
+                        >
+                            <FontAwesomeIcon icon={faPlus} size="xs" />
+                        </button>
+                    </div>
+                </div>
                 
+                <div className="w-[1px] h-8 bg-white/10 mx-2" />
+
                 {/* Metronome */}
                 <div className="flex flex-col items-center gap-1">
                     <span className="text-[10px] text-muted uppercase font-bold tracking-wider">Metro</span>
