@@ -12,8 +12,7 @@ import {
     faTrophy,
     faChevronLeft,
     faChevronRight,
-    faGlobe,
-    faStar
+    faGlobe
 } from '@fortawesome/free-solid-svg-icons';
 
 type SystemType = 'official' | 'rework';
@@ -223,7 +222,7 @@ export const Leaderboard = () => {
                                         {/* Expanded Row */}
                                         {expandedUser === player.userId && (
                                             <tr className="bg-input/20">
-                                                <td colSpan={system === 'official' ? 6 : 7} className="p-0">
+                                                <td colSpan={system === 'official' ? 6 : 8} className="p-0">
                                                     <div className="p-4 sm:p-6 border-b border-border/50 animate-in slide-in-from-top-2 duration-200">
                                                         <h4 className="text-xs uppercase tracking-widest text-muted font-bold mb-4 flex items-center gap-2">
                                                             <FontAwesomeIcon icon={faTrophy} className="text-warning" /> 
@@ -279,7 +278,8 @@ export const Leaderboard = () => {
                                             </tr>
                                         )}
                                     </React.Fragment>
-                                )})}
+                                );
+                                })
                             )}
                         </tbody>
                     </table>
