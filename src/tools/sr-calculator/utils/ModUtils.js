@@ -30,6 +30,8 @@ function scaleNotes(notes, rate) {
 
         // Scale timing fields
         // Higher rate = Faster song = Smaller timestamps
+        // NOTE: We assume input is in Milliseconds if it's from the raw JSON,
+        // but the calculator usually normalizes later. This function just scales numbers.
         if (newNote.startTime !== undefined) newNote.startTime /= safeRate;
         if (newNote.endTime !== undefined) newNote.endTime /= safeRate;
         if (newNote.time !== undefined) newNote.time /= safeRate;
@@ -43,6 +45,7 @@ function scaleNotes(notes, rate) {
 
 /**
  * Recalculates Overall Difficulty (OD) to match the new window size in wall-clock time.
+ * RhythmTyper Perfect Window = 80 - 6 * OD
  * @param {Number} originalOD 
  * @param {Number} rate 
  * @returns {Number} New OD value
@@ -52,13 +55,17 @@ function scaleOD(originalOD, rate) {
     
     if (Math.abs(safeRate - 1.0) < 0.001) return originalOD;
 
-    // 1. Calculate original window size in ms
+    // 1. Calculate original window size in ms (Perfect Window)
     const originalWindow = 80 - (6 * originalOD);
 
     // 2. Scale window (Faster rate = Smaller window = Harder)
+    // Example: DT (1.5x) makes a 50ms window effectively 33.3ms relative to map speed
     const newWindow = originalWindow / safeRate;
 
     // 3. Convert back to OD
+    // 80 - 6x = NewWindow
+    // 6x = 80 - NewWindow
+    // x = (80 - NewWindow) / 6
     let newOD = (80 - newWindow) / 6;
 
     return Math.max(0, Math.min(11, newOD));
