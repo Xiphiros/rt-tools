@@ -3,8 +3,8 @@ import path from 'path';
 import fs from 'fs/promises';
 import chalk from 'chalk';
 import { fileURLToPath } from 'url';
-import { calculateStrain, calculateOfficial } from '@rt-tools/sr-calculator';
-import { parseRtmFile } from './rtm-parser.js';
+import { Worker } from 'worker_threads';
+import os from 'os';
 
 // Configuration
 const __filename = fileURLToPath(import.meta.url);
@@ -14,81 +14,119 @@ const __dirname = path.dirname(__filename);
 // Root is:      ../../../
 const SONGS_DIR = path.resolve(__dirname, '../../../songs');
 const OUTPUT_FILE = path.resolve(__dirname, '../../web/public/beatmaps.json');
+const WORKER_PATH = path.join(__dirname, 'worker.js');
 
 async function main() {
     console.log(chalk.cyan(`🔍 Scanning for .rtm files in: ${SONGS_DIR}`));
     
     // Find all map files
-    // Use posix style paths for glob even on Windows
     const searchPattern = `${SONGS_DIR}/**/*.rtm`.replace(/\\/g, '/');
     const files = await glob(searchPattern);
 
     if (files.length === 0) {
         console.warn(chalk.yellow(`No beatmaps found in ${SONGS_DIR}.`));
-        console.warn(chalk.yellow(`Please ensure the path is correct or place .rtm files there.`));
-        // Don't exit here, allows generating empty DB if that's intended, though unlikely
-    } else {
-        console.log(chalk.blue(`Found ${files.length} beatmaps. Calculating strain...`));
-    }
+        return;
+    } 
+
+    console.log(chalk.blue(`Found ${files.length} beatmaps.`));
+    
+    // Setup Thread Pool
+    const numCPUs = os.cpus().length;
+    // Leave one core free for system/main thread if possible, but use at least 1
+    const numWorkers = Math.max(1, numCPUs - 1);
+    
+    console.log(chalk.blue(`Spawning ${numWorkers} workers for parallel calculation...`));
 
     const exportData = [];
-    let processed = 0;
+    let completed = 0;
+    const total = files.length;
+    
+    // Queue management
+    const fileQueue = [...files];
+    const workers = [];
+    
+    // Promise that resolves when all work is done
+    const workPromise = new Promise((resolve, reject) => {
+        let activeWorkers = 0;
 
-    for (const file of files) {
-        const result = await parseRtmFile(file);
-        if (!result) continue;
+        const checkCompletion = () => {
+            if (fileQueue.length === 0 && activeWorkers === 0) {
+                resolve();
+            }
+        };
 
-        const { meta, difficulties } = result;
-        
-        let mapsetId = meta.mapsetId;
-        if (!mapsetId) {
-            const basename = path.basename(file);
-            const match = basename.match(/^([a-z0-9]+)-/i);
-            if (match) mapsetId = match[1];
-        }
+        const startWorker = (id) => {
+            const worker = new Worker(WORKER_PATH);
+            activeWorkers++;
 
-        const mapLink = mapsetId ? `https://rhythmtyper.net/beatmap/${mapsetId}` : null;
+            worker.on('message', (msg) => {
+                if (msg.status === 'success') {
+                    if (msg.data && msg.data.length) {
+                        exportData.push(...msg.data);
+                    }
+                    completed++;
+                    if (completed % 10 === 0 || completed === total) {
+                        const pct = Math.round((completed / total) * 100);
+                        process.stdout.write(`\rProgress: ${completed}/${total} (${pct}%)`);
+                    }
+                } else if (msg.status === 'error') {
+                    // Log error but continue
+                    // console.error(`Worker Error: ${msg.error}`);
+                }
 
-        for (const diff of difficulties) {
-            if (!diff.data || !diff.data.notes) continue;
-
-            const baseOD = diff.data.overallDifficulty || 5;
-            const notes = diff.data.notes;
-
-            // 1. Run New Rework Algorithm
-            const strain = calculateStrain(notes, baseOD);
-
-            // 2. Run Official Algorithm
-            const officialSR = calculateOfficial({
-                notes: notes,
-                overallDifficulty: baseOD
+                // Pick next task
+                if (fileQueue.length > 0) {
+                    const nextFile = fileQueue.shift();
+                    worker.postMessage({ filePath: nextFile });
+                } else {
+                    worker.terminate();
+                    activeWorkers--;
+                    checkCompletion();
+                }
             });
 
-            exportData.push({
-                id: `${mapsetId || Date.now()}_${diff.diffId}`,
-                title: meta.songName || meta.title || 'Unknown',
-                artist: meta.artistName || meta.artist || 'Unknown',
-                mapper: meta.mapper || 'Unknown',
-                diffName: diff.name,
-                bpm: meta.bpm || 0,
-                stars: strain.total,
-                starsOfficial: officialSR || 0, // Fallback for safety
-                stats: strain.details,
-                link: mapLink
+            worker.on('error', (err) => {
+                console.error(`Worker ${id} failed:`, err);
+                activeWorkers--;
+                checkCompletion();
             });
-        }
-        
-        processed++;
-        if (processed % 5 === 0) process.stdout.write('.');
-    }
 
-    console.log('\n');
+            // Initial task
+            if (fileQueue.length > 0) {
+                const nextFile = fileQueue.shift();
+                worker.postMessage({ filePath: nextFile });
+            } else {
+                worker.terminate();
+                activeWorkers--;
+                checkCompletion();
+            }
+            
+            return worker;
+        };
+
+        // Initialize pool
+        for (let i = 0; i < numWorkers; i++) {
+            workers.push(startWorker(i));
+        }
+    });
+
+    const startTime = Date.now();
+    await workPromise;
+    const duration = ((Date.now() - startTime) / 1000).toFixed(2);
+
+    console.log('\n'); // Newline after progress bar
     
     await fs.mkdir(path.dirname(OUTPUT_FILE), { recursive: true });
     
+    // Sort consistently before saving (by ID)
+    exportData.sort((a, b) => a.id.localeCompare(b.id));
+
     await fs.writeFile(OUTPUT_FILE, JSON.stringify(exportData, null, 2));
-    console.log(chalk.green.bold(`✅ Export Complete! Saved ${exportData.length} difficulties to:`));
-    console.log(chalk.gray(OUTPUT_FILE));
+    
+    console.log(chalk.green.bold(`✅ Export Complete in ${duration}s!`));
+    console.log(chalk.white(`   Processed ${files.length} maps`));
+    console.log(chalk.white(`   Generated ${exportData.length} difficulties`));
+    console.log(chalk.gray(`   Saved to: ${OUTPUT_FILE}`));
 }
 
 main().catch(console.error);
