@@ -1,12 +1,58 @@
 [
   {
-    "id": "9qp2dbgj7skw",
-    "title": "test",
-    "artist": "Set It Off",
-    "mapper": "andrew",
+    "id": "8j49fkxe3eva",
+    "title": "Marshmallow feat. Hatsune Miku",
+    "artist": "DECO*27",
+    "mapper": "kabi_vbs",
     "status": "unranked",
-    "bpm": 170.0000000000001,
-    "lastUpdated": "2026-01-25T19:21:45.000Z",
+    "bpm": 200,
+    "lastUpdated": "2026-01-29T03:40:53.000Z",
+    "stats": {
+      "plays": 1,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Say Woah",
+        "notes": 110,
+        "holds": 11,
+        "sr": 2.8124324482411183
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/8j49fkxe3eva/8j49fkxe3eva.rtm?v=1"
+  },
+  {
+    "id": "212fud6exda2",
+    "title": "yoyuyoku",
+    "artist": "inabakumori",
+    "mapper": "fluffydogsfly",
+    "status": "unranked",
+    "bpm": 179,
+    "lastUpdated": "2026-01-29T02:00:15.000Z",
+    "stats": {
+      "plays": 1,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Untitled Difficulty",
+        "notes": 160,
+        "holds": 14,
+        "sr": 4.635705720035822
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/212fud6exda2/212fud6exda2.rtm?v=1"
+  },
+  {
+    "id": "8y0wo78pp4r3",
+    "title": "LIFE",
+    "artist": "Neuro-sama",
+    "mapper": "Noofah",
+    "status": "unranked",
+    "bpm": 172,
+    "lastUpdated": "2026-01-29T02:28:50.000Z",
     "stats": {
       "plays": 0,
       "downloads": 0,
@@ -14,13 +60,1024 @@
     },
     "difficulties": [
       {
-        "name": "Neph's Cataclysm",
-        "notes": 280,
-        "holds": 2,
-        "sr": 3.5569648981284057
+        "name": "Actually Easy",
+        "notes": 101,
+        "holds": 45,
+        "sr": 1.8667598118635482
+      },
+      {
+        "name": "Easy (Hard)",
+        "notes": 170,
+        "holds": 47,
+        "sr": 3.0384770970817976
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/9qp2dbgj7skw/9qp2dbgj7skw.rtm?v=1"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/8y0wo78pp4r3/8y0wo78pp4r3.rtm?v=3"
+  },
+  {
+    "id": "dqd9p4fleve4",
+    "title": "Dance of the Corpses",
+    "artist": "Kikuo",
+    "mapper": "Arty",
+    "status": "unranked",
+    "bpm": 120,
+    "lastUpdated": "2026-01-29T01:04:50.000Z",
+    "stats": {
+      "plays": 2,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "I can't type",
+        "notes": 206,
+        "holds": 25,
+        "sr": 3.014830491719806
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/dqd9p4fleve4/dqd9p4fleve4.rtm?v=2"
+  },
+  {
+    "id": "lhpdeecetd47",
+    "title": "Your Best Friend",
+    "artist": "SiIvaGunner",
+    "mapper": "goink",
+    "status": "unranked",
+    "bpm": 124,
+    "lastUpdated": "2026-01-29T00:10:35.000Z",
+    "stats": {
+      "plays": 11,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Possible",
+        "notes": 134,
+        "holds": 4,
+        "sr": 4.689652435531347
+      },
+      {
+        "name": "Impossible",
+        "notes": 220,
+        "holds": 4,
+        "sr": 5.864245853401509
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/lhpdeecetd47/lhpdeecetd47.rtm?v=5"
+  },
+  {
+    "id": "ch2v1pjm83ho",
+    "title": "【5人合唱】Red【Cepheid】",
+    "artist": "Cepheid",
+    "mapper": "Piger",
+    "status": "unranked",
+    "bpm": 120,
+    "lastUpdated": "2026-01-28T21:51:30.000Z",
+    "stats": {
+      "plays": 6,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Symphony",
+        "notes": 979,
+        "holds": 305,
+        "sr": 6.086754962172273
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ch2v1pjm83ho/ch2v1pjm83ho.rtm?v=3"
+  },
+  {
+    "id": "16ivgdhhjh22",
+    "title": "Tempestissimo",
+    "artist": "t+pazolite",
+    "mapper": "Cubilete",
+    "status": "unranked",
+    "bpm": 231,
+    "lastUpdated": "2026-01-28T20:48:56.000Z",
+    "stats": {
+      "plays": 2,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Insane",
+        "notes": 254,
+        "holds": 2,
+        "sr": 11.171086671355178
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/16ivgdhhjh22/16ivgdhhjh22.rtm?v=2"
+  },
+  {
+    "id": "d69uqhzneax7",
+    "title": "Class::CIEL_NOSURGE;",
+    "artist": "Shikata Akiko",
+    "mapper": "Yomia",
+    "status": "unranked",
+    "bpm": 110,
+    "lastUpdated": "2026-01-28T21:49:39.000Z",
+    "stats": {
+      "plays": 2,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "1",
+        "notes": 573,
+        "holds": 136,
+        "sr": 7.200229615451124
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/d69uqhzneax7/d69uqhzneax7.rtm?v=2"
+  },
+  {
+    "id": "jsyke9gne003",
+    "title": "Last Step",
+    "artist": "Dubmood",
+    "mapper": "Reh47",
+    "status": "unranked",
+    "bpm": 220,
+    "lastUpdated": "2026-01-28T15:47:14.000Z",
+    "stats": {
+      "plays": 0,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "The Last Step.",
+        "notes": 2275,
+        "holds": 5,
+        "sr": 20.984064565561887
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/jsyke9gne003/jsyke9gne003.rtm?v=1"
+  },
+  {
+    "id": "mt1mlxauu6jo",
+    "title": "Happier Than Ever",
+    "artist": "Billie Eilish",
+    "mapper": "Reh47",
+    "status": "unranked",
+    "bpm": 162,
+    "lastUpdated": "2026-01-28T12:44:48.000Z",
+    "stats": {
+      "plays": 0,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Crazy",
+        "notes": 589,
+        "holds": 229,
+        "sr": 6.1650043757962365
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/mt1mlxauu6jo/mt1mlxauu6jo.rtm?v=1"
+  },
+  {
+    "id": "2xbhp1rihac4",
+    "title": "Sunday Bloody Sunday",
+    "artist": "U2",
+    "mapper": "Reh47",
+    "status": "unranked",
+    "bpm": 101,
+    "lastUpdated": "2026-01-28T12:20:13.000Z",
+    "stats": {
+      "plays": 1,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Normal",
+        "notes": 0,
+        "holds": 0,
+        "sr": 0
+      },
+      {
+        "name": "Hard",
+        "notes": 0,
+        "holds": 0,
+        "sr": 0
+      },
+      {
+        "name": "Crazy",
+        "notes": 0,
+        "holds": 0,
+        "sr": 0
+      },
+      {
+        "name": "Easy",
+        "notes": 519,
+        "holds": 323,
+        "sr": 3.148946208170092
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/2xbhp1rihac4/2xbhp1rihac4.rtm?v=1"
+  },
+  {
+    "id": "p63w35fu30e3",
+    "title": "Today is Gonna be a Great Day (TV Size)",
+    "artist": "Bowling For Soup",
+    "mapper": "Neph",
+    "status": "unranked",
+    "bpm": 181,
+    "lastUpdated": "2026-01-28T11:51:30.000Z",
+    "stats": {
+      "plays": 0,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Turtle Unicorn",
+        "notes": 150,
+        "holds": 37,
+        "sr": 6.005499467838352
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/p63w35fu30e3/p63w35fu30e3.rtm?v=1"
+  },
+  {
+    "id": "eaw7ahhwto3m",
+    "title": "Neo Zone The Final Round - Warm Up 1st Player",
+    "artist": "NCT 127",
+    "mapper": "ultramarine",
+    "status": "unranked",
+    "bpm": 99,
+    "lastUpdated": "2026-01-28T11:21:00.000Z",
+    "stats": {
+      "plays": 11,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "minimalism",
+        "notes": 55,
+        "holds": 2,
+        "sr": 2.105659895343578
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/eaw7ahhwto3m/eaw7ahhwto3m.rtm?v=4"
+  },
+  {
+    "id": "88iikdg3wywl",
+    "title": "Powerflux",
+    "artist": "YZYX",
+    "mapper": "Happy566",
+    "status": "unranked",
+    "bpm": 253.29,
+    "lastUpdated": "2026-01-28T12:34:33.000Z",
+    "stats": {
+      "plays": 5,
+      "downloads": 0,
+      "favorites": 1
+    },
+    "difficulties": [
+      {
+        "name": "Power Surge Influx Overload",
+        "notes": 487,
+        "holds": 18,
+        "sr": 20.025039818939625
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/88iikdg3wywl/88iikdg3wywl.rtm?v=2"
+  },
+  {
+    "id": "xz4d1ulf1id5",
+    "title": "String Theocracy Cut Ver.",
+    "artist": "Mili",
+    "mapper": "Amaryllis",
+    "status": "unranked",
+    "bpm": 120,
+    "lastUpdated": "2026-01-28T04:52:45.000Z",
+    "stats": {
+      "plays": 1,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Advanced",
+        "notes": 211,
+        "holds": 8,
+        "sr": 4.578350471187711
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/xz4d1ulf1id5/xz4d1ulf1id5.rtm?v=2"
+  },
+  {
+    "id": "9sukr6mr4zhz",
+    "title": "hahahahahahahahahha",
+    "artist": "Methionylthreonylthreonylglutaminylarginyltyrosylglutamylserylleucylphenylalanylalanylglutaminylleuc  yllysylglutamylarginyllysylglutamylglycylalanylphenylalanylvalylprolylphenylalanylvalylthreonylleucylgl  ycylaspartylprolylglycylisoleucylglutamylglutaminylserylleucyllysylisoleucylaspartylthreonylleucylisoleu  cylglutamylalanylglycylalanylaspartylalanylleucylglutamylleucylglycylisoleucylprolylphenylalanylseryla  spartylprolylleucylalanylaspartylglycylprolylthreonylisoleucylglutaminylasparaginylalanylthreonylleucyl  arginylalanylphenylalanylalanylalanylglycylvalylthreonylprolylalanylglutaminylcysteinylphenylalanylglu  tamylmethionylleucylalanylleucylisoleucylarginylglutaminyllysylhistidylprolylthreonylisoleucylprolylisol  eucylglycylleucylleucylmethionyltyrosylalanylasparaginylleucylvalylphenylalanylasparaginyllysylglycyli  soleucylaspartylglutamylphenylalanyltyrosylalanylglutaminylcysteinylglutamyllysylvalylglycylvalylaspa  rtylserylvalylleucylvalylalanylaspartylvalylprolylvalylglutaminylglutamylserylalanylprolylphenylalanylarg  inylglutaminylalanylalanylleucylarginylhistidylasparaginylvalylalanylprolylisoleucylphenylalanylisoleuc  ylcysteinylprolylprolylaspartylalanylaspartylaspartylaspartylleucylleucylarginylglutaminylisoleucylalany  lseryltyrosylglycylarginylglycyltyrosylthreonyltyrosylleucylleucylserylarginylalanylglycylvalylthreonylgly  cylalanylglutamylasparaginylarginylalanylalanylleucylprolylleucylasparaginylhistidylleucylvalylalanylly  sylleucyllysylglutamyltyrosylasparaginylalanylalanylprolylprolylleucylglutaminylglycylphenylalanylglycy  lisoleucylserylalanylprolylaspartylglutaminylvalyllysylalanylalanylisoleucylaspartylalanylglycylalanylala  nylglycylalanylisoleucylserylglycylserylalanylisoleucylvalyllysylisoleucylisoleucylglutamylglutaminylhist  idylasparaginylisoleucylglutamylprolylglutamyllysylmethionylleucylalanylalanylleucyllysylvalylphenylal  anylvalylglutaminylprolylmethionyllysylalanylalanylthreonylarginylacetylseryltyrosylserylisoleucylthreo  nylserylprolylserylglutaminylphenylalanylvalylphenylalanylleucylserylserylvalyltryptophylalanylaspartyl  prolylisoleucylglutamylleucylleucylasparaginylvalylcysteinylthreonylserylserylleucylglycylasparaginylgl  utaminylphenylalanylglutaminylthreonylglutaminylglutaminylalanylarginylthreonylthreonylglutaminylval  ylglutaminylglutaminylphenylalanylserylglutaminylvalyltryptophyllysylprolylphenylalanylprolylglutaminy  lserylthreonylvalylarginylphenylalanylprolylglycylaspartylvalyltyrosyllysylvalyltyrosylarginyltyrosylaspar  aginylalanylvalylleucylaspartylprolylleucylisoleucylthreonylalanylleucylleucylglycylthreonylphenylalany  laspartylthreonylarginylasparaginylarginylisoleucylisoleucylglutamylvalylglutamylasparaginylglutaminy  lglutaminylserylprolylthreonylthreonylalanylglutamylthreonylleucylaspartylalanylthreonylarginylarginylv  alylaspartylaspartylalanylthreonylvalylalanylisoleucylarginylserylalanylasparaginylisoleucylasparaginyl  leucylvalylasparaginylglutamylleucylvalylarginylglycylthreonylglycylleucyltyrosylasparaginylglutaminyl  asparaginylthreonylphenylalanylglutamylserylmethionylserylglycylleucylvalyltryptophylthreonylserylala  nylprolylalanyltitinmethionylglutaminylarginyltyrosylglutamylserylleucylphenylalanylalanylisoleucylcyst  einylprolylprolylaspartylalanylaspartylaspartylaspartylleucylleucylarginylglutaminylisoleucylalanylserylt  yrosylglycylarginylglycyltyrosylthreonyltyrosylleucylleucylserylarginylalanylglycylvalylthreonylglycylala  nylglutamylasparaginylarginylalanylalanylleucylprolylleucylasparaginylhistidylleucylvalylalanyllysylleu  cyllysylglutamyltyrosylasparaginylalanylalanylprolylprolylleucylglutaminylglycylphenylalanylglycylisole  ucylserylalanylprolylaspartylglutaminylvalyllysylalanylalanylisoleucylaspartylalanylglycylalanylalanylgl  ycylalanylisoleucylserylglycylserylalanylisoleucylvalyllysylisoleucylisoleucylglutamylglutaminylhistidyla  sparaginylisoleucylglutamylprolylglutamyllysylmethionylleucylalanylalanylleucyllysylvalylphenylalanylv  alylglutaminylprolylmethionyllysylalanylalanylthreonylarginylacetylseryltyrosylserylisoleucylthreonylser  ylprolylserylglutaminylphenylalanylvalylphenylalanylleucylserylserylvalyltryptophylalanylaspartylprolyli  soleucylglutamylleucylleucylasparaginylvalylcysteinylthreonylserylserylleucylglycylasparaginylglutami  nylphenylalanylglutaminylthreonylglutaminylglutaminylalanylarginylthreonylthreonylglutaminylvalylglut  aminylglutaminylphenylalanylserylglutaminylvalyltryptophyllysylprolylphenylalanylprolylglutaminylseryl  threonylvalylarginylphenylalanylprolylglycylaspartylvalyltyrosyllysylvalyltyrosylarginyltyrosylasparagin  ylalanylvalylleucylaspartylprolylleucylisoleucylthreonylalanylleucylleucylglycylthreonylphenylalanylasp  artylthreonylarginylasparaginylarginylisoleucylisoleucylglutamylvalylglutamylasparaginylglutaminylglut  aminylserylprolylthreonylthreonylalanylglutamylthreonylleucylaspartylalanylthreonylarginylarginylvalyl  aspartylaspartylalanylthreonylvalylalanylisoleucylarginylserylalanylasparaginylisoleucylasparaginylleu  cylvalylasparaginylglutamylleucylvalylarginylglycylthreonylglycylleucyltyrosylasparaginylglutaminylasp  araginylthreonylphenylalanylglutamylserylmethionylserylglycylleucylvalyltryptophylthreonylserylalanyl  prolylalanyltitinmethionylglutaminylarginyltyrosylglutamylserylleucylphenylalanylalanylisoleucylcystein  ylprolylprolylaspartylalanylaspartylaspartylaspartylleucylleucylarginylglutaminylisoleucylalanylseryltyr  osylglycylarginylglycyltyrosylthreonyltyrosylleucylleucylserylarginylalanylglycylvalylthreonylglycylalany  lglutamylasparaginylarginylalanylalanylleucylprolylleucylasparaginylhistidylleucylvalylalanyllysylleucyll  ysylglutamyltyrosylasparaginylalanylalanylprolylprolylleucylglutaminylglycylphenylalanylglycylisoleucy  lserylalanylprolylaspartylglutaminylvalyllysylalanylalanylisoleucylaspartylalanylglycylalanylalanylglycyl  alanylisoleucylserylglycylserylalanylisoleucylvalyllysylisoleucylisoleucylglutamylglutaminylhistidylaspa  raginylisoleucylglutamylprolylglutamyllysylmethionylleucylalanylalanylleucyllysylvalylphenylalanylvalyl  glutaminylprolylmethionyllysylalanylalanylthreonylarginylacetylseryltyrosylserylisoleucylthreonylserylp  rolylserylglutaminylphenylalanylvalylphenylalanylleucylserylserylvalyltryptophylalanylaspartylprolylisol  eucylglutamylleucylleucylasparaginylvalylcysteinylthreonylserylserylleucylglycylasparaginylglutaminyl  phenylalanylglutaminylthreonylglutaminylglutaminylalanylarginylthreonylthreonylglutaminylvalylglutam  inylglutaminylphenylalanylserylglutaminylvalyltryptophyllysylprolylphenylalanylprolylglutaminylserylthr  eonylvalylarginylphenylalanylprolylglycylaspartylvalyltyrosyllysylvalyltyrosylarginyltyrosylasparaginylal  anylvalylleucylaspartylprolylleucylisoleucylthreonylalanylleucylleucylglycylthreonylphenylalanylasparty  lthreonylarginylasparaginylarginylisoleucylisoleucylglutamylvalylglutamylasparaginylglutaminylglutami  nylserylprolylthreonylthreonylalanylglutamylthreonylleucylaspartylalanylthreonylarginylarginylvalylasp  artylaspartylalanylthreonylvalylalanylisoleucylarginylserylalanylasparaginylisoleucylasparaginylleucylv  alylasparaginylglutamylleucylvalylarginylglycylthreonylglycylleucyltyrosylasparaginylglutaminylaspara  ginylthreonylphenylalanylglutamylserylmethionylserylglycylleucylvalyltryptophylthreonylserylalanylprol  ylalanyltitinmethionylglutaminylarginyltyrosylglutamylserylleucylphenylalanylalanylisoleucylcysteinylpr  olylprolylaspartylalanylaspartylaspartylaspartylleucylleucylarginylglutaminylisoleucylalanylseryltyrosyl  glycylarginylglycyltyrosylthreonyltyrosylleucylleucylserylarginylalanylglycylvalylthreonylglycylalanylglut  amylasparaginylarginylalanylalanylleucylprolylleucylasparaginylhistidylleucylvalylalanyllysylleucyllysyl  glutamyltyrosylasparaginylalanylalanylprolylprolylleucylglutaminylglycylphenylalanylglycylisoleucylser  ylalanylprolylaspartylglutaminylvalyllysylalanylalanylisoleucylaspartylalanylglycylalanylalanylglycylala  nylisoleucylserylglycylserylalanylisoleucylvalyllysylisoleucylisoleucylglutamylglutaminylhistidylasparag  inylisoleucylglutamylprolylglutamyllysylmethionylleucylalanylalanylleucyllysylvalylphenylalanylvalylglut  aminylprolylmethionyllysylalanylalanylthreonylarginylacetylseryltyrosylserylisoleucylthreonylserylprolyl  serylglutaminylphenylalanylvalylphenylalanylleucylserylserylvalyltryptophylalanylaspartylprolylisoleuc  ylglutamylleucylleucylasparaginylvalylcysteinylthreonylserylserylleucylglycylasparaginylglutaminylphe  nylalanylglutaminylthreonylglutaminylglutaminylalanylarginylthreonylthreonylglutaminylvalylglutaminyl  glutaminylphenylalanylserylglutaminylvalyltryptophyllysylprolylphenylalanylprolylglutaminylserylthreon  ylvalylarginylphenylalanylprolylglycylaspartylvalyltyrosyllysylvalyltyrosylarginyltyrosylasparaginylalany  lvalylleucylaspartylprolylleucylisoleucylthreonylalanylleucylleucylglycylthreonylphenylalanylaspartylthr  eonylarginylasparaginylarginylisoleucylisoleucylglutamylvalylglutamylasparaginylglutaminylglutaminyl  serylprolylthreonylthreonylalanylglutamylthreonylleucylaspartylalanylthreonylarginylarginylvalylaspart  ylaspartylalanylthreonylvalylalanylisoleucylarginylserylalanylasparaginylisoleucylasparaginylleucylval  ylasparaginylglutamylleucylvalylarginylglycylthreonylglycylleucyltyrosylasparaginylglutaminylasparagi  nylthreonylphenylalanylglutamylserylmethionylserylglycylleucylvalyltryptophylthreonylserylalanylprolyl  alanyltitinmethionylglutaminylarginyltyrosylglutamylserylleucylphenylalanylalanylmethionylthreonylthr  eonylglutaminylarginyltyrosylglutamylserylleucylphenylalanylalanylglutaminylleucyllysylglutamylarginy  llysylglutamylglycylalanylphenylalanylvalylprolylphenylalanylvalylthreonylleucylglycylaspartylprolylglyc  ylisoleucylglutamylglutaminylserylleucyllysylisoleucylaspartylthreonylleucylisoleucylglutamylalanylglyc  ylalanylaspartylalanylleucylglutamylleucylglycylisoleucylprolylphenylalanylserylaspartylprolylleucylala  nylaspartylglycylprolylthreonylisoleucylglutaminylasparaginylalanylthreonylleucylarginylalanylphenylal  anylalanylalanylglycylvalylthreonylprolylalanylglutaminylcysteinylphenylalanylglutamylmethionylleucyl  alanylleucylisoleucylarginylglutaminyllysylhistidylprolylthreonylisoleucylprolylisoleucylglycylleucylleucy  lmethionyltyrosylalanylasparaginylleucylvalylphenylalanylasparaginyllysylglycylisoleucylaspartylgluta  mylphenylalanyltyrosylalanylglutaminylcysteinylglutamyllysylvalylglycylvalylaspartylserylvalylleucylval  ylalanylaspartylvalylprolylvalylglutaminylglutamylserylalanylprolylphenylalanylarginylglutaminylalanyla  lanylleucylarginylhistidylasparaginylvalylalanylprolylisoleucylphenylalanylisoleucylcysteinylprolylprolyl  aspartylalanylaspartylaspartylaspartylleucylleucylarginylglutaminylisoleucylalanylseryltyrosylglycylargi  nylglycyltyrosylthreonyltyrosylleucylleucylserylarginylalanylglycylvalylthreonylglycylalanylglutamylasp  araginylarginylalanylalanylleucylprolylleucylasparaginylhistidylleucylvalylalanyllysylleucyllysylglutamyl  tyrosylasparaginylalanylalanylprolylprolylleucylglutaminylglycylphenylalanylglycylisoleucylserylalanylp  rolylaspartylglutaminylvalyllysylalanylalanylisoleucylaspartylalanylglycylalanylalanylglycylalanylisoleu  cylserylglycylserylalanylisoleucylvalyllysylisoleucylisoleucylglutamylglutaminylhistidylasparaginylisole  ucylglutamylprolylglutamyllysylmethionylleucylalanylalanylleucyllysylvalylphenylalanylvalylglutaminylp  rolylmethionyllysylalanylalanylthreonylarginylacetylseryltyrosylserylisoleucylthreonylserylprolylserylglu  taminylphenylalanylvalylphenylalanylleucylserylserylvalyltryptophylalanylaspartylprolylisoleucylglutam  ylleucylleucylasparaginylvalylcysteinylthreonylserylserylleucylglycylasparaginylglutaminylphenylalanyl  glutaminylthreonylglutaminylglutaminylalanylarginylthreonylthreonylglutaminylvalylglutaminylglutamin  ylphenylalanylserylglutaminylvalyltryptophyllysylprolylphenylalanylprolylglutaminylserylthreonylvalylar  ginylphenylalanylprolylglycylaspartylvalyltyrosyllysylvalyltyrosylarginyltyrosylasparaginylalanylvalylleu  cylaspartylprolylleucylisoleucylthreonylalanylleucylleucylglycylthreonylphenylalanylaspartylthreonylar  ginylasparaginylarginylisoleucylisoleucylglutamylvalylglutamylasparaginylglutaminylglutaminylserylpr  olylthreonylthreonylalanylglutamylthreonylleucylaspartylalanylthreonylarginylarginylvalylaspartylaspar  tylalanylthreonylvalylalanylisoleucylarginylserylalanylasparaginylisoleucylasparaginylleucylvalylaspar  aginylglutamylleucylvalylarginylglycylthreonylglycylleucyltyrosylasparaginylglutaminylasparaginylthreo  nylphenylalanylglutamylserylmethionylserylglycylleucylvalyltryptophylthreonylserylalanylprolylalanyltiti  nmethionylglutaminylarginyltyrosylglutamylserylleucylphenylalanylalanylisoleucylcysteinylprolylprolyla  spartylalanylaspartylaspartylaspartylleucylleucylarginylglutaminylisoleucylalanylseryltyrosylglycylargin  ylglycyltyrosylthreonyltyrosylleucylleucylserylarginylalanylglycylvalylthreonylglycylalanylglutamylaspar  aginylarginylalanylalanylleucylprolylleucylasparaginylhistidylleucylvalylalanyllysylleucyllysylglutamylty  rosylasparaginylalanylalanylprolylprolylleucylglutaminylglycylphenylalanylglycylisoleucylserylalanylpro  lylaspartylglutaminylvalyllysylalanylalanylisoleucylaspartylalanylglycylalanylalanylglycylalanylisoleucyl  serylglycylserylalanylisoleucylvalyllysylisoleucylisoleucylglutamylglutaminylhistidylasparaginylisoleucy  lglutamylprolylglutamyllysylmethionylleucylalanylalanylleucyllysylvalylphenylalanylvalylglutaminylproly  lmethionyllysylalanylalanylthreonylarginylacetylseryltyrosylserylisoleucylthreonylserylprolylserylgluta  minylphenylalanylvalylphenylalanylleucylserylserylvalyltryptophylalanylaspartylprolylisoleucylglutamyll  eucylleucylasparaginylvalylcysteinylthreonylserylserylleucylglycylasparaginylglutaminylphenylalanylgl  utaminylthreonylglutaminylglutaminylalanylarginylthreonylthreonylglutaminylvalylglutaminylglutaminyl  phenylalanylserylglutaminylvalyltryptophyllysylprolylphenylalanylprolylglutaminylserylthreonylvalylargi  nylphenylalanylprolylglycylaspartylvalyltyrosyllysylvalyltyrosylarginyltyrosylasparaginylalanylvalylleucy  laspartylprolylleucylisoleucylthreonylalanylleucylleucylglycylthreonylphenylalanylaspartylthreonylargin  ylasparaginylarginylisoleucylisoleucylglutamylvalylglutamylasparaginylglutaminylglutaminylserylprolylt  hreonylthreonylalanylglutamylthreonylleucylaspartylalanylthreonylarginylarginylvalylaspartylaspartylal  anylthreonylvalylalanylisoleucylarginylserylalanylasparaginylisoleucylasparaginylleucylvalylasparagin  ylglutamylleucylvalylarginylglycylthreonylglycylleucyltyrosylasparaginylglutaminylasparaginylthreonylp",
+    "mapper": "Mrpolasa",
+    "status": "unranked",
+    "bpm": 900,
+    "lastUpdated": "2026-01-28T02:40:57.000Z",
+    "stats": {
+      "plays": 0,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "AT only",
+        "notes": 5189,
+        "holds": 3242,
+        "sr": 36.74267618615343
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/9sukr6mr4zhz/9sukr6mr4zhz.rtm?v=1"
+  },
+  {
+    "id": "d5ram7espln1",
+    "title": "SKUGGIN' AROUND",
+    "artist": "Kitsune^2",
+    "mapper": "aaronvx",
+    "status": "unranked",
+    "bpm": 168.33,
+    "lastUpdated": "2026-01-28T16:29:46.000Z",
+    "stats": {
+      "plays": 2,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "EASY",
+        "notes": 72,
+        "holds": 52,
+        "sr": 2.0000529343045224
+      },
+      {
+        "name": "NORMAL",
+        "notes": 81,
+        "holds": 47,
+        "sr": 2.251930780399162
+      },
+      {
+        "name": "HARD",
+        "notes": 143,
+        "holds": 69,
+        "sr": 4.002801396168032
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/d5ram7espln1/d5ram7espln1.rtm?v=6"
+  },
+  {
+    "id": "46kywjxb2o78",
+    "title": "the new rick rolld",
+    "artist": "wtfradio1000",
+    "mapper": "AFS",
+    "status": "unranked",
+    "bpm": 240,
+    "lastUpdated": "2026-01-27T18:30:42.000Z",
+    "stats": {
+      "plays": 11,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "type",
+        "notes": 0,
+        "holds": 0,
+        "sr": 0
+      },
+      {
+        "name": "Beginner",
+        "notes": 2,
+        "holds": 0,
+        "sr": 1.0145219473588372
+      },
+      {
+        "name": "Easy",
+        "notes": 4,
+        "holds": 0,
+        "sr": 1.2967433121336245
+      },
+      {
+        "name": "Novice",
+        "notes": 6,
+        "holds": 0,
+        "sr": 2.3567515668458703
+      },
+      {
+        "name": "Normal",
+        "notes": 7,
+        "holds": 0,
+        "sr": 2.7630197897399422
+      },
+      {
+        "name": "Hard",
+        "notes": 11,
+        "holds": 0,
+        "sr": 4.93688698229598
+      },
+      {
+        "name": "xd",
+        "notes": 7,
+        "holds": 7,
+        "sr": 5.028802912229557
+      },
+      {
+        "name": "Insane",
+        "notes": 14,
+        "holds": 0,
+        "sr": 6.611020642529696
+      },
+      {
+        "name": "Expert",
+        "notes": 20,
+        "holds": 0,
+        "sr": 8.49789743214244
+      },
+      {
+        "name": "wtf",
+        "notes": 666,
+        "holds": 56,
+        "sr": 10.634629324651513
+      },
+      {
+        "name": "Expert+",
+        "notes": 24,
+        "holds": 0,
+        "sr": 13.737364955920945
+      },
+      {
+        "name": "radio",
+        "notes": 56,
+        "holds": 0,
+        "sr": 24.838139974002225
+      },
+      {
+        "name": "wtfradio",
+        "notes": 423,
+        "holds": 0,
+        "sr": 54.22692011506323
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/46kywjxb2o78/46kywjxb2o78.rtm?v=1"
+  },
+  {
+    "id": "wnn5qwqtdmxs",
+    "title": "WHEN I GROW UP",
+    "artist": "Yaeji",
+    "mapper": "popeye",
+    "status": "unranked",
+    "bpm": 128,
+    "lastUpdated": "2026-01-27T18:38:35.000Z",
+    "stats": {
+      "plays": 3,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Hard",
+        "notes": 624,
+        "holds": 2,
+        "sr": 5.6520704458181275
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/wnn5qwqtdmxs/wnn5qwqtdmxs.rtm?v=4"
+  },
+  {
+    "id": "jg7vx3vtpu50",
+    "title": "Oh My Gandhi",
+    "artist": "RatzinSpatz",
+    "mapper": "Cheyne",
+    "status": "unranked",
+    "bpm": 136,
+    "lastUpdated": "2026-01-27T17:04:25.000Z",
+    "stats": {
+      "plays": 8,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Candy",
+        "notes": 237,
+        "holds": 0,
+        "sr": 3.7573148217012475
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/jg7vx3vtpu50/jg7vx3vtpu50.rtm?v=1"
+  },
+  {
+    "id": "vy2i6h7al4k8",
+    "title": "A FOOL MOON NIGHT [WIP]",
+    "artist": "The Koxx",
+    "mapper": "Cubilete",
+    "status": "unranked",
+    "bpm": 138,
+    "lastUpdated": "2026-01-27T16:58:31.000Z",
+    "stats": {
+      "plays": 8,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Cubi´s dimension",
+        "notes": 795,
+        "holds": 2,
+        "sr": 16.229355483091688
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/vy2i6h7al4k8/vy2i6h7al4k8.rtm?v=3"
+  },
+  {
+    "id": "zsvhxtx1dcn5",
+    "title": "oyasumi",
+    "artist": "Shiggy Jr.",
+    "mapper": "Cheyne",
+    "status": "unranked",
+    "bpm": 200,
+    "lastUpdated": "2026-01-28T20:47:00.000Z",
+    "stats": {
+      "plays": 43,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Good Night",
+        "notes": 320,
+        "holds": 22,
+        "sr": 13.153137409881952
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/zsvhxtx1dcn5/zsvhxtx1dcn5.rtm?v=3"
+  },
+  {
+    "id": "lce39jib7nd2",
+    "title": "CDE with Bee",
+    "artist": "idk",
+    "mapper": "AFS",
+    "status": "unranked",
+    "bpm": 90,
+    "lastUpdated": "2026-01-27T12:02:22.000Z",
+    "stats": {
+      "plays": 40,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "JUST MOTHERF**KING TAP THE GOD DAMN MIDDLE C FOR GODS SAKE-",
+        "notes": 1,
+        "holds": 0,
+        "sr": 0.9986793642757661
+      },
+      {
+        "name": "Typing [Beginner]",
+        "notes": 1,
+        "holds": 0,
+        "sr": 0.9986793642757661
+      },
+      {
+        "name": "THE DAMN MIDDLE C!!",
+        "notes": 2,
+        "holds": 0,
+        "sr": 1.0145219473588372
+      },
+      {
+        "name": "MIDDLE C! MIDDLE C!!",
+        "notes": 2,
+        "holds": 2,
+        "sr": 1.0257624389404494
+      },
+      {
+        "name": "Middle C! Middle C!",
+        "notes": 4,
+        "holds": 0,
+        "sr": 1.1034466576756727
+      },
+      {
+        "name": "Middle C",
+        "notes": 4,
+        "holds": 4,
+        "sr": 1.1932249154191503
+      },
+      {
+        "name": "Typing [Easy]",
+        "notes": 3,
+        "holds": 0,
+        "sr": 1.2992990893245693
+      },
+      {
+        "name": "Easy",
+        "notes": 8,
+        "holds": 0,
+        "sr": 1.3394336331350152
+      },
+      {
+        "name": "Normal",
+        "notes": 12,
+        "holds": 0,
+        "sr": 1.5005418047055201
+      },
+      {
+        "name": "Hard",
+        "notes": 12,
+        "holds": 12,
+        "sr": 2.1261696780354655
+      },
+      {
+        "name": "Typing [Insane]",
+        "notes": 3,
+        "holds": 0,
+        "sr": 3.886177435828825
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/lce39jib7nd2/lce39jib7nd2.rtm?v=1"
+  },
+  {
+    "id": "knv1a6mwto2c",
+    "title": "against cacophony (feat. Mai)",
+    "artist": "nominomu",
+    "mapper": "Cubilete",
+    "status": "unranked",
+    "bpm": 185,
+    "lastUpdated": "2026-01-27T13:52:06.000Z",
+    "stats": {
+      "plays": 10,
+      "downloads": 0,
+      "favorites": 2
+    },
+    "difficulties": [
+      {
+        "name": "So Phony",
+        "notes": 1331,
+        "holds": 142,
+        "sr": 12.07704007679694
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/knv1a6mwto2c/knv1a6mwto2c.rtm?v=2"
+  },
+  {
+    "id": "dyuqi0bhpnx3",
+    "title": "Autoplay",
+    "artist": "Autoplay",
+    "mapper": "Autoplay",
+    "status": "unranked",
+    "bpm": 0.12120151612125,
+    "lastUpdated": "2026-01-27T10:09:34.000Z",
+    "stats": {
+      "plays": 4,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Autoplay",
+        "notes": 1,
+        "holds": 0,
+        "sr": 2.4634090985468897
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/dyuqi0bhpnx3/dyuqi0bhpnx3.rtm?v=1"
+  },
+  {
+    "id": "dk4aobg1x6z8",
+    "title": "Max 300",
+    "artist": "OMEGA",
+    "mapper": "Aniviuh",
+    "status": "unranked",
+    "bpm": 300.1,
+    "lastUpdated": "2026-01-28T14:02:47.000Z",
+    "stats": {
+      "plays": 4,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Begginner",
+        "notes": 132,
+        "holds": 0,
+        "sr": 1.833786321598137
+      },
+      {
+        "name": "Standard",
+        "notes": 213,
+        "holds": 11,
+        "sr": 5.904846740195649
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/dk4aobg1x6z8/dk4aobg1x6z8.rtm?v=8"
+  },
+  {
+    "id": "a33o1ljk1edd",
+    "title": "The 7th Sense Reversed Remix",
+    "artist": "Hitchhiker x NCT 127",
+    "mapper": "ultramarine",
+    "status": "unranked",
+    "bpm": 108,
+    "lastUpdated": "2026-01-27T04:12:24.000Z",
+    "stats": {
+      "plays": 5,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "The 2nd Sense",
+        "notes": 90,
+        "holds": 20,
+        "sr": 2.552062107782623
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/a33o1ljk1edd/a33o1ljk1edd.rtm?v=3"
+  },
+  {
+    "id": "l93rq4da1xu5",
+    "title": "Galaxy Collapse",
+    "artist": "Kurokotei",
+    "mapper": "ego",
+    "status": "unranked",
+    "bpm": 270,
+    "lastUpdated": "2026-01-27T03:39:14.000Z",
+    "stats": {
+      "plays": 5,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Galaxy/Galactic.",
+        "notes": 8,
+        "holds": 0,
+        "sr": 6.002745256935829
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/l93rq4da1xu5/l93rq4da1xu5.rtm?v=1"
+  },
+  {
+    "id": "g2ii0hqoq86w",
+    "title": "Friends Past Reunited",
+    "artist": "The Caretaker",
+    "mapper": "Mrpolasa",
+    "status": "unranked",
+    "bpm": 94,
+    "lastUpdated": "2026-01-27T01:31:31.000Z",
+    "stats": {
+      "plays": 0,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "the last experience",
+        "notes": 310,
+        "holds": 304,
+        "sr": 3.8338647200394167
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/g2ii0hqoq86w/g2ii0hqoq86w.rtm?v=1"
+  },
+  {
+    "id": "t793qwyns4h8",
+    "title": "No title",
+    "artist": "Reol",
+    "mapper": "malik",
+    "status": "unranked",
+    "bpm": 200,
+    "lastUpdated": "2026-01-26T20:03:39.000Z",
+    "stats": {
+      "plays": 3,
+      "downloads": 0,
+      "favorites": 1
+    },
+    "difficulties": [
+      {
+        "name": "maliks title",
+        "notes": 193,
+        "holds": 25,
+        "sr": 6.567326791169083
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/t793qwyns4h8/t793qwyns4h8.rtm?v=1"
+  },
+  {
+    "id": "9vb2ctbz689k",
+    "title": "Step It",
+    "artist": "Shirobon",
+    "mapper": "MadCatGamer",
+    "status": "unranked",
+    "bpm": 120,
+    "lastUpdated": "2026-01-26T18:09:39.000Z",
+    "stats": {
+      "plays": 2,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Easy",
+        "notes": 194,
+        "holds": 0,
+        "sr": 1.708236856684406
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/9vb2ctbz689k/9vb2ctbz689k.rtm?v=1"
+  },
+  {
+    "id": "77ol72ht91v0",
+    "title": "Synthesis.",
+    "artist": "tn-shi",
+    "mapper": "Happy566",
+    "status": "unranked",
+    "bpm": 180,
+    "lastUpdated": "2026-01-28T11:56:23.000Z",
+    "stats": {
+      "plays": 37,
+      "downloads": 0,
+      "favorites": 4
+    },
+    "difficulties": [
+      {
+        "name": "Synthesis.Recursion - Brofriend?",
+        "notes": 2,
+        "holds": 0,
+        "sr": 1.961409098227085
+      },
+      {
+        "name": "Synthesis.Oracle - ?",
+        "notes": 2,
+        "holds": 0,
+        "sr": 1.961409098227085
+      },
+      {
+        "name": "Synthesis.Irrationality - Fixsy",
+        "notes": 2,
+        "holds": 0,
+        "sr": 1.961409098227085
+      },
+      {
+        "name": "Synthesis.Dimension - ?",
+        "notes": 2,
+        "holds": 0,
+        "sr": 1.961409098227085
+      },
+      {
+        "name": "Synthesis.Diffraction - Happy?",
+        "notes": 2,
+        "holds": 0,
+        "sr": 1.961409098227085
+      },
+      {
+        "name": "Synthesis.Chroma - ?",
+        "notes": 2,
+        "holds": 0,
+        "sr": 1.961409098227085
+      },
+      {
+        "name": "Synthesis.Metacognition - Neph",
+        "notes": 28,
+        "holds": 2,
+        "sr": 4.637175215058599
+      },
+      {
+        "name": "Synthesis.Genisis - Happy",
+        "notes": 97,
+        "holds": 2,
+        "sr": 6.036318588717361
+      },
+      {
+        "name": "Synthesis.Impetus - Happy",
+        "notes": 153,
+        "holds": 9,
+        "sr": 9.762361705721496
+      },
+      {
+        "name": "Synthesis.Acceleration",
+        "notes": 102,
+        "holds": 0,
+        "sr": 11.465598187775615
+      },
+      {
+        "name": "Synthesis.",
+        "notes": 752,
+        "holds": 15,
+        "sr": 15.696495222778532
+      },
+      {
+        "name": "Synthesis.Transcendence - Xiph",
+        "notes": 381,
+        "holds": 2,
+        "sr": 16.341998832310704
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/77ol72ht91v0/77ol72ht91v0.rtm?v=10"
+  },
+  {
+    "id": "1syfd7f4pt14",
+    "title": "Deadlines (yeule Remix)",
+    "artist": "Car Seat Headrest, yeule",
+    "mapper": "popeye",
+    "status": "unranked",
+    "bpm": 116.68,
+    "lastUpdated": "2026-01-26T16:09:44.000Z",
+    "stats": {
+      "plays": 6,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Tutorial",
+        "notes": 543,
+        "holds": 60,
+        "sr": 5.412453621228476
+      },
+      {
+        "name": "O compassion",
+        "notes": 807,
+        "holds": 74,
+        "sr": 8.220026258282989
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/1syfd7f4pt14/1syfd7f4pt14.rtm?v=4"
+  },
+  {
+    "id": "yrshlxdwaw8o",
+    "title": "Letter to the Black World",
+    "artist": "Frog96",
+    "mapper": "Cubilete",
+    "status": "unranked",
+    "bpm": 185,
+    "lastUpdated": "2026-01-28T22:08:46.000Z",
+    "stats": {
+      "plays": 7,
+      "downloads": 0,
+      "favorites": 2
+    },
+    "difficulties": [
+      {
+        "name": "Insane world",
+        "notes": 745,
+        "holds": 35,
+        "sr": 9.421749826676777
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/yrshlxdwaw8o/yrshlxdwaw8o.rtm?v=5"
+  },
+  {
+    "id": "e8468f0msrxr",
+    "title": "&Z (TV size)",
+    "artist": "SawanoHiroyuki[nZk]:mizuki",
+    "mapper": "orangeshortstuff",
+    "status": "unranked",
+    "bpm": 158,
+    "lastUpdated": "2026-01-26T01:10:05.000Z",
+    "stats": {
+      "plays": 1,
+      "downloads": 0,
+      "favorites": 0
+    },
+    "difficulties": [
+      {
+        "name": "Insane",
+        "notes": 184,
+        "holds": 4,
+        "sr": 8.439957658222788
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/e8468f0msrxr/e8468f0msrxr.rtm?v=1"
+  },
+  {
+    "id": "vr71z7bjhkbf",
+    "title": "IGNITE (TV size ver.)",
+    "artist": "Aoi Eir",
+    "mapper": "MegaExE",
+    "status": "unranked",
+    "bpm": 171,
+    "lastUpdated": "2026-01-25T22:00:27.000Z",
+    "stats": {
+      "plays": 6,
+      "downloads": 0,
+      "favorites": 1
+    },
+    "difficulties": [
+      {
+        "name": "normal",
+        "notes": 130,
+        "holds": 35,
+        "sr": 2.3032310010872257
+      }
+    ],
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/vr71z7bjhkbf/vr71z7bjhkbf.rtm?v=1"
   },
   {
     "id": "anoufmqt41z0",
@@ -31,7 +1088,7 @@
     "bpm": 222.22,
     "lastUpdated": "2026-01-25T17:23:28.000Z",
     "stats": {
-      "plays": 6,
+      "plays": 14,
       "downloads": 0,
       "favorites": 1
     },
@@ -54,9 +1111,9 @@
     "bpm": 105.3333,
     "lastUpdated": "2026-01-25T12:09:54.000Z",
     "stats": {
-      "plays": 3,
+      "plays": 6,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -77,7 +1134,7 @@
     "bpm": 255.5,
     "lastUpdated": "2026-01-25T11:54:55.000Z",
     "stats": {
-      "plays": 7,
+      "plays": 19,
       "downloads": 0,
       "favorites": 0
     },
@@ -100,7 +1157,7 @@
     "bpm": 105,
     "lastUpdated": "2026-01-25T10:24:13.000Z",
     "stats": {
-      "plays": 1,
+      "plays": 3,
       "downloads": 0,
       "favorites": 0
     },
@@ -123,7 +1180,7 @@
     "bpm": 120,
     "lastUpdated": "2026-01-25T05:12:50.000Z",
     "stats": {
-      "plays": 14,
+      "plays": 29,
       "downloads": 0,
       "favorites": 1
     },
@@ -181,7 +1238,7 @@
     "bpm": 120,
     "lastUpdated": "2026-01-25T02:47:47.000Z",
     "stats": {
-      "plays": 3,
+      "plays": 5,
       "downloads": 0,
       "favorites": 0
     },
@@ -204,7 +1261,7 @@
     "bpm": 240,
     "lastUpdated": "2026-01-25T00:03:37.000Z",
     "stats": {
-      "plays": 9,
+      "plays": 13,
       "downloads": 0,
       "favorites": 1
     },
@@ -227,7 +1284,7 @@
     "bpm": 120,
     "lastUpdated": "2026-01-24T21:27:21.000Z",
     "stats": {
-      "plays": 0,
+      "plays": 4,
       "downloads": 0,
       "favorites": 0
     },
@@ -248,9 +1305,9 @@
     "mapper": "Xiphrios",
     "status": "unranked",
     "bpm": 185,
-    "lastUpdated": "2026-01-25T15:24:46.000Z",
+    "lastUpdated": "2026-01-26T16:25:49.000Z",
     "stats": {
-      "plays": 5,
+      "plays": 22,
       "downloads": 0,
       "favorites": 0
     },
@@ -260,6 +1317,12 @@
         "notes": 113,
         "holds": 74,
         "sr": 2.2866074581901272
+      },
+      {
+        "name": "Suki's HARD",
+        "notes": 535,
+        "holds": 30,
+        "sr": 5.5662133259844335
       },
       {
         "name": "Fakundddo's HYPER",
@@ -274,7 +1337,7 @@
         "sr": 19.866591085534914
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/lmwr458fuzzi/lmwr458fuzzi.rtm?v=11"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/lmwr458fuzzi/lmwr458fuzzi.rtm?v=12"
   },
   {
     "id": "i06amcdmb49e",
@@ -308,7 +1371,7 @@
     "bpm": 208.25,
     "lastUpdated": "2026-01-24T16:23:52.000Z",
     "stats": {
-      "plays": 6,
+      "plays": 8,
       "downloads": 0,
       "favorites": 0
     },
@@ -331,9 +1394,9 @@
     "bpm": 124,
     "lastUpdated": "2026-01-24T23:10:15.000Z",
     "stats": {
-      "plays": 8,
+      "plays": 9,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -354,9 +1417,9 @@
     "bpm": 184,
     "lastUpdated": "2026-01-24T18:24:04.000Z",
     "stats": {
-      "plays": 3,
+      "plays": 11,
       "downloads": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "difficulties": [
       {
@@ -377,9 +1440,9 @@
     "bpm": 130,
     "lastUpdated": "2026-01-25T05:42:48.000Z",
     "stats": {
-      "plays": 9,
+      "plays": 16,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 3
     },
     "difficulties": [
       {
@@ -406,7 +1469,7 @@
     "bpm": 125,
     "lastUpdated": "2026-01-24T13:16:49.000Z",
     "stats": {
-      "plays": 8,
+      "plays": 11,
       "downloads": 0,
       "favorites": 1
     },
@@ -491,9 +1554,9 @@
     "mapper": "Piger",
     "status": "unranked",
     "bpm": 128,
-    "lastUpdated": "2026-01-25T19:14:58.000Z",
+    "lastUpdated": "2026-01-26T22:28:35.000Z",
     "stats": {
-      "plays": 9,
+      "plays": 13,
       "downloads": 0,
       "favorites": 2
     },
@@ -505,7 +1568,7 @@
         "sr": 5.588003679143565
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/cp99bgmh1ys8/cp99bgmh1ys8.rtm?v=5"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/cp99bgmh1ys8/cp99bgmh1ys8.rtm?v=6"
   },
   {
     "id": "bdgkpqogj92h",
@@ -514,21 +1577,21 @@
     "mapper": "Aniviuh",
     "status": "unranked",
     "bpm": 200,
-    "lastUpdated": "2026-01-24T02:22:36.000Z",
+    "lastUpdated": "2026-01-27T01:05:34.000Z",
     "stats": {
-      "plays": 3,
+      "plays": 4,
       "downloads": 0,
       "favorites": 1
     },
     "difficulties": [
       {
         "name": "HARD",
-        "notes": 1236,
+        "notes": 1234,
         "holds": 51,
-        "sr": 7.776356359478815
+        "sr": 7.7715311087260766
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/bdgkpqogj92h/bdgkpqogj92h.rtm?v=2"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/bdgkpqogj92h/bdgkpqogj92h.rtm?v=3"
   },
   {
     "id": "6qrefoxoc35c",
@@ -585,7 +1648,7 @@
     "bpm": 185,
     "lastUpdated": "2026-01-23T21:12:27.000Z",
     "stats": {
-      "plays": 3,
+      "plays": 7,
       "downloads": 0,
       "favorites": 0
     },
@@ -620,25 +1683,25 @@
   {
     "id": "ynl8gtc5xqeo",
     "title": "RADIANT FORCE",
-    "artist": "Elements Garden",
+    "artist": "Symphogear Cast",
     "mapper": "Yomia",
     "status": "unranked",
     "bpm": 155,
-    "lastUpdated": "2026-01-25T09:45:52.000Z",
+    "lastUpdated": "2026-01-26T14:00:37.000Z",
     "stats": {
-      "plays": 12,
+      "plays": 15,
       "downloads": 0,
       "favorites": 0
     },
     "difficulties": [
       {
         "name": "Miracle",
-        "notes": 992,
-        "holds": 66,
-        "sr": 9.790340903179498
+        "notes": 1465,
+        "holds": 104,
+        "sr": 9.58703363223104
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ynl8gtc5xqeo/ynl8gtc5xqeo.rtm?v=6"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ynl8gtc5xqeo/ynl8gtc5xqeo.rtm?v=7"
   },
   {
     "id": "kgp4hinsxyh7",
@@ -670,27 +1733,45 @@
     "mapper": "Neph",
     "status": "unranked",
     "bpm": 134,
-    "lastUpdated": "2026-01-25T15:19:15.000Z",
+    "lastUpdated": "2026-01-27T10:57:42.000Z",
     "stats": {
-      "plays": 4,
+      "plays": 14,
       "downloads": 0,
       "favorites": 2
     },
     "difficulties": [
       {
+        "name": "Aniviuh's Easy",
+        "notes": 109,
+        "holds": 10,
+        "sr": 1.551115641044622
+      },
+      {
+        "name": "Normal",
+        "notes": 190,
+        "holds": 24,
+        "sr": 3.213913432012683
+      },
+      {
         "name": "Hard",
-        "notes": 212,
+        "notes": 213,
         "holds": 8,
-        "sr": 3.747169564781313
+        "sr": 3.815504890118939
       },
       {
         "name": "Cat vs Rat",
         "notes": 222,
         "holds": 24,
         "sr": 4.8215896473648465
+      },
+      {
+        "name": "Happy's Jumpies",
+        "notes": 589,
+        "holds": 9,
+        "sr": 9.69780765313765
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/o82vkynm82do/o82vkynm82do.rtm?v=5"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/o82vkynm82do/o82vkynm82do.rtm?v=8"
   },
   {
     "id": "anlslprpm2ou",
@@ -699,21 +1780,21 @@
     "mapper": "extra",
     "status": "unranked",
     "bpm": 185,
-    "lastUpdated": "2026-01-25T08:05:55.000Z",
+    "lastUpdated": "2026-01-27T12:51:01.000Z",
     "stats": {
-      "plays": 6,
+      "plays": 10,
       "downloads": 0,
       "favorites": 0
     },
     "difficulties": [
       {
-        "name": "Fly me to the moon",
-        "notes": 200,
-        "holds": 26,
-        "sr": 8.761974490339336
+        "name": "Fly me to the moon [WIP]",
+        "notes": 323,
+        "holds": 63,
+        "sr": 10.02236617362556
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/anlslprpm2ou/anlslprpm2ou.rtm?v=4"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/anlslprpm2ou/anlslprpm2ou.rtm?v=8"
   },
   {
     "id": "l45h7u15silx",
@@ -745,9 +1826,9 @@
     "mapper": "Cyanara",
     "status": "unranked",
     "bpm": 173,
-    "lastUpdated": "2026-01-25T14:41:25.000Z",
+    "lastUpdated": "2026-01-27T13:46:59.000Z",
     "stats": {
-      "plays": 19,
+      "plays": 26,
       "downloads": 0,
       "favorites": 0
     },
@@ -756,16 +1837,16 @@
         "name": "Insane",
         "notes": 603,
         "holds": 102,
-        "sr": 5.4777463365767325
+        "sr": 5.5640100584125864
       },
       {
         "name": "Bunny WIP",
-        "notes": 92,
-        "holds": 25,
-        "sr": 6.983701542175476
+        "notes": 746,
+        "holds": 178,
+        "sr": 8.99839062750553
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ky1hsut99xuk/ky1hsut99xuk.rtm?v=10"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ky1hsut99xuk/ky1hsut99xuk.rtm?v=17"
   },
   {
     "id": "772v6xovxpqh",
@@ -774,9 +1855,9 @@
     "mapper": "parabeetle",
     "status": "unranked",
     "bpm": 68,
-    "lastUpdated": "2026-01-25T19:52:38.000Z",
+    "lastUpdated": "2026-01-27T22:28:15.000Z",
     "stats": {
-      "plays": 30,
+      "plays": 34,
       "downloads": 0,
       "favorites": 0
     },
@@ -801,12 +1882,12 @@
       },
       {
         "name": "Stella",
-        "notes": 179,
-        "holds": 145,
-        "sr": 2.517381999055967
+        "notes": 192,
+        "holds": 150,
+        "sr": 2.585604652051464
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/772v6xovxpqh/772v6xovxpqh.rtm?v=15"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/772v6xovxpqh/772v6xovxpqh.rtm?v=23"
   },
   {
     "id": "63qo39dhilvw",
@@ -840,7 +1921,7 @@
     "bpm": 132,
     "lastUpdated": "2026-01-22T23:44:16.000Z",
     "stats": {
-      "plays": 3,
+      "plays": 4,
       "downloads": 0,
       "favorites": 0
     },
@@ -863,7 +1944,7 @@
     "bpm": 120,
     "lastUpdated": "2026-01-22T14:55:10.000Z",
     "stats": {
-      "plays": 7,
+      "plays": 12,
       "downloads": 0,
       "favorites": 0
     },
@@ -904,7 +1985,7 @@
     "bpm": 128,
     "lastUpdated": "2026-01-22T14:34:39.000Z",
     "stats": {
-      "plays": 8,
+      "plays": 12,
       "downloads": 0,
       "favorites": 0
     },
@@ -927,9 +2008,9 @@
     "bpm": 211,
     "lastUpdated": "2026-01-24T09:33:34.000Z",
     "stats": {
-      "plays": 28,
+      "plays": 39,
       "downloads": 0,
-      "favorites": 2
+      "favorites": 4
     },
     "difficulties": [
       {
@@ -948,21 +2029,21 @@
     "mapper": "lol",
     "status": "unranked",
     "bpm": 90,
-    "lastUpdated": "2026-01-24T07:33:49.000Z",
+    "lastUpdated": "2026-01-26T05:50:46.000Z",
     "stats": {
-      "plays": 6,
+      "plays": 8,
       "downloads": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "difficulties": [
       {
         "name": "Hard",
-        "notes": 471,
+        "notes": 474,
         "holds": 68,
-        "sr": 4.601465443129569
+        "sr": 4.611120223874809
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ec33cvgq47cf/ec33cvgq47cf.rtm?v=4"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ec33cvgq47cf/ec33cvgq47cf.rtm?v=5"
   },
   {
     "id": "ufsx9movxf0t",
@@ -1007,26 +2088,26 @@
   },
   {
     "id": "c7jer385k8dt",
-    "title": "TEST ME (TV Ver.)",
+    "title": "TEST ME (TV Size)",
     "artist": "CHANMINA",
     "mapper": "Wiiinson",
     "status": "unranked",
     "bpm": 130,
-    "lastUpdated": "2026-01-22T12:45:16.000Z",
+    "lastUpdated": "2026-01-27T01:45:39.000Z",
     "stats": {
-      "plays": 47,
+      "plays": 48,
       "downloads": 0,
       "favorites": 1
     },
     "difficulties": [
       {
-        "name": "Normal",
-        "notes": 232,
-        "holds": 30,
-        "sr": 3.9592691545236307
+        "name": "Hard",
+        "notes": 236,
+        "holds": 26,
+        "sr": 4.591144578582268
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/c7jer385k8dt/c7jer385k8dt.rtm?v=8"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/c7jer385k8dt/c7jer385k8dt.rtm?v=10"
   },
   {
     "id": "zqj3pxx4bh0v",
@@ -1066,9 +2147,9 @@
     "bpm": 360.3,
     "lastUpdated": "2026-01-21T22:23:47.000Z",
     "stats": {
-      "plays": 1,
+      "plays": 2,
       "downloads": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "difficulties": [
       {
@@ -1087,9 +2168,9 @@
     "mapper": "Yomia",
     "status": "unranked",
     "bpm": 105,
-    "lastUpdated": "2026-01-25T13:28:39.000Z",
+    "lastUpdated": "2026-01-26T21:01:19.000Z",
     "stats": {
-      "plays": 35,
+      "plays": 36,
       "downloads": 0,
       "favorites": 0
     },
@@ -1125,7 +2206,7 @@
         "sr": 8.608103661627915
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/1kslrljllsc2/1kslrljllsc2.rtm?v=11"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/1kslrljllsc2/1kslrljllsc2.rtm?v=12"
   },
   {
     "id": "3qojuggomvvp",
@@ -1263,9 +2344,9 @@
     "bpm": 185,
     "lastUpdated": "2026-01-20T18:17:01.000Z",
     "stats": {
-      "plays": 22,
+      "plays": 29,
       "downloads": 0,
-      "favorites": 3
+      "favorites": 4
     },
     "difficulties": [
       {
@@ -1286,7 +2367,7 @@
     "bpm": 130,
     "lastUpdated": "2026-01-20T22:51:49.000Z",
     "stats": {
-      "plays": 12,
+      "plays": 18,
       "downloads": 0,
       "favorites": 1
     },
@@ -1309,7 +2390,7 @@
     "bpm": 138,
     "lastUpdated": "2026-01-22T10:03:51.000Z",
     "stats": {
-      "plays": 14,
+      "plays": 18,
       "downloads": 0,
       "favorites": 2
     },
@@ -1330,11 +2411,11 @@
     "mapper": "parabeetle",
     "status": "unranked",
     "bpm": 73.9,
-    "lastUpdated": "2026-01-23T22:45:40.000Z",
+    "lastUpdated": "2026-01-28T16:57:29.000Z",
     "stats": {
-      "plays": 38,
+      "plays": 50,
       "downloads": 0,
-      "favorites": 5
+      "favorites": 6
     },
     "difficulties": [
       {
@@ -1360,9 +2441,15 @@
         "notes": 160,
         "holds": 4,
         "sr": 3.125191634942653
+      },
+      {
+        "name": "bobthaboy's Hardcore",
+        "notes": 221,
+        "holds": 27,
+        "sr": 4.125014097718798
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/g0gyjyc2dwyo/g0gyjyc2dwyo.rtm?v=6"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/g0gyjyc2dwyo/g0gyjyc2dwyo.rtm?v=7"
   },
   {
     "id": "d2dtf0j5sn10",
@@ -1373,9 +2460,9 @@
     "bpm": 132,
     "lastUpdated": "2026-01-20T11:00:36.000Z",
     "stats": {
-      "plays": 4,
+      "plays": 5,
       "downloads": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "difficulties": [
       {
@@ -1396,7 +2483,7 @@
     "bpm": 200,
     "lastUpdated": "2026-01-20T03:28:02.000Z",
     "stats": {
-      "plays": 13,
+      "plays": 16,
       "downloads": 0,
       "favorites": 2
     },
@@ -1669,7 +2756,7 @@
     "bpm": 92.5,
     "lastUpdated": "2026-01-23T08:22:09.000Z",
     "stats": {
-      "plays": 5,
+      "plays": 6,
       "downloads": 0,
       "favorites": 1
     },
@@ -1780,11 +2867,11 @@
     "title": "Your Best Friend",
     "artist": "toby fox",
     "mapper": "mqno",
-    "status": "unranked",
+    "status": "qualified",
     "bpm": 124,
     "lastUpdated": "2026-01-21T15:04:33.000Z",
     "stats": {
-      "plays": 104,
+      "plays": 190,
       "downloads": 0,
       "favorites": 0
     },
@@ -1825,7 +2912,7 @@
     "bpm": 131,
     "lastUpdated": "2026-01-24T14:05:07.000Z",
     "stats": {
-      "plays": 23,
+      "plays": 26,
       "downloads": 0,
       "favorites": 1
     },
@@ -1846,27 +2933,33 @@
     "mapper": "Fakundddo",
     "status": "unranked",
     "bpm": 162,
-    "lastUpdated": "2026-01-20T01:03:51.000Z",
+    "lastUpdated": "2026-01-29T04:51:03.000Z",
     "stats": {
-      "plays": 4,
+      "plays": 5,
       "downloads": 0,
       "favorites": 2
     },
     "difficulties": [
       {
+        "name": "normal¡normal¡normal¡normal¡normal¡",
+        "notes": 349,
+        "holds": 190,
+        "sr": 4.369956029400756
+      },
+      {
         "name": "hard¡hard¡hard¡hard¡hard¡",
-        "notes": 526,
-        "holds": 27,
-        "sr": 5.44013295419286
+        "notes": 529,
+        "holds": 23,
+        "sr": 5.4587818000972606
       },
       {
         "name": "insane¡insane¡insane¡insane¡insane¡",
-        "notes": 699,
-        "holds": 18,
+        "notes": 702,
+        "holds": 23,
         "sr": 8.10253475712191
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/bwbnlzvs4not/bwbnlzvs4not.rtm?v=3"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/bwbnlzvs4not/bwbnlzvs4not.rtm?v=4"
   },
   {
     "id": "2tj78mbsmgoj",
@@ -2040,9 +3133,9 @@
     "bpm": 162,
     "lastUpdated": "2026-01-17T20:00:08.000Z",
     "stats": {
-      "plays": 18,
+      "plays": 22,
       "downloads": 0,
-      "favorites": 2
+      "favorites": 3
     },
     "difficulties": [
       {
@@ -2098,7 +3191,7 @@
     "bpm": 200,
     "lastUpdated": "2026-01-17T20:42:53.000Z",
     "stats": {
-      "plays": 5,
+      "plays": 6,
       "downloads": 0,
       "favorites": 0
     },
@@ -2119,57 +3212,63 @@
     "mapper": "TheDedFox",
     "status": "unranked",
     "bpm": 240,
-    "lastUpdated": "2026-01-17T23:30:23.000Z",
+    "lastUpdated": "2026-01-26T04:06:04.000Z",
     "stats": {
-      "plays": 11,
+      "plays": 12,
       "downloads": 0,
       "favorites": 1
     },
     "difficulties": [
       {
+        "name": "VeryVeryEasy",
+        "notes": 43,
+        "holds": 18,
+        "sr": 2.040352525547657
+      },
+      {
         "name": "MiniHoldSlop",
         "notes": 33,
         "holds": 32,
-        "sr": 2.193272282034081
-      },
-      {
-        "name": "FunkyLittleEasy",
-        "notes": 43,
-        "holds": 18,
-        "sr": 2.3764105885790356
+        "sr": 2.0576059553103234
       },
       {
         "name": "NoHoldHard",
         "notes": 147,
         "holds": 0,
-        "sr": 4.132946756662997
+        "sr": 3.527256283703765
       },
       {
         "name": "HoldSlop",
         "notes": 131,
         "holds": 131,
-        "sr": 6.043634653780446
+        "sr": 4.7006047307181245
+      },
+      {
+        "name": "SDFJKL",
+        "notes": 319,
+        "holds": 0,
+        "sr": 4.9416870693500785
       },
       {
         "name": "ExtremeDifficulty",
         "notes": 263,
         "holds": 0,
-        "sr": 9.624921833359968
+        "sr": 8.442913888912253
       },
       {
         "name": "NoFillerNoSimplificationDFJK",
         "notes": 317,
         "holds": 0,
-        "sr": 10.21438520888596
+        "sr": 9.338866476695735
       },
       {
         "name": "NoFillerNoSimplification",
         "notes": 347,
         "holds": 0,
-        "sr": 16.233641291057058
+        "sr": 14.84218632325217
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/2ic8iovmu07t/2ic8iovmu07t.rtm?v=4"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/2ic8iovmu07t/2ic8iovmu07t.rtm?v=5"
   },
   {
     "id": "69bwpycbez4n",
@@ -2232,7 +3331,7 @@
     "bpm": 138,
     "lastUpdated": "2026-01-17T04:49:50.000Z",
     "stats": {
-      "plays": 6,
+      "plays": 8,
       "downloads": 0,
       "favorites": 1
     },
@@ -2302,7 +3401,7 @@
     "bpm": 141.5,
     "lastUpdated": "2026-01-16T18:08:04.000Z",
     "stats": {
-      "plays": 3,
+      "plays": 5,
       "downloads": 0,
       "favorites": 0
     },
@@ -2325,7 +3424,7 @@
     "bpm": 260,
     "lastUpdated": "2026-01-25T15:38:50.000Z",
     "stats": {
-      "plays": 43,
+      "plays": 44,
       "downloads": 0,
       "favorites": 4
     },
@@ -2412,7 +3511,7 @@
     "bpm": 140,
     "lastUpdated": "2026-01-16T08:13:04.000Z",
     "stats": {
-      "plays": 3,
+      "plays": 6,
       "downloads": 0,
       "favorites": 0
     },
@@ -2453,9 +3552,9 @@
     "bpm": 120,
     "lastUpdated": "2026-01-16T07:28:30.000Z",
     "stats": {
-      "plays": 84,
+      "plays": 106,
       "downloads": 0,
-      "favorites": 6
+      "favorites": 7
     },
     "difficulties": [
       {
@@ -2476,9 +3575,9 @@
     "bpm": 128,
     "lastUpdated": "2026-01-21T00:00:42.000Z",
     "stats": {
-      "plays": 1095,
+      "plays": 1436,
       "downloads": 0,
-      "favorites": 10
+      "favorites": 13
     },
     "difficulties": [
       {
@@ -2540,7 +3639,7 @@
     "bpm": 211.6,
     "lastUpdated": "2026-01-24T11:18:24.000Z",
     "stats": {
-      "plays": 15,
+      "plays": 16,
       "downloads": 0,
       "favorites": 0
     },
@@ -2577,13 +3676,13 @@
     "title": "Nobosemon HERO feat. Kagamine Len & Zundamon",
     "artist": "ChibaNyan & Giga",
     "mapper": "Piger",
-    "status": "qualified",
+    "status": "ranked",
     "bpm": 155,
-    "lastUpdated": "2026-01-24T05:16:38.000Z",
+    "lastUpdated": "2026-01-27T17:04:31.000Z",
     "stats": {
-      "plays": 51,
+      "plays": 66,
       "downloads": 0,
-      "favorites": 2
+      "favorites": 4
     },
     "difficulties": [
       {
@@ -2627,7 +3726,7 @@
     "bpm": 170,
     "lastUpdated": "2026-01-22T11:50:50.000Z",
     "stats": {
-      "plays": 38,
+      "plays": 42,
       "downloads": 0,
       "favorites": 1
     },
@@ -2656,7 +3755,7 @@
     "bpm": 110,
     "lastUpdated": "2026-01-19T22:07:57.000Z",
     "stats": {
-      "plays": 50,
+      "plays": 55,
       "downloads": 0,
       "favorites": 4
     },
@@ -2679,9 +3778,9 @@
     "bpm": 78,
     "lastUpdated": "2026-01-17T04:06:44.000Z",
     "stats": {
-      "plays": 812,
+      "plays": 939,
       "downloads": 0,
-      "favorites": 8
+      "favorites": 9
     },
     "difficulties": [
       {
@@ -2755,9 +3854,9 @@
     "bpm": 134,
     "lastUpdated": "2026-01-15T13:38:26.000Z",
     "stats": {
-      "plays": 12,
+      "plays": 15,
       "downloads": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "difficulties": [
       {
@@ -2778,7 +3877,7 @@
     "bpm": 200,
     "lastUpdated": "2026-01-17T15:23:47.000Z",
     "stats": {
-      "plays": 13,
+      "plays": 14,
       "downloads": 0,
       "favorites": 0
     },
@@ -2801,9 +3900,9 @@
     "bpm": 72,
     "lastUpdated": "2026-01-16T10:51:24.000Z",
     "stats": {
-      "plays": 16,
+      "plays": 17,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -2824,7 +3923,7 @@
     "bpm": 126,
     "lastUpdated": "2026-01-14T13:47:06.000Z",
     "stats": {
-      "plays": 13,
+      "plays": 14,
       "downloads": 0,
       "favorites": 0
     },
@@ -2845,7 +3944,7 @@
     "mapper": "Yomia",
     "status": "unranked",
     "bpm": 120,
-    "lastUpdated": "2026-01-14T13:45:41.000Z",
+    "lastUpdated": "2026-01-27T12:56:24.000Z",
     "stats": {
       "plays": 1,
       "downloads": 0,
@@ -2853,13 +3952,19 @@
     },
     "difficulties": [
       {
-        "name": "Easy",
+        "name": "Probably will start this one over again",
         "notes": 162,
         "holds": 84,
-        "sr": 2.7502335050114968
+        "sr": 3.012160505488782
+      },
+      {
+        "name": "Pact",
+        "notes": 293,
+        "holds": 63,
+        "sr": 8.619716860162828
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/nc91bb7n69yp/nc91bb7n69yp.rtm?v=1"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/nc91bb7n69yp/nc91bb7n69yp.rtm?v=3"
   },
   {
     "id": "7q4vp7qoyjm4",
@@ -2895,7 +4000,7 @@
     "stats": {
       "plays": 26,
       "downloads": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "difficulties": [
       {
@@ -2951,9 +4056,9 @@
     "bpm": 114,
     "lastUpdated": "2026-01-15T05:17:42.000Z",
     "stats": {
-      "plays": 92,
+      "plays": 93,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -2974,7 +4079,7 @@
     "bpm": 173,
     "lastUpdated": "2026-01-15T05:18:35.000Z",
     "stats": {
-      "plays": 15,
+      "plays": 16,
       "downloads": 0,
       "favorites": 1
     },
@@ -3051,7 +4156,7 @@
     "stats": {
       "plays": 0,
       "downloads": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "difficulties": [
       {
@@ -3095,7 +4200,7 @@
     "bpm": 162.5,
     "lastUpdated": "2026-01-13T21:50:28.000Z",
     "stats": {
-      "plays": 62,
+      "plays": 66,
       "downloads": 0,
       "favorites": 1
     },
@@ -3118,7 +4223,7 @@
     "bpm": 148.5,
     "lastUpdated": "2026-01-17T04:57:58.000Z",
     "stats": {
-      "plays": 59,
+      "plays": 64,
       "downloads": 0,
       "favorites": 1
     },
@@ -3219,11 +4324,11 @@
     "title": "Lost Woods",
     "artist": "Koji Kondo",
     "mapper": "mqno",
-    "status": "unranked",
+    "status": "qualified",
     "bpm": 140,
     "lastUpdated": "2026-01-25T02:57:23.000Z",
     "stats": {
-      "plays": 276,
+      "plays": 308,
       "downloads": 0,
       "favorites": 3
     },
@@ -3270,7 +4375,7 @@
     "bpm": 170,
     "lastUpdated": "2026-01-13T10:43:00.000Z",
     "stats": {
-      "plays": 9,
+      "plays": 10,
       "downloads": 0,
       "favorites": 0
     },
@@ -3374,7 +4479,7 @@
     "bpm": 132.25,
     "lastUpdated": "2026-01-13T12:09:37.000Z",
     "stats": {
-      "plays": 7,
+      "plays": 8,
       "downloads": 0,
       "favorites": 2
     },
@@ -3397,7 +4502,7 @@
     "bpm": 129,
     "lastUpdated": "2026-01-13T02:16:29.000Z",
     "stats": {
-      "plays": 21,
+      "plays": 23,
       "downloads": 0,
       "favorites": 0
     },
@@ -3422,7 +4527,7 @@
     "stats": {
       "plays": 3,
       "downloads": 0,
-      "favorites": 3
+      "favorites": 4
     },
     "difficulties": [
       {
@@ -3547,7 +4652,7 @@
     "bpm": 140,
     "lastUpdated": "2026-01-14T19:23:40.000Z",
     "stats": {
-      "plays": 4,
+      "plays": 6,
       "downloads": 0,
       "favorites": 0
     },
@@ -3570,9 +4675,9 @@
     "bpm": 175,
     "lastUpdated": "2026-01-24T04:00:40.000Z",
     "stats": {
-      "plays": 67,
+      "plays": 77,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -3645,9 +4750,9 @@
     "bpm": 175,
     "lastUpdated": "2026-01-18T04:56:21.000Z",
     "stats": {
-      "plays": 1280,
+      "plays": 1500,
       "downloads": 0,
-      "favorites": 17
+      "favorites": 20
     },
     "difficulties": [
       {
@@ -3684,45 +4789,51 @@
     "mapper": "goink",
     "status": "unranked",
     "bpm": 142,
-    "lastUpdated": "2026-01-21T05:59:12.000Z",
+    "lastUpdated": "2026-01-29T03:44:20.000Z",
     "stats": {
-      "plays": 107,
+      "plays": 122,
       "downloads": 0,
-      "favorites": 4
+      "favorites": 6
     },
     "difficulties": [
       {
-        "name": "Beginner :3",
+        "name": "Super Beginner :3",
         "notes": 46,
         "holds": 19,
-        "sr": 0.97840114351766
+        "sr": 0.9553799400738788
+      },
+      {
+        "name": "Beginner :3",
+        "notes": 65,
+        "holds": 27,
+        "sr": 1.4612730357772579
       },
       {
         "name": "Easy :3",
-        "notes": 65,
-        "holds": 27,
-        "sr": 1.4412493756500175
+        "notes": 97,
+        "holds": 32,
+        "sr": 1.925550065258046
       },
       {
-        "name": "Nyantermediate :3",
-        "notes": 96,
-        "holds": 33,
-        "sr": 1.8834535729367383
+        "name": "Insaneyan :3",
+        "notes": 113,
+        "holds": 67,
+        "sr": 4.423415243398823
       },
       {
-        "name": "nya's nyansane :3",
-        "notes": 321,
+        "name": "nya's Expert :3",
+        "notes": 322,
         "holds": 134,
-        "sr": 8.081080520417382
+        "sr": 8.107890693270031
       },
       {
         "name": "Nyan :3",
         "notes": 449,
         "holds": 0,
-        "sr": 9.280503276377699
+        "sr": 9.413081894611667
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ja4d5vav1sad/ja4d5vav1sad.rtm?v=11"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/ja4d5vav1sad/ja4d5vav1sad.rtm?v=13"
   },
   {
     "id": "yxetmk1zoaex",
@@ -3733,9 +4844,9 @@
     "bpm": 190,
     "lastUpdated": "2026-01-15T22:13:52.000Z",
     "stats": {
-      "plays": 91,
+      "plays": 103,
       "downloads": 0,
-      "favorites": 5
+      "favorites": 6
     },
     "difficulties": [
       {
@@ -3834,11 +4945,11 @@
     "title": "Notion",
     "artist": "The Rare Occasions",
     "mapper": "Lazi",
-    "status": "unranked",
+    "status": "qualified",
     "bpm": 158,
     "lastUpdated": "2026-01-25T21:11:23.000Z",
     "stats": {
-      "plays": 8,
+      "plays": 9,
       "downloads": 0,
       "favorites": 1
     },
@@ -3886,13 +4997,13 @@
     "title": "Song That Might Play When You Fight Sans",
     "artist": "toby fox",
     "mapper": "mqno",
-    "status": "qualified",
+    "status": "unranked",
     "bpm": 240,
-    "lastUpdated": "2026-01-22T22:33:00.000Z",
+    "lastUpdated": "2026-01-28T17:05:20.000Z",
     "stats": {
-      "plays": 174,
+      "plays": 205,
       "downloads": 0,
-      "favorites": 3
+      "favorites": 5
     },
     "difficulties": [
       {
@@ -3911,10 +5022,10 @@
         "name": "Map That Might Be Your Top Play",
         "notes": 265,
         "holds": 7,
-        "sr": 7.3228095075767845
+        "sr": 7.322764811613873
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/k6qeoxxrfgkq/k6qeoxxrfgkq.rtm?v=13"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/k6qeoxxrfgkq/k6qeoxxrfgkq.rtm?v=14"
   },
   {
     "id": "9wubeh1inflz",
@@ -3925,9 +5036,9 @@
     "bpm": 112.68,
     "lastUpdated": "2026-01-12T22:44:12.000Z",
     "stats": {
-      "plays": 25,
+      "plays": 28,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -3960,7 +5071,7 @@
     "bpm": 172,
     "lastUpdated": "2026-01-11T18:05:48.000Z",
     "stats": {
-      "plays": 12,
+      "plays": 13,
       "downloads": 0,
       "favorites": 2
     },
@@ -3983,7 +5094,7 @@
     "bpm": 165,
     "lastUpdated": "2026-01-12T11:40:36.000Z",
     "stats": {
-      "plays": 12,
+      "plays": 13,
       "downloads": 0,
       "favorites": 2
     },
@@ -4047,9 +5158,9 @@
     "bpm": 220,
     "lastUpdated": "2026-01-17T19:59:09.000Z",
     "stats": {
-      "plays": 30,
+      "plays": 35,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -4333,11 +5444,11 @@
     "title": "Harebare Fanfare",
     "artist": "mimimemeMIMI",
     "mapper": "Neph",
-    "status": "unranked",
+    "status": "qualified",
     "bpm": 168,
-    "lastUpdated": "2026-01-25T13:47:30.000Z",
+    "lastUpdated": "2026-01-27T00:47:11.000Z",
     "stats": {
-      "plays": 20,
+      "plays": 36,
       "downloads": 0,
       "favorites": 0
     },
@@ -4350,9 +5461,9 @@
       },
       {
         "name": "Normal",
-        "notes": 191,
+        "notes": 184,
         "holds": 14,
-        "sr": 2.445062120262771
+        "sr": 2.439377553363276
       },
       {
         "name": "Hard",
@@ -4367,7 +5478,7 @@
         "sr": 5.687398945481464
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/33slm8w01lsr/33slm8w01lsr.rtm?v=13"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/33slm8w01lsr/33slm8w01lsr.rtm?v=16"
   },
   {
     "id": "pd9mczfrkkn9",
@@ -4405,29 +5516,6 @@
     "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/pd9mczfrkkn9/pd9mczfrkkn9.rtm?v=5"
   },
   {
-    "id": "f6lqa0ek6txc",
-    "title": "Must Be Dreaming",
-    "artist": "Frou Frou",
-    "mapper": "popeye",
-    "status": "unranked",
-    "bpm": 148,
-    "lastUpdated": "2026-01-12T17:27:09.000Z",
-    "stats": {
-      "plays": 6,
-      "downloads": 0,
-      "favorites": 0
-    },
-    "difficulties": [
-      {
-        "name": "Insane",
-        "notes": 708,
-        "holds": 76,
-        "sr": 5.326286272194537
-      }
-    ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/f6lqa0ek6txc/f6lqa0ek6txc.rtm?v=13"
-  },
-  {
     "id": "ywiez4i866dy",
     "title": "INTERNET GIRL - LIVE",
     "artist": "KATSEYE",
@@ -4436,7 +5524,7 @@
     "bpm": 130,
     "lastUpdated": "2026-01-12T00:34:31.000Z",
     "stats": {
-      "plays": 5,
+      "plays": 6,
       "downloads": 0,
       "favorites": 4
     },
@@ -4477,9 +5565,9 @@
     "bpm": 170,
     "lastUpdated": "2026-01-12T07:16:07.000Z",
     "stats": {
-      "plays": 301,
+      "plays": 355,
       "downloads": 0,
-      "favorites": 12
+      "favorites": 16
     },
     "difficulties": [
       {
@@ -4541,7 +5629,7 @@
     "bpm": 147,
     "lastUpdated": "2026-01-12T03:10:57.000Z",
     "stats": {
-      "plays": 27,
+      "plays": 31,
       "downloads": 0,
       "favorites": 2
     },
@@ -4562,7 +5650,7 @@
     "mapper": "randgamor",
     "status": "unranked",
     "bpm": 172,
-    "lastUpdated": "2026-01-22T01:40:45.000Z",
+    "lastUpdated": "2026-01-26T20:16:52.000Z",
     "stats": {
       "plays": 32,
       "downloads": 0,
@@ -4571,30 +5659,30 @@
     "difficulties": [
       {
         "name": "Normal",
-        "notes": 134,
-        "holds": 9,
-        "sr": 3.04251955509885
+        "notes": 119,
+        "holds": 30,
+        "sr": 3.047090017767382
       },
       {
         "name": "Advanced",
-        "notes": 113,
-        "holds": 26,
-        "sr": 3.3945990312261873
+        "notes": 131,
+        "holds": 9,
+        "sr": 3.4308473119192437
       },
       {
         "name": "Insane",
-        "notes": 140,
-        "holds": 18,
-        "sr": 6.535909002681905
+        "notes": 121,
+        "holds": 19,
+        "sr": 5.910203727600039
       },
       {
         "name": "Death",
-        "notes": 286,
+        "notes": 216,
         "holds": 14,
-        "sr": 9.393660328203834
+        "sr": 8.387674833320467
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/e7fm040wdtl4/e7fm040wdtl4.rtm?v=8"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/e7fm040wdtl4/e7fm040wdtl4.rtm?v=11"
   },
   {
     "id": "lpe7tppqjssg",
@@ -4813,7 +5901,7 @@
     "bpm": 70,
     "lastUpdated": "2026-01-21T11:23:32.000Z",
     "stats": {
-      "plays": 137,
+      "plays": 165,
       "downloads": 0,
       "favorites": 5
     },
@@ -4842,9 +5930,9 @@
     "bpm": 150,
     "lastUpdated": "2026-01-10T11:50:15.000Z",
     "stats": {
-      "plays": 66,
+      "plays": 70,
       "downloads": 0,
-      "favorites": 2
+      "favorites": 1
     },
     "difficulties": [
       {
@@ -4894,9 +5982,9 @@
     "bpm": 111,
     "lastUpdated": "2026-01-21T22:40:17.000Z",
     "stats": {
-      "plays": 15,
+      "plays": 17,
       "downloads": 0,
-      "favorites": 2
+      "favorites": 3
     },
     "difficulties": [
       {
@@ -4915,7 +6003,7 @@
     "mapper": "Arvionyx",
     "status": "unranked",
     "bpm": 120,
-    "lastUpdated": "2026-01-10T04:23:10.000Z",
+    "lastUpdated": "2026-01-27T07:55:14.000Z",
     "stats": {
       "plays": 0,
       "downloads": 0,
@@ -4926,10 +6014,10 @@
         "name": "What we lost",
         "notes": 1000,
         "holds": 54,
-        "sr": 8.938390831938069
+        "sr": 8.88109345481026
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/zgtchiz2zfmf/zgtchiz2zfmf.rtm?v=2"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/zgtchiz2zfmf/zgtchiz2zfmf.rtm?v=3"
   },
   {
     "id": "ary1c720rqjy",
@@ -5021,9 +6109,9 @@
     "bpm": 240,
     "lastUpdated": "2026-01-12T19:38:04.000Z",
     "stats": {
-      "plays": 91,
+      "plays": 126,
       "downloads": 0,
-      "favorites": 5
+      "favorites": 7
     },
     "difficulties": [
       {
@@ -5091,7 +6179,7 @@
     "bpm": 200,
     "lastUpdated": "2026-01-19T18:45:01.000Z",
     "stats": {
-      "plays": 55,
+      "plays": 59,
       "downloads": 0,
       "favorites": 0
     },
@@ -5242,7 +6330,7 @@
     "bpm": 174.11,
     "lastUpdated": "2026-01-10T15:55:42.000Z",
     "stats": {
-      "plays": 36,
+      "plays": 38,
       "downloads": 0,
       "favorites": 0
     },
@@ -5271,7 +6359,7 @@
     "bpm": 174,
     "lastUpdated": "2026-01-21T19:45:41.000Z",
     "stats": {
-      "plays": 84,
+      "plays": 96,
       "downloads": 0,
       "favorites": 4
     },
@@ -5329,9 +6417,9 @@
     "bpm": 185,
     "lastUpdated": "2026-01-18T19:29:15.000Z",
     "stats": {
-      "plays": 895,
+      "plays": 1046,
       "downloads": 0,
-      "favorites": 11
+      "favorites": 14
     },
     "difficulties": [
       {
@@ -5436,13 +6524,13 @@
     "title": "Calamity Fortune",
     "artist": "LeaF",
     "mapper": "probablynotacat",
-    "status": "qualified",
+    "status": "ranked",
     "bpm": 200,
-    "lastUpdated": "2026-01-23T16:01:37.000Z",
+    "lastUpdated": "2026-01-27T17:00:15.000Z",
     "stats": {
-      "plays": 112,
+      "plays": 354,
       "downloads": 0,
-      "favorites": 4
+      "favorites": 6
     },
     "difficulties": [
       {
@@ -5487,7 +6575,7 @@
     "bpm": 120,
     "lastUpdated": "2026-01-09T02:40:19.000Z",
     "stats": {
-      "plays": 9,
+      "plays": 10,
       "downloads": 0,
       "favorites": 0
     },
@@ -5591,9 +6679,9 @@
     "bpm": 105,
     "lastUpdated": "2026-01-09T12:06:10.000Z",
     "stats": {
-      "plays": 316,
+      "plays": 332,
       "downloads": 0,
-      "favorites": 22
+      "favorites": 23
     },
     "difficulties": [
       {
@@ -5643,9 +6731,9 @@
     "bpm": 109,
     "lastUpdated": "2026-01-09T06:01:01.000Z",
     "stats": {
-      "plays": 475,
+      "plays": 495,
       "downloads": 0,
-      "favorites": 8
+      "favorites": 9
     },
     "difficulties": [
       {
@@ -5718,9 +6806,9 @@
     "bpm": 172,
     "lastUpdated": "2026-01-08T20:48:04.000Z",
     "stats": {
-      "plays": 205,
+      "plays": 227,
       "downloads": 0,
-      "favorites": 5
+      "favorites": 7
     },
     "difficulties": [
       {
@@ -5739,11 +6827,11 @@
     "mapper": "Brofriendfnf",
     "status": "unranked",
     "bpm": 143,
-    "lastUpdated": "2026-01-22T18:50:24.000Z",
+    "lastUpdated": "2026-01-27T12:50:12.000Z",
     "stats": {
-      "plays": 147,
+      "plays": 168,
       "downloads": 0,
-      "favorites": 3
+      "favorites": 4
     },
     "difficulties": [
       {
@@ -5768,7 +6856,7 @@
         "name": "Hard",
         "notes": 109,
         "holds": 0,
-        "sr": 3.0240612970183305
+        "sr": 3.106510871698555
       },
       {
         "name": "Insane",
@@ -5786,7 +6874,7 @@
         "name": "TrickyGame's GURU",
         "notes": 247,
         "holds": 1,
-        "sr": 7.056697265278672
+        "sr": 7.152313550775998
       },
       {
         "name": "Nortromka's Amattajikande",
@@ -5801,7 +6889,7 @@
         "sr": 11.045644860925321
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/p76tqbuyj5ay/p76tqbuyj5ay.rtm?v=10"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/p76tqbuyj5ay/p76tqbuyj5ay.rtm?v=11"
   },
   {
     "id": "qjisemns6fjb",
@@ -5812,9 +6900,9 @@
     "bpm": 96,
     "lastUpdated": "2026-01-08T19:21:56.000Z",
     "stats": {
-      "plays": 72,
+      "plays": 74,
       "downloads": 0,
-      "favorites": 3
+      "favorites": 4
     },
     "difficulties": [
       {
@@ -5853,9 +6941,9 @@
     "bpm": 84.5,
     "lastUpdated": "2026-01-09T05:14:53.000Z",
     "stats": {
-      "plays": 335,
+      "plays": 357,
       "downloads": 0,
-      "favorites": 7
+      "favorites": 8
     },
     "difficulties": [
       {
@@ -5878,11 +6966,11 @@
     "title": "Pinky Alart",
     "artist": "nogi",
     "mapper": "Piger",
-    "status": "unranked",
+    "status": "qualified",
     "bpm": 185,
-    "lastUpdated": "2026-01-24T17:53:40.000Z",
+    "lastUpdated": "2026-01-26T21:34:49.000Z",
     "stats": {
-      "plays": 23,
+      "plays": 44,
       "downloads": 0,
       "favorites": 0
     },
@@ -5900,7 +6988,7 @@
         "sr": 12.64492344369552
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/fcxlnmsk3cgu/fcxlnmsk3cgu.rtm?v=8"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/fcxlnmsk3cgu/fcxlnmsk3cgu.rtm?v=11"
   },
   {
     "id": "iduyk0mr3bm0",
@@ -5911,7 +6999,7 @@
     "bpm": 150,
     "lastUpdated": "2026-01-17T16:32:54.000Z",
     "stats": {
-      "plays": 7,
+      "plays": 8,
       "downloads": 0,
       "favorites": 2
     },
@@ -5957,9 +7045,9 @@
     "bpm": 220,
     "lastUpdated": "2026-01-11T15:35:45.000Z",
     "stats": {
-      "plays": 26,
+      "plays": 29,
       "downloads": 0,
-      "favorites": 4
+      "favorites": 5
     },
     "difficulties": [
       {
@@ -6015,9 +7103,9 @@
     "bpm": 128,
     "lastUpdated": "2026-01-14T20:50:03.000Z",
     "stats": {
-      "plays": 80,
+      "plays": 98,
       "downloads": 0,
-      "favorites": 3
+      "favorites": 4
     },
     "difficulties": [
       {
@@ -6061,7 +7149,7 @@
     "bpm": 230,
     "lastUpdated": "2026-01-08T06:38:20.000Z",
     "stats": {
-      "plays": 12,
+      "plays": 15,
       "downloads": 0,
       "favorites": 7
     },
@@ -6090,9 +7178,9 @@
     "bpm": 143,
     "lastUpdated": "2026-01-19T04:06:16.000Z",
     "stats": {
-      "plays": 152,
+      "plays": 190,
       "downloads": 0,
-      "favorites": 5
+      "favorites": 6
     },
     "difficulties": [
       {
@@ -6119,7 +7207,7 @@
     "bpm": 120,
     "lastUpdated": "2026-01-08T03:28:25.000Z",
     "stats": {
-      "plays": 137,
+      "plays": 141,
       "downloads": 0,
       "favorites": 3
     },
@@ -6148,9 +7236,9 @@
     "bpm": 128,
     "lastUpdated": "2026-01-08T02:45:49.000Z",
     "stats": {
-      "plays": 1495,
+      "plays": 1572,
       "downloads": 0,
-      "favorites": 9
+      "favorites": 11
     },
     "difficulties": [
       {
@@ -6177,7 +7265,7 @@
     "bpm": 166.81,
     "lastUpdated": "2026-01-08T01:39:40.000Z",
     "stats": {
-      "plays": 45,
+      "plays": 50,
       "downloads": 0,
       "favorites": 1
     },
@@ -6218,7 +7306,7 @@
     "bpm": 91,
     "lastUpdated": "2026-01-07T22:25:17.000Z",
     "stats": {
-      "plays": 350,
+      "plays": 406,
       "downloads": 0,
       "favorites": 6
     },
@@ -6282,9 +7370,9 @@
     "bpm": 120,
     "lastUpdated": "2026-01-10T19:24:53.000Z",
     "stats": {
-      "plays": 555,
+      "plays": 618,
       "downloads": 0,
-      "favorites": 12
+      "favorites": 14
     },
     "difficulties": [
       {
@@ -6323,9 +7411,9 @@
     "bpm": 200,
     "lastUpdated": "2026-01-20T05:26:13.000Z",
     "stats": {
-      "plays": 143,
+      "plays": 154,
       "downloads": 0,
-      "favorites": 5
+      "favorites": 6
     },
     "difficulties": [
       {
@@ -6388,9 +7476,9 @@
     "bpm": 120,
     "lastUpdated": "2026-01-10T16:42:26.000Z",
     "stats": {
-      "plays": 10,
+      "plays": 13,
       "downloads": 0,
-      "favorites": 3
+      "favorites": 4
     },
     "difficulties": [
       {
@@ -6486,7 +7574,7 @@
     "bpm": 150,
     "lastUpdated": "2026-01-13T19:39:27.000Z",
     "stats": {
-      "plays": 43,
+      "plays": 55,
       "downloads": 0,
       "favorites": 2
     },
@@ -6740,7 +7828,7 @@
     "bpm": 120,
     "lastUpdated": "2026-01-07T12:46:08.000Z",
     "stats": {
-      "plays": 16,
+      "plays": 27,
       "downloads": 0,
       "favorites": 1
     },
@@ -6842,11 +7930,11 @@
     "title": "Sonorously Box",
     "artist": "MusMus",
     "mapper": "TTMDPOMIKHTT",
-    "status": "unranked",
+    "status": "qualified",
     "bpm": 120.65,
-    "lastUpdated": "2026-01-25T14:54:28.000Z",
+    "lastUpdated": "2026-01-26T10:40:22.000Z",
     "stats": {
-      "plays": 21,
+      "plays": 32,
       "downloads": 0,
       "favorites": 0
     },
@@ -6867,16 +7955,16 @@
         "name": "Hard Box",
         "notes": 112,
         "holds": 27,
-        "sr": 3.1711554814598215
+        "sr": 3.322162885338861
       },
       {
         "name": "Insane Box",
         "notes": 181,
         "holds": 23,
-        "sr": 5.348273324118401
+        "sr": 4.920411458188929
       }
     ],
-    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/1aw8306svo9p/1aw8306svo9p.rtm?v=8"
+    "downloadUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/beatmaps/1aw8306svo9p/1aw8306svo9p.rtm?v=9"
   },
   {
     "id": "yegmbulc91yn",
@@ -6962,9 +8050,9 @@
     "bpm": 112.5,
     "lastUpdated": "2026-01-16T04:29:26.000Z",
     "stats": {
-      "plays": 498,
+      "plays": 580,
       "downloads": 0,
-      "favorites": 8
+      "favorites": 9
     },
     "difficulties": [
       {
@@ -7097,7 +8185,7 @@
     "bpm": 181,
     "lastUpdated": "2026-01-06T22:54:46.000Z",
     "stats": {
-      "plays": 14,
+      "plays": 15,
       "downloads": 0,
       "favorites": 2
     },
@@ -7184,7 +8272,7 @@
     "bpm": 140,
     "lastUpdated": "2026-01-06T20:37:09.000Z",
     "stats": {
-      "plays": 7,
+      "plays": 8,
       "downloads": 0,
       "favorites": 0
     },
@@ -7207,9 +8295,9 @@
     "bpm": 150,
     "lastUpdated": "2026-01-19T19:03:59.000Z",
     "stats": {
-      "plays": 21,
+      "plays": 22,
       "downloads": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "difficulties": [
       {
@@ -7352,7 +8440,7 @@
     "bpm": 189,
     "lastUpdated": "2026-01-06T11:18:22.000Z",
     "stats": {
-      "plays": 58,
+      "plays": 59,
       "downloads": 0,
       "favorites": 2
     },
@@ -7387,7 +8475,7 @@
     "bpm": 150,
     "lastUpdated": "2026-01-12T11:34:38.000Z",
     "stats": {
-      "plays": 37,
+      "plays": 53,
       "downloads": 0,
       "favorites": 2
     },
@@ -7567,7 +8655,7 @@
     "bpm": 174,
     "lastUpdated": "2026-01-24T01:27:44.000Z",
     "stats": {
-      "plays": 8,
+      "plays": 9,
       "downloads": 0,
       "favorites": 3
     },
@@ -7683,7 +8771,7 @@
     "bpm": 80,
     "lastUpdated": "2026-01-22T04:40:54.000Z",
     "stats": {
-      "plays": 792,
+      "plays": 1131,
       "downloads": 0,
       "favorites": 5
     },
@@ -7938,7 +9026,7 @@
     "bpm": 150,
     "lastUpdated": "2026-01-05T09:31:55.000Z",
     "stats": {
-      "plays": 14,
+      "plays": 16,
       "downloads": 0,
       "favorites": 1
     },
@@ -8025,7 +9113,7 @@
     "bpm": 180,
     "lastUpdated": "2026-01-10T02:14:22.000Z",
     "stats": {
-      "plays": 14,
+      "plays": 16,
       "downloads": 0,
       "favorites": 0
     },
@@ -8054,9 +9142,9 @@
     "bpm": 170,
     "lastUpdated": "2026-01-15T02:12:00.000Z",
     "stats": {
-      "plays": 243,
+      "plays": 312,
       "downloads": 0,
-      "favorites": 11
+      "favorites": 17
     },
     "difficulties": [
       {
@@ -8159,7 +9247,7 @@
     "bpm": 136.02,
     "lastUpdated": "2026-01-19T19:29:03.000Z",
     "stats": {
-      "plays": 20,
+      "plays": 23,
       "downloads": 0,
       "favorites": 0
     },
@@ -8217,7 +9305,7 @@
     "bpm": 172,
     "lastUpdated": "2026-01-05T00:55:23.000Z",
     "stats": {
-      "plays": 10,
+      "plays": 11,
       "downloads": 0,
       "favorites": 0
     },
@@ -8252,7 +9340,7 @@
     "bpm": 150,
     "lastUpdated": "2026-01-05T00:30:04.000Z",
     "stats": {
-      "plays": 14,
+      "plays": 15,
       "downloads": 0,
       "favorites": 0
     },
@@ -8281,7 +9369,7 @@
     "bpm": 173,
     "lastUpdated": "2026-01-04T22:18:13.000Z",
     "stats": {
-      "plays": 35,
+      "plays": 36,
       "downloads": 0,
       "favorites": 4
     },
@@ -8304,7 +9392,7 @@
     "bpm": 160,
     "lastUpdated": "2026-01-04T22:08:39.000Z",
     "stats": {
-      "plays": 13,
+      "plays": 14,
       "downloads": 0,
       "favorites": 5
     },
@@ -8352,7 +9440,7 @@
     "stats": {
       "plays": 0,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -8663,7 +9751,7 @@
     "bpm": 125,
     "lastUpdated": "2026-01-04T07:28:45.000Z",
     "stats": {
-      "plays": 803,
+      "plays": 819,
       "downloads": 0,
       "favorites": 7
     },
@@ -9061,7 +10149,7 @@
     "bpm": 166,
     "lastUpdated": "2026-01-03T09:26:15.000Z",
     "stats": {
-      "plays": 3101,
+      "plays": 3236,
       "downloads": 0,
       "favorites": 26
     },
@@ -9125,7 +10213,7 @@
     "bpm": 252,
     "lastUpdated": "2026-01-03T05:51:14.000Z",
     "stats": {
-      "plays": 23,
+      "plays": 24,
       "downloads": 0,
       "favorites": 2
     },
@@ -9269,7 +10357,7 @@
     "bpm": 190.1592,
     "lastUpdated": "2026-01-03T01:27:11.000Z",
     "stats": {
-      "plays": 401,
+      "plays": 414,
       "downloads": 0,
       "favorites": 7
     },
@@ -9818,9 +10906,9 @@
     "bpm": 198,
     "lastUpdated": "2026-01-02T11:38:09.000Z",
     "stats": {
-      "plays": 434,
+      "plays": 442,
       "downloads": 0,
-      "favorites": 9
+      "favorites": 10
     },
     "difficulties": [
       {
@@ -9901,7 +10989,7 @@
     "stats": {
       "plays": 5,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -9980,7 +11068,7 @@
     "bpm": 129,
     "lastUpdated": "2026-01-02T04:27:07.000Z",
     "stats": {
-      "plays": 24,
+      "plays": 26,
       "downloads": 0,
       "favorites": 4
     },
@@ -10015,7 +11103,7 @@
     "bpm": 163,
     "lastUpdated": "2026-01-02T03:10:47.000Z",
     "stats": {
-      "plays": 54,
+      "plays": 55,
       "downloads": 0,
       "favorites": 0
     },
@@ -10179,7 +11267,7 @@
     "stats": {
       "plays": 4,
       "downloads": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "difficulties": [
       {
@@ -10241,7 +11329,7 @@
     "bpm": 120,
     "lastUpdated": "2026-01-01T21:16:38.000Z",
     "stats": {
-      "plays": 19,
+      "plays": 20,
       "downloads": 0,
       "favorites": 0
     },
@@ -10391,9 +11479,9 @@
     "bpm": 192,
     "lastUpdated": "2026-01-01T19:18:44.000Z",
     "stats": {
-      "plays": 62,
+      "plays": 66,
       "downloads": 0,
-      "favorites": 2
+      "favorites": 3
     },
     "difficulties": [
       {
@@ -10581,9 +11669,9 @@
     "bpm": 112.042,
     "lastUpdated": "2026-01-01T12:31:25.000Z",
     "stats": {
-      "plays": 23,
+      "plays": 25,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -10650,9 +11738,9 @@
     "bpm": 165,
     "lastUpdated": "2026-01-23T06:02:05.000Z",
     "stats": {
-      "plays": 95,
+      "plays": 193,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 3
     },
     "difficulties": [
       {
@@ -10937,9 +12025,9 @@
     "bpm": 140,
     "lastUpdated": "2026-01-01T03:19:32.000Z",
     "stats": {
-      "plays": 3231,
+      "plays": 3290,
       "downloads": 0,
-      "favorites": 37
+      "favorites": 38
     },
     "difficulties": [
       {
@@ -11059,7 +12147,7 @@
     "bpm": 122,
     "lastUpdated": "2025-12-31T18:00:13.000Z",
     "stats": {
-      "plays": 5,
+      "plays": 6,
       "downloads": 0,
       "favorites": 0
     },
@@ -11572,7 +12660,7 @@
     "stats": {
       "plays": 1,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -11773,7 +12861,7 @@
     "bpm": 226,
     "lastUpdated": "2025-12-30T23:38:06.000Z",
     "stats": {
-      "plays": 9,
+      "plays": 10,
       "downloads": 0,
       "favorites": 1
     },
@@ -11873,7 +12961,7 @@
     "stats": {
       "plays": 4,
       "downloads": 0,
-      "favorites": 4
+      "favorites": 5
     },
     "difficulties": [
       {
@@ -12051,9 +13139,9 @@
     "bpm": 170,
     "lastUpdated": "2025-12-30T20:08:11.000Z",
     "stats": {
-      "plays": 917,
+      "plays": 986,
       "downloads": 0,
-      "favorites": 37
+      "favorites": 40
     },
     "difficulties": [
       {
@@ -12080,9 +13168,9 @@
     "bpm": 145,
     "lastUpdated": "2025-12-30T19:50:02.000Z",
     "stats": {
-      "plays": 6485,
+      "plays": 6608,
       "downloads": 0,
-      "favorites": 56
+      "favorites": 58
     },
     "difficulties": [
       {
@@ -12115,9 +13203,9 @@
     "bpm": 122,
     "lastUpdated": "2025-12-30T19:22:18.000Z",
     "stats": {
-      "plays": 482,
+      "plays": 502,
       "downloads": 0,
-      "favorites": 11
+      "favorites": 13
     },
     "difficulties": [
       {
@@ -12144,9 +13232,9 @@
     "bpm": 129.86,
     "lastUpdated": "2025-12-30T18:47:36.000Z",
     "stats": {
-      "plays": 106,
+      "plays": 115,
       "downloads": 0,
-      "favorites": 6
+      "favorites": 7
     },
     "difficulties": [
       {
@@ -12190,7 +13278,7 @@
     "bpm": 231,
     "lastUpdated": "2025-12-30T17:05:37.000Z",
     "stats": {
-      "plays": 25,
+      "plays": 26,
       "downloads": 0,
       "favorites": 0
     },
@@ -12369,7 +13457,7 @@
     "bpm": 144,
     "lastUpdated": "2025-12-30T15:46:19.000Z",
     "stats": {
-      "plays": 18,
+      "plays": 19,
       "downloads": 0,
       "favorites": 1
     },
@@ -12392,7 +13480,7 @@
     "bpm": 123,
     "lastUpdated": "2025-12-30T15:11:30.000Z",
     "stats": {
-      "plays": 46,
+      "plays": 47,
       "downloads": 0,
       "favorites": 1
     },
@@ -12649,7 +13737,7 @@
     "bpm": 60,
     "lastUpdated": "2025-12-30T09:41:10.000Z",
     "stats": {
-      "plays": 2402,
+      "plays": 2439,
       "downloads": 0,
       "favorites": 12
     },
@@ -12696,7 +13784,7 @@
     "bpm": 80,
     "lastUpdated": "2025-12-30T08:43:22.000Z",
     "stats": {
-      "plays": 16,
+      "plays": 17,
       "downloads": 0,
       "favorites": 2
     },
@@ -12719,7 +13807,7 @@
     "bpm": 197,
     "lastUpdated": "2025-12-30T08:25:45.000Z",
     "stats": {
-      "plays": 21,
+      "plays": 26,
       "downloads": 0,
       "favorites": 0
     },
@@ -12765,9 +13853,9 @@
     "bpm": 107.5,
     "lastUpdated": "2025-12-30T05:58:45.000Z",
     "stats": {
-      "plays": 4365,
+      "plays": 4450,
       "downloads": 0,
-      "favorites": 34
+      "favorites": 35
     },
     "difficulties": [
       {
@@ -12812,7 +13900,7 @@
     "bpm": 180,
     "lastUpdated": "2025-12-30T05:40:21.000Z",
     "stats": {
-      "plays": 217,
+      "plays": 224,
       "downloads": 0,
       "favorites": 1
     },
@@ -12882,7 +13970,7 @@
     "bpm": 155,
     "lastUpdated": "2025-12-30T04:36:33.000Z",
     "stats": {
-      "plays": 41,
+      "plays": 42,
       "downloads": 0,
       "favorites": 5
     },
@@ -13090,9 +14178,9 @@
     "bpm": 149.3,
     "lastUpdated": "2025-12-29T23:50:00.000Z",
     "stats": {
-      "plays": 1959,
+      "plays": 2088,
       "downloads": 0,
-      "favorites": 10
+      "favorites": 11
     },
     "difficulties": [
       {
@@ -13119,7 +14207,7 @@
     "bpm": 110,
     "lastUpdated": "2025-12-29T23:37:20.000Z",
     "stats": {
-      "plays": 40,
+      "plays": 42,
       "downloads": 0,
       "favorites": 5
     },
@@ -13195,9 +14283,9 @@
     "bpm": 200.06,
     "lastUpdated": "2025-12-29T23:27:58.000Z",
     "stats": {
-      "plays": 26,
+      "plays": 27,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -13399,7 +14487,7 @@
     "bpm": 120,
     "lastUpdated": "2025-12-29T21:44:36.000Z",
     "stats": {
-      "plays": 15,
+      "plays": 16,
       "downloads": 0,
       "favorites": 0
     },
@@ -13521,9 +14609,9 @@
     "bpm": 208,
     "lastUpdated": "2025-12-29T19:01:42.000Z",
     "stats": {
-      "plays": 592,
+      "plays": 638,
       "downloads": 0,
-      "favorites": 24
+      "favorites": 26
     },
     "difficulties": [
       {
@@ -13573,7 +14661,7 @@
     "bpm": 120,
     "lastUpdated": "2025-12-29T18:16:26.000Z",
     "stats": {
-      "plays": 95,
+      "plays": 96,
       "downloads": 0,
       "favorites": 2
     },
@@ -13845,7 +14933,7 @@
     "bpm": 1000,
     "lastUpdated": "2025-12-29T11:48:21.000Z",
     "stats": {
-      "plays": 222,
+      "plays": 243,
       "downloads": 0,
       "favorites": 1
     },
@@ -13953,7 +15041,7 @@
     "stats": {
       "plays": 1,
       "downloads": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "difficulties": [
       {
@@ -14043,7 +15131,7 @@
     "bpm": 120,
     "lastUpdated": "2025-12-29T07:26:29.000Z",
     "stats": {
-      "plays": 194,
+      "plays": 214,
       "downloads": 0,
       "favorites": 10
     },
@@ -14066,7 +15154,7 @@
     "bpm": 120,
     "lastUpdated": "2025-12-29T07:26:04.000Z",
     "stats": {
-      "plays": 66,
+      "plays": 67,
       "downloads": 0,
       "favorites": 6
     },
@@ -14089,9 +15177,9 @@
     "bpm": 186,
     "lastUpdated": "2025-12-29T07:23:14.000Z",
     "stats": {
-      "plays": 561,
+      "plays": 590,
       "downloads": 0,
-      "favorites": 11
+      "favorites": 12
     },
     "difficulties": [
       {
@@ -14135,7 +15223,7 @@
     "bpm": 92.97,
     "lastUpdated": "2025-12-29T07:13:25.000Z",
     "stats": {
-      "plays": 261,
+      "plays": 268,
       "downloads": 0,
       "favorites": 29
     },
@@ -14158,7 +15246,7 @@
     "bpm": 133.25,
     "lastUpdated": "2025-12-29T06:18:48.000Z",
     "stats": {
-      "plays": 153,
+      "plays": 154,
       "downloads": 0,
       "favorites": 4
     },
@@ -14298,7 +15386,7 @@
     "bpm": 250,
     "lastUpdated": "2025-12-29T04:34:45.000Z",
     "stats": {
-      "plays": 187,
+      "plays": 198,
       "downloads": 0,
       "favorites": 6
     },
@@ -14321,7 +15409,7 @@
     "bpm": 108,
     "lastUpdated": "2025-12-29T04:29:22.000Z",
     "stats": {
-      "plays": 19,
+      "plays": 22,
       "downloads": 0,
       "favorites": 3
     },
@@ -14427,7 +15515,7 @@
     "stats": {
       "plays": 5,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -14541,7 +15629,7 @@
     "bpm": 128,
     "lastUpdated": "2025-12-29T00:14:48.000Z",
     "stats": {
-      "plays": 909,
+      "plays": 948,
       "downloads": 0,
       "favorites": 8
     },
@@ -14564,7 +15652,7 @@
     "bpm": 110,
     "lastUpdated": "2025-12-28T23:58:50.000Z",
     "stats": {
-      "plays": 182,
+      "plays": 189,
       "downloads": 0,
       "favorites": 15
     },
@@ -14743,7 +15831,7 @@
     "bpm": 170,
     "lastUpdated": "2025-12-28T20:55:34.000Z",
     "stats": {
-      "plays": 82,
+      "plays": 84,
       "downloads": 0,
       "favorites": 2
     },
@@ -14830,7 +15918,7 @@
     "bpm": 91.2,
     "lastUpdated": "2025-12-28T19:15:44.000Z",
     "stats": {
-      "plays": 72,
+      "plays": 74,
       "downloads": 0,
       "favorites": 12
     },
@@ -14945,7 +16033,7 @@
     "bpm": 244,
     "lastUpdated": "2025-12-28T18:44:40.000Z",
     "stats": {
-      "plays": 235,
+      "plays": 241,
       "downloads": 0,
       "favorites": 3
     },
@@ -14980,7 +16068,7 @@
     "bpm": 195,
     "lastUpdated": "2025-12-28T18:14:47.000Z",
     "stats": {
-      "plays": 765,
+      "plays": 774,
       "downloads": 0,
       "favorites": 14
     },
@@ -15107,7 +16195,7 @@
     "bpm": 185,
     "lastUpdated": "2026-01-24T13:54:53.000Z",
     "stats": {
-      "plays": 20,
+      "plays": 21,
       "downloads": 0,
       "favorites": 1
     },
@@ -15292,7 +16380,7 @@
     "bpm": 113,
     "lastUpdated": "2025-12-28T12:47:18.000Z",
     "stats": {
-      "plays": 11,
+      "plays": 12,
       "downloads": 0,
       "favorites": 4
     },
@@ -15315,9 +16403,9 @@
     "bpm": 166,
     "lastUpdated": "2025-12-28T12:08:00.000Z",
     "stats": {
-      "plays": 4725,
+      "plays": 4855,
       "downloads": 0,
-      "favorites": 71
+      "favorites": 75
     },
     "difficulties": [
       {
@@ -15511,7 +16599,7 @@
     "bpm": 200,
     "lastUpdated": "2025-12-28T04:59:53.000Z",
     "stats": {
-      "plays": 32,
+      "plays": 42,
       "downloads": 0,
       "favorites": 1
     },
@@ -15877,9 +16965,9 @@
     "bpm": 164.081,
     "lastUpdated": "2025-12-28T02:16:25.000Z",
     "stats": {
-      "plays": 3327,
+      "plays": 3421,
       "downloads": 0,
-      "favorites": 43
+      "favorites": 46
     },
     "difficulties": [
       {
@@ -16160,7 +17248,7 @@
     "bpm": 120,
     "lastUpdated": "2025-12-27T23:38:53.000Z",
     "stats": {
-      "plays": 17,
+      "plays": 18,
       "downloads": 0,
       "favorites": 3
     },
@@ -16454,7 +17542,7 @@
     "bpm": 169,
     "lastUpdated": "2025-12-27T22:10:11.000Z",
     "stats": {
-      "plays": 35,
+      "plays": 37,
       "downloads": 0,
       "favorites": 1
     },
@@ -16479,7 +17567,7 @@
     "stats": {
       "plays": 7,
       "downloads": 0,
-      "favorites": 3
+      "favorites": 4
     },
     "difficulties": [
       {
@@ -16523,7 +17611,7 @@
     "bpm": 92.93,
     "lastUpdated": "2025-12-27T21:46:47.000Z",
     "stats": {
-      "plays": 31,
+      "plays": 32,
       "downloads": 0,
       "favorites": 6
     },
@@ -16581,7 +17669,7 @@
     "bpm": 128,
     "lastUpdated": "2025-12-27T21:28:40.000Z",
     "stats": {
-      "plays": 97,
+      "plays": 99,
       "downloads": 0,
       "favorites": 3
     },
@@ -16633,7 +17721,7 @@
     "bpm": 172.15,
     "lastUpdated": "2025-12-27T20:11:52.000Z",
     "stats": {
-      "plays": 3,
+      "plays": 4,
       "downloads": 0,
       "favorites": 3
     },
@@ -16685,7 +17773,7 @@
     "bpm": 88,
     "lastUpdated": "2025-12-27T20:01:04.000Z",
     "stats": {
-      "plays": 1484,
+      "plays": 1495,
       "downloads": 0,
       "favorites": 9
     },
@@ -16754,7 +17842,7 @@
     "bpm": 120,
     "lastUpdated": "2025-12-27T19:31:52.000Z",
     "stats": {
-      "plays": 20,
+      "plays": 21,
       "downloads": 0,
       "favorites": 1
     },
@@ -16818,7 +17906,7 @@
     "bpm": 220,
     "lastUpdated": "2025-12-27T19:18:26.000Z",
     "stats": {
-      "plays": 1569,
+      "plays": 1606,
       "downloads": 0,
       "favorites": 23
     },
@@ -16901,7 +17989,7 @@
     "stats": {
       "plays": 1,
       "downloads": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "difficulties": [
       {
@@ -16922,9 +18010,9 @@
     "bpm": 192,
     "lastUpdated": "2025-12-27T18:22:31.000Z",
     "stats": {
-      "plays": 2137,
+      "plays": 2171,
       "downloads": 0,
-      "favorites": 27
+      "favorites": 29
     },
     "difficulties": [
       {
@@ -16980,7 +18068,7 @@
     "bpm": 107,
     "lastUpdated": "2025-12-27T18:12:10.000Z",
     "stats": {
-      "plays": 25,
+      "plays": 28,
       "downloads": 0,
       "favorites": 0
     },
@@ -17085,9 +18173,9 @@
     "bpm": 260,
     "lastUpdated": "2025-12-27T16:41:20.000Z",
     "stats": {
-      "plays": 2447,
+      "plays": 2557,
       "downloads": 0,
-      "favorites": 79
+      "favorites": 81
     },
     "difficulties": [
       {
@@ -17252,7 +18340,7 @@
     "bpm": 186,
     "lastUpdated": "2025-12-27T12:28:46.000Z",
     "stats": {
-      "plays": 2747,
+      "plays": 2765,
       "downloads": 0,
       "favorites": 13
     },
@@ -17310,9 +18398,9 @@
     "bpm": 150,
     "lastUpdated": "2025-12-27T12:14:46.000Z",
     "stats": {
-      "plays": 521,
+      "plays": 543,
       "downloads": 0,
-      "favorites": 38
+      "favorites": 39
     },
     "difficulties": [
       {
@@ -17333,9 +18421,9 @@
     "bpm": 115,
     "lastUpdated": "2025-12-27T12:13:06.000Z",
     "stats": {
-      "plays": 1592,
+      "plays": 1627,
       "downloads": 0,
-      "favorites": 53
+      "favorites": 58
     },
     "difficulties": [
       {
@@ -17362,7 +18450,7 @@
     "bpm": 120,
     "lastUpdated": "2025-12-27T11:41:51.000Z",
     "stats": {
-      "plays": 0,
+      "plays": 2,
       "downloads": 0,
       "favorites": 0
     },
@@ -17612,7 +18700,7 @@
     "bpm": 140,
     "lastUpdated": "2025-12-27T08:54:17.000Z",
     "stats": {
-      "plays": 158,
+      "plays": 173,
       "downloads": 0,
       "favorites": 14
     },
@@ -17681,7 +18769,7 @@
     "bpm": 181,
     "lastUpdated": "2025-12-27T08:32:24.000Z",
     "stats": {
-      "plays": 4,
+      "plays": 5,
       "downloads": 0,
       "favorites": 0
     },
@@ -17826,7 +18914,7 @@
     "bpm": 96,
     "lastUpdated": "2025-12-27T07:48:24.000Z",
     "stats": {
-      "plays": 11,
+      "plays": 13,
       "downloads": 0,
       "favorites": 2
     },
@@ -17895,9 +18983,9 @@
     "bpm": 223,
     "lastUpdated": "2025-12-27T05:55:44.000Z",
     "stats": {
-      "plays": 2674,
+      "plays": 2756,
       "downloads": 0,
-      "favorites": 14
+      "favorites": 15
     },
     "difficulties": [
       {
@@ -17971,7 +19059,7 @@
     "bpm": 120,
     "lastUpdated": "2025-12-27T05:10:33.000Z",
     "stats": {
-      "plays": 124,
+      "plays": 128,
       "downloads": 0,
       "favorites": 4
     },
@@ -18025,7 +19113,7 @@
     "stats": {
       "plays": 17,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 3
     },
     "difficulties": [
       {
@@ -18069,7 +19157,7 @@
     "bpm": 147,
     "lastUpdated": "2025-12-27T03:57:44.000Z",
     "stats": {
-      "plays": 37,
+      "plays": 39,
       "downloads": 0,
       "favorites": 0
     },
@@ -18167,7 +19255,7 @@
     "bpm": 175,
     "lastUpdated": "2025-12-27T02:56:06.000Z",
     "stats": {
-      "plays": 873,
+      "plays": 887,
       "downloads": 0,
       "favorites": 37
     },
@@ -18219,7 +19307,7 @@
     "bpm": 65,
     "lastUpdated": "2026-01-14T04:51:08.000Z",
     "stats": {
-      "plays": 95,
+      "plays": 97,
       "downloads": 0,
       "favorites": 5
     },
@@ -18319,7 +19407,7 @@
     "stats": {
       "plays": 0,
       "downloads": 0,
-      "favorites": 8
+      "favorites": 9
     },
     "difficulties": [
       {
@@ -18340,7 +19428,7 @@
     "bpm": 260,
     "lastUpdated": "2025-12-27T00:05:36.000Z",
     "stats": {
-      "plays": 377,
+      "plays": 383,
       "downloads": 0,
       "favorites": 6
     },
@@ -18409,7 +19497,7 @@
     "bpm": 202.54,
     "lastUpdated": "2025-12-26T23:58:08.000Z",
     "stats": {
-      "plays": 6848,
+      "plays": 7074,
       "downloads": 0,
       "favorites": 25
     },
@@ -18525,7 +19613,7 @@
     "bpm": 120,
     "lastUpdated": "2025-12-26T23:29:50.000Z",
     "stats": {
-      "plays": 87,
+      "plays": 88,
       "downloads": 0,
       "favorites": 4
     },
@@ -18548,7 +19636,7 @@
     "bpm": 120,
     "lastUpdated": "2025-12-26T23:04:35.000Z",
     "stats": {
-      "plays": 127,
+      "plays": 151,
       "downloads": 0,
       "favorites": 3
     },
@@ -18692,7 +19780,7 @@
     "bpm": 160,
     "lastUpdated": "2025-12-26T20:45:57.000Z",
     "stats": {
-      "plays": 10,
+      "plays": 12,
       "downloads": 0,
       "favorites": 1
     },
@@ -18721,9 +19809,9 @@
     "bpm": 125,
     "lastUpdated": "2025-12-26T20:34:33.000Z",
     "stats": {
-      "plays": 599,
+      "plays": 616,
       "downloads": 0,
-      "favorites": 13
+      "favorites": 14
     },
     "difficulties": [
       {
@@ -18767,7 +19855,7 @@
     "bpm": 220,
     "lastUpdated": "2025-12-26T20:05:05.000Z",
     "stats": {
-      "plays": 13,
+      "plays": 14,
       "downloads": 0,
       "favorites": 3
     },
@@ -18790,7 +19878,7 @@
     "bpm": 234,
     "lastUpdated": "2025-12-26T19:44:54.000Z",
     "stats": {
-      "plays": 1345,
+      "plays": 1370,
       "downloads": 0,
       "favorites": 7
     },
@@ -19086,7 +20174,7 @@
     "stats": {
       "plays": 0,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -19155,7 +20243,7 @@
     "stats": {
       "plays": 36,
       "downloads": 0,
-      "favorites": 3
+      "favorites": 4
     },
     "difficulties": [
       {
@@ -19401,7 +20489,7 @@
     "bpm": 260,
     "lastUpdated": "2025-12-26T15:00:34.000Z",
     "stats": {
-      "plays": 3,
+      "plays": 5,
       "downloads": 0,
       "favorites": 0
     },
@@ -19516,7 +20604,7 @@
     "bpm": 149.3,
     "lastUpdated": "2025-12-26T14:21:34.000Z",
     "stats": {
-      "plays": 11,
+      "plays": 16,
       "downloads": 0,
       "favorites": 2
     },
@@ -19672,9 +20760,9 @@
     "bpm": 125,
     "lastUpdated": "2025-12-26T09:21:34.000Z",
     "stats": {
-      "plays": 5740,
+      "plays": 5824,
       "downloads": 0,
-      "favorites": 10
+      "favorites": 11
     },
     "difficulties": [
       {
@@ -19788,7 +20876,7 @@
     "bpm": 140,
     "lastUpdated": "2025-12-26T06:41:32.000Z",
     "stats": {
-      "plays": 4139,
+      "plays": 4182,
       "downloads": 0,
       "favorites": 37
     },
@@ -19835,7 +20923,7 @@
     "bpm": 90,
     "lastUpdated": "2025-12-26T06:17:40.000Z",
     "stats": {
-      "plays": 84,
+      "plays": 86,
       "downloads": 0,
       "favorites": 7
     },
@@ -19904,9 +20992,9 @@
     "bpm": 135,
     "lastUpdated": "2025-12-26T04:44:40.000Z",
     "stats": {
-      "plays": 125,
+      "plays": 130,
       "downloads": 0,
-      "favorites": 54
+      "favorites": 55
     },
     "difficulties": [
       {
@@ -19929,7 +21017,7 @@
     "stats": {
       "plays": 24,
       "downloads": 0,
-      "favorites": 2
+      "favorites": 3
     },
     "difficulties": [
       {
@@ -19996,7 +21084,7 @@
     "bpm": 50,
     "lastUpdated": "2025-12-26T03:18:54.000Z",
     "stats": {
-      "plays": 1945,
+      "plays": 1972,
       "downloads": 0,
       "favorites": 25
     },
@@ -20129,9 +21217,9 @@
     "bpm": 151,
     "lastUpdated": "2025-12-26T02:28:26.000Z",
     "stats": {
-      "plays": 3307,
+      "plays": 3356,
       "downloads": 0,
-      "favorites": 15
+      "favorites": 16
     },
     "difficulties": [
       {
@@ -20193,7 +21281,7 @@
     "bpm": 183,
     "lastUpdated": "2025-12-26T02:07:46.000Z",
     "stats": {
-      "plays": 182,
+      "plays": 185,
       "downloads": 0,
       "favorites": 7
     },
@@ -20228,9 +21316,9 @@
     "bpm": 105,
     "lastUpdated": "2025-12-26T01:59:08.000Z",
     "stats": {
-      "plays": 24,
+      "plays": 25,
       "downloads": 0,
-      "favorites": 6
+      "favorites": 7
     },
     "difficulties": [
       {
@@ -20334,7 +21422,7 @@
     "stats": {
       "plays": 3,
       "downloads": 0,
-      "favorites": 3
+      "favorites": 4
     },
     "difficulties": [
       {
@@ -20534,7 +21622,7 @@
     "bpm": 143,
     "lastUpdated": "2025-12-25T22:45:37.000Z",
     "stats": {
-      "plays": 21,
+      "plays": 23,
       "downloads": 0,
       "favorites": 0
     },
@@ -20603,7 +21691,7 @@
     "bpm": 178,
     "lastUpdated": "2025-12-25T21:35:47.000Z",
     "stats": {
-      "plays": 8548,
+      "plays": 8666,
       "downloads": 0,
       "favorites": 74
     },
@@ -20690,7 +21778,7 @@
     "bpm": 149.3,
     "lastUpdated": "2025-12-25T20:50:35.000Z",
     "stats": {
-      "plays": 2008,
+      "plays": 2035,
       "downloads": 0,
       "favorites": 10
     },
@@ -20742,9 +21830,9 @@
     "bpm": 146,
     "lastUpdated": "2025-12-25T20:06:00.000Z",
     "stats": {
-      "plays": 256,
+      "plays": 263,
       "downloads": 0,
-      "favorites": 13
+      "favorites": 14
     },
     "difficulties": [
       {
@@ -20840,9 +21928,9 @@
     "bpm": 109,
     "lastUpdated": "2025-12-25T18:25:10.000Z",
     "stats": {
-      "plays": 3025,
+      "plays": 3064,
       "downloads": 0,
-      "favorites": 39
+      "favorites": 40
     },
     "difficulties": [
       {
@@ -21003,9 +22091,9 @@
     "bpm": 175,
     "lastUpdated": "2025-12-25T15:50:13.000Z",
     "stats": {
-      "plays": 196,
+      "plays": 199,
       "downloads": 0,
-      "favorites": 11
+      "favorites": 12
     },
     "difficulties": [
       {
@@ -21101,9 +22189,9 @@
     "bpm": 190,
     "lastUpdated": "2025-12-25T14:28:12.000Z",
     "stats": {
-      "plays": 8236,
+      "plays": 8312,
       "downloads": 0,
-      "favorites": 19
+      "favorites": 20
     },
     "difficulties": [
       {
@@ -21223,7 +22311,7 @@
     "bpm": 144,
     "lastUpdated": "2025-12-25T12:56:11.000Z",
     "stats": {
-      "plays": 223,
+      "plays": 234,
       "downloads": 0,
       "favorites": 17
     },
@@ -21246,7 +22334,7 @@
     "bpm": 160,
     "lastUpdated": "2025-12-25T12:43:27.000Z",
     "stats": {
-      "plays": 14,
+      "plays": 15,
       "downloads": 0,
       "favorites": 0
     },
@@ -21431,9 +22519,9 @@
     "bpm": 168,
     "lastUpdated": "2025-12-25T09:27:46.000Z",
     "stats": {
-      "plays": 1323,
+      "plays": 1364,
       "downloads": 0,
-      "favorites": 7
+      "favorites": 8
     },
     "difficulties": [
       {
@@ -21479,7 +22567,7 @@
     "stats": {
       "plays": 174,
       "downloads": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "difficulties": [
       {
@@ -21650,9 +22738,9 @@
     "bpm": 200,
     "lastUpdated": "2026-01-19T12:40:09.000Z",
     "stats": {
-      "plays": 569,
+      "plays": 594,
       "downloads": 0,
-      "favorites": 13
+      "favorites": 14
     },
     "difficulties": [
       {
@@ -21732,9 +22820,9 @@
     "bpm": 155,
     "lastUpdated": "2025-11-12T04:04:19.000Z",
     "stats": {
-      "plays": 2538,
+      "plays": 2613,
       "downloads": 0,
-      "favorites": 65
+      "favorites": 66
     },
     "difficulties": [
       {
@@ -21755,7 +22843,7 @@
     "bpm": 210,
     "lastUpdated": "2025-10-22T15:01:27.000Z",
     "stats": {
-      "plays": 1585,
+      "plays": 1620,
       "downloads": 0,
       "favorites": 25
     },
@@ -21796,7 +22884,7 @@
     "bpm": 148,
     "lastUpdated": "2025-10-22T06:11:23.000Z",
     "stats": {
-      "plays": 152,
+      "plays": 156,
       "downloads": 0,
       "favorites": 3
     },
@@ -21819,9 +22907,9 @@
     "bpm": 187,
     "lastUpdated": "2025-10-21T22:11:03.000Z",
     "stats": {
-      "plays": 385,
+      "plays": 406,
       "downloads": 0,
-      "favorites": 20
+      "favorites": 21
     },
     "difficulties": [
       {
@@ -21842,7 +22930,7 @@
     "bpm": 178,
     "lastUpdated": "2025-10-06T14:48:23.000Z",
     "stats": {
-      "plays": 337,
+      "plays": 349,
       "downloads": 0,
       "favorites": 8
     },
@@ -21917,7 +23005,7 @@
     "bpm": 138.00000000000006,
     "lastUpdated": "2025-09-29T03:05:59.000Z",
     "stats": {
-      "plays": 562,
+      "plays": 591,
       "downloads": 0,
       "favorites": 6
     },
@@ -21952,7 +23040,7 @@
     "bpm": 179,
     "lastUpdated": "2025-09-24T07:04:37.000Z",
     "stats": {
-      "plays": 1059,
+      "plays": 1061,
       "downloads": 0,
       "favorites": 9
     },
@@ -22004,9 +23092,9 @@
     "bpm": 141.9999999999999,
     "lastUpdated": "2025-09-07T05:47:54.000Z",
     "stats": {
-      "plays": 14947,
+      "plays": 15061,
       "downloads": 0,
-      "favorites": 40
+      "favorites": 41
     },
     "difficulties": [
       {
@@ -22051,7 +23139,7 @@
     "bpm": 105.00000000000009,
     "lastUpdated": "2025-09-07T04:37:40.000Z",
     "stats": {
-      "plays": 1873,
+      "plays": 1903,
       "downloads": 0,
       "favorites": 31
     },
@@ -22074,7 +23162,7 @@
     "bpm": 158,
     "lastUpdated": "2025-09-05T15:52:42.000Z",
     "stats": {
-      "plays": 195,
+      "plays": 200,
       "downloads": 0,
       "favorites": 11
     },
@@ -22097,9 +23185,9 @@
     "bpm": 170.0000000000001,
     "lastUpdated": "2025-08-23T06:21:18.000Z",
     "stats": {
-      "plays": 359,
+      "plays": 368,
       "downloads": 0,
-      "favorites": 9
+      "favorites": 10
     },
     "difficulties": [
       {
@@ -22120,7 +23208,7 @@
     "bpm": 128,
     "lastUpdated": "2025-08-19T15:26:05.000Z",
     "stats": {
-      "plays": 5556,
+      "plays": 5594,
       "downloads": 0,
       "favorites": 12
     },
@@ -22161,7 +23249,7 @@
     "bpm": 110.99999999999991,
     "lastUpdated": "2025-08-19T03:37:46.000Z",
     "stats": {
-      "plays": 2130,
+      "plays": 2186,
       "downloads": 0,
       "favorites": 6
     },
@@ -22184,7 +23272,7 @@
     "bpm": 190.80000000000027,
     "lastUpdated": "2025-08-17T15:56:39.000Z",
     "stats": {
-      "plays": 293,
+      "plays": 296,
       "downloads": 0,
       "favorites": 15
     },
@@ -22207,7 +23295,7 @@
     "bpm": 207.00000000000009,
     "lastUpdated": "2025-08-17T08:00:38.000Z",
     "stats": {
-      "plays": 609,
+      "plays": 616,
       "downloads": 0,
       "favorites": 12
     },
@@ -22236,7 +23324,7 @@
     "bpm": 135.00000000000014,
     "lastUpdated": "2025-08-15T05:48:41.000Z",
     "stats": {
-      "plays": 12558,
+      "plays": 12894,
       "downloads": 0,
       "favorites": 63
     },
@@ -22277,9 +23365,9 @@
     "bpm": 210,
     "lastUpdated": "2025-08-13T20:50:31.000Z",
     "stats": {
-      "plays": 547,
+      "plays": 560,
       "downloads": 0,
-      "favorites": 12
+      "favorites": 13
     },
     "difficulties": [
       {
@@ -22300,7 +23388,7 @@
     "bpm": 170.0000000000001,
     "lastUpdated": "2025-08-13T11:32:12.000Z",
     "stats": {
-      "plays": 1443,
+      "plays": 1473,
       "downloads": 0,
       "favorites": 46
     },
@@ -22329,7 +23417,7 @@
     "bpm": 164.19999999999976,
     "lastUpdated": "2025-08-13T05:02:19.000Z",
     "stats": {
-      "plays": 2384,
+      "plays": 2416,
       "downloads": 0,
       "favorites": 46
     },
@@ -22375,7 +23463,7 @@
     "bpm": 187.5,
     "lastUpdated": "2025-08-12T15:11:11.000Z",
     "stats": {
-      "plays": 8183,
+      "plays": 8316,
       "downloads": 0,
       "favorites": 33
     },
@@ -22416,9 +23504,9 @@
     "bpm": 203.9999999999997,
     "lastUpdated": "2025-08-12T09:09:51.000Z",
     "stats": {
-      "plays": 9662,
+      "plays": 9812,
       "downloads": 0,
-      "favorites": 23
+      "favorites": 24
     },
     "difficulties": [
       {
@@ -22463,7 +23551,7 @@
     "bpm": 188.48000000000027,
     "lastUpdated": "2025-08-12T03:47:04.000Z",
     "stats": {
-      "plays": 78,
+      "plays": 79,
       "downloads": 0,
       "favorites": 0
     },
@@ -22486,9 +23574,9 @@
     "bpm": 128,
     "lastUpdated": "2025-08-12T02:05:51.000Z",
     "stats": {
-      "plays": 189,
+      "plays": 193,
       "downloads": 0,
-      "favorites": 9
+      "favorites": 10
     },
     "difficulties": [
       {
@@ -22509,7 +23597,7 @@
     "bpm": 150,
     "lastUpdated": "2025-08-11T22:37:27.000Z",
     "stats": {
-      "plays": 64,
+      "plays": 65,
       "downloads": 0,
       "favorites": 1
     },
@@ -22555,7 +23643,7 @@
     "bpm": 196.9999999999998,
     "lastUpdated": "2025-08-11T08:21:52.000Z",
     "stats": {
-      "plays": 3978,
+      "plays": 4028,
       "downloads": 0,
       "favorites": 14
     },
@@ -22607,9 +23695,9 @@
     "bpm": 108.57999999999997,
     "lastUpdated": "2025-08-10T23:22:14.000Z",
     "stats": {
-      "plays": 14545,
+      "plays": 14857,
       "downloads": 0,
-      "favorites": 113
+      "favorites": 115
     },
     "difficulties": [
       {
@@ -22636,7 +23724,7 @@
     "bpm": 70.00000000000001,
     "lastUpdated": "2025-08-10T23:18:33.000Z",
     "stats": {
-      "plays": 3038,
+      "plays": 3086,
       "downloads": 0,
       "favorites": 31
     },
@@ -22665,7 +23753,7 @@
     "bpm": 250,
     "lastUpdated": "2025-08-10T23:16:31.000Z",
     "stats": {
-      "plays": 6310,
+      "plays": 6390,
       "downloads": 0,
       "favorites": 41
     },
