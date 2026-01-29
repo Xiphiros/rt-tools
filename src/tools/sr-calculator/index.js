@@ -3,6 +3,7 @@ const { normalizeNotes, aggregatePeaks } = require('./utils/normalization')
 const { KEY_MAP } = require('./constants')
 const { snapNotes, scaleNotes, scaleOD } = require('./utils/ModUtils')
 const { calculateOfficial } = require('./official')
+const { calculateRS, CONSTANTS } = require('./rhythm')
 
 const StreamSkill = require('./skills/StreamSkill')
 const JackSpeedSkill = require('./skills/JackSpeedSkill')
@@ -141,9 +142,11 @@ function calculateStrain(rawNotes, overallDifficulty, returnPeaks = false) {
 module.exports = { 
     calculateStrain, 
     calculateOfficial,
+    calculateRS,
     utils: {
         scaleNotes,
         scaleOD,
         snapNotes
-    }
+    },
+    CONSTANTS
 }
