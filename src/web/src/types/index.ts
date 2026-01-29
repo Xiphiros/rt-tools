@@ -32,7 +32,12 @@ export interface MapData {
     mapper: string;
     diffName: string;
     bpm: number;
+    
+    // Star Ratings
     stars: number;
+    starsDT?: number;
+    starsHT?: number;
+    
     starsOfficial: number;
     stats: StrainResult['details'];
     link?: string | null;
