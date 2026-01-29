@@ -6,16 +6,17 @@ import {
     faSearch, 
     faSpinner, 
     faExclamationTriangle, 
-    faArrowUp, 
-    faArrowDown, 
-    faEquals,
     faUserCircle,
     faChevronDown,
     faChevronUp,
     faTrophy,
     faChevronLeft,
-    faChevronRight
+    faChevronRight,
+    faGlobe,
+    faStar
 } from '@fortawesome/free-solid-svg-icons';
+
+type SystemType = 'official' | 'rework';
 
 export const Leaderboard = () => {
     const { t } = useTranslation('leaderboard');
@@ -24,15 +25,16 @@ export const Leaderboard = () => {
     const [error, setError] = useState<string | null>(null);
     const [search, setSearch] = useState('');
     const [expandedUser, setExpandedUser] = useState<string | null>(null);
+    const [system, setSystem] = useState<SystemType>('rework');
     
     // Pagination State
     const [currentPage, setCurrentPage] = useState(1);
     const ITEMS_PER_PAGE = 50;
 
     useEffect(() => {
-        // Reset to page 1 on search
+        // Reset to page 1 on search or system change
         setCurrentPage(1);
-    }, [search]);
+    }, [search, system]);
 
     useEffect(() => {
         fetch(`./players.json?t=${Date.now()}`)
@@ -56,7 +58,15 @@ export const Leaderboard = () => {
         else setExpandedUser(userId);
     };
 
-    const filteredData = data.filter(p => 
+    // Sort data based on active system
+    const sortedData = [...data].sort((a, b) => {
+        if (system === 'official') {
+            return b.officialPP - a.officialPP;
+        }
+        return b.reworkRating - a.reworkRating;
+    });
+
+    const filteredData = sortedData.filter(p => 
         p.username.toLowerCase().includes(search.toLowerCase())
     );
 
@@ -73,38 +83,15 @@ export const Leaderboard = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    const renderDelta = (delta: number, minimal = false) => {
-        if (Math.abs(delta) < 0.1) return <span className="text-muted text-xs opacity-50"><FontAwesomeIcon icon={faEquals} /></span>;
-        
-        const isUp = delta > 0;
-        const color = isUp ? 'text-primary' : 'text-danger';
-        const icon = isUp ? faArrowUp : faArrowDown;
-        
-        if (minimal) {
-            return (
-                <span className={`text-xs ${color} font-medium flex items-center gap-1`}>
-                    {Math.abs(delta).toFixed(1)} <FontAwesomeIcon icon={icon} style={{ fontSize: '0.6rem' }} />
-                </span>
-            )
-        }
-
-        return (
-            <span className={`text-xs font-bold ${color} flex items-center justify-end gap-1 bg-card px-1.5 py-0.5 rounded border border-border/50`}>
-                {Math.abs(delta).toFixed(1)}
-                <FontAwesomeIcon icon={icon} style={{ fontSize: '0.6rem' }} />
-            </span>
-        );
-    };
-
     const getCountryFlag = (code: string) => {
-        if (!code) return "🌐";
+        if (!code) return <FontAwesomeIcon icon={faGlobe} className="text-muted" />;
         return code.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397));
     }
 
     if (loading) return (
         <div className="flex flex-col justify-center items-center h-64 text-muted animate-pulse">
             <FontAwesomeIcon icon={faSpinner} spin className="text-3xl mb-4 text-primary" /> 
-            <span className="font-medium">Loading Rework Data...</span>
+            <span className="font-medium">Loading Data...</span>
         </div>
     );
 
@@ -118,7 +105,7 @@ export const Leaderboard = () => {
 
     return (
         <div className="space-y-6 pb-20">
-            <div className="flex gap-4">
+            <div className="flex gap-4 items-center">
                 <div className="relative flex-1">
                     <FontAwesomeIcon icon={faSearch} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
                     <input 
@@ -128,6 +115,30 @@ export const Leaderboard = () => {
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
+                </div>
+                
+                {/* System Toggle */}
+                <div className="bg-input border border-border rounded-lg p-1 flex">
+                    <button
+                        onClick={() => setSystem('official')}
+                        className={`px-4 py-2 text-xs font-bold rounded transition-all ${
+                            system === 'official' 
+                            ? 'bg-card text-white shadow-sm ring-1 ring-white/10' 
+                            : 'text-muted hover:text-white'
+                        }`}
+                    >
+                        Official PP
+                    </button>
+                    <button
+                        onClick={() => setSystem('rework')}
+                        className={`px-4 py-2 text-xs font-bold rounded transition-all ${
+                            system === 'rework' 
+                            ? 'bg-primary text-black shadow-sm' 
+                            : 'text-muted hover:text-white'
+                        }`}
+                    >
+                        Rhythm Rating
+                    </button>
                 </div>
             </div>
 
@@ -140,9 +151,16 @@ export const Leaderboard = () => {
                                 <th className="px-6 py-4">{t('player')}</th>
                                 <th className="px-6 py-4 text-right hidden sm:table-cell">{t('acc')}</th>
                                 <th className="px-6 py-4 text-right hidden md:table-cell">{t('pc')}</th>
-                                <th className="px-6 py-4 text-right text-muted">{t('oldPP')}</th>
-                                <th className="px-6 py-4 text-right text-primary">{t('newPP')}</th>
-                                <th className="px-6 py-4 w-32 text-right">{t('delta')}</th>
+                                
+                                {system === 'official' ? (
+                                    <th className="px-6 py-4 text-right text-white">Total PP</th>
+                                ) : (
+                                    <>
+                                        <th className="px-6 py-4 text-right text-muted">Raw PP</th>
+                                        <th className="px-6 py-4 text-right text-primary">Rating</th>
+                                    </>
+                                )}
+                                
                                 <th className="w-10"></th>
                             </tr>
                         </thead>
@@ -152,13 +170,15 @@ export const Leaderboard = () => {
                                     <td colSpan={8} className="p-8 text-center text-muted">No players found.</td>
                                 </tr>
                             ) : (
-                                paginatedData.map((player) => (
+                                paginatedData.map((player, index) => {
+                                    const displayRank = (currentPage - 1) * ITEMS_PER_PAGE + index + 1;
+                                    return (
                                     <React.Fragment key={player.userId}>
                                         <tr 
                                             className={`hover:bg-card-hover/50 transition-colors cursor-pointer ${expandedUser === player.userId ? 'bg-card-hover/30' : ''}`}
                                             onClick={() => toggleRow(player.userId)}
                                         >
-                                            <td className="px-6 py-4 text-center font-mono text-muted">{player.rank}</td>
+                                            <td className="px-6 py-4 text-center font-mono text-muted">{displayRank}</td>
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-10 h-10 rounded-lg overflow-hidden bg-input flex-shrink-0 border border-border">
@@ -172,18 +192,29 @@ export const Leaderboard = () => {
                                                     </div>
                                                     <div className="flex flex-col">
                                                         <span className="font-bold text-text-header">{player.username}</span>
-                                                        <span className="text-xs text-muted">{getCountryFlag(player.country)} {player.country}</span>
+                                                        <span className="text-xs text-muted flex items-center gap-1">
+                                                            {getCountryFlag(player.country)} {player.country}
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 text-right font-mono text-muted hidden sm:table-cell">{player.accuracy.toFixed(2)}%</td>
                                             <td className="px-6 py-4 text-right font-mono text-muted hidden md:table-cell">{player.playCount.toLocaleString()}</td>
-                                            <td className="px-6 py-4 text-right text-muted font-medium opacity-70">{player.officialPP.toFixed(0)}</td>
-                                            <td className="px-6 py-4 text-right">
-                                                <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">{player.reworkPP.toFixed(0)}</span>
-                                                <span className="text-xs text-primary/50 ml-1">pp</span>
-                                            </td>
-                                            <td className="px-6 py-4"><div className="flex justify-end">{renderDelta(player.delta)}</div></td>
+                                            
+                                            {system === 'official' ? (
+                                                <td className="px-6 py-4 text-right">
+                                                    <span className="text-lg font-bold text-white">{player.officialPP.toFixed(0)}</span>
+                                                    <span className="text-xs text-muted ml-1">pp</span>
+                                                </td>
+                                            ) : (
+                                                <>
+                                                    <td className="px-6 py-4 text-right text-muted font-medium opacity-70">{player.officialPP.toFixed(0)}</td>
+                                                    <td className="px-6 py-4 text-right">
+                                                        <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">{player.reworkRating.toFixed(2)}</span>
+                                                    </td>
+                                                </>
+                                            )}
+                                            
                                             <td className="px-6 py-4 text-center text-muted">
                                                 <FontAwesomeIcon icon={expandedUser === player.userId ? faChevronUp : faChevronDown} />
                                             </td>
@@ -192,52 +223,63 @@ export const Leaderboard = () => {
                                         {/* Expanded Row */}
                                         {expandedUser === player.userId && (
                                             <tr className="bg-input/20">
-                                                <td colSpan={8} className="p-0">
+                                                <td colSpan={system === 'official' ? 6 : 7} className="p-0">
                                                     <div className="p-4 sm:p-6 border-b border-border/50 animate-in slide-in-from-top-2 duration-200">
                                                         <h4 className="text-xs uppercase tracking-widest text-muted font-bold mb-4 flex items-center gap-2">
-                                                            <FontAwesomeIcon icon={faTrophy} className="text-warning" /> Top Plays Impact
+                                                            <FontAwesomeIcon icon={faTrophy} className="text-warning" /> 
+                                                            {system === 'official' ? 'Top Plays' : 'Highest Rated Plays'}
                                                         </h4>
-                                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                                                            {player.plays.slice(0, 15).map((play, idx) => (
-                                                                <div key={idx} className="bg-card border border-border rounded-lg p-3 flex flex-col gap-2 hover:border-primary/30 transition-colors">
-                                                                    <div className="flex justify-between items-start">
-                                                                        <div className="min-w-0">
-                                                                            <div className="text-sm font-semibold text-text-header truncate" title={play.songName}>{play.songName}</div>
-                                                                            <div className="text-xs text-secondary truncate" title={play.diffName}>{play.diffName}</div>
-                                                                        </div>
-                                                                        <div className="text-xs font-mono text-muted bg-input px-1.5 py-0.5 rounded border border-border/50">
-                                                                            {play.acc.toFixed(2)}%
-                                                                        </div>
-                                                                    </div>
-                                                                    
-                                                                    <div className="flex items-end justify-between mt-1">
-                                                                        <div className="flex gap-1">
-                                                                            {play.mods.map(m => (
-                                                                                <span key={m} className="text-[10px] bg-white/10 px-1 rounded text-white font-bold">{m}</span>
-                                                                            ))}
-                                                                        </div>
-                                                                        <div className="text-right">
-                                                                            <div className="flex items-center gap-2 justify-end">
-                                                                                <span className="text-xs text-muted line-through decoration-danger/50">{play.oldPP.toFixed(0)}</span>
-                                                                                <span className="text-sm font-bold text-primary">{play.newPP.toFixed(0)}pp</span>
+                                                        
+                                                        {player.plays && player.plays.length > 0 ? (
+                                                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                                                                {player.plays.slice(0, 15).map((play, idx) => (
+                                                                    <div key={idx} className="bg-card border border-border rounded-lg p-3 flex flex-col gap-2 hover:border-primary/30 transition-colors">
+                                                                        <div className="flex justify-between items-start">
+                                                                            <div className="min-w-0">
+                                                                                <div className="text-sm font-semibold text-text-header truncate" title={play.songName}>{play.songName}</div>
+                                                                                <div className="text-xs text-secondary truncate" title={play.diffName}>{play.diffName}</div>
                                                                             </div>
-                                                                            <div className="flex justify-end">
-                                                                                 {renderDelta(play.newPP - play.oldPP, true)}
+                                                                            <div className="text-xs font-mono text-muted bg-input px-1.5 py-0.5 rounded border border-border/50">
+                                                                                {play.acc.toFixed(2)}%
                                                                             </div>
                                                                         </div>
+                                                                        
+                                                                        <div className="flex items-end justify-between mt-1">
+                                                                            <div className="flex gap-1">
+                                                                                {play.mods.map(m => (
+                                                                                    <span key={m} className="text-[10px] bg-white/10 px-1 rounded text-white font-bold">{m}</span>
+                                                                                ))}
+                                                                            </div>
+                                                                            
+                                                                            {system === 'official' ? (
+                                                                                <div className="text-right">
+                                                                                    <span className="text-sm font-bold text-white">{play.oldPP.toFixed(0)}pp</span>
+                                                                                </div>
+                                                                            ) : (
+                                                                                <div className="text-right flex flex-col items-end">
+                                                                                    <div className="flex items-center gap-1 text-[10px] text-muted uppercase font-bold">
+                                                                                        <span>RR</span>
+                                                                                        <span className="text-white">{play.rr.toFixed(1)}</span>
+                                                                                    </div>
+                                                                                    <div className="flex items-center gap-2">
+                                                                                        <span className="text-xs text-muted uppercase font-bold tracking-wider">RS</span>
+                                                                                        <span className="text-sm font-bold text-primary">{play.rs.toFixed(1)}</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            )}
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                        <div className="mt-4 text-center">
-                                                            <span className="text-xs text-muted italic">Showing top 15 of 50 tracked plays</span>
-                                                        </div>
+                                                                ))}
+                                                            </div>
+                                                        ) : (
+                                                            <div className="text-center text-muted text-sm py-4">No plays available in this mode.</div>
+                                                        )}
                                                     </div>
                                                 </td>
                                             </tr>
                                         )}
                                     </React.Fragment>
-                                ))
+                                )})}
                             )}
                         </tbody>
                     </table>
@@ -259,10 +301,8 @@ export const Leaderboard = () => {
                                 <FontAwesomeIcon icon={faChevronLeft} /> Prev
                             </button>
                             
-                            {/* Simple Page Numbers */}
                             <div className="hidden sm:flex gap-1">
                                 {[...Array(Math.min(5, totalPages))].map((_, i) => {
-                                    // Logic to show pages around current
                                     let p = currentPage - 2 + i;
                                     if (currentPage < 3) p = 1 + i;
                                     if (currentPage > totalPages - 2) p = totalPages - 4 + i;
