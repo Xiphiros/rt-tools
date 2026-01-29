@@ -1,7 +1,9 @@
 import { parentPort } from 'worker_threads';
 import path from 'path';
-import { calculateStrain, calculateOfficial, utils } from '@rt-tools/sr-calculator';
+import srCalculator from '@rt-tools/sr-calculator';
 import { parseRtmFile } from './rtm-parser.js';
+
+const { calculateStrain, calculateOfficial, utils } = srCalculator;
 
 // Worker Logic: Receives a file path, processes it, returns array of map entries
 parentPort.on('message', async (task) => {
