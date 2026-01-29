@@ -52,7 +52,6 @@ export const Dashboard = () => {
         return sortDesc ? valB - valA : valA - valB;
     });
 
-    // Removed unused 'val' parameter
     const getBarColor = (type: string) => `var(--strain-${type})`;
 
     const renderDelta = (official: number, rework: number) => {
@@ -118,13 +117,14 @@ export const Dashboard = () => {
                                 <th className="px-6 py-4 text-right cursor-pointer hover:text-primary transition-colors select-none" onClick={() => handleSort('stars')}>
                                     Rework ★ <FontAwesomeIcon icon={faSort} className={`ml-1 ${sortCol === 'stars' ? 'opacity-100' : 'opacity-30'}`} />
                                 </th>
+                                <th className="px-6 py-4 text-center">Mods</th>
                                 <th className="px-6 py-4 w-64 text-center">Strain Profile</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-border/50">
                             {filteredData.length === 0 ? (
                                 <tr>
-                                    <td colSpan={5} className="px-6 py-12 text-center text-muted">
+                                    <td colSpan={6} className="px-6 py-12 text-center text-muted">
                                         No maps found matching "{search}"
                                     </td>
                                 </tr>
@@ -163,6 +163,22 @@ export const Dashboard = () => {
                                                 </div>
                                                 {renderDelta(map.starsOfficial, map.stars)}
                                             </div>
+                                        </td>
+
+                                        <td className="px-6 py-4 text-center">
+                                            {map.starsDT !== undefined && map.starsHT !== undefined && (
+                                                <div className="flex justify-center gap-2 text-xs font-mono">
+                                                    <div className="flex flex-col items-center">
+                                                        <span className="text-danger font-bold">DT</span>
+                                                        <span className="text-muted">{map.starsDT.toFixed(1)}</span>
+                                                    </div>
+                                                    <div className="w-[1px] bg-border"></div>
+                                                    <div className="flex flex-col items-center">
+                                                        <span className="text-success font-bold">HT</span>
+                                                        <span className="text-muted">{map.starsHT.toFixed(1)}</span>
+                                                    </div>
+                                                </div>
+                                            )}
                                         </td>
 
                                         <td className="px-6 py-4">
