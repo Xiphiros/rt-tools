@@ -42,10 +42,16 @@ export interface ReworkPlay {
     songName: string;
     diffName: string;
     mapper: string;
+    
+    // Official Stats
     oldPP: number;
-    newPP: number;
+    
+    // Rework Stats
+    rr: number;      // Rhythm Rating (Map Difficulty)
+    rs: number;      // Rhythm Score (Performance Value)
+    
     acc: number;
-    speed: number; // Playback rate (e.g. 1.0, 1.5)
+    speed: number;   // Playback rate (e.g. 1.0, 1.5)
     mods: string[];
     score: number;
 }
@@ -56,10 +62,16 @@ export interface PlayerProfile {
     username: string;
     country: string;
     avatar: string | null;
+    
+    // Official System
     officialPP: number;
-    reworkPP: number;
+    
+    // Rework System
+    reworkRating: number; // Effective Level (Weighted Avg)
+    
     playCount: number;
     accuracy: number;
-    delta: number;
-    plays: ReworkPlay[]; // Top 50 plays with rework details
+    
+    // Detailed Plays (Sorted by Rework Rating by default)
+    plays: ReworkPlay[]; 
 }
