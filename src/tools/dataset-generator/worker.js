@@ -1,6 +1,6 @@
 import { parentPort } from 'worker_threads';
 import path from 'path';
-import { calculateStrain, calculateOfficial } from '@rt-tools/sr-calculator';
+import { calculateStrain, calculateOfficial, utils } from '@rt-tools/sr-calculator';
 import { parseRtmFile } from './rtm-parser.js';
 
 // Worker Logic: Receives a file path, processes it, returns array of map entries
@@ -36,12 +36,22 @@ async function processFile(filePath) {
         const baseOD = diff.data.overallDifficulty || 5;
         const notes = diff.data.notes;
 
-        // 1. Run New Rework Algorithm
-        // Heavy CPU Task
-        const strain = calculateStrain(notes, baseOD);
+        // 1. Nomod Calculation
+        const strainNM = calculateStrain(notes, baseOD);
 
-        // 2. Run Official Algorithm
-        // Heavy CPU Task
+        // 2. DT Calculation (1.5x speed)
+        // Rate: 1.5, OD Scaled
+        const notesDT = utils.scaleNotes(notes, 1.5);
+        const odDT = utils.scaleOD(baseOD, 1.5);
+        const strainDT = calculateStrain(notesDT, odDT);
+
+        // 3. HT Calculation (0.75x speed)
+        // Rate: 0.75, OD Scaled
+        const notesHT = utils.scaleNotes(notes, 0.75);
+        const odHT = utils.scaleOD(baseOD, 0.75);
+        const strainHT = calculateStrain(notesHT, odHT);
+
+        // 4. Official Calculation (Nomod only needed for reference)
         const officialSR = calculateOfficial({
             notes: notes,
             overallDifficulty: baseOD
@@ -54,9 +64,14 @@ async function processFile(filePath) {
             mapper: meta.mapper || 'Unknown',
             diffName: diff.name,
             bpm: meta.bpm || 0,
-            stars: strain.total,
-            starsOfficial: officialSR || 0, // Fallback for safety
-            stats: strain.details,
+            
+            // Star Ratings
+            stars: strainNM.total,
+            starsDT: strainDT.total,
+            starsHT: strainHT.total,
+            
+            starsOfficial: officialSR || 0,
+            stats: strainNM.details,
             link: mapLink
         });
     }
