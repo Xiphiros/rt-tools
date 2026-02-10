@@ -52,7 +52,7 @@ export interface ReworkPlay {
     mapper: string;
     
     // Performance Metrics
-    officialPP: number; // Renamed from oldPP
+    officialPP: number; 
     rs: number;         // Rhythm Score (Reworked Performance Value)
     
     // Difficulty Metrics
@@ -79,5 +79,5 @@ export interface PlayerProfile {
     accuracy: number;
     
     // Deep History
-    plays: ReworkPlay[]; // Contains top plays (typically up to 100)
+    plays: ReworkPlay[]; 
 }
