@@ -2,7 +2,9 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-// Basic resource structure for now
+/**
+ * Localization Resources
+ */
 const resources = {
   en: {
     common: {
@@ -28,11 +30,15 @@ const resources = {
       searchPlaceholder: "Search player...",
       rank: "#",
       player: "Player",
-      oldPP: "Official PP",
-      newPP: "Rework PP",
-      delta: "Change",
+      officialTab: "Official PP",
+      reworkTab: "Rhythm Rating",
+      officialValue: "Total PP",
+      reworkValue: "Rating",
       acc: "Accuracy",
-      pc: "Playcount"
+      pc: "Playcount",
+      rr: "RR",
+      rs: "RS",
+      topPlays: "Top Performance Records"
     }
   }
 };
