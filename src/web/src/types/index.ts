@@ -1,4 +1,6 @@
-// Shared Types for the Frontend
+/**
+ * Shared Type Definitions for RhythmTyper Community Tools
+ */
 
 export interface Note {
     time: number;
@@ -34,11 +36,11 @@ export interface MapData {
     bpm: number;
     
     // Star Ratings
-    stars: number;
+    stars: number; // Current Rework Nomod Rating (RR)
     starsDT?: number;
     starsHT?: number;
     
-    starsOfficial: number;
+    starsOfficial: number; // In-game Star Rating
     stats: StrainResult['details'];
     link?: string | null;
 }
@@ -48,17 +50,17 @@ export interface ReworkPlay {
     diffName: string;
     mapper: string;
     
-    // Official Stats
-    oldPP: number;
+    // Performance Metrics
+    oldPP: number;   // Official Performance Points
+    rs: number;      // Rhythm Score (Reworked Performance Value)
     
-    // Rework Stats
-    rr: number;      // Rhythm Rating (Map Difficulty)
-    rs: number;      // Rhythm Score (Performance Value)
+    // Difficulty Metrics
+    rr: number;      // Rhythm Rating (Calculated Map Difficulty)
     
-    acc: number;
-    speed: number;   // Playback rate (e.g. 1.0, 1.5)
+    acc: number;     // Percentage (0-100)
+    speed: number;   // Rate multiplier (1.0, 1.5, etc)
     mods: string[];
-    score: number;
+    score: number;   // Raw in-game score
 }
 
 export interface PlayerProfile {
@@ -68,15 +70,13 @@ export interface PlayerProfile {
     country: string;
     avatar: string | null;
     
-    // Official System
-    officialPP: number;
-    
-    // Rework System
-    reworkRating: number; // Effective Level (Weighted Avg)
+    // Aggregate Metrics
+    officialPP: number;    // Official Total PP
+    reworkRating: number;  // Reworked Aggregate Rating (Weighted RS)
     
     playCount: number;
     accuracy: number;
     
-    // Detailed Plays (Sorted by Rework Rating by default)
-    plays: ReworkPlay[]; 
+    // Deep History
+    plays: ReworkPlay[]; // Contains top plays (typically up to 100)
 }
