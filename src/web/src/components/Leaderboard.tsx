@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PlayerProfile } from '../types';
+import { PlayerProfile, ReworkPlay } from '../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faSearch, 
@@ -12,10 +12,32 @@ import {
     faTrophy,
     faChevronLeft,
     faChevronRight,
-    faGlobe
+    faGlobe,
+    faPlusCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 type SystemType = 'official' | 'rework';
+
+/**
+ * GradeBadge Component
+ * Renders stylized grade indicators.
+ */
+const GradeBadge = ({ acc }: { acc: number }) => {
+    let grade = 'F';
+    let style = 'text-red-500 border-red-500/30 bg-red-500/10';
+
+    if (acc >= 99) { grade = 'SS'; style = 'text-yellow-400 border-yellow-400/30 bg-yellow-400/10 shadow-[0_0_8px_rgba(250,204,21,0.2)]'; }
+    else if (acc >= 95) { grade = 'S'; style = 'text-yellow-400 border-yellow-400/30 bg-yellow-400/10'; }
+    else if (acc >= 90) { grade = 'A'; style = 'text-green-400 border-green-400/30 bg-green-400/10'; }
+    else if (acc >= 85) { grade = 'B'; style = 'text-blue-400 border-blue-400/30 bg-blue-400/10'; }
+    else if (acc >= 80) { grade = 'C'; style = 'text-purple-400 border-purple-400/30 bg-purple-400/10'; }
+    
+    return (
+        <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${style} transition-all`}>
+            {grade}
+        </span>
+    );
+};
 
 export const Leaderboard = () => {
     const { t } = useTranslation('leaderboard');
@@ -25,14 +47,14 @@ export const Leaderboard = () => {
     const [search, setSearch] = useState('');
     const [expandedUser, setExpandedUser] = useState<string | null>(null);
     const [system, setSystem] = useState<SystemType>('rework');
+    const [showFullHistory, setShowFullHistory] = useState(false);
     
-    // Pagination State
     const [currentPage, setCurrentPage] = useState(1);
     const ITEMS_PER_PAGE = 50;
 
     useEffect(() => {
-        // Reset to page 1 on search or system change
         setCurrentPage(1);
+        setExpandedUser(null);
     }, [search, system]);
 
     useEffect(() => {
@@ -46,97 +68,142 @@ export const Leaderboard = () => {
                 setLoading(false);
             })
             .catch(err => {
-                console.error("Failed to load leaderboard:", err);
+                console.error("Leaderboard context error:", err);
                 setError(err.message);
                 setLoading(false);
             });
     }, []);
 
-    const toggleRow = (userId: string) => {
-        if (expandedUser === userId) setExpandedUser(null);
-        else setExpandedUser(userId);
-    };
+    // Memoized Sorting Logic
+    const sortedData = useMemo(() => {
+        return [...data].sort((a, b) => {
+            if (system === 'official') return b.officialPP - a.officialPP;
+            return b.reworkRating - a.reworkRating;
+        });
+    }, [data, system]);
 
-    // Sort data based on active system
-    const sortedData = [...data].sort((a, b) => {
-        if (system === 'official') {
-            return b.officialPP - a.officialPP;
-        }
-        return b.reworkRating - a.reworkRating;
-    });
+    const filteredData = useMemo(() => {
+        return sortedData.filter(p => p.username.toLowerCase().includes(search.toLowerCase()));
+    }, [sortedData, search]);
 
-    const filteredData = sortedData.filter(p => 
-        p.username.toLowerCase().includes(search.toLowerCase())
-    );
-
-    // Pagination Logic
     const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
-    const paginatedData = filteredData.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
-    );
+    const paginatedData = filteredData.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
-    const handlePageChange = (page: number) => {
-        if (page < 1 || page > totalPages) return;
-        setCurrentPage(page);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    const toggleRow = (userId: string) => {
+        setExpandedUser(expandedUser === userId ? null : userId);
+        setShowFullHistory(false);
     };
 
     const getCountryFlag = (code: string) => {
         if (!code) return <FontAwesomeIcon icon={faGlobe} className="text-muted" />;
         return code.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397));
-    }
+    };
+
+    const renderPlays = (plays: ReworkPlay[]) => {
+        // Sort plays based on the current evaluation system
+        const displayPlays = [...plays].sort((a, b) => {
+            if (system === 'official') return b.oldPP - a.oldPP;
+            return b.rs - a.rs;
+        });
+
+        const visiblePlays = showFullHistory ? displayPlays.slice(0, 100) : displayPlays.slice(0, 15);
+
+        return (
+            <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {visiblePlays.map((play, idx) => (
+                        <div key={idx} className="bg-card border border-border rounded-lg p-3 flex flex-col gap-2 hover:border-primary/30 transition-all group/play animate-in fade-in duration-200">
+                            <div className="flex justify-between items-start">
+                                <div className="min-w-0">
+                                    <div className="text-sm font-semibold text-text-header truncate" title={play.songName}>{play.songName}</div>
+                                    <div className="text-xs text-secondary truncate" title={play.diffName}>{play.diffName}</div>
+                                </div>
+                                <GradeBadge acc={play.acc} />
+                            </div>
+                            
+                            <div className="flex items-end justify-between mt-1">
+                                <div className="flex gap-1">
+                                    {play.mods.map(m => (
+                                        <span key={m} className="text-[10px] bg-white/10 px-1.5 rounded text-white font-bold">{m}</span>
+                                    ))}
+                                    <span className="text-[10px] text-muted font-mono">{play.acc.toFixed(2)}%</span>
+                                </div>
+                                
+                                <div className="text-right flex flex-col items-end">
+                                    {system === 'official' ? (
+                                        <span className="text-sm font-bold text-white group-hover/play:text-primary transition-colors">{play.oldPP.toFixed(0)}pp</span>
+                                    ) : (
+                                        <>
+                                            <div className="flex items-center gap-1 text-[9px] text-muted uppercase font-bold">
+                                                <span>{t('rr')}</span>
+                                                <span className="text-white">{play.rr.toFixed(1)}</span>
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <span className="text-xs text-muted uppercase font-bold tracking-wider">{t('rs')}</span>
+                                                <span className="text-sm font-bold text-primary">{play.rs.toFixed(1)}</span>
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                
+                {displayPlays.length > 15 && !showFullHistory && (
+                    <button 
+                        onClick={() => setShowFullHistory(true)}
+                        className="w-full py-3 border border-dashed border-border rounded-lg text-xs font-bold text-muted hover:text-white hover:border-white/20 transition-all flex items-center justify-center gap-2 bg-white/5"
+                    >
+                        <FontAwesomeIcon icon={faPlusCircle} />
+                        View Full History ({displayPlays.length} Plays)
+                    </button>
+                )}
+            </div>
+        );
+    };
 
     if (loading) return (
         <div className="flex flex-col justify-center items-center h-64 text-muted animate-pulse">
             <FontAwesomeIcon icon={faSpinner} spin className="text-3xl mb-4 text-primary" /> 
-            <span className="font-medium">Loading Data...</span>
+            <span className="font-medium">{t('loading')}</span>
         </div>
     );
 
     if (error) return (
         <div className="flex flex-col justify-center items-center h-64 text-danger">
             <FontAwesomeIcon icon={faExclamationTriangle} className="text-4xl mb-4" />
-            <h3 className="text-lg font-bold">Leaderboard Unavailable</h3>
-            <p className="text-sm text-muted mt-2">Please run the recalculation script in your local environment.</p>
+            <h3 className="text-lg font-bold">Leaderboard Error</h3>
+            <p className="text-sm text-muted mt-2">{error}</p>
         </div>
     );
 
     return (
         <div className="space-y-6 pb-20">
-            <div className="flex gap-4 items-center">
-                <div className="relative flex-1">
+            <div className="flex flex-col sm:flex-row gap-4 items-center">
+                <div className="relative flex-1 w-full">
                     <FontAwesomeIcon icon={faSearch} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
                     <input 
                         type="text" 
                         placeholder={t('searchPlaceholder')}
-                        className="w-full bg-card border border-border rounded-lg pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors text-text-primary placeholder:text-muted/50"
+                        className="w-full bg-card border border-border rounded-lg pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors text-text-primary placeholder:text-muted/50 shadow-sm"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
                 </div>
                 
-                {/* System Toggle */}
-                <div className="bg-input border border-border rounded-lg p-1 flex">
+                <div className="bg-input border border-border rounded-lg p-1 flex shadow-inner">
                     <button
                         onClick={() => setSystem('official')}
-                        className={`px-4 py-2 text-xs font-bold rounded transition-all ${
-                            system === 'official' 
-                            ? 'bg-card text-white shadow-sm ring-1 ring-white/10' 
-                            : 'text-muted hover:text-white'
-                        }`}
+                        className={`px-4 py-2 text-xs font-bold rounded transition-all ${system === 'official' ? 'bg-card text-white shadow-sm ring-1 ring-white/10' : 'text-muted hover:text-white'}`}
                     >
-                        Official PP
+                        {t('officialTab')}
                     </button>
                     <button
                         onClick={() => setSystem('rework')}
-                        className={`px-4 py-2 text-xs font-bold rounded transition-all ${
-                            system === 'rework' 
-                            ? 'bg-primary text-black shadow-sm' 
-                            : 'text-muted hover:text-white'
-                        }`}
+                        className={`px-4 py-2 text-xs font-bold rounded transition-all ${system === 'rework' ? 'bg-primary text-black shadow-sm' : 'text-muted hover:text-white'}`}
                     >
-                        Rhythm Rating
+                        {t('reworkTab')}
                     </button>
                 </div>
             </div>
@@ -152,11 +219,11 @@ export const Leaderboard = () => {
                                 <th className="px-6 py-4 text-right hidden md:table-cell">{t('pc')}</th>
                                 
                                 {system === 'official' ? (
-                                    <th className="px-6 py-4 text-right text-white">Total PP</th>
+                                    <th className="px-6 py-4 text-right text-white">{t('officialValue')}</th>
                                 ) : (
                                     <>
-                                        <th className="px-6 py-4 text-right text-muted">Raw PP</th>
-                                        <th className="px-6 py-4 text-right text-primary">Rating</th>
+                                        <th className="px-6 py-4 text-right text-muted">Official PP</th>
+                                        <th className="px-6 py-4 text-right text-primary">{t('reworkValue')}</th>
                                     </>
                                 )}
                                 
@@ -166,7 +233,7 @@ export const Leaderboard = () => {
                         <tbody className="divide-y divide-border/50">
                             {paginatedData.length === 0 ? (
                                 <tr>
-                                    <td colSpan={8} className="p-8 text-center text-muted">No players found.</td>
+                                    <td colSpan={8} className="p-8 text-center text-muted">No records matched your search.</td>
                                 </tr>
                             ) : (
                                 paginatedData.map((player, index) => {
@@ -174,23 +241,21 @@ export const Leaderboard = () => {
                                     return (
                                     <React.Fragment key={player.userId}>
                                         <tr 
-                                            className={`hover:bg-card-hover/50 transition-colors cursor-pointer ${expandedUser === player.userId ? 'bg-card-hover/30' : ''}`}
+                                            className={`hover:bg-card-hover/50 transition-colors cursor-pointer group ${expandedUser === player.userId ? 'bg-card-hover/30' : ''}`}
                                             onClick={() => toggleRow(player.userId)}
                                         >
-                                            <td className="px-6 py-4 text-center font-mono text-muted">{displayRank}</td>
+                                            <td className="px-6 py-4 text-center font-mono text-muted group-hover:text-primary transition-colors">{displayRank}</td>
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-3">
-                                                    <div className="w-10 h-10 rounded-lg overflow-hidden bg-input flex-shrink-0 border border-border">
+                                                    <div className="w-10 h-10 rounded-lg overflow-hidden bg-input flex-shrink-0 border border-border shadow-sm">
                                                         {player.avatar ? (
                                                             <img src={player.avatar} alt={player.username} className="w-full h-full object-cover" loading="lazy" />
                                                         ) : (
-                                                            <div className="w-full h-full flex items-center justify-center text-muted">
-                                                                <FontAwesomeIcon icon={faUserCircle} className="text-xl" />
-                                                            </div>
+                                                            <div className="w-full h-full flex items-center justify-center text-muted"><FontAwesomeIcon icon={faUserCircle} className="text-xl" /></div>
                                                         )}
                                                     </div>
                                                     <div className="flex flex-col">
-                                                        <span className="font-bold text-text-header">{player.username}</span>
+                                                        <span className="font-bold text-text-header group-hover:text-primary transition-colors">{player.username}</span>
                                                         <span className="text-xs text-muted flex items-center gap-1">
                                                             {getCountryFlag(player.country)} {player.country}
                                                         </span>
@@ -207,7 +272,7 @@ export const Leaderboard = () => {
                                                 </td>
                                             ) : (
                                                 <>
-                                                    <td className="px-6 py-4 text-right text-muted font-medium opacity-70">{player.officialPP.toFixed(0)}</td>
+                                                    <td className="px-6 py-4 text-right text-muted font-medium opacity-50">{player.officialPP.toFixed(0)}</td>
                                                     <td className="px-6 py-4 text-right">
                                                         <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">{player.reworkRating.toFixed(2)}</span>
                                                     </td>
@@ -215,63 +280,24 @@ export const Leaderboard = () => {
                                             )}
                                             
                                             <td className="px-6 py-4 text-center text-muted">
-                                                <FontAwesomeIcon icon={expandedUser === player.userId ? faChevronUp : faChevronDown} />
+                                                <FontAwesomeIcon icon={expandedUser === player.userId ? faChevronUp : faChevronDown} className="transition-transform duration-200" />
                                             </td>
                                         </tr>
                                         
-                                        {/* Expanded Row */}
                                         {expandedUser === player.userId && (
                                             <tr className="bg-input/20">
                                                 <td colSpan={system === 'official' ? 6 : 8} className="p-0">
-                                                    <div className="p-4 sm:p-6 border-b border-border/50 animate-in slide-in-from-top-2 duration-200">
-                                                        <h4 className="text-xs uppercase tracking-widest text-muted font-bold mb-4 flex items-center gap-2">
-                                                            <FontAwesomeIcon icon={faTrophy} className="text-warning" /> 
-                                                            {system === 'official' ? 'Top Plays' : 'Highest Rated Plays'}
-                                                        </h4>
+                                                    <div className="p-4 sm:p-6 border-b border-border/50 animate-in slide-in-from-top-2 duration-300">
+                                                        <div className="flex justify-between items-center mb-6">
+                                                            <h4 className="text-xs uppercase tracking-widest text-muted font-bold flex items-center gap-2">
+                                                                <FontAwesomeIcon icon={faTrophy} className="text-warning" /> 
+                                                                {t('topPlays')}
+                                                            </h4>
+                                                            <span className="text-[10px] text-muted italic">Sorted by {system === 'official' ? 'PP' : 'RS'}</span>
+                                                        </div>
                                                         
-                                                        {player.plays && player.plays.length > 0 ? (
-                                                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                                                                {player.plays.slice(0, 15).map((play, idx) => (
-                                                                    <div key={idx} className="bg-card border border-border rounded-lg p-3 flex flex-col gap-2 hover:border-primary/30 transition-colors">
-                                                                        <div className="flex justify-between items-start">
-                                                                            <div className="min-w-0">
-                                                                                <div className="text-sm font-semibold text-text-header truncate" title={play.songName}>{play.songName}</div>
-                                                                                <div className="text-xs text-secondary truncate" title={play.diffName}>{play.diffName}</div>
-                                                                            </div>
-                                                                            <div className="text-xs font-mono text-muted bg-input px-1.5 py-0.5 rounded border border-border/50">
-                                                                                {play.acc.toFixed(2)}%
-                                                                            </div>
-                                                                        </div>
-                                                                        
-                                                                        <div className="flex items-end justify-between mt-1">
-                                                                            <div className="flex gap-1">
-                                                                                {play.mods.map(m => (
-                                                                                    <span key={m} className="text-[10px] bg-white/10 px-1 rounded text-white font-bold">{m}</span>
-                                                                                ))}
-                                                                            </div>
-                                                                            
-                                                                            {system === 'official' ? (
-                                                                                <div className="text-right">
-                                                                                    <span className="text-sm font-bold text-white">{play.oldPP.toFixed(0)}pp</span>
-                                                                                </div>
-                                                                            ) : (
-                                                                                <div className="text-right flex flex-col items-end">
-                                                                                    <div className="flex items-center gap-1 text-[10px] text-muted uppercase font-bold">
-                                                                                        <span>RR</span>
-                                                                                        <span className="text-white">{play.rr.toFixed(1)}</span>
-                                                                                    </div>
-                                                                                    <div className="flex items-center gap-2">
-                                                                                        <span className="text-xs text-muted uppercase font-bold tracking-wider">RS</span>
-                                                                                        <span className="text-sm font-bold text-primary">{play.rs.toFixed(1)}</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            )}
-                                                                        </div>
-                                                                    </div>
-                                                                ))}
-                                                            </div>
-                                                        ) : (
-                                                            <div className="text-center text-muted text-sm py-4">No plays available in this mode.</div>
+                                                        {player.plays && player.plays.length > 0 ? renderPlays(player.plays) : (
+                                                            <div className="text-center text-muted text-sm py-12 bg-black/10 rounded-lg border border-dashed border-border">No performance records found for this profile.</div>
                                                         )}
                                                     </div>
                                                 </td>
@@ -285,16 +311,15 @@ export const Leaderboard = () => {
                     </table>
                 </div>
 
-                {/* Pagination Controls */}
                 {totalPages > 1 && (
-                    <div className="border-t border-border p-4 bg-input/30 flex justify-between items-center select-none">
+                    <div className="border-t border-border p-4 bg-input/30 flex flex-col sm:flex-row justify-between items-center gap-4 select-none">
                         <div className="text-xs text-muted">
                             Showing <span className="text-white font-bold">{(currentPage - 1) * ITEMS_PER_PAGE + 1}</span> to <span className="text-white font-bold">{Math.min(currentPage * ITEMS_PER_PAGE, filteredData.length)}</span> of <span className="text-white font-bold">{filteredData.length}</span> players
                         </div>
                         
                         <div className="flex gap-2">
                             <button 
-                                onClick={() => handlePageChange(currentPage - 1)}
+                                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                                 disabled={currentPage === 1}
                                 className="px-3 py-1.5 rounded-lg border border-border bg-card text-xs font-bold text-muted hover:text-white hover:border-primary/50 disabled:opacity-30 disabled:hover:text-muted disabled:hover:border-border transition-all flex items-center gap-2"
                             >
@@ -306,17 +331,12 @@ export const Leaderboard = () => {
                                     let p = currentPage - 2 + i;
                                     if (currentPage < 3) p = 1 + i;
                                     if (currentPage > totalPages - 2) p = totalPages - 4 + i;
-                                    
                                     if (p > 0 && p <= totalPages) {
                                         return (
                                             <button
                                                 key={p}
-                                                onClick={() => handlePageChange(p)}
-                                                className={`w-8 h-8 rounded-lg text-xs font-bold flex items-center justify-center transition-all ${
-                                                    currentPage === p 
-                                                    ? 'bg-primary text-black' 
-                                                    : 'bg-card border border-border text-muted hover:text-white hover:border-white/20'
-                                                }`}
+                                                onClick={() => setCurrentPage(p)}
+                                                className={`w-8 h-8 rounded-lg text-xs font-bold flex items-center justify-center transition-all ${currentPage === p ? 'bg-primary text-black' : 'bg-card border border-border text-muted hover:text-white hover:border-white/20'}`}
                                             >
                                                 {p}
                                             </button>
@@ -327,7 +347,7 @@ export const Leaderboard = () => {
                             </div>
 
                             <button 
-                                onClick={() => handlePageChange(currentPage + 1)}
+                                onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                                 disabled={currentPage === totalPages}
                                 className="px-3 py-1.5 rounded-lg border border-border bg-card text-xs font-bold text-muted hover:text-white hover:border-primary/50 disabled:opacity-30 disabled:hover:text-muted disabled:hover:border-border transition-all flex items-center gap-2"
                             >
