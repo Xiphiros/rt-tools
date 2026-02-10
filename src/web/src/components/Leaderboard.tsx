@@ -20,7 +20,7 @@ type SystemType = 'official' | 'rework';
 
 /**
  * GradeBadge Component
- * Renders stylized grade indicators.
+ * Renders stylized grade indicators based on accuracy thresholds.
  */
 const GradeBadge = ({ acc }: { acc: number }) => {
     let grade = 'F';
@@ -46,7 +46,9 @@ export const Leaderboard = () => {
     const [error, setError] = useState<string | null>(null);
     const [search, setSearch] = useState('');
     const [expandedUser, setExpandedUser] = useState<string | null>(null);
-    const [system, setSystem] = useState<SystemType>('rework');
+    
+    // Default selection set to 'official' per project requirements.
+    const [system, setSystem] = useState<SystemType>('official');
     const [showFullHistory, setShowFullHistory] = useState(false);
     
     const [currentPage, setCurrentPage] = useState(1);
@@ -74,7 +76,7 @@ export const Leaderboard = () => {
             });
     }, []);
 
-    // Memoized Sorting Logic
+    // Memoized Sorting Logic based on the selected system (Official PP vs Rework Rating)
     const sortedData = useMemo(() => {
         return [...data].sort((a, b) => {
             if (system === 'official') return b.officialPP - a.officialPP;
@@ -100,12 +102,13 @@ export const Leaderboard = () => {
     };
 
     const renderPlays = (plays: ReworkPlay[]) => {
-        // Sort plays based on the current evaluation system
+        // Sort individual plays within the expanded view based on the active system
         const displayPlays = [...plays].sort((a, b) => {
             if (system === 'official') return b.oldPP - a.oldPP;
             return b.rs - a.rs;
         });
 
+        // Limit visibility initially to 15, allow expansion to full top 100
         const visiblePlays = showFullHistory ? displayPlays.slice(0, 100) : displayPlays.slice(0, 15);
 
         return (
