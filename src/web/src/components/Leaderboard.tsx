@@ -46,8 +46,6 @@ export const Leaderboard = () => {
     const [error, setError] = useState<string | null>(null);
     const [search, setSearch] = useState('');
     const [expandedUser, setExpandedUser] = useState<string | null>(null);
-    
-    // Default selection set to 'official' per project requirements.
     const [system, setSystem] = useState<SystemType>('official');
     const [showFullHistory, setShowFullHistory] = useState(false);
     
@@ -76,7 +74,6 @@ export const Leaderboard = () => {
             });
     }, []);
 
-    // Memoized Sorting Logic based on the selected system (Official PP vs Rework Rating)
     const sortedData = useMemo(() => {
         return [...data].sort((a, b) => {
             if (system === 'official') return b.officialPP - a.officialPP;
@@ -102,13 +99,11 @@ export const Leaderboard = () => {
     };
 
     const renderPlays = (plays: ReworkPlay[]) => {
-        // Sort individual plays within the expanded view based on the active system
         const displayPlays = [...plays].sort((a, b) => {
-            if (system === 'official') return b.oldPP - a.oldPP;
+            if (system === 'official') return b.officialPP - a.officialPP;
             return b.rs - a.rs;
         });
 
-        // Limit visibility initially to 15, allow expansion to full top 100
         const visiblePlays = showFullHistory ? displayPlays.slice(0, 100) : displayPlays.slice(0, 15);
 
         return (
@@ -134,7 +129,7 @@ export const Leaderboard = () => {
                                 
                                 <div className="text-right flex flex-col items-end">
                                     {system === 'official' ? (
-                                        <span className="text-sm font-bold text-white group-hover/play:text-primary transition-colors">{play.oldPP.toFixed(0)}pp</span>
+                                        <span className="text-sm font-bold text-white group-hover/play:text-primary transition-colors">{play.officialPP.toFixed(0)}pp</span>
                                     ) : (
                                         <>
                                             <div className="flex items-center gap-1 text-[9px] text-muted uppercase font-bold">
@@ -277,7 +272,9 @@ export const Leaderboard = () => {
                                                 <>
                                                     <td className="px-6 py-4 text-right text-muted font-medium opacity-50">{player.officialPP.toFixed(0)}</td>
                                                     <td className="px-6 py-4 text-right">
-                                                        <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">{player.reworkRating.toFixed(2)}</span>
+                                                        <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
+                                                            {player.reworkRating.toFixed(2)}
+                                                        </span>
                                                     </td>
                                                 </>
                                             )}
@@ -289,14 +286,14 @@ export const Leaderboard = () => {
                                         
                                         {expandedUser === player.userId && (
                                             <tr className="bg-input/20">
-                                                <td colSpan={system === 'official' ? 6 : 8} className="p-0">
+                                                <td colSpan={system === 'official' ? 6 : 7} className="p-0">
                                                     <div className="p-4 sm:p-6 border-b border-border/50 animate-in slide-in-from-top-2 duration-300">
                                                         <div className="flex justify-between items-center mb-6">
                                                             <h4 className="text-xs uppercase tracking-widest text-muted font-bold flex items-center gap-2">
                                                                 <FontAwesomeIcon icon={faTrophy} className="text-warning" /> 
                                                                 {t('topPlays')}
                                                             </h4>
-                                                            <span className="text-[10px] text-muted italic">Sorted by {system === 'official' ? 'PP' : 'RS'}</span>
+                                                            <span className="text-[10px] text-muted italic">Sorted by {system === 'official' ? 'Official PP' : 'Rhythm Score'}</span>
                                                         </div>
                                                         
                                                         {player.plays && player.plays.length > 0 ? renderPlays(player.plays) : (
