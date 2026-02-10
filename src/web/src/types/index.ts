@@ -1,5 +1,6 @@
 /**
  * Shared Type Definitions for RhythmTyper Community Tools
+ * Aligned with RR (Rhythm Rating) and RS (Rhythm Score) terminology.
  */
 
 export interface Note {
@@ -51,16 +52,16 @@ export interface ReworkPlay {
     mapper: string;
     
     // Performance Metrics
-    oldPP: number;   // Official Performance Points
-    rs: number;      // Rhythm Score (Reworked Performance Value)
+    officialPP: number; // Renamed from oldPP
+    rs: number;         // Rhythm Score (Reworked Performance Value)
     
     // Difficulty Metrics
-    rr: number;      // Rhythm Rating (Calculated Map Difficulty)
+    rr: number;         // Rhythm Rating (Calculated Map Difficulty)
     
-    acc: number;     // Percentage (0-100)
-    speed: number;   // Rate multiplier (1.0, 1.5, etc)
+    acc: number;        // Percentage (0-100)
+    speed: number;      // Rate multiplier (1.0, 1.5, etc)
     mods: string[];
-    score: number;   // Raw in-game score
+    score: number;      // Raw in-game score
 }
 
 export interface PlayerProfile {
