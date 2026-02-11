@@ -13,15 +13,12 @@ import {
     faChevronLeft,
     faChevronRight,
     faGlobe,
-    faPlusCircle
+    faPlusCircle,
+    faArrowRight
 } from '@fortawesome/free-solid-svg-icons';
 
 type SystemType = 'official' | 'rework';
 
-/**
- * GradeBadge Component
- * Renders stylized grade indicators based on accuracy thresholds.
- */
 const GradeBadge = ({ acc }: { acc: number }) => {
     let grade = 'F';
     let style = 'text-red-500 border-red-500/30 bg-red-500/10';
@@ -119,19 +116,30 @@ export const Leaderboard = () => {
                                 <GradeBadge acc={play.acc} />
                             </div>
                             
-                            <div className="flex items-end justify-between mt-1">
-                                <div className="flex gap-1">
+                            <div className="flex items-end justify-between mt-1 border-t border-white/5 pt-2">
+                                {/* Mods & Acc */}
+                                <div className="flex gap-1 items-center">
                                     {play.mods.map(m => (
                                         <span key={m} className="text-[10px] bg-white/10 px-1.5 rounded text-white font-bold">{m}</span>
                                     ))}
-                                    <span className="text-[10px] text-muted font-mono">{play.acc.toFixed(2)}%</span>
+                                    <span className="text-[10px] text-muted font-mono ml-1">{play.acc.toFixed(2)}%</span>
                                 </div>
                                 
+                                {/* Values */}
                                 <div className="text-right flex flex-col items-end">
                                     {system === 'official' ? (
-                                        <span className="text-sm font-bold text-white group-hover/play:text-primary transition-colors">{play.officialPP.toFixed(0)}pp</span>
+                                        <div className="flex flex-col items-end">
+                                            <div className="flex items-center gap-1.5 text-[10px] text-muted">
+                                                <span className="line-through decoration-white/30 opacity-60" title="Live API Value">{play.importPP.toFixed(0)}</span>
+                                                <FontAwesomeIcon icon={faArrowRight} className="text-[8px] opacity-40" />
+                                                <span className="text-white font-bold text-sm group-hover/play:text-primary transition-colors" title="Recalculated Value">{play.officialPP.toFixed(0)}pp</span>
+                                            </div>
+                                            <div className="text-[9px] text-muted opacity-50 font-mono mt-0.5" title="Difficulty Comparison">
+                                                SR: {play.importSR.toFixed(2)} → {play.rr.toFixed(2)}
+                                            </div>
+                                        </div>
                                     ) : (
-                                        <>
+                                        <div className="flex flex-col items-end">
                                             <div className="flex items-center gap-1 text-[9px] text-muted uppercase font-bold">
                                                 <span>{t('rr')}</span>
                                                 <span className="text-white">{play.rr.toFixed(1)}</span>
@@ -140,7 +148,7 @@ export const Leaderboard = () => {
                                                 <span className="text-xs text-muted uppercase font-bold tracking-wider">{t('rs')}</span>
                                                 <span className="text-sm font-bold text-primary">{play.rs.toFixed(1)}</span>
                                             </div>
-                                        </>
+                                        </div>
                                     )}
                                 </div>
                             </div>
@@ -220,7 +228,7 @@ export const Leaderboard = () => {
                                     <th className="px-6 py-4 text-right text-white">{t('officialValue')}</th>
                                 ) : (
                                     <>
-                                        <th className="px-6 py-4 text-right text-muted">Official PP</th>
+                                        <th className="px-6 py-4 text-right text-muted">Hybrid PP</th>
                                         <th className="px-6 py-4 text-right text-primary">{t('reworkValue')}</th>
                                     </>
                                 )}
@@ -265,8 +273,10 @@ export const Leaderboard = () => {
                                             
                                             {system === 'official' ? (
                                                 <td className="px-6 py-4 text-right">
-                                                    <span className="text-lg font-bold text-white">{player.officialPP.toFixed(0)}</span>
-                                                    <span className="text-xs text-muted ml-1">pp</span>
+                                                    <div className="flex flex-col items-end">
+                                                        <span className="text-lg font-bold text-white">{player.officialPP.toFixed(0)}</span>
+                                                        <span className="text-[10px] text-muted line-through opacity-50" title="Total API PP">{player.importTotalPP.toFixed(0)}</span>
+                                                    </div>
                                                 </td>
                                             ) : (
                                                 <>
@@ -293,7 +303,16 @@ export const Leaderboard = () => {
                                                                 <FontAwesomeIcon icon={faTrophy} className="text-warning" /> 
                                                                 {t('topPlays')}
                                                             </h4>
-                                                            <span className="text-[10px] text-muted italic">Sorted by {system === 'official' ? 'Official PP' : 'Rhythm Score'}</span>
+                                                            <div className="flex gap-4 items-center">
+                                                                <div className="text-[10px] text-muted flex items-center gap-1">
+                                                                    <span className="w-2 h-2 rounded-full bg-white opacity-20"></span>
+                                                                    <span>Live API</span>
+                                                                </div>
+                                                                <div className="text-[10px] text-muted flex items-center gap-1">
+                                                                    <span className="w-2 h-2 rounded-full bg-primary opacity-80"></span>
+                                                                    <span>Recalculated</span>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         
                                                         {player.plays && player.plays.length > 0 ? renderPlays(player.plays) : (
