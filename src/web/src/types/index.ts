@@ -1,6 +1,9 @@
 /**
- * Shared Type Definitions for RhythmTyper Community Tools
- * Supports 3-way metric comparison: Import (API), Official (Hybrid), Rework (RS).
+ * Shared Type Definitions
+ * Terminology Update:
+ * - Live: Original API values.
+ * - Rework: New Star Ratings + Standard Formula.
+ * - RS: Rhythm Scoring System.
  */
 
 export interface Note {
@@ -36,12 +39,11 @@ export interface MapData {
     diffName: string;
     bpm: number;
     
-    // Star Ratings
-    stars: number; // Current Rework Nomod Rating (RR)
+    stars: number; // New RR
     starsDT?: number;
     starsHT?: number;
     
-    starsOfficial: number; // In-game Star Rating
+    starsOfficial: number; // Live API SR
     stats: StrainResult['details'];
     link?: string | null;
 }
@@ -51,16 +53,16 @@ export interface ReworkPlay {
     diffName: string;
     mapper: string;
     
-    // 1. Proposed Official Metrics (New SR + Old Formula)
-    officialPP: number; 
+    // 1. Rework PP (New Stars + Standard Formula)
+    reworkPP: number; 
     
-    // 2. Rhythm Score Metrics (New SR + New Formula)
+    // 2. Rhythm Score (Biometric)
     rs: number;         
-    rr: number;         // Rhythm Rating (New Difficulty)
+    rr: number;         // Rhythm Rating
     
-    // 3. Original API Metrics (Old SR + Old Formula)
-    importPP: number;   // Raw value from game
-    importSR: number;   // Original Star Rating
+    // 3. Live API (Old Stars + Standard Formula)
+    livePP: number;   
+    liveSR: number;   
     
     acc: number;        
     speed?: number;      
@@ -75,14 +77,13 @@ export interface PlayerProfile {
     country: string;
     avatar: string | null;
     
-    // Aggregate Metrics
-    officialPP: number;    // Weighted Hybrid Total
-    reworkRating: number;  // Weighted RS Total
-    importTotalPP: number; // Raw API Total
+    // Aggregates
+    reworkTotalPP: number; // Weighted Rework
+    totalRS: number;       // Weighted RS
+    liveTotalPP: number;   // Raw API Total
     
     playCount: number;
     accuracy: number;
     
-    // Deep History
     plays: ReworkPlay[]; 
 }
