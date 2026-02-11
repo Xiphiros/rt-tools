@@ -2,9 +2,6 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-/**
- * Localization Resources
- */
 const resources = {
   en: {
     common: {
@@ -30,17 +27,25 @@ const resources = {
       searchPlaceholder: "Search player...",
       rank: "#",
       player: "Player",
-      officialTab: "Official PP (Hybrid)",
-      reworkTab: "Rhythm Rating",
-      officialValue: "Hybrid PP",
-      reworkValue: "Rating",
+      
+      // Tabs
+      tabRework: "Rework PP",
+      tabRS: "Rhythm Score",
+      
+      // Headers
+      colPP: "Rework PP",
+      colRS: "Rhythm Score",
+      
+      // Metrics
       acc: "Accuracy",
       pc: "Playcount",
       rr: "RR",
       rs: "RS",
+      
+      // Expanded View
       topPlays: "Top Performance Records",
       live: "Live",
-      recalc: "Recalc"
+      recalc: "Rework"
     }
   }
 };
