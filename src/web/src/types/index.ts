@@ -1,6 +1,6 @@
 /**
  * Shared Type Definitions for RhythmTyper Community Tools
- * Aligned with RR (Rhythm Rating) and RS (Rhythm Score) terminology.
+ * Supports 3-way metric comparison: Import (API), Official (Hybrid), Rework (RS).
  */
 
 export interface Note {
@@ -51,17 +51,21 @@ export interface ReworkPlay {
     diffName: string;
     mapper: string;
     
-    // Performance Metrics
+    // 1. Proposed Official Metrics (New SR + Old Formula)
     officialPP: number; 
-    rs: number;         // Rhythm Score (Reworked Performance Value)
     
-    // Difficulty Metrics
-    rr: number;         // Rhythm Rating (Calculated Map Difficulty)
+    // 2. Rhythm Score Metrics (New SR + New Formula)
+    rs: number;         
+    rr: number;         // Rhythm Rating (New Difficulty)
     
-    acc: number;        // Percentage (0-100)
-    speed: number;      // Rate multiplier (1.0, 1.5, etc)
+    // 3. Original API Metrics (Old SR + Old Formula)
+    importPP: number;   // Raw value from game
+    importSR: number;   // Original Star Rating
+    
+    acc: number;        
+    speed?: number;      
     mods: string[];
-    score: number;      // Raw in-game score
+    score?: number;      
 }
 
 export interface PlayerProfile {
@@ -72,8 +76,9 @@ export interface PlayerProfile {
     avatar: string | null;
     
     // Aggregate Metrics
-    officialPP: number;    // Official Total PP
-    reworkRating: number;  // Reworked Aggregate Rating (Weighted RS)
+    officialPP: number;    // Weighted Hybrid Total
+    reworkRating: number;  // Weighted RS Total
+    importTotalPP: number; // Raw API Total
     
     playCount: number;
     accuracy: number;
