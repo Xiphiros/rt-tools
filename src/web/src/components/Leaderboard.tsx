@@ -17,7 +17,7 @@ import {
     faArrowRight
 } from '@fortawesome/free-solid-svg-icons';
 
-type SystemType = 'official' | 'rework';
+type SystemType = 'rework' | 'rs';
 
 const GradeBadge = ({ acc }: { acc: number }) => {
     let grade = 'F';
@@ -43,7 +43,7 @@ export const Leaderboard = () => {
     const [error, setError] = useState<string | null>(null);
     const [search, setSearch] = useState('');
     const [expandedUser, setExpandedUser] = useState<string | null>(null);
-    const [system, setSystem] = useState<SystemType>('official');
+    const [system, setSystem] = useState<SystemType>('rework');
     const [showFullHistory, setShowFullHistory] = useState(false);
     
     const [currentPage, setCurrentPage] = useState(1);
@@ -73,8 +73,8 @@ export const Leaderboard = () => {
 
     const sortedData = useMemo(() => {
         return [...data].sort((a, b) => {
-            if (system === 'official') return b.officialPP - a.officialPP;
-            return b.reworkRating - a.reworkRating;
+            if (system === 'rework') return b.reworkTotalPP - a.reworkTotalPP;
+            return b.totalRS - a.totalRS;
         });
     }, [data, system]);
 
@@ -97,7 +97,7 @@ export const Leaderboard = () => {
 
     const renderPlays = (plays: ReworkPlay[]) => {
         const displayPlays = [...plays].sort((a, b) => {
-            if (system === 'official') return b.officialPP - a.officialPP;
+            if (system === 'rework') return b.reworkPP - a.reworkPP;
             return b.rs - a.rs;
         });
 
@@ -127,15 +127,15 @@ export const Leaderboard = () => {
                                 
                                 {/* Values */}
                                 <div className="text-right flex flex-col items-end">
-                                    {system === 'official' ? (
+                                    {system === 'rework' ? (
                                         <div className="flex flex-col items-end">
                                             <div className="flex items-center gap-1.5 text-[10px] text-muted">
-                                                <span className="line-through decoration-white/30 opacity-60" title="Live API Value">{play.importPP.toFixed(0)}</span>
+                                                <span className="line-through decoration-white/30 opacity-60" title="Live API PP">{play.livePP.toFixed(0)}</span>
                                                 <FontAwesomeIcon icon={faArrowRight} className="text-[8px] opacity-40" />
-                                                <span className="text-white font-bold text-sm group-hover/play:text-primary transition-colors" title="Recalculated Value">{play.officialPP.toFixed(0)}pp</span>
+                                                <span className="text-white font-bold text-sm group-hover/play:text-primary transition-colors" title="Rework PP">{play.reworkPP.toFixed(0)}pp</span>
                                             </div>
                                             <div className="text-[9px] text-muted opacity-50 font-mono mt-0.5" title="Difficulty Comparison">
-                                                SR: {play.importSR.toFixed(2)} → {play.rr.toFixed(2)}
+                                                SR: {play.liveSR.toFixed(2)} → {play.rr.toFixed(2)}
                                             </div>
                                         </div>
                                     ) : (
@@ -200,16 +200,16 @@ export const Leaderboard = () => {
                 
                 <div className="bg-input border border-border rounded-lg p-1 flex shadow-inner">
                     <button
-                        onClick={() => setSystem('official')}
-                        className={`px-4 py-2 text-xs font-bold rounded transition-all ${system === 'official' ? 'bg-card text-white shadow-sm ring-1 ring-white/10' : 'text-muted hover:text-white'}`}
+                        onClick={() => setSystem('rework')}
+                        className={`px-4 py-2 text-xs font-bold rounded transition-all ${system === 'rework' ? 'bg-card text-white shadow-sm ring-1 ring-white/10' : 'text-muted hover:text-white'}`}
                     >
-                        {t('officialTab')}
+                        {t('tabRework')}
                     </button>
                     <button
-                        onClick={() => setSystem('rework')}
-                        className={`px-4 py-2 text-xs font-bold rounded transition-all ${system === 'rework' ? 'bg-primary text-black shadow-sm' : 'text-muted hover:text-white'}`}
+                        onClick={() => setSystem('rs')}
+                        className={`px-4 py-2 text-xs font-bold rounded transition-all ${system === 'rs' ? 'bg-primary text-black shadow-sm' : 'text-muted hover:text-white'}`}
                     >
-                        {t('reworkTab')}
+                        {t('tabRS')}
                     </button>
                 </div>
             </div>
@@ -224,12 +224,12 @@ export const Leaderboard = () => {
                                 <th className="px-6 py-4 text-right hidden sm:table-cell">{t('acc')}</th>
                                 <th className="px-6 py-4 text-right hidden md:table-cell">{t('pc')}</th>
                                 
-                                {system === 'official' ? (
-                                    <th className="px-6 py-4 text-right text-white">{t('officialValue')}</th>
+                                {system === 'rework' ? (
+                                    <th className="px-6 py-4 text-right text-white">{t('colPP')}</th>
                                 ) : (
                                     <>
-                                        <th className="px-6 py-4 text-right text-muted">Hybrid PP</th>
-                                        <th className="px-6 py-4 text-right text-primary">{t('reworkValue')}</th>
+                                        <th className="px-6 py-4 text-right text-muted">Rework PP</th>
+                                        <th className="px-6 py-4 text-right text-primary">{t('colRS')}</th>
                                     </>
                                 )}
                                 
@@ -271,19 +271,19 @@ export const Leaderboard = () => {
                                             <td className="px-6 py-4 text-right font-mono text-muted hidden sm:table-cell">{player.accuracy.toFixed(2)}%</td>
                                             <td className="px-6 py-4 text-right font-mono text-muted hidden md:table-cell">{player.playCount.toLocaleString()}</td>
                                             
-                                            {system === 'official' ? (
+                                            {system === 'rework' ? (
                                                 <td className="px-6 py-4 text-right">
                                                     <div className="flex flex-col items-end">
-                                                        <span className="text-lg font-bold text-white">{player.officialPP.toFixed(0)}</span>
-                                                        <span className="text-[10px] text-muted line-through opacity-50" title="Total API PP">{player.importTotalPP.toFixed(0)}</span>
+                                                        <span className="text-lg font-bold text-white">{player.reworkTotalPP.toFixed(0)}</span>
+                                                        <span className="text-[10px] text-muted line-through opacity-50" title="Live API Total">{player.liveTotalPP.toFixed(0)}</span>
                                                     </div>
                                                 </td>
                                             ) : (
                                                 <>
-                                                    <td className="px-6 py-4 text-right text-muted font-medium opacity-50">{player.officialPP.toFixed(0)}</td>
+                                                    <td className="px-6 py-4 text-right text-muted font-medium opacity-50">{player.reworkTotalPP.toFixed(0)}</td>
                                                     <td className="px-6 py-4 text-right">
                                                         <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                                                            {player.reworkRating.toFixed(2)}
+                                                            {player.totalRS.toFixed(2)}
                                                         </span>
                                                     </td>
                                                 </>
@@ -296,7 +296,7 @@ export const Leaderboard = () => {
                                         
                                         {expandedUser === player.userId && (
                                             <tr className="bg-input/20">
-                                                <td colSpan={system === 'official' ? 6 : 7} className="p-0">
+                                                <td colSpan={system === 'rework' ? 6 : 7} className="p-0">
                                                     <div className="p-4 sm:p-6 border-b border-border/50 animate-in slide-in-from-top-2 duration-300">
                                                         <div className="flex justify-between items-center mb-6">
                                                             <h4 className="text-xs uppercase tracking-widest text-muted font-bold flex items-center gap-2">
@@ -306,11 +306,11 @@ export const Leaderboard = () => {
                                                             <div className="flex gap-4 items-center">
                                                                 <div className="text-[10px] text-muted flex items-center gap-1">
                                                                     <span className="w-2 h-2 rounded-full bg-white opacity-20"></span>
-                                                                    <span>Live API</span>
+                                                                    <span>Live</span>
                                                                 </div>
                                                                 <div className="text-[10px] text-muted flex items-center gap-1">
                                                                     <span className="w-2 h-2 rounded-full bg-primary opacity-80"></span>
-                                                                    <span>Recalculated</span>
+                                                                    <span>Rework</span>
                                                                 </div>
                                                             </div>
                                                         </div>
