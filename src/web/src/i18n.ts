@@ -30,15 +30,17 @@ const resources = {
       searchPlaceholder: "Search player...",
       rank: "#",
       player: "Player",
-      officialTab: "Official PP",
+      officialTab: "Official PP (Hybrid)",
       reworkTab: "Rhythm Rating",
-      officialValue: "Total PP",
+      officialValue: "Hybrid PP",
       reworkValue: "Rating",
       acc: "Accuracy",
       pc: "Playcount",
       rr: "RR",
       rs: "RS",
-      topPlays: "Top Performance Records"
+      topPlays: "Top Performance Records",
+      live: "Live",
+      recalc: "Recalc"
     }
   }
 };
