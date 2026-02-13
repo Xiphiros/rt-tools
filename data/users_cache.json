@@ -3,10 +3,10 @@
     "rank": 1,
     "userId": "9a9GslsZo7Mpl9TGiQWiO5jmaKY2",
     "username": "Jerrnando",
-    "totalPP": 1989.2212955003545,
-    "accuracy": 97.5268189321733,
-    "playCount": 2383,
-    "playTime": 138993,
+    "totalPP": 2000.09726872625,
+    "accuracy": 97.5701067295009,
+    "playCount": 2390,
+    "playTime": 139449,
     "rankedScore": 16105474,
     "country": "PL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/9a9GslsZo7Mpl9TGiQWiO5jmaKY2.jpeg",
@@ -31,11 +31,11 @@
     "rank": 3,
     "userId": "LqDIEUbWZFhfbynJLSJpuEAM3Ei2",
     "username": "goink",
-    "totalPP": 1805.3840280679567,
-    "accuracy": 97.41146025210458,
-    "playCount": 3155,
-    "playTime": 182705,
-    "rankedScore": 25204005,
+    "totalPP": 1837.8315271618249,
+    "accuracy": 97.45116982049672,
+    "playCount": 3348,
+    "playTime": 195337,
+    "rankedScore": 25944970,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/LqDIEUbWZFhfbynJLSJpuEAM3Ei2.jpeg",
     "rankChange": 0,
@@ -43,6 +43,20 @@
   },
   {
     "rank": 4,
+    "userId": "RXUO3zA4ciQkJ3O63MJyMFAGCCM2",
+    "username": "Alan1234",
+    "totalPP": 1692.8973748682583,
+    "accuracy": 94.43963858342065,
+    "playCount": 1532,
+    "playTime": 81096,
+    "rankedScore": 13652601,
+    "country": "MX",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/RXUO3zA4ciQkJ3O63MJyMFAGCCM2.jpeg",
+    "rankChange": 1,
+    "previousRank": 5
+  },
+  {
+    "rank": 5,
     "userId": "1IRkPyzpEYN97vpwJDfEqRsvait2",
     "username": "relikOS",
     "totalPP": 1691.2256002145677,
@@ -52,22 +66,8 @@
     "rankedScore": 14490559,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/1IRkPyzpEYN97vpwJDfEqRsvait2.jpeg",
-    "rankChange": 0,
+    "rankChange": -1,
     "previousRank": 4
-  },
-  {
-    "rank": 5,
-    "userId": "RXUO3zA4ciQkJ3O63MJyMFAGCCM2",
-    "username": "Alan1234",
-    "totalPP": 1672.035594705489,
-    "accuracy": 94.37783315130545,
-    "playCount": 1457,
-    "playTime": 76619,
-    "rankedScore": 13469830,
-    "country": "MX",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/RXUO3zA4ciQkJ3O63MJyMFAGCCM2.jpeg",
-    "rankChange": 0,
-    "previousRank": 5
   },
   {
     "rank": 6,
@@ -75,8 +75,8 @@
     "username": "FiXsy",
     "totalPP": 1625.8982897202063,
     "accuracy": 96.80950680794464,
-    "playCount": 2636,
-    "playTime": 177270,
+    "playCount": 2639,
+    "playTime": 177576,
     "rankedScore": 15024850,
     "country": "PL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/BvurFC7B5cPyPApa2GyP6SlvA6u2.jpeg",
@@ -87,11 +87,11 @@
     "rank": 7,
     "userId": "hNPHjIAI5yfT0QU0vebpTaBLdxF3",
     "username": "andrew",
-    "totalPP": 1578.9494257507743,
-    "accuracy": 97.43147815254837,
-    "playCount": 2407,
-    "playTime": 155203,
-    "rankedScore": 26722611,
+    "totalPP": 1580.873707999501,
+    "accuracy": 97.38685429410874,
+    "playCount": 2434,
+    "playTime": 157562,
+    "rankedScore": 26729494,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/hNPHjIAI5yfT0QU0vebpTaBLdxF3.jpeg",
     "rankChange": 0,
@@ -115,11 +115,11 @@
     "rank": 9,
     "userId": "BpEDGCeEQUcJ0uabHeKeBpFGTba2",
     "username": "Brofriendfnf",
-    "totalPP": 1452.443752543094,
-    "accuracy": 94.76221071105671,
-    "playCount": 910,
-    "playTime": 56696,
-    "rankedScore": 13999674,
+    "totalPP": 1456.5813036382876,
+    "accuracy": 94.40238954538191,
+    "playCount": 920,
+    "playTime": 57900,
+    "rankedScore": 14146968,
     "country": "UA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/BpEDGCeEQUcJ0uabHeKeBpFGTba2.jpeg",
     "rankChange": 0,
@@ -201,16 +201,30 @@
     "username": "Fakundddo",
     "totalPP": 1351.0742244812545,
     "accuracy": 95.58214158687309,
-    "playCount": 1179,
-    "playTime": 96338,
+    "playCount": 1180,
+    "playTime": 96512,
     "rankedScore": 11223927,
     "country": "AR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/2FwRp2VRwPdlzSyEwH5i0PAWWP63.jpeg",
-    "rankChange": 3,
-    "previousRank": 18
+    "rankChange": 0,
+    "previousRank": 15
   },
   {
     "rank": 16,
+    "userId": "WZ2bHi1mRQZZ0jjMilP3LQMjKeq1",
+    "username": "riguren",
+    "totalPP": 1348.0414963732976,
+    "accuracy": 95.97789433852705,
+    "playCount": 368,
+    "playTime": 17422,
+    "rankedScore": 7801367,
+    "country": "SG",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/WZ2bHi1mRQZZ0jjMilP3LQMjKeq1.jpeg",
+    "rankChange": 1,
+    "previousRank": 17
+  },
+  {
+    "rank": 17,
     "userId": "lwoig00HhWTFS6z8UYLBO2DZHdl1",
     "username": "Hisoka",
     "totalPP": 1337.3071322225076,
@@ -221,24 +235,24 @@
     "country": "DE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/lwoig00HhWTFS6z8UYLBO2DZHdl1.jpeg",
     "rankChange": -1,
-    "previousRank": 15
-  },
-  {
-    "rank": 17,
-    "userId": "ffuUHuGJtzPcr59mwWJ3NeJzDNF3",
-    "username": "Zex",
-    "totalPP": 1320.2540238637973,
-    "accuracy": 98.2973913727951,
-    "playCount": 996,
-    "playTime": 86308,
-    "rankedScore": 9847989,
-    "country": "US",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/ffuUHuGJtzPcr59mwWJ3NeJzDNF3.jpeg",
-    "rankChange": -1,
     "previousRank": 16
   },
   {
     "rank": 18,
+    "userId": "ffuUHuGJtzPcr59mwWJ3NeJzDNF3",
+    "username": "Zex",
+    "totalPP": 1320.35630642166,
+    "accuracy": 98.3010179992225,
+    "playCount": 1007,
+    "playTime": 87515,
+    "rankedScore": 9852135,
+    "country": "US",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/ffuUHuGJtzPcr59mwWJ3NeJzDNF3.jpeg",
+    "rankChange": 0,
+    "previousRank": 18
+  },
+  {
+    "rank": 19,
     "userId": "O1SSFPHyb7T6orb7SxGt5cjqyP62",
     "username": "kaya",
     "totalPP": 1277.8303438852613,
@@ -248,48 +262,34 @@
     "rankedScore": 17873903,
     "country": "PL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/O1SSFPHyb7T6orb7SxGt5cjqyP62.jpeg",
-    "rankChange": -1,
-    "previousRank": 17
-  },
-  {
-    "rank": 19,
-    "userId": "GjEfBMwk5PQE0CzwRIAPdao1o163",
-    "username": "Piger",
-    "totalPP": 1238.7513678408568,
-    "accuracy": 95.78747358506315,
-    "playCount": 986,
-    "playTime": 84556,
-    "rankedScore": 10857431,
-    "country": "RU",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/GjEfBMwk5PQE0CzwRIAPdao1o163.jpeg",
     "rankChange": 0,
     "previousRank": 19
   },
   {
     "rank": 20,
-    "userId": "f6l4hjYI63MHRtr7Df0uHBzRDdT2",
-    "username": "JosherIsFun",
-    "totalPP": 1185.0715406989784,
-    "accuracy": 96.4002115724066,
-    "playCount": 4291,
-    "playTime": 308032,
-    "rankedScore": 18936198,
-    "country": "PH",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/f6l4hjYI63MHRtr7Df0uHBzRDdT2.jpeg",
+    "userId": "GjEfBMwk5PQE0CzwRIAPdao1o163",
+    "username": "Piger",
+    "totalPP": 1238.7513678408568,
+    "accuracy": 95.78747358506315,
+    "playCount": 1003,
+    "playTime": 86117,
+    "rankedScore": 10857431,
+    "country": "RU",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/GjEfBMwk5PQE0CzwRIAPdao1o163.jpeg",
     "rankChange": 0,
     "previousRank": 20
   },
   {
     "rank": 21,
-    "userId": "WZ2bHi1mRQZZ0jjMilP3LQMjKeq1",
-    "username": "riguren",
-    "totalPP": 1179.8893050441482,
-    "accuracy": 95.42174637904516,
-    "playCount": 265,
-    "playTime": 10624,
-    "rankedScore": 5417903,
-    "country": "SG",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/WZ2bHi1mRQZZ0jjMilP3LQMjKeq1.jpeg",
+    "userId": "f6l4hjYI63MHRtr7Df0uHBzRDdT2",
+    "username": "JosherIsFun",
+    "totalPP": 1186.1713258264358,
+    "accuracy": 96.35745704622236,
+    "playCount": 4316,
+    "playTime": 310425,
+    "rankedScore": 18945674,
+    "country": "PH",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/f6l4hjYI63MHRtr7Df0uHBzRDdT2.jpeg",
     "rankChange": 0,
     "previousRank": 21
   },
@@ -297,11 +297,11 @@
     "rank": 22,
     "userId": "HuIpuIQJIeN3nRLjRmNNMt1Hutb2",
     "username": "Aniviuh",
-    "totalPP": 1141.9751615366192,
-    "accuracy": 97.89181146570797,
-    "playCount": 1711,
-    "playTime": 116944,
-    "rankedScore": 10557770,
+    "totalPP": 1149.3285441616008,
+    "accuracy": 97.70548308102178,
+    "playCount": 1747,
+    "playTime": 120447,
+    "rankedScore": 10894423,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/HuIpuIQJIeN3nRLjRmNNMt1Hutb2.jpeg",
     "rankChange": 0,
@@ -309,6 +309,20 @@
   },
   {
     "rank": 23,
+    "userId": "fu7lxhEJGMeUjOzEtOo8GRO8FK23",
+    "username": "popeye",
+    "totalPP": 1146.9123924848939,
+    "accuracy": 95.85560093803701,
+    "playCount": 946,
+    "playTime": 74612,
+    "rankedScore": 11140770,
+    "country": "KR",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/fu7lxhEJGMeUjOzEtOo8GRO8FK23.jpeg",
+    "rankChange": 0,
+    "previousRank": 23
+  },
+  {
+    "rank": 24,
     "userId": "oDBIJL4vNLhHOtwAx1AWnUID1IH2",
     "username": "kroniri",
     "totalPP": 1133.6075935921194,
@@ -319,21 +333,7 @@
     "country": "AU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/oDBIJL4vNLhHOtwAx1AWnUID1IH2.jpeg",
     "rankChange": 0,
-    "previousRank": 23
-  },
-  {
-    "rank": 24,
-    "userId": "fu7lxhEJGMeUjOzEtOo8GRO8FK23",
-    "username": "popeye",
-    "totalPP": 1125.1026172407626,
-    "accuracy": 95.52516266010193,
-    "playCount": 888,
-    "playTime": 70016,
-    "rankedScore": 10851028,
-    "country": "KR",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/fu7lxhEJGMeUjOzEtOo8GRO8FK23.jpeg",
-    "rankChange": 1,
-    "previousRank": 25
+    "previousRank": 24
   },
   {
     "rank": 25,
@@ -346,8 +346,8 @@
     "rankedScore": 12591159,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/AyKltoGVAIcUFFqFkS43khf4XYq2.jpeg",
-    "rankChange": -1,
-    "previousRank": 24
+    "rankChange": 0,
+    "previousRank": 25
   },
   {
     "rank": 26,
@@ -367,15 +367,15 @@
     "rank": 27,
     "userId": "FXgzPzu7pAdyMSzTiaiMRzMcw3F3",
     "username": "Soii",
-    "totalPP": 1106.8362613280342,
-    "accuracy": 96.87912117430201,
-    "playCount": 1106,
-    "playTime": 56816,
-    "rankedScore": 10097374,
+    "totalPP": 1111.223144461372,
+    "accuracy": 96.91425400569031,
+    "playCount": 1126,
+    "playTime": 58879,
+    "rankedScore": 10575330,
     "country": "IL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/FXgzPzu7pAdyMSzTiaiMRzMcw3F3.jpeg",
-    "rankChange": 1,
-    "previousRank": 28
+    "rankChange": 0,
+    "previousRank": 27
   },
   {
     "rank": 28,
@@ -388,8 +388,8 @@
     "rankedScore": 2974733,
     "country": "GB",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/cULBOC4hwkWGTfbJrkcxARk4cRs1.jpeg",
-    "rankChange": -1,
-    "previousRank": 27
+    "rankChange": 0,
+    "previousRank": 28
   },
   {
     "rank": 29,
@@ -407,6 +407,20 @@
   },
   {
     "rank": 30,
+    "userId": "m6nhM3b2MsSIyLu1wZkFy4w7xvG3",
+    "username": "Cheyne",
+    "totalPP": 1044.252793212916,
+    "accuracy": 93.35607114486923,
+    "playCount": 884,
+    "playTime": 40313,
+    "rankedScore": 3329196,
+    "country": "GB",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/m6nhM3b2MsSIyLu1wZkFy4w7xvG3.jpeg",
+    "rankChange": 0,
+    "previousRank": 30
+  },
+  {
+    "rank": 31,
     "userId": "O124BYldJUOYjjCKusHFMNlyNV63",
     "username": "Yomia",
     "totalPP": 1042.9208665830877,
@@ -417,31 +431,17 @@
     "country": "FR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/O124BYldJUOYjjCKusHFMNlyNV63.jpeg",
     "rankChange": 0,
-    "previousRank": 30
-  },
-  {
-    "rank": 31,
-    "userId": "m6nhM3b2MsSIyLu1wZkFy4w7xvG3",
-    "username": "Cheyne",
-    "totalPP": 1041.710481185834,
-    "accuracy": 93.35407611555266,
-    "playCount": 880,
-    "playTime": 40022,
-    "rankedScore": 3284895,
-    "country": "GB",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/m6nhM3b2MsSIyLu1wZkFy4w7xvG3.jpeg",
-    "rankChange": 0,
     "previousRank": 31
   },
   {
     "rank": 32,
     "userId": "OO0JzOTkhDNLuABbW3X88EnEKek2",
     "username": "Happy566",
-    "totalPP": 1031.9225166669178,
-    "accuracy": 95.6437491796276,
-    "playCount": 953,
-    "playTime": 50428,
-    "rankedScore": 6877674,
+    "totalPP": 1031.9403365116032,
+    "accuracy": 95.63554634501462,
+    "playCount": 956,
+    "playTime": 50712,
+    "rankedScore": 7073836,
     "country": "PH",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/OO0JzOTkhDNLuABbW3X88EnEKek2.jpeg",
     "rankChange": 0,
@@ -463,6 +463,20 @@
   },
   {
     "rank": 34,
+    "userId": "FyR3lLlQDXWMzNiUFeZQRYo2GBG2",
+    "username": "DarKaRo",
+    "totalPP": 1012.2133689152382,
+    "accuracy": 95.62697288306428,
+    "playCount": 1122,
+    "playTime": 60941,
+    "rankedScore": 11048206,
+    "country": "VE",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/FyR3lLlQDXWMzNiUFeZQRYo2GBG2.jpeg",
+    "rankChange": 1,
+    "previousRank": 35
+  },
+  {
+    "rank": 35,
     "userId": "iRhDMpPRHZTxjeZ1DeKpk54LvTl2",
     "username": "Toiletwasher",
     "totalPP": 1011.4592690224197,
@@ -472,25 +486,25 @@
     "rankedScore": 5638854,
     "country": "AU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/iRhDMpPRHZTxjeZ1DeKpk54LvTl2.jpeg",
-    "rankChange": 0,
+    "rankChange": -1,
     "previousRank": 34
   },
   {
-    "rank": 35,
+    "rank": 36,
     "userId": "sHSszxsGonaQma5tr7biTOXuy962",
     "username": "Xiphrios",
     "totalPP": 1005.7698746726511,
     "accuracy": 93.6437611226277,
-    "playCount": 842,
-    "playTime": 60042,
+    "playCount": 849,
+    "playTime": 60911,
     "rankedScore": 8900733,
     "country": "VE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/sHSszxsGonaQma5tr7biTOXuy962.jpeg",
     "rankChange": 0,
-    "previousRank": 35
+    "previousRank": 36
   },
   {
-    "rank": 36,
+    "rank": 37,
     "userId": "PBW7oSJlumVFataS3n7OQ7P5iEx1",
     "username": "nullie",
     "totalPP": 1004.6574085602936,
@@ -500,20 +514,6 @@
     "rankedScore": 3096555,
     "country": "PL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/PBW7oSJlumVFataS3n7OQ7P5iEx1.jpeg",
-    "rankChange": 0,
-    "previousRank": 36
-  },
-  {
-    "rank": 37,
-    "userId": "FyR3lLlQDXWMzNiUFeZQRYo2GBG2",
-    "username": "DarKaRo",
-    "totalPP": 988.0701625234447,
-    "accuracy": 95.81652221990745,
-    "playCount": 1059,
-    "playTime": 56993,
-    "rankedScore": 9863155,
-    "country": "VE",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/FyR3lLlQDXWMzNiUFeZQRYo2GBG2.jpeg",
     "rankChange": 0,
     "previousRank": 37
   },
@@ -565,9 +565,9 @@
     "username": "Re_von",
     "totalPP": 936.1732339377712,
     "accuracy": 95.46495421616052,
-    "playCount": 1536,
-    "playTime": 89631,
-    "rankedScore": 13313047,
+    "playCount": 1549,
+    "playTime": 90110,
+    "rankedScore": 13316083,
     "country": "BY",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/1myNRagKnRTdEVwrTYkQZCJuRp22.jpeg",
     "rankChange": 0,
@@ -589,6 +589,20 @@
   },
   {
     "rank": 43,
+    "userId": "6CiAFHVw78gT6WNtxlrahllqBL32",
+    "username": "Miapp",
+    "totalPP": 924.8896577692702,
+    "accuracy": 95.17327236208482,
+    "playCount": 879,
+    "playTime": 49788,
+    "rankedScore": 8919222,
+    "country": "CZ",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/6CiAFHVw78gT6WNtxlrahllqBL32.jpeg",
+    "rankChange": 0,
+    "previousRank": 43
+  },
+  {
+    "rank": 44,
     "userId": "Js4hjxJFsLU3RcOVCYudpVZUBRl1",
     "username": "Monkus",
     "totalPP": 924.1457973468914,
@@ -598,20 +612,6 @@
     "rankedScore": 3030400,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/Js4hjxJFsLU3RcOVCYudpVZUBRl1.jpeg",
-    "rankChange": 0,
-    "previousRank": 43
-  },
-  {
-    "rank": 44,
-    "userId": "6CiAFHVw78gT6WNtxlrahllqBL32",
-    "username": "Miapp",
-    "totalPP": 921.8880561669961,
-    "accuracy": 95.36425900954247,
-    "playCount": 857,
-    "playTime": 47046,
-    "rankedScore": 8785071,
-    "country": "CZ",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/6CiAFHVw78gT6WNtxlrahllqBL32.jpeg",
     "rankChange": 0,
     "previousRank": 44
   },
@@ -635,8 +635,8 @@
     "username": "mqno",
     "totalPP": 917.8672741698878,
     "accuracy": 96.3742110223052,
-    "playCount": 1219,
-    "playTime": 79201,
+    "playCount": 1224,
+    "playTime": 79611,
     "rankedScore": 3713027,
     "country": "HU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/1A1fHAZg6XakbVFPyv4t0M20JJn1.jpeg",
@@ -691,9 +691,9 @@
     "username": "BoltFromTheGreen",
     "totalPP": 886.732431927749,
     "accuracy": 100.00000000000009,
-    "playCount": 180,
-    "playTime": 11357,
-    "rankedScore": 5726807,
+    "playCount": 181,
+    "playTime": 11444,
+    "rankedScore": 5752941,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/xGgvgfM1OXQ6LD3ipWNxmR4Bic63.jpeg",
     "rankChange": 0,
@@ -715,6 +715,20 @@
   },
   {
     "rank": 52,
+    "userId": "PWQDvSlLZkMKhJfLXJGmkpIeeRQ2",
+    "username": "Beanz",
+    "totalPP": 874.4962958653082,
+    "accuracy": 95.54965809612699,
+    "playCount": 804,
+    "playTime": 46508,
+    "rankedScore": 8693018,
+    "country": "GB",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/PWQDvSlLZkMKhJfLXJGmkpIeeRQ2.jpeg",
+    "rankChange": 1,
+    "previousRank": 53
+  },
+  {
+    "rank": 53,
     "userId": "e5SSzb0zsHWP4gwrRCO9OVRZax73",
     "username": "CrissDeTabarnak",
     "totalPP": 863.0035152854404,
@@ -724,25 +738,25 @@
     "rankedScore": 7269229,
     "country": "CA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/e5SSzb0zsHWP4gwrRCO9OVRZax73.jpeg",
-    "rankChange": 0,
+    "rankChange": -1,
     "previousRank": 52
   },
   {
-    "rank": 53,
-    "userId": "PWQDvSlLZkMKhJfLXJGmkpIeeRQ2",
-    "username": "Beanz",
-    "totalPP": 842.3197442886917,
-    "accuracy": 95.1005424991893,
-    "playCount": 770,
-    "playTime": 44564,
-    "rankedScore": 8344058,
-    "country": "GB",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/PWQDvSlLZkMKhJfLXJGmkpIeeRQ2.jpeg",
-    "rankChange": 0,
-    "previousRank": 53
+    "rank": 54,
+    "userId": "oWdAwTKJwuZuNlDHcexJnaV6ptj2",
+    "username": "Dragon",
+    "totalPP": 842.3136038206028,
+    "accuracy": 97.91439607565366,
+    "playCount": 94,
+    "playTime": 5802,
+    "rankedScore": 2349665,
+    "country": "US",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/oWdAwTKJwuZuNlDHcexJnaV6ptj2.jpeg",
+    "rankChange": 4,
+    "previousRank": 58
   },
   {
-    "rank": 54,
+    "rank": 55,
     "userId": "NzTSCxpQUvXLEJ0VIVKEM8mGmKB2",
     "username": "woey",
     "totalPP": 841.5044773127468,
@@ -752,11 +766,25 @@
     "rankedScore": 1911285,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": 0,
+    "rankChange": -1,
     "previousRank": 54
   },
   {
-    "rank": 55,
+    "rank": 56,
+    "userId": "FK6Tbwwd9OerTk3AgBALQOibgdq1",
+    "username": "love",
+    "totalPP": 824.3074065334513,
+    "accuracy": 93.77791699260116,
+    "playCount": 992,
+    "playTime": 52057,
+    "rankedScore": 6958761,
+    "country": "DE",
+    "profilePictureUrl": null,
+    "rankChange": -1,
+    "previousRank": 55
+  },
+  {
+    "rank": 57,
     "userId": "MJvUP6FaNqhPbX8aAsJPbL4WLTE3",
     "username": "Everiz",
     "totalPP": 824.1106737405671,
@@ -766,25 +794,11 @@
     "rankedScore": 2412827,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/MJvUP6FaNqhPbX8aAsJPbL4WLTE3.jpeg",
-    "rankChange": 0,
-    "previousRank": 55
-  },
-  {
-    "rank": 56,
-    "userId": "FK6Tbwwd9OerTk3AgBALQOibgdq1",
-    "username": "love",
-    "totalPP": 822.9017273391134,
-    "accuracy": 93.8363777767432,
-    "playCount": 985,
-    "playTime": 51186,
-    "rankedScore": 6796203,
-    "country": "DE",
-    "profilePictureUrl": null,
-    "rankChange": 0,
+    "rankChange": -1,
     "previousRank": 56
   },
   {
-    "rank": 57,
+    "rank": 58,
     "userId": "wHhriJHumOU9v6fEJp4Eh27zb7M2",
     "username": "gormful",
     "totalPP": 822.5653582787985,
@@ -794,11 +808,11 @@
     "rankedScore": 3889973,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/wHhriJHumOU9v6fEJp4Eh27zb7M2.jpeg",
-    "rankChange": 0,
+    "rankChange": -1,
     "previousRank": 57
   },
   {
-    "rank": 58,
+    "rank": 59,
     "userId": "aZzA9glx1XMgJOspycbWDNuvgaB2",
     "username": "puppygirlcallie",
     "totalPP": 814.7032303059674,
@@ -809,10 +823,10 @@
     "country": "CA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/aZzA9glx1XMgJOspycbWDNuvgaB2.jpeg",
     "rankChange": 0,
-    "previousRank": 58
+    "previousRank": 59
   },
   {
-    "rank": 59,
+    "rank": 60,
     "userId": "L0T2OoIUoKhH70SRJYbwUSrPgNX2",
     "username": "renilol",
     "totalPP": 810.8157273837278,
@@ -823,10 +837,24 @@
     "country": "CA",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 59
+    "previousRank": 60
   },
   {
-    "rank": 60,
+    "rank": 61,
+    "userId": "oeC5za4ggjNVV5IVZQ8Y8yOliRf2",
+    "username": "Robkersu",
+    "totalPP": 800.3323743635028,
+    "accuracy": 94.97659811686302,
+    "playCount": 752,
+    "playTime": 52702,
+    "rankedScore": 10585148,
+    "country": "ID",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/oeC5za4ggjNVV5IVZQ8Y8yOliRf2.jpeg",
+    "rankChange": 0,
+    "previousRank": 61
+  },
+  {
+    "rank": 62,
     "userId": "xvswALeRjQSN134UW4Yxe3yIeDz2",
     "username": "GHY",
     "totalPP": 793.3628491810149,
@@ -837,24 +865,10 @@
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/xvswALeRjQSN134UW4Yxe3yIeDz2.jpeg",
     "rankChange": 0,
-    "previousRank": 60
+    "previousRank": 62
   },
   {
-    "rank": 61,
-    "userId": "oeC5za4ggjNVV5IVZQ8Y8yOliRf2",
-    "username": "Robkersu",
-    "totalPP": 793.1814157998843,
-    "accuracy": 94.86513978715884,
-    "playCount": 730,
-    "playTime": 51540,
-    "rankedScore": 10565516,
-    "country": "ID",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/oeC5za4ggjNVV5IVZQ8Y8yOliRf2.jpeg",
-    "rankChange": 0,
-    "previousRank": 61
-  },
-  {
-    "rank": 62,
+    "rank": 63,
     "userId": "LfQz6lGxkoNJgxTRQGCZr0vSvLg2",
     "username": "BaKa420",
     "totalPP": 790.4194039740556,
@@ -865,10 +879,10 @@
     "country": "ID",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/LfQz6lGxkoNJgxTRQGCZr0vSvLg2.jpeg",
     "rankChange": 0,
-    "previousRank": 62
+    "previousRank": 63
   },
   {
-    "rank": 63,
+    "rank": 64,
     "userId": "A62Bv07EsaPv4wNcfzQ4AKuAU232",
     "username": "AsianCatGod",
     "totalPP": 786.3125314880673,
@@ -879,10 +893,24 @@
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/A62Bv07EsaPv4wNcfzQ4AKuAU232.jpeg",
     "rankChange": 0,
-    "previousRank": 63
+    "previousRank": 64
   },
   {
-    "rank": 64,
+    "rank": 65,
+    "userId": "vM9qj63YipSxlxoQXmlad36D9VG2",
+    "username": "Crowken",
+    "totalPP": 781.332686268191,
+    "accuracy": 93.45360071112529,
+    "playCount": 1652,
+    "playTime": 105317,
+    "rankedScore": 11969332,
+    "country": "US",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/vM9qj63YipSxlxoQXmlad36D9VG2.jpeg",
+    "rankChange": 0,
+    "previousRank": 65
+  },
+  {
+    "rank": 66,
     "userId": "OjKR5QhS2iVE8ZAWhT0ywrk6WOt1",
     "username": "Yrreb",
     "totalPP": 779.5407783869156,
@@ -893,24 +921,10 @@
     "country": "SG",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/OjKR5QhS2iVE8ZAWhT0ywrk6WOt1.jpeg",
     "rankChange": 0,
-    "previousRank": 64
-  },
-  {
-    "rank": 65,
-    "userId": "vM9qj63YipSxlxoQXmlad36D9VG2",
-    "username": "Crowken",
-    "totalPP": 766.0824177213477,
-    "accuracy": 93.3708833173332,
-    "playCount": 1587,
-    "playTime": 99302,
-    "rankedScore": 11293141,
-    "country": "US",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/vM9qj63YipSxlxoQXmlad36D9VG2.jpeg",
-    "rankChange": 1,
     "previousRank": 66
   },
   {
-    "rank": 66,
+    "rank": 67,
     "userId": "ojl5o96Bw6OucQGJwFkcf8cw9K42",
     "username": "mrcobalt124",
     "totalPP": 765.5250859919151,
@@ -920,11 +934,11 @@
     "rankedScore": 3958559,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/ojl5o96Bw6OucQGJwFkcf8cw9K42.jpeg",
-    "rankChange": -1,
-    "previousRank": 65
+    "rankChange": 0,
+    "previousRank": 67
   },
   {
-    "rank": 67,
+    "rank": 68,
     "userId": "Uh51G5qpZZVo7ChGgPLCeMf9yCp1",
     "username": "Seva",
     "totalPP": 761.9643046263452,
@@ -935,24 +949,24 @@
     "country": "FI",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/Uh51G5qpZZVo7ChGgPLCeMf9yCp1.jpeg",
     "rankChange": 0,
-    "previousRank": 67
-  },
-  {
-    "rank": 68,
-    "userId": "0rRjI6vxyES0ZIOOKpLVRZfdtTo1",
-    "username": "aaronvx",
-    "totalPP": 758.3816946804484,
-    "accuracy": 93.8979405856659,
-    "playCount": 672,
-    "playTime": 30236,
-    "rankedScore": 5817106,
-    "country": "US",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/0rRjI6vxyES0ZIOOKpLVRZfdtTo1.jpeg",
-    "rankChange": 0,
     "previousRank": 68
   },
   {
     "rank": 69,
+    "userId": "0rRjI6vxyES0ZIOOKpLVRZfdtTo1",
+    "username": "aaronvx",
+    "totalPP": 758.3816946804484,
+    "accuracy": 93.8979405856659,
+    "playCount": 698,
+    "playTime": 31441,
+    "rankedScore": 5873790,
+    "country": "US",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/0rRjI6vxyES0ZIOOKpLVRZfdtTo1.jpeg",
+    "rankChange": 0,
+    "previousRank": 69
+  },
+  {
+    "rank": 70,
     "userId": "aslqGQM4bCRUrl8ExPD7frxBycG3",
     "username": "Oliver_catshen12",
     "totalPP": 756.226665857722,
@@ -963,10 +977,10 @@
     "country": "ES",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 69
+    "previousRank": 70
   },
   {
-    "rank": 70,
+    "rank": 71,
     "userId": "GaD4XotHpaZSQskOGmJlUTxExdk1",
     "username": "Fralla8",
     "totalPP": 755.7760033824444,
@@ -977,10 +991,10 @@
     "country": "SE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/GaD4XotHpaZSQskOGmJlUTxExdk1.jpeg",
     "rankChange": 0,
-    "previousRank": 70
+    "previousRank": 71
   },
   {
-    "rank": 71,
+    "rank": 72,
     "userId": "QdomeXT3m5PsNuXru3WGjg3giKf2",
     "username": "Linne",
     "totalPP": 745.8226969769611,
@@ -991,10 +1005,10 @@
     "country": "DE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/QdomeXT3m5PsNuXru3WGjg3giKf2.jpeg",
     "rankChange": 0,
-    "previousRank": 71
+    "previousRank": 72
   },
   {
-    "rank": 72,
+    "rank": 73,
     "userId": "e7kql6faDqcYnRudGjN8UNAoqll1",
     "username": "RubyPiec",
     "totalPP": 742.2902511635971,
@@ -1005,10 +1019,10 @@
     "country": "NL",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 72
+    "previousRank": 73
   },
   {
-    "rank": 73,
+    "rank": 74,
     "userId": "KufHuwHHZGbsRWaEAXq72jkq2Ql1",
     "username": "Chiyas367",
     "totalPP": 741.8959365779043,
@@ -1019,10 +1033,10 @@
     "country": "MY",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/KufHuwHHZGbsRWaEAXq72jkq2Ql1.jpeg",
     "rankChange": 0,
-    "previousRank": 73
+    "previousRank": 74
   },
   {
-    "rank": 74,
+    "rank": 75,
     "userId": "obdnpxmrZDTdhjlhItpCu32zXnZ2",
     "username": "HankiHacks",
     "totalPP": 741.293090065979,
@@ -1033,10 +1047,10 @@
     "country": "RU",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 74
+    "previousRank": 75
   },
   {
-    "rank": 75,
+    "rank": 76,
     "userId": "Z06Bx3HM1BT5QZcvt9KmFUyjfB63",
     "username": "voxprism",
     "totalPP": 740.9424631158057,
@@ -1047,10 +1061,10 @@
     "country": "RU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/Z06Bx3HM1BT5QZcvt9KmFUyjfB63.jpeg",
     "rankChange": 0,
-    "previousRank": 75
+    "previousRank": 76
   },
   {
-    "rank": 76,
+    "rank": 77,
     "userId": "GR3YQZEsAFQQwRu79ETh8a7sVZX2",
     "username": "AFS",
     "totalPP": 734.6531546320286,
@@ -1061,10 +1075,10 @@
     "country": "GB",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/GR3YQZEsAFQQwRu79ETh8a7sVZX2.jpeg",
     "rankChange": 0,
-    "previousRank": 76
+    "previousRank": 77
   },
   {
-    "rank": 77,
+    "rank": 78,
     "userId": "y9wigz9VRJVR1v4egcGS25G1bLV2",
     "username": "Filoxen",
     "totalPP": 728.4084478193089,
@@ -1075,31 +1089,17 @@
     "country": "UA",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 77
-  },
-  {
-    "rank": 78,
-    "userId": "1oGHDW4T7PURw2QyO2W2jAWb9J23",
-    "username": "Cyanara",
-    "totalPP": 721.962222660563,
-    "accuracy": 94.01440586168428,
-    "playCount": 440,
-    "playTime": 31509,
-    "rankedScore": 5320251,
-    "country": "PH",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/1oGHDW4T7PURw2QyO2W2jAWb9J23.jpeg",
-    "rankChange": 0,
     "previousRank": 78
   },
   {
     "rank": 79,
     "userId": "iPnPzeIvL3efDpUGTZdEvNrkqdt1",
     "username": "Assel",
-    "totalPP": 721.1335924183628,
-    "accuracy": 92.07753276753247,
-    "playCount": 1580,
-    "playTime": 73759,
-    "rankedScore": 10073941,
+    "totalPP": 725.4976434067613,
+    "accuracy": 91.93094350888884,
+    "playCount": 1585,
+    "playTime": 74472,
+    "rankedScore": 10601952,
     "country": "DE",
     "profilePictureUrl": null,
     "rankChange": 0,
@@ -1107,6 +1107,20 @@
   },
   {
     "rank": 80,
+    "userId": "1oGHDW4T7PURw2QyO2W2jAWb9J23",
+    "username": "Cyanara",
+    "totalPP": 721.962222660563,
+    "accuracy": 94.01440586168428,
+    "playCount": 441,
+    "playTime": 31598,
+    "rankedScore": 5320251,
+    "country": "PH",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/1oGHDW4T7PURw2QyO2W2jAWb9J23.jpeg",
+    "rankChange": 0,
+    "previousRank": 80
+  },
+  {
+    "rank": 81,
     "userId": "sAnVis6Z6ihJDc27HonvdQIRlmt2",
     "username": "Jiuyn",
     "totalPP": 706.2734341871736,
@@ -1117,10 +1131,10 @@
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/sAnVis6Z6ihJDc27HonvdQIRlmt2.jpeg",
     "rankChange": 0,
-    "previousRank": 80
+    "previousRank": 81
   },
   {
-    "rank": 81,
+    "rank": 82,
     "userId": "cgrHNGl0NLW54m8BrsoZAGuzGUq1",
     "username": "ddd",
     "totalPP": 704.5942626135177,
@@ -1131,10 +1145,10 @@
     "country": "NZ",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/cgrHNGl0NLW54m8BrsoZAGuzGUq1.jpeg",
     "rankChange": 0,
-    "previousRank": 81
+    "previousRank": 82
   },
   {
-    "rank": 82,
+    "rank": 83,
     "userId": "7BsETp7UCPMMuiITQpZ3saMdDvv2",
     "username": "Korii",
     "totalPP": 702.8027901361324,
@@ -1145,10 +1159,10 @@
     "country": "CL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/7BsETp7UCPMMuiITQpZ3saMdDvv2.jpeg",
     "rankChange": 0,
-    "previousRank": 82
+    "previousRank": 83
   },
   {
-    "rank": 83,
+    "rank": 84,
     "userId": "CKtB45uzoIT9KF8Ja1L1WMD6u8P2",
     "username": "Wiiinson",
     "totalPP": 698.9245629287108,
@@ -1159,10 +1173,10 @@
     "country": "AU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/CKtB45uzoIT9KF8Ja1L1WMD6u8P2.jpeg",
     "rankChange": 0,
-    "previousRank": 83
+    "previousRank": 84
   },
   {
-    "rank": 84,
+    "rank": 85,
     "userId": "0BLVqlnGB3NKC1JHOeD9eHrjC7J3",
     "username": "run",
     "totalPP": 697.5047710693462,
@@ -1173,10 +1187,10 @@
     "country": "BR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/0BLVqlnGB3NKC1JHOeD9eHrjC7J3.jpeg",
     "rankChange": 0,
-    "previousRank": 84
+    "previousRank": 85
   },
   {
-    "rank": 85,
+    "rank": 86,
     "userId": "5za1xSl92uTjMjWoNGrrQUdmiT33",
     "username": "Udr7gfo",
     "totalPP": 689.9828621222053,
@@ -1187,10 +1201,10 @@
     "country": "US",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 85
+    "previousRank": 86
   },
   {
-    "rank": 86,
+    "rank": 87,
     "userId": "Nz5HwlCBesdiodTzpSNGrcwOi6A2",
     "username": "Archeryse",
     "totalPP": 672.2388796881122,
@@ -1201,24 +1215,24 @@
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/Nz5HwlCBesdiodTzpSNGrcwOi6A2.jpeg",
     "rankChange": 0,
-    "previousRank": 86
-  },
-  {
-    "rank": 87,
-    "userId": "WGjCdmDVXCXkMPEGQx3TGKW28kE2",
-    "username": "Artomesik",
-    "totalPP": 670.0727528546275,
-    "accuracy": 94.4966403367881,
-    "playCount": 1081,
-    "playTime": 71555,
-    "rankedScore": 6345510,
-    "country": "RU",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/WGjCdmDVXCXkMPEGQx3TGKW28kE2.jpeg",
-    "rankChange": 0,
     "previousRank": 87
   },
   {
     "rank": 88,
+    "userId": "WGjCdmDVXCXkMPEGQx3TGKW28kE2",
+    "username": "Artomesik",
+    "totalPP": 670.0727528546275,
+    "accuracy": 94.4966403367881,
+    "playCount": 1086,
+    "playTime": 72236,
+    "rankedScore": 6379705,
+    "country": "RU",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/WGjCdmDVXCXkMPEGQx3TGKW28kE2.jpeg",
+    "rankChange": 0,
+    "previousRank": 88
+  },
+  {
+    "rank": 89,
     "userId": "VCm77sJBpgQOBLEMz7F7iaYX5VX2",
     "username": "RamBunctant",
     "totalPP": 662.1437709416003,
@@ -1229,10 +1243,10 @@
     "country": "US",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 88
+    "previousRank": 89
   },
   {
-    "rank": 89,
+    "rank": 90,
     "userId": "dPaZR6V23Ad8Jy3AtErlkINayVf1",
     "username": "vnzzitto",
     "totalPP": 655.3392523415283,
@@ -1243,10 +1257,10 @@
     "country": "BR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/dPaZR6V23Ad8Jy3AtErlkINayVf1.jpeg",
     "rankChange": 0,
-    "previousRank": 89
+    "previousRank": 90
   },
   {
-    "rank": 90,
+    "rank": 91,
     "userId": "xLEbCuNLQobyvpfbpqoQyHuDxhm2",
     "username": "juzek",
     "totalPP": 652.3918581592333,
@@ -1257,10 +1271,10 @@
     "country": "PL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/xLEbCuNLQobyvpfbpqoQyHuDxhm2.jpeg",
     "rankChange": 0,
-    "previousRank": 90
+    "previousRank": 91
   },
   {
-    "rank": 91,
+    "rank": 92,
     "userId": "y4LK5VaROiXb0ShHdkilrIxsKE43",
     "username": "Kikife",
     "totalPP": 646.9343560593347,
@@ -1271,10 +1285,10 @@
     "country": "GB",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 91
+    "previousRank": 92
   },
   {
-    "rank": 92,
+    "rank": 93,
     "userId": "jgX5L3ALc5ggVmvqUJqQIo0LsT83",
     "username": "patreus",
     "totalPP": 635.1990146754807,
@@ -1285,31 +1299,17 @@
     "country": "PH",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/jgX5L3ALc5ggVmvqUJqQIo0LsT83.jpeg",
     "rankChange": 0,
-    "previousRank": 92
-  },
-  {
-    "rank": 93,
-    "userId": "VF2zRGNcKyP45IrxoGy5cW2Fips2",
-    "username": "extra",
-    "totalPP": 625.0239972882025,
-    "accuracy": 93.23648897592233,
-    "playCount": 680,
-    "playTime": 39927,
-    "rankedScore": 3713973,
-    "country": "PH",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/VF2zRGNcKyP45IrxoGy5cW2Fips2.jpeg",
-    "rankChange": 0,
     "previousRank": 93
   },
   {
     "rank": 94,
     "userId": "tKVDBtVPsPPQem5DkCzUS62Jvxn1",
     "username": "Cubilete",
-    "totalPP": 624.7233819106959,
-    "accuracy": 89.58060413221276,
-    "playCount": 192,
-    "playTime": 13443,
-    "rankedScore": 4998624,
+    "totalPP": 629.0799202768746,
+    "accuracy": 89.6008940653022,
+    "playCount": 198,
+    "playTime": 14369,
+    "rankedScore": 5153702,
     "country": "AR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/tKVDBtVPsPPQem5DkCzUS62Jvxn1.jpeg",
     "rankChange": 0,
@@ -1317,6 +1317,20 @@
   },
   {
     "rank": 95,
+    "userId": "VF2zRGNcKyP45IrxoGy5cW2Fips2",
+    "username": "extra",
+    "totalPP": 625.0239972882025,
+    "accuracy": 93.23648897592233,
+    "playCount": 682,
+    "playTime": 40353,
+    "rankedScore": 3713973,
+    "country": "PH",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/VF2zRGNcKyP45IrxoGy5cW2Fips2.jpeg",
+    "rankChange": 0,
+    "previousRank": 95
+  },
+  {
+    "rank": 96,
     "userId": "yg1ZNFgal6fkKzAK6UwPM2ibJak2",
     "username": "Sagolel",
     "totalPP": 621.9372453557005,
@@ -1327,10 +1341,24 @@
     "country": "DE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/yg1ZNFgal6fkKzAK6UwPM2ibJak2.jpeg",
     "rankChange": 0,
-    "previousRank": 95
+    "previousRank": 96
   },
   {
-    "rank": 96,
+    "rank": 97,
+    "userId": "0x5bdAEpWKhmdluBQpoxDOzU7dj2",
+    "username": "FlyEvile",
+    "totalPP": 620.0116584682473,
+    "accuracy": 94.56533577263107,
+    "playCount": 769,
+    "playTime": 37406,
+    "rankedScore": 5290172,
+    "country": "TR",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/0x5bdAEpWKhmdluBQpoxDOzU7dj2.jpeg",
+    "rankChange": 0,
+    "previousRank": 97
+  },
+  {
+    "rank": 98,
     "userId": "YJAG1cBu67WxWP4L46bMt4NNOMI3",
     "username": "Ste1729",
     "totalPP": 617.9233206650101,
@@ -1341,24 +1369,10 @@
     "country": "IT",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 96
+    "previousRank": 98
   },
   {
-    "rank": 97,
-    "userId": "0x5bdAEpWKhmdluBQpoxDOzU7dj2",
-    "username": "FlyEvile",
-    "totalPP": 605.6052891230747,
-    "accuracy": 94.51189178543454,
-    "playCount": 732,
-    "playTime": 35004,
-    "rankedScore": 5034598,
-    "country": "TR",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/0x5bdAEpWKhmdluBQpoxDOzU7dj2.jpeg",
-    "rankChange": 21,
-    "previousRank": 118
-  },
-  {
-    "rank": 98,
+    "rank": 99,
     "userId": "1PyVmfQsELcbA4vtx0jdD0RVyqL2",
     "username": "themightiesttaco",
     "totalPP": 605.508490481656,
@@ -1368,11 +1382,11 @@
     "rankedScore": 1843095,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 97
+    "rankChange": 0,
+    "previousRank": 99
   },
   {
-    "rank": 99,
+    "rank": 100,
     "userId": "abE5phmcYJbC5o9xG2xNhDpvaYX2",
     "username": "Ereal",
     "totalPP": 602.2532961822405,
@@ -1382,11 +1396,11 @@
     "rankedScore": 4093899,
     "country": "FR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/abE5phmcYJbC5o9xG2xNhDpvaYX2.jpeg",
-    "rankChange": -1,
-    "previousRank": 98
+    "rankChange": 0,
+    "previousRank": 100
   },
   {
-    "rank": 100,
+    "rank": 101,
     "userId": "CLbpmZjZsqZ8v6cIU4Ez5q8rotf1",
     "username": "NitRobeater",
     "totalPP": 600.6683717683442,
@@ -1396,53 +1410,53 @@
     "rankedScore": 1647406,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/CLbpmZjZsqZ8v6cIU4Ez5q8rotf1.jpeg",
-    "rankChange": -1,
-    "previousRank": 99
-  },
-  {
-    "rank": 101,
-    "userId": "N6GlMEtKnuWVA8zycfFtGDujkSQ2",
-    "username": "TeaMan",
-    "totalPP": 597.3913546977404,
-    "accuracy": 93.68414181823421,
-    "playCount": 4354,
-    "playTime": 206948,
-    "rankedScore": 8913303,
-    "country": "RU",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/N6GlMEtKnuWVA8zycfFtGDujkSQ2.jpeg",
-    "rankChange": -1,
-    "previousRank": 100
-  },
-  {
-    "rank": 102,
-    "userId": "0esGWuGLBUPV19XPi0TJlpFQT043",
-    "username": "bry",
-    "totalPP": 583.2414163289351,
-    "accuracy": 97.45353281935965,
-    "playCount": 626,
-    "playTime": 31606,
-    "rankedScore": 2368943,
-    "country": "CO",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/0esGWuGLBUPV19XPi0TJlpFQT043.jpeg",
-    "rankChange": -1,
+    "rankChange": 0,
     "previousRank": 101
   },
   {
-    "rank": 103,
-    "userId": "fzYquKo6qEgaOHjPh4iDINAjyn82",
-    "username": "lol",
-    "totalPP": 578.5401506128858,
-    "accuracy": 99.5512459842557,
-    "playCount": 95,
-    "playTime": 5440,
-    "rankedScore": 846144,
-    "country": "NZ",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/fzYquKo6qEgaOHjPh4iDINAjyn82.jpeg",
-    "rankChange": -1,
+    "rank": 102,
+    "userId": "N6GlMEtKnuWVA8zycfFtGDujkSQ2",
+    "username": "TeaMan",
+    "totalPP": 599.0565092447433,
+    "accuracy": 93.59004882587611,
+    "playCount": 4441,
+    "playTime": 211803,
+    "rankedScore": 8943337,
+    "country": "RU",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/N6GlMEtKnuWVA8zycfFtGDujkSQ2.jpeg",
+    "rankChange": 0,
     "previousRank": 102
   },
   {
+    "rank": 103,
+    "userId": "0esGWuGLBUPV19XPi0TJlpFQT043",
+    "username": "bry",
+    "totalPP": 590.0066799543024,
+    "accuracy": 97.59868272180381,
+    "playCount": 642,
+    "playTime": 32282,
+    "rankedScore": 2480898,
+    "country": "CO",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/0esGWuGLBUPV19XPi0TJlpFQT043.jpeg",
+    "rankChange": 0,
+    "previousRank": 103
+  },
+  {
     "rank": 104,
+    "userId": "fzYquKo6qEgaOHjPh4iDINAjyn82",
+    "username": "lol",
+    "totalPP": 582.9876477204432,
+    "accuracy": 99.5771938006698,
+    "playCount": 97,
+    "playTime": 5614,
+    "rankedScore": 872278,
+    "country": "NZ",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/fzYquKo6qEgaOHjPh4iDINAjyn82.jpeg",
+    "rankChange": 0,
+    "previousRank": 104
+  },
+  {
+    "rank": 105,
     "userId": "dRBOITBE8Ndxy2dc3UAoxk3aTQ73",
     "username": "globyglob",
     "totalPP": 575.367491246434,
@@ -1452,11 +1466,25 @@
     "rankedScore": 1786561,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 103
+    "rankChange": 0,
+    "previousRank": 105
   },
   {
-    "rank": 105,
+    "rank": 106,
+    "userId": "7wXJwgnEWfNl7BNjzjHULjL0Ryz2",
+    "username": "RohanisBoss",
+    "totalPP": 572.5865259659123,
+    "accuracy": 97.60223990319868,
+    "playCount": 548,
+    "playTime": 25257,
+    "rankedScore": 4174785,
+    "country": "AU",
+    "profilePictureUrl": null,
+    "rankChange": 8,
+    "previousRank": 114
+  },
+  {
+    "rank": 107,
     "userId": "WXJng0l4AHb2jfCLf5m3Fl7BNu62",
     "username": "jekuttelija",
     "totalPP": 571.0393392964678,
@@ -1467,10 +1495,10 @@
     "country": "FI",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/WXJng0l4AHb2jfCLf5m3Fl7BNu62.jpeg",
     "rankChange": -1,
-    "previousRank": 104
+    "previousRank": 106
   },
   {
-    "rank": 106,
+    "rank": 108,
     "userId": "e91Pjj7lRjVBPEyeP3I9orhkx813",
     "username": "Kypsus",
     "totalPP": 569.8153514347922,
@@ -1481,10 +1509,10 @@
     "country": "SE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/e91Pjj7lRjVBPEyeP3I9orhkx813.jpeg",
     "rankChange": -1,
-    "previousRank": 105
+    "previousRank": 107
   },
   {
-    "rank": 107,
+    "rank": 109,
     "userId": "H79UB4mQk0ZXUuCHDFNQpC2vkgz2",
     "username": "FirevicE",
     "totalPP": 569.2602931129883,
@@ -1495,10 +1523,10 @@
     "country": "PH",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/H79UB4mQk0ZXUuCHDFNQpC2vkgz2.jpeg",
     "rankChange": -1,
-    "previousRank": 106
+    "previousRank": 108
   },
   {
-    "rank": 108,
+    "rank": 110,
     "userId": "j6lT0J3DYJQqCWuGBWY9bdnQdCx1",
     "username": "Lucio",
     "totalPP": 568.9045441041975,
@@ -1509,10 +1537,10 @@
     "country": "MX",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/j6lT0J3DYJQqCWuGBWY9bdnQdCx1.jpeg",
     "rankChange": -1,
-    "previousRank": 107
+    "previousRank": 109
   },
   {
-    "rank": 109,
+    "rank": 111,
     "userId": "wMGu7ozDgOMiwPUraH0Y9M5n94f1",
     "username": "Opened",
     "totalPP": 568.3019308873652,
@@ -1523,10 +1551,10 @@
     "country": "KP",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/wMGu7ozDgOMiwPUraH0Y9M5n94f1.jpeg",
     "rankChange": -1,
-    "previousRank": 108
+    "previousRank": 110
   },
   {
-    "rank": 110,
+    "rank": 112,
     "userId": "ttJbRgsDnlajR4mpk12d63vQexk1",
     "username": "Cerulyian",
     "totalPP": 561.8465182014538,
@@ -1537,10 +1565,10 @@
     "country": "TW",
     "profilePictureUrl": null,
     "rankChange": -1,
-    "previousRank": 109
+    "previousRank": 111
   },
   {
-    "rank": 111,
+    "rank": 113,
     "userId": "oLWpaty7t3NmRZfkIYjl6fF6bcP2",
     "username": "Katana",
     "totalPP": 559.4494673690142,
@@ -1551,10 +1579,10 @@
     "country": "NL",
     "profilePictureUrl": null,
     "rankChange": -1,
-    "previousRank": 110
+    "previousRank": 112
   },
   {
-    "rank": 112,
+    "rank": 114,
     "userId": "vOzRlIT9EgVDzOkZBHmOsqm0MwC3",
     "username": "olek",
     "totalPP": 555.4285952696532,
@@ -1565,24 +1593,10 @@
     "country": "PL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/vOzRlIT9EgVDzOkZBHmOsqm0MwC3.jpeg",
     "rankChange": -1,
-    "previousRank": 111
+    "previousRank": 113
   },
   {
-    "rank": 113,
-    "userId": "7wXJwgnEWfNl7BNjzjHULjL0Ryz2",
-    "username": "RohanisBoss",
-    "totalPP": 555.0795665313162,
-    "accuracy": 96.92691717860875,
-    "playCount": 502,
-    "playTime": 22613,
-    "rankedScore": 3733208,
-    "country": "AU",
-    "profilePictureUrl": null,
-    "rankChange": 3,
-    "previousRank": 116
-  },
-  {
-    "rank": 114,
+    "rank": 115,
     "userId": "ZN5xDRLH1LNGKRbU6LkbC2BMTjB2",
     "username": "Oysths",
     "totalPP": 554.4207076408396,
@@ -1592,11 +1606,11 @@
     "rankedScore": 1752013,
     "country": "NO",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/ZN5xDRLH1LNGKRbU6LkbC2BMTjB2.jpeg",
-    "rankChange": -2,
-    "previousRank": 112
+    "rankChange": 0,
+    "previousRank": 115
   },
   {
-    "rank": 115,
+    "rank": 116,
     "userId": "0faPKDMfAiOVnWEscWwiV58v3ZG2",
     "username": "god",
     "totalPP": 551.7194763370719,
@@ -1606,11 +1620,11 @@
     "rankedScore": 1908696,
     "country": "BE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/0faPKDMfAiOVnWEscWwiV58v3ZG2.jpeg",
-    "rankChange": -2,
-    "previousRank": 113
+    "rankChange": 0,
+    "previousRank": 116
   },
   {
-    "rank": 116,
+    "rank": 117,
     "userId": "UkcpJ71CwdP5GWEmEHznq96HvGH2",
     "username": "erasevfx",
     "totalPP": 549.8251312301411,
@@ -1620,11 +1634,11 @@
     "rankedScore": 1812367,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/UkcpJ71CwdP5GWEmEHznq96HvGH2.jpeg",
-    "rankChange": -2,
-    "previousRank": 114
+    "rankChange": 0,
+    "previousRank": 117
   },
   {
-    "rank": 117,
+    "rank": 118,
     "userId": "AyqdZpofPXOFcLxHOj1kbHLuYm92",
     "username": "Yuzu_OvO",
     "totalPP": 548.322843117606,
@@ -1634,11 +1648,11 @@
     "rankedScore": 967009,
     "country": "CN",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/AyqdZpofPXOFcLxHOj1kbHLuYm92.jpeg",
-    "rankChange": -2,
-    "previousRank": 115
+    "rankChange": 0,
+    "previousRank": 118
   },
   {
-    "rank": 118,
+    "rank": 119,
     "userId": "1Fzt79LuGRN7hgBL0gPbE7FVhzj2",
     "username": "skon",
     "totalPP": 545.1656714230085,
@@ -1648,36 +1662,22 @@
     "rankedScore": 4604677,
     "country": "UA",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 117
-  },
-  {
-    "rank": 119,
-    "userId": "oWdAwTKJwuZuNlDHcexJnaV6ptj2",
-    "username": "Dragon",
-    "totalPP": 544.0136545840229,
-    "accuracy": 97.76691054160443,
-    "playCount": 46,
-    "playTime": 2566,
-    "rankedScore": 1116337,
-    "country": "US",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/oWdAwTKJwuZuNlDHcexJnaV6ptj2.jpeg",
-    "rankChange": 95,
-    "previousRank": 214
+    "rankChange": 0,
+    "previousRank": 119
   },
   {
     "rank": 120,
     "userId": "U0qcTGL6oUTeh2dT4TBYNekGq5K2",
     "username": "randgamor",
-    "totalPP": 538.4558835854558,
-    "accuracy": 94.54504965787545,
-    "playCount": 1340,
-    "playTime": 73528,
-    "rankedScore": 9000943,
+    "totalPP": 539.4017178695633,
+    "accuracy": 94.3780240122998,
+    "playCount": 1357,
+    "playTime": 75157,
+    "rankedScore": 10094702,
     "country": "VA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/U0qcTGL6oUTeh2dT4TBYNekGq5K2.jpeg",
-    "rankChange": -1,
-    "previousRank": 119
+    "rankChange": 0,
+    "previousRank": 120
   },
   {
     "rank": 121,
@@ -1690,8 +1690,8 @@
     "rankedScore": 1479350,
     "country": "UA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/EQHgKZSwwCZDDzASKh768P0NkfA3.jpeg",
-    "rankChange": -1,
-    "previousRank": 120
+    "rankChange": 0,
+    "previousRank": 121
   },
   {
     "rank": 122,
@@ -1704,8 +1704,8 @@
     "rankedScore": 2707274,
     "country": "AU",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 121
+    "rankChange": 0,
+    "previousRank": 122
   },
   {
     "rank": 123,
@@ -1718,8 +1718,8 @@
     "rankedScore": 1226723,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/2v1socbYdzgASXBnl8fiIM8JmSS2.jpeg",
-    "rankChange": -1,
-    "previousRank": 122
+    "rankChange": 0,
+    "previousRank": 123
   },
   {
     "rank": 124,
@@ -1732,8 +1732,8 @@
     "rankedScore": 1565660,
     "country": "BN",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 123
+    "rankChange": 0,
+    "previousRank": 124
   },
   {
     "rank": 125,
@@ -1746,11 +1746,25 @@
     "rankedScore": 3731362,
     "country": "SG",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/wz9WohimyKbs727NyOyWk42B9gg1.jpeg",
-    "rankChange": -1,
-    "previousRank": 124
+    "rankChange": 0,
+    "previousRank": 125
   },
   {
     "rank": 126,
+    "userId": "Qn5hfA1w8rhObpr8qiBvAPrrkDY2",
+    "username": "KSupes",
+    "totalPP": 526.7090371582714,
+    "accuracy": 93.10526262645526,
+    "playCount": 850,
+    "playTime": 47466,
+    "rankedScore": 2465581,
+    "country": "US",
+    "profilePictureUrl": null,
+    "rankChange": 0,
+    "previousRank": 126
+  },
+  {
+    "rank": 127,
     "userId": "n5w41CnW2KYdgzRgUak1Gq2Pehv2",
     "username": "Kias",
     "totalPP": 525.471086021379,
@@ -1760,11 +1774,11 @@
     "rankedScore": 2187488,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 125
+    "rankChange": 0,
+    "previousRank": 127
   },
   {
-    "rank": 127,
+    "rank": 128,
     "userId": "vuAIjnwVI1Pm6MXaADnr7upG1wH3",
     "username": "lublulu",
     "totalPP": 525.235779087586,
@@ -1774,11 +1788,11 @@
     "rankedScore": 2979509,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 126
+    "rankChange": 0,
+    "previousRank": 128
   },
   {
-    "rank": 128,
+    "rank": 129,
     "userId": "eTZ1RhBYALOqVZ0JpAnKurMyp7L2",
     "username": "Hera",
     "totalPP": 523.1611485640333,
@@ -1788,11 +1802,11 @@
     "rankedScore": 777963,
     "country": "MX",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/eTZ1RhBYALOqVZ0JpAnKurMyp7L2.jpeg",
-    "rankChange": -1,
-    "previousRank": 127
+    "rankChange": 0,
+    "previousRank": 129
   },
   {
-    "rank": 129,
+    "rank": 130,
     "userId": "s5BWeKrwnxSklfjoM4ABAgCEqM43",
     "username": "Enrix",
     "totalPP": 520.7724280128114,
@@ -1802,11 +1816,11 @@
     "rankedScore": 2061426,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/s5BWeKrwnxSklfjoM4ABAgCEqM43.jpeg",
-    "rankChange": -1,
-    "previousRank": 128
+    "rankChange": 0,
+    "previousRank": 130
   },
   {
-    "rank": 130,
+    "rank": 131,
     "userId": "vgAIAzBu9jSAyLXFWeFteqBLwm53",
     "username": "Joflex",
     "totalPP": 519.2154873087305,
@@ -1816,25 +1830,25 @@
     "rankedScore": 2157155,
     "country": "PT",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/vgAIAzBu9jSAyLXFWeFteqBLwm53.jpeg",
-    "rankChange": -1,
-    "previousRank": 129
-  },
-  {
-    "rank": 131,
-    "userId": "2O5A86SNA1bzosWcszP1dWbxI963",
-    "username": "TheDedFox",
-    "totalPP": 512.1100951048975,
-    "accuracy": 91.61263728275534,
-    "playCount": 680,
-    "playTime": 29478,
-    "rankedScore": 5018614,
-    "country": "US",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/2O5A86SNA1bzosWcszP1dWbxI963.jpeg",
-    "rankChange": -1,
-    "previousRank": 130
+    "rankChange": 0,
+    "previousRank": 131
   },
   {
     "rank": 132,
+    "userId": "2O5A86SNA1bzosWcszP1dWbxI963",
+    "username": "TheDedFox",
+    "totalPP": 513.3336372515969,
+    "accuracy": 91.63286035795937,
+    "playCount": 691,
+    "playTime": 30133,
+    "rankedScore": 5021231,
+    "country": "US",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/2O5A86SNA1bzosWcszP1dWbxI963.jpeg",
+    "rankChange": 0,
+    "previousRank": 132
+  },
+  {
+    "rank": 133,
     "userId": "9MtSAloIigfVy7YmeaecZz6NoMN2",
     "username": "quadratech",
     "totalPP": 510.30198127172605,
@@ -1844,11 +1858,11 @@
     "rankedScore": 5004987,
     "country": "KR",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 131
+    "rankChange": 0,
+    "previousRank": 133
   },
   {
-    "rank": 133,
+    "rank": 134,
     "userId": "6nmaJhzokgXGEmEhKebi174S0B23",
     "username": "boy",
     "totalPP": 503.8585504083755,
@@ -1858,25 +1872,25 @@
     "rankedScore": 1678543,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/6nmaJhzokgXGEmEhKebi174S0B23.jpeg",
-    "rankChange": -1,
-    "previousRank": 132
+    "rankChange": 0,
+    "previousRank": 134
   },
   {
-    "rank": 134,
+    "rank": 135,
     "userId": "F8o58LffS4h0Jx9pNw6yB9UC8XI2",
     "username": "Dxst",
     "totalPP": 503.53191787254076,
     "accuracy": 90.39986757802997,
-    "playCount": 176,
-    "playTime": 7569,
+    "playCount": 177,
+    "playTime": 7657,
     "rankedScore": 1591383,
     "country": "NO",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/F8o58LffS4h0Jx9pNw6yB9UC8XI2.jpeg",
-    "rankChange": -1,
-    "previousRank": 133
+    "rankChange": 0,
+    "previousRank": 135
   },
   {
-    "rank": 135,
+    "rank": 136,
     "userId": "f27t5N9uX0dPMkG1tLguCBgAYNb2",
     "username": "UndrcoverCactus",
     "totalPP": 503.15901040253624,
@@ -1886,11 +1900,11 @@
     "rankedScore": 2521852,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 134
+    "rankChange": 0,
+    "previousRank": 136
   },
   {
-    "rank": 136,
+    "rank": 137,
     "userId": "19VUF1gvXsROfelkThrimgWPPTi1",
     "username": "____",
     "totalPP": 503.0447856516443,
@@ -1900,22 +1914,8 @@
     "rankedScore": 2607019,
     "country": "KR",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 135
-  },
-  {
-    "rank": 137,
-    "userId": "Qn5hfA1w8rhObpr8qiBvAPrrkDY2",
-    "username": "KSupes",
-    "totalPP": 501.60061156977446,
-    "accuracy": 92.68927910708602,
-    "playCount": 785,
-    "playTime": 44564,
-    "rankedScore": 2422707,
-    "country": "US",
-    "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 136
+    "rankChange": 0,
+    "previousRank": 137
   },
   {
     "rank": 138,
@@ -1928,8 +1928,8 @@
     "rankedScore": 1030779,
     "country": "ID",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 137
+    "rankChange": 0,
+    "previousRank": 138
   },
   {
     "rank": 139,
@@ -1942,8 +1942,8 @@
     "rankedScore": 2284509,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 138
+    "rankChange": 0,
+    "previousRank": 139
   },
   {
     "rank": 140,
@@ -1956,11 +1956,25 @@
     "rankedScore": 2135271,
     "country": "PL",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 139
+    "rankChange": 0,
+    "previousRank": 140
   },
   {
     "rank": 141,
+    "userId": "44jcruZP9nZI5DSNLHvXLJQZCQO2",
+    "username": "SpidrFenix",
+    "totalPP": 489.71143698355127,
+    "accuracy": 93.43701440538604,
+    "playCount": 153,
+    "playTime": 7899,
+    "rankedScore": 2443397,
+    "country": "US",
+    "profilePictureUrl": null,
+    "rankChange": 0,
+    "previousRank": 141
+  },
+  {
+    "rank": 142,
     "userId": "st8i3bPllyfwhVop1SIVQNIApoD3",
     "username": "kyle",
     "totalPP": 484.7942365865441,
@@ -1970,11 +1984,11 @@
     "rankedScore": 2318491,
     "country": "CA",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 140
+    "rankChange": 0,
+    "previousRank": 142
   },
   {
-    "rank": 142,
+    "rank": 143,
     "userId": "KS7wCMRlF5PTlg8wlRV9x97QtTJ3",
     "username": "Ratasacat",
     "totalPP": 482.1129851058533,
@@ -1984,11 +1998,11 @@
     "rankedScore": 11338970,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 141
+    "rankChange": 0,
+    "previousRank": 143
   },
   {
-    "rank": 143,
+    "rank": 144,
     "userId": "2Cwgc4weoaVTRlzHQ1pPfS0x8pw2",
     "username": "Sellyme",
     "totalPP": 476.96281557899266,
@@ -1998,11 +2012,11 @@
     "rankedScore": 1857280,
     "country": "AU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/2Cwgc4weoaVTRlzHQ1pPfS0x8pw2.jpeg",
-    "rankChange": -1,
-    "previousRank": 142
+    "rankChange": 0,
+    "previousRank": 144
   },
   {
-    "rank": 144,
+    "rank": 145,
     "userId": "5IThiffACgaKeOTpnEYz05NF25t2",
     "username": "Arrendor",
     "totalPP": 475.81847992579213,
@@ -2012,11 +2026,11 @@
     "rankedScore": 1994655,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/5IThiffACgaKeOTpnEYz05NF25t2.jpeg",
-    "rankChange": -1,
-    "previousRank": 143
+    "rankChange": 0,
+    "previousRank": 145
   },
   {
-    "rank": 145,
+    "rank": 146,
     "userId": "1n4P0QN8W7eUNz0D3Rhnv5sExIM2",
     "username": "Beajek",
     "totalPP": 473.04558267705147,
@@ -2026,11 +2040,11 @@
     "rankedScore": 3773931,
     "country": "PL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/1n4P0QN8W7eUNz0D3Rhnv5sExIM2.jpeg",
-    "rankChange": -1,
-    "previousRank": 144
+    "rankChange": 0,
+    "previousRank": 146
   },
   {
-    "rank": 146,
+    "rank": 147,
     "userId": "ZfP4ly1dBaaqfGlo8doAu1D5zVS2",
     "username": "D4neX",
     "totalPP": 470.3871188294452,
@@ -2040,11 +2054,11 @@
     "rankedScore": 2478368,
     "country": "CZ",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/ZfP4ly1dBaaqfGlo8doAu1D5zVS2.jpeg",
-    "rankChange": -1,
-    "previousRank": 145
+    "rankChange": 0,
+    "previousRank": 147
   },
   {
-    "rank": 147,
+    "rank": 148,
     "userId": "X7xRLpxfqXYyfhqV3Fn97gOYrim2",
     "username": "Wooffley",
     "totalPP": 467.68280921804774,
@@ -2054,25 +2068,25 @@
     "rankedScore": 1518288,
     "country": "GB",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/X7xRLpxfqXYyfhqV3Fn97gOYrim2.jpeg",
-    "rankChange": -1,
-    "previousRank": 146
-  },
-  {
-    "rank": 148,
-    "userId": "7SfNMUMJIjgtdUrN6VbieuLMqi42",
-    "username": "etd2w",
-    "totalPP": 459.9224239442239,
-    "accuracy": 94.78535384080244,
-    "playCount": 321,
-    "playTime": 13121,
-    "rankedScore": 2517873,
-    "country": "RU",
-    "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 147
+    "rankChange": 0,
+    "previousRank": 148
   },
   {
     "rank": 149,
+    "userId": "7SfNMUMJIjgtdUrN6VbieuLMqi42",
+    "username": "etd2w",
+    "totalPP": 460.4837781345565,
+    "accuracy": 94.78119154134224,
+    "playCount": 328,
+    "playTime": 13699,
+    "rankedScore": 2589506,
+    "country": "RU",
+    "profilePictureUrl": null,
+    "rankChange": 0,
+    "previousRank": 149
+  },
+  {
+    "rank": 150,
     "userId": "ImK8bcTJ3Ah4SCPXVW6AK7C3vxh2",
     "username": "gold",
     "totalPP": 459.8010545488527,
@@ -2082,11 +2096,11 @@
     "rankedScore": 1811704,
     "country": "CA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/ImK8bcTJ3Ah4SCPXVW6AK7C3vxh2.jpeg",
-    "rankChange": -1,
-    "previousRank": 148
+    "rankChange": 0,
+    "previousRank": 150
   },
   {
-    "rank": 150,
+    "rank": 151,
     "userId": "DfoCsMaNEWRS9eTJFWGXxOmKycl2",
     "username": "Parowozik",
     "totalPP": 459.490062180636,
@@ -2096,11 +2110,11 @@
     "rankedScore": 1973571,
     "country": "PL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/DfoCsMaNEWRS9eTJFWGXxOmKycl2.jpeg",
-    "rankChange": -1,
-    "previousRank": 149
+    "rankChange": 0,
+    "previousRank": 151
   },
   {
-    "rank": 151,
+    "rank": 152,
     "userId": "K10qPa3qeCVeEQhpeUi3x039E2S2",
     "username": "uniknOWO",
     "totalPP": 457.2084969214002,
@@ -2110,11 +2124,11 @@
     "rankedScore": 1572851,
     "country": "RU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/K10qPa3qeCVeEQhpeUi3x039E2S2.jpeg",
-    "rankChange": -1,
-    "previousRank": 150
+    "rankChange": 0,
+    "previousRank": 152
   },
   {
-    "rank": 152,
+    "rank": 153,
     "userId": "H8VxI4qlzfY3D8EogGoB6EFZVf62",
     "username": "dedik",
     "totalPP": 455.68384087123843,
@@ -2124,11 +2138,11 @@
     "rankedScore": 1299623,
     "country": "UA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/H8VxI4qlzfY3D8EogGoB6EFZVf62.jpeg",
-    "rankChange": -1,
-    "previousRank": 151
+    "rankChange": 0,
+    "previousRank": 153
   },
   {
-    "rank": 153,
+    "rank": 154,
     "userId": "L6m97I6ZpUVFCkfhG7n1DZu886k1",
     "username": "Lazi",
     "totalPP": 453.78198157551657,
@@ -2138,11 +2152,11 @@
     "rankedScore": 3052297,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/L6m97I6ZpUVFCkfhG7n1DZu886k1.jpeg",
-    "rankChange": -1,
-    "previousRank": 152
+    "rankChange": 0,
+    "previousRank": 154
   },
   {
-    "rank": 154,
+    "rank": 155,
     "userId": "QOAD4VfEkbRPCDozUUAjHdvRtno1",
     "username": "lch823",
     "totalPP": 451.29704191857206,
@@ -2152,11 +2166,11 @@
     "rankedScore": 2330933,
     "country": "HK",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 153
+    "rankChange": 0,
+    "previousRank": 155
   },
   {
-    "rank": 155,
+    "rank": 156,
     "userId": "XffaqC88M8P6JrzyOf6sz5USO0j1",
     "username": "___",
     "totalPP": 448.7339298313831,
@@ -2166,11 +2180,11 @@
     "rankedScore": 1615622,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/XffaqC88M8P6JrzyOf6sz5USO0j1.jpeg",
-    "rankChange": -1,
-    "previousRank": 154
+    "rankChange": 0,
+    "previousRank": 156
   },
   {
-    "rank": 156,
+    "rank": 157,
     "userId": "T3ObSRO9f2QwoqzqQQivymUn3762",
     "username": "roerin",
     "totalPP": 448.6962280248503,
@@ -2180,11 +2194,11 @@
     "rankedScore": 3982998,
     "country": "SG",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 155
+    "rankChange": 0,
+    "previousRank": 157
   },
   {
-    "rank": 157,
+    "rank": 158,
     "userId": "waqOo27GK0hTbXRSwzJ0kaDTl6h1",
     "username": "Vappy",
     "totalPP": 448.35482691289894,
@@ -2194,11 +2208,11 @@
     "rankedScore": 2165351,
     "country": "ES",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/waqOo27GK0hTbXRSwzJ0kaDTl6h1.jpeg",
-    "rankChange": -1,
-    "previousRank": 156
+    "rankChange": 0,
+    "previousRank": 158
   },
   {
-    "rank": 158,
+    "rank": 159,
     "userId": "8iYwdOIN2EQAltqzU7r0ULfygZl1",
     "username": "guel",
     "totalPP": 443.602175486225,
@@ -2208,11 +2222,11 @@
     "rankedScore": 2004695,
     "country": "CA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/8iYwdOIN2EQAltqzU7r0ULfygZl1.jpeg",
-    "rankChange": -1,
-    "previousRank": 157
+    "rankChange": 0,
+    "previousRank": 159
   },
   {
-    "rank": 159,
+    "rank": 160,
     "userId": "X8Wxnk5Vj0WfaEng7W0dJHrF7vl2",
     "username": "clayz0r",
     "totalPP": 442.93841700169156,
@@ -2222,11 +2236,11 @@
     "rankedScore": 2057256,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 158
+    "rankChange": 0,
+    "previousRank": 160
   },
   {
-    "rank": 160,
+    "rank": 161,
     "userId": "akoXLJ3NVpS4d1ih1zA1kInufxh1",
     "username": "myguy_A9",
     "totalPP": 441.16946267477397,
@@ -2236,11 +2250,11 @@
     "rankedScore": 1145584,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 159
+    "rankChange": 0,
+    "previousRank": 161
   },
   {
-    "rank": 161,
+    "rank": 162,
     "userId": "nNX0KszliTMjpQah17e43vMmLRx2",
     "username": "milkmanjohn5",
     "totalPP": 440.09809958587107,
@@ -2250,11 +2264,11 @@
     "rankedScore": 1350103,
     "country": "NO",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/nNX0KszliTMjpQah17e43vMmLRx2.jpeg",
-    "rankChange": -1,
-    "previousRank": 160
+    "rankChange": 0,
+    "previousRank": 162
   },
   {
-    "rank": 162,
+    "rank": 163,
     "userId": "mj5QQ5rtQ8a0kx8N5dSsq8KcepC3",
     "username": "Cryptonite",
     "totalPP": 439.0902254578443,
@@ -2264,11 +2278,11 @@
     "rankedScore": 3813248,
     "country": "PL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/mj5QQ5rtQ8a0kx8N5dSsq8KcepC3.jpeg",
-    "rankChange": -1,
-    "previousRank": 161
+    "rankChange": 0,
+    "previousRank": 163
   },
   {
-    "rank": 163,
+    "rank": 164,
     "userId": "HeyRDe4bk5PpKLuI4udCPquPh8T2",
     "username": "voytxt",
     "totalPP": 439.0652224736147,
@@ -2278,11 +2292,11 @@
     "rankedScore": 3332947,
     "country": "CZ",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 162
+    "rankChange": 0,
+    "previousRank": 164
   },
   {
-    "rank": 164,
+    "rank": 165,
     "userId": "4HaucZ2jvwfg46OZAfe7vjNyPzW2",
     "username": "hammerhead",
     "totalPP": 437.89021957353003,
@@ -2292,11 +2306,11 @@
     "rankedScore": 1534514,
     "country": "MX",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/4HaucZ2jvwfg46OZAfe7vjNyPzW2.jpeg",
-    "rankChange": -1,
-    "previousRank": 163
+    "rankChange": 0,
+    "previousRank": 165
   },
   {
-    "rank": 165,
+    "rank": 166,
     "userId": "ZalnQf8xpFbu6lHkn0WZol6bQxH2",
     "username": "MinCaguei",
     "totalPP": 437.00433580899977,
@@ -2306,22 +2320,8 @@
     "rankedScore": 1623866,
     "country": "BR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/ZalnQf8xpFbu6lHkn0WZol6bQxH2.jpeg",
-    "rankChange": -1,
-    "previousRank": 164
-  },
-  {
-    "rank": 166,
-    "userId": "44jcruZP9nZI5DSNLHvXLJQZCQO2",
-    "username": "SpidrFenix",
-    "totalPP": 434.71319448065225,
-    "accuracy": 92.34272079380847,
-    "playCount": 128,
-    "playTime": 6231,
-    "rankedScore": 2056508,
-    "country": "US",
-    "profilePictureUrl": null,
-    "rankChange": 32,
-    "previousRank": 198
+    "rankChange": 0,
+    "previousRank": 166
   },
   {
     "rank": 167,
@@ -2334,8 +2334,8 @@
     "rankedScore": 790486,
     "country": "ID",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/OdNLHA8QHVWAGnnCx5FfrhML72w2.jpeg",
-    "rankChange": -2,
-    "previousRank": 165
+    "rankChange": 0,
+    "previousRank": 167
   },
   {
     "rank": 168,
@@ -2348,8 +2348,8 @@
     "rankedScore": 2510252,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/E3d5z50p2cNV1EGmvG5jgnHPMpJ2.jpeg",
-    "rankChange": -2,
-    "previousRank": 166
+    "rankChange": 0,
+    "previousRank": 168
   },
   {
     "rank": 169,
@@ -2362,8 +2362,8 @@
     "rankedScore": 703826,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 167
+    "rankChange": 0,
+    "previousRank": 169
   },
   {
     "rank": 170,
@@ -2376,8 +2376,8 @@
     "rankedScore": 1171270,
     "country": "TH",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/E4w4d4GowXOFhWRp3LObQkxxxZg1.jpeg",
-    "rankChange": -2,
-    "previousRank": 168
+    "rankChange": 0,
+    "previousRank": 170
   },
   {
     "rank": 171,
@@ -2390,8 +2390,8 @@
     "rankedScore": 736550,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/1IabjUgrk5MDUFeXap3Vkl0EAeT2.jpeg",
-    "rankChange": -2,
-    "previousRank": 169
+    "rankChange": 0,
+    "previousRank": 171
   },
   {
     "rank": 172,
@@ -2404,8 +2404,8 @@
     "rankedScore": 4849009,
     "country": "IL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/0htKvaRehKSAB52voZ04eZRD1ZM2.jpeg",
-    "rankChange": -2,
-    "previousRank": 170
+    "rankChange": 0,
+    "previousRank": 172
   },
   {
     "rank": 173,
@@ -2418,8 +2418,8 @@
     "rankedScore": 1799746,
     "country": "GB",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/m7AchrRtDwcMtmWsJadYRJnm0wH3.jpeg",
-    "rankChange": -2,
-    "previousRank": 171
+    "rankChange": 0,
+    "previousRank": 173
   },
   {
     "rank": 174,
@@ -2432,8 +2432,8 @@
     "rankedScore": 1907587,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/UIGNvDRkXbWS7Vj91GgSkoxNfUA2.jpeg",
-    "rankChange": -2,
-    "previousRank": 172
+    "rankChange": 0,
+    "previousRank": 174
   },
   {
     "rank": 175,
@@ -2446,8 +2446,8 @@
     "rankedScore": 1272806,
     "country": "FR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/sPBTg36g1CW30iq9omvFqYUUtdr1.jpeg",
-    "rankChange": -2,
-    "previousRank": 173
+    "rankChange": 0,
+    "previousRank": 175
   },
   {
     "rank": 176,
@@ -2460,8 +2460,8 @@
     "rankedScore": 1571146,
     "country": "SG",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 174
+    "rankChange": 0,
+    "previousRank": 176
   },
   {
     "rank": 177,
@@ -2474,8 +2474,8 @@
     "rankedScore": 2206610,
     "country": "CZ",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/3T3fC4L0c8MPItx7pLcVZCTZxpn1.jpeg",
-    "rankChange": -2,
-    "previousRank": 175
+    "rankChange": 0,
+    "previousRank": 177
   },
   {
     "rank": 178,
@@ -2488,8 +2488,8 @@
     "rankedScore": 904458,
     "country": "FR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/x4XF9fJNfDSaozHmh55v3iYSovw1.jpeg",
-    "rankChange": -2,
-    "previousRank": 176
+    "rankChange": 0,
+    "previousRank": 178
   },
   {
     "rank": 179,
@@ -2502,8 +2502,8 @@
     "rankedScore": 4089822,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/ZSSwW0upeESBKkigeBKQCsjuhPl2.jpeg",
-    "rankChange": -2,
-    "previousRank": 177
+    "rankChange": 0,
+    "previousRank": 179
   },
   {
     "rank": 180,
@@ -2516,8 +2516,8 @@
     "rankedScore": 3767059,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 178
+    "rankChange": 0,
+    "previousRank": 180
   },
   {
     "rank": 181,
@@ -2530,8 +2530,8 @@
     "rankedScore": 2530715,
     "country": "TH",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/EX1R7cNquETnNc9z9heHhPTwbIi1.jpeg",
-    "rankChange": -2,
-    "previousRank": 179
+    "rankChange": 0,
+    "previousRank": 181
   },
   {
     "rank": 182,
@@ -2544,8 +2544,8 @@
     "rankedScore": 2798911,
     "country": "TN",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/zzMvGfIftbWgdawVpIf0FUopzMR2.jpeg",
-    "rankChange": -2,
-    "previousRank": 180
+    "rankChange": 0,
+    "previousRank": 182
   },
   {
     "rank": 183,
@@ -2558,8 +2558,8 @@
     "rankedScore": 1429043,
     "country": "DE",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 181
+    "rankChange": 0,
+    "previousRank": 183
   },
   {
     "rank": 184,
@@ -2572,8 +2572,8 @@
     "rankedScore": 2308697,
     "country": "FI",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 182
+    "rankChange": 0,
+    "previousRank": 184
   },
   {
     "rank": 185,
@@ -2586,11 +2586,25 @@
     "rankedScore": 1983006,
     "country": "DE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/VtlazcxlxVY5fRdUyimGisyrjFD2.jpeg",
-    "rankChange": -2,
-    "previousRank": 183
+    "rankChange": 0,
+    "previousRank": 185
   },
   {
     "rank": 186,
+    "userId": "dhI9qPxPaoT3EPVZEQugla30H4P2",
+    "username": "avocadotoast",
+    "totalPP": 401.89832178575426,
+    "accuracy": 89.81704789314277,
+    "playCount": 567,
+    "playTime": 27955,
+    "rankedScore": 3472695,
+    "country": "AU",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/dhI9qPxPaoT3EPVZEQugla30H4P2.jpeg",
+    "rankChange": 0,
+    "previousRank": 186
+  },
+  {
+    "rank": 187,
     "userId": "3WcXrMvTVchEczjiRtiTlV3bgE62",
     "username": "DarkOaky",
     "totalPP": 401.83758640857195,
@@ -2600,11 +2614,11 @@
     "rankedScore": 1711752,
     "country": "BE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/3WcXrMvTVchEczjiRtiTlV3bgE62.jpeg",
-    "rankChange": -2,
-    "previousRank": 184
+    "rankChange": 0,
+    "previousRank": 187
   },
   {
-    "rank": 187,
+    "rank": 188,
     "userId": "yitrHpVNqvdN2Ta9vuO9b1JuqA52",
     "username": "crawdadd",
     "totalPP": 401.8134577432167,
@@ -2614,11 +2628,11 @@
     "rankedScore": 1358684,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 185
+    "rankChange": 0,
+    "previousRank": 188
   },
   {
-    "rank": 188,
+    "rank": 189,
     "userId": "CHu4Y40CxXgrwEvNi9Jj1Amkdnu2",
     "username": "Sinterxity",
     "totalPP": 401.7618400824375,
@@ -2628,11 +2642,11 @@
     "rankedScore": 2206676,
     "country": "CZ",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/CHu4Y40CxXgrwEvNi9Jj1Amkdnu2.jpeg",
-    "rankChange": -2,
-    "previousRank": 186
+    "rankChange": 0,
+    "previousRank": 189
   },
   {
-    "rank": 189,
+    "rank": 190,
     "userId": "r2SNjU7fqhai5fHo7AE0fPJe4u13",
     "username": "mcpqndq",
     "totalPP": 400.22159849232264,
@@ -2642,22 +2656,8 @@
     "rankedScore": 4350312,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/r2SNjU7fqhai5fHo7AE0fPJe4u13.jpeg",
-    "rankChange": -2,
-    "previousRank": 187
-  },
-  {
-    "rank": 190,
-    "userId": "dhI9qPxPaoT3EPVZEQugla30H4P2",
-    "username": "avocadotoast",
-    "totalPP": 399.3019388127546,
-    "accuracy": 89.86659066246706,
-    "playCount": 565,
-    "playTime": 27866,
-    "rankedScore": 3469399,
-    "country": "AU",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/dhI9qPxPaoT3EPVZEQugla30H4P2.jpeg",
-    "rankChange": 1,
-    "previousRank": 191
+    "rankChange": 0,
+    "previousRank": 190
   },
   {
     "rank": 191,
@@ -2670,11 +2670,25 @@
     "rankedScore": 1675246,
     "country": "PE",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 188
+    "rankChange": 0,
+    "previousRank": 191
   },
   {
     "rank": 192,
+    "userId": "do9xkd2sEiRePHMlpF9TdK7Cx1w2",
+    "username": "Kitsune",
+    "totalPP": 397.90227677648187,
+    "accuracy": 94.6838310883117,
+    "playCount": 188,
+    "playTime": 11601,
+    "rankedScore": 2816191,
+    "country": "NL",
+    "profilePictureUrl": null,
+    "rankChange": 0,
+    "previousRank": 192
+  },
+  {
+    "rank": 193,
     "userId": "UdztpKMMw0PitnRmVTWSGxPowk32",
     "username": "griffthejiff",
     "totalPP": 397.2226883285767,
@@ -2684,11 +2698,11 @@
     "rankedScore": 2337344,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 189
+    "rankChange": 0,
+    "previousRank": 193
   },
   {
-    "rank": 193,
+    "rank": 194,
     "userId": "tLdaMCIkWXUAoqL5XOKoSAtLsAf2",
     "username": "taru",
     "totalPP": 395.11340396230383,
@@ -2698,11 +2712,11 @@
     "rankedScore": 1643258,
     "country": "FI",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 190
+    "rankChange": 0,
+    "previousRank": 194
   },
   {
-    "rank": 194,
+    "rank": 195,
     "userId": "K9SAO17El4YoNq9dAgFdlx5NQu82",
     "username": "sheng0525",
     "totalPP": 389.5871224998602,
@@ -2712,11 +2726,11 @@
     "rankedScore": 1602788,
     "country": "TW",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/K9SAO17El4YoNq9dAgFdlx5NQu82.jpeg",
-    "rankChange": -2,
-    "previousRank": 192
+    "rankChange": 0,
+    "previousRank": 195
   },
   {
-    "rank": 195,
+    "rank": 196,
     "userId": "hrNestDo38ZmF6ZoGkvMzwIaIK02",
     "username": "Okuu",
     "totalPP": 389.2994457991864,
@@ -2726,22 +2740,8 @@
     "rankedScore": 1804401,
     "country": "RU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/hrNestDo38ZmF6ZoGkvMzwIaIK02.jpeg",
-    "rankChange": -2,
-    "previousRank": 193
-  },
-  {
-    "rank": 196,
-    "userId": "do9xkd2sEiRePHMlpF9TdK7Cx1w2",
-    "username": "Kitsune",
-    "totalPP": 388.68938860331434,
-    "accuracy": 95.03325069631259,
-    "playCount": 173,
-    "playTime": 10454,
-    "rankedScore": 2610707,
-    "country": "NL",
-    "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 194
+    "rankChange": 0,
+    "previousRank": 196
   },
   {
     "rank": 197,
@@ -2754,8 +2754,8 @@
     "rankedScore": 1500838,
     "country": "HK",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/PfQGdrEYtxU6Sijgle8yOdeVzmr1.jpeg",
-    "rankChange": -2,
-    "previousRank": 195
+    "rankChange": 0,
+    "previousRank": 197
   },
   {
     "rank": 198,
@@ -2768,8 +2768,8 @@
     "rankedScore": 2417608,
     "country": "LU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/WD1OVrozKbT2qNuxXDY5hhheqND2.jpeg",
-    "rankChange": -2,
-    "previousRank": 196
+    "rankChange": 0,
+    "previousRank": 198
   },
   {
     "rank": 199,
@@ -2782,8 +2782,8 @@
     "rankedScore": 1281982,
     "country": "DE",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 197
+    "rankChange": 0,
+    "previousRank": 199
   },
   {
     "rank": 200,
@@ -2796,8 +2796,8 @@
     "rankedScore": 696217,
     "country": "TW",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/WlWhXZimz7enhOF5D7D6tez8T5B3.jpeg",
-    "rankChange": -1,
-    "previousRank": 199
+    "rankChange": 0,
+    "previousRank": 200
   },
   {
     "rank": 201,
@@ -2810,8 +2810,8 @@
     "rankedScore": 1052852,
     "country": "AR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/aNFyaT9j2dQK7N5pinqZcwJ3mnD2.jpeg",
-    "rankChange": -1,
-    "previousRank": 200
+    "rankChange": 0,
+    "previousRank": 201
   },
   {
     "rank": 202,
@@ -2824,8 +2824,8 @@
     "rankedScore": 1514155,
     "country": "NL",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 201
+    "rankChange": 0,
+    "previousRank": 202
   },
   {
     "rank": 203,
@@ -2838,8 +2838,8 @@
     "rankedScore": 987416,
     "country": "PL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/NbniO0AmKmZKuTfhmCKrl2UKPtj2.jpeg",
-    "rankChange": -1,
-    "previousRank": 202
+    "rankChange": 0,
+    "previousRank": 203
   },
   {
     "rank": 204,
@@ -2852,8 +2852,8 @@
     "rankedScore": 1392246,
     "country": "PL",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 203
+    "rankChange": 0,
+    "previousRank": 204
   },
   {
     "rank": 205,
@@ -2866,8 +2866,8 @@
     "rankedScore": 1794056,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/qsPzvCdSI9O6ZNRFRqKDl7V12MX2.jpeg",
-    "rankChange": -1,
-    "previousRank": 204
+    "rankChange": 0,
+    "previousRank": 205
   },
   {
     "rank": 206,
@@ -2880,22 +2880,22 @@
     "rankedScore": 676330,
     "country": "DE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/HJn302X7jmV825c1i5XYCjOC5002.jpeg",
-    "rankChange": -1,
-    "previousRank": 205
+    "rankChange": 0,
+    "previousRank": 206
   },
   {
     "rank": 207,
     "userId": "erCKQ70roSMwDADcSm70Aoj6zxn2",
     "username": "ONiON_117",
-    "totalPP": 372.78785792798766,
-    "accuracy": 90.54470345419567,
-    "playCount": 878,
-    "playTime": 41321,
-    "rankedScore": 3258727,
+    "totalPP": 372.79483294039915,
+    "accuracy": 90.54574622471782,
+    "playCount": 880,
+    "playTime": 41438,
+    "rankedScore": 3274248,
     "country": "AU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/erCKQ70roSMwDADcSm70Aoj6zxn2.jpeg",
-    "rankChange": -1,
-    "previousRank": 206
+    "rankChange": 0,
+    "previousRank": 207
   },
   {
     "rank": 208,
@@ -2908,8 +2908,8 @@
     "rankedScore": 1178359,
     "country": "LV",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 207
+    "rankChange": 0,
+    "previousRank": 208
   },
   {
     "rank": 209,
@@ -2922,8 +2922,8 @@
     "rankedScore": 588803,
     "country": "RU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/LfuKan2aypU8IiGprDdgjs0m63h2.jpeg",
-    "rankChange": -1,
-    "previousRank": 208
+    "rankChange": 0,
+    "previousRank": 209
   },
   {
     "rank": 210,
@@ -2936,8 +2936,8 @@
     "rankedScore": 753886,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/hF0cC0Ke3gcrT2KD6k6eoKHSUMI3.jpeg",
-    "rankChange": -1,
-    "previousRank": 209
+    "rankChange": 0,
+    "previousRank": 210
   },
   {
     "rank": 211,
@@ -2950,8 +2950,8 @@
     "rankedScore": 1404903,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/iVDiEP5e2qNuyLWSp2B7sDfsHxR2.jpeg",
-    "rankChange": -1,
-    "previousRank": 210
+    "rankChange": 0,
+    "previousRank": 211
   },
   {
     "rank": 212,
@@ -2964,8 +2964,8 @@
     "rankedScore": 779499,
     "country": "DK",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 211
+    "rankChange": 0,
+    "previousRank": 212
   },
   {
     "rank": 213,
@@ -2978,8 +2978,8 @@
     "rankedScore": 934667,
     "country": "CL",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 212
+    "rankChange": 0,
+    "previousRank": 213
   },
   {
     "rank": 214,
@@ -2992,8 +2992,8 @@
     "rankedScore": 1307293,
     "country": "NZ",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 213
+    "rankChange": 0,
+    "previousRank": 214
   },
   {
     "rank": 215,
@@ -3053,6 +3053,20 @@
   },
   {
     "rank": 219,
+    "userId": "vq3M4kbtylejbdCZEkBKQoT3tix2",
+    "username": "Fette_Limette",
+    "totalPP": 343.5692457988757,
+    "accuracy": 91.87461058374787,
+    "playCount": 511,
+    "playTime": 26619,
+    "rankedScore": 2005051,
+    "country": "DE",
+    "profilePictureUrl": null,
+    "rankChange": 0,
+    "previousRank": 219
+  },
+  {
+    "rank": 220,
     "userId": "E5RDp3BFt0bpov0DW9CIZSQzDaG3",
     "username": "ryuko",
     "totalPP": 342.3550563227837,
@@ -3062,20 +3076,6 @@
     "rankedScore": 1216736,
     "country": "KH",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/E5RDp3BFt0bpov0DW9CIZSQzDaG3.jpeg",
-    "rankChange": 0,
-    "previousRank": 219
-  },
-  {
-    "rank": 220,
-    "userId": "vq3M4kbtylejbdCZEkBKQoT3tix2",
-    "username": "Fette_Limette",
-    "totalPP": 341.1635896772183,
-    "accuracy": 91.78176482097372,
-    "playCount": 505,
-    "playTime": 26367,
-    "rankedScore": 2004598,
-    "country": "DE",
-    "profilePictureUrl": null,
     "rankChange": 0,
     "previousRank": 220
   },
@@ -3165,6 +3165,20 @@
   },
   {
     "rank": 227,
+    "userId": "Or0aJx0AbIYgx0iLMbLd4RNoxUJ3",
+    "username": "Mushroom_Dragon",
+    "totalPP": 336.2035224737651,
+    "accuracy": 88.60181896361419,
+    "playCount": 517,
+    "playTime": 32051,
+    "rankedScore": 4063889,
+    "country": "US",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/Or0aJx0AbIYgx0iLMbLd4RNoxUJ3.jpeg",
+    "rankChange": 5,
+    "previousRank": 232
+  },
+  {
+    "rank": 228,
     "userId": "UU4n5vQwtcaoOokTtVrhLlr1dwg1",
     "username": "Tom94",
     "totalPP": 335.06410794249945,
@@ -3174,11 +3188,11 @@
     "rankedScore": 799267,
     "country": "CH",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/UU4n5vQwtcaoOokTtVrhLlr1dwg1.jpeg",
-    "rankChange": 0,
+    "rankChange": -1,
     "previousRank": 227
   },
   {
-    "rank": 228,
+    "rank": 229,
     "userId": "AEra4TB8ORRKD8GzTus3ZCBhXJz1",
     "username": "Sotdek",
     "totalPP": 334.0124355191103,
@@ -3188,11 +3202,11 @@
     "rankedScore": 985102,
     "country": "PY",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/AEra4TB8ORRKD8GzTus3ZCBhXJz1.jpeg",
-    "rankChange": 0,
+    "rankChange": -1,
     "previousRank": 228
   },
   {
-    "rank": 229,
+    "rank": 230,
     "userId": "FboUIjOzduOEOEqQOfytGhPIGN92",
     "username": "Theyorah",
     "totalPP": 333.65559845290267,
@@ -3202,11 +3216,11 @@
     "rankedScore": 786244,
     "country": "MG",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/FboUIjOzduOEOEqQOfytGhPIGN92.jpeg",
-    "rankChange": 0,
+    "rankChange": -1,
     "previousRank": 229
   },
   {
-    "rank": 230,
+    "rank": 231,
     "userId": "lGBwwblfYkghAG58v09HJgl2yAo2",
     "username": "Kirbo",
     "totalPP": 333.4716145073701,
@@ -3216,11 +3230,11 @@
     "rankedScore": 897884,
     "country": "ES",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/lGBwwblfYkghAG58v09HJgl2yAo2.jpeg",
-    "rankChange": 0,
+    "rankChange": -1,
     "previousRank": 230
   },
   {
-    "rank": 231,
+    "rank": 232,
     "userId": "46Zm97ClZ5MwoISPuJzKk6wixGC3",
     "username": "Mushu01",
     "totalPP": 332.3442242851584,
@@ -3230,22 +3244,8 @@
     "rankedScore": 699766,
     "country": "FR",
     "profilePictureUrl": null,
-    "rankChange": 0,
+    "rankChange": -1,
     "previousRank": 231
-  },
-  {
-    "rank": 232,
-    "userId": "Or0aJx0AbIYgx0iLMbLd4RNoxUJ3",
-    "username": "Mushroom_Dragon",
-    "totalPP": 332.017045634002,
-    "accuracy": 88.40487833799146,
-    "playCount": 495,
-    "playTime": 29980,
-    "rankedScore": 4026904,
-    "country": "US",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/Or0aJx0AbIYgx0iLMbLd4RNoxUJ3.jpeg",
-    "rankChange": 8,
-    "previousRank": 240
   },
   {
     "rank": 233,
@@ -3258,8 +3258,8 @@
     "rankedScore": 771203,
     "country": "ID",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/wdulv0a0omTdyRREfvuVB7Q2Pp52.jpeg",
-    "rankChange": -1,
-    "previousRank": 232
+    "rankChange": 0,
+    "previousRank": 233
   },
   {
     "rank": 234,
@@ -3272,8 +3272,8 @@
     "rankedScore": 622146,
     "country": "BR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/dREAd22ytzeWhYsesqzQ43hmCnv1.jpeg",
-    "rankChange": -1,
-    "previousRank": 233
+    "rankChange": 0,
+    "previousRank": 234
   },
   {
     "rank": 235,
@@ -3286,8 +3286,8 @@
     "rankedScore": 1106714,
     "country": "AU",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 234
+    "rankChange": 0,
+    "previousRank": 235
   },
   {
     "rank": 236,
@@ -3300,8 +3300,8 @@
     "rankedScore": 1317961,
     "country": "BR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/yu2Nd0qrwgYJEFHufYTrw4nNc1g2.jpeg",
-    "rankChange": -1,
-    "previousRank": 235
+    "rankChange": 0,
+    "previousRank": 236
   },
   {
     "rank": 237,
@@ -3314,8 +3314,8 @@
     "rankedScore": 1711358,
     "country": "FR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/mmnm9OcmAtaHGlDhHy6Jd917j8p1.jpeg",
-    "rankChange": -1,
-    "previousRank": 236
+    "rankChange": 0,
+    "previousRank": 237
   },
   {
     "rank": 238,
@@ -3328,8 +3328,8 @@
     "rankedScore": 1366670,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/aFmQBoCQvzS8WvKNemArqc38bRr2.jpeg",
-    "rankChange": -1,
-    "previousRank": 237
+    "rankChange": 0,
+    "previousRank": 238
   },
   {
     "rank": 239,
@@ -3342,8 +3342,8 @@
     "rankedScore": 566314,
     "country": "PL",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 238
+    "rankChange": 0,
+    "previousRank": 239
   },
   {
     "rank": 240,
@@ -3356,11 +3356,25 @@
     "rankedScore": 2630881,
     "country": "GB",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/KLarXSoF69hmrt9PC5Mq5eA5N9s1.jpeg",
-    "rankChange": -1,
-    "previousRank": 239
+    "rankChange": 0,
+    "previousRank": 240
   },
   {
     "rank": 241,
+    "userId": "A0c4bsLPROQZeUPqH0gnxP77vpz2",
+    "username": "TheWackyWizard",
+    "totalPP": 325.63106945318094,
+    "accuracy": 89.82187677093063,
+    "playCount": 188,
+    "playTime": 10628,
+    "rankedScore": 1003545,
+    "country": "GB",
+    "profilePictureUrl": null,
+    "rankChange": 0,
+    "previousRank": 241
+  },
+  {
+    "rank": 242,
     "userId": "qsySRBvGXIXdW2lAPeFeXVUt3tA3",
     "username": "Foxeru",
     "totalPP": 324.0394409262649,
@@ -3371,10 +3385,10 @@
     "country": "BR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/qsySRBvGXIXdW2lAPeFeXVUt3tA3.jpeg",
     "rankChange": 0,
-    "previousRank": 241
+    "previousRank": 242
   },
   {
-    "rank": 242,
+    "rank": 243,
     "userId": "3NeLN0v1D8MISTOszyRvUhSmaw92",
     "username": "Rockodecto",
     "totalPP": 323.8725105115735,
@@ -3385,10 +3399,10 @@
     "country": "US",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 242
+    "previousRank": 243
   },
   {
-    "rank": 243,
+    "rank": 244,
     "userId": "fEhzeszXrOXA1xokZyCY5PueEs72",
     "username": "hnaa",
     "totalPP": 323.50068569596186,
@@ -3399,10 +3413,10 @@
     "country": "US",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 243
+    "previousRank": 244
   },
   {
-    "rank": 244,
+    "rank": 245,
     "userId": "IDcpB0PJfYUbqqeETrLEh5SAoyG2",
     "username": "Admin",
     "totalPP": 322.4475403068762,
@@ -3413,10 +3427,10 @@
     "country": "PL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/IDcpB0PJfYUbqqeETrLEh5SAoyG2.jpeg",
     "rankChange": 0,
-    "previousRank": 244
+    "previousRank": 245
   },
   {
-    "rank": 245,
+    "rank": 246,
     "userId": "gUSp2tBG6bSSXeDcPTYCtfqGz3G3",
     "username": "Antonio",
     "totalPP": 322.02601274807444,
@@ -3427,10 +3441,24 @@
     "country": "DE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/gUSp2tBG6bSSXeDcPTYCtfqGz3G3.jpeg",
     "rankChange": 0,
-    "previousRank": 245
+    "previousRank": 246
   },
   {
-    "rank": 246,
+    "rank": 247,
+    "userId": "02vAwCk0YhXLkQLADlznfj1ElNJ3",
+    "username": "RudJish",
+    "totalPP": 321.2171992633725,
+    "accuracy": 88.33187227288775,
+    "playCount": 1282,
+    "playTime": 67947,
+    "rankedScore": 7447024,
+    "country": "GB",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/02vAwCk0YhXLkQLADlznfj1ElNJ3.jpeg",
+    "rankChange": 0,
+    "previousRank": 247
+  },
+  {
+    "rank": 248,
     "userId": "EPhOhWCCkXNJcDvOzW8gc9nxINK2",
     "username": "Erse",
     "totalPP": 320.7189787927317,
@@ -3441,10 +3469,10 @@
     "country": "PL",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 246
+    "previousRank": 248
   },
   {
-    "rank": 247,
+    "rank": 249,
     "userId": "2f9usCFblKRwGc7180Touj0ypfp1",
     "username": "AlexCaruso",
     "totalPP": 320.6608164485958,
@@ -3455,10 +3483,10 @@
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/2f9usCFblKRwGc7180Touj0ypfp1.jpeg",
     "rankChange": 0,
-    "previousRank": 247
+    "previousRank": 249
   },
   {
-    "rank": 248,
+    "rank": 250,
     "userId": "0bbdWUN2rhTsG0wNmrOG9a3qS0o2",
     "username": "Chaodom",
     "totalPP": 319.9576977099846,
@@ -3469,24 +3497,10 @@
     "country": "US",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 248
+    "previousRank": 250
   },
   {
-    "rank": 249,
-    "userId": "02vAwCk0YhXLkQLADlznfj1ElNJ3",
-    "username": "RudJish",
-    "totalPP": 317.57426167616745,
-    "accuracy": 88.62008160557208,
-    "playCount": 1231,
-    "playTime": 64271,
-    "rankedScore": 7247873,
-    "country": "GB",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/02vAwCk0YhXLkQLADlznfj1ElNJ3.jpeg",
-    "rankChange": 0,
-    "previousRank": 249
-  },
-  {
-    "rank": 250,
+    "rank": 251,
     "userId": "HB0hGKF5cSau150xHX9gqiKUtLB3",
     "username": "LJL",
     "totalPP": 317.57104396198747,
@@ -3497,10 +3511,10 @@
     "country": "US",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 250
+    "previousRank": 251
   },
   {
-    "rank": 251,
+    "rank": 252,
     "userId": "coouqYYFBLXEvXbjDr1iWQChaf72",
     "username": "umbrellae",
     "totalPP": 316.7925492134468,
@@ -3511,10 +3525,10 @@
     "country": "CA",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 251
+    "previousRank": 252
   },
   {
-    "rank": 252,
+    "rank": 253,
     "userId": "5igundiHfEaAHkA2WwsSahxJ2SQ2",
     "username": "Stotowa",
     "totalPP": 315.7221641259352,
@@ -3525,10 +3539,24 @@
     "country": "DK",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/5igundiHfEaAHkA2WwsSahxJ2SQ2.jpeg",
     "rankChange": 0,
-    "previousRank": 252
+    "previousRank": 253
   },
   {
-    "rank": 253,
+    "rank": 254,
+    "userId": "S6Y4oOgaZUfb7y0GpbiI1ti0L3z2",
+    "username": "GoldenRJL",
+    "totalPP": 314.4824483013902,
+    "accuracy": 92.55624972091074,
+    "playCount": 351,
+    "playTime": 16088,
+    "rankedScore": 1230470,
+    "country": "ZA",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/S6Y4oOgaZUfb7y0GpbiI1ti0L3z2.jpeg",
+    "rankChange": 0,
+    "previousRank": 254
+  },
+  {
+    "rank": 255,
     "userId": "lArQPY3u2hfqahKEFUFSJZ6cn4G3",
     "username": "niceboat",
     "totalPP": 314.0578767328729,
@@ -3539,24 +3567,10 @@
     "country": "BE",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 253
+    "previousRank": 255
   },
   {
-    "rank": 254,
-    "userId": "A0c4bsLPROQZeUPqH0gnxP77vpz2",
-    "username": "TheWackyWizard",
-    "totalPP": 313.1816682241739,
-    "accuracy": 89.91463776698727,
-    "playCount": 183,
-    "playTime": 10155,
-    "rankedScore": 803300,
-    "country": "GB",
-    "profilePictureUrl": null,
-    "rankChange": 0,
-    "previousRank": 254
-  },
-  {
-    "rank": 255,
+    "rank": 256,
     "userId": "9gk2576OH9WqiHMxpb3jH2Q07c53",
     "username": "Jan3e",
     "totalPP": 313.10195830731385,
@@ -3566,22 +3580,8 @@
     "rankedScore": 1310938,
     "country": "CZ",
     "profilePictureUrl": null,
-    "rankChange": 22,
-    "previousRank": 277
-  },
-  {
-    "rank": 256,
-    "userId": "S6Y4oOgaZUfb7y0GpbiI1ti0L3z2",
-    "username": "GoldenRJL",
-    "totalPP": 312.80376291779714,
-    "accuracy": 92.44443929434671,
-    "playCount": 349,
-    "playTime": 16010,
-    "rankedScore": 1229481,
-    "country": "ZA",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/S6Y4oOgaZUfb7y0GpbiI1ti0L3z2.jpeg",
-    "rankChange": -1,
-    "previousRank": 255
+    "rankChange": 0,
+    "previousRank": 256
   },
   {
     "rank": 257,
@@ -3594,8 +3594,8 @@
     "rankedScore": 1909576,
     "country": "KZ",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/WTJ8tLPOpxTpeaaVHZC1LBhdKqt2.jpeg",
-    "rankChange": -1,
-    "previousRank": 256
+    "rankChange": 0,
+    "previousRank": 257
   },
   {
     "rank": 258,
@@ -3608,8 +3608,8 @@
     "rankedScore": 616052,
     "country": "GB",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/guhOyZNMGjfmA6KhSJ2a23roIF32.jpeg",
-    "rankChange": -1,
-    "previousRank": 257
+    "rankChange": 0,
+    "previousRank": 258
   },
   {
     "rank": 259,
@@ -3622,8 +3622,8 @@
     "rankedScore": 2032599,
     "country": "VN",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/ihgyDURlSwfeSEGVjDdnWCkna2o2.jpeg",
-    "rankChange": -1,
-    "previousRank": 258
+    "rankChange": 0,
+    "previousRank": 259
   },
   {
     "rank": 260,
@@ -3636,8 +3636,8 @@
     "rankedScore": 1118243,
     "country": "HU",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 259
+    "rankChange": 0,
+    "previousRank": 260
   },
   {
     "rank": 261,
@@ -3650,8 +3650,8 @@
     "rankedScore": 777061,
     "country": "UA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/ROXYH4twvhVBrz9nAhm196JP7BO2.jpeg",
-    "rankChange": -1,
-    "previousRank": 260
+    "rankChange": 0,
+    "previousRank": 261
   },
   {
     "rank": 262,
@@ -3664,8 +3664,8 @@
     "rankedScore": 812472,
     "country": "AU",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 261
+    "rankChange": 0,
+    "previousRank": 262
   },
   {
     "rank": 263,
@@ -3678,8 +3678,8 @@
     "rankedScore": 2095913,
     "country": "CA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/QMyOlmkYLMXFPkHJ948urDALgUd2.jpeg",
-    "rankChange": -1,
-    "previousRank": 262
+    "rankChange": 0,
+    "previousRank": 263
   },
   {
     "rank": 264,
@@ -3692,8 +3692,8 @@
     "rankedScore": 843585,
     "country": "AQ",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/e3q1V7oH6Faa8Ns1Llm3Kstysrg2.jpeg",
-    "rankChange": -1,
-    "previousRank": 263
+    "rankChange": 0,
+    "previousRank": 264
   },
   {
     "rank": 265,
@@ -3706,8 +3706,8 @@
     "rankedScore": 1368306,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/U58R49CfDGcfjkiiTDwSIKsv1Uh2.jpeg",
-    "rankChange": -1,
-    "previousRank": 264
+    "rankChange": 0,
+    "previousRank": 265
   },
   {
     "rank": 266,
@@ -3720,8 +3720,8 @@
     "rankedScore": 1205611,
     "country": "GR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/NLGrQ5v377asVJ8sYRGsZTOxVNk1.jpeg",
-    "rankChange": -1,
-    "previousRank": 265
+    "rankChange": 0,
+    "previousRank": 266
   },
   {
     "rank": 267,
@@ -3734,8 +3734,8 @@
     "rankedScore": 2063407,
     "country": "AU",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 266
+    "rankChange": 0,
+    "previousRank": 267
   },
   {
     "rank": 268,
@@ -3748,8 +3748,8 @@
     "rankedScore": 1522430,
     "country": "AU",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 267
+    "rankChange": 0,
+    "previousRank": 268
   },
   {
     "rank": 269,
@@ -3762,8 +3762,8 @@
     "rankedScore": 1572646,
     "country": "GB",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 268
+    "rankChange": 0,
+    "previousRank": 269
   },
   {
     "rank": 270,
@@ -3776,8 +3776,8 @@
     "rankedScore": 1592450,
     "country": "UY",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 269
+    "rankChange": 0,
+    "previousRank": 270
   },
   {
     "rank": 271,
@@ -3790,8 +3790,8 @@
     "rankedScore": 639873,
     "country": "SG",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 270
+    "rankChange": 0,
+    "previousRank": 271
   },
   {
     "rank": 272,
@@ -3804,8 +3804,8 @@
     "rankedScore": 2451361,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/W0oLIeTl2EbW5sM0CtxavXmnaOy2.jpeg",
-    "rankChange": -1,
-    "previousRank": 271
+    "rankChange": 0,
+    "previousRank": 272
   },
   {
     "rank": 273,
@@ -3818,8 +3818,8 @@
     "rankedScore": 1342892,
     "country": "RO",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/FegVp5nFm4MfUe0WNVvQ1KzaCeK2.jpeg",
-    "rankChange": -1,
-    "previousRank": 272
+    "rankChange": 0,
+    "previousRank": 273
   },
   {
     "rank": 274,
@@ -3832,8 +3832,8 @@
     "rankedScore": 706151,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 273
+    "rankChange": 0,
+    "previousRank": 274
   },
   {
     "rank": 275,
@@ -3846,8 +3846,8 @@
     "rankedScore": 459095,
     "country": "DE",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 274
+    "rankChange": 0,
+    "previousRank": 275
   },
   {
     "rank": 276,
@@ -3860,8 +3860,8 @@
     "rankedScore": 972857,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 275
+    "rankChange": 0,
+    "previousRank": 276
   },
   {
     "rank": 277,
@@ -3874,8 +3874,8 @@
     "rankedScore": 733006,
     "country": "IE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/PgeXbZ1xqohEnWx7XFfKyXPQbiH3.jpeg",
-    "rankChange": -1,
-    "previousRank": 276
+    "rankChange": 0,
+    "previousRank": 277
   },
   {
     "rank": 278,
@@ -4327,6 +4327,34 @@
   },
   {
     "rank": 310,
+    "userId": "cuZUVSmSO2aiGG6dFLc2U6jBJwl2",
+    "username": "begis",
+    "totalPP": 272.8831940636181,
+    "accuracy": 83.78528631519596,
+    "playCount": 116,
+    "playTime": 4801,
+    "rankedScore": 991751,
+    "country": "US",
+    "profilePictureUrl": null,
+    "rankChange": 8,
+    "previousRank": 318
+  },
+  {
+    "rank": 311,
+    "userId": "e9bWsnGbSTZg69dufTGHGv6JOsh1",
+    "username": "HippedBook",
+    "totalPP": 272.14953960190127,
+    "accuracy": 87.02660825907961,
+    "playCount": 238,
+    "playTime": 17062,
+    "rankedScore": 3496605,
+    "country": "NL",
+    "profilePictureUrl": null,
+    "rankChange": -1,
+    "previousRank": 310
+  },
+  {
+    "rank": 312,
     "userId": "meD4uxOL6qaOyHdoCeBClITD5kw1",
     "username": "Mivonks",
     "totalPP": 271.8747597685817,
@@ -4336,11 +4364,11 @@
     "rankedScore": 1624478,
     "country": "IE",
     "profilePictureUrl": null,
-    "rankChange": 0,
-    "previousRank": 310
+    "rankChange": -1,
+    "previousRank": 311
   },
   {
-    "rank": 311,
+    "rank": 313,
     "userId": "7GLA1v5T7kRXlYpdI5PFhLbNa9n1",
     "username": "GoodEnough",
     "totalPP": 271.4795125820904,
@@ -4350,11 +4378,11 @@
     "rankedScore": 1044793,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/7GLA1v5T7kRXlYpdI5PFhLbNa9n1.jpeg",
-    "rankChange": 0,
-    "previousRank": 311
+    "rankChange": -1,
+    "previousRank": 312
   },
   {
-    "rank": 312,
+    "rank": 314,
     "userId": "QHjgiXOW8EXO5ThcniKQhuS0dOY2",
     "username": "Jaydz",
     "totalPP": 270.1351194808712,
@@ -4364,11 +4392,11 @@
     "rankedScore": 1326380,
     "country": "GB",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/QHjgiXOW8EXO5ThcniKQhuS0dOY2.jpeg",
-    "rankChange": 0,
-    "previousRank": 312
+    "rankChange": -1,
+    "previousRank": 313
   },
   {
-    "rank": 313,
+    "rank": 315,
     "userId": "6YWfCfYxMzSHOGaXQnqmwEWFcuj1",
     "username": "illdie",
     "totalPP": 269.5149308280335,
@@ -4378,11 +4406,11 @@
     "rankedScore": 687098,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/6YWfCfYxMzSHOGaXQnqmwEWFcuj1.jpeg",
-    "rankChange": 0,
-    "previousRank": 313
+    "rankChange": -1,
+    "previousRank": 314
   },
   {
-    "rank": 314,
+    "rank": 316,
     "userId": "dqNFxbkdl9UxMvUzZ0uOszXwblw1",
     "username": "takhames",
     "totalPP": 269.1827418265639,
@@ -4392,11 +4420,11 @@
     "rankedScore": 893315,
     "country": "ID",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/dqNFxbkdl9UxMvUzZ0uOszXwblw1.jpeg",
-    "rankChange": 0,
-    "previousRank": 314
+    "rankChange": -1,
+    "previousRank": 315
   },
   {
-    "rank": 315,
+    "rank": 317,
     "userId": "sX43FH5YZyccAQdEMOw5VcGyZ8C2",
     "username": "PsychoSuzie",
     "totalPP": 268.7869608775096,
@@ -4406,11 +4434,11 @@
     "rankedScore": 937963,
     "country": "CA",
     "profilePictureUrl": null,
-    "rankChange": 0,
-    "previousRank": 315
+    "rankChange": -1,
+    "previousRank": 316
   },
   {
-    "rank": 316,
+    "rank": 318,
     "userId": "IXNup1dJe5MKnhqJDKvQmMCTLT03",
     "username": "Skyfox",
     "totalPP": 268.63525533918755,
@@ -4420,11 +4448,11 @@
     "rankedScore": 1138207,
     "country": "DE",
     "profilePictureUrl": null,
-    "rankChange": 0,
-    "previousRank": 316
+    "rankChange": -1,
+    "previousRank": 317
   },
   {
-    "rank": 317,
+    "rank": 319,
     "userId": "tKR945ihMRTMNt45m4MD76Vg7No2",
     "username": "JaxxHunter",
     "totalPP": 268.51530908491526,
@@ -4435,10 +4463,10 @@
     "country": "US",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 317
+    "previousRank": 319
   },
   {
-    "rank": 318,
+    "rank": 320,
     "userId": "OL60ND3AnsT75upwbGnRRDc0bxA2",
     "username": "orangeshortstuff",
     "totalPP": 268.2439465680347,
@@ -4449,24 +4477,10 @@
     "country": "GB",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 318
+    "previousRank": 320
   },
   {
-    "rank": 319,
-    "userId": "e9bWsnGbSTZg69dufTGHGv6JOsh1",
-    "username": "HippedBook",
-    "totalPP": 267.69815482363146,
-    "accuracy": 86.9416963225061,
-    "playCount": 226,
-    "playTime": 16321,
-    "rankedScore": 3233606,
-    "country": "NL",
-    "profilePictureUrl": null,
-    "rankChange": 0,
-    "previousRank": 319
-  },
-  {
-    "rank": 320,
+    "rank": 321,
     "userId": "uqAwN6aMntRD5mcF7b81mmkHC5e2",
     "username": "SzymenL0K0",
     "totalPP": 267.69447029802046,
@@ -4477,10 +4491,10 @@
     "country": "PL",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 320
+    "previousRank": 321
   },
   {
-    "rank": 321,
+    "rank": 322,
     "userId": "Y61EPc4fFpbrjXSaaozFoPcPzyY2",
     "username": "qwerty",
     "totalPP": 267.0899431997225,
@@ -4491,10 +4505,10 @@
     "country": "GB",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/Y61EPc4fFpbrjXSaaozFoPcPzyY2.jpeg",
     "rankChange": 0,
-    "previousRank": 321
+    "previousRank": 322
   },
   {
-    "rank": 322,
+    "rank": 323,
     "userId": "suP7Bc4LSRarc5uCUKOv8LLwL9L2",
     "username": "Zuranorie",
     "totalPP": 266.7408566957595,
@@ -4505,10 +4519,10 @@
     "country": "US",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 322
+    "previousRank": 323
   },
   {
-    "rank": 323,
+    "rank": 324,
     "userId": "HvfQCCngwLdxnNTpfcJoChoDPVt2",
     "username": "woahsnake",
     "totalPP": 266.18602761482737,
@@ -4519,10 +4533,10 @@
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/HvfQCCngwLdxnNTpfcJoChoDPVt2.jpeg",
     "rankChange": 0,
-    "previousRank": 323
+    "previousRank": 324
   },
   {
-    "rank": 324,
+    "rank": 325,
     "userId": "cwd4A7yLMHQjVzW7ebLGRVq8r5t2",
     "username": "TragicBag",
     "totalPP": 265.62370575466014,
@@ -4533,10 +4547,10 @@
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/cwd4A7yLMHQjVzW7ebLGRVq8r5t2.jpeg",
     "rankChange": 0,
-    "previousRank": 324
+    "previousRank": 325
   },
   {
-    "rank": 325,
+    "rank": 326,
     "userId": "UmEQt7wPLdZyc8vFhby6d2Aln9d2",
     "username": "X0137",
     "totalPP": 265.47720773419684,
@@ -4547,10 +4561,10 @@
     "country": "CA",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 325
+    "previousRank": 326
   },
   {
-    "rank": 326,
+    "rank": 327,
     "userId": "5R7UrW21nBbg8ByMTtcSwSRkm9f2",
     "username": "guiguitheghoul",
     "totalPP": 264.62268628613833,
@@ -4561,10 +4575,10 @@
     "country": "CA",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 326
+    "previousRank": 327
   },
   {
-    "rank": 327,
+    "rank": 328,
     "userId": "tJ53msQVwrfb8rSsHR3srASvLbi1",
     "username": "personion",
     "totalPP": 263.4897277276803,
@@ -4575,10 +4589,10 @@
     "country": "CA",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 327
+    "previousRank": 328
   },
   {
-    "rank": 328,
+    "rank": 329,
     "userId": "DMVnOLYl3YZAYuGYkObsgpvjlL02",
     "username": "jayderr",
     "totalPP": 262.1772776003961,
@@ -4589,10 +4603,10 @@
     "country": "SG",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 328
+    "previousRank": 329
   },
   {
-    "rank": 329,
+    "rank": 330,
     "userId": "YiLbvRkVxZW81DTp6uuKUpfK8223",
     "username": "mahabo0",
     "totalPP": 261.99433424922825,
@@ -4603,10 +4617,10 @@
     "country": "TR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/YiLbvRkVxZW81DTp6uuKUpfK8223.jpeg",
     "rankChange": 0,
-    "previousRank": 329
+    "previousRank": 330
   },
   {
-    "rank": 330,
+    "rank": 331,
     "userId": "2YWiCNEBNeRKtTcUGPyLueD9qj53",
     "username": "IceFX",
     "totalPP": 261.31554186932897,
@@ -4617,10 +4631,10 @@
     "country": "UY",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 330
+    "previousRank": 331
   },
   {
-    "rank": 331,
+    "rank": 332,
     "userId": "E7DI4CibuehNqX2R4JS26AKjva43",
     "username": "Xotoko",
     "totalPP": 260.4582359991376,
@@ -4631,10 +4645,10 @@
     "country": "HU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/E7DI4CibuehNqX2R4JS26AKjva43.jpeg",
     "rankChange": 0,
-    "previousRank": 331
+    "previousRank": 332
   },
   {
-    "rank": 332,
+    "rank": 333,
     "userId": "u3QBn7g0BMg2CYNwVGH0lTezcyh2",
     "username": "Elpatodepapel",
     "totalPP": 260.4397582734607,
@@ -4645,10 +4659,10 @@
     "country": "MX",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/u3QBn7g0BMg2CYNwVGH0lTezcyh2.jpeg",
     "rankChange": 0,
-    "previousRank": 332
+    "previousRank": 333
   },
   {
-    "rank": 333,
+    "rank": 334,
     "userId": "L22Zrqb4toT630dqyIVLjEe6dfA2",
     "username": "abbad",
     "totalPP": 259.6082155715228,
@@ -4659,10 +4673,10 @@
     "country": "SA",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 333
+    "previousRank": 334
   },
   {
-    "rank": 334,
+    "rank": 335,
     "userId": "1udaahy0eaZgbgNl9qSCcJaz7482",
     "username": "caxapexac",
     "totalPP": 258.3952741127389,
@@ -4673,10 +4687,10 @@
     "country": "AM",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/1udaahy0eaZgbgNl9qSCcJaz7482.jpeg",
     "rankChange": 0,
-    "previousRank": 334
+    "previousRank": 335
   },
   {
-    "rank": 335,
+    "rank": 336,
     "userId": "dOIkCytHVueZ1iNI0vmIkrKq2Go2",
     "username": "Kairiii",
     "totalPP": 257.9296560550981,
@@ -4686,11 +4700,11 @@
     "rankedScore": 850474,
     "country": "MY",
     "profilePictureUrl": null,
-    "rankChange": 122,
-    "previousRank": 457
+    "rankChange": 0,
+    "previousRank": 336
   },
   {
-    "rank": 336,
+    "rank": 337,
     "userId": "YtjEUgtDXvddr0pA94IHF4WOmf82",
     "username": "AmaoFox",
     "totalPP": 256.92306669531627,
@@ -4700,11 +4714,11 @@
     "rankedScore": 748244,
     "country": "CN",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 335
+    "rankChange": 0,
+    "previousRank": 337
   },
   {
-    "rank": 337,
+    "rank": 338,
     "userId": "rttGP6xmb5QqqyikAGO71MwSVEl2",
     "username": "K1ind",
     "totalPP": 256.0740831212389,
@@ -4714,11 +4728,11 @@
     "rankedScore": 593860,
     "country": "RU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/rttGP6xmb5QqqyikAGO71MwSVEl2.jpeg",
-    "rankChange": 88,
-    "previousRank": 425
+    "rankChange": 0,
+    "previousRank": 338
   },
   {
-    "rank": 338,
+    "rank": 339,
     "userId": "OogcZM34t8QjsL0yZyxy5vkADCh1",
     "username": "ben4c",
     "totalPP": 255.30840815595965,
@@ -4728,11 +4742,11 @@
     "rankedScore": 889368,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 336
+    "rankChange": 0,
+    "previousRank": 339
   },
   {
-    "rank": 339,
+    "rank": 340,
     "userId": "fX0MJwtWrmPzbLW7njZbKtg6puW2",
     "username": "twi",
     "totalPP": 254.29784812706262,
@@ -4742,11 +4756,11 @@
     "rankedScore": 1329334,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 337
+    "rankChange": 0,
+    "previousRank": 340
   },
   {
-    "rank": 340,
+    "rank": 341,
     "userId": "8DmQwKXvUiZgRDDy7BtXM49BgXj2",
     "username": "cord",
     "totalPP": 252.3254674994255,
@@ -4756,11 +4770,11 @@
     "rankedScore": 948945,
     "country": "PT",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 338
+    "rankChange": 0,
+    "previousRank": 341
   },
   {
-    "rank": 341,
+    "rank": 342,
     "userId": "TLQaQtvfJ2RV1t5VdR1qYHXYC5b2",
     "username": "Pear",
     "totalPP": 251.89359815678213,
@@ -4770,11 +4784,11 @@
     "rankedScore": 1104443,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/TLQaQtvfJ2RV1t5VdR1qYHXYC5b2.jpeg",
-    "rankChange": 5,
-    "previousRank": 346
+    "rankChange": 0,
+    "previousRank": 342
   },
   {
-    "rank": 342,
+    "rank": 343,
     "userId": "U3HquOlJKQgR3ZkLvIxWl06SQ8k2",
     "username": "JoanaBob",
     "totalPP": 250.09962019538295,
@@ -4784,11 +4798,11 @@
     "rankedScore": 899705,
     "country": "ES",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/U3HquOlJKQgR3ZkLvIxWl06SQ8k2.jpeg",
-    "rankChange": -3,
-    "previousRank": 339
+    "rankChange": 0,
+    "previousRank": 343
   },
   {
-    "rank": 343,
+    "rank": 344,
     "userId": "vpMKcGpuLmVw9kIPP42mLfmOkPr1",
     "username": "lopata",
     "totalPP": 249.86732040527133,
@@ -4798,11 +4812,11 @@
     "rankedScore": 1063336,
     "country": "CZ",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 340
+    "rankChange": 0,
+    "previousRank": 344
   },
   {
-    "rank": 344,
+    "rank": 345,
     "userId": "Cyel1kz8yTRVuRyplSTAjeQtKyr2",
     "username": "Ikuhmas",
     "totalPP": 249.239248824165,
@@ -4812,11 +4826,11 @@
     "rankedScore": 1308853,
     "country": "MD",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/Cyel1kz8yTRVuRyplSTAjeQtKyr2.jpeg",
-    "rankChange": -3,
-    "previousRank": 341
+    "rankChange": 0,
+    "previousRank": 345
   },
   {
-    "rank": 345,
+    "rank": 346,
     "userId": "CNPLpedzAAaZgzs8USOJ8NWWE6U2",
     "username": "Luke_D213",
     "totalPP": 246.72502778389108,
@@ -4826,11 +4840,11 @@
     "rankedScore": 1484985,
     "country": "BR",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 342
+    "rankChange": 0,
+    "previousRank": 346
   },
   {
-    "rank": 346,
+    "rank": 347,
     "userId": "fAKxGYFr2FciZWJIbzsCYelDhJK2",
     "username": "xyizax",
     "totalPP": 244.87981956195253,
@@ -4840,11 +4854,11 @@
     "rankedScore": 919672,
     "country": "IQ",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/fAKxGYFr2FciZWJIbzsCYelDhJK2.jpeg",
-    "rankChange": -3,
-    "previousRank": 343
+    "rankChange": 0,
+    "previousRank": 347
   },
   {
-    "rank": 347,
+    "rank": 348,
     "userId": "O0TClp9Ri8Sh6aqU9wrFYy5Z4T13",
     "username": "Pehbe",
     "totalPP": 244.1726327166029,
@@ -4854,25 +4868,25 @@
     "rankedScore": 851925,
     "country": "FI",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/O0TClp9Ri8Sh6aqU9wrFYy5Z4T13.jpeg",
-    "rankChange": -3,
-    "previousRank": 344
+    "rankChange": 0,
+    "previousRank": 348
   },
   {
-    "rank": 348,
+    "rank": 349,
     "userId": "ELN798fN3WRRYoSIxmTIEYF41cl2",
     "username": "K0egs",
     "totalPP": 244.01591545357877,
     "accuracy": 93.85455515516145,
-    "playCount": 190,
-    "playTime": 14625,
+    "playCount": 194,
+    "playTime": 15022,
     "rankedScore": 920578,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 345
+    "rankChange": 0,
+    "previousRank": 349
   },
   {
-    "rank": 349,
+    "rank": 350,
     "userId": "5BkbceVuQ4XlWw3IYTBuUvtslQn1",
     "username": "BlankAbyss",
     "totalPP": 243.6115651659133,
@@ -4882,11 +4896,11 @@
     "rankedScore": 636557,
     "country": "MN",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 347
+    "rankChange": 0,
+    "previousRank": 350
   },
   {
-    "rank": 350,
+    "rank": 351,
     "userId": "skbCTZXL1qU4nSzgcZk8d2Ohi313",
     "username": "Takumeme",
     "totalPP": 242.59169074094874,
@@ -4896,11 +4910,11 @@
     "rankedScore": 760944,
     "country": "PL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/skbCTZXL1qU4nSzgcZk8d2Ohi313.jpeg",
-    "rankChange": -2,
-    "previousRank": 348
+    "rankChange": 0,
+    "previousRank": 351
   },
   {
-    "rank": 351,
+    "rank": 352,
     "userId": "J319mKgsKdZW6X7w1X1u0p8Noob2",
     "username": "Xddd",
     "totalPP": 241.73329211319472,
@@ -4910,11 +4924,11 @@
     "rankedScore": 752578,
     "country": "PL",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 349
+    "rankChange": 0,
+    "previousRank": 352
   },
   {
-    "rank": 352,
+    "rank": 353,
     "userId": "XTkoI1fPcDQKG59YWQOTP92AJOb2",
     "username": "Take9",
     "totalPP": 238.6226330630106,
@@ -4924,11 +4938,11 @@
     "rankedScore": 874775,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 350
+    "rankChange": 0,
+    "previousRank": 353
   },
   {
-    "rank": 353,
+    "rank": 354,
     "userId": "693ysoJR4GfQIbck4KR4IqOeV1f2",
     "username": "Neocode",
     "totalPP": 238.47844739462786,
@@ -4938,11 +4952,11 @@
     "rankedScore": 1146419,
     "country": "ES",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/693ysoJR4GfQIbck4KR4IqOeV1f2.jpeg",
-    "rankChange": -2,
-    "previousRank": 351
+    "rankChange": 0,
+    "previousRank": 354
   },
   {
-    "rank": 354,
+    "rank": 355,
     "userId": "QfAtbeDui2fvTLsc8QCAdeyNMkC3",
     "username": "Solace",
     "totalPP": 238.466915675401,
@@ -4952,11 +4966,11 @@
     "rankedScore": 642488,
     "country": "PH",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/QfAtbeDui2fvTLsc8QCAdeyNMkC3.jpeg",
-    "rankChange": -2,
-    "previousRank": 352
+    "rankChange": 0,
+    "previousRank": 355
   },
   {
-    "rank": 355,
+    "rank": 356,
     "userId": "R0u2QxQZjxQ3YdKOcwLBnUw2bMW2",
     "username": "various153",
     "totalPP": 238.22584437745763,
@@ -4966,11 +4980,11 @@
     "rankedScore": 3347385,
     "country": "LT",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 353
+    "rankChange": 0,
+    "previousRank": 356
   },
   {
-    "rank": 356,
+    "rank": 357,
     "userId": "l9EnbDXkhif0VTXBd3gNZaVjltt2",
     "username": "sigmaboy201",
     "totalPP": 238.1709078675989,
@@ -4980,11 +4994,11 @@
     "rankedScore": 1121720,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 354
+    "rankChange": 0,
+    "previousRank": 357
   },
   {
-    "rank": 357,
+    "rank": 358,
     "userId": "ERYQYKBQASW5N15QMRiOL4YQ4Rk2",
     "username": "Ersty",
     "totalPP": 238.1017084280768,
@@ -4994,11 +5008,11 @@
     "rankedScore": 604209,
     "country": "RU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/ERYQYKBQASW5N15QMRiOL4YQ4Rk2.jpeg",
-    "rankChange": -2,
-    "previousRank": 355
+    "rankChange": 0,
+    "previousRank": 358
   },
   {
-    "rank": 358,
+    "rank": 359,
     "userId": "HD5Rbs6GI6XWpYEb7avJxUGT8AW2",
     "username": "jump",
     "totalPP": 237.9707780638088,
@@ -5008,11 +5022,11 @@
     "rankedScore": 572371,
     "country": "GB",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 356
+    "rankChange": 0,
+    "previousRank": 359
   },
   {
-    "rank": 359,
+    "rank": 360,
     "userId": "IAOR3mb1Q1gFfGKhcbcPsRCanBy1",
     "username": "xD3AtHcLaWx",
     "totalPP": 237.05866287806967,
@@ -5022,11 +5036,11 @@
     "rankedScore": 766089,
     "country": "GB",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/IAOR3mb1Q1gFfGKhcbcPsRCanBy1.jpeg",
-    "rankChange": -2,
-    "previousRank": 357
+    "rankChange": 0,
+    "previousRank": 360
   },
   {
-    "rank": 360,
+    "rank": 361,
     "userId": "LuFuRaRTujWq44tzZbhZHf2UzOZ2",
     "username": "DarthRael",
     "totalPP": 236.37972236191015,
@@ -5036,11 +5050,11 @@
     "rankedScore": 735513,
     "country": "VE",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 358
+    "rankChange": 0,
+    "previousRank": 361
   },
   {
-    "rank": 361,
+    "rank": 362,
     "userId": "yMRk4gmAR4WonSgxTpX9qPJ8ThV2",
     "username": "archiekisro",
     "totalPP": 236.268459181604,
@@ -5050,11 +5064,25 @@
     "rankedScore": 441333,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 359
+    "rankChange": 0,
+    "previousRank": 362
   },
   {
-    "rank": 362,
+    "rank": 363,
+    "userId": "9pRmhV937UXkvRIjy9SQeyBtrGp1",
+    "username": "Endle",
+    "totalPP": 236.20503283727194,
+    "accuracy": 90.46995339066923,
+    "playCount": 532,
+    "playTime": 25627,
+    "rankedScore": 1146506,
+    "country": "US",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/9pRmhV937UXkvRIjy9SQeyBtrGp1.jpeg",
+    "rankChange": 0,
+    "previousRank": 363
+  },
+  {
+    "rank": 364,
     "userId": "vuyc5dZmOAU74qJl9ZN4GVL9ogp1",
     "username": "joschi64xd",
     "totalPP": 234.482935880707,
@@ -5064,11 +5092,11 @@
     "rankedScore": 1115647,
     "country": "DE",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 360
+    "rankChange": 0,
+    "previousRank": 364
   },
   {
-    "rank": 363,
+    "rank": 365,
     "userId": "8ORdyOHGkyZTETZpRApezERd6N93",
     "username": "trumburunda",
     "totalPP": 233.04042976082215,
@@ -5078,11 +5106,11 @@
     "rankedScore": 577848,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 361
+    "rankChange": 0,
+    "previousRank": 365
   },
   {
-    "rank": 364,
+    "rank": 366,
     "userId": "Kqfm0DOoqMY3QMQKCY6Kb2odZaS2",
     "username": "Kamensh1k",
     "totalPP": 232.52541831135616,
@@ -5092,11 +5120,11 @@
     "rankedScore": 339918,
     "country": "KR",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 362
+    "rankChange": 0,
+    "previousRank": 366
   },
   {
-    "rank": 365,
+    "rank": 367,
     "userId": "a2KB2HMQTNgkGB5cXze0AkqplWE2",
     "username": "Silicosis",
     "totalPP": 232.46360687632028,
@@ -5106,11 +5134,11 @@
     "rankedScore": 615554,
     "country": "PH",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/a2KB2HMQTNgkGB5cXze0AkqplWE2.jpeg",
-    "rankChange": -2,
-    "previousRank": 363
+    "rankChange": 0,
+    "previousRank": 367
   },
   {
-    "rank": 366,
+    "rank": 368,
     "userId": "dgmMT2E7niRnVz4mTFeKzG5xTm72",
     "username": "AlexAdvDev",
     "totalPP": 231.78890994803402,
@@ -5120,11 +5148,11 @@
     "rankedScore": 697634,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 364
+    "rankChange": 0,
+    "previousRank": 368
   },
   {
-    "rank": 367,
+    "rank": 369,
     "userId": "JJJvpRB9qsQQCiA4JeyqArm352B3",
     "username": "NeonDrakon",
     "totalPP": 230.9847574508389,
@@ -5134,11 +5162,11 @@
     "rankedScore": 363462,
     "country": "SE",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 365
+    "rankChange": 0,
+    "previousRank": 369
   },
   {
-    "rank": 368,
+    "rank": 370,
     "userId": "hFK06fBY9EgDJNSikYJjpDsX5Bm1",
     "username": "xinA",
     "totalPP": 230.60463815079908,
@@ -5148,11 +5176,11 @@
     "rankedScore": 1286233,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 366
+    "rankChange": 0,
+    "previousRank": 370
   },
   {
-    "rank": 369,
+    "rank": 371,
     "userId": "SG7NxSyeoyMB3nOdm3iWOBlPODo1",
     "username": "DFlow",
     "totalPP": 230.40130826376685,
@@ -5162,11 +5190,11 @@
     "rankedScore": 1302477,
     "country": "BG",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 367
+    "rankChange": 0,
+    "previousRank": 371
   },
   {
-    "rank": 370,
+    "rank": 372,
     "userId": "uxUEGFcE6fhbukKslMnxCDyTiTJ3",
     "username": "TheAsh",
     "totalPP": 230.1277880857857,
@@ -5176,11 +5204,11 @@
     "rankedScore": 810292,
     "country": "MG",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 368
+    "rankChange": 0,
+    "previousRank": 372
   },
   {
-    "rank": 371,
+    "rank": 373,
     "userId": "YC7u0fMVFgUfuQLUIYJzXGnrzE43",
     "username": "flisk",
     "totalPP": 229.6087682812651,
@@ -5190,11 +5218,11 @@
     "rankedScore": 1267717,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 369
+    "rankChange": 0,
+    "previousRank": 373
   },
   {
-    "rank": 372,
+    "rank": 374,
     "userId": "khmQDNYEMHNZK1aUd03e4ckBpjH3",
     "username": "pickme_rubidium",
     "totalPP": 229.3154728164287,
@@ -5204,11 +5232,11 @@
     "rankedScore": 692317,
     "country": "UA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/khmQDNYEMHNZK1aUd03e4ckBpjH3.jpeg",
-    "rankChange": -2,
-    "previousRank": 370
+    "rankChange": 0,
+    "previousRank": 374
   },
   {
-    "rank": 373,
+    "rank": 375,
     "userId": "Arf8iMeADZWqVIiemBhuvx8cjX82",
     "username": "tais1",
     "totalPP": 228.4527251537999,
@@ -5218,11 +5246,11 @@
     "rankedScore": 693290,
     "country": "CH",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 371
+    "rankChange": 0,
+    "previousRank": 375
   },
   {
-    "rank": 374,
+    "rank": 376,
     "userId": "VhrkkyxLnjcnQX5QXjoL9Sh5nS22",
     "username": "Wynttter",
     "totalPP": 227.07869417550594,
@@ -5232,11 +5260,11 @@
     "rankedScore": 524090,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 372
+    "rankChange": 0,
+    "previousRank": 376
   },
   {
-    "rank": 375,
+    "rank": 377,
     "userId": "JOuuxgUUNPXHR7nsceL7Bkw1hCe2",
     "username": "Vytaan",
     "totalPP": 226.68792644778162,
@@ -5246,11 +5274,11 @@
     "rankedScore": 675238,
     "country": "NL",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 373
+    "rankChange": 0,
+    "previousRank": 377
   },
   {
-    "rank": 376,
+    "rank": 378,
     "userId": "HrN1lxzHFBcq2YjGfF5YJ4RvvCG3",
     "username": "Marlis",
     "totalPP": 226.64321411700604,
@@ -5260,11 +5288,11 @@
     "rankedScore": 1157820,
     "country": "DE",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 374
+    "rankChange": 0,
+    "previousRank": 378
   },
   {
-    "rank": 377,
+    "rank": 379,
     "userId": "Nlj0SznoiahONCksrcpGQBvqGaO2",
     "username": "rrozy",
     "totalPP": 226.14634473089484,
@@ -5274,11 +5302,11 @@
     "rankedScore": 1053520,
     "country": "ID",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/Nlj0SznoiahONCksrcpGQBvqGaO2.jpeg",
-    "rankChange": -2,
-    "previousRank": 375
+    "rankChange": 0,
+    "previousRank": 379
   },
   {
-    "rank": 378,
+    "rank": 380,
     "userId": "5truXlCIdKRlyQMvfRt8d1mYySG2",
     "username": "Virz",
     "totalPP": 225.59922092947238,
@@ -5288,11 +5316,11 @@
     "rankedScore": 487262,
     "country": "ID",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/5truXlCIdKRlyQMvfRt8d1mYySG2.jpeg",
-    "rankChange": -2,
-    "previousRank": 376
+    "rankChange": 0,
+    "previousRank": 380
   },
   {
-    "rank": 379,
+    "rank": 381,
     "userId": "yN9a0VR9g2R8ehuBvo8l7oA1r2Z2",
     "username": "sugarsticks",
     "totalPP": 224.98514903189604,
@@ -5302,11 +5330,25 @@
     "rankedScore": 922855,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 377
+    "rankChange": 0,
+    "previousRank": 381
   },
   {
-    "rank": 380,
+    "rank": 382,
+    "userId": "rgovYDuu9TMtyN9o3h7idrAgNCu1",
+    "username": "bumbumbee",
+    "totalPP": 224.93554039856647,
+    "accuracy": 90.16497074988222,
+    "playCount": 95,
+    "playTime": 5707,
+    "rankedScore": 935981,
+    "country": "ID",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/rgovYDuu9TMtyN9o3h7idrAgNCu1.jpeg",
+    "rankChange": 0,
+    "previousRank": 382
+  },
+  {
+    "rank": 383,
     "userId": "zEGBzrDHJBeIJ1VhlyFCHa9zLdZ2",
     "username": "Ryandi123",
     "totalPP": 224.83801011110972,
@@ -5316,11 +5358,11 @@
     "rankedScore": 1286068,
     "country": "ID",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 378
+    "rankChange": 0,
+    "previousRank": 383
   },
   {
-    "rank": 381,
+    "rank": 384,
     "userId": "RyIfIZ55ZOXNXJrH0FyiuELegrn2",
     "username": "hyihoj",
     "totalPP": 224.63968899364238,
@@ -5330,11 +5372,11 @@
     "rankedScore": 789881,
     "country": "DK",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/RyIfIZ55ZOXNXJrH0FyiuELegrn2.jpeg",
-    "rankChange": -2,
-    "previousRank": 379
+    "rankChange": 0,
+    "previousRank": 384
   },
   {
-    "rank": 382,
+    "rank": 385,
     "userId": "QcC5DWIZNPZK088SI65X21fAkBf2",
     "username": "kazuha",
     "totalPP": 224.54280687670897,
@@ -5344,11 +5386,11 @@
     "rankedScore": 831168,
     "country": "NL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/QcC5DWIZNPZK088SI65X21fAkBf2.jpeg",
-    "rankChange": -2,
-    "previousRank": 380
+    "rankChange": 0,
+    "previousRank": 385
   },
   {
-    "rank": 383,
+    "rank": 386,
     "userId": "OBGcDIkFn0WBSvkGLp6Rl5Af6aI3",
     "username": "Kaieri",
     "totalPP": 222.47361178032585,
@@ -5358,39 +5400,11 @@
     "rankedScore": 544439,
     "country": "VN",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 381
+    "rankChange": 0,
+    "previousRank": 386
   },
   {
-    "rank": 384,
-    "userId": "cuZUVSmSO2aiGG6dFLc2U6jBJwl2",
-    "username": "begis",
-    "totalPP": 222.29856560917744,
-    "accuracy": 82.06982654822669,
-    "playCount": 88,
-    "playTime": 3613,
-    "rankedScore": 778575,
-    "country": "US",
-    "profilePictureUrl": null,
-    "rankChange": 94,
-    "previousRank": 478
-  },
-  {
-    "rank": 385,
-    "userId": "rgovYDuu9TMtyN9o3h7idrAgNCu1",
-    "username": "bumbumbee",
-    "totalPP": 220.1963192848824,
-    "accuracy": 89.54224307274677,
-    "playCount": 87,
-    "playTime": 5284,
-    "rankedScore": 927746,
-    "country": "ID",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/rgovYDuu9TMtyN9o3h7idrAgNCu1.jpeg",
-    "rankChange": -3,
-    "previousRank": 382
-  },
-  {
-    "rank": 386,
+    "rank": 387,
     "userId": "5FbMNhonxSaDLuafIKaLoJTDjlb2",
     "username": "lunalilia",
     "totalPP": 219.48623197377407,
@@ -5400,11 +5414,11 @@
     "rankedScore": 1613390,
     "country": "MY",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/5FbMNhonxSaDLuafIKaLoJTDjlb2.jpeg",
-    "rankChange": -3,
-    "previousRank": 383
+    "rankChange": 0,
+    "previousRank": 387
   },
   {
-    "rank": 387,
+    "rank": 388,
     "userId": "91i0AYihdldxfTvJ3sHSEUZySCA3",
     "username": "onegramdopamine",
     "totalPP": 218.90473642372044,
@@ -5414,11 +5428,11 @@
     "rankedScore": 896319,
     "country": "HU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/91i0AYihdldxfTvJ3sHSEUZySCA3.jpeg",
-    "rankChange": -3,
-    "previousRank": 384
+    "rankChange": 0,
+    "previousRank": 388
   },
   {
-    "rank": 388,
+    "rank": 389,
     "userId": "seUEyW5h0FTFw13lZvtF9p8EgOB2",
     "username": "axu",
     "totalPP": 218.64068284394844,
@@ -5428,11 +5442,11 @@
     "rankedScore": 501282,
     "country": "MY",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/seUEyW5h0FTFw13lZvtF9p8EgOB2.jpeg",
-    "rankChange": -3,
-    "previousRank": 385
+    "rankChange": 0,
+    "previousRank": 389
   },
   {
-    "rank": 389,
+    "rank": 390,
     "userId": "BTu4pY4Xc1MsFzij3eMX9eIMJ293",
     "username": "awesomeplayer91",
     "totalPP": 217.45186197290695,
@@ -5442,25 +5456,25 @@
     "rankedScore": 465404,
     "country": "PH",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/BTu4pY4Xc1MsFzij3eMX9eIMJ293.jpeg",
-    "rankChange": -3,
-    "previousRank": 386
+    "rankChange": 0,
+    "previousRank": 390
   },
   {
-    "rank": 390,
+    "rank": 391,
     "userId": "eVovHM4bXENHW4Vvv1dkMCgegGX2",
     "username": "Rocketmater",
     "totalPP": 217.39179004391602,
     "accuracy": 86.006714035288,
-    "playCount": 173,
-    "playTime": 9726,
+    "playCount": 174,
+    "playTime": 9791,
     "rankedScore": 1129103,
     "country": "CH",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 387
+    "rankChange": 0,
+    "previousRank": 391
   },
   {
-    "rank": 391,
+    "rank": 392,
     "userId": "QdY4kNboPLUceacnD1rUxOPeWYF2",
     "username": "Torra",
     "totalPP": 216.74013363050787,
@@ -5470,11 +5484,11 @@
     "rankedScore": 891475,
     "country": "PT",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/QdY4kNboPLUceacnD1rUxOPeWYF2.jpeg",
-    "rankChange": -3,
-    "previousRank": 388
+    "rankChange": 0,
+    "previousRank": 392
   },
   {
-    "rank": 392,
+    "rank": 393,
     "userId": "nF2UQ1OVAwX7nQcVYyff9EjB5ho2",
     "username": "Dwagon",
     "totalPP": 214.03969874367579,
@@ -5484,11 +5498,11 @@
     "rankedScore": 857436,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/nF2UQ1OVAwX7nQcVYyff9EjB5ho2.jpeg",
-    "rankChange": -3,
-    "previousRank": 389
+    "rankChange": 0,
+    "previousRank": 393
   },
   {
-    "rank": 393,
+    "rank": 394,
     "userId": "9f60CBBkaKZRVqZJ8CUl4WSOLay1",
     "username": "Jala727",
     "totalPP": 213.29179284780076,
@@ -5498,11 +5512,11 @@
     "rankedScore": 1206762,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 390
+    "rankChange": 0,
+    "previousRank": 394
   },
   {
-    "rank": 394,
+    "rank": 395,
     "userId": "6fIkZGEsXaM7M4tx6Hamy8wF4IV2",
     "username": "tommyyey",
     "totalPP": 212.877083563213,
@@ -5512,11 +5526,11 @@
     "rankedScore": 952079,
     "country": "CH",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 391
+    "rankChange": 0,
+    "previousRank": 395
   },
   {
-    "rank": 395,
+    "rank": 396,
     "userId": "mfRhlhhKZodeZtOFMpsafWJGYwi2",
     "username": "shejonoma",
     "totalPP": 212.79283863672555,
@@ -5526,11 +5540,11 @@
     "rankedScore": 767783,
     "country": "CL",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 392
+    "rankChange": 0,
+    "previousRank": 396
   },
   {
-    "rank": 396,
+    "rank": 397,
     "userId": "lIxsNDCO9BY4w2SGfJcapfX63Ik1",
     "username": "cursor",
     "totalPP": 212.63451441313123,
@@ -5540,11 +5554,11 @@
     "rankedScore": 465763,
     "country": "AU",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 393
+    "rankChange": 0,
+    "previousRank": 397
   },
   {
-    "rank": 397,
+    "rank": 398,
     "userId": "a3lOKDldO4h3vZIfVRoyOyO36Gy1",
     "username": "zaxa",
     "totalPP": 212.58135522173478,
@@ -5554,11 +5568,11 @@
     "rankedScore": 478034,
     "country": "PL",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/a3lOKDldO4h3vZIfVRoyOyO36Gy1.jpeg",
-    "rankChange": -3,
-    "previousRank": 394
+    "rankChange": 0,
+    "previousRank": 398
   },
   {
-    "rank": 398,
+    "rank": 399,
     "userId": "9gyIKxIuh5XKiqZcR5a5K6oKGk03",
     "username": "LightningPig",
     "totalPP": 212.5661764396179,
@@ -5568,11 +5582,11 @@
     "rankedScore": 725999,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/9gyIKxIuh5XKiqZcR5a5K6oKGk03.jpeg",
-    "rankChange": -3,
-    "previousRank": 395
+    "rankChange": 0,
+    "previousRank": 399
   },
   {
-    "rank": 399,
+    "rank": 400,
     "userId": "3BA2ytKbUXXonTCOEp2oXfNLqWA2",
     "username": "AKHSD",
     "totalPP": 211.26721759025327,
@@ -5582,11 +5596,11 @@
     "rankedScore": 530228,
     "country": "IN",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 396
+    "rankChange": 0,
+    "previousRank": 400
   },
   {
-    "rank": 400,
+    "rank": 401,
     "userId": "nZNNiJcbNzQwCFTWN3GJDrz9Q6h2",
     "username": "Erikillo",
     "totalPP": 209.82108659538406,
@@ -5596,25 +5610,25 @@
     "rankedScore": 356903,
     "country": "ES",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/nZNNiJcbNzQwCFTWN3GJDrz9Q6h2.jpeg",
-    "rankChange": -3,
-    "previousRank": 397
-  },
-  {
-    "rank": 401,
-    "userId": "9pRmhV937UXkvRIjy9SQeyBtrGp1",
-    "username": "Endle",
-    "totalPP": 209.23156348921506,
-    "accuracy": 90.1496200065759,
-    "playCount": 444,
-    "playTime": 21836,
-    "rankedScore": 938283,
-    "country": "US",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/9pRmhV937UXkvRIjy9SQeyBtrGp1.jpeg",
-    "rankChange": 81,
-    "previousRank": 482
+    "rankChange": 0,
+    "previousRank": 401
   },
   {
     "rank": 402,
+    "userId": "MMTiVKTnzCeEhZ0onoV7iHVuBDL2",
+    "username": "shag",
+    "totalPP": 209.61278535730227,
+    "accuracy": 91.07184692802981,
+    "playCount": 87,
+    "playTime": 4527,
+    "rankedScore": 795641,
+    "country": "AE",
+    "profilePictureUrl": null,
+    "rankChange": 0,
+    "previousRank": 402
+  },
+  {
+    "rank": 403,
     "userId": "uq3O0rOBHfNyILIltnV67ppEuh62",
     "username": "46iq",
     "totalPP": 209.12129134963746,
@@ -5624,11 +5638,11 @@
     "rankedScore": 590058,
     "country": "KP",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/uq3O0rOBHfNyILIltnV67ppEuh62.jpeg",
-    "rankChange": -4,
-    "previousRank": 398
+    "rankChange": 0,
+    "previousRank": 403
   },
   {
-    "rank": 403,
+    "rank": 404,
     "userId": "Ip2MKQW68uase4HvpteV7fxUKEm1",
     "username": "mememememel",
     "totalPP": 208.75734889714354,
@@ -5638,22 +5652,8 @@
     "rankedScore": 704677,
     "country": "ID",
     "profilePictureUrl": null,
-    "rankChange": -4,
-    "previousRank": 399
-  },
-  {
-    "rank": 404,
-    "userId": "MMTiVKTnzCeEhZ0onoV7iHVuBDL2",
-    "username": "shag",
-    "totalPP": 208.23586601525707,
-    "accuracy": 91.24116523335556,
-    "playCount": 83,
-    "playTime": 4295,
-    "rankedScore": 769848,
-    "country": "AE",
-    "profilePictureUrl": null,
-    "rankChange": -4,
-    "previousRank": 400
+    "rankChange": 0,
+    "previousRank": 404
   },
   {
     "rank": 405,
@@ -5666,8 +5666,8 @@
     "rankedScore": 516899,
     "country": "AU",
     "profilePictureUrl": null,
-    "rankChange": -4,
-    "previousRank": 401
+    "rankChange": 0,
+    "previousRank": 405
   },
   {
     "rank": 406,
@@ -5680,8 +5680,8 @@
     "rankedScore": 652132,
     "country": "DE",
     "profilePictureUrl": null,
-    "rankChange": -4,
-    "previousRank": 402
+    "rankChange": 0,
+    "previousRank": 406
   },
   {
     "rank": 407,
@@ -5694,8 +5694,8 @@
     "rankedScore": 272989,
     "country": "KP",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/wzaUTTMxvYW0jmohYizsWhPSIHU2.jpeg",
-    "rankChange": -4,
-    "previousRank": 403
+    "rankChange": 0,
+    "previousRank": 407
   },
   {
     "rank": 408,
@@ -5708,8 +5708,8 @@
     "rankedScore": 295517,
     "country": "VA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/m9ftAM7Xa1MmxCNEFurYR4s8Pb02.jpeg",
-    "rankChange": -4,
-    "previousRank": 404
+    "rankChange": 0,
+    "previousRank": 408
   },
   {
     "rank": 409,
@@ -5722,8 +5722,8 @@
     "rankedScore": 817197,
     "country": "RU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/FSVstKd0JWgAFLj7I6swjTsmDIz1.jpeg",
-    "rankChange": -4,
-    "previousRank": 405
+    "rankChange": 0,
+    "previousRank": 409
   },
   {
     "rank": 410,
@@ -5736,8 +5736,8 @@
     "rankedScore": 776943,
     "country": "GB",
     "profilePictureUrl": null,
-    "rankChange": -4,
-    "previousRank": 406
+    "rankChange": 0,
+    "previousRank": 410
   },
   {
     "rank": 411,
@@ -5750,8 +5750,8 @@
     "rankedScore": 812747,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/iuiKVN1gN3QyGq9iVQrBdbVwYNB3.jpeg",
-    "rankChange": -4,
-    "previousRank": 407
+    "rankChange": 0,
+    "previousRank": 411
   },
   {
     "rank": 412,
@@ -5764,8 +5764,8 @@
     "rankedScore": 454506,
     "country": "TR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/d6lpnFR6VFcXunlrp0TKGF6pTFT2.jpeg",
-    "rankChange": -4,
-    "previousRank": 408
+    "rankChange": 0,
+    "previousRank": 412
   },
   {
     "rank": 413,
@@ -5778,11 +5778,39 @@
     "rankedScore": 502638,
     "country": "FI",
     "profilePictureUrl": null,
-    "rankChange": -4,
-    "previousRank": 409
+    "rankChange": 0,
+    "previousRank": 413
   },
   {
     "rank": 414,
+    "userId": "cUxTJ8aBHyVfCBKjv8jbMU8RpVA3",
+    "username": "jakecolon3",
+    "totalPP": 204.4954486117581,
+    "accuracy": 84.7321892843214,
+    "playCount": 33,
+    "playTime": 1807,
+    "rankedScore": 768368,
+    "country": "IT",
+    "profilePictureUrl": null,
+    "rankChange": 0,
+    "previousRank": 414
+  },
+  {
+    "rank": 415,
+    "userId": "MBDcIXxVskQLALQLvTGwRsupfAm2",
+    "username": "Alc",
+    "totalPP": 204.4602525992736,
+    "accuracy": 92.4589852784733,
+    "playCount": 179,
+    "playTime": 14118,
+    "rankedScore": 944763,
+    "country": "US",
+    "profilePictureUrl": null,
+    "rankChange": 0,
+    "previousRank": 415
+  },
+  {
+    "rank": 416,
     "userId": "eSuam0mNfgMwHu8VOZWDPBqGicZ2",
     "username": "UwUkittenMommy",
     "totalPP": 203.4961602148151,
@@ -5792,11 +5820,11 @@
     "rankedScore": 432479,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/eSuam0mNfgMwHu8VOZWDPBqGicZ2.jpeg",
-    "rankChange": -4,
-    "previousRank": 410
+    "rankChange": 0,
+    "previousRank": 416
   },
   {
-    "rank": 415,
+    "rank": 417,
     "userId": "oyeLrZNY4Vfzc2aKwG7jS6MiBY92",
     "username": "BlackGoomba",
     "totalPP": 202.35069973059987,
@@ -5806,11 +5834,11 @@
     "rankedScore": 912998,
     "country": "CA",
     "profilePictureUrl": null,
-    "rankChange": -4,
-    "previousRank": 411
+    "rankChange": 0,
+    "previousRank": 417
   },
   {
-    "rank": 416,
+    "rank": 418,
     "userId": "3pDtlNYIn3gmTpuXK3BpCgpIZqt2",
     "username": "Vector",
     "totalPP": 202.16178556051696,
@@ -5820,11 +5848,11 @@
     "rankedScore": 517033,
     "country": "UA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/3pDtlNYIn3gmTpuXK3BpCgpIZqt2.jpeg",
-    "rankChange": -4,
-    "previousRank": 412
+    "rankChange": 0,
+    "previousRank": 418
   },
   {
-    "rank": 417,
+    "rank": 419,
     "userId": "sAstRe1SLqZue4qdhr1IpWM5M7Z2",
     "username": "Cybertemy",
     "totalPP": 202.05626116999562,
@@ -5834,11 +5862,11 @@
     "rankedScore": 1412422,
     "country": "RU",
     "profilePictureUrl": null,
-    "rankChange": -4,
-    "previousRank": 413
+    "rankChange": 0,
+    "previousRank": 419
   },
   {
-    "rank": 418,
+    "rank": 420,
     "userId": "vEiJU7rJHJbIs7lJcp9hQlXLbj22",
     "username": "ambitiouspig",
     "totalPP": 202.04913729170968,
@@ -5848,11 +5876,11 @@
     "rankedScore": 643376,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -4,
-    "previousRank": 414
+    "rankChange": 0,
+    "previousRank": 420
   },
   {
-    "rank": 419,
+    "rank": 421,
     "userId": "rHWuzBrNvcQVSs1qgkA4tc9d67j1",
     "username": "Tin",
     "totalPP": 201.87608028116148,
@@ -5862,11 +5890,11 @@
     "rankedScore": 646108,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -4,
-    "previousRank": 415
+    "rankChange": 0,
+    "previousRank": 421
   },
   {
-    "rank": 420,
+    "rank": 422,
     "userId": "0eWaA3TlnxMhR4YkiCICs6l4sTe2",
     "username": "candgamor",
     "totalPP": 201.60409117922933,
@@ -5876,11 +5904,11 @@
     "rankedScore": 409543,
     "country": "CA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/0eWaA3TlnxMhR4YkiCICs6l4sTe2.jpeg",
-    "rankChange": -4,
-    "previousRank": 416
+    "rankChange": 0,
+    "previousRank": 422
   },
   {
-    "rank": 421,
+    "rank": 423,
     "userId": "VosTCz5XRbW8dN2OVvolCwG4E6k2",
     "username": "Tyzzoned",
     "totalPP": 201.5766351788873,
@@ -5890,11 +5918,11 @@
     "rankedScore": 592488,
     "country": "NO",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/VosTCz5XRbW8dN2OVvolCwG4E6k2.jpeg",
-    "rankChange": -4,
-    "previousRank": 417
+    "rankChange": 0,
+    "previousRank": 423
   },
   {
-    "rank": 422,
+    "rank": 424,
     "userId": "vKoFZRfyYAT07lXbP3AF5RJDN4w1",
     "username": "ryguy",
     "totalPP": 201.46430353044903,
@@ -5904,11 +5932,11 @@
     "rankedScore": 589522,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/vKoFZRfyYAT07lXbP3AF5RJDN4w1.jpeg",
-    "rankChange": -4,
-    "previousRank": 418
+    "rankChange": 0,
+    "previousRank": 424
   },
   {
-    "rank": 423,
+    "rank": 425,
     "userId": "KbqqzdJc9eRtNmtQofxNBh0w7Cn1",
     "username": "ninjacat312",
     "totalPP": 201.36930620239,
@@ -5918,11 +5946,11 @@
     "rankedScore": 421913,
     "country": "CA",
     "profilePictureUrl": null,
-    "rankChange": -4,
-    "previousRank": 419
+    "rankChange": 0,
+    "previousRank": 425
   },
   {
-    "rank": 424,
+    "rank": 426,
     "userId": "L0kouEBrBqVg0HO2bdIRORfjshF3",
     "username": "kingsleyG",
     "totalPP": 201.2336756509103,
@@ -5932,11 +5960,11 @@
     "rankedScore": 937743,
     "country": "GB",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/L0kouEBrBqVg0HO2bdIRORfjshF3.jpeg",
-    "rankChange": -4,
-    "previousRank": 420
+    "rankChange": 0,
+    "previousRank": 426
   },
   {
-    "rank": 425,
+    "rank": 427,
     "userId": "KLRlmXI48SRMzdHbxhfXWFWCFT32",
     "username": "kikoyu",
     "totalPP": 201.15939483261488,
@@ -5946,11 +5974,11 @@
     "rankedScore": 760635,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/KLRlmXI48SRMzdHbxhfXWFWCFT32.jpeg",
-    "rankChange": -4,
-    "previousRank": 421
+    "rankChange": 0,
+    "previousRank": 427
   },
   {
-    "rank": 426,
+    "rank": 428,
     "userId": "bPyFCDtYhcMAUYfepJtG7sSQnyB3",
     "username": "Thoaldan",
     "totalPP": 201.1476331486318,
@@ -5960,11 +5988,11 @@
     "rankedScore": 874117,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -4,
-    "previousRank": 422
+    "rankChange": 0,
+    "previousRank": 428
   },
   {
-    "rank": 427,
+    "rank": 429,
     "userId": "0xgDUNC7QUQWBlWIUWWExcWiFd42",
     "username": "GrembleBemble",
     "totalPP": 200.94562254408137,
@@ -5974,11 +6002,11 @@
     "rankedScore": 731594,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/0xgDUNC7QUQWBlWIUWWExcWiFd42.jpeg",
-    "rankChange": -4,
-    "previousRank": 423
+    "rankChange": 0,
+    "previousRank": 429
   },
   {
-    "rank": 428,
+    "rank": 430,
     "userId": "5AB4wnWPlkg3Ss6qi8ssR40SHeI2",
     "username": "Bloqqy",
     "totalPP": 200.7117230526677,
@@ -5988,11 +6016,11 @@
     "rankedScore": 992361,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/5AB4wnWPlkg3Ss6qi8ssR40SHeI2.jpeg",
-    "rankChange": -4,
-    "previousRank": 424
+    "rankChange": 0,
+    "previousRank": 430
   },
   {
-    "rank": 429,
+    "rank": 431,
     "userId": "m9MKa4oqrofKZSX480SIuYU61re2",
     "username": "Chiri",
     "totalPP": 199.75545322349635,
@@ -6002,11 +6030,11 @@
     "rankedScore": 241552,
     "country": "CZ",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/m9MKa4oqrofKZSX480SIuYU61re2.jpeg",
-    "rankChange": -3,
-    "previousRank": 426
+    "rankChange": 0,
+    "previousRank": 431
   },
   {
-    "rank": 430,
+    "rank": 432,
     "userId": "CWe0pimHsaTg94V5lxSbmLH6Szg2",
     "username": "End3rLukeJ3m",
     "totalPP": 199.4222303500032,
@@ -6016,11 +6044,25 @@
     "rankedScore": 609723,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 427
+    "rankChange": 0,
+    "previousRank": 432
   },
   {
-    "rank": 431,
+    "rank": 433,
+    "userId": "wcvK5Rg8y7bPbTJS5pWrgCkqZTO2",
+    "username": "LunaEclipse",
+    "totalPP": 198.51301058953723,
+    "accuracy": 81.64492381249238,
+    "playCount": 96,
+    "playTime": 5804,
+    "rankedScore": 1067471,
+    "country": "US",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/wcvK5Rg8y7bPbTJS5pWrgCkqZTO2.jpeg",
+    "rankChange": 0,
+    "previousRank": 433
+  },
+  {
+    "rank": 434,
     "userId": "k4MQJpXqYid0Xxlb5pOKctXmviV2",
     "username": "curana",
     "totalPP": 198.13411995245244,
@@ -6030,11 +6072,11 @@
     "rankedScore": 296222,
     "country": "RU",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 428
+    "rankChange": 0,
+    "previousRank": 434
   },
   {
-    "rank": 432,
+    "rank": 435,
     "userId": "9CujSK4KyHP9JYMmrAS9gyfSQZ83",
     "username": "kiwi",
     "totalPP": 198.09623247884613,
@@ -6044,11 +6086,11 @@
     "rankedScore": 801053,
     "country": "AU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/9CujSK4KyHP9JYMmrAS9gyfSQZ83.jpeg",
-    "rankChange": -3,
-    "previousRank": 429
+    "rankChange": 0,
+    "previousRank": 435
   },
   {
-    "rank": 433,
+    "rank": 436,
     "userId": "jQdunZxovaeFHkbnzHP9c87Hppp1",
     "username": "Tcc",
     "totalPP": 197.97686465181815,
@@ -6058,11 +6100,11 @@
     "rankedScore": 762850,
     "country": "NL",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 430
+    "rankChange": 0,
+    "previousRank": 436
   },
   {
-    "rank": 434,
+    "rank": 437,
     "userId": "wbl1pWBYgGZMnlJgV9N9yRk7B1i2",
     "username": "JLC314",
     "totalPP": 196.91333249282482,
@@ -6072,11 +6114,11 @@
     "rankedScore": 300588,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 431
+    "rankChange": 0,
+    "previousRank": 437
   },
   {
-    "rank": 435,
+    "rank": 438,
     "userId": "TR12dYKOheNV5QHcbf3rFJ7uaas2",
     "username": "chloe_3",
     "totalPP": 196.80945114962245,
@@ -6086,11 +6128,11 @@
     "rankedScore": 168623,
     "country": "AQ",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 432
+    "rankChange": 0,
+    "previousRank": 438
   },
   {
-    "rank": 436,
+    "rank": 439,
     "userId": "Fl74OQkxCneMHq1TTqesS8iSJ823",
     "username": "T3EKO",
     "totalPP": 196.6198791838184,
@@ -6100,11 +6142,11 @@
     "rankedScore": 319071,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 433
+    "rankChange": 0,
+    "previousRank": 439
   },
   {
-    "rank": 437,
+    "rank": 440,
     "userId": "4sGwdyih5UfbJGr8ck1RRgq4oiO2",
     "username": "intolex",
     "totalPP": 196.29726596886832,
@@ -6114,11 +6156,11 @@
     "rankedScore": 768586,
     "country": "SG",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 434
+    "rankChange": 0,
+    "previousRank": 440
   },
   {
-    "rank": 438,
+    "rank": 441,
     "userId": "W0cqCodMp6XluX1fw9Ve3y7KXNY2",
     "username": "Zenith",
     "totalPP": 196.2593449079149,
@@ -6128,11 +6170,11 @@
     "rankedScore": 403536,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 435
+    "rankChange": 0,
+    "previousRank": 441
   },
   {
-    "rank": 439,
+    "rank": 442,
     "userId": "TlcsZgrLNaXBxKXqMfglSyK7FwA3",
     "username": "Pesca",
     "totalPP": 195.87343447179882,
@@ -6142,11 +6184,11 @@
     "rankedScore": 730067,
     "country": "IT",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/TlcsZgrLNaXBxKXqMfglSyK7FwA3.jpeg",
-    "rankChange": -3,
-    "previousRank": 436
+    "rankChange": 0,
+    "previousRank": 442
   },
   {
-    "rank": 440,
+    "rank": 443,
     "userId": "6Stt3pT0UVTUFZXzsl9aYeFrX883",
     "username": "Chom",
     "totalPP": 195.51477430912328,
@@ -6156,11 +6198,11 @@
     "rankedScore": 664577,
     "country": "CO",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/6Stt3pT0UVTUFZXzsl9aYeFrX883.jpeg",
-    "rankChange": -3,
-    "previousRank": 437
+    "rankChange": 0,
+    "previousRank": 443
   },
   {
-    "rank": 441,
+    "rank": 444,
     "userId": "JWrzBu1yY2Ved6ikyJZeSwczq4I3",
     "username": "Cthuluzero",
     "totalPP": 194.5246167895025,
@@ -6170,11 +6212,11 @@
     "rankedScore": 272341,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/JWrzBu1yY2Ved6ikyJZeSwczq4I3.jpeg",
-    "rankChange": -3,
-    "previousRank": 438
+    "rankChange": 0,
+    "previousRank": 444
   },
   {
-    "rank": 442,
+    "rank": 445,
     "userId": "YxpMMiyRMoZu0Ym1j8KDYLCTSs32",
     "username": "Maomao",
     "totalPP": 194.05838140420224,
@@ -6184,11 +6226,11 @@
     "rankedScore": 292477,
     "country": "PH",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/YxpMMiyRMoZu0Ym1j8KDYLCTSs32.jpeg",
-    "rankChange": -3,
-    "previousRank": 439
+    "rankChange": 0,
+    "previousRank": 445
   },
   {
-    "rank": 443,
+    "rank": 446,
     "userId": "pDtsRtiLszWCyrA4mN5Atixcg903",
     "username": "Psyaryu",
     "totalPP": 193.79659156146434,
@@ -6198,11 +6240,11 @@
     "rankedScore": 899657,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 440
+    "rankChange": 0,
+    "previousRank": 446
   },
   {
-    "rank": 444,
+    "rank": 447,
     "userId": "Sl5c6RRvhUM3sd1jBaBrUbCJ0aW2",
     "username": "lonka",
     "totalPP": 193.44578365075486,
@@ -6212,11 +6254,11 @@
     "rankedScore": 1580911,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/Sl5c6RRvhUM3sd1jBaBrUbCJ0aW2.jpeg",
-    "rankChange": -3,
-    "previousRank": 441
+    "rankChange": 0,
+    "previousRank": 447
   },
   {
-    "rank": 445,
+    "rank": 448,
     "userId": "glGZHhTOzoVLGDatcC0wjM5RYiw1",
     "username": "ultramarine",
     "totalPP": 192.4290219601731,
@@ -6226,25 +6268,25 @@
     "rankedScore": 854826,
     "country": "NZ",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 442
+    "rankChange": 0,
+    "previousRank": 448
   },
   {
-    "rank": 446,
+    "rank": 449,
     "userId": "49oHlLDK01Y1v0zAdLEIw72HNZs1",
     "username": "Chameleon",
     "totalPP": 191.39296470572123,
     "accuracy": 89.17135918193263,
-    "playCount": 369,
-    "playTime": 25182,
+    "playCount": 371,
+    "playTime": 25535,
     "rankedScore": 755730,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 443
+    "rankChange": 0,
+    "previousRank": 449
   },
   {
-    "rank": 447,
+    "rank": 450,
     "userId": "P4tbCdgz3UVrxkC0OzsvrIgbO7o2",
     "username": "Manlix",
     "totalPP": 191.34563423404705,
@@ -6254,11 +6296,11 @@
     "rankedScore": 573928,
     "country": "RU",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 444
+    "rankChange": 0,
+    "previousRank": 450
   },
   {
-    "rank": 448,
+    "rank": 451,
     "userId": "EsxVur1JxzO7Lt6rN81qJwriu562",
     "username": "been",
     "totalPP": 191.13539322305465,
@@ -6268,11 +6310,11 @@
     "rankedScore": 606956,
     "country": "GB",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 445
+    "rankChange": 0,
+    "previousRank": 451
   },
   {
-    "rank": 449,
+    "rank": 452,
     "userId": "5UhnS0yZkbQ6nusYPa8pIkqTe0h2",
     "username": "Bazka",
     "totalPP": 191.09886825517134,
@@ -6282,11 +6324,11 @@
     "rankedScore": 405083,
     "country": "NZ",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 446
+    "rankChange": 0,
+    "previousRank": 452
   },
   {
-    "rank": 450,
+    "rank": 453,
     "userId": "QepzpGnkm1UuL2g6hXdbFFV6DYM2",
     "username": "Lisa_Stay",
     "totalPP": 190.8671718057508,
@@ -6296,11 +6338,11 @@
     "rankedScore": 581731,
     "country": "NL",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 447
+    "rankChange": 0,
+    "previousRank": 453
   },
   {
-    "rank": 451,
+    "rank": 454,
     "userId": "SojDHndBYGbni4JzJgsL45YcpV92",
     "username": "waos",
     "totalPP": 190.74883685926787,
@@ -6310,11 +6352,11 @@
     "rankedScore": 1256497,
     "country": "CL",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 448
+    "rankChange": 0,
+    "previousRank": 454
   },
   {
-    "rank": 452,
+    "rank": 455,
     "userId": "jFhxLiTsWDM74ynIrFT5p2r3vJq1",
     "username": "MontySlython",
     "totalPP": 190.66432269001905,
@@ -6324,11 +6366,11 @@
     "rankedScore": 939561,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 449
+    "rankChange": 0,
+    "previousRank": 455
   },
   {
-    "rank": 453,
+    "rank": 456,
     "userId": "21oE6zN059P4FsVJCPvdsrgORo32",
     "username": "WaterWater8787",
     "totalPP": 189.99771035841357,
@@ -6338,11 +6380,11 @@
     "rankedScore": 745581,
     "country": "TW",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/21oE6zN059P4FsVJCPvdsrgORo32.jpeg",
-    "rankChange": -3,
-    "previousRank": 450
+    "rankChange": 0,
+    "previousRank": 456
   },
   {
-    "rank": 454,
+    "rank": 457,
     "userId": "tEFjdiR72VV3GSP8yZH7yar9jl03",
     "username": "AUW342022B",
     "totalPP": 189.43280961733305,
@@ -6352,11 +6394,11 @@
     "rankedScore": 1250460,
     "country": "CA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/tEFjdiR72VV3GSP8yZH7yar9jl03.jpeg",
-    "rankChange": -3,
-    "previousRank": 451
+    "rankChange": 0,
+    "previousRank": 457
   },
   {
-    "rank": 455,
+    "rank": 458,
     "userId": "cBJ8XQjP2vdwO5EGHrDDBKzQWr73",
     "username": "mars",
     "totalPP": 189.35793272161905,
@@ -6366,11 +6408,11 @@
     "rankedScore": 431912,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/cBJ8XQjP2vdwO5EGHrDDBKzQWr73.jpeg",
-    "rankChange": -3,
-    "previousRank": 452
+    "rankChange": 0,
+    "previousRank": 458
   },
   {
-    "rank": 456,
+    "rank": 459,
     "userId": "KFKBkyfo2AfdwD9jQ1I3AjG4hYD2",
     "username": "HubbyNiMai",
     "totalPP": 189.13039208654303,
@@ -6380,11 +6422,11 @@
     "rankedScore": 634258,
     "country": "PH",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/KFKBkyfo2AfdwD9jQ1I3AjG4hYD2.jpeg",
-    "rankChange": -3,
-    "previousRank": 453
+    "rankChange": 0,
+    "previousRank": 459
   },
   {
-    "rank": 457,
+    "rank": 460,
     "userId": "fTLSNBj2mfVy2qU2KLcld8KnLZO2",
     "username": "Chlortsian",
     "totalPP": 188.57494227738528,
@@ -6394,11 +6436,11 @@
     "rankedScore": 337433,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 454
+    "rankChange": 0,
+    "previousRank": 460
   },
   {
-    "rank": 458,
+    "rank": 461,
     "userId": "poZUgpb195W2gQclxwBpDKCx8pt1",
     "username": "lever",
     "totalPP": 188.44956302249085,
@@ -6408,11 +6450,11 @@
     "rankedScore": 503741,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/poZUgpb195W2gQclxwBpDKCx8pt1.jpeg",
-    "rankChange": -3,
-    "previousRank": 455
+    "rankChange": 0,
+    "previousRank": 461
   },
   {
-    "rank": 459,
+    "rank": 462,
     "userId": "ZpO0FHpSQuQOzHki7bJkWrTREqa2",
     "username": "shuttles",
     "totalPP": 187.44912781109042,
@@ -6422,11 +6464,11 @@
     "rankedScore": 541043,
     "country": "CA",
     "profilePictureUrl": null,
-    "rankChange": -3,
-    "previousRank": 456
+    "rankChange": 0,
+    "previousRank": 462
   },
   {
-    "rank": 460,
+    "rank": 463,
     "userId": "72H3U4Yt7tP73mBUYbJm0t8ZTfs2",
     "username": "QMimiKyuQ",
     "totalPP": 186.5998306700238,
@@ -6436,11 +6478,11 @@
     "rankedScore": 511563,
     "country": "DE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/72H3U4Yt7tP73mBUYbJm0t8ZTfs2.jpeg",
-    "rankChange": -2,
-    "previousRank": 458
+    "rankChange": 0,
+    "previousRank": 463
   },
   {
-    "rank": 461,
+    "rank": 464,
     "userId": "aQqU1UXGBzY62zjzqwnFFBksRId2",
     "username": "Ashley_06",
     "totalPP": 186.426626085965,
@@ -6450,11 +6492,11 @@
     "rankedScore": 623924,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/aQqU1UXGBzY62zjzqwnFFBksRId2.jpeg",
-    "rankChange": -2,
-    "previousRank": 459
+    "rankChange": 0,
+    "previousRank": 464
   },
   {
-    "rank": 462,
+    "rank": 465,
     "userId": "qhnkON7Zb4Y4F5yTFQFLU90v7kq1",
     "username": "Nyancatya",
     "totalPP": 186.00758285567304,
@@ -6464,11 +6506,11 @@
     "rankedScore": 794899,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/qhnkON7Zb4Y4F5yTFQFLU90v7kq1.jpeg",
-    "rankChange": -2,
-    "previousRank": 460
+    "rankChange": 0,
+    "previousRank": 465
   },
   {
-    "rank": 463,
+    "rank": 466,
     "userId": "IUGhnWlwmLhwrLGOE0SVNTxsiTr1",
     "username": "LiterallyAHuman",
     "totalPP": 185.42441161683615,
@@ -6478,11 +6520,11 @@
     "rankedScore": 641222,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 461
+    "rankChange": 0,
+    "previousRank": 466
   },
   {
-    "rank": 464,
+    "rank": 467,
     "userId": "ZeEpAs3x3zcRq2e984ggQLpkch13",
     "username": "Xyla",
     "totalPP": 184.99568152096506,
@@ -6492,11 +6534,25 @@
     "rankedScore": 683822,
     "country": "FR",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 462
+    "rankChange": 0,
+    "previousRank": 467
   },
   {
-    "rank": 465,
+    "rank": 468,
+    "userId": "VJ6YIYtrmdX1KeBT9vRcqpeS4hJ2",
+    "username": "TCJ",
+    "totalPP": 184.8314949435496,
+    "accuracy": 91.78130112866117,
+    "playCount": 75,
+    "playTime": 4266,
+    "rankedScore": 656763,
+    "country": "MY",
+    "profilePictureUrl": null,
+    "rankChange": 0,
+    "previousRank": 468
+  },
+  {
+    "rank": 469,
     "userId": "vdM4a82zz6ablPG8SSv5o1RkX703",
     "username": "randgamorfan",
     "totalPP": 184.7347918712713,
@@ -6506,11 +6562,11 @@
     "rankedScore": 214286,
     "country": "VA",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/vdM4a82zz6ablPG8SSv5o1RkX703.jpeg",
-    "rankChange": -2,
-    "previousRank": 463
+    "rankChange": 0,
+    "previousRank": 469
   },
   {
-    "rank": 466,
+    "rank": 470,
     "userId": "7rL1qYbIhZc8H73pxLHPGmGxPjx1",
     "username": "eelix25",
     "totalPP": 183.9041118161683,
@@ -6520,11 +6576,11 @@
     "rankedScore": 865105,
     "country": "FI",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 464
+    "rankChange": 0,
+    "previousRank": 470
   },
   {
-    "rank": 467,
+    "rank": 471,
     "userId": "Y1TsU3TozQe1oM7W9IQHiu3MB6o2",
     "username": "fizz",
     "totalPP": 183.82233611110203,
@@ -6534,11 +6590,11 @@
     "rankedScore": 319367,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 465
+    "rankChange": 0,
+    "previousRank": 471
   },
   {
-    "rank": 468,
+    "rank": 472,
     "userId": "Lj1PVAeJlXXkNeXYkEiTBvIb8VM2",
     "username": "Hachiman",
     "totalPP": 183.2822753634508,
@@ -6548,11 +6604,11 @@
     "rankedScore": 414337,
     "country": "RU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/Lj1PVAeJlXXkNeXYkEiTBvIb8VM2.jpeg",
-    "rankChange": -2,
-    "previousRank": 466
+    "rankChange": 0,
+    "previousRank": 472
   },
   {
-    "rank": 469,
+    "rank": 473,
     "userId": "ra27pIDx2uOxDQXnTR0AVAlWxMl1",
     "username": "gazh",
     "totalPP": 182.96916256048786,
@@ -6562,11 +6618,25 @@
     "rankedScore": 1133375,
     "country": "BE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/ra27pIDx2uOxDQXnTR0AVAlWxMl1.jpeg",
-    "rankChange": -2,
-    "previousRank": 467
+    "rankChange": 0,
+    "previousRank": 473
   },
   {
-    "rank": 470,
+    "rank": 474,
+    "userId": "7QePGZr0JSR8v7Oy0IBKQ9TE2Ye2",
+    "username": "BatHoshino",
+    "totalPP": 182.8138510596331,
+    "accuracy": 86.4485143413338,
+    "playCount": 162,
+    "playTime": 6687,
+    "rankedScore": 812151,
+    "country": "AU",
+    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/7QePGZr0JSR8v7Oy0IBKQ9TE2Ye2.jpeg",
+    "rankChange": 0,
+    "previousRank": 474
+  },
+  {
+    "rank": 475,
     "userId": "YS21KFH5PoXpRg4VIExrqFzuSge2",
     "username": "PedobeerKoroche",
     "totalPP": 182.65449007321376,
@@ -6576,11 +6646,11 @@
     "rankedScore": 457033,
     "country": "RU",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 468
+    "rankChange": 0,
+    "previousRank": 475
   },
   {
-    "rank": 471,
+    "rank": 476,
     "userId": "nGObYQTZNVTkZnP2NkrBA5jLnqu2",
     "username": "lilmonix97",
     "totalPP": 182.23718442195218,
@@ -6590,39 +6660,25 @@
     "rankedScore": 660852,
     "country": "RU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/nGObYQTZNVTkZnP2NkrBA5jLnqu2.jpeg",
-    "rankChange": -2,
-    "previousRank": 469
+    "rankChange": 0,
+    "previousRank": 476
   },
   {
-    "rank": 472,
-    "userId": "7QePGZr0JSR8v7Oy0IBKQ9TE2Ye2",
-    "username": "BatHoshino",
-    "totalPP": 182.16330840819222,
-    "accuracy": 86.40513857493956,
-    "playCount": 152,
-    "playTime": 6315,
-    "rankedScore": 811945,
-    "country": "AU",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/7QePGZr0JSR8v7Oy0IBKQ9TE2Ye2.jpeg",
-    "rankChange": -2,
-    "previousRank": 470
-  },
-  {
-    "rank": 473,
+    "rank": 477,
     "userId": "d2LjNW69Wieq2SCa16zf8YTvcRK2",
     "username": "notebeans",
-    "totalPP": 181.80439814098835,
-    "accuracy": 83.12904772710641,
-    "playCount": 532,
-    "playTime": 23371,
-    "rankedScore": 636295,
+    "totalPP": 182.15054292332434,
+    "accuracy": 82.78464973463944,
+    "playCount": 541,
+    "playTime": 23921,
+    "rankedScore": 644463,
     "country": "US",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 471
+    "rankChange": 0,
+    "previousRank": 477
   },
   {
-    "rank": 474,
+    "rank": 478,
     "userId": "Nw6XRFoHolbUzrXICEEKmuJbSpq1",
     "username": "liknow102",
     "totalPP": 181.553045830204,
@@ -6632,11 +6688,11 @@
     "rankedScore": 632082,
     "country": "VN",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 472
+    "rankChange": 0,
+    "previousRank": 478
   },
   {
-    "rank": 475,
+    "rank": 479,
     "userId": "nSoxbdzoHAM7J0Zc5tyrTGO5fgH2",
     "username": "Neo",
     "totalPP": 181.47864492326846,
@@ -6646,11 +6702,11 @@
     "rankedScore": 396506,
     "country": "DE",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 473
+    "rankChange": 0,
+    "previousRank": 479
   },
   {
-    "rank": 476,
+    "rank": 480,
     "userId": "Vy1He0ACNqNrjzpi2gfgHSrgF213",
     "username": "Smikkelbear22",
     "totalPP": 180.80095656908514,
@@ -6660,11 +6716,11 @@
     "rankedScore": 554257,
     "country": "BE",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/Vy1He0ACNqNrjzpi2gfgHSrgF213.jpeg",
-    "rankChange": -2,
-    "previousRank": 474
+    "rankChange": 0,
+    "previousRank": 480
   },
   {
-    "rank": 477,
+    "rank": 481,
     "userId": "jQVa9GjkfAeYaqkRBhajG6J1K1s2",
     "username": "Protato",
     "totalPP": 180.47124209448612,
@@ -6674,11 +6730,11 @@
     "rankedScore": 443767,
     "country": "CA",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 475
+    "rankChange": 0,
+    "previousRank": 481
   },
   {
-    "rank": 478,
+    "rank": 482,
     "userId": "sM1ydRJukOTDqa9ehoSMT4gxMU63",
     "username": "Connfused",
     "totalPP": 180.40579827894604,
@@ -6688,11 +6744,11 @@
     "rankedScore": 708644,
     "country": "US",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/sM1ydRJukOTDqa9ehoSMT4gxMU63.jpeg",
-    "rankChange": -2,
-    "previousRank": 476
+    "rankChange": 0,
+    "previousRank": 482
   },
   {
-    "rank": 479,
+    "rank": 483,
     "userId": "XbpPBZSoqjWXQx0jA1SQPkIifG63",
     "username": "Mikus777",
     "totalPP": 180.17993857013107,
@@ -6702,11 +6758,11 @@
     "rankedScore": 887859,
     "country": "PL",
     "profilePictureUrl": null,
-    "rankChange": -2,
-    "previousRank": 477
+    "rankChange": 0,
+    "previousRank": 483
   },
   {
-    "rank": 480,
+    "rank": 484,
     "userId": "lAuSGLwWsXcS8cGjyernhZrwTEP2",
     "username": "huatman",
     "totalPP": 179.73401558656383,
@@ -6716,11 +6772,11 @@
     "rankedScore": 343393,
     "country": "SG",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 479
+    "rankChange": 0,
+    "previousRank": 484
   },
   {
-    "rank": 481,
+    "rank": 485,
     "userId": "ePoNGJb82tZVQ5QWqrQ7UaEPxzz2",
     "username": "slubby1",
     "totalPP": 179.68324870721696,
@@ -6730,39 +6786,11 @@
     "rankedScore": 279754,
     "country": "CA",
     "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 480
-  },
-  {
-    "rank": 482,
-    "userId": "VJ6YIYtrmdX1KeBT9vRcqpeS4hJ2",
-    "username": "TCJ",
-    "totalPP": 179.59465572562496,
-    "accuracy": 91.6223051780291,
-    "playCount": 69,
-    "playTime": 3928,
-    "rankedScore": 599883,
-    "country": "MY",
-    "profilePictureUrl": null,
-    "rankChange": -1,
-    "previousRank": 481
-  },
-  {
-    "rank": 483,
-    "userId": "MBDcIXxVskQLALQLvTGwRsupfAm2",
-    "username": "Alc",
-    "totalPP": 178.98828460649622,
-    "accuracy": 90.44544643299852,
-    "playCount": 150,
-    "playTime": 11785,
-    "rankedScore": 802505,
-    "country": "US",
-    "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 483
+    "previousRank": 485
   },
   {
-    "rank": 484,
+    "rank": 486,
     "userId": "YuCcMlFhsFcRJU3GFRHKVwbbQjR2",
     "username": "wersady",
     "totalPP": 178.7547363734354,
@@ -6773,10 +6801,10 @@
     "country": "US",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 484
+    "previousRank": 486
   },
   {
-    "rank": 485,
+    "rank": 487,
     "userId": "SZjUFf48zxRloki0aKVxBkYJeh72",
     "username": "Darragh",
     "totalPP": 178.71132878492466,
@@ -6787,10 +6815,10 @@
     "country": "IE",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 485
+    "previousRank": 487
   },
   {
-    "rank": 486,
+    "rank": 488,
     "userId": "RNqQFribDBR5jFHtkZCnSEvCSRx2",
     "username": "bybd",
     "totalPP": 178.40371962312463,
@@ -6801,10 +6829,10 @@
     "country": "DE",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 486
+    "previousRank": 488
   },
   {
-    "rank": 487,
+    "rank": 489,
     "userId": "LK6WRxpZHaTPzhEl2eL5eeK3dH23",
     "username": "Kuz",
     "totalPP": 177.99965017549593,
@@ -6815,10 +6843,10 @@
     "country": "UA",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 487
+    "previousRank": 489
   },
   {
-    "rank": 488,
+    "rank": 490,
     "userId": "Wr4oHyFvTJbZrS2XwHvql6mqID73",
     "username": "cybear",
     "totalPP": 177.84218939382308,
@@ -6829,10 +6857,10 @@
     "country": "US",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 488
+    "previousRank": 490
   },
   {
-    "rank": 489,
+    "rank": 491,
     "userId": "YBG98mUZRFTI0EpsAuMN7hptcwr1",
     "username": "Psalt",
     "totalPP": 177.57152482437698,
@@ -6843,10 +6871,10 @@
     "country": "BR",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/YBG98mUZRFTI0EpsAuMN7hptcwr1.jpeg",
     "rankChange": 0,
-    "previousRank": 489
+    "previousRank": 491
   },
   {
-    "rank": 490,
+    "rank": 492,
     "userId": "KwTLC1XhxMepoUQSlgT8X2bXwfx1",
     "username": "nano",
     "totalPP": 177.48958875472553,
@@ -6857,10 +6885,24 @@
     "country": "US",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 490
+    "previousRank": 492
   },
   {
-    "rank": 491,
+    "rank": 493,
+    "userId": "7izNzKPYdITCx3pouxIjlq22J2h2",
+    "username": "Math_Branches",
+    "totalPP": 177.26384436324662,
+    "accuracy": 78.92637186288336,
+    "playCount": 180,
+    "playTime": 18260,
+    "rankedScore": 1137971,
+    "country": "BR",
+    "profilePictureUrl": null,
+    "rankChange": 0,
+    "previousRank": 493
+  },
+  {
+    "rank": 494,
     "userId": "nHLMzBTN6vQmurA42xLydVKVP9r1",
     "username": "boobylover",
     "totalPP": 177.20486544294934,
@@ -6871,24 +6913,10 @@
     "country": "US",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 491
+    "previousRank": 494
   },
   {
-    "rank": 492,
-    "userId": "7izNzKPYdITCx3pouxIjlq22J2h2",
-    "username": "Math_Branches",
-    "totalPP": 176.3320279846744,
-    "accuracy": 79.3124431245051,
-    "playCount": 167,
-    "playTime": 16490,
-    "rankedScore": 1093862,
-    "country": "BR",
-    "profilePictureUrl": null,
-    "rankChange": 0,
-    "previousRank": 492
-  },
-  {
-    "rank": 493,
+    "rank": 495,
     "userId": "zfvUQPdsOjMNXVtQVzIFj4JT5YE3",
     "username": "lucie",
     "totalPP": 176.1956986508849,
@@ -6899,10 +6927,10 @@
     "country": "US",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 493
+    "previousRank": 495
   },
   {
-    "rank": 494,
+    "rank": 496,
     "userId": "jUvzZwycrbQK4C55ZHEnmhbI7jh1",
     "username": "nACTA_CTACA",
     "totalPP": 176.05698639135048,
@@ -6913,10 +6941,10 @@
     "country": "RU",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/jUvzZwycrbQK4C55ZHEnmhbI7jh1.jpeg",
     "rankChange": 0,
-    "previousRank": 494
+    "previousRank": 496
   },
   {
-    "rank": 495,
+    "rank": 497,
     "userId": "YJmnvaDvbhNHLpCwwmK8ZaPJpP82",
     "username": "Kelimporta",
     "totalPP": 175.33235535844773,
@@ -6927,10 +6955,10 @@
     "country": "CO",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/YJmnvaDvbhNHLpCwwmK8ZaPJpP82.jpeg",
     "rankChange": 0,
-    "previousRank": 495
+    "previousRank": 497
   },
   {
-    "rank": 496,
+    "rank": 498,
     "userId": "rosY6GXOryLZexNvXZZFXdJv4b62",
     "username": "Neapolitan_Guy",
     "totalPP": 175.27135968983862,
@@ -6941,10 +6969,10 @@
     "country": "IT",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 496
+    "previousRank": 498
   },
   {
-    "rank": 497,
+    "rank": 499,
     "userId": "x1ppwk79lxXsSuk2bcboIrk4IYk1",
     "username": "Wao",
     "totalPP": 175.20543866959392,
@@ -6955,10 +6983,10 @@
     "country": "US",
     "profilePictureUrl": null,
     "rankChange": 0,
-    "previousRank": 497
+    "previousRank": 499
   },
   {
-    "rank": 498,
+    "rank": 500,
     "userId": "M041MIZosxabWLheJXIEFTWZJ6A2",
     "username": "DamDom",
     "totalPP": 174.49260288838798,
@@ -6968,34 +6996,6 @@
     "rankedScore": 416277,
     "country": "MY",
     "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/M041MIZosxabWLheJXIEFTWZJ6A2.jpeg",
-    "rankChange": 0,
-    "previousRank": 498
-  },
-  {
-    "rank": 499,
-    "userId": "aosh1AHVlCf1hIpGBjgKDRPMNml1",
-    "username": "Carti",
-    "totalPP": 174.4164037359416,
-    "accuracy": 85.66899934357423,
-    "playCount": 136,
-    "playTime": 4639,
-    "rankedScore": 696361,
-    "country": "AU",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/aosh1AHVlCf1hIpGBjgKDRPMNml1.jpeg",
-    "rankChange": 0,
-    "previousRank": 499
-  },
-  {
-    "rank": 500,
-    "userId": "jMa9VDAE4eTcnxcduQyMjZcUSxf1",
-    "username": "Daziaq",
-    "totalPP": 173.57088982681057,
-    "accuracy": 85.73292153326103,
-    "playCount": 46,
-    "playTime": 2335,
-    "rankedScore": 656912,
-    "country": "US",
-    "profilePictureUrl": "https://storage.googleapis.com/rhythm-typer.firebasestorage.app/profile-pictures/jMa9VDAE4eTcnxcduQyMjZcUSxf1.jpeg",
     "rankChange": 0,
     "previousRank": 500
   }
