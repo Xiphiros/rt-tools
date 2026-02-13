@@ -32,25 +32,29 @@ const resources = {
       recalc: "Rework"
     },
     odAnalysis: {
-      title: "OD Impact Analysis",
-      subtitle: "Comprehensive evaluation of precision strictness and difficulty inflation",
-      sectionBadge: "Ranked Section Data",
+      title: "Official OD Analysis",
+      subtitle: "Detailed breakdown of how OD and Accuracy affect the official scoring system",
+      sectionBadge: "Official Formula Only",
       tabGlobal: "Global Stats",
       tabInspector: "Map Inspector",
-      loadingData: "Processing Ranked Data...",
-      chartSR: "SR Inflation",
-      chartPP: "Performance Growth",
-      insightsTitle: "Precision Value Retention",
-      insightsSubtitle: "Based on the Official Accuracy^5 strictness formula",
-      searchMap: "Search map or artist...",
+      loadingData: "Loading Official Dataset...",
+      chartSR: "Star Rating (Official)",
+      chartPP: "PP Potential (100% Acc)",
+      insightsTitle: "Understanding Precision Value Retention",
+      insightsSubtitle: "The official scoring system uses an exponential curve to reward high accuracy.",
+      formulaTitle: "The Power-5 Penalty",
+      formulaText: "Performance Points (PP) are scaled by accuracy raised to the power of 5. This means that dropping just a few percentage points results in a massive loss of value.",
+      exampleTitle: "Practical Example",
+      exampleText: "If a 100% (SS) score is worth 100pp, here is what that same play is worth at lower accuracies:",
+      searchMap: "Search map...",
       metricOD: "OD",
-      metricSR: "SR",
-      metricPP: "PP (SS)",
+      metricSR: "Official SR",
+      metricPP: "Performance Points",
       tableOD: "OD",
-      tableSR: "Avg SR",
-      tablePP: "Avg PP",
+      tableSR: "Official SR",
+      tablePP: "SS Value",
       tableRet: "Retention",
-      mapStatsTitle: "Map Scaling Analysis"
+      mapStatsTitle: "Difficulty Scaling"
     }
   }
 };
