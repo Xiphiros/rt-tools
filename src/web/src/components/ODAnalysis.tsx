@@ -26,7 +26,8 @@ import {
     faSearch,
     faMicroscope,
     faCalculator,
-    faArrowRight
+    faArrowRight,
+    faDatabase
 } from '@fortawesome/free-solid-svg-icons';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
@@ -129,6 +130,7 @@ export const ODAnalysis = () => {
 
     const renderExplanatoryBlock = () => (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-in fade-in duration-700">
+            {/* Logic Block */}
             <div className="lg:col-span-2 bg-card border border-border rounded-xl p-6 shadow-xl relative overflow-hidden">
                 <div className="absolute -top-4 -right-4 opacity-5 text-8xl rotate-12"><FontAwesomeIcon icon={faCalculator} /></div>
                 <h3 className="text-white font-bold text-lg mb-2 flex items-center gap-2">
@@ -151,6 +153,7 @@ export const ODAnalysis = () => {
                 </div>
             </div>
 
+            {/* Example Block */}
             <div className="bg-card border border-primary/20 rounded-xl p-6 shadow-xl flex flex-col justify-center">
                 <h4 className="text-primary font-bold text-sm uppercase tracking-widest mb-3">{t('exampleTitle')}</h4>
                 <p className="text-xs text-muted mb-6">{t('exampleText')}</p>
@@ -210,8 +213,27 @@ export const ODAnalysis = () => {
         return (
             <div className="space-y-8 animate-in fade-in duration-500">
                 {renderExplanatoryBlock()}
-                <div className="bg-card border border-border p-6 rounded-xl shadow-xl h-[500px]">
-                    <div className="h-full"><Line data={chartData} options={chartOptions} /></div>
+
+                <div className="bg-card border border-border rounded-xl shadow-xl overflow-hidden flex flex-col">
+                    <div className="p-6 border-b border-border bg-input/20 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded bg-primary/10 flex items-center justify-center text-primary shadow-inner">
+                                <FontAwesomeIcon icon={faDatabase} />
+                            </div>
+                            <div>
+                                <h3 className="text-white font-black text-sm uppercase tracking-tight leading-none mb-1">
+                                    {t('globalChartHeader')}
+                                </h3>
+                                <p className="text-[10px] text-muted font-bold uppercase tracking-wider">
+                                    {t('globalChartSubheader')}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="p-6 h-[500px]">
+                        <Line data={chartData} options={chartOptions} />
+                    </div>
                 </div>
             </div>
         );
@@ -311,7 +333,7 @@ export const ODAnalysis = () => {
         <div className="space-y-6 pb-20">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-border pb-6">
                 <div>
-                    <h1 className="text-2xl font-black text-white flex items-center gap-2">
+                    <h1 className="text-2xl font-black text-white flex items-center gap-3">
                         <FontAwesomeIcon icon={faChartLine} className="text-primary" />
                         {t('title')}
                     </h1>
