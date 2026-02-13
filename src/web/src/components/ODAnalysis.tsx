@@ -84,22 +84,41 @@ export const ODAnalysis = () => {
         maintainAspectRatio: false,
         interaction: { mode: 'index' as const, intersect: false },
         scales: {
-            x: { grid: { color: '#334155' }, ticks: { color: '#94a3b8', maxRotation: 0, autoSkip: true, maxTicksLimit: 12 } },
+            x: { 
+                grid: { color: '#334155' }, 
+                ticks: { color: '#94a3b8', maxRotation: 0, autoSkip: true, maxTicksLimit: 12 },
+                title: { 
+                    display: true, 
+                    text: 'Overall Difficulty (OD)', 
+                    color: '#94a3b8', 
+                    font: { size: 12, weight: 'bold' as const } 
+                }
+            },
             y: { 
                 type: 'linear' as const,
                 display: true,
                 position: 'left' as const,
                 grid: { color: '#334155' }, 
-                ticks: { color: '#fbbf24' },
-                title: { display: true, text: 'Performance Points (PP)', color: '#fbbf24', font: { weight: 'bold' as const } }
+                ticks: { color: '#38bdf8' },
+                title: { 
+                    display: true, 
+                    text: 'Official Star Rating (SR)', 
+                    color: '#38bdf8', 
+                    font: { size: 12, weight: 'bold' as const } 
+                }
             },
-            ySR: {
+            yPP: {
                 type: 'linear' as const,
                 display: true,
                 position: 'right' as const,
                 grid: { drawOnChartArea: false },
-                ticks: { color: '#38bdf8' },
-                title: { display: true, text: 'Official Star Rating', color: '#38bdf8', font: { weight: 'bold' as const } }
+                ticks: { color: '#fbbf24' },
+                title: { 
+                    display: true, 
+                    text: 'Performance Points (PP)', 
+                    color: '#fbbf24', 
+                    font: { size: 12, weight: 'bold' as const } 
+                }
             }
         },
         plugins: {
@@ -110,7 +129,6 @@ export const ODAnalysis = () => {
 
     const renderExplanatoryBlock = () => (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-in fade-in duration-700">
-            {/* Logic Block */}
             <div className="lg:col-span-2 bg-card border border-border rounded-xl p-6 shadow-xl relative overflow-hidden">
                 <div className="absolute -top-4 -right-4 opacity-5 text-8xl rotate-12"><FontAwesomeIcon icon={faCalculator} /></div>
                 <h3 className="text-white font-bold text-lg mb-2 flex items-center gap-2">
@@ -133,7 +151,6 @@ export const ODAnalysis = () => {
                 </div>
             </div>
 
-            {/* Example Block */}
             <div className="bg-card border border-primary/20 rounded-xl p-6 shadow-xl flex flex-col justify-center">
                 <h4 className="text-primary font-bold text-sm uppercase tracking-widest mb-3">{t('exampleTitle')}</h4>
                 <p className="text-xs text-muted mb-6">{t('exampleText')}</p>
@@ -161,10 +178,20 @@ export const ODAnalysis = () => {
             labels,
             datasets: [
                 {
+                    label: 'Official Star Rating',
+                    data: globalData.globalStats.map(s => s.avgSR),
+                    borderColor: '#38bdf8',
+                    yAxisID: 'y',
+                    tension: 0.1,
+                    pointRadius: 0,
+                    fill: true,
+                    backgroundColor: 'rgba(56, 189, 248, 0.05)'
+                },
+                {
                     label: 'Performance Points (100% SS)',
                     data: globalData.globalStats.map(s => s.avgPP100),
                     borderColor: '#fbbf24',
-                    yAxisID: 'y',
+                    yAxisID: 'yPP',
                     tension: 0.1,
                     pointRadius: 0
                 },
@@ -172,20 +199,10 @@ export const ODAnalysis = () => {
                     label: 'Performance Points (95% Acc)',
                     data: globalData.globalStats.map(s => s.avgPP95),
                     borderColor: '#22d3ee',
-                    yAxisID: 'y',
+                    yAxisID: 'yPP',
                     tension: 0.1,
                     pointRadius: 0,
                     borderDash: [5, 5]
-                },
-                {
-                    label: 'Official Star Rating',
-                    data: globalData.globalStats.map(s => s.avgSR),
-                    borderColor: '#38bdf8',
-                    yAxisID: 'ySR',
-                    tension: 0.1,
-                    pointRadius: 0,
-                    fill: true,
-                    backgroundColor: 'rgba(56, 189, 248, 0.05)'
                 }
             ]
         };
@@ -193,8 +210,7 @@ export const ODAnalysis = () => {
         return (
             <div className="space-y-8 animate-in fade-in duration-500">
                 {renderExplanatoryBlock()}
-
-                <div className="bg-card border border-border p-6 rounded-xl shadow-xl h-[450px]">
+                <div className="bg-card border border-border p-6 rounded-xl shadow-xl h-[500px]">
                     <div className="h-full"><Line data={chartData} options={chartOptions} /></div>
                 </div>
             </div>
@@ -215,16 +231,16 @@ export const ODAnalysis = () => {
             mapChartData = {
                 labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(v => v.toFixed(1)),
                 datasets: [
-                    { label: 'Official PP (100% SS)', data: selectedEntry.difficulties[0].data.pp100, borderColor: '#fbbf24', borderWidth: 2, tension: 0.1, pointRadius: 0, yAxisID: 'y' },
-                    { label: 'Official PP (95% Acc)', data: selectedEntry.difficulties[0].data.pp95, borderColor: '#22d3ee', borderWidth: 2, tension: 0.1, pointRadius: 0, borderDash: [5, 5], yAxisID: 'y' },
-                    { label: 'Official Star Rating', data: selectedEntry.difficulties[0].data.sr, borderColor: '#38bdf8', borderWidth: 1, tension: 0.1, pointRadius: 0, fill: true, backgroundColor: 'rgba(56, 189, 248, 0.05)', yAxisID: 'ySR' }
+                    { label: 'Official Star Rating', data: selectedEntry.difficulties[0].data.sr, borderColor: '#38bdf8', borderWidth: 2, tension: 0.1, pointRadius: 0, fill: true, backgroundColor: 'rgba(56, 189, 248, 0.05)', yAxisID: 'y' },
+                    { label: 'Official PP (100% SS)', data: selectedEntry.difficulties[0].data.pp100, borderColor: '#fbbf24', borderWidth: 2, tension: 0.1, pointRadius: 0, yAxisID: 'yPP' },
+                    { label: 'Official PP (95% Acc)', data: selectedEntry.difficulties[0].data.pp95, borderColor: '#22d3ee', borderWidth: 2, tension: 0.1, pointRadius: 0, borderDash: [5, 5], yAxisID: 'yPP' }
                 ]
             };
         }
 
         return (
             <div className="space-y-8 animate-in fade-in duration-500">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[600px]">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[650px]">
                     <div className="bg-card border border-border rounded-xl flex flex-col overflow-hidden h-full shadow-lg">
                         <div className="p-4 border-b border-border bg-input/20">
                             <div className="relative">
