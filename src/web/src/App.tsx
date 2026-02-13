@@ -4,6 +4,7 @@ import { Dashboard } from './components/Dashboard';
 import { Calculator } from './components/Calculator';
 import { Leaderboard } from './components/Leaderboard';
 import { ScoreAnalysis } from './components/ScoreAnalysis';
+import { ODAnalysis } from './components/ODAnalysis';
 import { Editor } from './editor/Editor';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
@@ -21,7 +22,7 @@ const Disclaimer = () => (
 
 const Header = ({ activeTab, onTabChange }: { activeTab: string, onTabChange: (t: string) => void }) => {
     const { t } = useTranslation('common');
-    const tabs = ['dashboard', 'analysis', 'leaderboard', 'calculator', 'editor'];
+    const tabs = ['dashboard', 'analysis', 'od_analysis', 'leaderboard', 'calculator', 'editor'];
 
     return (
         <header className="border-b border-border bg-[var(--color-header-bg)] sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
@@ -73,8 +74,8 @@ function App() {
           case 'leaderboard': return <Leaderboard />;
           case 'calculator': return <Calculator />;
           case 'analysis': return <ScoreAnalysis />;
+          case 'od_analysis': return <ODAnalysis />;
           case 'editor': 
-            // Editor handles its own layout, so we bypass container constraints if needed
             return <Editor />;
           case 'dashboard':
           default: return <Dashboard />;
