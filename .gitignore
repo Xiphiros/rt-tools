@@ -38,6 +38,8 @@ songs/
 !src/web/public/beatmaps.json
 !src/web/public/players.json
 !src/web/public/score_analysis.json
+!src/web/public/od_global.json
+!src/web/public/od_maps.json
 
 # Source Data (Excel)
 data/*.xlsx
