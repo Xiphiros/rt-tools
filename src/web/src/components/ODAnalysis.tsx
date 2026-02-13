@@ -24,7 +24,9 @@ import {
     faChevronDown,
     faChevronUp,
     faSearch,
-    faMicroscope
+    faMicroscope,
+    faCalculator,
+    faArrowRight
 } from '@fortawesome/free-solid-svg-icons';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
@@ -45,16 +47,13 @@ export const ODAnalysis = () => {
     
     const [globalData, setGlobalData] = useState<ODGlobalDataset | null>(null);
     const [mapsData, setMapsData] = useState<ODMapsDataset | null>(null);
-    
     const [loadingGlobal, setLoadingGlobal] = useState(true);
     const [loadingMaps, setLoadingMaps] = useState(false);
     const [mapsLoaded, setMapsLoaded] = useState(false);
-    
     const [error, setError] = useState<string | null>(null);
     const [activeTab, setActiveTab] = useState<'global' | 'inspector'>('global');
     const [search, setSearch] = useState('');
     const [selectedMapId, setSelectedMapId] = useState<string | null>(null);
-    
     const [page, setPage] = useState(1);
     const ITEMS_PER_PAGE = 20;
 
@@ -62,10 +61,7 @@ export const ODAnalysis = () => {
         fetch('./od_global.json')
             .then(res => res.json())
             .then(setGlobalData)
-            .catch(e => {
-                console.error("Global stats missing", e);
-                setError("Global statistics dataset not found.");
-            })
+            .catch(() => setError("Global statistics dataset not found."))
             .finally(() => setLoadingGlobal(false));
     }, []);
 
@@ -73,15 +69,12 @@ export const ODAnalysis = () => {
         if (activeTab === 'inspector' && !mapsLoaded && !loadingMaps) {
             setLoadingMaps(true);
             fetch('./od_maps.json')
-                .then(res => {
-                    if (!res.ok) throw new Error("Map dataset not found.");
-                    return res.json();
-                })
+                .then(res => res.json())
                 .then((data) => {
                     setMapsData(data);
                     setMapsLoaded(true);
                 })
-                .catch(e => setError(e.message))
+                .catch(() => setError("Map dataset not found."))
                 .finally(() => setLoadingMaps(false));
         }
     }, [activeTab, mapsLoaded, loadingMaps]);
@@ -92,7 +85,22 @@ export const ODAnalysis = () => {
         interaction: { mode: 'index' as const, intersect: false },
         scales: {
             x: { grid: { color: '#334155' }, ticks: { color: '#94a3b8', maxRotation: 0, autoSkip: true, maxTicksLimit: 12 } },
-            y: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } }
+            y: { 
+                type: 'linear' as const,
+                display: true,
+                position: 'left' as const,
+                grid: { color: '#334155' }, 
+                ticks: { color: '#fbbf24' },
+                title: { display: true, text: 'Performance Points (PP)', color: '#fbbf24', font: { weight: 'bold' as const } }
+            },
+            ySR: {
+                type: 'linear' as const,
+                display: true,
+                position: 'right' as const,
+                grid: { drawOnChartArea: false },
+                ticks: { color: '#38bdf8' },
+                title: { display: true, text: 'Official Star Rating', color: '#38bdf8', font: { weight: 'bold' as const } }
+            }
         },
         plugins: {
             legend: { labels: { color: '#cbd5e1' } },
@@ -100,88 +108,106 @@ export const ODAnalysis = () => {
         }
     };
 
+    const renderExplanatoryBlock = () => (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-in fade-in duration-700">
+            {/* Logic Block */}
+            <div className="lg:col-span-2 bg-card border border-border rounded-xl p-6 shadow-xl relative overflow-hidden">
+                <div className="absolute -top-4 -right-4 opacity-5 text-8xl rotate-12"><FontAwesomeIcon icon={faCalculator} /></div>
+                <h3 className="text-white font-bold text-lg mb-2 flex items-center gap-2">
+                    <FontAwesomeIcon icon={faInfoCircle} className="text-primary" />
+                    {t('insightsTitle')}
+                </h3>
+                <p className="text-sm text-muted mb-4 leading-relaxed max-w-2xl">{t('formulaText')}</p>
+                <div className="bg-input/50 p-4 rounded-lg border border-border inline-block mb-4">
+                    <code className="text-primary font-mono text-lg font-bold">
+                        Value = BasePP * (Accuracy / 100)^5
+                    </code>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2">
+                    {RETENTION_INSIGHTS.slice(0, 4).map(item => (
+                        <div key={item.acc} className="bg-input/30 border border-white/5 rounded-lg p-3 text-center">
+                            <div className="text-[10px] text-muted font-bold uppercase">{item.acc}% Accuracy</div>
+                            <div className="text-lg font-black text-success">{item.val}% Value</div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Example Block */}
+            <div className="bg-card border border-primary/20 rounded-xl p-6 shadow-xl flex flex-col justify-center">
+                <h4 className="text-primary font-bold text-sm uppercase tracking-widest mb-3">{t('exampleTitle')}</h4>
+                <p className="text-xs text-muted mb-6">{t('exampleText')}</p>
+                <div className="space-y-3">
+                    {[100, 95, 90, 80].map(acc => {
+                        const val = acc === 100 ? 100 : (Math.pow(acc/100, 5) * 100).toFixed(1);
+                        return (
+                            <div key={acc} className="flex items-center justify-between bg-input/40 px-4 py-2 rounded-lg border border-white/5 group hover:border-primary/30 transition-colors">
+                                <span className="text-sm font-bold text-white">{acc}% Acc</span>
+                                <FontAwesomeIcon icon={faArrowRight} className="text-[10px] text-muted group-hover:text-primary transition-colors" />
+                                <span className={`font-mono font-bold ${acc === 100 ? 'text-warning' : 'text-primary'}`}>{val} pp</span>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </div>
+    );
+
     const renderGlobalStats = () => {
         if (!globalData) return null;
         const labels = globalData.globalStats.map(s => s.od.toFixed(1));
 
-        const mainChartData = {
+        const chartData = {
             labels,
             datasets: [
                 {
-                    label: 'Avg SR',
-                    data: globalData.globalStats.map(s => s.avgSR),
-                    borderColor: '#38bdf8',
+                    label: 'Performance Points (100% SS)',
+                    data: globalData.globalStats.map(s => s.avgPP100),
+                    borderColor: '#fbbf24',
                     yAxisID: 'y',
                     tension: 0.1,
                     pointRadius: 0
                 },
                 {
-                    label: 'Avg PP (SS)',
-                    data: globalData.globalStats.map(s => s.avgPP100),
-                    borderColor: '#fbbf24',
-                    yAxisID: 'y1',
+                    label: 'Performance Points (95% Acc)',
+                    data: globalData.globalStats.map(s => s.avgPP95),
+                    borderColor: '#22d3ee',
+                    yAxisID: 'y',
                     tension: 0.1,
-                    pointRadius: 0
+                    pointRadius: 0,
+                    borderDash: [5, 5]
+                },
+                {
+                    label: 'Official Star Rating',
+                    data: globalData.globalStats.map(s => s.avgSR),
+                    borderColor: '#38bdf8',
+                    yAxisID: 'ySR',
+                    tension: 0.1,
+                    pointRadius: 0,
+                    fill: true,
+                    backgroundColor: 'rgba(56, 189, 248, 0.05)'
                 }
             ]
         };
 
-        const dualAxisOptions = {
-            ...chartOptions,
-            scales: {
-                ...chartOptions.scales,
-                y: { ...chartOptions.scales.y, position: 'left' as const, title: { display: true, text: 'Star Rating', color: '#38bdf8' } },
-                y1: { ...chartOptions.scales.y, position: 'right' as const, grid: { drawOnChartArea: false }, title: { display: true, text: 'Performance Points', color: '#fbbf24' } }
-            }
-        };
-
         return (
             <div className="space-y-8 animate-in fade-in duration-500">
-                <div className="bg-card border border-border rounded-xl p-6 shadow-xl relative overflow-hidden">
-                    <h3 className="text-white font-bold mb-1 flex items-center gap-2">
-                        <FontAwesomeIcon icon={faInfoCircle} className="text-primary" />
-                        {t('insightsTitle')}
-                    </h3>
-                    <p className="text-xs text-muted mb-6">{t('insightsSubtitle')}</p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-                        {RETENTION_INSIGHTS.map(item => (
-                            <div key={item.acc} className="bg-input/40 border border-border rounded-lg p-3 text-center transition-transform hover:scale-105">
-                                <div className="text-[10px] text-muted font-bold uppercase">{item.acc}% Acc</div>
-                                <div className={`text-lg font-black ${item.val > 70 ? 'text-success' : item.val > 50 ? 'text-warning' : 'text-danger'}`}>
-                                    {item.val.toFixed(1)}%
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                {renderExplanatoryBlock()}
 
-                <div className="bg-card border border-border p-6 rounded-xl shadow-xl h-96">
-                    <div className="h-full"><Line data={mainChartData} options={dualAxisOptions} /></div>
+                <div className="bg-card border border-border p-6 rounded-xl shadow-xl h-[450px]">
+                    <div className="h-full"><Line data={chartData} options={chartOptions} /></div>
                 </div>
             </div>
         );
     };
 
     const renderMapMatrix = () => {
-        if (loadingMaps) {
-            return (
-                <div className="flex flex-col justify-center items-center h-96 text-muted animate-pulse">
-                    <FontAwesomeIcon icon={faSpinner} spin className="text-4xl mb-4 text-primary" /> 
-                    <span className="font-bold tracking-widest uppercase text-xs">Loading Detailed Dataset...</span>
-                </div>
-            );
-        }
-
+        if (loadingMaps) return <div className="flex flex-col justify-center items-center h-96 text-muted animate-pulse"><FontAwesomeIcon icon={faSpinner} spin className="text-4xl mb-4 text-primary" /><span className="font-bold tracking-widest uppercase text-xs">Loading Official Dataset...</span></div>;
         if (!mapsData) return null;
 
-        const filtered = mapsData.filter(m => 
-            m.title.toLowerCase().includes(search.toLowerCase()) || 
-            m.artist.toLowerCase().includes(search.toLowerCase())
-        );
-
+        const filtered = mapsData.filter(m => m.title.toLowerCase().includes(search.toLowerCase()) || m.artist.toLowerCase().includes(search.toLowerCase()));
         const paginated = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
         const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-
         const selectedEntry = mapsData.find(m => m.mapsetId === selectedMapId);
         
         let mapChartData = null;
@@ -189,9 +215,9 @@ export const ODAnalysis = () => {
             mapChartData = {
                 labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(v => v.toFixed(1)),
                 datasets: [
-                    { label: 'PP (SS)', data: selectedEntry.difficulties[0].data.pp100, borderColor: '#fbbf24', borderWidth: 2, tension: 0.1, pointRadius: 0 },
-                    { label: 'PP (95%)', data: selectedEntry.difficulties[0].data.pp95, borderColor: '#22d3ee', borderWidth: 2, tension: 0.1, pointRadius: 0, borderDash: [5, 5] },
-                    { label: 'SR Scale', data: selectedEntry.difficulties[0].data.sr.map(v => v * 10), borderColor: '#38bdf8', borderWidth: 1, tension: 0.1, pointRadius: 0, fill: true, backgroundColor: 'rgba(56, 189, 248, 0.05)' }
+                    { label: 'Official PP (100% SS)', data: selectedEntry.difficulties[0].data.pp100, borderColor: '#fbbf24', borderWidth: 2, tension: 0.1, pointRadius: 0, yAxisID: 'y' },
+                    { label: 'Official PP (95% Acc)', data: selectedEntry.difficulties[0].data.pp95, borderColor: '#22d3ee', borderWidth: 2, tension: 0.1, pointRadius: 0, borderDash: [5, 5], yAxisID: 'y' },
+                    { label: 'Official Star Rating', data: selectedEntry.difficulties[0].data.sr, borderColor: '#38bdf8', borderWidth: 1, tension: 0.1, pointRadius: 0, fill: true, backgroundColor: 'rgba(56, 189, 248, 0.05)', yAxisID: 'ySR' }
                 ]
             };
         }
@@ -203,22 +229,12 @@ export const ODAnalysis = () => {
                         <div className="p-4 border-b border-border bg-input/20">
                             <div className="relative">
                                 <FontAwesomeIcon icon={faSearch} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
-                                <input 
-                                    type="text" 
-                                    placeholder={t('searchMap')}
-                                    className="w-full bg-input border border-border rounded-lg pl-10 pr-4 py-2 text-sm focus:border-primary focus:outline-none"
-                                    value={search}
-                                    onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-                                />
+                                <input type="text" placeholder={t('searchMap')} className="w-full bg-input border border-border rounded-lg pl-10 pr-4 py-2 text-sm focus:border-primary focus:outline-none" value={search} onChange={(e) => { setSearch(e.target.value); setPage(1); }} />
                             </div>
                         </div>
                         <div className="overflow-y-auto flex-1 custom-scrollbar p-2 bg-black/20">
                             {paginated.map(set => (
-                                <button
-                                    key={set.mapsetId}
-                                    onClick={() => setSelectedMapId(set.mapsetId)}
-                                    className={`w-full text-left px-3 py-2 rounded text-sm transition-all truncate border mb-1 ${selectedMapId === set.mapsetId ? 'bg-primary/10 border-primary/40 text-white' : 'border-transparent text-muted hover:text-white hover:bg-white/5'}`}
-                                >
+                                <button key={set.mapsetId} onClick={() => setSelectedMapId(set.mapsetId)} className={`w-full text-left px-3 py-2 rounded text-sm transition-all truncate border mb-1 ${selectedMapId === set.mapsetId ? 'bg-primary/10 border-primary/40 text-white' : 'border-transparent text-muted hover:text-white hover:bg-white/5'}`}>
                                     <div className="font-bold truncate">{set.title}</div>
                                     <div className="text-[10px] opacity-60 truncate uppercase">{set.artist}</div>
                                 </button>
@@ -236,9 +252,7 @@ export const ODAnalysis = () => {
                             <>
                                 <div className="mb-6">
                                     <h2 className="text-xl font-black text-white">{selectedEntry.title}</h2>
-                                    <div className="text-xs text-muted mt-1 uppercase">
-                                        <span className="text-primary font-bold">{selectedEntry.artist}</span>
-                                    </div>
+                                    <div className="text-xs text-muted mt-1 uppercase"><span className="text-primary font-bold">{selectedEntry.artist}</span></div>
                                 </div>
                                 <div className="flex-1 min-h-0">
                                     {mapChartData && <Line data={mapChartData} options={chartOptions} />}
@@ -275,12 +289,7 @@ export const ODAnalysis = () => {
         );
     };
 
-    if (loadingGlobal) return (
-        <div className="flex flex-col justify-center items-center h-96 text-muted animate-pulse">
-            <FontAwesomeIcon icon={faSpinner} spin className="text-4xl mb-4 text-primary" /> 
-            <span className="font-bold tracking-widest uppercase text-xs">{t('loadingData')}</span>
-        </div>
-    );
+    if (loadingGlobal) return <div className="flex flex-col justify-center items-center h-96 text-muted animate-pulse"><FontAwesomeIcon icon={faSpinner} spin className="text-4xl mb-4 text-primary" /><span className="font-bold tracking-widest uppercase text-xs">{t('loadingData')}</span></div>;
 
     return (
         <div className="space-y-6 pb-20">
@@ -309,12 +318,7 @@ export const ODAnalysis = () => {
                 </div>
             </div>
 
-            {error && (
-                <div className="bg-danger/10 border border-danger/20 p-4 rounded-lg flex items-center gap-3 text-danger mb-6">
-                    <FontAwesomeIcon icon={faExclamationTriangle} />
-                    <span className="text-sm font-bold">{error}</span>
-                </div>
-            )}
+            {error && <div className="bg-danger/10 border border-danger/20 p-4 rounded-lg flex items-center gap-3 text-danger mb-6"><FontAwesomeIcon icon={faExclamationTriangle} /><span className="text-sm font-bold">{error}</span></div>}
 
             <main>{activeTab === 'global' ? renderGlobalStats() : renderMapMatrix()}</main>
         </div>
