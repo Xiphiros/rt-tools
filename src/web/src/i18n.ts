@@ -7,7 +7,8 @@ const resources = {
     common: {
       title: "RT Community Tools",
       dashboard: "Maps",
-      analysis: "Analysis",
+      analysis: "Score Analysis",
+      od_analysis: "OD Explorer",
       calculator: "Calculator",
       leaderboard: "Leaderboard",
       editor: "Editor",
@@ -46,6 +47,20 @@ const resources = {
       topPlays: "Top Performance Records",
       live: "Live",
       recalc: "Rework"
+    },
+    odAnalysis: {
+      title: "OD Sensitivity Analysis",
+      subtitle: "Analyzing the impact of Overall Difficulty across the ranked section",
+      tabGlobal: "Global Statistics",
+      tabInspector: "Map Inspector",
+      loadingData: "Loading Dataset...",
+      chartSR: "SR Inflation",
+      chartPP: "PP Curve",
+      chartCliff: "Retention Cliff (The 90% Factor)",
+      searchMap: "Search map...",
+      metricOD: "Overall Difficulty",
+      metricSR: "Star Rating",
+      metricPP: "Performance Points"
     }
   }
 };
