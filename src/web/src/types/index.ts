@@ -1,9 +1,6 @@
 /**
- * Shared Type Definitions
- * Terminology Update:
- * - Live: Original API values.
- * - Rework: New Star Ratings + Standard Formula.
- * - RS: Rhythm Scoring System.
+ * Shared Type Definitions for RhythmTyper Community Tools
+ * Aligned with RR (Rhythm Rating) and RS (Rhythm Score) terminology.
  */
 
 export interface Note {
@@ -39,11 +36,12 @@ export interface MapData {
     diffName: string;
     bpm: number;
     
-    stars: number; // New RR
+    // Star Ratings
+    stars: number; // Current Rework Nomod Rating (RR)
     starsDT?: number;
     starsHT?: number;
     
-    starsOfficial: number; // Live API SR
+    starsOfficial: number; // In-game Star Rating
     stats: StrainResult['details'];
     link?: string | null;
 }
@@ -86,4 +84,42 @@ export interface PlayerProfile {
     accuracy: number;
     
     plays: ReworkPlay[]; 
+}
+
+// --- OD ANALYSIS DATASET ---
+
+export interface ODGlobalStat {
+    od: number;
+    avgSR: number;
+    avgPP100: number;
+    avgPP98: number;
+    avgPP95: number;
+    avgPP90: number;
+    retention95: number;
+    retention90: number;
+}
+
+export interface ODMapEntry {
+    id: string;
+    title: string;
+    artist: string;
+    diffName: string;
+    data: {
+        sr: number[];
+        pp100: number[];
+        pp98: number[];
+        pp95: number[];
+        pp90: number[];
+    };
+}
+
+export interface ODDataset {
+    metadata: {
+        generatedAt: string;
+        mapCount: number;
+        diffCount: number;
+        odSteps: number[];
+    };
+    globalStats: ODGlobalStat[];
+    maps: ODMapEntry[];
 }
