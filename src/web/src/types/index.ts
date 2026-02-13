@@ -1,6 +1,5 @@
 /**
- * Shared Type Definitions for RhythmTyper Community Tools
- * Aligned with RR (Rhythm Rating) and RS (Rhythm Score) terminology.
+ * Shared Type Definitions
  */
 
 export interface Note {
@@ -74,52 +73,55 @@ export interface PlayerProfile {
     username: string;
     country: string;
     avatar: string | null;
-    
-    // Aggregates
-    reworkTotalPP: number; // Weighted Rework
-    totalRS: number;       // Weighted RS
-    liveTotalPP: number;   // Raw API Total
-    
+    officialPP: number;    
+    reworkRating: number;  
+    importTotalPP: number; 
     playCount: number;
     accuracy: number;
-    
     plays: ReworkPlay[]; 
 }
 
-// --- OD ANALYSIS DATASET ---
+// --- OD ANALYSIS DATASETS ---
 
+// 1. Global Stats (0.1 Resolution)
 export interface ODGlobalStat {
     od: number;
     avgSR: number;
     avgPP100: number;
-    avgPP98: number;
     avgPP95: number;
     avgPP90: number;
     retention95: number;
     retention90: number;
 }
 
-export interface ODMapEntry {
-    id: string;
-    title: string;
-    artist: string;
-    diffName: string;
+export interface ODGlobalDataset {
+    metadata: {
+        generatedAt: string;
+        mapCount: number;
+        diffCount: number;
+    };
+    globalStats: ODGlobalStat[];
+}
+
+// 2. Map Stats (Integer Resolution, Grouped)
+export interface ODDiffEntry {
+    name: string;
+    notes: number;
     data: {
+        // Arrays of length 12 (Indices 0-11 correspond to OD 0-11)
         sr: number[];
         pp100: number[];
-        pp98: number[];
         pp95: number[];
         pp90: number[];
     };
 }
 
-export interface ODDataset {
-    metadata: {
-        generatedAt: string;
-        mapCount: number;
-        diffCount: number;
-        odSteps: number[];
-    };
-    globalStats: ODGlobalStat[];
-    maps: ODMapEntry[];
+export interface ODMapsetEntry {
+    mapsetId: string;
+    artist: string;
+    title: string;
+    difficulties: ODDiffEntry[];
 }
+
+// This type is just an array of mapsets in the JSON file
+export type ODMapsDataset = ODMapsetEntry[];
