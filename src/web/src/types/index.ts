@@ -1,5 +1,9 @@
 /**
  * Shared Type Definitions
+ * Terminology:
+ * - Live: Original API values.
+ * - Rework: New Star Ratings + Standard Formula.
+ * - RS: Biometric Scoring System.
  */
 
 export interface Note {
@@ -35,12 +39,11 @@ export interface MapData {
     diffName: string;
     bpm: number;
     
-    // Star Ratings
-    stars: number; // Current Rework Nomod Rating (RR)
+    stars: number; // New RR
     starsDT?: number;
     starsHT?: number;
     
-    starsOfficial: number; // In-game Star Rating
+    starsOfficial: number; // Live API SR
     stats: StrainResult['details'];
     link?: string | null;
 }
@@ -73,17 +76,20 @@ export interface PlayerProfile {
     username: string;
     country: string;
     avatar: string | null;
-    officialPP: number;    
-    reworkRating: number;  
-    importTotalPP: number; 
+    
+    // Aggregates - Must match component usage
+    reworkTotalPP: number; 
+    totalRS: number;       
+    liveTotalPP: number;   
+    
     playCount: number;
     accuracy: number;
+    
     plays: ReworkPlay[]; 
 }
 
 // --- OD ANALYSIS DATASETS ---
 
-// 1. Global Stats (0.1 Resolution)
 export interface ODGlobalStat {
     od: number;
     avgSR: number;
@@ -103,12 +109,10 @@ export interface ODGlobalDataset {
     globalStats: ODGlobalStat[];
 }
 
-// 2. Map Stats (Integer Resolution, Grouped)
 export interface ODDiffEntry {
     name: string;
     notes: number;
     data: {
-        // Arrays of length 12 (Indices 0-11 correspond to OD 0-11)
         sr: number[];
         pp100: number[];
         pp95: number[];
@@ -123,5 +127,4 @@ export interface ODMapsetEntry {
     difficulties: ODDiffEntry[];
 }
 
-// This type is just an array of mapsets in the JSON file
 export type ODMapsDataset = ODMapsetEntry[];
